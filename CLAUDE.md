@@ -35,7 +35,7 @@ Each sheet is one HTML file with inline CSS and JS — no external dependencies 
 ```js
 const state = {
   answers: {},           // qid → value(s)
-  results: {},           // qid → true/false
+  correct: {},           // qid → true/false
   totalMarks: { math: 0, sci: 0 },
   maxMarks: { math: N, sci: N },
   startTime: Date.now()
