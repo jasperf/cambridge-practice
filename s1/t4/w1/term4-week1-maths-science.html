@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge Secondary & IGCSE Practice · Week 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --accent-danger: #e05252;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 58px;
+  gap: 16px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.logo span { color: var(--accent-math); }
+
+.week-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Score pill */
+.score-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 5px 16px 5px 10px;
+}
+.score-pill .score-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.score-pill .score-val {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-math);
+  transition: color 0.3s;
+  min-width: 48px;
+  text-align: right;
+}
+
+/* Progress bar */
+.progress-wrap {
+  height: 3px;
+  background: var(--border);
+  position: relative;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-math), var(--accent-sci));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 52px 28px 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent-math);
+}
+
+.hero-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.hero-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero-chip .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.dot-math { background: var(--accent-math); }
+.dot-sci  { background: var(--accent-sci); }
+.dot-warn { background: var(--accent-warn); }
+
+/* ── SUBJECT TABS ── */
+.subject-nav {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.sub-tab {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.sub-tab.active-math { background: var(--accent-math); color: #fff; border-color: var(--accent-math); }
+.sub-tab.active-sci  { background: var(--accent-sci);  color: #0f1117; border-color: var(--accent-sci); }
+
+/* ── MAIN LAYOUT ── */
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+/* ── SECTION HEADERS ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 44px 0 24px;
+}
+.section-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.icon-math { background: rgba(79,142,247,0.15); }
+.icon-sci  { background: rgba(62,207,142,0.15); }
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.section-header .sub-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ── QUESTION CARD ── */
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong   { border-color: var(--wrong); }
+
+.q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.q-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.q-text {
+  font-size: 0.97rem;
+  color: var(--text);
+  flex: 1;
+  line-height: 1.6;
+}
+.q-marks {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-warn);
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.q-body { padding: 16px 20px; }
+
+/* Input styles */
+.answer-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  resize: vertical;
+  min-height: 52px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.answer-input:focus { border-color: var(--accent-math); }
+.answer-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.06); }
+.answer-input.wrong   { border-color: var(--wrong);   background: rgba(231,76,60,0.06); }
+
+/* MCQ options */
+.mcq-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mcq-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-size: 0.93rem;
+  user-select: none;
+}
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct  { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong    { border-color: var(--wrong);   background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  transition: all 0.2s;
+}
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #fff; }
+.mcq-opt.correct .opt-indicator  { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator    { border-color: var(--wrong);   background: var(--wrong);   color: #fff; }
+
+/* Number input row */
+.num-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.num-input {
+  width: 120px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  padding: 9px 12px;
+  text-align: center;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong   { border-color: var(--wrong); }
+.num-unit {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Action buttons */
+.q-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.3px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.btn-check {
+  background: var(--accent-math);
+  color: #fff;
+}
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.72rem;
+}
+.btn-reveal:hover { color: var(--text-muted); }
+.btn-sci { background: var(--accent-sci); color: #0f1117; }
+.btn-sci:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* Feedback strip */
+.feedback {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.feedback.show { display: block; }
+.feedback.correct-fb {
+  background: rgba(46,204,113,0.1);
+  border: 1px solid rgba(46,204,113,0.3);
+  color: #7ef5b0;
+}
+.feedback.wrong-fb {
+  background: rgba(231,76,60,0.1);
+  border: 1px solid rgba(231,76,60,0.3);
+  color: #f5a0a0;
+}
+.feedback.hint-fb {
+  background: rgba(245,166,35,0.08);
+  border: 1px solid rgba(245,166,35,0.2);
+  color: var(--accent-warn);
+}
+.feedback.reveal-fb {
+  background: rgba(122,132,160,0.1);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* Info box */
+.info-box {
+  background: var(--surface2);
+  border-left: 3px solid var(--accent-math);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.info-box.sci { border-left-color: var(--accent-sci); }
+
+/* Data table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.88rem;
+}
+.data-table th {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 7px 12px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.data-table td {
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  text-align: center;
+  color: var(--text);
+}
+.data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+/* SVG diagrams */
+.diagram-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+}
+
+/* Sub-questions */
+.sub-q {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 10px 0;
+}
+.sub-q-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.sub-q-text {
+  font-size: 0.93rem;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+/* Section score bar */
+.section-score {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 24px;
+}
+.section-score-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex: 1;
+}
+.section-score-val {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-math);
+}
+.section-score-bar {
+  flex: 2;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.section-score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-math), var(--accent-sci));
+  width: 0%;
+  transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1);
+  border-radius: 3px;
+}
+
+/* ── RESULTS PANEL ── */
+.results-panel {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--accent-math);
+  border-radius: 14px;
+  padding: 32px;
+  margin-top: 40px;
+  text-align: center;
+  animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.results-panel.show { display: block; }
+.results-grade {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.results-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.results-breakdown {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.rb-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+.rb-chip .rb-val {
+  font-size: 1.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 48px 0;
+  position: relative;
+}
+.divider::after {
+  content: '§';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: var(--bg);
+  padding: 0 12px;
+  color: var(--text-dim);
+  font-family: var(--font-display);
+}
+
+/* Timer */
+.timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.timer {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Confetti layer */
+#confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  transition: all 0.2s;
+  pointer-events: none;
+}
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+/* Animations */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.q-card { animation: slideIn 0.4s ease both; }
+.q-card:nth-child(1) { animation-delay: 0.05s; }
+.q-card:nth-child(2) { animation-delay: 0.10s; }
+.q-card:nth-child(3) { animation-delay: 0.15s; }
+.q-card:nth-child(4) { animation-delay: 0.20s; }
+.q-card:nth-child(5) { animation-delay: 0.25s; }
+
+/* Shake animation */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.shake { animation: shake 0.4s ease; }
+
+/* Pulse */
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(46,204,113,0); }
+  100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); }
+}
+.pulse-correct { animation: pulse-green 0.6s ease; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .topbar { padding: 0 16px; }
+  .hero, .subject-nav, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">T4 · W1 · 2026</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <div class="timer-wrap">
+      <span style="font-size:0.85rem;">⏱</span>
+      <div class="timer" id="timer">00:00</div>
+    </div>
+    <div class="score-pill">
+      <div class="score-label">Score</div>
+      <div class="score-val" id="global-score">0 / 0</div>
+    </div>
+  </div>
+</div>
+<div class="progress-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 1 · Term 4 · Week 1</div>
+  <h1>Maths &amp; Science<br><em>Interactive Exercises</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Mathematics — Unit 16</div>
+    <div class="hero-chip"><div class="dot dot-sci"></div>Science — Unit 9</div>
+    <div class="hero-chip"><div class="dot dot-warn"></div>25 questions · self-marked</div>
+  </div>
+</div>
+
+<!-- SUBJECT TABS -->
+<div class="subject-nav">
+  <a href="#maths" class="sub-tab active-math">📐 Mathematics</a>
+  <a href="#science" class="sub-tab active-sci">🔬 Science</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ════════════════ MATHEMATICS ════════════════ -->
+  <div id="maths">
+    <div class="section-header">
+      <div class="section-icon icon-math">📐</div>
+      <div>
+        <div class="sub-label">Mathematics · Unit 16</div>
+        <h2>Interpreting &amp; Discussing Results</h2>
+      </div>
+    </div>
+
+    <!-- SECTION A: Stem-and-Leaf -->
+    <div class="info-box">
+      <strong>Section A — Stem-and-Leaf Diagrams</strong><br>
+      The diagram below shows scores of 16 students in a science quiz (out of 50).
+      Key: <code style="background:var(--bg);padding:1px 5px;border-radius:3px;">2 | 1 = 21</code> &nbsp; <code style="background:var(--bg);padding:1px 5px;border-radius:3px;">8 | 3 = 38</code>
+    </div>
+
+    <div class="diagram-wrap">
+      <svg width="100%" viewBox="0 0 480 170" style="max-width:480px;display:block;margin:0 auto;">
+        <rect x="0" y="0" width="480" height="170" rx="6" fill="#1e2336"/>
+        <text x="240" y="22" text-anchor="middle" font-family="Fraunces,serif" font-size="13" fill="#7a84a0">Back-to-Back Stem-and-Leaf: Quiz Scores</text>
+        <line x1="10" y1="30" x2="470" y2="30" stroke="#2a3050"/>
+        <text x="148" y="46" text-anchor="end" font-family="DM Mono,monospace" font-size="12" fill="#4f8ef7">Left (lower)</text>
+        <text x="240" y="46" text-anchor="middle" font-family="DM Mono,monospace" font-size="12" fill="#7a84a0">Stem</text>
+        <text x="252" y="46" text-anchor="start" font-family="DM Mono,monospace" font-size="12" fill="#3ecf8e">Right (upper)</text>
+        <line x1="10" y1="52" x2="470" y2="52" stroke="#2a3050"/>
+        <line x1="194" y1="52" x2="194" y2="163" stroke="#2a3050" stroke-width="1.5"/>
+        <line x1="214" y1="52" x2="214" y2="163" stroke="#2a3050" stroke-width="1.5"/>
+        <!-- Row 2 -->
+        <text x="188" y="74" text-anchor="end" font-family="DM Mono,monospace" font-size="13" fill="#4f8ef7">9</text>
+        <text x="204" y="74" text-anchor="middle" font-family="Fraunces,serif" font-size="13" fill="#e8eaf0" font-weight="700">2</text>
+        <text x="220" y="74" text-anchor="start" font-family="DM Mono,monospace" font-size="13" fill="#3ecf8e">1  3  7</text>
+        <!-- Row 3 -->
+        <text x="188" y="99" text-anchor="end" font-family="DM Mono,monospace" font-size="13" fill="#4f8ef7">8  5  2</text>
+        <text x="204" y="99" text-anchor="middle" font-family="Fraunces,serif" font-size="13" fill="#e8eaf0" font-weight="700">3</text>
+        <text x="220" y="99" text-anchor="start" font-family="DM Mono,monospace" font-size="13" fill="#3ecf8e">0  4  6  9</text>
+        <!-- Row 4 -->
+        <text x="188" y="124" text-anchor="end" font-family="DM Mono,monospace" font-size="13" fill="#4f8ef7">7  3</text>
+        <text x="204" y="124" text-anchor="middle" font-family="Fraunces,serif" font-size="13" fill="#e8eaf0" font-weight="700">4</text>
+        <text x="220" y="124" text-anchor="start" font-family="DM Mono,monospace" font-size="13" fill="#3ecf8e">2  5</text>
+        <!-- Row 5 -->
+        <text x="204" y="149" text-anchor="middle" font-family="Fraunces,serif" font-size="13" fill="#e8eaf0" font-weight="700">5</text>
+        <text x="220" y="149" text-anchor="start" font-family="DM Mono,monospace" font-size="13" fill="#3ecf8e">0</text>
+        <text x="240" y="165" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4a5270">Total: 16 students</text>
+      </svg>
+    </div>
+
+    <!-- Q1 -->
+    <div class="q-card" id="qcard-m1">
+      <div class="q-header">
+        <div class="q-num">M1</div>
+        <div class="q-text">How many students scored <strong>more than 35</strong>?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m1-ans" placeholder="?" min="0" max="20">
+          <span class="num-unit">students</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m1', 7, 'M1')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m1', 'List scores &gt; 35: from stem 3 → 36, 39; stem 4 → 42, 43, 45, 47; stem 5 → 50')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m1', '7 students (scores: 36, 39, 42, 43, 45, 47, 50)')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m1-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-card" id="qcard-m2">
+      <div class="q-header">
+        <div class="q-num">M2</div>
+        <div class="q-text">Find the <strong>median</strong> score of all 16 students.</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m2-ans" placeholder="?" step="0.5">
+          <span class="num-unit">points</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m2', 35.5, 'M2')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m2', 'With 16 values, median = average of 8th and 9th values. List all in order first.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m2', 'Ordered: 21,23,27,29,30,32,34,35,36,38,39,42,43,45,47,50 → 8th=35, 9th=36 → Median = (35+36)÷2 = 35.5')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m2-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-card" id="qcard-m3">
+      <div class="q-header">
+        <div class="q-num">M3</div>
+        <div class="q-text">Find the <strong>range</strong> of all scores.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m3-ans" placeholder="?">
+          <span class="num-unit">points</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m3', 29, 'M3')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m3', 'Range = largest value − smallest value')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m3', 'Range = 50 − 21 = 29')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m3-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q4 MCQ -->
+    <div class="q-card" id="qcard-m4">
+      <div class="q-header">
+        <div class="q-num">M4</div>
+        <div class="q-text">Which stem has the <strong>most leaves on the right side</strong>? What does this tell you?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="m4-opts">
+          <div class="mcq-opt" onclick="selectMCQ('m4',this,'a')">
+            <div class="opt-indicator">A</div>Stem 2 — most students scored in the 20s
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('m4',this,'b')">
+            <div class="opt-indicator">B</div>Stem 3 — most students scored in the 30s ✓
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('m4',this,'c')">
+            <div class="opt-indicator">C</div>Stem 4 — most students scored in the 40s
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('m4',this,'d')">
+            <div class="opt-indicator">D</div>Stem 5 — the highest scorer was in the 50s
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('m4','b','M4')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m4', 'B — Stem 3 has 4 leaves on the right (30,34,36,39). Most upper-group students scored in the 30s.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m4-fb"></div>
+      </div>
+    </div>
+
+    <!-- SECTION B: Pie Charts -->
+    <div class="info-box" style="margin-top:28px;">
+      <strong>Section B — Pie Charts</strong><br>
+      A survey asked 60 students about their favourite sport. Use the table to answer the questions.
+    </div>
+
+    <div class="diagram-wrap">
+      <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center;">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <!-- Football 144° -->
+          <path d="M100,100 L100,20 A80,80 0 0,1 180,140 Z" fill="#4f8ef7" opacity="0.9"/>
+          <!-- Badminton 90° -->
+          <path d="M100,100 L180,140 A80,80 0 0,1 60,180 Z" fill="#f5a623" opacity="0.9"/>
+          <!-- Swimming 72° -->
+          <path d="M100,100 L60,180 A80,80 0 0,1 20,60 Z" fill="#3ecf8e" opacity="0.9"/>
+          <!-- Basketball 54° -->
+          <path d="M100,100 L20,60 A80,80 0 0,1 100,20 Z" fill="#e05252" opacity="0.9"/>
+          <circle cx="100" cy="100" r="28" fill="#1e2336"/>
+          <text x="100" y="96" text-anchor="middle" font-family="Fraunces,serif" font-size="11" fill="#7a84a0">n=60</text>
+          <text x="100" y="108" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#4a5270">students</text>
+        </svg>
+        <div>
+          <table class="data-table" style="min-width:280px;">
+            <tr><th>Sport</th><th>Students</th><th>Angle</th></tr>
+            <tr><td style="color:#4f8ef7">⬤ Football</td><td>24</td><td style="color:#7a84a0;font-style:italic">calculate →</td></tr>
+            <tr><td style="color:#f5a623">⬤ Badminton</td><td>15</td><td>90°</td></tr>
+            <tr><td style="color:#3ecf8e">⬤ Swimming</td><td>12</td><td style="color:#7a84a0;font-style:italic">calculate →</td></tr>
+            <tr><td style="color:#e05252">⬤ Basketball</td><td>9</td><td style="color:#7a84a0;font-style:italic">calculate →</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-card" id="qcard-m5">
+      <div class="q-header">
+        <div class="q-num">M5</div>
+        <div class="q-text">What is the angle for <strong>Football</strong> in the pie chart?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="info-box">Formula: Angle = (number of students ÷ total) × 360°</div>
+        <div class="num-row">
+          <input type="number" class="num-input" id="m5-ans" placeholder="?">
+          <span class="num-unit">degrees</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m5', 144, 'M5')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m5', '(24 ÷ 60) × 360 = ?')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m5', '(24 ÷ 60) × 360 = 0.4 × 360 = 144°')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m5-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-card" id="qcard-m6">
+      <div class="q-header">
+        <div class="q-num">M6</div>
+        <div class="q-text">What is the angle for <strong>Swimming</strong>?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m6-ans" placeholder="?">
+          <span class="num-unit">degrees</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m6', 72, 'M6')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m6', '(12 ÷ 60) × 360 = 72°')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m6-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q7 MCQ -->
+    <div class="q-card" id="qcard-m7">
+      <div class="q-header">
+        <div class="q-num">M7</div>
+        <div class="q-text">Which sport was chosen by exactly <strong>a quarter</strong> of the students? How can you tell from the pie chart?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="m7-opts">
+          <div class="mcq-opt" onclick="selectMCQ('m7',this,'a')">
+            <div class="opt-indicator">A</div>Football — its slice is the largest
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('m7',this,'b')">
+            <div class="opt-indicator">B</div>Badminton — its angle is 90°, which is exactly ¼ of 360°
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('m7',this,'c')">
+            <div class="opt-indicator">C</div>Swimming — 12 out of 60 is one quarter
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('m7',this,'d')">
+            <div class="opt-indicator">D</div>Basketball — its slice looks like a quarter
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('m7','b','M7')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m7', 'B — Badminton: 90° = ¼ × 360°, and 15/60 = ¼')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m7-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="q-card" id="qcard-m8">
+      <div class="q-header">
+        <div class="q-num">M8</div>
+        <div class="q-text">What is the probability that a randomly chosen student picked <strong>Football</strong>? (Give as a simplified fraction — enter the numerator only, denominator is 5)</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m8-ans" placeholder="?" style="width:80px;">
+          <span class="num-unit">/ 5</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m8', 2, 'M8')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m8', 'P = 24/60. Simplify by dividing both by 12.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m8', '24/60 = 2/5')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m8-fb"></div>
+      </div>
+    </div>
+
+    <!-- SECTION C: Statistics -->
+    <div class="info-box" style="margin-top:28px;">
+      <strong>Section C — Using Statistics</strong><br>
+      Daily high temperatures (°C) in Jakarta over 9 days:
+      <div style="text-align:center;font-family:var(--font-mono);font-size:1.05rem;margin-top:8px;letter-spacing:2px;color:var(--text);">
+        31 &nbsp; 34 &nbsp; 33 &nbsp; 31 &nbsp; 36 &nbsp; 31 &nbsp; 35 &nbsp; 38 &nbsp; 33
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="q-card" id="qcard-m9">
+      <div class="q-header">
+        <div class="q-num">M9</div>
+        <div class="q-text">Calculate the <strong>mean</strong> temperature. Round to 1 decimal place.</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m9-ans" placeholder="?" step="0.1">
+          <span class="num-unit">°C</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m9', 33.6, 'M9', 0.1)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m9', 'Sum all 9 values first: 31+34+33+31+36+31+35+38+33 = ?')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m9', 'Sum = 302. Mean = 302 ÷ 9 ≈ 33.6°C')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m9-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="q-card" id="qcard-m10">
+      <div class="q-header">
+        <div class="q-num">M10</div>
+        <div class="q-text">Find the <strong>median</strong> temperature.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m10-ans" placeholder="?">
+          <span class="num-unit">°C</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m10', 33, 'M10')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m10', 'Order the 9 values. The median is the 5th value.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m10', 'Ordered: 31,31,31,33,33,34,35,36,38 → 5th value = 33°C')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m10-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="q-card" id="qcard-m11">
+      <div class="q-header">
+        <div class="q-num">M11</div>
+        <div class="q-text">What is the <strong>mode</strong>?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m11-ans" placeholder="?">
+          <span class="num-unit">°C</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m11', 31, 'M11')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m11', '31°C appears 3 times — the most frequent value')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m11-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q12 MCQ -->
+    <div class="q-card" id="qcard-m12">
+      <div class="q-header">
+        <div class="q-num">M12</div>
+        <div class="q-text">Student says: <em>"The mean is the best average to use here."</em> Which statement best evaluates his claim?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="m12-opts">
+          <div class="mcq-opt" onclick="selectMCQ('m12',this,'a')">
+            <div class="opt-indicator">A</div>Student is correct — the mean always represents data best
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('m12',this,'b')">
+            <div class="opt-indicator">B</div>Student is wrong — the mode (31°C) is pulled down by repeated low values, making the median (33°C) a better representative
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('m12',this,'c')">
+            <div class="opt-indicator">C</div>Student is wrong — none of the averages can represent this data
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('m12',this,'d')">
+            <div class="opt-indicator">D</div>Student is partly right — the mean and median are both reasonable here; the mode is low due to repeated 31s
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('m12','d','M12')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m12', 'D — Both mean (33.6) and median (33) are close and reasonable. The mode (31) is skewed low by three occurrences of 31.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m12-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q13 Challenge -->
+    <div class="q-card" id="qcard-m13">
+      <div class="q-header">
+        <div class="q-num">M13 ⭐</div>
+        <div class="q-text"><strong>Challenge:</strong> A 10th temperature is added, making the new mean exactly 33°C. What is the new temperature?</div>
+        <div class="q-marks">3 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m13-ans" placeholder="?">
+          <span class="num-unit">°C</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m13', 28, 'M13')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m13', 'New mean = 33, new total values = 10. So new sum must be 330. Current sum = 302.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m13', 'New sum needed: 33 × 10 = 330. Current sum: 302. New value = 330 − 302 = 28°C')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m13-fb"></div>
+      </div>
+    </div>
+
+    <div class="section-score" id="math-score-bar">
+      <div class="section-score-label">Maths score</div>
+      <div class="section-score-bar"><div class="section-score-fill" id="math-score-fill"></div></div>
+      <div class="section-score-val" id="math-score-val">—</div>
+    </div>
+
+  </div><!-- /maths -->
+
+  <div class="divider"></div>
+
+  <!-- ════════════════ SCIENCE ════════════════ -->
+  <div id="science">
+    <div class="section-header">
+      <div class="section-icon icon-sci">🔬</div>
+      <div>
+        <div class="sub-label">Science · Unit 9</div>
+        <h2>Electromagnets</h2>
+      </div>
+    </div>
+
+    <!-- Electromagnet diagram -->
+    <div class="diagram-wrap">
+      <svg width="100%" viewBox="0 0 520 170" style="max-width:520px;display:block;margin:0 auto;">
+        <rect x="0" y="0" width="520" height="170" rx="6" fill="#1e2336"/>
+        <!-- Battery -->
+        <rect x="14" y="72" width="42" height="26" rx="4" fill="#2a3050" stroke="#3ecf8e" stroke-width="1.5"/>
+        <text x="35" y="87" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#3ecf8e">CELL</text>
+        <text x="35" y="107" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#4a5270">+ −</text>
+        <!-- Wires -->
+        <line x1="56" y1="85" x2="90" y2="85" stroke="#4f8ef7" stroke-width="2"/>
+        <line x1="400" y1="85" x2="500" y2="85" stroke="#4f8ef7" stroke-width="2"/>
+        <line x1="14" y1="85" x2="14" y2="155" stroke="#4f8ef7" stroke-width="2"/>
+        <line x1="14" y1="155" x2="500" y2="155" stroke="#4f8ef7" stroke-width="2"/>
+        <line x1="500" y1="85" x2="500" y2="155" stroke="#4f8ef7" stroke-width="2"/>
+        <!-- Switch -->
+        <circle cx="260" cy="155" r="6" fill="#1e2336" stroke="#4a5270" stroke-width="1.5"/>
+        <line x1="260" y1="149" x2="290" y2="134" stroke="#f5a623" stroke-width="2"/>
+        <text x="255" y="148" font-family="DM Mono,monospace" font-size="9" fill="#f5a623">SW</text>
+        <!-- Iron core -->
+        <rect x="110" y="76" width="280" height="18" rx="4" fill="#3a3a5a" stroke="#6060a0" stroke-width="1"/>
+        <text x="250" y="89" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#9090c0">IRON CORE</text>
+        <!-- Coil loops -->
+        <g stroke="#f5a623" stroke-width="2.5" fill="none">
+          <path d="M118,76 Q110,85 118,94"/><path d="M134,76 Q126,85 134,94"/>
+          <path d="M150,76 Q142,85 150,94"/><path d="M166,76 Q158,85 166,94"/>
+          <path d="M182,76 Q174,85 182,94"/><path d="M198,76 Q190,85 198,94"/>
+          <path d="M214,76 Q206,85 214,94"/><path d="M230,76 Q222,85 230,94"/>
+          <path d="M246,76 Q238,85 246,94"/><path d="M262,76 Q254,85 262,94"/>
+          <path d="M278,76 Q270,85 278,94"/><path d="M294,76 Q286,85 294,94"/>
+          <path d="M310,76 Q302,85 310,94"/><path d="M326,76 Q318,85 326,94"/>
+          <path d="M342,76 Q334,85 342,94"/><path d="M358,76 Q350,85 358,94"/>
+          <path d="M374,76 Q366,85 374,94"/>
+        </g>
+        <!-- Poles -->
+        <text x="102" y="66" text-anchor="middle" font-family="Fraunces,serif" font-size="18" fill="#e05252" font-weight="700">N</text>
+        <text x="398" y="66" text-anchor="middle" font-family="Fraunces,serif" font-size="18" fill="#4f8ef7" font-weight="700">S</text>
+        <!-- Field lines -->
+        <path d="M70,85 Q50,55 30,85" stroke="#e05252" stroke-width="1" fill="none" stroke-dasharray="3,3" opacity="0.5"/>
+        <path d="M420,85 Q450,55 480,85" stroke="#4f8ef7" stroke-width="1" fill="none" stroke-dasharray="3,3" opacity="0.5"/>
+        <!-- Labels -->
+        <text x="250" y="62" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#f5a623" font-style="italic">coil of wire (solenoid)</text>
+        <text x="250" y="155" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#7a84a0">complete circuit when switch is closed</text>
+      </svg>
+    </div>
+
+    <div class="info-box sci">
+      An <strong>electromagnet</strong> is a temporary magnet created when electric current flows through a coil of wire wound around a soft iron core. It can be switched on and off, and its strength can be varied.
+    </div>
+
+    <!-- S1 -->
+    <div class="q-card" id="qcard-s1">
+      <div class="q-header">
+        <div class="q-num">S1</div>
+        <div class="q-text">What happens to the magnetic field when the switch is <strong>opened</strong> (circuit broken)?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s1-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'a')">
+            <div class="opt-indicator">A</div>The magnetic field gets stronger
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'b')">
+            <div class="opt-indicator">B</div>The magnetic field reverses direction
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'c')">
+            <div class="opt-indicator">C</div>The magnetic field disappears — the electromagnet stops working
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'d')">
+            <div class="opt-indicator">D</div>The magnetic field stays the same
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkMCQ('s1','c','S1')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s1', 'C — No current flows when the circuit is open, so no magnetic field is produced. This is why electromagnets can be switched off.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s1-fb"></div>
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="q-card" id="qcard-s2">
+      <div class="q-header">
+        <div class="q-num">S2</div>
+        <div class="q-text">Why is <strong>iron</strong> used for the core instead of <strong>steel</strong>?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s2-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'a')">
+            <div class="opt-indicator">A</div>Iron is cheaper and easier to find
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'b')">
+            <div class="opt-indicator">B</div>Iron is magnetically soft — it magnetises and demagnetises easily when current is switched on/off
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'c')">
+            <div class="opt-indicator">C</div>Steel would melt under the heat of the current
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'d')">
+            <div class="opt-indicator">D</div>Iron conducts electricity better than steel
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkMCQ('s2','b','S2')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('s2', 'Think about what happens when you switch the electromagnet off. Should the core stay magnetic?')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s2', 'B — Iron is a magnetically soft material. Steel is magnetically hard and would remain magnetised after the current is switched off, making it a permanent magnet.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s2-fb"></div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="q-card" id="qcard-s3">
+      <div class="q-header">
+        <div class="q-num">S3</div>
+        <div class="q-text">Give <strong>two advantages</strong> of an electromagnet over a permanent magnet. (Select both correct answers)</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s3-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s3',this,'a',true)">
+            <div class="opt-indicator">A</div>It can be switched on and off
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s3',this,'b',true)">
+            <div class="opt-indicator">B</div>Its strength can be varied by changing the current
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s3',this,'c',true)">
+            <div class="opt-indicator">C</div>It never needs electricity to work
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s3',this,'d',true)">
+            <div class="opt-indicator">D</div>It is always stronger than a permanent magnet
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkMulti('s3',['a','b'],'S3')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s3', 'A and B — Can be switched on/off; strength is adjustable. C is wrong (needs electricity). D is wrong (not always stronger).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s3-fb"></div>
+      </div>
+    </div>
+
+    <!-- Investigation table -->
+    <div class="info-box sci" style="margin-top:28px;">
+      <strong>Section B — Factors Affecting Electromagnet Strength</strong><br>
+      A student counts how many paperclips an electromagnet holds as she varies the number of coil turns (current kept constant).
+    </div>
+
+    <div class="diagram-wrap">
+      <table class="data-table" style="max-width:360px;margin:0 auto;">
+        <tr><th>Turns</th><th>Paperclips held</th></tr>
+        <tr><td>10</td><td>3</td></tr>
+        <tr><td>20</td><td>6</td></tr>
+        <tr><td>30</td><td>9</td></tr>
+        <tr><td>40</td><td>11</td></tr>
+        <tr><td>50</td><td>15</td></tr>
+      </table>
+    </div>
+
+    <!-- S4 MCQ -->
+    <div class="q-card" id="qcard-s4">
+      <div class="q-header">
+        <div class="q-num">S4</div>
+        <div class="q-text">What is the <strong>independent variable</strong> in this investigation?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s4-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'a')">
+            <div class="opt-indicator">A</div>Number of paperclips held
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'b')">
+            <div class="opt-indicator">B</div>Number of coil turns
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'c')">
+            <div class="opt-indicator">C</div>The current through the wire
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'d')">
+            <div class="opt-indicator">D</div>The type of iron core
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkMCQ('s4','b','S4')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('s4', 'The independent variable is what the student deliberately changes.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s4', 'B — Number of coil turns is what the student changes (independent). Paperclips held is what is measured (dependent).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s4-fb"></div>
+      </div>
+    </div>
+
+    <!-- S5 MCQ -->
+    <div class="q-card" id="qcard-s5">
+      <div class="q-header">
+        <div class="q-num">S5</div>
+        <div class="q-text">Which variable must be kept <strong>constant</strong> to make this a fair test?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s5-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'a')">
+            <div class="opt-indicator">A</div>Number of paperclips
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'b')">
+            <div class="opt-indicator">B</div>Number of coil turns
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'c')">
+            <div class="opt-indicator">C</div>Current through the wire (voltage)
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'d')">
+            <div class="opt-indicator">D</div>Colour of the wire insulation
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkMCQ('s5','c','S5')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s5', 'C — Current (voltage) must stay constant. Changing it would mean two variables are changing at once, making it an unfair test.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s5-fb"></div>
+      </div>
+    </div>
+
+    <!-- S6 MCQ -->
+    <div class="q-card" id="qcard-s6">
+      <div class="q-header">
+        <div class="q-num">S6</div>
+        <div class="q-text">Which statement best describes the relationship between turns and strength?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s6-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s6',this,'a')">
+            <div class="opt-indicator">A</div>As turns increase, strength decreases
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s6',this,'b')">
+            <div class="opt-indicator">B</div>There is no clear pattern
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s6',this,'c')">
+            <div class="opt-indicator">C</div>As turns increase, strength increases — roughly proportionally
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s6',this,'d')">
+            <div class="opt-indicator">D</div>Strength only increases after 30 turns
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkMCQ('s6','c','S6')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s6', 'C — Each 10 extra turns adds roughly 3 more paperclips. The relationship is approximately proportional.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s6-fb"></div>
+      </div>
+    </div>
+
+    <!-- S7 Number -->
+    <div class="q-card" id="qcard-s7">
+      <div class="q-header">
+        <div class="q-num">S7</div>
+        <div class="q-text">Predict how many paperclips would be held with <strong>60 turns</strong>.</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="s7-ans" placeholder="?">
+          <span class="num-unit">paperclips</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkNum('s7', 18, 'S7', 1)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('s7', 'Look at the pattern: each 10 extra turns adds about 3 clips. What comes after 15?')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s7', '~18 paperclips. The pattern adds ~3 clips per 10 turns. 50→15, so 60→~18.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s7-fb"></div>
+      </div>
+    </div>
+
+    <!-- Real-world applications -->
+    <div class="info-box sci" style="margin-top:28px;">
+      <strong>Section C — Real-World Applications</strong>
+    </div>
+
+    <!-- S8 -->
+    <div class="q-card" id="qcard-s8">
+      <div class="q-header">
+        <div class="q-num">S8</div>
+        <div class="q-text">A scrapyard electromagnet sorts steel cans from aluminium cans. Why does this work?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s8-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s8',this,'a')">
+            <div class="opt-indicator">A</div>Steel and aluminium have different colours, which the magnet detects
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s8',this,'b')">
+            <div class="opt-indicator">B</div>Steel is magnetic (iron-based) so it is attracted; aluminium is non-magnetic so it is not
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s8',this,'c')">
+            <div class="opt-indicator">C</div>The magnet heats the steel so it melts away from the aluminium
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s8',this,'d')">
+            <div class="opt-indicator">D</div>Both are attracted equally but steel is heavier so it falls off first
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkMCQ('s8','b','S8')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s8', 'B — Steel contains iron, making it magnetic. Aluminium is a non-magnetic metal, so the electromagnet only picks up the steel cans.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s8-fb"></div>
+      </div>
+    </div>
+
+    <!-- S9 -->
+    <div class="q-card" id="qcard-s9">
+      <div class="q-header">
+        <div class="q-num">S9</div>
+        <div class="q-text">Hospital MRI machines use very powerful electromagnets. Why must patients remove all metal objects beforehand?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s9-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'a')">
+            <div class="opt-indicator">A</div>Metal objects get wet and cause the machine to malfunction
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'b')">
+            <div class="opt-indicator">B</div>The powerful magnet attracts metal objects at high speed — creating a danger of injury and interference with the scan
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'c')">
+            <div class="opt-indicator">C</div>Metal objects block the radio waves used in the scan
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'d')">
+            <div class="opt-indicator">D</div>Metal heats up inside the MRI and could burn the patient
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkMCQ('s9','b','S9')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s9', 'B — MRI magnets are extremely powerful. Magnetic metal objects can be violently pulled toward the machine, causing injury. They also distort the magnetic field and ruin the scan.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s9-fb"></div>
+      </div>
+    </div>
+
+    <!-- S10 Extension -->
+    <div class="q-card" id="qcard-s10">
+      <div class="q-header">
+        <div class="q-num">S10 ⭐</div>
+        <div class="q-text"><strong>Extension:</strong> Name <strong>three changes</strong> that would make an electromagnet stronger using the same battery. Select all three correct answers.</div>
+        <div class="q-marks">3 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s10-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'a',true)">
+            <div class="opt-indicator">A</div>Increase the number of coil turns
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'b',true)">
+            <div class="opt-indicator">B</div>Wind the coil more tightly (reduce gaps between loops)
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'c',true)">
+            <div class="opt-indicator">C</div>Use a thicker or longer iron core
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'d',true)">
+            <div class="opt-indicator">D</div>Use a steel core instead of iron
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'e',true)">
+            <div class="opt-indicator">E</div>Replace the iron core with a plastic rod
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check btn-sci" onclick="checkMulti('s10',['a','b','c'],'S10')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s10', 'A, B, C — More turns = more field. Tighter winding = less flux leakage. Larger core = more flux concentration. Steel (D) would become a permanent magnet. Plastic (E) has no magnetic effect.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s10-fb"></div>
+      </div>
+    </div>
+
+    <div class="section-score" id="sci-score-bar">
+      <div class="section-score-label">Science score</div>
+      <div class="section-score-bar"><div class="section-score-fill" id="sci-score-fill" style="background:linear-gradient(90deg,var(--accent-sci),var(--accent-math));"></div></div>
+      <div class="section-score-val" id="sci-score-val" style="color:var(--accent-sci);">—</div>
+    </div>
+
+  </div><!-- /science -->
+
+  <!-- RESULTS -->
+  <div class="results-panel" id="results-panel">
+    <div class="results-grade" id="results-grade">—</div>
+    <div class="results-label" id="results-label">Complete all questions to see your final score</div>
+    <div class="results-breakdown">
+      <div class="rb-chip">
+        Maths<span class="rb-val" id="rb-math">—</span>
+      </div>
+      <div class="rb-chip">
+        Science<span class="rb-val" id="rb-sci">—</span>
+      </div>
+      <div class="rb-chip">
+        Time<span class="rb-val" id="rb-time">—</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+// ── STATE ──
+const state = {
+  answers: {},       // qid → selected option(s) or value
+  correct: {},       // qid → bool
+  totalMarks: { math: 0, sci: 0 },
+  maxMarks:   { math: 23, sci: 22 },
+  startTime: Date.now()
+};
+
+// Question mark values
+const marks = {
+  m1:2,m2:2,m3:1,m4:2,m5:2,m6:1,m7:2,m8:2,m9:2,m10:1,m11:1,m12:2,m13:3,
+  s1:2,s2:2,s3:2,s4:1,s5:1,s6:2,s7:2,s8:2,s9:2,s10:3
+};
+
+const mathQs = ['m1','m2','m3','m4','m5','m6','m7','m8','m9','m10','m11','m12','m13'];
+const sciQs  = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
+
+// ── TIMER ──
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const m = String(Math.floor(elapsed/60)).padStart(2,'0');
+  const s = String(elapsed%60).padStart(2,'0');
+  document.getElementById('timer').textContent = `${m}:${s}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── MCQ SINGLE SELECT ──
+function selectMCQ(qid, el, val, multi=false) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  if (!multi) {
+    opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = o.querySelector('.opt-indicator').textContent.replace('✓','').trim(); });
+    el.classList.add('selected');
+    el.querySelector('.opt-indicator').textContent = '✓';
+    state.answers[qid] = val;
+  } else {
+    // multi-select toggle
+    if (!state.answers[qid]) state.answers[qid] = [];
+    if (el.classList.contains('selected')) {
+      el.classList.remove('selected');
+      el.querySelector('.opt-indicator').textContent = val.toUpperCase();
+      state.answers[qid] = state.answers[qid].filter(v => v !== val);
+    } else {
+      el.classList.add('selected');
+      el.querySelector('.opt-indicator').textContent = '✓';
+      state.answers[qid].push(val);
+    }
+  }
+}
+
+// ── CHECK MCQ ──
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid, 'Please select an answer first!'); return; }
+  if (state.correct[qid] !== undefined) return;
+  
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    // find which option letter this is
+    const optVal = opt.onclick?.toString().match(/'([a-e])'/)?.[1];
+    if (optVal === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  
+  markResult(qid, isCorrect, label);
+}
+
+// ── CHECK MULTI ──
+function checkMulti(qid, correctVals, label) {
+  const selected = state.answers[qid] || [];
+  if (selected.length === 0) { shakeCard(qid, 'Please select at least one answer!'); return; }
+  if (state.correct[qid] !== undefined) return;
+  
+  const sortedSel = [...selected].sort().join('');
+  const sortedCor = [...correctVals].sort().join('');
+  const isCorrect = sortedSel === sortedCor;
+  
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const match = opt.getAttribute('onclick')?.match(/'([a-e])'/);
+    const optVal = match?.[1];
+    if (correctVals.includes(optVal)) opt.classList.add('correct');
+    else if (opt.classList.contains('selected')) opt.classList.add('wrong');
+  });
+  
+  markResult(qid, isCorrect, label);
+}
+
+// ── CHECK NUMBER ──
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid, 'Enter a number first!'); return; }
+  if (state.correct[qid] !== undefined) return;
+  
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect, label);
+}
+
+// ── MARK RESULT ──
+function markResult(qid, isCorrect, label) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Try the hint, or reveal the answer below.`;
+  
+  updateScores();
+}
+
+// ── HINT ──
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+// ── REVEAL ──
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    updateScores();
+  }
+}
+
+// ── SHAKE ──
+function shakeCard(qid, msg) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake');
+  void card.offsetWidth;
+  card.classList.add('shake');
+}
+
+// ── UPDATE SCORES ──
+function updateScores() {
+  let mathScore = 0, sciScore = 0, totalAnswered = 0;
+  
+  mathQs.forEach(qid => {
+    if (state.correct[qid] === true) mathScore += marks[qid];
+    if (state.correct[qid] !== undefined) totalAnswered++;
+  });
+  sciQs.forEach(qid => {
+    if (state.correct[qid] === true) sciScore += marks[qid];
+    if (state.correct[qid] !== undefined) totalAnswered++;
+  });
+  
+  const total = mathScore + sciScore;
+  const maxTotal = state.maxMarks.math + state.maxMarks.sci;
+  const allQ = mathQs.length + sciQs.length;
+  
+  // Global score
+  document.getElementById('global-score').textContent = `${total} / ${maxTotal}`;
+  
+  // Progress bar
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQ)*100}%`;
+  
+  // Math section bar
+  const mathPct = (mathScore / state.maxMarks.math) * 100;
+  document.getElementById('math-score-fill').style.width = mathPct + '%';
+  document.getElementById('math-score-val').textContent = `${mathScore}/${state.maxMarks.math}`;
+  
+  // Sci section bar
+  const sciPct = (sciScore / state.maxMarks.sci) * 100;
+  document.getElementById('sci-score-fill').style.width = sciPct + '%';
+  document.getElementById('sci-score-val').textContent = `${sciScore}/${state.maxMarks.sci}`;
+  
+  // Show results when all answered
+  if (totalAnswered === allQ) showResults(total, maxTotal, mathScore, sciScore);
+}
+
+// ── RESULTS ──
+function showResults(total, max, math, sci) {
+  const pct = Math.round((total/max)*100);
+  const grade = pct >= 85 ? '🏆 Excellent!' : pct >= 70 ? '⭐ Great Job!' : pct >= 55 ? '👍 Good Effort' : '📚 Keep Practising';
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const mins = Math.floor(elapsed/60), secs = elapsed%60;
+  
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  document.getElementById('rb-math').textContent = `${math}/${state.maxMarks.math}`;
+  document.getElementById('rb-sci').textContent = `${sci}/${state.maxMarks.sci}`;
+  document.getElementById('rb-time').textContent = `${mins}m ${secs}s`;
+  
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  
+  if (pct >= 70) launchConfetti();
+  
+  // Save to localStorage
+  try {
+    const key = `week1_${Date.now()}`;
+    localStorage.setItem(key, JSON.stringify({ date: new Date().toISOString(), pct, math, sci, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+// ── CONFETTI ──
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  const colors = ['#4f8ef7','#3ecf8e','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length: 120}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * -canvas.height,
+    w: Math.random() * 10 + 4,
+    h: Math.random() * 6 + 3,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    rot: Math.random() * Math.PI * 2,
+    vy: Math.random() * 3 + 2,
+    vx: (Math.random() - 0.5) * 2,
+    vr: (Math.random() - 0.5) * 0.1
+  }));
+  
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = 0.85;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+      p.y += p.vy;
+      p.x += p.vx;
+      p.rot += p.vr;
+    });
+    frame++;
+    if (frame < 200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+// Keyboard shortcut: Enter to check focused input
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      const qid = active.id.replace('-ans','');
+      const checkBtn = active.closest('.q-body')?.querySelector('.btn-check');
+      if (checkBtn) checkBtn.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
