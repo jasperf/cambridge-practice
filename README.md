@@ -29,6 +29,9 @@ cambridge-practice/
 │   └── ...
 ├── assets/
 │   └── style.css                     ← Shared styles (optional, future)
+├── docs/
+│   ├── README.md                     ← Documentation index
+│   └── state-management.md          ← State object and score tracking explained
 └── README.md
 ```
 
