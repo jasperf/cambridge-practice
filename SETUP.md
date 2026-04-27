@@ -109,7 +109,7 @@ If prompted for credentials, use your GitHub username and a **Personal Access To
 cd ~/code/cambridge-practice
 
 # Create next week's file (copy from last week as template)
-cp s1/term4-week1-maths-science.html s1/term4-week2-english-maths.html
+cp s1/t4/w1/term4-week1-maths-science.html s1/term4-week2-english-maths.html
 
 # Edit the new file in VS Code
 code s1/term4-week2-english-maths.html
