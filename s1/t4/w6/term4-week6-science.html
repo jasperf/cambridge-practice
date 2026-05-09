@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge Secondary & IGCSE Practice · Week 6</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --accent-danger: #e05252;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 58px;
+  gap: 16px;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.logo span { color: var(--accent-sci); }
+
+.week-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.score-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 5px 16px 5px 10px;
+}
+.score-pill .score-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.score-pill .score-val {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-sci);
+  transition: color 0.3s;
+  min-width: 48px;
+  text-align: right;
+}
+
+.progress-wrap { height: 3px; background: var(--border); position: relative; }
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-sci), var(--accent-math));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 52px 28px 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+}
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+
+.hero-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.hero-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero-chip .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.dot-sci { background: var(--accent-sci); }
+.dot-warn { background: var(--accent-warn); }
+
+.subject-nav {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.sub-tab {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.sub-tab.active-sci { background: var(--accent-sci); color: #0f1117; border-color: var(--accent-sci); }
+
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 44px 0 24px;
+}
+.section-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.icon-sci { background: rgba(62,207,142,0.15); }
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.section-header .sub-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+
+.q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.q-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.q-text {
+  font-size: 0.97rem;
+  color: var(--text);
+  flex: 1;
+  line-height: 1.6;
+}
+.q-marks {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-warn);
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.q-body { padding: 16px 20px; }
+
+.answer-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  resize: vertical;
+  min-height: 52px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.answer-input:focus { border-color: var(--accent-sci); }
+.answer-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.06); }
+.answer-input.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.06); }
+
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-size: 0.93rem;
+  user-select: none;
+}
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  transition: all 0.2s;
+}
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+
+.num-row { display: flex; gap: 10px; align-items: center; }
+.num-input {
+  width: 120px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  padding: 9px 12px;
+  text-align: center;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.num-input:focus { border-color: var(--accent-sci); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.3px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.72rem;
+}
+.btn-reveal:hover { color: var(--text-muted); }
+
+.feedback {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.feedback.show { display: block; }
+.feedback.correct-fb {
+  background: rgba(46,204,113,0.1);
+  border: 1px solid rgba(46,204,113,0.3);
+  color: #7ef5b0;
+}
+.feedback.wrong-fb {
+  background: rgba(231,76,60,0.1);
+  border: 1px solid rgba(231,76,60,0.3);
+  color: #f5a0a0;
+}
+.feedback.hint-fb {
+  background: rgba(245,166,35,0.08);
+  border: 1px solid rgba(245,166,35,0.2);
+  color: var(--accent-warn);
+}
+.feedback.reveal-fb {
+  background: rgba(122,132,160,0.1);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.info-box {
+  background: var(--surface2);
+  border-left: 3px solid var(--accent-sci);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.diagram-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.88rem;
+}
+.data-table th {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 7px 12px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.data-table td {
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  text-align: center;
+  color: var(--text);
+}
+.data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+.section-score {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 24px;
+}
+.section-score-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex: 1;
+}
+.section-score-val {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-sci);
+}
+.section-score-bar {
+  flex: 2;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.section-score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-sci), var(--accent-math));
+  width: 0%;
+  transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1);
+  border-radius: 3px;
+}
+
+.results-panel {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--accent-sci);
+  border-radius: 14px;
+  padding: 32px;
+  margin-top: 40px;
+  text-align: center;
+  animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.results-panel.show { display: block; }
+.results-grade {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.results-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.results-breakdown {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.rb-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+.rb-chip .rb-val {
+  font-size: 1.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  display: block;
+  margin-top: 4px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 48px 0;
+  position: relative;
+}
+.divider::after {
+  content: '§';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: var(--bg);
+  padding: 0 12px;
+  color: var(--text-dim);
+  font-family: var(--font-display);
+}
+
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+#confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.q-card { animation: slideIn 0.4s ease both; }
+.q-card:nth-child(1) { animation-delay: 0.05s; }
+.q-card:nth-child(2) { animation-delay: 0.10s; }
+.q-card:nth-child(3) { animation-delay: 0.15s; }
+.q-card:nth-child(4) { animation-delay: 0.20s; }
+.q-card:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.shake { animation: shake 0.4s ease; }
+
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(46,204,113,0); }
+  100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); }
+}
+.pulse-correct { animation: pulse-green 0.6s ease; }
+
+@media (max-width: 600px) {
+  .topbar { padding: 0 16px; }
+  .hero, .subject-nav, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">T4 · W6 · 2026</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <div class="timer-wrap">
+      <span style="font-size:0.85rem;">⏱</span>
+      <div class="timer" id="timer">00:00</div>
+    </div>
+    <div class="score-pill">
+      <div class="score-label">Score</div>
+      <div class="score-val" id="global-score">0 / 0</div>
+    </div>
+  </div>
+</div>
+<div class="progress-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 1 · Term 4 · Week 6</div>
+  <h1>Renewable Energy<br><em>Interactive Exercises</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-sci"></div>Science — Renewable Energy Sources</div>
+    <div class="hero-chip"><div class="dot dot-warn"></div>20 questions · self-marked</div>
+  </div>
+</div>
+
+<div class="subject-nav">
+  <a href="#science" class="sub-tab active-sci">🌱 Renewable Energy</a>
+</div>
+
+<div class="main">
+
+  <div id="science">
+    <div class="section-header">
+      <div class="section-icon icon-sci">🌱</div>
+      <div>
+        <div class="sub-label">Science</div>
+        <h2>Renewable Energy Sources</h2>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>What is Renewable Energy?</strong><br>
+      Renewable energy comes from natural sources that are constantly replenished and will not run out.
+    </div>
+
+    <!-- S1 -->
+    <div class="q-card" id="qcard-s1">
+      <div class="q-header">
+        <div class="q-num">S1</div>
+        <div class="q-text">Which of these is the BEST definition of renewable energy?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s1-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'a')">
+            <div class="opt-indicator">A</div>Energy that comes from burning wood and coal
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'b')">
+            <div class="opt-indicator">B</div>Energy from natural sources that can be replenished and will not run out
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'c')">
+            <div class="opt-indicator">C</div>Energy that is only available during the daytime
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'d')">
+            <div class="opt-indicator">D</div>Energy stored in batteries for later use
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s1','b','S1')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s1', 'B — Renewable energy comes from sources like the sun, wind, and water that are naturally replenished.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s1-fb"></div>
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="q-card" id="qcard-s2">
+      <div class="q-header">
+        <div class="q-num">S2</div>
+        <div class="q-text">Which of these is NOT a renewable energy source?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s2-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'a')">
+            <div class="opt-indicator">A</div>Solar power
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'b')">
+            <div class="opt-indicator">B</div>Coal
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'c')">
+            <div class="opt-indicator">C</div>Wind power
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'d')">
+            <div class="opt-indicator">D</div>Hydroelectric power
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s2','b','S2')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s2', 'B — Coal is a fossil fuel, which is finite and takes millions of years to form. It is not renewable.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s2-fb"></div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:28px;">
+      <strong>Section A — Solar Energy</strong><br>
+      Solar panels convert sunlight directly into electricity using photovoltaic cells.
+    </div>
+
+    <div class="diagram-wrap">
+      <svg width="100%" viewBox="0 0 360 120" style="max-width:360px;display:block;margin:0 auto;">
+        <rect x="0" y="0" width="360" height="120" rx="6" fill="#1e2336"/>
+        <rect x="50" y="30" width="260" height="60" rx="4" fill="#2a3050" stroke="#4f8ef7" stroke-width="1"/>
+        <text x="180" y="62" text-anchor="middle" font-family="Fraunces,serif" font-size="14" fill="#e8eaf0" font-weight="700">Solar Panel</text>
+        <line x1="20" y1="20" x2="50" y2="50" stroke="#f5a623" stroke-width="2"/>
+        <line x1="100" y1="20" x2="50" y2="50" stroke="#f5a623" stroke-width="2"/>
+        <line x1="180" y1="20" x2="180" y2="30" stroke="#f5a623" stroke-width="2"/>
+        <line x1="260" y1="20" x2="310" y2="50" stroke="#f5a623" stroke-width="2"/>
+        <line x1="340" y1="20" x2="310" y2="50" stroke="#f5a623" stroke-width="2"/>
+        <circle cx="20" cy="20" r="8" fill="#f5a623"/>
+        <circle cx="100" cy="20" r="8" fill="#f5a623"/>
+        <circle cx="180" cy="20" r="8" fill="#f5a623"/>
+        <circle cx="260" cy="20" r="8" fill="#f5a623"/>
+        <circle cx="340" cy="20" r="8" fill="#f5a623"/>
+        <text x="200" y="110" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#7a84a0">Sunlight → Electricity</text>
+      </svg>
+    </div>
+
+    <!-- S3 -->
+    <div class="q-card" id="qcard-s3">
+      <div class="q-header">
+        <div class="q-num">S3</div>
+        <div class="q-text">What do solar panels convert sunlight into?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="text" class="num-input" id="s3-ans" placeholder="?" style="width:200px;">
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkText('s3', 'electricity', 'S3')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s3', 'Electricity (or electrical energy)')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s3-fb"></div>
+      </div>
+    </div>
+
+    <!-- S4 -->
+    <div class="q-card" id="qcard-s4">
+      <div class="q-header">
+        <div class="q-num">S4</div>
+        <div class="q-text">What is ONE advantage of solar energy over fossil fuels?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s4-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'a')">
+            <div class="opt-indicator">A</div>It produces greenhouse gases when generating electricity
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'b')">
+            <div class="opt-indicator">B</div>It does not produce air pollution or greenhouse gases during operation
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'c')">
+            <div class="opt-indicator">C</div>It only works at night
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'d')">
+            <div class="opt-indicator">D</div>It requires constant refueling
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s4','b','S4')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s4', 'B — Solar energy is clean and produces no emissions during operation.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s4-fb"></div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:28px;">
+      <strong>Section B — Wind Energy</strong><br>
+      Wind turbines convert the kinetic energy of moving air into electrical energy.
+    </div>
+
+    <div class="diagram-wrap">
+      <svg width="100%" viewBox="0 0 200 200" style="max-width:200px;display:block;margin:0 auto;">
+        <rect x="0" y="0" width="200" height="200" rx="6" fill="#1e2336"/>
+        <line x1="100" y1="180" x2="100" y2="60" stroke="#4a5270" stroke-width="3"/>
+        <circle cx="100" cy="60" r="8" fill="#2a3050"/>
+        <path d="M100,20 Q120,40 100,60" fill="none" stroke="#f5a623" stroke-width="2"/>
+        <path d="M100,20 Q80,40 100,60" fill="none" stroke="#f5a623" stroke-width="2"/>
+        <path d="M100,60 Q160,80 100,100" fill="none" stroke="#f5a623" stroke-width="2"/>
+        <path d="M100,60 Q40,80 100,100" fill="none" stroke="#f5a623" stroke-width="2"/>
+        <path d="M100,100 Q160,140 100,180" fill="none" stroke="#f5a623" stroke-width="2"/>
+        <path d="M100,100 Q40,140 100,180" fill="none" stroke="#f5a623" stroke-width="2"/>
+        <circle cx="100" cy="100" r="12" fill="#2a3050"/>
+        <text x="100" y="195" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#7a84a0">Nacelle</text>
+      </svg>
+    </div>
+
+    <!-- S5 -->
+    <div class="q-card" id="qcard-s5">
+      <div class="q-header">
+        <div class="q-num">S5</div>
+        <div class="q-text">What type of energy does a wind turbine convert into electrical energy?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s5-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'a')">
+            <div class="opt-indicator">A</div>Chemical energy
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'b')">
+            <div class="opt-indicator">B</div>Kinetic energy
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'c')">
+            <div class="opt-indicator">C</div>Potential energy
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'d')">
+            <div class="opt-indicator">D</div>Thermal energy
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s5','b','S5')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s5', 'B — Wind turbines convert the kinetic energy of moving air (wind) into electrical energy.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s5-fb"></div>
+      </div>
+    </div>
+
+    <!-- S6 -->
+    <div class="q-card" id="qcard-s6">
+      <div class="q-header">
+        <div class="q-num">S6</div>
+        <div class="q-text">A modern wind turbine can generate enough electricity to power approximately how many homes? (Select the most reasonable answer)</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s6-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s6',this,'a')">
+            <div class="opt-indicator">A</div>1 home
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s6',this,'b')">
+            <div class="opt-indicator">B</div>10 homes
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s6',this,'c')">
+            <div class="opt-indicator">C</div>100-1500 homes
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s6',this,'d')">
+            <div class="opt-indicator">D</div>An entire city
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s6','c','S6')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s6', 'C — Modern wind turbines (1.5-3 MW) can power approximately 100-1500 homes depending on size and wind conditions.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s6-fb"></div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:28px;">
+      <strong>Section C — Hydroelectric Energy</strong><br>
+      Hydroelectric power uses the energy of flowing or falling water to generate electricity.
+    </div>
+
+    <div class="diagram-wrap">
+      <svg width="100%" viewBox="0 0 400 140" style="max-width:400px;display:block;margin:0 auto;">
+        <rect x="0" y="0" width="400" height="140" rx="6" fill="#1e2336"/>
+        <path d="M20,80 Q200,40 380,80 L380,120 L20,120 Z" fill="#2a3050" stroke="#4f8ef7" stroke-width="1"/>
+        <circle cx="100" cy="80" r="12" fill="#4f8ef7"/>
+        <circle cx="200" cy="80" r="12" fill="#4f8ef7"/>
+        <circle cx="300" cy="80" r="12" fill="#4f8ef7"/>
+        <text x="100" y="76" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#fff">TURBINE</text>
+        <text x="200" y="76" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#fff">TURBINE</text>
+        <text x="300" y="76" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#fff">TURBINE</text>
+        <line x1="200" y1="100" x2="200" y2="130" stroke="#4f8ef7" stroke-width="2"/>
+        <rect x="180" y="110" width="40" height="20" rx="3" fill="#3ecf8e"/>
+        <text x="200" y="123" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#0f1117">GEN</text>
+        <text x="200" y="25" text-anchor="middle" font-family="Fraunces,serif" font-size="12" fill="#7a84a0">Dam</text>
+        <path d="M0,80 L400,80" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="5,3"/>
+        <text x="390" y="95" text-anchor="end" font-family="DM Mono,monospace" font-size="9" fill="#4a5270">Water flow</text>
+      </svg>
+    </div>
+
+    <!-- S7 -->
+    <div class="q-card" id="qcard-s7">
+      <div class="q-header">
+        <div class="q-num">S7</div>
+        <div class="q-text">How does a hydroelectric power station generate electricity?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s7-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s7',this,'a')">
+            <div class="opt-indicator">A</div>By burning water to create steam
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s7',this,'b')">
+            <div class="opt-indicator">B</div>By using the kinetic energy of flowing water to spin turbines connected to generators
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s7',this,'c')">
+            <div class="opt-indicator">C</div>By converting water directly into electricity through chemical reactions
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s7',this,'d')">
+            <div class="opt-indicator">D</div>By storing water in batteries
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s7','b','S7')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s7', 'B — Flowing water spins turbines, which are connected to generators that produce electricity.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s7-fb"></div>
+      </div>
+    </div>
+
+    <!-- S8 -->
+    <div class="q-card" id="qcard-s8">
+      <div class="q-header">
+        <div class="q-num">S8</div>
+        <div class="q-text">What is ONE environmental benefit of hydroelectric power?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s8-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s8',this,'a')">
+            <div class="opt-indicator">A</div>It produces large amounts of carbon dioxide
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s8',this,'b')">
+            <div class="opt-indicator">B</div>It produces no greenhouse gas emissions during operation
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s8',this,'c')">
+            <div class="opt-indicator">C</div>It requires constant fueling with coal
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s8',this,'d')">
+            <div class="opt-indicator">D</div>It creates nuclear waste
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s8','b','S8')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s8', 'B — Hydroelectric power generates electricity without producing greenhouse gases.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s8-fb"></div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:28px;">
+      <strong>Section D — Benefits of Renewable Energy</strong><br>
+      Renewable energy provides many advantages over fossil fuels.
+    </div>
+
+    <div class="diagram-wrap">
+      <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="width:60px;height:60px;border-radius:50%;background:rgba(46,204,113,0.15);border:2px solid var(--correct);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">
+            <span style="font-size:1.5rem;">✓</span>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);">Low<br>emissions</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:60px;height:60px;border-radius:50%;background:rgba(46,204,113,0.15);border:2px solid var(--correct);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">
+            <span style="font-size:1.5rem;">∞</span>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);">Won't run<br>out</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:60px;height:60px;border-radius:50%;background:rgba(46,204,113,0.15);border:2px solid var(--correct);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">
+            <span style="font-size:1.5rem;">$</span>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);">Lower<br>costs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S9 Multi-select -->
+    <div class="q-card" id="qcard-s9">
+      <div class="q-header">
+        <div class="q-num">S9</div>
+        <div class="q-text">Which are benefits of renewable energy? (Select ALL correct answers)</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s9-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'a',true)">
+            <div class="opt-indicator">A</div>Reduces greenhouse gas emissions
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'b',true)">
+            <div class="opt-indicator">B</div>Will not run out
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'c',true)">
+            <div class="opt-indicator">C</div>Improves air quality
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'d',true)">
+            <div class="opt-indicator">D</div>Produces radioactive waste
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMulti('s9',['a','b','c'],'S9')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s9', 'A, B, C — Renewable energy reduces emissions, is inexhaustible, and improves air quality. Radioactive waste (D) is associated with nuclear energy, not renewables.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s9-fb"></div>
+      </div>
+    </div>
+
+    <!-- S10 -->
+    <div class="q-card" id="qcard-s10">
+      <div class="q-header">
+        <div class="q-num">S10</div>
+        <div class="q-text">Why is reducing dependence on fossil fuels important for the environment?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s10-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'a')">
+            <div class="opt-indicator">A</div>Fossil fuels are unlimited and will never run out
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'b')">
+            <div class="opt-indicator">B</div>Burning fossil fuels releases carbon dioxide which contributes to climate change
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'c')">
+            <div class="opt-indicator">C</div>Fossil fuels are too expensive to extract
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'d')">
+            <div class="opt-indicator">D</div>Fossil fuels cannot be used to generate electricity
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s10','b','S10')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s10', 'B — Burning fossil fuels releases CO2 and other greenhouse gases, which drive climate change and air pollution.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s10-fb"></div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:28px;">
+      <strong>Section E — Challenges & Society's Role</strong><br>
+      While renewable energy has many benefits, there are also challenges to overcome.
+    </div>
+
+    <!-- S11 -->
+    <div class="q-card" id="qcard-s11">
+      <div class="q-header">
+        <div class="q-num">S11</div>
+        <div class="q-text">Which is a challenge of solar energy?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s11-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s11',this,'a')">
+            <div class="opt-indicator">A</div>It only works at night
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s11',this,'b')">
+            <div class="opt-indicator">B</div>It produces no electricity on cloudy days
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s11',this,'c')">
+            <div class="opt-indicator">C</div>Electricity generation depends on weather and daylight availability
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s11',this,'d')">
+            <div class="opt-indicator">D</div>It causes more pollution than coal
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s11','c','S11')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s11', 'C — Solar energy is intermittent - it depends on sunlight, so it varies with weather and time of day. Storage solutions are needed for when the sun is not shining.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s11-fb"></div>
+      </div>
+    </div>
+
+    <!-- S12 -->
+    <div class="q-card" id="qcard-s12">
+      <div class="q-header">
+        <div class="q-num">S12</div>
+        <div class="q-text">What is ONE way individuals can support renewable energy?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s12-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s12',this,'a')">
+            <div class="opt-indicator">A</div>Use more fossil fuel-powered devices
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s12',this,'b')">
+            <div class="opt-indicator">B</div>Install solar panels on their homes (where possible)
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s12',this,'c')">
+            <div class="opt-indicator">C</div>Leave all lights on all the time
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s12',this,'d')">
+            <div class="opt-indicator">D</div>Waste more energy
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s12','b','S12')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s12', 'B — Installing solar panels generates clean energy and reduces reliance on fossil fuels.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s12-fb"></div>
+      </div>
+    </div>
+
+    <!-- S13 -->
+    <div class="q-card" id="qcard-s13">
+      <div class="q-header">
+        <div class="q-num">S13</div>
+        <div class="q-text">Which country currently generates the MOST electricity from renewable sources globally?</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s13-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s13',this,'a')">
+            <div class="opt-indicator">A</div>United States
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s13',this,'b')">
+            <div class="opt-indicator">B</div>China
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s13',this,'c')">
+            <div class="opt-indicator">C</div>Germany
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s13',this,'d')">
+            <div class="opt-indicator">D</div>India
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('s13','b','S13')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s13', 'B — China is the world leader in renewable energy generation, particularly in hydroelectric and wind power.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s13-fb"></div>
+      </div>
+    </div>
+
+    <!-- S14 Challenge -->
+    <div class="q-card" id="qcard-s14">
+      <div class="q-header">
+        <div class="q-num">S14 ⭐</div>
+        <div class="q-text"><strong>Challenge:</strong> A small town uses coal to generate 50 MW of electricity. If they switch to wind power with turbines that each produce 2 MW, how many wind turbines would they need to generate the same amount of electricity?</div>
+        <div class="q-marks">3 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="s14-ans" placeholder="?">
+          <span class="num-unit">turbines</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('s14', 25, 'S14')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('s14', 'Total needed: 50 MW. Each turbine: 2 MW. Number = Total ÷ Each')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s14', '50 MW ÷ 2 MW per turbine = 25 turbines needed')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s14-fb"></div>
+      </div>
+    </div>
+
+    <!-- S15 Extension -->
+    <div class="q-card" id="qcard-s15">
+      <div class="q-header">
+        <div class="q-num">S15 ⭐</div>
+        <div class="q-text"><strong>Extension:</strong> Name TWO environmental problems that renewable energy helps solve.</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="s15-opts">
+          <div class="mcq-opt" onclick="selectMCQ('s15',this,'a',true)">
+            <div class="opt-indicator">A</div>Climate change
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s15',this,'b',true)">
+            <div class="opt-indicator">B</div>Air pollution
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s15',this,'c',true)">
+            <div class="opt-indicator">C</div>Water scarcity
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('s15',this,'d',true)">
+            <div class="opt-indicator">D</div>Soil erosion
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMulti('s15',['a','b'],'S15')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s15', 'A and B — Renewable energy helps combat climate change (by reducing CO2 emissions) and air pollution (by not burning fossil fuels).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="s15-fb"></div>
+      </div>
+    </div>
+
+    <div class="section-score" id="sci-score-bar">
+      <div class="section-score-label">Science score</div>
+      <div class="section-score-bar"><div class="section-score-fill" id="sci-score-fill"></div></div>
+      <div class="section-score-val" id="sci-score-val">—</div>
+    </div>
+
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-panel" id="results-panel">
+    <div class="results-grade" id="results-grade">—</div>
+    <div class="results-label" id="results-label">Complete all questions to see your final score</div>
+    <div class="results-breakdown">
+      <div class="rb-chip">
+        Science<span class="rb-val" id="rb-sci">—</span>
+      </div>
+      <div class="rb-chip">
+        Time<span class="rb-val" id="rb-time">—</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// STATE
+const state = {
+  answers: {},
+  correct: {},
+  totalMarks: { sci: 0 },
+  maxMarks:   { sci: 26 },
+  startTime: Date.now()
+};
+
+const marks = {
+  s1:2,s2:1,s3:1,s4:2,s5:1,s6:2,s7:2,s8:1,s9:2,s10:2,s11:2,s12:1,s13:2,s14:3,s15:2
+};
+
+const sciQs = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15'];
+
+// TIMER
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const m = String(Math.floor(elapsed/60)).padStart(2,'0');
+  const s = String(elapsed%60).padStart(2,'0');
+  document.getElementById('timer').textContent = `${m}:${s}`;
+}
+setInterval(updateTimer, 1000);
+
+// MCQ SINGLE SELECT
+function selectMCQ(qid, el, val, multi=false) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  if (!multi) {
+    opts.forEach(o => { 
+      o.classList.remove('selected'); 
+      o.querySelector('.opt-indicator').textContent = o.querySelector('.opt-indicator').textContent.replace('✓','').trim(); 
+    });
+    el.classList.add('selected');
+    el.querySelector('.opt-indicator').textContent = '✓';
+    state.answers[qid] = val;
+  } else {
+    if (!state.answers[qid]) state.answers[qid] = [];
+    if (el.classList.contains('selected')) {
+      el.classList.remove('selected');
+      el.querySelector('.opt-indicator').textContent = val.toUpperCase();
+      state.answers[qid] = state.answers[qid].filter(v => v !== val);
+    } else {
+      el.classList.add('selected');
+      el.querySelector('.opt-indicator').textContent = '✓';
+      state.answers[qid].push(val);
+    }
+  }
+}
+
+// CHECK MCQ
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid, 'Please select an answer first!'); return; }
+  if (state.correct[qid] !== undefined) return;
+  
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const optVal = opt.onclick?.toString().match(/'([a-d])'/)?.[1];
+    if (optVal === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  
+  markResult(qid, isCorrect, label);
+}
+
+// CHECK MULTI
+function checkMulti(qid, correctVals, label) {
+  const selected = state.answers[qid] || [];
+  if (selected.length === 0) { shakeCard(qid, 'Please select at least one answer!'); return; }
+  if (state.correct[qid] !== undefined) return;
+  
+  const sortedSel = [...selected].sort().join('');
+  const sortedCor = [...correctVals].sort().join('');
+  const isCorrect = sortedSel === sortedCor;
+  
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const match = opt.getAttribute('onclick')?.match(/'([a-d])'/);
+    const optVal = match?.[1];
+    if (correctVals.includes(optVal)) opt.classList.add('correct');
+    else if (opt.classList.contains('selected')) opt.classList.add('wrong');
+  });
+  
+  markResult(qid, isCorrect, label);
+}
+
+// CHECK NUMBER
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid, 'Enter a number first!'); return; }
+  if (state.correct[qid] !== undefined) return;
+  
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect, label);
+}
+
+// CHECK TEXT
+function checkText(qid, correctVal, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid, 'Enter an answer first!'); return; }
+  if (state.correct[qid] !== undefined) return;
+  
+  const val = input.value.toLowerCase().trim();
+  const correct = correctVal.toLowerCase().trim();
+  const isCorrect = val === correct || val.includes(correct) || correct.includes(val);
+  
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect, label);
+}
+
+// MARK RESULT
+function markResult(qid, isCorrect, label) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Try the hint, or reveal the answer below.`;
+  
+  updateScores();
+}
+
+// HINT
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+// REVEAL
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    updateScores();
+  }
+}
+
+// SHAKE
+function shakeCard(qid, msg) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake');
+  void card.offsetWidth;
+  card.classList.add('shake');
+}
+
+// UPDATE SCORES
+function updateScores() {
+  let sciScore = 0, totalAnswered = 0;
+  
+  sciQs.forEach(qid => {
+    if (state.correct[qid] === true) sciScore += marks[qid];
+    if (state.correct[qid] !== undefined) totalAnswered++;
+  });
+  
+  const total = sciScore;
+  const maxTotal = state.maxMarks.sci;
+  const allQ = sciQs.length;
+  
+  document.getElementById('global-score').textContent = `${total} / ${maxTotal}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQ)*100}%`;
+  
+  const sciPct = (sciScore / state.maxMarks.sci) * 100;
+  document.getElementById('sci-score-fill').style.width = sciPct + '%';
+  document.getElementById('sci-score-val').textContent = `${sciScore}/${state.maxMarks.sci}`;
+  
+  if (totalAnswered === allQ) showResults(total, maxTotal, sciScore);
+}
+
+// RESULTS
+function showResults(total, max, sci) {
+  const pct = Math.round((total/max)*100);
+  const grade = pct >= 85 ? '🏆 Excellent!' : pct >= 70 ? '⭐ Great Job!' : pct >= 55 ? '👍 Good Effort' : '📚 Keep Practising';
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const mins = Math.floor(elapsed/60), secs = elapsed%60;
+  
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  document.getElementById('rb-sci').textContent = `${sci}/${state.maxMarks.sci}`;
+  document.getElementById('rb-time').textContent = `${mins}m ${secs}s`;
+  
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  
+  if (pct >= 70) launchConfetti();
+  
+  try {
+    const key = `week6_${Date.now()}`;
+    localStorage.setItem(key, JSON.stringify({ date: new Date().toISOString(), pct, sci, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+// CONFETTI
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  const colors = ['#4f8ef7','#3ecf8e','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length: 120}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * -canvas.height,
+    w: Math.random() * 10 + 4,
+    h: Math.random() * 6 + 3,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    rot: Math.random() * Math.PI * 2,
+    vy: Math.random() * 3 + 2,
+    vx: (Math.random() - 0.5) * 2,
+    vr: (Math.random() - 0.5) * 0.1
+  }));
+  
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = 0.85;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+      p.y += p.vy;
+      p.x += p.vx;
+      p.rot += p.vr;
+    });
+    frame++;
+    if (frame < 200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+// Keyboard shortcut: Enter to check focused input
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      const qid = active.id.replace('-ans','');
+      const checkBtn = active.closest('.q-body')?.querySelector('.btn-check');
+      if (checkBtn) checkBtn.click();
+    }
+    if (active && active.classList.contains('answer-input')) {
+      const qid = active.id.replace('-ans','');
+      const checkBtn = active.closest('.q-body')?.querySelector('.btn-check');
+      if (checkBtn) checkBtn.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
