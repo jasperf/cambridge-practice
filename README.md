@@ -22,13 +22,12 @@ cambridge-practice/
 ├── index.html                        ← Home page / subject index
 ├── s1/                              ← Secondary 1
 │   └── t4/                          ← Term 4
-│       └── w1/                      ← Week 1
-│           └── term4-week1-maths-science.html
-│       └── ...
+│       ├── w1/                      ← Week 1
+│       │   └── term4-week1-maths-science.html
+│       └── w6/                      ← Week 6
+│           └── term4-week6-science.html
 ├── igcse/
 │   └── ...
-├── assets/
-│   └── style.css                     ← Shared styles (optional, future)
 ├── docs/
 │   ├── README.md                     ← Documentation index
 │   └── state-management.md          ← State object and score tracking explained
@@ -63,6 +62,7 @@ npx serve .
 |---------|-------|--------|
 | Mathematics (Data & Statistics) | Secondary 1 | ✅ Term 4 Week 1 |
 | Science (Electromagnets) | Secondary 1 | ✅ Term 4 Week 1 |
+| Science (Renewable Energy) | Secondary 1 | ✅ Term 4 Week 6 |
 | English | Secondary 1 | 🔜 Coming |
 | Physics | IGCSE | 🔜 Coming |
 
