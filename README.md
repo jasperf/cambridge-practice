@@ -27,6 +27,8 @@ cambridge-practice/
 │       └── w6/                      ← Week 6
 │           ├── term4-week6-science.html
 │           └── term4-week6-english.html
+├── s1/sa2/
+│   └── term4-sa2-maths.html          ← SA2 revision (all units, 42 q, 60 marks)
 ├── igcse/
 │   └── ...
 ├── docs/
@@ -65,6 +67,7 @@ npx serve .
 | Science (Electromagnets) | Secondary 1 | ✅ Term 4 Week 1 |
 | Science (Renewable Energy) | Secondary 1 | ✅ Term 4 Week 6 |
 | English (Active &amp; Passive Voice) | Secondary 1 | ✅ Term 4 Week 6 |
+| Mathematics SA2 Revision (all units) | Secondary 1 | ✅ SA2 Exam 21 May 2026 |
 | Physics | IGCSE | 🔜 Coming |
 
 ## Tech

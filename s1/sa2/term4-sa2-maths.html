@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge Secondary & IGCSE Practice · S1 Math SA2 Revision</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.6;
+}
+
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,17,23,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px; height: 58px; gap: 16px;
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+
+.hero { position: relative; z-index: 1; padding: 52px 28px 40px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.sub-tab.active { background: var(--accent-math); color: #0f1117; border-color: var(--accent-math); }
+
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.icon-math { background: rgba(79,142,247,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-card:nth-child(1){animation-delay:.04s}.q-card:nth-child(2){animation-delay:.08s}.q-card:nth-child(3){animation-delay:.12s}.q-card:nth-child(4){animation-delay:.16s}.q-card:nth-child(5){animation-delay:.20s}
+
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+
+.text-input { width: 100%; max-width: 380px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; padding: 10px 14px; transition: border-color 0.2s; outline: none; display: block; }
+.text-input:focus { border-color: var(--accent-math); }
+.text-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.06); }
+.text-input.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.06); }
+
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.draw-box { background: var(--surface2); border: 1px dashed var(--border); border-radius: 8px; padding: 14px; margin: 10px 0; font-size: 0.85rem; color: var(--text-dim); font-family: var(--font-mono); }
+
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '§'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(46,204,113,0.4)} 70%{box-shadow:0 0 0 10px rgba(46,204,113,0)} 100%{box-shadow:0 0 0 0 rgba(46,204,113,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+
+@media (max-width: 600px) {
+  .topbar { padding: 0 16px; }
+  .hero, .section-tabs, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">SA2 · 21 May 2026</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <div class="timer-wrap"><span style="font-size:0.85rem;">⏱</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill">
+      <div class="score-label">Score</div>
+      <div class="score-val" id="global-score">0 / 0</div>
+    </div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 1 · Semester 2 Assessment Revision</div>
+  <h1>S1 Math<br><em>SA2 Revision</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Mathematics — All Units</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>36 questions · 60 marks · self-marked</div>
+  </div>
+</div>
+
+<div class="section-tabs">
+  <a href="#number" class="sub-tab active">🔢 Number</a>
+  <a href="#algebra" class="sub-tab">𝑥 Algebra</a>
+  <a href="#geometry" class="sub-tab">📐 Geometry</a>
+  <a href="#data" class="sub-tab">📊 Data</a>
+  <a href="#measurement" class="sub-tab">📏 Measurement</a>
+  <a href="#functions" class="sub-tab">📈 Functions</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════════════════════════════════ SECTION A: NUMBER -->
+<div id="number">
+  <div class="section-header">
+    <div class="section-icon icon-math">🔢</div>
+    <div><div class="sub-label">Section A</div><h2>Number</h2></div>
+  </div>
+
+  <div class="info-box">
+    <strong>Topics:</strong> Prime factorisation · HCF · LCM · Sequences · nth term · Fractions
+  </div>
+
+  <!-- M1 -->
+  <div class="q-card" id="qcard-m1">
+    <div class="q-header">
+      <div class="q-num">M1</div>
+      <div class="q-text">Find the <strong>HCF</strong> of 100 and 120.<br><small style="color:var(--text-muted)">100 = 2² × 5² · 120 = 2³ × 3 × 5</small></div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m1-ans" placeholder="?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m1',20,'M1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m1','HCF = product of common prime factors with lowest powers. Both share 2² and 5.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m1','HCF = 2² × 5 = 4 × 5 = 20')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m1-fb"></div>
+    </div>
+  </div>
+
+  <!-- M2 -->
+  <div class="q-card" id="qcard-m2">
+    <div class="q-header">
+      <div class="q-num">M2</div>
+      <div class="q-text">Find the <strong>LCM</strong> of 100 and 120.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m2-ans" placeholder="?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m2',600,'M2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m2','LCM = product of all prime factors with highest powers: 2³ × 3 × 5²')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m2','LCM = 2³ × 3 × 5² = 8 × 3 × 25 = 600')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m2-fb"></div>
+    </div>
+  </div>
+
+  <!-- M3 -->
+  <div class="q-card" id="qcard-m3">
+    <div class="q-header">
+      <div class="q-num">M3</div>
+      <div class="q-text">Amina has ribbon lengths of 32 cm and 44 cm. She wants to cut both into equal shorter pieces with no leftover. What is the <strong>longest possible piece length</strong>?</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m3-ans" placeholder="?">
+        <span class="num-unit">cm</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m3',4,'M3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m3','Find HCF of 32 and 44. 32 = 2⁵, 44 = 2² × 11')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m3','HCF(32,44) = 2² = 4 cm')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m3-fb"></div>
+    </div>
+  </div>
+
+  <!-- M4 -->
+  <div class="q-card" id="qcard-m4">
+    <div class="q-header">
+      <div class="q-num">M4</div>
+      <div class="q-text">Look at this sequence: 25, 28, 31, 34, 37, …<br>Write the <strong>next three terms</strong>.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="m4-ans" placeholder="e.g. 40, 43, 46">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('m4','40, 43, 46','M4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m4','40, 43, 46 (add 3 each time)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m4-fb"></div>
+    </div>
+  </div>
+
+  <!-- M5 -->
+  <div class="q-card" id="qcard-m5">
+    <div class="q-header">
+      <div class="q-num">M5</div>
+      <div class="q-text">For the sequence 25, 28, 31, 34, 37, … — write an expression for the <strong><em>n</em>th term</strong>.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="m5-ans" placeholder="e.g. 3n + 22">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('m5','3n + 22','M5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m5','Common difference = 3, so starts with 3n. When n=1, term=25. So: 3(1)+? = 25.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m5','3n + 22  [Check: n=1 → 3+22=25 ✓, n=2 → 6+22=28 ✓]')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m5-fb"></div>
+    </div>
+  </div>
+
+  <!-- M6 -->
+  <div class="q-card" id="qcard-m6">
+    <div class="q-header">
+      <div class="q-num">M6</div>
+      <div class="q-text">Using your nth term formula, find the <strong>75th term</strong> of the sequence.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m6-ans" placeholder="?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m6',247,'M6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m6','3(75) + 22 = 225 + 22 = 247')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m6-fb"></div>
+    </div>
+  </div>
+
+  <!-- M7 -->
+  <div class="q-card" id="qcard-m7">
+    <div class="q-header">
+      <div class="q-num">M7</div>
+      <div class="q-text">Work out: <em>8⁴⁄₇ × 10</em></div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="m7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('m7',this,'a')"><div class="opt-indicator">A</div>85 5/7</div>
+        <div class="mcq-opt" onclick="selectMCQ('m7',this,'b')"><div class="opt-indicator">B</div>84</div>
+        <div class="mcq-opt" onclick="selectMCQ('m7',this,'c')"><div class="opt-indicator">C</div>80 4/7</div>
+        <div class="mcq-opt" onclick="selectMCQ('m7',this,'d')"><div class="opt-indicator">D</div>87</div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('m7','a','M7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m7','8⁴⁄₇ = 60/7. Then 60/7 × 10 = 600/7 = 85 5/7')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m7-fb"></div>
+    </div>
+  </div>
+
+  <!-- M8 -->
+  <div class="q-card" id="qcard-m8">
+    <div class="q-header">
+      <div class="q-num">M8</div>
+      <div class="q-text">Work out: <em>5 ÷ ⁸⁄₁₁</em></div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="m8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('m8',this,'a')"><div class="opt-indicator">A</div>6 7/8</div>
+        <div class="mcq-opt" onclick="selectMCQ('m8',this,'b')"><div class="opt-indicator">B</div>5 8/11</div>
+        <div class="mcq-opt" onclick="selectMCQ('m8',this,'c')"><div class="opt-indicator">C</div>40/11</div>
+        <div class="mcq-opt" onclick="selectMCQ('m8',this,'d')"><div class="opt-indicator">D</div>7 1/8</div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('m8','a','M8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m8','5 ÷ 8/11 = 5 × 11/8 = 55/8 = 6 7/8')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">Section A score</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secA-fill"></div></div>
+    <div class="section-score-val" id="secA-val">—</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ SECTION B: ALGEBRA -->
+<div id="algebra">
+  <div class="section-header">
+    <div class="section-icon icon-math">𝑥</div>
+    <div><div class="sub-label">Section B</div><h2>Algebra &amp; Formulae</h2></div>
+  </div>
+
+  <div class="info-box">
+    <strong>Topics:</strong> Expanding brackets · Factorising · Substitution · Rearranging formulae · Word equations
+  </div>
+
+  <!-- M9 -->
+  <div class="q-card" id="qcard-m9">
+    <div class="q-header">
+      <div class="q-num">M9</div>
+      <div class="q-text">Expand and simplify: <em>5(3p − 2q) − 2(3p − 2q)</em></div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="m9-ans" placeholder="e.g. 9p − 6q">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('m9','9p - 6q','M9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m9','(3p−2q) is a common factor. 5(3p−2q) − 2(3p−2q) = (5−2)(3p−2q) = 3(3p−2q)')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m9','(3p−2q)(5−2) = 3(3p−2q) = 9p − 6q')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m9-fb"></div>
+    </div>
+  </div>
+
+  <!-- M10 -->
+  <div class="q-card" id="qcard-m10">
+    <div class="q-header">
+      <div class="q-num">M10</div>
+      <div class="q-text">Factorise your answer to M9: <em>9p − 6q</em></div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="m10-ans" placeholder="e.g. 3(3p − 2q)">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('m10','3(3p - 2q)','M10')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m10','3(3p − 2q)  [HCF of 9p and 6q is 3]')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m10-fb"></div>
+    </div>
+  </div>
+
+  <!-- M11 -->
+  <div class="q-card" id="qcard-m11">
+    <div class="q-header">
+      <div class="q-num">M11</div>
+      <div class="q-text">Use the formula <em>a = 15b + 8c</em> to find <em>a</em> when <em>b = 1.2</em> and <em>c = 1.5</em>.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m11-ans" placeholder="?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m11',30,'M11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m11','a = 15(1.2) + 8(1.5) = 18 + 12 = 30')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m11-fb"></div>
+    </div>
+  </div>
+
+  <!-- M12 -->
+  <div class="q-card" id="qcard-m12">
+    <div class="q-header">
+      <div class="q-num">M12</div>
+      <div class="q-text">Rearrange <em>a = 15b + 8c</em> to make <em>c</em> the subject.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="m12-ans" placeholder="c = ...">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('m12','(a - 15b) / 8','M12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m12','Subtract 15b from both sides, then divide both sides by 8.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m12','a = 15b + 8c → a − 15b = 8c → c = (a − 15b) / 8')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m12-fb"></div>
+    </div>
+  </div>
+
+  <!-- M13 -->
+  <div class="q-card" id="qcard-m13">
+    <div class="q-header">
+      <div class="q-num">M13</div>
+      <div class="q-text">Expand and simplify: <em>5(3x − 2) − 5(2 + x)</em></div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="m13-ans" placeholder="e.g. 10x − 20">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('m13','10x - 20','M13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m13','15x − 10 − 10 − 5x = ?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m13','15x − 10 − 10 − 5x = 10x − 20')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m13-fb"></div>
+    </div>
+  </div>
+
+  <!-- M14 -->
+  <div class="q-card" id="qcard-m14">
+    <div class="q-header">
+      <div class="q-num">M14</div>
+      <div class="q-text">Factorise: <em>10x − 20</em></div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="m14-ans" placeholder="e.g. 10(x − 2)">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('m14','10(x - 2)','M14')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m14','10(x − 2)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m14-fb"></div>
+    </div>
+  </div>
+
+  <!-- M15 -->
+  <div class="q-card" id="qcard-m15">
+    <div class="q-header">
+      <div class="q-num">M15 ⭐</div>
+      <div class="q-text"><strong>Challenge:</strong> Object A is 5 kg heavier than Object B. The mass of Object C is twice the mass of Object B. The total mass of all three is 165 kg. Find the mass of Object C.</div>
+      <div class="q-marks">3 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m15-ans" placeholder="?">
+        <span class="num-unit">kg</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m15',80,'M15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m15','Let B = b. Then A = b+5, C = 2b. Set up: (b+5) + b + 2b = 165')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m15','4b + 5 = 165 → 4b = 160 → b = 40. C = 2(40) = 80 kg')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m15-fb"></div>
+    </div>
+  </div>
+
+  <!-- M16 -->
+  <div class="q-card" id="qcard-m16">
+    <div class="q-header">
+      <div class="q-num">M16</div>
+      <div class="q-text">Triangle CDB: the exterior angle at A = 120°, angle DCB = 15x + 5°, angle DBC = 22x + 4°. Find <em>x</em>.</div>
+      <div class="q-marks">3 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m16-ans" placeholder="?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m16',3,'M16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m16','Interior angle at A = 180°−120° = 60°. Sum of angles in triangle = 180°.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m16','60 + (15x+5) + (22x+4) = 180 → 37x + 69 = 180 → 37x = 111 → x = 3')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m16-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">Section B score</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secB-fill"></div></div>
+    <div class="section-score-val" id="secB-val">—</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ SECTION C: GEOMETRY -->
+<div id="geometry">
+  <div class="section-header">
+    <div class="section-icon icon-math">📐</div>
+    <div><div class="sub-label">Section C</div><h2>Geometry &amp; Measures</h2></div>
+  </div>
+
+  <div class="info-box">
+    <strong>Topics:</strong> Bearings · Angles (parallel lines, triangles) · Circumference · Midpoint · Quadrilateral properties
+  </div>
+
+  <!-- M17 -->
+  <div class="q-card" id="qcard-m17">
+    <div class="q-header">
+      <div class="q-num">M17</div>
+      <div class="q-text">The bearing of Bangkok from Jakarta is 070°. Find the <strong>bearing of Jakarta from Bangkok</strong>.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m17-ans" placeholder="?">
+        <span class="num-unit">°</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m17',250,'M17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m17','Add 180° to the original bearing. If the result exceeds 360°, subtract 360°.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m17','070° + 180° = 250°')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m17-fb"></div>
+    </div>
+  </div>
+
+  <!-- M18 -->
+  <div class="q-card" id="qcard-m18">
+    <div class="q-header">
+      <div class="q-num">M18</div>
+      <div class="q-text">The circumference of a circular coin is 88 mm. Find its <strong>diameter</strong>. (Use π = ²²⁄₇)</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m18-ans" placeholder="?">
+        <span class="num-unit">mm</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m18',28,'M18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m18','C = πd → d = C ÷ π = 88 ÷ (22/7) = 88 × 7/22')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m18','d = 88 × 7/22 = 616/22 = 28 mm')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m18-fb"></div>
+    </div>
+  </div>
+
+  <!-- M19 -->
+  <div class="q-card" id="qcard-m19">
+    <div class="q-header">
+      <div class="q-num">M19</div>
+      <div class="q-text">The circumference of a circle is 220 cm. (Use π = ²²⁄₇) Find its <strong>diameter</strong>.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m19-ans" placeholder="?">
+        <span class="num-unit">cm</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m19',70,'M19')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m19','d = 220 × 7/22 = 1540/22 = 70 cm')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m19-fb"></div>
+    </div>
+  </div>
+
+  <!-- M20 -->
+  <div class="q-card" id="qcard-m20">
+    <div class="q-header">
+      <div class="q-num">M20</div>
+      <div class="q-text">Find the <strong>radius</strong> of the circle in M19.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m20-ans" placeholder="?">
+        <span class="num-unit">cm</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m20',35,'M20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m20','r = d ÷ 2 = 70 ÷ 2 = 35 cm')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m20-fb"></div>
+    </div>
+  </div>
+
+  <!-- M21 -->
+  <div class="q-card" id="qcard-m21">
+    <div class="q-header">
+      <div class="q-num">M21</div>
+      <div class="q-text">Find the <strong>midpoint</strong> of (−5, 7) and (9, −1). Enter the x-coordinate.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m21-ans" placeholder="x = ?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m21',2,'M21')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m21','x = (−5 + 9) / 2 = 4/2 = 2')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m21-fb"></div>
+    </div>
+  </div>
+
+  <!-- M22 -->
+  <div class="q-card" id="qcard-m22">
+    <div class="q-header">
+      <div class="q-num">M22</div>
+      <div class="q-text">Find the <strong>midpoint</strong> of (−5, 7) and (9, −1). Enter the y-coordinate.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m22-ans" placeholder="y = ?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m22',3,'M22')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m22','y = (7 + (−1)) / 2 = 6/2 = 3')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m22-fb"></div>
+    </div>
+  </div>
+
+  <!-- M23 -->
+  <div class="q-card" id="qcard-m23">
+    <div class="q-header">
+      <div class="q-num">M23</div>
+      <div class="q-text">AB is parallel to CD. A transversal PQRS crosses both lines. Angle BQR = 113°. Find angle <em>x° = CRS</em>.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m23-ans" placeholder="?">
+        <span class="num-unit">°</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m23',113,'M23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m23','Co-interior angles: BQR + QRC = 180°, so QRC = 67°. Then CRS + QRC = 180° (straight line).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m23','Co-interior: ∠QRC = 180°−113° = 67°. Straight line QRS: ∠CRS = 180°−67° = 113°')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m23-fb"></div>
+    </div>
+  </div>
+
+  <!-- M24 MCQ quadrilateral -->
+  <div class="q-card" id="qcard-m24">
+    <div class="q-header">
+      <div class="q-num">M24</div>
+      <div class="q-text">A <strong>rectangle</strong> has which set of properties?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="m24-opts">
+        <div class="mcq-opt" onclick="selectMCQ('m24',this,'a')"><div class="opt-indicator">A</div>All sides the same length · Two pairs of parallel sides · Opposite angles equal</div>
+        <div class="mcq-opt" onclick="selectMCQ('m24',this,'b')"><div class="opt-indicator">B</div>Two pairs of sides the same length · Two pairs of parallel sides · All angles 90°</div>
+        <div class="mcq-opt" onclick="selectMCQ('m24',this,'c')"><div class="opt-indicator">C</div>One pair of parallel sides only</div>
+        <div class="mcq-opt" onclick="selectMCQ('m24',this,'d')"><div class="opt-indicator">D</div>All sides equal · All angles 90°</div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('m24','b','M24')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m24','B — Rectangle: 2 pairs of equal sides, 2 pairs of parallel sides, all angles 90°. (A = Rhombus, C = Trapezium, D = Square)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m24-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">Section C score</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secC-fill"></div></div>
+    <div class="section-score-val" id="secC-val">—</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ SECTION D: DATA -->
+<div id="data">
+  <div class="section-header">
+    <div class="section-icon icon-math">📊</div>
+    <div><div class="sub-label">Section D</div><h2>Data &amp; Statistics</h2></div>
+  </div>
+
+  <div class="info-box">
+    <strong>Histogram (Q20):</strong> Ages of karaoke contestants — frequencies: Age 10→4, 11→5, 12→3, 13→6, 14→7, 15→5
+  </div>
+
+  <!-- M25 -->
+  <div class="q-card" id="qcard-m25">
+    <div class="q-header">
+      <div class="q-num">M25</div>
+      <div class="q-text">From the histogram above: which age has the <strong>fewest contestants</strong>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="m25-opts">
+        <div class="mcq-opt" onclick="selectMCQ('m25',this,'a')"><div class="opt-indicator">A</div>Age 10</div>
+        <div class="mcq-opt" onclick="selectMCQ('m25',this,'b')"><div class="opt-indicator">B</div>Age 11</div>
+        <div class="mcq-opt" onclick="selectMCQ('m25',this,'c')"><div class="opt-indicator">C</div>Age 12</div>
+        <div class="mcq-opt" onclick="selectMCQ('m25',this,'d')"><div class="opt-indicator">D</div>Age 13</div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('m25','c','M25')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m25','C — Age 12 has frequency 3, the lowest on the histogram.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m25-fb"></div>
+    </div>
+  </div>
+
+  <!-- M26 -->
+  <div class="q-card" id="qcard-m26">
+    <div class="q-header">
+      <div class="q-num">M26</div>
+      <div class="q-text">Find the <strong>total number of contestants</strong> in the karaoke contest.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m26-ans" placeholder="?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m26',30,'M26')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m26','4 + 5 + 3 + 6 + 7 + 5 = 30')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m26-fb"></div>
+    </div>
+  </div>
+
+  <!-- M27 -->
+  <div class="q-card" id="qcard-m27">
+    <div class="q-header">
+      <div class="q-num">M27</div>
+      <div class="q-text">Find the <strong>percentage of contestants over 13 years old</strong> in the karaoke contest.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m27-ans" placeholder="?">
+        <span class="num-unit">%</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m27',40,'M27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m27','Over 13 = ages 14 and 15. Count those, then divide by total × 100.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m27','Ages 14+15: 7+5=12. Percentage = 12/30 × 100 = 40%')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m27-fb"></div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:20px;">
+    <strong>Pie chart (Q21):</strong> Gill's garden time — sector angles: cutting the grass = 40°, planting = 80°, digging = 100°, weeding = 140°. Total time = 36 hours.
+  </div>
+
+  <!-- M28 -->
+  <div class="q-card" id="qcard-m28">
+    <div class="q-header">
+      <div class="q-num">M28</div>
+      <div class="q-text">What <strong>fraction</strong> of the time did Gill spend <strong>cutting the grass</strong>? (Give your answer in simplest form)</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="m28-ans" placeholder="e.g. 1/9">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('m28','1/9','M28')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m28','40° ÷ 360° = 40/360 = 1/9')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m28-fb"></div>
+    </div>
+  </div>
+
+  <!-- M29 -->
+  <div class="q-card" id="qcard-m29">
+    <div class="q-header">
+      <div class="q-num">M29</div>
+      <div class="q-text">Gill spent 36 hours total in her garden. How many hours did she spend <strong>planting</strong>?</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m29-ans" placeholder="?">
+        <span class="num-unit">hours</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m29',8,'M29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m29','Planting sector = 80°. Time = (80/360) × 36')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m29','(80/360) × 36 = (2/9) × 36 = 8 hours')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m29-fb"></div>
+    </div>
+  </div>
+
+  <!-- M30 -->
+  <div class="q-card" id="qcard-m30">
+    <div class="q-header">
+      <div class="q-num">M30</div>
+      <div class="q-text">A jacket increases in price from $300 to $390. Find the <strong>percentage increase</strong>.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m30-ans" placeholder="?">
+        <span class="num-unit">%</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m30',30,'M30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m30','Percentage increase = (increase ÷ original) × 100. Increase = $90.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m30','Increase = $90. % increase = (90/300) × 100 = 30%')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m30-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">Section D score</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secD-fill"></div></div>
+    <div class="section-score-val" id="secD-val">—</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ SECTION E: MEASUREMENT -->
+<div id="measurement">
+  <div class="section-header">
+    <div class="section-icon icon-math">📏</div>
+    <div><div class="sub-label">Section E</div><h2>Area, Volume &amp; Ratio</h2></div>
+  </div>
+
+  <div class="info-box">
+    <strong>Topics:</strong> Area (rectangle, trapezium, parallelogram) · Volume &amp; surface area of prism · Ratio · Word problems
+  </div>
+
+  <!-- M31 -->
+  <div class="q-card" id="qcard-m31">
+    <div class="q-header">
+      <div class="q-num">M31</div>
+      <div class="q-text">Ghina buys carpet for a rectangular floor: length 8¾ m, width 5 m. The carpet costs $10 per m². How much does Ghina spend?</div>
+      <div class="q-marks">3 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <span class="num-unit">$</span>
+        <input type="number" class="num-input" id="m31-ans" placeholder="?" step="0.01">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m31',437.5,'M31',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m31','8¾ = 35/4. Area = 35/4 × 5 = 175/4 m². Cost = area × $10.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m31','Area = 8.75 × 5 = 43.75 m². Cost = 43.75 × 10 = $437.50')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m31-fb"></div>
+    </div>
+  </div>
+
+  <!-- M32 -->
+  <div class="q-card" id="qcard-m32">
+    <div class="q-header">
+      <div class="q-num">M32</div>
+      <div class="q-text">In a figure, square EFGH has area 36 cm² (so its side = 6 cm, which is also the height between the parallel lines). Trapezium IJKL has parallel sides IL = 10 cm and JK = 5 cm. Find the <strong>area of trapezium IJKL</strong>.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m32-ans" placeholder="?">
+        <span class="num-unit">cm²</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m32',45,'M32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m32','Area of trapezium = ½(a + b) × h. Here a=10, b=5, h=6.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m32','½(10 + 5) × 6 = ½ × 15 × 6 = 45 cm²')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m32-fb"></div>
+    </div>
+  </div>
+
+  <!-- M33 -->
+  <div class="q-card" id="qcard-m33">
+    <div class="q-header">
+      <div class="q-num">M33</div>
+      <div class="q-text">In the same figure, parallelogram ABCD has base BC = 12 cm and the same height (6 cm). Find the <strong>ratio of area ABCD : area IJKL</strong> in its simplest form.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="m33-ans" placeholder="e.g. 8 : 5">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('m33','8 : 5','M33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m33','Area ABCD = 12 × 6 = 72 cm². Area IJKL = 45 cm². Ratio = 72:45, simplify.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m33','72 : 45 = 8 : 5 (÷ 9)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m33-fb"></div>
+    </div>
+  </div>
+
+  <!-- M34 -->
+  <div class="q-card" id="qcard-m34">
+    <div class="q-header">
+      <div class="q-num">M34</div>
+      <div class="q-text">Molly, Paige and Demi share 42 sweets in the ratio 3 : 2 : 1. How many sweets does <strong>Molly</strong> receive?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m34-ans" placeholder="?">
+        <span class="num-unit">sweets</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m34',21,'M34')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m34','Total parts = 6. Each part = 42÷6 = 7. Molly (3 parts) = 21.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m34-fb"></div>
+    </div>
+  </div>
+
+  <!-- M35 -->
+  <div class="q-card" id="qcard-m35">
+    <div class="q-header">
+      <div class="q-num">M35</div>
+      <div class="q-text">How many sweets does <strong>Demi</strong> receive (ratio 3:2:1, total 42)?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m35-ans" placeholder="?">
+        <span class="num-unit">sweets</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m35',7,'M35')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m35','Demi (1 part) = 1 × 7 = 7 sweets.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m35-fb"></div>
+    </div>
+  </div>
+
+  <!-- M36 -->
+  <div class="q-card" id="qcard-m36">
+    <div class="q-header">
+      <div class="q-num">M36 ⭐</div>
+      <div class="q-text"><strong>Challenge:</strong> A triangular prism has right-angle triangle cross-section with AC = 3 cm, BC = 4 cm, AB = 5 cm (hypotenuse). Length of prism BE = 20 cm. Find the <strong>volume</strong>.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m36-ans" placeholder="?">
+        <span class="num-unit">cm³</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m36',120,'M36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m36','Volume = cross-section area × length. Area of right triangle = ½ × base × height.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m36','Area of triangle = ½ × 3 × 4 = 6 cm². Volume = 6 × 20 = 120 cm³')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m36-fb"></div>
+    </div>
+  </div>
+
+  <!-- M37 -->
+  <div class="q-card" id="qcard-m37">
+    <div class="q-header">
+      <div class="q-num">M37 ⭐</div>
+      <div class="q-text"><strong>Challenge:</strong> Find the <strong>total surface area</strong> of the same triangular prism (AC=3, BC=4, AB=5, BE=20 cm).</div>
+      <div class="q-marks">3 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m37-ans" placeholder="?">
+        <span class="num-unit">cm²</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m37',252,'M37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m37','2 triangular faces + 3 rectangular faces (AB×20, AC×20, BC×20).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m37','2 triangles: 2×6=12. Rectangles: 5×20=100, 3×20=60, 4×20=80. Total = 12+100+60+80 = 252 cm²')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m37-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">Section E score</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secE-fill"></div></div>
+    <div class="section-score-val" id="secE-val">—</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ SECTION F: FUNCTIONS -->
+<div id="functions">
+  <div class="section-header">
+    <div class="section-icon icon-math">📈</div>
+    <div><div class="sub-label">Section F</div><h2>Functions &amp; Graphs</h2></div>
+  </div>
+
+  <div class="info-box">
+    <strong>Function:</strong> y = 2x − 4. Complete the table, then identify key features of the straight-line graph.
+  </div>
+
+  <!-- M38 -->
+  <div class="q-card" id="qcard-m38">
+    <div class="q-header">
+      <div class="q-num">M38</div>
+      <div class="q-text">For <em>y = 2x − 4</em>: find <em>y</em> when <em>x = −1</em>.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m38-ans" placeholder="y = ?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m38',-6,'M38')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m38','y = 2(−1) − 4 = −2 − 4 = −6')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m38-fb"></div>
+    </div>
+  </div>
+
+  <!-- M39 -->
+  <div class="q-card" id="qcard-m39">
+    <div class="q-header">
+      <div class="q-num">M39</div>
+      <div class="q-text">For <em>y = 2x − 4</em>: find <em>y</em> when <em>x = 1</em>.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m39-ans" placeholder="y = ?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m39',-2,'M39')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m39','y = 2(1) − 4 = 2 − 4 = −2')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m39-fb"></div>
+    </div>
+  </div>
+
+  <!-- M40 -->
+  <div class="q-card" id="qcard-m40">
+    <div class="q-header">
+      <div class="q-num">M40</div>
+      <div class="q-text">For the line <em>y = 2x − 4</em>: what is the <strong>gradient</strong>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m40-ans" placeholder="?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m40',2,'M40')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m40','Gradient = 2 (the coefficient of x in y = mx + c)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m40-fb"></div>
+    </div>
+  </div>
+
+  <!-- M41 -->
+  <div class="q-card" id="qcard-m41">
+    <div class="q-header">
+      <div class="q-num">M41</div>
+      <div class="q-text">For the line <em>y = 2x − 4</em>: what is the <strong>y-intercept</strong>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m41-ans" placeholder="?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m41',-4,'M41')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m41','y-intercept = −4 (the constant c in y = mx + c)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m41-fb"></div>
+    </div>
+  </div>
+
+  <!-- M42 -->
+  <div class="q-card" id="qcard-m42">
+    <div class="q-header">
+      <div class="q-num">M42</div>
+      <div class="q-text">For the line <em>y = 2x − 4</em>: what is the <strong>x-intercept</strong> (where y = 0)?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="m42-ans" placeholder="?">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m42',2,'M42')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m42','Set y=0: 0 = 2x − 4. Solve for x.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m42','0 = 2x − 4 → 2x = 4 → x = 2')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m42-fb"></div>
+    </div>
+  </div>
+
+  <div class="draw-box">
+    📝 <strong>Drawing task (Q22b):</strong> Use your table values (x: −1, 0, 1, 2 → y: −6, −4, −2, 0) to plot the graph of y = 2x − 4 on paper or in your exercise book. Draw this on graph paper before your exam.
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">Section F score</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secF-fill"></div></div>
+    <div class="section-score-val" id="secF-val">—</div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">—</div>
+  <div class="results-label" id="results-label">Complete all questions to see your final score</div>
+  <div class="results-breakdown">
+    <div class="rb-chip">Number<span class="rb-val" id="rb-a">—</span></div>
+    <div class="rb-chip">Algebra<span class="rb-val" id="rb-b">—</span></div>
+    <div class="rb-chip">Geometry<span class="rb-val" id="rb-c">—</span></div>
+    <div class="rb-chip">Data<span class="rb-val" id="rb-d">—</span></div>
+    <div class="rb-chip">Measurement<span class="rb-val" id="rb-e">—</span></div>
+    <div class="rb-chip">Functions<span class="rb-val" id="rb-f">—</span></div>
+    <div class="rb-chip">Time<span class="rb-val" id="rb-time">—</span></div>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<script>
+const state = {
+  answers: {},
+  correct: {},
+  startTime: Date.now()
+};
+
+const marks = {
+  m1:2,m2:2,m3:2,m4:1,m5:2,m6:1,m7:2,m8:2,
+  m9:2,m10:1,m11:2,m12:2,m13:2,m14:1,m15:3,m16:3,
+  m17:2,m18:2,m19:1,m20:1,m21:1,m22:1,m23:2,m24:1,
+  m25:1,m26:1,m27:2,m28:1,m29:2,m30:2,
+  m31:3,m32:2,m33:2,m34:1,m35:1,m36:2,m37:3,
+  m38:1,m39:1,m40:1,m41:1,m42:1
+};
+
+const sections = {
+  A: ['m1','m2','m3','m4','m5','m6','m7','m8'],
+  B: ['m9','m10','m11','m12','m13','m14','m15','m16'],
+  C: ['m17','m18','m19','m20','m21','m22','m23','m24'],
+  D: ['m25','m26','m27','m28','m29','m30'],
+  E: ['m31','m32','m33','m34','m35','m36','m37'],
+  F: ['m38','m39','m40','m41','m42']
+};
+
+const allQs = Object.values(sections).flat();
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el, val, multi=false) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  if (!multi) {
+    opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = o.querySelector('.opt-indicator').textContent.replace('✓','').trim(); });
+    el.classList.add('selected');
+    el.querySelector('.opt-indicator').textContent = '✓';
+    state.answers[qid] = val;
+  }
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const v = opt.onclick?.toString().match(/'([a-d])'/)?.[1];
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function checkText(qid, correctVal, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = input.value.toLowerCase().replace(/\s+/g,'');
+  const correct = correctVal.toLowerCase().replace(/\s+/g,'');
+  const isCorrect = val === correct || val.includes(correct) || correct.includes(val);
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  const secScores = {A:0,B:0,C:0,D:0,E:0,F:0};
+  const secMax = {};
+  for (const [sec, qs] of Object.entries(sections)) {
+    secMax[sec] = qs.reduce((s,q) => s+marks[q], 0);
+    qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScores[sec] += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const pct = (secScores[sec]/secMax[sec])*100;
+    const fill = document.getElementById(`sec${sec}-fill`);
+    const val = document.getElementById(`sec${sec}-val`);
+    if (fill) fill.style.width = pct + '%';
+    if (val) val.textContent = `${secScores[sec]}/${secMax[sec]}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore, secScores, secMax);
+}
+
+function showResults(total, secScores, secMax) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  ['A','B','C','D','E','F'].forEach(s => {
+    const el = document.getElementById(`rb-${s.toLowerCase()}`);
+    if (el) el.textContent = `${secScores[s]}/${secMax[s]}`;
+  });
+  document.getElementById('rb-time').textContent = `${mins}m ${secs}s`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sa2_${Date.now()}`, JSON.stringify({date:new Date().toISOString(),pct,time:`${mins}m${secs}s`})); } catch(e){}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#4f8ef7','#3ecf8e','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, () => ({
+    x:Math.random()*canvas.width, y:Math.random()*-canvas.height,
+    w:Math.random()*10+4, h:Math.random()*6+3,
+    color:colors[Math.floor(Math.random()*colors.length)],
+    rot:Math.random()*Math.PI*2, vy:Math.random()*3+2,
+    vx:(Math.random()-0.5)*2, vr:(Math.random()-0.5)*0.1
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && (active.classList.contains('num-input') || active.classList.contains('text-input'))) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
