@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge Secondary & IGCSE Practice · S1 English SA2 Revision</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent-eng: #f5a623;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.6;
+}
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,17,23,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px; height: 58px; gap: 16px;
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-eng); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-pill .score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-pill .score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-eng); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-eng), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 40px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-eng); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-eng { background: var(--accent-eng); }
+.subject-nav { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.5px; padding: 8px 20px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.sub-tab:hover { border-color: var(--accent-eng); color: var(--text); }
+.sub-tab.active-eng { background: var(--accent-eng); color: #0f1117; border-color: var(--accent-eng); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 24px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.icon-eng { background: rgba(245,166,35,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px 14px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.97rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-eng); background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 16px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.93rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-eng); }
+.mcq-opt.selected { border-color: var(--accent-eng); background: rgba(245,166,35,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-eng); background: var(--accent-eng); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-eng); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-eng); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.rule-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin: 0 0 24px; overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.data-table th { background: var(--surface2); border: 1px solid var(--border); padding: 7px 12px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+.data-table td { border: 1px solid var(--border); padding: 6px 12px; color: var(--text); vertical-align: top; }
+.data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+.pos-name { color: var(--accent-eng); font-weight: 600; font-family: var(--font-mono); font-size: 0.82rem; white-space: nowrap; }
+.pos-eg { color: var(--accent-sci); font-style: italic; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 28px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-eng); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-eng), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-eng); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { from { opacity: 0; transform: scale(0.92) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+@keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); } 70% { box-shadow: 0 0 0 10px rgba(46,204,113,0); } 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); } }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 0 16px; }
+  .hero, .subject-nav, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">S1 · SA2 · English · 2026</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <div class="timer-wrap"><span style="font-size:0.85rem;">⏱</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill">
+      <div class="score-label">Score</div>
+      <div class="score-val" id="global-score">0 / 40</div>
+    </div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 1 · SA2 Revision · 2026</div>
+  <h1>English<br><em>Revision Pack</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-eng"></div>Parts of Speech · Clauses</div>
+    <div class="hero-chip"><div class="dot dot-eng" style="background:var(--text-dim)"></div>40 questions · 40 marks · self-marked</div>
+  </div>
+</div>
+
+<div class="subject-nav">
+  <a href="#pos" class="sub-tab active-eng">✏️ Parts of Speech (30)</a>
+  <a href="#clauses" class="sub-tab active-eng">📝 Clauses (10)</a>
+</div>
+
+<div class="main">
+
+  <!-- SECTION A: PARTS OF SPEECH -->
+  <div id="pos">
+    <div class="section-header">
+      <div class="section-icon icon-eng">✏️</div>
+      <div>
+        <div class="sub-label">English · Grammar</div>
+        <h2>Parts of Speech</h2>
+      </div>
+    </div>
+
+    <div class="info-box">
+      Identify the <strong>underlined</strong> word in each sentence. Choose the correct part of speech.
+    </div>
+
+    <div class="rule-box">
+      <table class="data-table">
+        <thead><tr><th>Part of Speech</th><th>What it does</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td class="pos-name">Noun</td><td>names a person, place, thing, or idea</td><td class="pos-eg">Liam, Italy, concert, Honesty</td></tr>
+          <tr><td class="pos-name">Pronoun</td><td>replaces a noun</td><td class="pos-eg">He, us, it, her, Everyone, Whose</td></tr>
+          <tr><td class="pos-name">Verb</td><td>expresses action or state of being</td><td class="pos-eg">jumped, understand, are, is, spoke</td></tr>
+          <tr><td class="pos-name">Adjective</td><td>describes a noun or pronoun</td><td class="pos-eg">beautiful, French, intelligent, yellow</td></tr>
+          <tr><td class="pos-name">Adverb</td><td>modifies a verb, adjective, or adverb</td><td class="pos-eg">Silently, almost, perfectly, gently</td></tr>
+          <tr><td class="pos-name">Conjunction</td><td>joins words or clauses</td><td class="pos-eg">and, but, or, so, for, yet, nor</td></tr>
+          <tr><td class="pos-name">Preposition</td><td>shows relationship between words</td><td class="pos-eg">in, against, beyond, over, along, at</td></tr>
+          <tr><td class="pos-name">Interjection</td><td>expresses strong emotion, stands alone</td><td class="pos-eg">Hey!, Wow!, Ouch!, Oh!</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- P1 -->
+    <div class="q-card" id="qcard-p1">
+      <div class="q-header">
+        <div class="q-num">P1</div>
+        <div class="q-text"><u>He</u> will visit his grandparents for two weeks this summer.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p1-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p1',this,'a')"><div class="opt-indicator">A</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p1',this,'b')"><div class="opt-indicator">B</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p1',this,'c')"><div class="opt-indicator">C</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p1',this,'d')"><div class="opt-indicator">D</div>pronoun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p1','d','P1')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p1','D — pronoun. "He" replaces a noun (a male person). Pronouns substitute for nouns: I, he, she, it, they, we, you, him, her.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p1-fb"></div>
+      </div>
+    </div>
+
+    <!-- P2 -->
+    <div class="q-card" id="qcard-p2">
+      <div class="q-header">
+        <div class="q-num">P2</div>
+        <div class="q-text"><u>Silently</u> read your book.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p2-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p2',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p2',this,'b')"><div class="opt-indicator">B</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p2',this,'c')"><div class="opt-indicator">C</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p2',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p2','b','P2')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p2','B — adverb. "Silently" modifies the verb "read" — it tells us how to read. Adverbs often end in -ly.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p2-fb"></div>
+      </div>
+    </div>
+
+    <!-- P3 -->
+    <div class="q-card" id="qcard-p3">
+      <div class="q-header">
+        <div class="q-num">P3</div>
+        <div class="q-text"><u>Hey!</u> Put that down!</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p3-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p3',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p3',this,'b')"><div class="opt-indicator">B</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p3',this,'c')"><div class="opt-indicator">C</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p3',this,'d')"><div class="opt-indicator">D</div>noun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p3','c','P3')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p3','C — interjection. "Hey!" expresses strong emotion and stands apart from the rest of the sentence. Other interjections: Wow!, Ouch!, Oh!')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p3-fb"></div>
+      </div>
+    </div>
+
+    <!-- P4 -->
+    <div class="q-card" id="qcard-p4">
+      <div class="q-header">
+        <div class="q-num">P4</div>
+        <div class="q-text"><u>Liam</u> brought his notebook to class.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p4-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p4',this,'a')"><div class="opt-indicator">A</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p4',this,'b')"><div class="opt-indicator">B</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p4',this,'c')"><div class="opt-indicator">C</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p4',this,'d')"><div class="opt-indicator">D</div>pronoun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p4','c','P4')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p4','C — noun. "Liam" is a proper noun — it names a specific person.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p4-fb"></div>
+      </div>
+    </div>
+
+    <!-- P5 -->
+    <div class="q-card" id="qcard-p5">
+      <div class="q-header">
+        <div class="q-num">P5</div>
+        <div class="q-text">Your test scores were <u>almost</u> perfect.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p5-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p5',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p5',this,'b')"><div class="opt-indicator">B</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p5',this,'c')"><div class="opt-indicator">C</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p5',this,'d')"><div class="opt-indicator">D</div>pronoun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p5','b','P5')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p5','B — adverb. "Almost" modifies the adjective "perfect" — it tells us to what degree. Adverbs can modify adjectives, not just verbs.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p5-fb"></div>
+      </div>
+    </div>
+
+    <!-- P6 -->
+    <div class="q-card" id="qcard-p6">
+      <div class="q-header">
+        <div class="q-num">P6</div>
+        <div class="q-text">Please join <u>us</u> for the birthday party this afternoon.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p6-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p6',this,'a')"><div class="opt-indicator">A</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p6',this,'b')"><div class="opt-indicator">B</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p6',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p6',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p6','c','P6')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p6','C — pronoun. "Us" is an object pronoun replacing a group of people. Pronoun forms: we (subject) → us (object).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p6-fb"></div>
+      </div>
+    </div>
+
+    <!-- P7 -->
+    <div class="q-card" id="qcard-p7">
+      <div class="q-header">
+        <div class="q-num">P7</div>
+        <div class="q-text"><u>French</u> onion soup is on the lunch menu.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p7-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p7',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p7',this,'b')"><div class="opt-indicator">B</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p7',this,'c')"><div class="opt-indicator">C</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p7',this,'d')"><div class="opt-indicator">D</div>noun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p7','a','P7')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p7','A — adjective. "French" describes the noun "soup" — it tells us what kind of soup. Proper adjectives (from proper nouns) are capitalised.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p7-fb"></div>
+      </div>
+    </div>
+
+    <!-- P8 -->
+    <div class="q-card" id="qcard-p8">
+      <div class="q-header">
+        <div class="q-num">P8</div>
+        <div class="q-text">The coach <u>jumped</u> for joy.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p8-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p8',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p8',this,'b')"><div class="opt-indicator">B</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p8',this,'c')"><div class="opt-indicator">C</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p8',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p8','d','P8')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p8','D — verb. "Jumped" is an action verb in the past tense. It expresses what the coach did.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p8-fb"></div>
+      </div>
+    </div>
+
+    <!-- P9 -->
+    <div class="q-card" id="qcard-p9">
+      <div class="q-header">
+        <div class="q-num">P9</div>
+        <div class="q-text">Classes will resume <u>in</u> the fall.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p9-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p9',this,'a')"><div class="opt-indicator">A</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p9',this,'b')"><div class="opt-indicator">B</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p9',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p9',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p9','b','P9')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p9','B — preposition. "In" shows the relationship between "resume" and "the fall" (a time). Prepositions include: in, on, at, to, for, with, by, against, over, beyond.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p9-fb"></div>
+      </div>
+    </div>
+
+    <!-- P10 -->
+    <div class="q-card" id="qcard-p10">
+      <div class="q-header">
+        <div class="q-num">P10</div>
+        <div class="q-text">I <u>understand</u> the directions.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p10-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p10',this,'a')"><div class="opt-indicator">A</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p10',this,'b')"><div class="opt-indicator">B</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p10',this,'c')"><div class="opt-indicator">C</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p10',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p10','d','P10')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p10','D — verb. "Understand" is a mental state verb (stative verb). Not all verbs show physical action.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p10-fb"></div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:28px;"><strong>Questions 11–20</strong> — conjunctions, pronouns, adjectives, interjections, and nouns.</div>
+
+    <!-- P11 -->
+    <div class="q-card" id="qcard-p11">
+      <div class="q-header">
+        <div class="q-num">P11</div>
+        <div class="q-text">Fathers <u>and</u> sons enjoy taking long fishing trips to the lake.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p11-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p11',this,'a')"><div class="opt-indicator">A</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p11',this,'b')"><div class="opt-indicator">B</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p11',this,'c')"><div class="opt-indicator">C</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p11',this,'d')"><div class="opt-indicator">D</div>preposition</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p11','b','P11')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p11','B — conjunction. "And" joins "fathers" and "sons". Coordinating conjunctions (FANBOYS): For, And, Nor, But, Or, Yet, So.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p11-fb"></div>
+      </div>
+    </div>
+
+    <!-- P12 -->
+    <div class="q-card" id="qcard-p12">
+      <div class="q-header">
+        <div class="q-num">P12</div>
+        <div class="q-text">The postman will deliver <u>it</u> to your house.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p12-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p12',this,'a')"><div class="opt-indicator">A</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p12',this,'b')"><div class="opt-indicator">B</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p12',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p12',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p12','c','P12')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p12','C — pronoun. "It" replaces a thing (a package, letter, etc.) that was mentioned earlier.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p12-fb"></div>
+      </div>
+    </div>
+
+    <!-- P13 -->
+    <div class="q-card" id="qcard-p13">
+      <div class="q-header">
+        <div class="q-num">P13</div>
+        <div class="q-text">She wore a <u>beautiful</u> dress to the party.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p13-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p13',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p13',this,'b')"><div class="opt-indicator">B</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p13',this,'c')"><div class="opt-indicator">C</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p13',this,'d')"><div class="opt-indicator">D</div>noun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p13','a','P13')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p13','A — adjective. "Beautiful" describes the noun "dress" — it tells us what the dress is like.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p13-fb"></div>
+      </div>
+    </div>
+
+    <!-- P14 -->
+    <div class="q-card" id="qcard-p14">
+      <div class="q-header">
+        <div class="q-num">P14</div>
+        <div class="q-text"><u>Wow!</u> That was scary.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p14-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p14',this,'a')"><div class="opt-indicator">A</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p14',this,'b')"><div class="opt-indicator">B</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p14',this,'c')"><div class="opt-indicator">C</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p14',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p14','a','P14')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p14','A — interjection. "Wow!" expresses surprise/amazement and is grammatically independent from the sentence that follows.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p14-fb"></div>
+      </div>
+    </div>
+
+    <!-- P15 -->
+    <div class="q-card" id="qcard-p15">
+      <div class="q-header">
+        <div class="q-num">P15</div>
+        <div class="q-text">The music <u>concert</u> was loud and entertaining.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p15-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p15',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p15',this,'b')"><div class="opt-indicator">B</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p15',this,'c')"><div class="opt-indicator">C</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p15',this,'d')"><div class="opt-indicator">D</div>pronoun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p15','c','P15')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p15','C — noun. "Concert" names an event (a thing). It is the subject of the sentence.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p15-fb"></div>
+      </div>
+    </div>
+
+    <!-- P16 -->
+    <div class="q-card" id="qcard-p16">
+      <div class="q-header">
+        <div class="q-num">P16</div>
+        <div class="q-text">Place the books <u>against</u> the wall.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p16-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p16',this,'a')"><div class="opt-indicator">A</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p16',this,'b')"><div class="opt-indicator">B</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p16',this,'c')"><div class="opt-indicator">C</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p16',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p16','c','P16')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p16','C — preposition. "Against" shows the spatial relationship between the books and the wall. It begins a prepositional phrase: "against the wall".')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p16-fb"></div>
+      </div>
+    </div>
+
+    <!-- P17 -->
+    <div class="q-card" id="qcard-p17">
+      <div class="q-header">
+        <div class="q-num">P17</div>
+        <div class="q-text">I will not be able to attend the game <u>for</u> I have not completed my homework.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p17-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p17',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p17',this,'b')"><div class="opt-indicator">B</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p17',this,'c')"><div class="opt-indicator">C</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p17',this,'d')"><div class="opt-indicator">D</div>noun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p17','c','P17')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('p17','Think FANBOYS: For, And, Nor, But, Or, Yet, So. "For" can be a conjunction meaning "because".')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p17','C — conjunction. "For" here means "because" — it joins two independent clauses. It is one of the FANBOYS coordinating conjunctions.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p17-fb"></div>
+      </div>
+    </div>
+
+    <!-- P18 -->
+    <div class="q-card" id="qcard-p18">
+      <div class="q-header">
+        <div class="q-num">P18</div>
+        <div class="q-text">Visiting <u>Italy</u> was an exciting trip for my family.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p18-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p18',this,'a')"><div class="opt-indicator">A</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p18',this,'b')"><div class="opt-indicator">B</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p18',this,'c')"><div class="opt-indicator">C</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p18',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p18','b','P18')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p18','B — noun. "Italy" is a proper noun — the name of a specific country.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p18-fb"></div>
+      </div>
+    </div>
+
+    <!-- P19 -->
+    <div class="q-card" id="qcard-p19">
+      <div class="q-header">
+        <div class="q-num">P19</div>
+        <div class="q-text">Would you like chocolate <u>or</u> vanilla?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p19-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p19',this,'a')"><div class="opt-indicator">A</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p19',this,'b')"><div class="opt-indicator">B</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p19',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p19',this,'d')"><div class="opt-indicator">D</div>preposition</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p19','a','P19')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p19','A — conjunction. "Or" joins two choices: "chocolate" and "vanilla". It is a coordinating conjunction.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p19-fb"></div>
+      </div>
+    </div>
+
+    <!-- P20 -->
+    <div class="q-card" id="qcard-p20">
+      <div class="q-header">
+        <div class="q-num">P20</div>
+        <div class="q-text">Nathan is finishing his chores early <u>so</u> he can enjoy the rest of the day.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p20-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p20',this,'a')"><div class="opt-indicator">A</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p20',this,'b')"><div class="opt-indicator">B</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p20',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p20',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p20','a','P20')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p20','A — conjunction. "So" joins the two clauses and shows result/purpose. It is the S in FANBOYS.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p20-fb"></div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:28px;"><strong>Questions 21–30</strong> — nouns, pronouns, adjectives, adverbs, prepositions, and interjections.</div>
+
+    <!-- P21 -->
+    <div class="q-card" id="qcard-p21">
+      <div class="q-header">
+        <div class="q-num">P21</div>
+        <div class="q-text"><u>Honesty</u> is a desirable characteristic trait.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p21-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p21',this,'a')"><div class="opt-indicator">A</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p21',this,'b')"><div class="opt-indicator">B</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p21',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p21',this,'d')"><div class="opt-indicator">D</div>preposition</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p21','b','P21')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p21','B — noun. "Honesty" names an abstract idea or concept. Abstract nouns include: honesty, freedom, courage, happiness.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p21-fb"></div>
+      </div>
+    </div>
+
+    <!-- P22 -->
+    <div class="q-card" id="qcard-p22">
+      <div class="q-header">
+        <div class="q-num">P22</div>
+        <div class="q-text">Samantha forgot to bring <u>her</u> homework to school.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p22-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p22',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p22',this,'b')"><div class="opt-indicator">B</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p22',this,'c')"><div class="opt-indicator">C</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p22',this,'d')"><div class="opt-indicator">D</div>pronoun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p22','d','P22')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('p22','"Her" can be either a pronoun or a possessive adjective. Here, does it replace a noun or describe one?')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p22','D — pronoun. "Her" is a possessive pronoun/determiner referring to Samantha. It replaces "Samantha\'s".')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p22-fb"></div>
+      </div>
+    </div>
+
+    <!-- P23 -->
+    <div class="q-card" id="qcard-p23">
+      <div class="q-header">
+        <div class="q-num">P23</div>
+        <div class="q-text">The storm uprooted the <u>eight-foot</u> tree.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p23-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p23',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p23',this,'b')"><div class="opt-indicator">B</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p23',this,'c')"><div class="opt-indicator">C</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p23',this,'d')"><div class="opt-indicator">D</div>pronoun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p23','a','P23')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p23','A — adjective. "Eight-foot" is a compound adjective describing the noun "tree". It tells us how tall the tree is.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p23-fb"></div>
+      </div>
+    </div>
+
+    <!-- P24 -->
+    <div class="q-card" id="qcard-p24">
+      <div class="q-header">
+        <div class="q-num">P24</div>
+        <div class="q-text">Many students <u>are</u> excited about the class trip.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p24-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p24',this,'a')"><div class="opt-indicator">A</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p24',this,'b')"><div class="opt-indicator">B</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p24',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p24',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p24','d','P24')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p24','D — verb. "Are" is a linking verb (a form of "to be") that connects the subject "students" to the adjective "excited".')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p24-fb"></div>
+      </div>
+    </div>
+
+    <!-- P25 -->
+    <div class="q-card" id="qcard-p25">
+      <div class="q-header">
+        <div class="q-num">P25</div>
+        <div class="q-text">Sophia sang the solo <u>perfectly</u>.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p25-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p25',this,'a')"><div class="opt-indicator">A</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p25',this,'b')"><div class="opt-indicator">B</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p25',this,'c')"><div class="opt-indicator">C</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p25',this,'d')"><div class="opt-indicator">D</div>pronoun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p25','a','P25')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p25','A — adverb. "Perfectly" modifies the verb "sang" — it tells us how Sophia sang. The -ly ending is a common adverb marker.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p25-fb"></div>
+      </div>
+    </div>
+
+    <!-- P26 -->
+    <div class="q-card" id="qcard-p26">
+      <div class="q-header">
+        <div class="q-num">P26</div>
+        <div class="q-text">I must clean my room before going to the <u>park</u>.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p26-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p26',this,'a')"><div class="opt-indicator">A</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p26',this,'b')"><div class="opt-indicator">B</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p26',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p26',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p26','a','P26')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p26','A — noun. "Park" names a place. It is the object of the preposition "to".')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p26-fb"></div>
+      </div>
+    </div>
+
+    <!-- P27 -->
+    <div class="q-card" id="qcard-p27">
+      <div class="q-header">
+        <div class="q-num">P27</div>
+        <div class="q-text"><u>Everyone</u> was happy to see the young man return home safely.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p27-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p27',this,'a')"><div class="opt-indicator">A</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p27',this,'b')"><div class="opt-indicator">B</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p27',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p27',this,'d')"><div class="opt-indicator">D</div>preposition</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p27','c','P27')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p27','C — pronoun. "Everyone" is an indefinite pronoun — it refers to all people without naming them specifically. Other indefinite pronouns: someone, anyone, nobody, everything.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p27-fb"></div>
+      </div>
+    </div>
+
+    <!-- P28 -->
+    <div class="q-card" id="qcard-p28">
+      <div class="q-header">
+        <div class="q-num">P28</div>
+        <div class="q-text"><u>Ouch!</u> You are hurting me.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p28-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p28',this,'a')"><div class="opt-indicator">A</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p28',this,'b')"><div class="opt-indicator">B</div>interjection</div>
+          <div class="mcq-opt" onclick="selectMCQ('p28',this,'c')"><div class="opt-indicator">C</div>pronoun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p28',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p28','b','P28')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p28','B — interjection. "Ouch!" expresses pain and is grammatically separate from the main sentence.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p28-fb"></div>
+      </div>
+    </div>
+
+    <!-- P29 -->
+    <div class="q-card" id="qcard-p29">
+      <div class="q-header">
+        <div class="q-num">P29</div>
+        <div class="q-text">Jason is an <u>intelligent</u> student.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p29-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p29',this,'a')"><div class="opt-indicator">A</div>adjective</div>
+          <div class="mcq-opt" onclick="selectMCQ('p29',this,'b')"><div class="opt-indicator">B</div>conjunction</div>
+          <div class="mcq-opt" onclick="selectMCQ('p29',this,'c')"><div class="opt-indicator">C</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p29',this,'d')"><div class="opt-indicator">D</div>pronoun</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p29','a','P29')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p29','A — adjective. "Intelligent" describes the noun "student" — it tells us what kind of student Jason is.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p29-fb"></div>
+      </div>
+    </div>
+
+    <!-- P30 -->
+    <div class="q-card" id="qcard-p30">
+      <div class="q-header">
+        <div class="q-num">P30</div>
+        <div class="q-text">I can see <u>beyond</u> the horizon.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="p30-opts">
+          <div class="mcq-opt" onclick="selectMCQ('p30',this,'a')"><div class="opt-indicator">A</div>adverb</div>
+          <div class="mcq-opt" onclick="selectMCQ('p30',this,'b')"><div class="opt-indicator">B</div>noun</div>
+          <div class="mcq-opt" onclick="selectMCQ('p30',this,'c')"><div class="opt-indicator">C</div>preposition</div>
+          <div class="mcq-opt" onclick="selectMCQ('p30',this,'d')"><div class="opt-indicator">D</div>verb</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('p30','c','P30')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('p30','C — preposition. "Beyond" shows the spatial relationship between "see" and "the horizon". It begins the prepositional phrase "beyond the horizon".')">Show Answer</button>
+        </div>
+        <div class="feedback" id="p30-fb"></div>
+      </div>
+    </div>
+
+    <div class="section-score" id="pos-score-bar">
+      <div class="section-score-label">Parts of Speech score</div>
+      <div class="section-score-bar"><div class="section-score-fill" id="pos-score-fill"></div></div>
+      <div class="section-score-val" id="pos-score-val">—</div>
+    </div>
+  </div>
+
+  <!-- SECTION B: CLAUSES -->
+  <div id="clauses">
+    <div class="section-header">
+      <div class="section-icon icon-eng">📝</div>
+      <div>
+        <div class="sub-label">English · Grammar</div>
+        <h2>Clauses</h2>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>What is a clause?</strong> A clause has a <strong>subject</strong> (who/what) and a <strong>predicate</strong> (verb). Count how many subject–verb pairs are in each sentence.
+    </div>
+
+    <div class="rule-box">
+      <table class="data-table">
+        <thead><tr><th>Type</th><th>Definition</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--accent-eng);font-family:var(--font-mono);font-size:0.82rem;">Main clause</td><td>Can stand alone as a sentence</td><td style="color:var(--accent-sci);font-style:italic;">She ate the donuts.</td></tr>
+          <tr><td style="color:var(--accent-eng);font-family:var(--font-mono);font-size:0.82rem;">Subordinate clause</td><td>Cannot stand alone — needs the main clause</td><td style="color:var(--accent-sci);font-style:italic;">when the phone rang</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- C1 -->
+    <div class="q-card" id="qcard-c1">
+      <div class="q-header">
+        <div class="q-num">C1</div>
+        <div class="q-text">My sister and I were at my grandma's house <em>when the phone rang</em>. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c1-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c1',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c1',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c1',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c1','b','C1')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('c1','Find each subject–verb pair. Who "were"? Who "rang"?')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c1','B — 2 clauses. Clause 1: "My sister and I were at my grandma\'s house" (main). Clause 2: "when the phone rang" (subordinate).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c1-fb"></div>
+      </div>
+    </div>
+
+    <!-- C2 -->
+    <div class="q-card" id="qcard-c2">
+      <div class="q-header">
+        <div class="q-num">C2</div>
+        <div class="q-text">It was Jan, my sister's friend, and she wanted to talk to my sister. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c2-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c2',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c2',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c2',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c2','b','C2')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('c2','"My sister\'s friend" is an appositive phrase, not a clause — it has no verb of its own.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c2','B — 2 clauses. Clause 1: "It was Jan" (main). Clause 2: "she wanted to talk to my sister" (main, joined by "and"). "My sister\'s friend" is just an appositive phrase.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c2-fb"></div>
+      </div>
+    </div>
+
+    <!-- C3 -->
+    <div class="q-card" id="qcard-c3">
+      <div class="q-header">
+        <div class="q-num">C3</div>
+        <div class="q-text">Jan told my sister that the new super group, the Dance Boys, was at the mall. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c3-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c3',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c3',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c3',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c3','b','C3')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('c3','Look for "that" — it often introduces a subordinate noun clause.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c3','B — 2 clauses. Clause 1: "Jan told my sister" (main). Clause 2: "that the new super group was at the mall" (subordinate noun clause).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c3-fb"></div>
+      </div>
+    </div>
+
+    <!-- C4 -->
+    <div class="q-card" id="qcard-c4">
+      <div class="q-header">
+        <div class="q-num">C4</div>
+        <div class="q-text">My sister almost fainted because she's the biggest fan of the Dance Boys. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c4-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c4',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c4',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c4',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c4','b','C4')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c4','B — 2 clauses. Clause 1: "My sister almost fainted" (main). Clause 2: "because she\'s the biggest fan of the Dance Boys" (subordinate adverbial clause).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c4-fb"></div>
+      </div>
+    </div>
+
+    <!-- C5 -->
+    <div class="q-card" id="qcard-c5">
+      <div class="q-header">
+        <div class="q-num">C5</div>
+        <div class="q-text">"I love the Dance Boys," she said excitedly. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c5-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c5',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c5',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c5',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c5','b','C5')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c5','B — 2 clauses. Clause 1: "I love the Dance Boys" (direct speech / noun clause). Clause 2: "she said excitedly" (main reporting clause).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c5-fb"></div>
+      </div>
+    </div>
+
+    <!-- C6 -->
+    <div class="q-card" id="qcard-c6">
+      <div class="q-header">
+        <div class="q-num">C6</div>
+        <div class="q-text">I'm not really a fan of the Dance Boys, but I like to go to the mall, so I went. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c6-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c6',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c6',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c6',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c6','c','C6')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('c6','Count the conjunctions "but" and "so" — each joins a new clause.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c6','C — 3 clauses. Clause 1: "I\'m not really a fan of the Dance Boys". Clause 2: "I like to go to the mall". Clause 3: "I went". Joined by "but" and "so".')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c6-fb"></div>
+      </div>
+    </div>
+
+    <!-- C7 -->
+    <div class="q-card" id="qcard-c7">
+      <div class="q-header">
+        <div class="q-num">C7</div>
+        <div class="q-text">When we got there, the mall was packed with Dance Boy fans. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c7-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c7',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c7',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c7',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c7','b','C7')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c7','B — 2 clauses. Clause 1: "When we got there" (subordinate adverbial clause). Clause 2: "the mall was packed with Dance Boy fans" (main clause).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c7-fb"></div>
+      </div>
+    </div>
+
+    <!-- C8 -->
+    <div class="q-card" id="qcard-c8">
+      <div class="q-header">
+        <div class="q-num">C8</div>
+        <div class="q-text">While the Dance Boys sang, Jan danced, but I played games on my cell phone. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c8-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c8',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c8',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c8',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c8','c','C8')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('c8','Three different subjects: the Dance Boys, Jan, I — each with their own verb.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c8','C — 3 clauses. Clause 1: "While the Dance Boys sang" (subordinate). Clause 2: "Jan danced" (main). Clause 3: "I played games on my cell phone" (main, joined by "but").')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c8-fb"></div>
+      </div>
+    </div>
+
+    <!-- C9 -->
+    <div class="q-card" id="qcard-c9">
+      <div class="q-header">
+        <div class="q-num">C9</div>
+        <div class="q-text">Since we went to the mall, I've been working on my moves, but I'm still bad. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c9-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c9',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c9',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c9',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c9','c','C9')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('c9','"Since" introduces a subordinate clause; "but" joins a third.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c9','C — 3 clauses. Clause 1: "Since we went to the mall" (subordinate). Clause 2: "I\'ve been working on my moves" (main). Clause 3: "I\'m still bad" (main, joined by "but").')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c9-fb"></div>
+      </div>
+    </div>
+
+    <!-- C10 -->
+    <div class="q-card" id="qcard-c10">
+      <div class="q-header">
+        <div class="q-num">C10</div>
+        <div class="q-text">If Jan, my sister, and I go to the mall again, I'll surely walk around and shop. — How many clauses?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="c10-opts">
+          <div class="mcq-opt" onclick="selectMCQ('c10',this,'a')"><div class="opt-indicator">A</div>1 clause</div>
+          <div class="mcq-opt" onclick="selectMCQ('c10',this,'b')"><div class="opt-indicator">B</div>2 clauses</div>
+          <div class="mcq-opt" onclick="selectMCQ('c10',this,'c')"><div class="opt-indicator">C</div>3 clauses</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('c10','b','C10')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('c10','"Walk around and shop" are two verbs but they share the same subject — that counts as one predicate, not two clauses.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('c10','B — 2 clauses. Clause 1: "If Jan, my sister, and I go to the mall again" (subordinate condition). Clause 2: "I\'ll surely walk around and shop" (main — compound predicate, one subject).')">Show Answer</button>
+        </div>
+        <div class="feedback" id="c10-fb"></div>
+      </div>
+    </div>
+
+    <div class="section-score" id="cls-score-bar">
+      <div class="section-score-label">Clauses score</div>
+      <div class="section-score-bar"><div class="section-score-fill" id="cls-score-fill"></div></div>
+      <div class="section-score-val" id="cls-score-val">—</div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-panel" id="results-panel">
+    <div class="results-grade" id="results-grade">—</div>
+    <div class="results-label" id="results-label">Complete all questions to see your final score</div>
+    <div class="results-breakdown">
+      <div class="rb-chip">Parts of Speech<span class="rb-val" id="rb-pos">—</span></div>
+      <div class="rb-chip">Clauses<span class="rb-val" id="rb-cls">—</span></div>
+      <div class="rb-chip">Time<span class="rb-val" id="rb-time">—</span></div>
+    </div>
+  </div>
+
+</div><!-- .main -->
+
+<script>
+const state = {
+  answers: {},
+  correct: {},
+  totalMarks: { pos: 0, cls: 0 },
+  maxMarks:   { pos: 30, cls: 10 },
+  startTime: Date.now()
+};
+
+const marks = {
+  p1:1,p2:1,p3:1,p4:1,p5:1,p6:1,p7:1,p8:1,p9:1,p10:1,
+  p11:1,p12:1,p13:1,p14:1,p15:1,p16:1,p17:1,p18:1,p19:1,p20:1,
+  p21:1,p22:1,p23:1,p24:1,p25:1,p26:1,p27:1,p28:1,p29:1,p30:1,
+  c1:1,c2:1,c3:1,c4:1,c5:1,c6:1,c7:1,c8:1,c9:1,c10:1
+};
+
+const posQs = ['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11','p12','p13','p14','p15','p16','p17','p18','p19','p20','p21','p22','p23','p24','p25','p26','p27','p28','p29','p30'];
+const clsQs = ['c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'];
+const allQs = [...posQs, ...clsQs];
+
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const m = String(Math.floor(elapsed/60)).padStart(2,'0');
+  const s = String(elapsed%60).padStart(2,'0');
+  document.getElementById('timer').textContent = `${m}:${s}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el, val) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => {
+    o.classList.remove('selected');
+    const ind = o.querySelector('.opt-indicator');
+    ind.textContent = ind.textContent.replace('✓','').trim();
+  });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  state.answers[qid] = val;
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const match = opt.getAttribute('onclick')?.match(/'([a-z])'/);
+    const optVal = match?.[1];
+    if (optVal === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect, label);
+}
+
+function markResult(qid, isCorrect, label) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark`
+    : `❌ <strong>Not quite.</strong> Try the hint, or reveal the answer below.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    updateScores();
+  }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake');
+  void card.offsetWidth;
+  card.classList.add('shake');
+}
+
+function updateScores() {
+  let posScore = 0, clsScore = 0, totalAnswered = 0;
+  posQs.forEach(qid => {
+    if (state.correct[qid] === true) posScore += marks[qid];
+    if (state.correct[qid] !== undefined) totalAnswered++;
+  });
+  clsQs.forEach(qid => {
+    if (state.correct[qid] === true) clsScore += marks[qid];
+    if (state.correct[qid] !== undefined) totalAnswered++;
+  });
+  const total = posScore + clsScore;
+  const maxTotal = state.maxMarks.pos + state.maxMarks.cls;
+  document.getElementById('global-score').textContent = `${total} / ${maxTotal}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  document.getElementById('pos-score-fill').style.width = `${(posScore/state.maxMarks.pos)*100}%`;
+  document.getElementById('pos-score-val').textContent = `${posScore}/${state.maxMarks.pos}`;
+  document.getElementById('cls-score-fill').style.width = `${(clsScore/state.maxMarks.cls)*100}%`;
+  document.getElementById('cls-score-val').textContent = `${clsScore}/${state.maxMarks.cls}`;
+  if (totalAnswered === allQs.length) showResults(posScore, clsScore);
+}
+
+function showResults(pos, cls) {
+  const total = pos + cls;
+  const max = state.maxMarks.pos + state.maxMarks.cls;
+  const pct = Math.round((total/max)*100);
+  const grade = pct >= 85 ? '🏆 Excellent!' : pct >= 70 ? '⭐ Great Job!' : pct >= 55 ? '👍 Good Effort' : '📚 Keep Practising';
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const mins = Math.floor(elapsed/60), secs = elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  document.getElementById('rb-pos').textContent = `${pos}/${state.maxMarks.pos}`;
+  document.getElementById('rb-cls').textContent = `${cls}/${state.maxMarks.cls}`;
+  document.getElementById('rb-time').textContent = `${mins}m ${secs}s`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`sa2_eng_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, pos, cls, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ['#4f8ef7','#3ecf8e','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length: 120}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * -canvas.height,
+    w: Math.random() * 10 + 4,
+    h: Math.random() * 6 + 3,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    rot: Math.random() * Math.PI * 2,
+    vy: Math.random() * 3 + 2,
+    vx: (Math.random() - 0.5) * 2,
+    vr: (Math.random() - 0.5) * 0.1
+  }));
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.color; ctx.globalAlpha = 0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y += p.vy; p.x += p.vx; p.rot += p.vr;
+    });
+    frame++;
+    if (frame < 200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('text-input')) {
+      const checkBtn = active.closest('.q-body')?.querySelector('.btn-check');
+      if (checkBtn) checkBtn.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
