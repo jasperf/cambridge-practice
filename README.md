@@ -25,7 +25,8 @@ cambridge-practice/
 │       ├── w1/                      ← Week 1
 │       │   └── term4-week1-maths-science.html
 │       └── w6/                      ← Week 6
-│           └── term4-week6-science.html
+│           ├── term4-week6-science.html
+│           └── term4-week6-english.html
 ├── igcse/
 │   └── ...
 ├── docs/
@@ -63,7 +64,7 @@ npx serve .
 | Mathematics (Data & Statistics) | Secondary 1 | ✅ Term 4 Week 1 |
 | Science (Electromagnets) | Secondary 1 | ✅ Term 4 Week 1 |
 | Science (Renewable Energy) | Secondary 1 | ✅ Term 4 Week 6 |
-| English | Secondary 1 | 🔜 Coming |
+| English (Active &amp; Passive Voice) | Secondary 1 | ✅ Term 4 Week 6 |
 | Physics | IGCSE | 🔜 Coming |
 
 ## Tech
