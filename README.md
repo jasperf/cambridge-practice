@@ -29,7 +29,8 @@ cambridge-practice/
 │           └── term4-week6-english.html
 ├── s1/sa2/
 │   ├── term4-sa2-maths.html          ← SA2 revision (all units, 42 q, 60 marks)
-│   └── term4-sa2-english.html        ← SA2 revision (parts of speech & clauses, 40 q, 40 marks)
+│   ├── term4-sa2-english.html        ← SA2 revision (parts of speech & clauses, 40 q, 40 marks)
+│   └── term4-sa2-science.html        ← SA2 revision (all topics, 42 q, 50 marks)
 ├── igcse/
 │   └── ...
 ├── docs/
@@ -70,6 +71,7 @@ npx serve .
 | English (Active &amp; Passive Voice) | Secondary 1 | ✅ Term 4 Week 6 |
 | Mathematics SA2 Revision (all units) | Secondary 1 | ✅ SA2 Exam 21 May 2026 |
 | English SA2 Revision (parts of speech &amp; clauses) | Secondary 1 | ✅ SA2 Exam 21 May 2026 |
+| Science SA2 Revision (all topics) | Secondary 1 | ✅ SA2 Exam 22 May 2026 |
 | Physics | IGCSE | 🔜 Coming |
 
 ## Tech
