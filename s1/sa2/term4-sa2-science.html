@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge Secondary & IGCSE Practice · S1 Science SA2 Revision</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent: #3ecf8e;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.6;
+}
+
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,17,23,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px; height: 58px; gap: 16px;
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 52px; text-align: right; }
+
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+
+.hero { position: relative; z-index: 1; padding: 52px 28px 40px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-sci { background: var(--accent-sci); }
+
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.sub-tab.active { background: var(--accent-sci); color: #0f1117; border-color: var(--accent-sci); }
+
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.icon-sci { background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-card:nth-child(1){animation-delay:.04s}.q-card:nth-child(2){animation-delay:.08s}.q-card:nth-child(3){animation-delay:.12s}.q-card:nth-child(4){animation-delay:.16s}.q-card:nth-child(5){animation-delay:.20s}
+
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-sci); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+
+.text-input { width: 100%; max-width: 380px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; padding: 10px 14px; transition: border-color 0.2s; outline: none; display: block; }
+.text-input:focus { border-color: var(--accent-sci); }
+.text-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.06); }
+.text-input.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.06); }
+
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.draw-box { background: var(--surface2); border: 1px dashed var(--border); border-radius: 8px; padding: 14px; margin: 10px 0; font-size: 0.85rem; color: var(--text-dim); font-family: var(--font-mono); }
+
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '§'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+
+@media (max-width: 600px) {
+  .topbar { padding: 0 16px; }
+  .hero, .section-tabs, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">SA2 · 22 May 2026</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <div class="timer-wrap"><span style="font-size:0.85rem;">⏱</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill">
+      <div class="score-label">Score</div>
+      <div class="score-val" id="global-score">0 / 0</div>
+    </div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 1 · Semester 2 Assessment Revision</div>
+  <h1>S1 Science<br><em>SA2 Revision</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-sci"></div>Science — All Units</div>
+    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>42 questions · 50 marks · self-marked</div>
+  </div>
+</div>
+
+<div class="section-tabs">
+  <a href="#gases" class="sub-tab active">🧪 Gases & Liquid</a>
+  <a href="#respiration" class="sub-tab">🫁 Respiration & Blood</a>
+  <a href="#atomic" class="sub-tab">⚛ Atomic & Chemistry</a>
+  <a href="#forces" class="sub-tab">🏃 Health, Speed & Forces</a>
+  <a href="#earth" class="sub-tab">🌍 Earth & Ecosystems</a>
+  <a href="#light" class="sub-tab">💡 Light & Colour</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════════════════════════════ SECTION A: GASES & LIQUID -->
+<div id="gases">
+  <div class="section-header">
+    <div class="section-icon icon-sci">🧪</div>
+    <div><div class="sub-label">Section A</div><h2>Gases & Liquid</h2></div>
+  </div>
+  <div class="info-box">
+    <strong>Topics:</strong> Paper Chromatography · Gas Particles & Pressure · Concentration of Solution
+  </div>
+
+  <!-- S1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header">
+      <div class="q-num">S1</div>
+      <div class="q-text">How does <em>paper chromatography</em> separate the dyes in ink?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'a')"><div class="opt-indicator"></div><span>Heat melts the dyes and they spread at different rates</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span>A solvent moves up the paper; dyes with higher solubility travel further, separating at different distances</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span>Electricity pulls the dyes apart by their charge</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span>The paper absorbs all dyes equally regardless of solubility</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s1','b','S1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s1','Think about the solvent moving up the paper and carrying the dyes with it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','The solvent moves up the paper and carries the dyes. More soluble dyes travel further up, separating them by distance.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header">
+      <div class="q-num">S2</div>
+      <div class="q-text">Lily uses chromatography on letter ink and inks A, B, C, D. The ink from the letter produced spots at exactly the same positions as one of the inks. Which ink was used to write the letter?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'a')"><div class="opt-indicator"></div><span>Ink A</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'b')"><div class="opt-indicator"></div><span>Ink B</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span>Ink C</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span>Ink D</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s2','d','S2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s2','Matching spots at the same positions means the inks contain the same dyes (same Rf values).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','Ink D — it has spots at the same positions as the letter ink, showing they contain identical dyes.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header">
+      <div class="q-num">S3</div>
+      <div class="q-text">Safia places a sealed balloon in water at 10 °C, then moves it to water at 50 °C. What happens to the <em>diameter</em> of the balloon?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>The diameter decreases</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>The diameter stays the same</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'c')"><div class="opt-indicator"></div><span>The diameter increases</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'd')"><div class="opt-indicator"></div><span>The diameter first increases then decreases</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s3','c','S3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','The diameter increases — gas particles gain energy at higher temperature and push outward more.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header">
+      <div class="q-num">S4</div>
+      <div class="q-text">Using ideas about <em>particles</em>, explain why the balloon expands when placed in hotter water.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>The gas particles get physically bigger and take up more space</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>At higher temperature, gas particles gain kinetic energy, move faster, and collide with the balloon walls more frequently and with greater force, pushing the walls outward</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>The gas particles escape through the balloon surface into the water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>The cold water at 10 °C was compressing the balloon from outside</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s4','b','S4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s4','Key words: kinetic energy, faster movement, more frequent collisions, greater force on walls.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','Gas particles gain kinetic energy → move faster → collide with walls more often and with greater force → walls pushed outward → volume/diameter increases.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <!-- S5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header">
+      <div class="q-num">S5</div>
+      <div class="q-text">Which formula correctly defines <em>pressure</em>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'a')"><div class="opt-indicator"></div><span>Pressure = Force × Area</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'b')"><div class="opt-indicator"></div><span>Pressure = Force ÷ Area</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'c')"><div class="opt-indicator"></div><span>Pressure = Area ÷ Force</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'd')"><div class="opt-indicator"></div><span>Pressure = Mass × Gravity</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s5','b','S5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','Pressure = Force ÷ Area. Units: N/cm² or Pa (N/m²).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+
+  <!-- S6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header">
+      <div class="q-num">S6</div>
+      <div class="q-text">Which statement about the <em>concentration of a solution</em> is correct?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'a')"><div class="opt-indicator"></div><span>A more concentrated solution has less solute dissolved per unit volume</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'b')"><div class="opt-indicator"></div><span>A more concentrated solution has more solute dissolved per unit volume</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>Concentration does not depend on the amount of solute</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>Pure water has the highest possible concentration</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s6','b','S6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','A more concentrated solution has more solute (e.g. grams of sugar) dissolved per unit volume of solvent.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">GASES & LIQUID — SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secA-fill"></div></div>
+    <div class="section-score-val" id="secA-val">0/7</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════ SECTION B: RESPIRATION & BLOOD -->
+<div id="respiration">
+  <div class="section-header">
+    <div class="section-icon icon-sci">🫁</div>
+    <div><div class="sub-label">Section B</div><h2>Respiration & Blood</h2></div>
+  </div>
+  <div class="info-box">
+    <strong>Topics:</strong> Aerobic Respiration · Mitochondria · Red & White Blood Cells · Plasma · Diffusion
+  </div>
+
+  <!-- S7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header">
+      <div class="q-num">S7</div>
+      <div class="q-text">What are the <em>products</em> of aerobic respiration?</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'a')"><div class="opt-indicator"></div><span>Glucose and oxygen</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'b')"><div class="opt-indicator"></div><span>Carbon dioxide and water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'c')"><div class="opt-indicator"></div><span>Lactic acid and carbon dioxide</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'd')"><div class="opt-indicator"></div><span>Oxygen and glucose</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s7','b','S7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s7','Word equation: glucose + oxygen → _____ + _____')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','glucose + oxygen → carbon dioxide + water (+ energy released)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <!-- S8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header">
+      <div class="q-num">S8</div>
+      <div class="q-text">Where in a cell does <em>aerobic respiration</em> take place?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'a')"><div class="opt-indicator"></div><span>Cell membrane</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'b')"><div class="opt-indicator"></div><span>Nucleus</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'c')"><div class="opt-indicator"></div><span>Mitochondria</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'd')"><div class="opt-indicator"></div><span>Chloroplast</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s8','c','S8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','Mitochondria — known as the powerhouse of the cell; site of aerobic respiration.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <!-- S9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header">
+      <div class="q-num">S9</div>
+      <div class="q-text">The rate of aerobic respiration is <em>higher in muscle cells</em> than in other cells. What is the best reason for this?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'a')"><div class="opt-indicator"></div><span>Muscle cells are larger than other cells</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'b')"><div class="opt-indicator"></div><span>Muscle cells need more energy for contraction and movement</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'c')"><div class="opt-indicator"></div><span>Muscle cells contain more oxygen than other cells</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'd')"><div class="opt-indicator"></div><span>Muscle cells do not have a nucleus</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s9','b','S9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','Muscle cells need more energy for contraction → more respiration needed → higher rate.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+
+  <!-- S10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header">
+      <div class="q-num">S10</div>
+      <div class="q-text">Which type of blood cell <em>carries oxygen</em> around the body?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'a')"><div class="opt-indicator"></div><span>Platelets</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'b')"><div class="opt-indicator"></div><span>White blood cells</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'c')"><div class="opt-indicator"></div><span>Plasma</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'd')"><div class="opt-indicator"></div><span>Red blood cells</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s10','d','S10')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','Red blood cells — they contain haemoglobin which binds to oxygen.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <!-- S11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header">
+      <div class="q-num">S11</div>
+      <div class="q-text">In a blood diagram: W = small round cells with no nucleus; X = large irregular cells (white blood cells); Z = tiny fragments (platelets). Which letter shows the oxygen-carrying cells?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'a')"><div class="opt-indicator"></div><span>W (small, round, no nucleus)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'b')"><div class="opt-indicator"></div><span>X (large, irregular)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'c')"><div class="opt-indicator"></div><span>Z (tiny fragments)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'd')"><div class="opt-indicator"></div><span>The liquid between the cells</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s11','a','S11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','W — red blood cells are small, round, have no nucleus, and are packed with haemoglobin to carry oxygen.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+
+  <!-- S12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header">
+      <div class="q-num">S12</div>
+      <div class="q-text">When a person has an <em>infection</em>, the number of white blood cells increases rapidly. Why?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'a')"><div class="opt-indicator"></div><span>To carry more oxygen to repair damaged tissue</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'b')"><div class="opt-indicator"></div><span>To fight the infection by engulfing and destroying pathogens</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'c')"><div class="opt-indicator"></div><span>To clot the blood at the site of infection</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'd')"><div class="opt-indicator"></div><span>To transport nutrients to the infected area</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s12','b','S12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','White blood cells increase to engulf (phagocytosis) and destroy pathogens such as bacteria and viruses.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+
+  <!-- S13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header">
+      <div class="q-num">S13</div>
+      <div class="q-text">What is the name of the <em>liquid part</em> of blood?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s13-ans" placeholder="Type your answer…">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s13','plasma','S13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','Plasma — the yellowish liquid that transports blood cells, glucose, hormones, urea, and CO₂.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+
+  <!-- S14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header">
+      <div class="q-num">S14</div>
+      <div class="q-text">Which substance is transported by the <em>liquid part of blood</em>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'a')"><div class="opt-indicator"></div><span>DNA from the nucleus</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'b')"><div class="opt-indicator"></div><span>Glucose (dissolved food)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'c')"><div class="opt-indicator"></div><span>Cell walls of bacteria</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'd')"><div class="opt-indicator"></div><span>Solid mineral crystals</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s14','b','S14')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','Plasma transports glucose, hormones, urea, carbon dioxide, and other dissolved substances.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">RESPIRATION & BLOOD — SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secB-fill"></div></div>
+    <div class="section-score-val" id="secB-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════ SECTION C: ATOMIC & CHEMISTRY -->
+<div id="atomic">
+  <div class="section-header">
+    <div class="section-icon icon-sci">⚛</div>
+    <div><div class="sub-label">Section C</div><h2>Atomic Structure & Chemistry</h2></div>
+  </div>
+  <div class="info-box">
+    <strong>Topics:</strong> Rutherford Model · Nucleus & Electrons · Exothermic Reactions · Temperature Changes
+  </div>
+
+  <!-- S15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header">
+      <div class="q-num">S15</div>
+      <div class="q-text">In the <em>Rutherford model</em> of the atom, where is the nucleus located?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s15-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'a')"><div class="opt-indicator"></div><span>On the outer edge of the atom</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'b')"><div class="opt-indicator"></div><span>Spread evenly throughout the atom</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'c')"><div class="opt-indicator"></div><span>In the centre of the atom</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'd')"><div class="opt-indicator"></div><span>In the electron shells, orbiting at distance</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s15','c','S15')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','The nucleus is in the centre of the atom; electrons orbit around it in shells.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+
+  <!-- S16 -->
+  <div class="q-card" id="qcard-s16">
+    <div class="q-header">
+      <div class="q-num">S16</div>
+      <div class="q-text">What <em>charge</em> does the nucleus carry?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'a')"><div class="opt-indicator"></div><span>Negative</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'b')"><div class="opt-indicator"></div><span>Neutral (no charge)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'c')"><div class="opt-indicator"></div><span>Positive</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'd')"><div class="opt-indicator"></div><span>It varies depending on the element</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s16','c','S16')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','The nucleus has a positive charge — it contains protons (+) and neutrons (neutral).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s16-fb"></div>
+    </div>
+  </div>
+
+  <!-- S17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header">
+      <div class="q-num">S17</div>
+      <div class="q-text">The nucleus contains protons and neutrons. Where are the <em>electrons</em> found?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s17-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'a')"><div class="opt-indicator"></div><span>Inside the nucleus alongside the protons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'b')"><div class="opt-indicator"></div><span>In orbits or shells around the nucleus</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'c')"><div class="opt-indicator"></div><span>Between the nucleus and the cell membrane</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'd')"><div class="opt-indicator"></div><span>Randomly scattered throughout the atom with no fixed position</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s17','b','S17')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','Electrons are found in orbits or shells around the nucleus. They have a negative charge.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+
+  <!-- S18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header">
+      <div class="q-num">S18</div>
+      <div class="q-text">Chen investigates magnesium + dilute hydrochloric acid. Results:<br>
+      <small style="color:var(--text-muted)">Exp 1: start 21 °C → end 34 °C → change 13 °C<br>
+      Exp 2: start 22 °C → end 36 °C → change <strong>?</strong></small><br>
+      Calculate the temperature change in Experiment 2.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="s18-ans" placeholder="?">
+        <span class="num-unit">°C</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s18',14,'S18')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','36 − 22 = 14 °C temperature change.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+
+  <!-- S19 -->
+  <div class="q-card" id="qcard-s19">
+    <div class="q-header">
+      <div class="q-num">S19</div>
+      <div class="q-text">The temperature <em>increased</em> during the magnesium + acid reaction. Is the reaction endothermic or exothermic? Choose the answer with the correct explanation.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s19-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'a')"><div class="opt-indicator"></div><span>Endothermic, because the temperature decreased</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'b')"><div class="opt-indicator"></div><span>Endothermic, because the temperature increased</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'c')"><div class="opt-indicator"></div><span>Exothermic, because the temperature decreased</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'd')"><div class="opt-indicator"></div><span>Exothermic, because the temperature increased — heat energy was released</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s19','d','S19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s19','Exo = exit. Exothermic reactions release heat energy to the surroundings → temperature rises.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s19','Exothermic — temperature increased, showing heat energy was released to the surroundings.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s19-fb"></div>
+    </div>
+  </div>
+
+  <!-- S20 -->
+  <div class="q-card" id="qcard-s20">
+    <div class="q-header">
+      <div class="q-num">S20</div>
+      <div class="q-text">What happens to the <em>temperature of the surroundings</em> in an endothermic reaction?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s20-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'a')"><div class="opt-indicator"></div><span>The temperature increases — heat is released</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'b')"><div class="opt-indicator"></div><span>The temperature stays the same</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'c')"><div class="opt-indicator"></div><span>The temperature decreases — heat energy is absorbed from surroundings</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'd')"><div class="opt-indicator"></div><span>First decreases then increases</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s20','c','S20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','Endothermic reactions absorb heat from the surroundings → surroundings cool down.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s20-fb"></div>
+    </div>
+  </div>
+
+  <!-- S21 -->
+  <div class="q-card" id="qcard-s21">
+    <div class="q-header">
+      <div class="q-num">S21</div>
+      <div class="q-text">Chen adds magnesium to dilute sulfuric acid and measures temperature every 10 seconds until the reaction stops. Which statement <em>best describes the temperature trend</em>?</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s21-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'a')"><div class="opt-indicator"></div><span>Temperature decreases steadily throughout the reaction</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'b')"><div class="opt-indicator"></div><span>Temperature increases rapidly at first, then the rate of increase slows, then levels off/stays constant as the reaction ends (magnesium used up)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'c')"><div class="opt-indicator"></div><span>Temperature increases steadily at the same rate throughout</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'd')"><div class="opt-indicator"></div><span>Temperature stays constant then drops suddenly when the reaction stops</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s21','b','S21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s21','As the magnesium is used up, the reaction slows → less heat released per second → temperature rise slows.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','Rapid increase at first → slows down as reactants are used up → levels off when all magnesium is consumed.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s21-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">ATOMIC STRUCTURE & CHEMISTRY — SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secC-fill"></div></div>
+    <div class="section-score-val" id="secC-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════ SECTION D: HEALTH, SPEED & FORCES -->
+<div id="forces">
+  <div class="section-header">
+    <div class="section-icon icon-sci">🏃</div>
+    <div><div class="sub-label">Section D</div><h2>Health, Speed & Forces</h2></div>
+  </div>
+  <div class="info-box">
+    <strong>Topics:</strong> Joints & Antagonistic Muscles · Speed = Distance ÷ Time · Distance–Time Graphs · Turning Moments · Pressure
+  </div>
+
+  <!-- S22 -->
+  <div class="q-card" id="qcard-s22">
+    <div class="q-header">
+      <div class="q-num">S22</div>
+      <div class="q-text">What <em>type of joint</em> is the elbow?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s22-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'a')"><div class="opt-indicator"></div><span>Ball-and-socket joint</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'b')"><div class="opt-indicator"></div><span>Hinge joint</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'c')"><div class="opt-indicator"></div><span>Pivot joint</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'd')"><div class="opt-indicator"></div><span>Fixed joint</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s22','b','S22')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s22','Hinge joint — allows movement in one plane only (like a door hinge). The knee is also a hinge joint.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s22-fb"></div>
+    </div>
+  </div>
+
+  <!-- S23 -->
+  <div class="q-card" id="qcard-s23">
+    <div class="q-header">
+      <div class="q-num">S23</div>
+      <div class="q-text">Muscles work in <em>pairs</em> to move bones. What word describes muscles that work in opposing pairs like the bicep and tricep?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s23-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'a')"><div class="opt-indicator"></div><span>Parallel</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'b')"><div class="opt-indicator"></div><span>Antagonistic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'c')"><div class="opt-indicator"></div><span>Symmetric</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'd')"><div class="opt-indicator"></div><span>Balanced</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s23','b','S23')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','Antagonistic muscles — when one contracts, the other relaxes, allowing controlled movement.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s23-fb"></div>
+    </div>
+  </div>
+
+  <!-- S24 -->
+  <div class="q-card" id="qcard-s24">
+    <div class="q-header">
+      <div class="q-num">S24</div>
+      <div class="q-text">When the lower arm <em>bends upward</em> at the elbow, what happens to the <em>bicep</em> (muscle A)?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s24-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'a')"><div class="opt-indicator"></div><span>It relaxes and lengthens</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'b')"><div class="opt-indicator"></div><span>It stays the same length</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'c')"><div class="opt-indicator"></div><span>It contracts and shortens</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'd')"><div class="opt-indicator"></div><span>It contracts then immediately relaxes</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s24','c','S24')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s24','Bicep (muscle A) contracts → pulls the lower arm upward. Tricep (muscle B) relaxes at the same time.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s24-fb"></div>
+    </div>
+  </div>
+
+  <!-- S25 -->
+  <div class="q-card" id="qcard-s25">
+    <div class="q-header">
+      <div class="q-num">S25</div>
+      <div class="q-text">Yuri runs a 100 m race in <strong>13 seconds</strong>. Calculate his <em>average speed</em>. Give your answer to 2 significant figures.</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="s25-ans" placeholder="?" step="0.1">
+        <span class="num-unit">m/s</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s25',7.7,'S25',0.15)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s25','Speed = distance ÷ time = 100 ÷ 13')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s25','Speed = 100 ÷ 13 = 7.69… ≈ 7.7 m/s (accept 7.5 – 7.9)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s25-fb"></div>
+    </div>
+  </div>
+
+  <!-- S26 -->
+  <div class="q-card" id="qcard-s26">
+    <div class="q-header">
+      <div class="q-num">S26</div>
+      <div class="q-text">On a <em>distance–time graph</em> of Yuri's run, which feature shows that Yuri is <em>stationary</em> (resting)?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s26-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s26', this, 'a')"><div class="opt-indicator"></div><span>A steep upward slope</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s26', this, 'b')"><div class="opt-indicator"></div><span>A flat (horizontal) section — distance not changing</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s26', this, 'c')"><div class="opt-indicator"></div><span>A downward slope</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s26', this, 'd')"><div class="opt-indicator"></div><span>A curved section</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s26','b','S26')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s26','A flat (horizontal) line means distance from start is not changing → the person is stationary.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s26-fb"></div>
+    </div>
+  </div>
+
+  <!-- S27 -->
+  <div class="q-card" id="qcard-s27">
+    <div class="q-header">
+      <div class="q-num">S27</div>
+      <div class="q-text">A beam on a pivot has a <strong>4 N</strong> weight placed <strong>3 m</strong> to the left. Calculate the <em>anticlockwise moment</em>.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="s27-ans" placeholder="?">
+        <span class="num-unit">N m</span>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s27',12,'S27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s27','Moment = Force × perpendicular distance from pivot.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s27','Moment = 4 N × 3 m = 12 N m')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s27-fb"></div>
+    </div>
+  </div>
+
+  <!-- S28 -->
+  <div class="q-card" id="qcard-s28">
+    <div class="q-header">
+      <div class="q-num">S28</div>
+      <div class="q-text">The same beam has a <strong>6 N</strong> weight <strong>2 m</strong> to the right of the pivot (clockwise moment = 12 N m). Is the beam <em>balanced</em>? Choose the answer with the correct reasoning.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s28-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'a')"><div class="opt-indicator"></div><span>No — the left weight is smaller so the beam tips left</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'b')"><div class="opt-indicator"></div><span>No — the clockwise moment is larger</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'c')"><div class="opt-indicator"></div><span>Yes — both moments are equal (12 N m = 12 N m)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'd')"><div class="opt-indicator"></div><span>Yes — because both weights are the same distance from the centre</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s28','c','S28')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s28','Yes — anticlockwise moment (4×3=12 Nm) = clockwise moment (6×2=12 Nm) → beam balances.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s28-fb"></div>
+    </div>
+  </div>
+
+  <!-- S29 -->
+  <div class="q-card" id="qcard-s29">
+    <div class="q-header">
+      <div class="q-num">S29</div>
+      <div class="q-text">A camel weighs 4000 N with feet area 2000 cm². A horse weighs 4000 N with feet area 400 cm². Oliver says "The pressure on the ground is the <em>same</em> from both animals." Is Oliver correct?</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s29-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'a')"><div class="opt-indicator"></div><span>Yes — both animals have the same weight so pressure is equal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'b')"><div class="opt-indicator"></div><span>No — the camel has larger feet so exerts less pressure (2 N/cm²) than the horse (10 N/cm²)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'c')"><div class="opt-indicator"></div><span>No — the horse has larger feet so exerts less pressure than the camel</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'd')"><div class="opt-indicator"></div><span>Yes — pressure only depends on mass, not area</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s29','b','S29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s29','Camel: 4000 ÷ 2000 = ? N/cm² · Horse: 4000 ÷ 400 = ? N/cm²')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s29','No. Camel: 4000÷2000 = 2 N/cm². Horse: 4000÷400 = 10 N/cm². Horse exerts 5× more pressure.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s29-fb"></div>
+    </div>
+  </div>
+
+  <!-- S30 -->
+  <div class="q-card" id="qcard-s30">
+    <div class="q-header">
+      <div class="q-num">S30</div>
+      <div class="q-text">An aeroplane has thrust = air resistance, and upthrust = weight (all forces <em>balanced</em>). How does the aeroplane move?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'a')"><div class="opt-indicator"></div><span>It accelerates forward</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'b')"><div class="opt-indicator"></div><span>It decelerates and slows down</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'c')"><div class="opt-indicator"></div><span>It moves forward at constant speed</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'd')"><div class="opt-indicator"></div><span>It moves in a circle</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s30','c','S30')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s30','Constant speed — balanced forces mean zero net force; by Newton\'s 1st Law the object continues at constant velocity.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s30-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">HEALTH, SPEED & FORCES — SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secD-fill"></div></div>
+    <div class="section-score-val" id="secD-val">0/11</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════ SECTION E: EARTH & ECOSYSTEMS -->
+<div id="earth">
+  <div class="section-header">
+    <div class="section-icon icon-sci">🌍</div>
+    <div><div class="sub-label">Section E</div><h2>Earth, Ecosystems & Space</h2></div>
+  </div>
+  <div class="info-box">
+    <strong>Topics:</strong> Ecosystems · Invasive Species · Climate Cycles · Galaxies & Solar System · Earth's Magnetic Field
+  </div>
+
+  <!-- S31 -->
+  <div class="q-card" id="qcard-s31">
+    <div class="q-header">
+      <div class="q-num">S31</div>
+      <div class="q-text">What is an <em>ecosystem</em>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s31-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'a')"><div class="opt-indicator"></div><span>Only the animals living in a particular area</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'b')"><div class="opt-indicator"></div><span>All the living organisms and their non-living environment in an area, and the interactions between them</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'c')"><div class="opt-indicator"></div><span>Only the plants in a particular habitat</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'd')"><div class="opt-indicator"></div><span>The weather and climate of a region</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s31','b','S31')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s31','An ecosystem = all living organisms (plants, animals, microbes) + non-living environment + interactions between them.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s31-fb"></div>
+    </div>
+  </div>
+
+  <!-- S32 -->
+  <div class="q-card" id="qcard-s32">
+    <div class="q-header">
+      <div class="q-num">S32</div>
+      <div class="q-text">European rabbits were introduced into Australia and their numbers <em>increased rapidly</em>. What are the best two reasons for this rapid increase?</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s32-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'a')"><div class="opt-indicator"></div><span>Plenty of food (grassland) and few or no natural predators in Australia</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'b')"><div class="opt-indicator"></div><span>Warm weather and high salt content in the soil</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'c')"><div class="opt-indicator"></div><span>Many diseases to keep the population healthy and many predators</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'd')"><div class="opt-indicator"></div><span>They were bred in laboratories to reproduce quickly</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s32','a','S32')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s32','Plenty of vegetation (food) + no natural predators/diseases in Australia = rapid unchecked growth.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s32-fb"></div>
+    </div>
+  </div>
+
+  <!-- S33 -->
+  <div class="q-card" id="qcard-s33">
+    <div class="q-header">
+      <div class="q-num">S33</div>
+      <div class="q-text">Rabbits are <em>herbivores</em>. Suggest how a large number of rabbits damages an ecosystem.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s33-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s33', this, 'a')"><div class="opt-indicator"></div><span>They attract more predators which damage the ecosystem</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s33', this, 'b')"><div class="opt-indicator"></div><span>They eat large amounts of vegetation, reducing food available for native animals and disrupting food chains</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s33', this, 'c')"><div class="opt-indicator"></div><span>They increase oxygen production in the area</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s33', this, 'd')"><div class="opt-indicator"></div><span>They prevent soil erosion by digging burrows</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s33','b','S33')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s33','They overgraze vegetation → less food for native animals → food chains disrupted → native species decline.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s33-fb"></div>
+    </div>
+  </div>
+
+  <!-- S34 -->
+  <div class="q-card" id="qcard-s34">
+    <div class="q-header">
+      <div class="q-num">S34</div>
+      <div class="q-text">What is meant by an <em>invasive species</em>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s34-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'a')"><div class="opt-indicator"></div><span>A species that is native to an area and has lived there for thousands of years</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'b')"><div class="opt-indicator"></div><span>A species introduced to a new area that spreads rapidly and harms native species and ecosystems</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'c')"><div class="opt-indicator"></div><span>A species that is endangered and needs protection</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'd')"><div class="opt-indicator"></div><span>A species that migrates seasonally between countries</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s34','b','S34')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s34','Invasive species: introduced (non-native) to an area, spreads rapidly, outcompetes or harms native species.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s34-fb"></div>
+    </div>
+  </div>
+
+  <!-- S35 -->
+  <div class="q-card" id="qcard-s35">
+    <div class="q-header">
+      <div class="q-num">S35</div>
+      <div class="q-text">Fossils show iguanodons (tropical animal, warm climate, 120 million years ago) and woolly mammoths (cold climate, 4000 years ago) both lived in Europe at different times. What does this suggest about <em>Earth's climate</em>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s35-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'a')"><div class="opt-indicator"></div><span>Earth's climate has always been warm in Europe</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'b')"><div class="opt-indicator"></div><span>Earth's climate has always been cold in Europe</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'c')"><div class="opt-indicator"></div><span>Earth's climate cycles between warm and cold periods over very long timescales</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'd')"><div class="opt-indicator"></div><span>Climate change only started in the last 100 years</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s35','c','S35')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s35','Warm period (iguanodon) → cold period (mammoth) → suggests Earth cycles between warm and cold over millions of years.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s35-fb"></div>
+    </div>
+  </div>
+
+  <!-- S36 -->
+  <div class="q-card" id="qcard-s36">
+    <div class="q-header">
+      <div class="q-num">S36</div>
+      <div class="q-text">What name is given to a large group of stars, such as the <em>Milky Way</em>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s36-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'a')"><div class="opt-indicator"></div><span>Solar system</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'b')"><div class="opt-indicator"></div><span>Universe</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'c')"><div class="opt-indicator"></div><span>Constellation</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'd')"><div class="opt-indicator"></div><span>Galaxy</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s36','d','S36')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s36','Galaxy — the Milky Way is our galaxy, containing billions of stars, dust, gas, and other matter.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s36-fb"></div>
+    </div>
+  </div>
+
+  <!-- S37 -->
+  <div class="q-card" id="qcard-s37">
+    <div class="q-header">
+      <div class="q-num">S37</div>
+      <div class="q-text">The Milky Way contains stars and planets. Name <em>one other type of matter</em> found in the Milky Way.</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s37-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'a')"><div class="opt-indicator"></div><span>Liquid ocean water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'b')"><div class="opt-indicator"></div><span>Asteroids</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'c')"><div class="opt-indicator"></div><span>Carbon dioxide gas only</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'd')"><div class="opt-indicator"></div><span>Plastic debris</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s37','b','S37')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s37','Asteroids, comets, dust, gas, nebulae are all found in the Milky Way.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s37-fb"></div>
+    </div>
+  </div>
+
+  <!-- S38 -->
+  <div class="q-card" id="qcard-s38">
+    <div class="q-header">
+      <div class="q-num">S38</div>
+      <div class="q-text">What name is given to the <em>Sun and all its orbiting planets</em>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s38-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'a')"><div class="opt-indicator"></div><span>The Milky Way</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'b')"><div class="opt-indicator"></div><span>A galaxy</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'c')"><div class="opt-indicator"></div><span>The Solar System</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'd')"><div class="opt-indicator"></div><span>The Universe</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s38','c','S38')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s38','The Solar System — the Sun plus all 8 planets and other orbiting bodies (moons, asteroids, comets).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s38-fb"></div>
+    </div>
+  </div>
+
+  <!-- S39 -->
+  <div class="q-card" id="qcard-s39">
+    <div class="q-header">
+      <div class="q-num">S39</div>
+      <div class="q-text">The diagram shows Earth's internal layers: A = outermost layer, B = middle layer, C = innermost layer. Which layer is responsible for generating <em>Earth's magnetic field</em>?</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s39-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s39', this, 'a')"><div class="opt-indicator"></div><span>Layer A — the crust</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s39', this, 'b')"><div class="opt-indicator"></div><span>Layer B — the mantle</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s39', this, 'c')"><div class="opt-indicator"></div><span>Layer C — the core</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s39', this, 'd')"><div class="opt-indicator"></div><span>The atmosphere, not an internal layer</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s39','c','S39')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s39','Layer C — the liquid outer core of molten iron and nickel generates Earth\'s magnetic field through convection currents.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s39-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">EARTH, ECOSYSTEMS & SPACE — SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secE-fill"></div></div>
+    <div class="section-score-val" id="secE-val">0/11</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════ SECTION F: LIGHT & COLOUR -->
+<div id="light">
+  <div class="section-header">
+    <div class="section-icon icon-sci">💡</div>
+    <div><div class="sub-label">Section F</div><h2>Light & Colour</h2></div>
+  </div>
+  <div class="info-box">
+    <strong>Topics:</strong> Earth's Magnetic Field (equipment) · Reflection · Law of Reflection · Incident & Reflected Rays
+  </div>
+
+  <!-- S40 -->
+  <div class="q-card" id="qcard-s40">
+    <div class="q-header">
+      <div class="q-num">S40</div>
+      <div class="q-text">Which piece of equipment is used to find the <em>direction of Earth's magnetic field</em>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s40-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'a')"><div class="opt-indicator"></div><span>Electromagnet</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'b')"><div class="opt-indicator"></div><span>Voltmeter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'c')"><div class="opt-indicator"></div><span>Forcemeter (newton meter)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'd')"><div class="opt-indicator"></div><span>Compass</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s40','d','S40')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s40','A compass — its needle aligns with Earth\'s magnetic field, pointing toward magnetic north.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s40-fb"></div>
+    </div>
+  </div>
+
+  <!-- S41 -->
+  <div class="q-card" id="qcard-s41">
+    <div class="q-header">
+      <div class="q-num">S41</div>
+      <div class="q-text">In a reflection diagram: A = ray coming in from upper-left; B = dashed line perpendicular to mirror (normal); C = ray going out to upper-right; D = ray below mirror. Which pair shows the <em>incident ray</em> and <em>reflected ray</em>?</div>
+      <div class="q-marks">1 mark</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s41-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'a')"><div class="opt-indicator"></div><span>A and B</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'b')"><div class="opt-indicator"></div><span>A and C</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'c')"><div class="opt-indicator"></div><span>B and C</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'd')"><div class="opt-indicator"></div><span>C and D</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s41','b','S41')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s41','A (incident ray, approaching mirror) and C (reflected ray, leaving mirror). B is the normal line, not a ray.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s41-fb"></div>
+    </div>
+  </div>
+
+  <!-- S42 -->
+  <div class="q-card" id="qcard-s42">
+    <div class="q-header">
+      <div class="q-num">S42</div>
+      <div class="q-text">Which statement correctly describes the <em>law of reflection</em>?</div>
+      <div class="q-marks">2 marks</div>
+    </div>
+    <div class="q-body">
+      <div class="mcq-options" id="s42-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'a')"><div class="opt-indicator"></div><span>The angle of incidence is always 90°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'b')"><div class="opt-indicator"></div><span>The reflected ray always travels horizontally away from the mirror</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'c')"><div class="opt-indicator"></div><span>The angle of incidence equals the angle of reflection, both measured from the normal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'd')"><div class="opt-indicator"></div><span>The reflected ray travels in the exact opposite direction to the incident ray</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s42','c','S42')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s42','Both angles are measured from the normal (the dashed perpendicular line), not from the mirror surface.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s42','Angle of incidence = angle of reflection (both measured from the normal to the mirror surface).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s42-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">LIGHT & COLOUR — SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="secF-fill"></div></div>
+    <div class="section-score-val" id="secF-val">0/4</div>
+  </div>
+</div>
+
+<!-- RESULTS PANEL -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">—</div>
+  <div class="results-label" id="results-label"></div>
+  <div class="results-breakdown">
+    <div class="rb-chip">Gases &amp; Liquid<span class="rb-val" id="rb-a">—</span></div>
+    <div class="rb-chip">Respiration &amp; Blood<span class="rb-val" id="rb-b">—</span></div>
+    <div class="rb-chip">Atomic &amp; Chem<span class="rb-val" id="rb-c">—</span></div>
+    <div class="rb-chip">Health, Speed &amp; Forces<span class="rb-val" id="rb-d">—</span></div>
+    <div class="rb-chip">Earth &amp; Ecosystems<span class="rb-val" id="rb-e">—</span></div>
+    <div class="rb-chip">Light &amp; Colour<span class="rb-val" id="rb-f">—</span></div>
+    <div class="rb-chip">Time<span class="rb-val" id="rb-time">—</span></div>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<script>
+const state = {
+  answers: {},
+  correct: {},
+  startTime: Date.now()
+};
+
+const marks = {
+  s1:1, s2:1, s3:1, s4:2, s5:1, s6:1,
+  s7:2, s8:1, s9:1, s10:1, s11:1, s12:1, s13:1, s14:1,
+  s15:1, s16:1, s17:1, s18:1, s19:1, s20:1, s21:2,
+  s22:1, s23:1, s24:1, s25:2, s26:1, s27:1, s28:1, s29:2, s30:1,
+  s31:1, s32:2, s33:1, s34:1, s35:1, s36:1, s37:1, s38:1, s39:2,
+  s40:1, s41:1, s42:2
+};
+
+const sections = {
+  A: ['s1','s2','s3','s4','s5','s6'],
+  B: ['s7','s8','s9','s10','s11','s12','s13','s14'],
+  C: ['s15','s16','s17','s18','s19','s20','s21'],
+  D: ['s22','s23','s24','s25','s26','s27','s28','s29','s30'],
+  E: ['s31','s32','s33','s34','s35','s36','s37','s38','s39'],
+  F: ['s40','s41','s42']
+};
+
+const allQs = Object.values(sections).flat();
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'\)/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'\)/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function checkText(qid, correctVal, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = input.value.toLowerCase().replace(/\s+/g,'');
+  const correct = correctVal.toLowerCase().replace(/\s+/g,'');
+  const isCorrect = val === correct || val.includes(correct) || correct.includes(val);
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  const secScores = {A:0,B:0,C:0,D:0,E:0,F:0};
+  const secMax = {};
+  for (const [sec, qs] of Object.entries(sections)) {
+    secMax[sec] = qs.reduce((s,q) => s+marks[q], 0);
+    qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScores[sec] += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const pct = (secScores[sec]/secMax[sec])*100;
+    const fill = document.getElementById(`sec${sec}-fill`);
+    const val = document.getElementById(`sec${sec}-val`);
+    if (fill) fill.style.width = pct + '%';
+    if (val) val.textContent = `${secScores[sec]}/${secMax[sec]}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore, secScores, secMax);
+}
+
+function showResults(total, secScores, secMax) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  ['A','B','C','D','E','F'].forEach(s => {
+    const el = document.getElementById(`rb-${s.toLowerCase()}`);
+    if (el) el.textContent = `${secScores[s]}/${secMax[s]}`;
+  });
+  document.getElementById('rb-time').textContent = `${mins}m ${secs}s`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sa2sci_${Date.now()}`, JSON.stringify({date:new Date().toISOString(),pct,time:`${mins}m${secs}s`})); } catch(e){}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, () => ({
+    x:Math.random()*canvas.width, y:Math.random()*-canvas.height,
+    w:Math.random()*10+4, h:Math.random()*6+3,
+    color:colors[Math.floor(Math.random()*colors.length)],
+    rot:Math.random()*Math.PI*2, vy:Math.random()*3+2,
+    vx:(Math.random()-0.5)*2, vr:(Math.random()-0.5)*0.1
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && (active.classList.contains('num-input') || active.classList.contains('text-input'))) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
