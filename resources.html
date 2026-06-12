@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch & Learn · Free Videos & Documentaries for S1 Science SA2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent2: #3ecf8e; --accent3: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); min-height: 100vh; padding-bottom: 80px; line-height: 1.7; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+nav { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--text); }
+.nav-logo span { color: var(--accent2); }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.5px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.hero { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 56px 32px 28px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; }
+h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 18px; }
+h1 em { font-style: italic; color: var(--accent2); }
+.hero-sub { color: var(--text-muted); font-size: 1.02rem; max-width: 600px; line-height: 1.7; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 22px; }
+.legend span { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+.badge { font-family: var(--font-mono); font-size: 0.6rem; padding: 2px 7px; border-radius: 10px; letter-spacing: 0.5px; }
+.badge.free { background: rgba(62,207,142,0.12); color: var(--accent2); border: 1px solid rgba(62,207,142,0.3); }
+.badge.paid { background: rgba(245,166,35,0.1); color: var(--accent3); border: 1px solid rgba(245,166,35,0.3); }
+.wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 32px; }
+.topic { margin-top: 40px; }
+.topic-head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.topic-icon { width: 40px; height: 40px; border-radius: 9px; background: rgba(62,207,142,0.12); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.topic-head h2 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.3px; }
+.topic-head .sub { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+.topic-head .drill { margin-left: auto; font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); text-decoration: none; border: 1px solid rgba(62,207,142,0.3); padding: 6px 12px; border-radius: 6px; white-space: nowrap; }
+.topic-head .drill:hover { background: rgba(62,207,142,0.08); }
+.res-list { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+.res-list li { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; display: flex; align-items: flex-start; gap: 12px; transition: border-color 0.2s; }
+.res-list li:hover { border-color: #3a4070; }
+.res-emoji { font-size: 1.05rem; flex-shrink: 0; margin-top: 2px; }
+.res-body { flex: 1; }
+.res-body a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+.res-body a:hover { color: var(--accent2); text-decoration: underline; }
+.res-body .desc { color: var(--text-muted); font-size: 0.84rem; margin-top: 2px; }
+.note { background: var(--surface2); border-left: 3px solid var(--accent3); border-radius: 0 6px 6px 0; padding: 14px 18px; margin-top: 28px; font-size: 0.9rem; color: var(--text-muted); }
+footer { position: relative; z-index: 1; max-width: 860px; margin: 56px auto 0; padding: 24px 32px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+footer p { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+@media (max-width:600px){ .topic-head .drill { display:none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Cambridge <span>Practice</span></div>
+  <div class="nav-links">
+    <a href="index.html">← All sheets</a>
+    <a href="#space">Topics</a>
+    <a href="https://github.com/jasperf/cambridge-practice" target="_blank">GitHub ↗</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">S1 Science · SA2 Revision Support</div>
+  <h1>Watch &amp; <em>Learn</em></h1>
+  <p class="hero-sub">Free videos, documentaries and interactive simulations for every topic in the Science SA2. Watch a clip when a topic feels hard, then go and drill it on the matching practice sheet until you hit 100%.</p>
+  <div class="legend">
+    <span><span class="badge free">FREE</span> No account needed</span>
+    <span><span class="badge paid">SUB</span> Needs a streaming subscription</span>
+    <span>📺 Video &nbsp; 🎬 Documentary &nbsp; 🕹 Simulation</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- RESPIRATION & BLOOD -->
+  <div class="topic" id="resp">
+    <div class="topic-head">
+      <div class="topic-icon">🫁</div>
+      <div><div class="sub">SA2 Section B</div><h2>Respiration &amp; Blood</h2></div>
+      <a class="drill" href="s1/sa2/focus/term4-sa2-science-respiration.html">Drill this →</a>
+    </div>
+    <ul class="res-list">
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=ZkqEno1r2jk" target="_blank" rel="noopener">FuseSchool — What Is Aerobic Respiration? <span class="badge free">FREE</span></a><div class="desc">Clear animation of glucose + oxygen → carbon dioxide + water + energy.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=H7QsDs8ZRMI" target="_blank" rel="noopener">Amoeba Sisters — Cellular Respiration <span class="badge free">FREE</span></a><div class="desc">Friendly, exam-focused walkthrough including mitochondria.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=fQsgZloXNPY" target="_blank" rel="noopener">FuseSchool — The Respiratory System <span class="badge free">FREE</span></a><div class="desc">How gases get in and out of the lungs and blood.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.bbc.co.uk/bitesize/topics/z9whpbk" target="_blank" rel="noopener">BBC Bitesize — Blood &amp; Circulation <span class="badge free">FREE</span></a><div class="desc">Red cells, white cells, platelets and plasma with quick quizzes.</div></div></li>
+      <li><span class="res-emoji">🎬</span><div class="res-body"><a href="https://www.youtube.com/watch?v=zKkkN3uV3FY" target="_blank" rel="noopener">"Blood, the river of life" / body documentaries (search) <span class="badge free">FREE</span></a><div class="desc">For a deeper look, the BBC series <em>Inside the Human Body</em> and <em>Magic School Bus Rides Again</em> (Netflix <span class="badge paid">SUB</span>) bring blood and the body to life.</div></div></li>
+    </ul>
+  </div>
+
+  <!-- ATOMS & CHEMISTRY -->
+  <div class="topic" id="atomic">
+    <div class="topic-head">
+      <div class="topic-icon">⚛️</div>
+      <div><div class="sub">SA2 Section C</div><h2>Atoms &amp; Chemical Reactions</h2></div>
+      <a class="drill" href="s1/sa2/focus/term4-sa2-science-atomic.html">Drill this →</a>
+    </div>
+    <ul class="res-list">
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=U26h51LN84I" target="_blank" rel="noopener">FuseSchool — What Is An Atom? <span class="badge free">FREE</span></a><div class="desc">Nucleus, protons, neutrons and electrons explained simply.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=XBSApEdjztA" target="_blank" rel="noopener">The Rutherford Gold Foil Experiment <span class="badge free">FREE</span></a><div class="desc">Why most particles passed through — the discovery of the nucleus.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=eJXL0IrbtqE" target="_blank" rel="noopener">FuseSchool — Endothermic &amp; Exothermic Reactions <span class="badge free">FREE</span></a><div class="desc">Heat in vs heat out, with everyday examples.</div></div></li>
+      <li><span class="res-emoji">🕹</span><div class="res-body"><a href="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html" target="_blank" rel="noopener">PhET — Build an Atom <span class="badge free">FREE</span></a><div class="desc">Drag protons, neutrons and electrons to build atoms and see the charge.</div></div></li>
+    </ul>
+  </div>
+
+  <!-- FORCES & SPEED -->
+  <div class="topic" id="forces">
+    <div class="topic-head">
+      <div class="topic-icon">🏃</div>
+      <div><div class="sub">SA2 Section D</div><h2>Health, Speed &amp; Forces</h2></div>
+      <a class="drill" href="s1/sa2/focus/term4-sa2-science-forces.html">Drill this →</a>
+    </div>
+    <ul class="res-list">
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.bbc.co.uk/bitesize/topics/znmmn39" target="_blank" rel="noopener">BBC Bitesize — Speed &amp; Distance–Time Graphs <span class="badge free">FREE</span></a><div class="desc">Worked examples of Speed = Distance ÷ Time and reading graphs.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.bbc.co.uk/bitesize/topics/zsnj2nb" target="_blank" rel="noopener">BBC Bitesize — Pressure &amp; Moments <span class="badge free">FREE</span></a><div class="desc">Pressure = Force ÷ Area, turning moments and balancing.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=dM1iJ9czUMU" target="_blank" rel="noopener">FuseSchool — Speed, Distance &amp; Time <span class="badge free">FREE</span></a><div class="desc">How to rearrange the formula triangle for any calculation.</div></div></li>
+      <li><span class="res-emoji">🕹</span><div class="res-body"><a href="https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_en.html" target="_blank" rel="noopener">PhET — Balancing Act <span class="badge free">FREE</span></a><div class="desc">Drag weights on a see-saw and discover the rule for moments.</div></div></li>
+    </ul>
+  </div>
+
+  <!-- EARTH, ECOSYSTEMS & SPACE -->
+  <div class="topic" id="space">
+    <div class="topic-head">
+      <div class="topic-icon">🌍</div>
+      <div><div class="sub">SA2 Section E</div><h2>Earth, Ecosystems &amp; Space</h2></div>
+      <a class="drill" href="s1/sa2/focus/term4-sa2-science-earth-space.html">Drill this →</a>
+    </div>
+    <ul class="res-list">
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=bJEtoQ49Yjc" target="_blank" rel="noopener">Crash Course Kids — Ecosystems <span class="badge free">FREE</span></a><div class="desc">Living + non-living parts of an ecosystem, and how they connect.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=libKVRa01L8" target="_blank" rel="noopener">Kurzgesagt — How big is the universe? <span class="badge free">FREE</span></a><div class="desc">Planet → solar system → galaxy → universe, beautifully animated.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.bbc.co.uk/bitesize/topics/zwbpn39" target="_blank" rel="noopener">BBC Bitesize — Earth &amp; Space <span class="badge free">FREE</span></a><div class="desc">Earth's layers, the magnetic field and the solar system.</div></div></li>
+      <li><span class="res-emoji">🎬</span><div class="res-body"><a href="https://www.netflix.com/title/80216752" target="_blank" rel="noopener">StoryBots: Our Universe / Our Planet (Netflix) <span class="badge paid">SUB</span></a><div class="desc"><em>StoryBots</em> for fun space basics; <em>Our Planet</em> &amp; <em>Planet Earth</em> (David Attenborough) for ecosystems and invasive species. <em>One Strange Rock</em> (Disney+/Nat Geo) is great for ages 9+.</div></div></li>
+      <li><span class="res-emoji">🎬</span><div class="res-body"><a href="https://www.youtube.com/watch?v=GoiijNxNs6Y" target="_blank" rel="noopener">Invasive species: rabbits in Australia (search) <span class="badge free">FREE</span></a><div class="desc">Short documentaries on how introduced rabbits damaged Australia's ecosystems.</div></div></li>
+    </ul>
+  </div>
+
+  <!-- GASES & LIQUIDS -->
+  <div class="topic" id="gases">
+    <div class="topic-head">
+      <div class="topic-icon">🧪</div>
+      <div><div class="sub">SA2 Section A</div><h2>Gases, Liquids &amp; Chromatography</h2></div>
+      <a class="drill" href="s1/sa2/focus/term4-sa2-science-gases.html">Drill this →</a>
+    </div>
+    <ul class="res-list">
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=hQpQ0hxVNTg" target="_blank" rel="noopener">FuseSchool — Chromatography <span class="badge free">FREE</span></a><div class="desc">How a solvent separates the dyes in an ink.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.bbc.co.uk/bitesize/topics/zgx4jty" target="_blank" rel="noopener">BBC Bitesize — The Particle Model <span class="badge free">FREE</span></a><div class="desc">How particles in solids, liquids and gases behave — and cause pressure.</div></div></li>
+      <li><span class="res-emoji">🕹</span><div class="res-body"><a href="https://phet.colorado.edu/sims/html/states-of-matter-basics/latest/states-of-matter-basics_en.html" target="_blank" rel="noopener">PhET — States of Matter <span class="badge free">FREE</span></a><div class="desc">Heat up particles and watch them move faster and spread out.</div></div></li>
+      <li><span class="res-emoji">🕹</span><div class="res-body"><a href="https://phet.colorado.edu/sims/html/concentration/latest/concentration_en.html" target="_blank" rel="noopener">PhET — Concentration <span class="badge free">FREE</span></a><div class="desc">Add solute and water to see how concentration changes.</div></div></li>
+    </ul>
+  </div>
+
+  <!-- LIGHT & REFLECTION -->
+  <div class="topic" id="light">
+    <div class="topic-head">
+      <div class="topic-icon">💡</div>
+      <div><div class="sub">SA2 Section F</div><h2>Light, Reflection &amp; Colour</h2></div>
+      <a class="drill" href="s1/sa2/focus/term4-sa2-science-light.html">Drill this →</a>
+    </div>
+    <ul class="res-list">
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.bbc.co.uk/bitesize/topics/zq7hwnb" target="_blank" rel="noopener">BBC Bitesize — Light &amp; Reflection <span class="badge free">FREE</span></a><div class="desc">Incident ray, normal, reflected ray and the law of reflection.</div></div></li>
+      <li><span class="res-emoji">📺</span><div class="res-body"><a href="https://www.youtube.com/watch?v=2OQNVbjVKLM" target="_blank" rel="noopener">FuseSchool — Reflection of Light <span class="badge free">FREE</span></a><div class="desc">Why angle of incidence = angle of reflection.</div></div></li>
+      <li><span class="res-emoji">🕹</span><div class="res-body"><a href="https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_en.html" target="_blank" rel="noopener">PhET — Bending Light <span class="badge free">FREE</span></a><div class="desc">Aim a laser at a surface and measure the angles for yourself.</div></div></li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>How to use this with the practice sheets:</strong> pick the topic your son lost marks on, watch one short video (5–10 min), then open the matching <em>Topic Focus</em> drill and try it. Use the <strong>Hint</strong> button before the <strong>Show Answer</strong> button. Re-do the sheet a day later — the aim is to score 100% from memory, not just once. Free YouTube and BBC Bitesize links need no account; documentaries marked <span class="badge paid">SUB</span> need a Netflix/Disney+ subscription. Video links occasionally change — if one has moved, search the title on YouTube.
+  </div>
+
+</div>
+
+<footer>
+  <p>Cambridge Secondary &amp; IGCSE Practice · <a href="https://github.com/jasperf/cambridge-practice" target="_blank">github.com/jasperf/cambridge-practice</a></p>
+  <p>Not affiliated with the video creators or Cambridge Assessment International Education</p>
+</footer>
+
+</body>
+</html>
