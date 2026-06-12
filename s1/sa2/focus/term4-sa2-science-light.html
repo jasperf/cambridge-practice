@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge Practice · S1 Science SA2 Focus — Light, Reflection & Colour</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-sci { background: var(--accent-sci); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-sci); color: var(--accent-sci); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-sci); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.text-input { width: 100%; max-width: 380px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; padding: 10px 14px; transition: border-color 0.2s; outline: none; display: block; }
+.text-input:focus { border-color: var(--accent-sci); }
+.text-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.06); }
+.text-input.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.06); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '§'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) { .topbar { padding: 0 16px; } .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; } .hero h1 { font-size: 1.8rem; } }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">SA2 FOCUS · Light &amp; Reflection</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">← All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">⏱</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 0</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 1 · SA2 Topic Focus · Section F</div>
+  <h1>Light, Reflection<br><em>&amp; Colour</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-sci"></div>Reflection · Law of reflection · Rays · Colour</div>
+    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>13 questions · self-marked · drill until 100%</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>📺 Watch &amp; Learn first</h3>
+  <p>Stuck? Watch a short video, then come back and try the questions. All free.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.bbc.co.uk/bitesize/topics/zq7hwnb" target="_blank" rel="noopener">BBC Bitesize · Light &amp; Reflection</a>
+    <a class="watch-link" href="https://www.youtube.com/watch?v=2OQNVbjVKLM" target="_blank" rel="noopener">FuseSchool · Reflection of Light</a>
+    <a class="watch-link" href="https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_en.html" target="_blank" rel="noopener">PhET sim · Bending Light</a>
+    <a class="watch-link" href="https://www.youtube.com/watch?v=uucYGK_Ymp0" target="_blank" rel="noopener">Why is the sky blue / colour</a>
+    <a class="watch-link" href="../../../resources.html" target="_blank" rel="noopener">More videos →</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#refl" class="sub-tab">🪞 Reflection &amp; Rays</a>
+  <a href="#law" class="sub-tab">📐 Law of Reflection</a>
+  <a href="#colour" class="sub-tab">🌈 Light &amp; Colour</a>
+</div>
+
+<div class="main">
+
+<!-- REFLECTION & RAYS -->
+<div id="refl">
+  <div class="section-header"><div class="section-icon">🪞</div><div><div class="sub-label">Part 1</div><h2>Reflection &amp; Rays</h2></div></div>
+  <div class="info-box"><strong>Key words:</strong> the <em>incident ray</em> goes towards the mirror; the <em>reflected ray</em> bounces off; the <em>normal</em> is an imaginary line at 90° to the mirror. Angles are always measured from the normal.</div>
+
+  <div class="q-card" id="qcard-q1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">What is meant by the <em>reflection</em> of light?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')"><div class="opt-indicator"></div><span>Light bending as it passes through glass or water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')"><div class="opt-indicator"></div><span>Light bouncing off a surface</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'c')"><div class="opt-indicator"></div><span>Light being absorbed and turned into heat</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'd')"><div class="opt-indicator"></div><span>Light being made by the Sun</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q1','b','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q1','Reflection is light bouncing off a surface. (Bending as light passes through a material is refraction — a different thing.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q1-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Which surface produces a <em>clear mirror image</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q2', this, 'a')"><div class="opt-indicator"></div><span>A smooth, shiny surface (like a flat mirror)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q2', this, 'b')"><div class="opt-indicator"></div><span>A rough, bumpy surface</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q2', this, 'c')"><div class="opt-indicator"></div><span>A black, dull surface</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q2', this, 'd')"><div class="opt-indicator"></div><span>A transparent window</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q2','a','Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q2','A smooth, shiny surface reflects light evenly in one direction, giving a clear image. A rough surface scatters light (diffuse reflection), so no clear image forms.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q2-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">In a reflection diagram: A = ray coming in towards the mirror; B = dashed line at 90° to the mirror; C = ray going out from the mirror. Which pair shows the <em>incident ray</em> and the <em>reflected ray</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q3', this, 'a')"><div class="opt-indicator"></div><span>A and B</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q3', this, 'b')"><div class="opt-indicator"></div><span>A and C</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q3', this, 'c')"><div class="opt-indicator"></div><span>B and C</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q3', this, 'd')"><div class="opt-indicator"></div><span>B only</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q3','b','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q3','The incident ray comes IN; the reflected ray goes OUT. B is the normal — a construction line, not a ray.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q3','A (incident ray, coming in) and C (reflected ray, going out). B is the normal — the line we measure angles from, not a ray.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q3-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">What is the <em>normal</em> in a ray diagram?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q4', this, 'a')"><div class="opt-indicator"></div><span>The ray of light coming from the lamp</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q4', this, 'b')"><div class="opt-indicator"></div><span>An imaginary line drawn at 90° (perpendicular) to the mirror, used to measure angles</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q4', this, 'c')"><div class="opt-indicator"></div><span>The shiny surface of the mirror itself</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q4', this, 'd')"><div class="opt-indicator"></div><span>The shadow behind the mirror</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q4','b','Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q4','The normal is an imaginary line drawn at 90° to the mirror surface at the point where the ray hits. Both the angle of incidence and angle of reflection are measured from it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q4-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">The <em>angle of incidence</em> is measured between the incident ray and which line?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'a')"><div class="opt-indicator"></div><span>The surface of the mirror</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'b')"><div class="opt-indicator"></div><span>The normal (the 90° line)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'c')"><div class="opt-indicator"></div><span>The edge of the paper</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'd')"><div class="opt-indicator"></div><span>The reflected ray</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q5','b','Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q5','From the normal. A common mistake is to measure from the mirror surface — always measure both angles from the normal.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">REFLECTION &amp; RAYS — SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-rf-fill"></div></div>
+    <div class="section-score-val" id="sec-rf-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- LAW OF REFLECTION -->
+<div id="law">
+  <div class="section-header"><div class="section-icon">📐</div><div><div class="sub-label">Part 2</div><h2>The Law of Reflection</h2></div></div>
+  <div class="info-box"><strong>The law of reflection:</strong> the angle of incidence = the angle of reflection. Both angles are measured from the normal.</div>
+
+  <div class="q-card" id="qcard-q6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Which statement correctly describes the <em>law of reflection</em>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q6', this, 'a')"><div class="opt-indicator"></div><span>The angle of incidence is always 90°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q6', this, 'b')"><div class="opt-indicator"></div><span>The angle of incidence equals the angle of reflection, both measured from the normal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q6', this, 'c')"><div class="opt-indicator"></div><span>The reflected ray always travels straight back the way it came</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q6', this, 'd')"><div class="opt-indicator"></div><span>Light always reflects horizontally</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q6','b','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q6','Two equal angles, both measured from the normal, not from the mirror.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q6','The angle of incidence equals the angle of reflection, and both are measured from the normal to the mirror.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q6-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">A ray hits a mirror with an <em>angle of incidence of 30°</em>. What is the angle of reflection?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" class="num-input" id="q7-ans" placeholder="?"><span class="num-unit">degrees (°)</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('q7',30,'Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q7','30°. By the law of reflection, the angle of reflection equals the angle of incidence.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q7-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A ray hits a mirror with an <em>angle of incidence of 45°</em>. What is the angle of reflection?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" class="num-input" id="q8-ans" placeholder="?"><span class="num-unit">degrees (°)</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('q8',45,'Q8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q8','45°. Angle of reflection = angle of incidence.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q8-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">A ray travels <em>straight along the normal</em> and hits the mirror head-on (angle of incidence = 0°). What does the reflected ray do?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q9', this, 'a')"><div class="opt-indicator"></div><span>It reflects straight back along the same line (angle of reflection = 0°)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q9', this, 'b')"><div class="opt-indicator"></div><span>It reflects at 90° sideways</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q9', this, 'c')"><div class="opt-indicator"></div><span>It passes through the mirror</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q9', this, 'd')"><div class="opt-indicator"></div><span>It disappears</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q9','a','Q9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q9','It bounces straight back along the normal. Angle of incidence = 0°, so angle of reflection = 0° too.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q9-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">A student measures the angle of incidence from the <em>mirror surface</em> instead of from the normal and gets 60°. What is the true angle of incidence (measured from the normal)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" class="num-input" id="q10-ans" placeholder="?"><span class="num-unit">degrees (°)</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('q10',30,'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q10','The normal is 90° to the mirror. Angle from the normal = 90 − angle from the mirror = 90 − 60.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q10','90 − 60 = 30°. The normal is at 90° to the surface, so the angle from the normal and the angle from the mirror always add up to 90°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">LAW OF REFLECTION — SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-la-fill"></div></div>
+    <div class="section-score-val" id="sec-la-val">0/6</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- LIGHT & COLOUR -->
+<div id="colour">
+  <div class="section-header"><div class="section-icon">🌈</div><div><div class="sub-label">Part 3</div><h2>Light &amp; Colour</h2></div></div>
+  <div class="info-box"><strong>Key idea:</strong> white light is a mixture of all the colours of the spectrum. An object looks a certain colour because it <em>reflects</em> that colour and <em>absorbs</em> the others.</div>
+
+  <div class="q-card" id="qcard-q11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">When white light passes through a <em>prism</em>, it splits into a band of colours. What is this band called?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q11', this, 'a')"><div class="opt-indicator"></div><span>The spectrum (the colours of the rainbow)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q11', this, 'b')"><div class="opt-indicator"></div><span>The shadow</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q11', this, 'c')"><div class="opt-indicator"></div><span>The reflection</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q11', this, 'd')"><div class="opt-indicator"></div><span>The normal</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q11','a','Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q11','The spectrum — red, orange, yellow, green, blue, indigo, violet. This splitting of white light is called dispersion.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q11-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Why does a <em>red apple</em> look red in white light?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q12', this, 'a')"><div class="opt-indicator"></div><span>It reflects red light into our eyes and absorbs the other colours</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q12', this, 'b')"><div class="opt-indicator"></div><span>It makes its own red light</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q12', this, 'c')"><div class="opt-indicator"></div><span>It absorbs red light and reflects all the others</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q12', this, 'd')"><div class="opt-indicator"></div><span>It lets all light pass straight through it</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q12','a','Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q12','We see the colour that is REFLECTED back to our eyes. The other colours are absorbed.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q12','The apple reflects red light back to our eyes and absorbs the other colours of white light, so it looks red.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q12-fb"></div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qcard-q13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">A <em>green leaf</em> is lit by white light. Which colour of light is it mostly <em>reflecting</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q13-ans" placeholder="Type a colour…">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q13','green','Q13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q13','Green. The leaf reflects green light (which is why we see it as green) and absorbs the other colours.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q13-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">LIGHT &amp; COLOUR — SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-co-fill"></div></div>
+    <div class="section-score-val" id="sec-co-val">0/4</div>
+  </div>
+</div>
+
+<!-- RESULTS PANEL -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">—</div>
+  <div class="results-label" id="results-label"></div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div><!-- end .main -->
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  q1:1, q2:1, q3:1, q4:1, q5:1,
+  q6:2, q7:1, q8:1, q9:1, q10:1,
+  q11:1, q12:2, q13:1
+};
+
+const sections = {
+  rf: { label: 'Reflection & Rays', qs: ['q1','q2','q3','q4','q5'] },
+  la: { label: 'Law of Reflection', qs: ['q6','q7','q8','q9','q10'] },
+  co: { label: 'Light & Colour', qs: ['q11','q12','q13'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'\)/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'\)/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function checkText(qid, correctVal, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = input.value.toLowerCase().replace(/\s+/g,'');
+  const correct = correctVal.toLowerCase().replace(/\s+/g,'');
+  const isCorrect = val === correct || val.includes(correct) || correct.includes(val);
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && (active.classList.contains('num-input') || active.classList.contains('text-input'))) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
