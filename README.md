@@ -31,6 +31,8 @@ cambridge-practice/
 │   ├── term4-sa2-maths.html          ← SA2 revision (all units, 42 q, 60 marks)
 │   ├── term4-sa2-english.html        ← SA2 revision (parts of speech & clauses, 40 q, 40 marks)
 │   └── term4-sa2-science.html        ← SA2 revision (all topics, 42 q, 50 marks)
+├── s1/science/
+│   └── circuits.html                 ← Electric Circuits topic drill (16 q, 26 marks, interactive SVG)
 ├── igcse/
 │   └── ...
 ├── docs/
@@ -72,6 +74,7 @@ npx serve .
 | Mathematics SA2 Revision (all units) | Secondary 1 | ✅ SA2 Exam 21 May 2026 |
 | English SA2 Revision (parts of speech &amp; clauses) | Secondary 1 | ✅ SA2 Exam 21 May 2026 |
 | Science SA2 Revision (all topics) | Secondary 1 | ✅ SA2 Exam 22 May 2026 |
+| Science (Electric Circuits) | Secondary 1 | ✅ Topic drill |
 | Physics | IGCSE | 🔜 Coming |
 
 ## Tech
