@@ -54,6 +54,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 .section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
 .section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
 .info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.particle-wrap { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 16px 14px; margin: 16px 0 24px; }
+.particle-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-sci); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; text-align: center; }
+#particle-canvas { display: block; width: 100%; max-width: 440px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border: 1px solid var(--border); border-radius: 8px; }
+.particle-controls { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+.state-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 18px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.state-btn:hover { border-color: var(--accent-sci); color: var(--text); }
+.state-btn.active { background: var(--accent-sci); color: #0f1117; border-color: var(--accent-sci); }
+.particle-status { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.5; transition: color 0.3s; }
+.particle-status.active { color: var(--accent-warn); }
 .q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
 .q-card.answered-correct { border-color: var(--correct); }
 .q-card.answered-wrong { border-color: var(--wrong); }
@@ -159,6 +168,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <a class="watch-link" href="https://www.youtube.com/watch?v=6IBhEBKFVqo" target="_blank" rel="noopener">FuseSchool &middot; Physical vs Chemical Changes</a>
     <a class="watch-link" href="https://www.bbc.co.uk/bitesize/topics/z9r4jfr" target="_blank" rel="noopener">BBC Bitesize &middot; Particle Model</a>
     <a class="watch-link" href="../../resources.html" target="_blank" rel="noopener">More videos &rarr;</a>
+    <a class="watch-link" href="../sa2/focus/term4-sa2-science-atomic.html" style="border-color:var(--accent-math);color:var(--accent-math);">Next: Atoms &amp; Energy (SA2) &rarr;</a>
   </div>
 </div></div>
 
@@ -175,6 +185,18 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <div id="particles">
   <div class="section-header"><div class="section-icon">&#9883;</div><div><div class="sub-label">Section A</div><h2>Particle Model &amp; States of Matter</h2></div></div>
   <div class="info-box"><strong>The particle model:</strong> all matter is made of tiny <em>particles</em>. In <strong>solids</strong>, particles are close together in a regular pattern and vibrate in fixed positions. In <strong>liquids</strong>, particles are close but can slide past each other. In <strong>gases</strong>, particles are far apart and move fast in all directions.</div>
+
+  <!-- Interactive particle-state animator -->
+  <div class="particle-wrap">
+    <div class="particle-label">Try it — switch the state and watch the particles</div>
+    <canvas id="particle-canvas" width="440" height="200" aria-label="Animated particle model showing how particles are arranged and move in solids, liquids and gases"></canvas>
+    <div class="particle-controls">
+      <button class="state-btn active" id="pbtn-solid" onclick="setParticleState('solid')">&#10052; Solid</button>
+      <button class="state-btn" id="pbtn-liquid" onclick="setParticleState('liquid')">&#128167; Liquid</button>
+      <button class="state-btn" id="pbtn-gas" onclick="setParticleState('gas')">&#9729; Gas</button>
+    </div>
+    <div class="particle-status" id="particle-status">State: SOLID &mdash; particles packed in a regular pattern, vibrating in fixed positions</div>
+  </div>
 
   <!-- Q1 -->
   <div class="q-card" id="qcard-q1">
@@ -558,6 +580,84 @@ function updateTimer() {
   document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
 }
 setInterval(updateTimer, 1000);
+
+// ── Particle-model animator ──────────────────────────────────
+const pView = { mode: 'solid', particles: [] };
+const pCanvas = document.getElementById('particle-canvas');
+const pCtx = pCanvas.getContext('2d');
+const P_COLS = 8, P_ROWS = 5;
+const P_COLORS = { solid: '#4f8ef7', liquid: '#3ecf8e', gas: '#f5a623' };
+const P_DESC = {
+  solid: 'State: SOLID — particles packed in a regular pattern, vibrating in fixed positions',
+  liquid: 'State: LIQUID — particles still close together but free to slide past each other',
+  gas: 'State: GAS — particles far apart, moving fast in all directions, filling the space'
+};
+
+function initParticles() {
+  const w = pCanvas.width, h = pCanvas.height;
+  const mx = 70, my = 32;
+  const gw = w - mx * 2, gh = h - my * 2;
+  pView.particles = [];
+  for (let r = 0; r < P_ROWS; r++) {
+    for (let c = 0; c < P_COLS; c++) {
+      const hx = mx + (c + 0.5) * (gw / P_COLS);
+      const hy = my + (r + 0.5) * (gh / P_ROWS);
+      pView.particles.push({ x: hx, y: hy, hx, hy, vx: 0, vy: 0, rad: 6 });
+    }
+  }
+}
+
+function setParticleState(mode) {
+  pView.mode = mode;
+  ['solid', 'liquid', 'gas'].forEach(m =>
+    document.getElementById('pbtn-' + m).classList.toggle('active', m === mode));
+  if (mode !== 'solid') {
+    const kick = mode === 'gas' ? 5 : 2;
+    pView.particles.forEach(p => { p.vx = (Math.random() - 0.5) * kick; p.vy = (Math.random() - 0.5) * kick; });
+  }
+  const st = document.getElementById('particle-status');
+  st.textContent = P_DESC[mode];
+  st.classList.toggle('active', mode === 'gas');
+}
+
+function stepParticles() {
+  const w = pCanvas.width, h = pCanvas.height, mode = pView.mode;
+  pCtx.clearRect(0, 0, w, h);
+  pView.particles.forEach(p => {
+    if (mode === 'solid') {
+      p.vx += (p.hx - p.x) * 0.12 + (Math.random() - 0.5) * 1.2;
+      p.vy += (p.hy - p.y) * 0.12 + (Math.random() - 0.5) * 1.2;
+      p.vx *= 0.55; p.vy *= 0.55;
+    } else if (mode === 'liquid') {
+      p.vx += (Math.random() - 0.5) * 0.7;
+      p.vy += (Math.random() - 0.5) * 0.7 + 0.18; // gravity → pools at the bottom
+      p.vx *= 0.94; p.vy *= 0.94;
+      const sp = Math.hypot(p.vx, p.vy);
+      if (sp > 1.8) { p.vx = p.vx / sp * 1.8; p.vy = p.vy / sp * 1.8; }
+    } else { // gas
+      p.vx += (Math.random() - 0.5) * 0.6;
+      p.vy += (Math.random() - 0.5) * 0.6;
+      const sp = Math.hypot(p.vx, p.vy) || 1;
+      p.vx = p.vx / sp * 3.0; p.vy = p.vy / sp * 3.0;
+    }
+    p.x += p.vx; p.y += p.vy;
+    const r = p.rad;
+    if (p.x < r) { p.x = r; p.vx = Math.abs(p.vx); }
+    if (p.x > w - r) { p.x = w - r; p.vx = -Math.abs(p.vx); }
+    if (p.y < r) { p.y = r; p.vy = Math.abs(p.vy); }
+    if (p.y > h - r) { p.y = h - r; p.vy = -Math.abs(p.vy); }
+    pCtx.beginPath();
+    pCtx.arc(p.x, p.y, r, 0, Math.PI * 2);
+    pCtx.fillStyle = P_COLORS[mode];
+    pCtx.globalAlpha = 0.9;
+    pCtx.fill();
+    pCtx.globalAlpha = 1;
+  });
+  requestAnimationFrame(stepParticles);
+}
+
+initParticles();
+stepParticles();
 
 function selectMCQ(qid, el) {
   const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
