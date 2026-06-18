@@ -595,14 +595,16 @@ const P_DESC = {
 
 function initParticles() {
   const w = pCanvas.width, h = pCanvas.height;
-  const mx = 70, my = 32;
-  const gw = w - mx * 2, gh = h - my * 2;
+  const rad = 6;
+  const gap = rad * 2 + 3; // centre-to-centre ≈ touching → particles packed close (real solid)
+  const gridW = (P_COLS - 1) * gap, gridH = (P_ROWS - 1) * gap;
+  const ox = (w - gridW) / 2, oy = (h - gridH) / 2;
   pView.particles = [];
   for (let r = 0; r < P_ROWS; r++) {
     for (let c = 0; c < P_COLS; c++) {
-      const hx = mx + (c + 0.5) * (gw / P_COLS);
-      const hy = my + (r + 0.5) * (gh / P_ROWS);
-      pView.particles.push({ x: hx, y: hy, hx, hy, vx: 0, vy: 0, rad: 6 });
+      const hx = ox + c * gap;
+      const hy = oy + r * gap;
+      pView.particles.push({ x: hx, y: hy, hx, hy, vx: 0, vy: 0, rad });
     }
   }
 }
