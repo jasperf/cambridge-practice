@@ -4,33 +4,102 @@
 
 Interactive self-marking exercise sheets for Cambridge Secondary 1, IGCSE, and A-Level students. Each sheet is a single self-contained HTML file. No build tools, no frameworks, no CDN dependencies beyond Google Fonts. Everything works offline once loaded.
 
-Live site: https://jasperf.github.io/cambridge-practice
+**Live site:** https://jasperf.github.io/cambridge-practice (auto-deployed from `main` via GitHub Pages)
+
+**Stack:** Pure HTML5 + CSS3 + vanilla JavaScript. No build step, no package manager, no server.
 
 ## Structure
 
 ```
 cambridge-practice/
 ├── index.html              ← home page / subject index (update when adding sheets)
-├── s1/                     ← Secondary 1
-│   └── t4/w1/             ← term / week folders
-├── igcse/                  ← IGCSE (planned)
-└── assets/                 ← shared CSS (future)
+├── resources.html          ← curated external resources (YouTube, BBC Bitesize)
+├── README.md               ← project overview
+├── AGENTS.md               ← this file
+├── SETUP.md                ← setup and deployment guide
+├── CLAUDE.md               ← legacy agent instructions
+├── LICENSE                 ← MIT license
+├── material/               ← source documents (PDFs, docs, images)
+│   └── convert.sh          ← ImageMagick batch convert script
+├── docs/                   ← technical documentation
+│   ├── README.md           ← docs index
+│   └── state-management.md ← state object and scoring explained
+├── s1/                     ← Secondary 1 sheets
+│   ├── sa2/                ← Summer Assessment 2 revision
+│   │   ├── focus/          ← focused topic drills
+│   │   ├── term4-sa2-maths.html
+│   │   ├── term4-sa2-english.html
+│   │   └── term4-sa2-science.html
+│   ├── science/             ← topic-specific drills
+│   │   └── circuits.html   ← Electric Circuits (interactive SVG)
+│   └── t4/                 ← Term 4
+│       ├── w1/             ← Week 1
+│       │   └── term4-week1-maths-science.html
+│       └── w6/             ← Week 6
+│           ├── term4-week6-english.html
+│           └── term4-week6-science.html
+└── igcse/                  ← IGCSE (planned)
+```
+
+## Commands
+
+```bash
+# Preview any sheet directly in browser (no server needed)
+open s1/t4/w1/term4-week1-maths-science.html
+
+# Or serve locally for index page links to work
+npx serve .                    # install once: npm i -g serve
+python3 -m http.server 3000   # Python 3
+php -S localhost:3000         # PHP
+# Then visit http://localhost:3000
+
+# Git workflow
+git add .
+git commit -m "Add Week N: Subject exercises"
+git push                          # auto-deploys to GitHub Pages
 ```
 
 ## Conventions
 
 - One HTML file per exercise sheet — fully self-contained with inline CSS and JS
-- No external dependencies except Google Fonts
+- No external dependencies except Google Fonts (Fraunces, Literata, DM Mono)
 - Answers checked client-side; no server, no login, no tracking
-- File naming: `term{N}-week{N}-{subject}.html`
-- Always update `index.html` when adding a new sheet
+- File naming: flexible but follow patterns like `term{N}-week{N}-{subject}.html` or `{level}/{term}/{week}/{name}.html`
+- **Always update `index.html`** when adding a new sheet
+- Card classes: `.math` (blue), `.sci` (green), `.eng` (amber) for subject color-coding
 
-## Style
+### Question IDs
+- Math: `m1`, `m2`, ..., `mN`
+- Science: `s1`, `s2`, ..., `sN`
+- English: `e1`, `e2`, ..., `eN`
 
-- Dark theme with CSS custom properties defined in `:root`
-- Fonts: Fraunces (display), Literata (body), DM Mono (mono/labels)
-- Accent colours: `--accent` blue, `--accent2` green, `--accent3` amber
-- Cards use `.math`, `.sci`, `.eng` modifier classes for colour-coded top borders
+### CSS Design Tokens (defined in `:root` on every sheet)
+```css
+--bg, --surface, --surface2, --border    /* Dark theme layers */
+--accent-math, --accent-sci, --accent-warn, --accent-danger
+--text, --text-muted, --text-dim        /* Typography */
+--correct, --wrong                       /* Answer feedback */
+--font-display, --font-body, --font-mono
+--radius, --shadow                       /* UI */
+```
+
+### JavaScript State Pattern
+- Central `state` object: `{ answers, correct, totalMarks, maxMarks, startTime }`
+- Supporting arrays: `mathQs`, `sciQs`, `engQs` for score aggregation
+- Marks object: `marks = { m1: 2, m2: 1, ... }` keyed by question ID
+- All UI derives from state; DOM is just a representation
+- Persistence via `localStorage` with timestamped keys
+
+### Common Functions
+- `selectMCQ(qid, el, val)` — track selection
+- `checkMCQ(qid, correctVal, label)` — single choice
+- `checkMulti(qid, correctValsArray, label)` — multi-select
+- `checkNum(qid, correctVal, label, tolerance)` — numeric with tolerance
+- `showHint(qid, hintText)`, `revealAnswer(qid, answerText)`
+- `markResult(qid, isCorrect, label)` — update UI and state
+- `updateScores()` — recalculate and update score displays
+- `showResults(score)` — display final panel with confetti
+- `launchConfetti()` — canvas-based animation
 
 ## Constraints
 
@@ -38,7 +107,9 @@ cambridge-practice/
 - Do not add frameworks (React, Vue, etc.)
 - Keep each exercise sheet self-contained — no shared JS files
 - Do not mention the AI tool used to assist with this project by name
+- ** `.DS_Store` and `material/` folder are gitignored **
 
 ## Git
 
-- Atomic commits: one logical change per commit — one new sheet, one fix, or one index update, never bundled together.
+- Atomic commits: one logical change per commit — one new sheet, one fix, or one index update, never bundled together
+- GitHub Pages: auto-deploys from `main` branch within ~30 seconds of push
