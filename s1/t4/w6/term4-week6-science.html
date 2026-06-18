@@ -557,6 +557,8 @@ body::before {
   font-family: var(--font-display);
 }
 
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
 .timer-wrap { display: flex; align-items: center; gap: 8px; }
 .timer {
   font-family: var(--font-mono);
@@ -616,6 +618,7 @@ body::before {
     <div class="week-badge">T4 · W6 · 2026</div>
   </div>
   <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
     <div class="timer-wrap">
       <span style="font-size:0.85rem;">⏱</span>
       <div class="timer" id="timer">00:00</div>
