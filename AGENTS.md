@@ -107,6 +107,7 @@ git push                          # auto-deploys to GitHub Pages
 - Do not add frameworks (React, Vue, etc.)
 - Keep each exercise sheet self-contained — no shared JS files
 - Do not mention the AI tool used to assist with this project by name
+- **Do not add AI tool co-authorship to commit messages**
 - ** `.DS_Store` and `material/` folder are gitignored **
 
 ## Git
