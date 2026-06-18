@@ -33,7 +33,8 @@ cambridge-practice/
 │   └── term4-sa2-science.html        ← SA2 revision (all topics, 42 q, 50 marks)
 ├── s1/science/
 │   ├── circuits.html                 ← Electric Circuits topic drill (16 q, 26 marks, interactive SVG)
-│   └── chemical-reactions.html       ← Chemical Reactions & Particle Model drill (17 q, 25 marks, interactive particle animator)
+│   ├── chemical-reactions.html       ← Chemical Reactions & Particle Model drill (17 q, 25 marks, interactive particle animator)
+│   └── forces-speed-pressure.html    ← Forces, Speed & Pressure drill (17 q, 25 marks, speed/distance-time + force-balance animators)
 ├── igcse/
 │   └── ...
 ├── docs/
@@ -77,6 +78,7 @@ npx serve .
 | Science SA2 Revision (all topics) | Secondary 1 | ✅ SA2 Exam 22 May 2026 |
 | Science (Electric Circuits) | Secondary 1 | ✅ Topic drill |
 | Science (Chemical Reactions & Particle Model) | Secondary 1 | ✅ Topic drill |
+| Science (Forces, Speed & Pressure) | Secondary 1 | ✅ Topic drill |
 | Physics | IGCSE | 🔜 Coming |
 
 ## Tech
