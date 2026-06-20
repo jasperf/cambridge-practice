@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 1: Project Setup · Platformer Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --accent-danger: #e05252;
+  --accent-python: #3776ab;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', 'SF Mono', Monaco, Inconsolata, 'Fira Code', 'Fira Mono', monospace;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 58px;
+  gap: 16px;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.logo span { color: var(--accent-python); }
+
+.week-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.score-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 5px 16px 5px 10px;
+}
+.score-pill .score-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.score-pill .score-val {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-python);
+  transition: color 0.3s;
+  min-width: 48px;
+  text-align: right;
+}
+
+.progress-wrap { height: 3px; background: var(--border); position: relative; }
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-python), var(--accent-sci));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 52px 28px 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+}
+.hero h1 em { font-style: italic; color: var(--accent-python); }
+
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-python { background: var(--accent-python); }
+.dot-time { background: var(--accent-warn); }
+
+.subject-nav {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 24px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sub-tab {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.sub-tab.active-python { background: var(--accent-python); color: #0f1117; border-color: var(--accent-python); }
+.sub-tab:hover:not(.active-python) { border-color: var(--accent-python); color: var(--text); }
+
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 44px 0 24px;
+}
+.section-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.icon-python { background: rgba(55,118,171,0.15); }
+.icon-folder { background: rgba(55,118,171,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+.info-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.info-box h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.info-box p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.info-box code {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-sci);
+}
+
+.info-box ul {
+  margin: 10px 0 0 20px;
+  padding-left: 15px;
+}
+.info-box li {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.q-card.answered-correct { border-color: var(--correct); box-shadow: 0 0 0 2px rgba(46,204,113,0.15); }
+.q-card.answered-wrong { border-color: var(--wrong); box-shadow: 0 0 0 2px rgba(231,76,60,0.1); }
+.q-card.pulse-correct {
+  animation: pulseCorrect 0.6s ease-out;
+}
+@keyframes pulseCorrect {
+  0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(46,204,113,0); }
+  100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+.q-card.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+.q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.q-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.q-header h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.q-body {
+  padding: 16px 20px 20px;
+}
+
+.q-body p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.q-body ul {
+  margin: 10px 0 0 20px;
+  padding-left: 15px;
+}
+.q-body li {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 8px;
+}
+
+.q-body code {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  background: var(--surface2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-sci);
+}
+
+/* MCQ Options */
+.mcq-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+.mcq-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+  text-align: left;
+}
+.mcq-opt:hover { background: var(--surface); border-color: var(--accent-python); }
+.mcq-opt.selected { background: rgba(55,118,171,0.15); border-color: var(--accent-python); }
+.mcq-opt.correct { background: rgba(46,204,113,0.1); border-color: var(--correct); }
+.mcq-opt.wrong { background: rgba(231,76,60,0.1); border-color: var(--wrong); }
+.mcq-opt.disabled { cursor: not-allowed; opacity: 0.7; }
+
+.opt-letter {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.mcq-opt.selected .opt-letter { background: var(--accent-python); color: #0f1117; }
+.mcq-opt.correct .opt-letter { background: var(--correct); color: #0f1117; }
+.mcq-opt.wrong .opt-letter { background: var(--wrong); color: #fff; }
+
+.opt-text { flex-grow: 1; }
+.opt-text code {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-sci);
+}
+
+.opt-indicator {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.mcq-opt.selected .opt-indicator { color: var(--accent-python); }
+
+/* Feedback */
+.feedback {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.feedback.show {
+  opacity: 1;
+  height: auto;
+  margin-top: 14px;
+}
+.correct-fb {
+  background: rgba(46,204,113,0.1);
+  border: 1px solid var(--correct);
+  color: var(--correct);
+}
+.wrong-fb {
+  background: rgba(231,76,60,0.1);
+  border: 1px solid var(--wrong);
+  color: var(--wrong);
+}
+.hint-fb {
+  background: rgba(55,118,171,0.1);
+  border: 1px solid var(--accent-python);
+  color: var(--accent-python);
+}
+.reveal-fb {
+  background: rgba(245,166,35,0.1);
+  border: 1px solid var(--accent-warn);
+  color: var(--accent-warn);
+}
+.feedback strong { font-weight: 600; }
+
+/* Project Task */
+.project-task {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 24px 0;
+}
+.project-task h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-python);
+  margin-bottom: 12px;
+}
+.project-task .label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-python);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.project-steps {
+  margin: 14px 0 0 20px;
+  padding-left: 15px;
+}
+.project-steps li {
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.project-steps li:before {
+  content: "✓";
+  color: var(--accent-python);
+  font-weight: bold;
+  margin-right: 10px;
+}
+.project-steps code {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-sci);
+}
+
+.code-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.code-block code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  white-space: pre-wrap;
+}
+.code-line {
+  counter-reset: line;
+  padding: 0;
+}
+.code-line span {
+  display: block;
+  padding-left: 40px;
+  position: relative;
+}
+.code-line span:before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding-right: 12px;
+}
+
+.checkpoint {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.checkpoint input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-python);
+  cursor: pointer;
+}
+.checkpoint label {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.tree-diagram {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+.tree-diagram code {
+  background: var(--surface2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-sci);
+}
+.tree-row {
+  display: flex;
+  gap: 16px;
+  margin: 4px 0;
+  align-items: center;
+}
+.tree-row .prefix {
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.tree-row .folder {
+  color: var(--accent-python);
+}
+.tree-row .file {
+  color: var(--text);
+}
+
+/* Debug Challenge */
+.debug-block {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 10px 0;
+}
+.debug-block.error {
+  border-color: var(--wrong);
+  background: rgba(231,76,60,0.05);
+}
+.debug-block.fixed {
+  border-color: var(--correct);
+  background: rgba(46,204,113,0.05);
+}
+.debug-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.debug-icon {
+  font-size: 1.2rem;
+}
+.debug-error { color: var(--wrong); }
+.debug-fixed { color: var(--correct); }
+.debug-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.debug-code {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  background: var(--surface);
+  padding: 10px;
+  border-radius: 6px;
+  margin: 8px 0;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.debug-code .line {
+  padding: 2px 0;
+}
+.debug-code .line-num {
+  color: var(--text-dim);
+  padding-right: 12px;
+  user-select: none;
+}
+.debug-code .line-error {
+  background: rgba(231,76,60,0.15);
+}
+.debug-code .line-fixed {
+  background: rgba(46,204,113,0.15);
+}
+
+/* Results Panel */
+.results-panel {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 32px 0;
+  padding: 40px;
+  text-align: center;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+.results-panel.show {
+  opacity: 1;
+  max-height: 500px;
+  margin: 32px 0;
+}
+.results-grade {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--accent-python);
+  margin-bottom: 12px;
+}
+.results-label {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.results-breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+.rb-item {
+  text-align: center;
+}
+.rb-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.rb-value {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.rb-time {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Confetti Canvas */
+.confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.confetti-canvas.show {
+  opacity: 1;
+}
+
+/* Score Display */
+.score-display {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 24px 0;
+}
+.score-display .score-bar-container {
+  height: 8px;
+  background: var(--surface2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 16px 0 8px;
+}
+.score-display .score-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-python), var(--accent-sci));
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.6s ease;
+}
+.score-display .score-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.score-display .score-label-left {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.score-display .score-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-python);
+}
+
+@media (max-width: 768px) {
+  .hero, .main { padding-left: 20px; padding-right: 20px; }
+  .topbar { padding-left: 20px; padding-right: 20px; }
+  .subject-nav { padding-left: 20px; padding-right: 20px; }
+  .hero h1 { font-size: 2rem; }
+  .sub-tab { font-size: 0.72rem; padding: 6px 14px; }
+  .q-header { padding-left: 14px; padding-right: 14px; }
+  .q-body { padding-left: 14px; padding-right: 14px; }
+  .mcq-opts { gap: 6px; }
+  .mcq-opt { padding: 10px 12px; font-size: 0.9rem; }
+  .results-breakdown { gap: 16px; }
+  .rb-value { font-size: 1.1rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <a href="../../index.html" class="logo">🐍 Cambridge<span>Practice</span></a>
+    <span class="week-badge">Part 1</span>
+  </div>
+  <div class="score-pill">
+    <span class="score-label">SCORE</span>
+    <span class="score-val" id="global-score">0 / 10</span>
+  </div>
+</header>
+
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<main>
+  <section class="hero">
+    <p class="hero-eyebrow">PLATFORMER COURSE</p>
+    <h1><em>Part 1</em>: Project Setup & Structure</h1>
+    <p class="hero-sub">
+      Learn how to organize your platformer game project with proper structure, classes, and configuration constants.
+    </p>
+    <div class="hero-meta">
+      <span class="hero-chip"><span class="dot dot-python"></span>Platformer</span>
+      <span class="hero-chip"><span class="dot dot-time"></span>30 min</span>
+    </div>
+  </section>
+
+  <nav class="subject-nav">
+    <a href="../arcade-intro.html" class="sub-tab">Arcade Basics</a>
+    <a href="../basics/sprites-graphics.html" class="sub-tab">Sprites & Graphics</a>
+    <a href="../basics/movement-physics.html" class="sub-tab">Movement & Physics</a>
+    <a href="part1-project-setup.html" class="sub-tab active-python">Part 1: Setup</a>
+    <a href="part2-player.html" class="sub-tab">Part 2: Player</a>
+    <a href="part3-platforms.html" class="sub-tab">Part 3: Platforms</a>
+    <a href="part4-jumping-gravity.html" class="sub-tab">Part 4: Jumping</a>
+  </nav>
+
+  <div class="main">
+
+    <!-- Concepts Section -->
+    <section class="section-header">
+      <div class="section-icon icon-python">📁</div>
+      <div>
+        <h2>Concepts: Project Organization</h2>
+        <p class="sub-label">Why structure matters in game development</p>
+      </div>
+    </section>
+
+    <div class="info-box">
+      <h3>🎯 Why Organize Your Project?</h3>
+      <p>As your platformer game grows, good organization makes it easier to:</p>
+      <ul>
+        <li><strong>Find and edit code</strong> — Know where everything is</li>
+        <li><strong>Fix bugs</strong> — Isolate problems to specific files</li>
+        <li><strong>Add features</strong> — Add new code without breaking existing code</li>
+        <li><strong>Reuse code</strong> — Use classes and functions across multiple parts</li>
+      </ul>
+      <p>Arcade encourages this through its <code>View</code> system and <code>Sprite</code> classes.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>🏗️ Recommended Project Structure</h3>
+      <p>Here's the folder structure we'll use for our platformer game:</p>
+      <div class="tree-diagram">
+        <div class="tree-row"><span class="prefix">mario-game/</span></div>
+        <div class="tree-row"><span class="prefix">├── </span><span class="file">main.py</span><span style="color:var(--text-dim);"> # Entry point - runs the game</span></div>
+        <div class="tree-row"><span class="prefix">├── </span><span class="file">game.py</span><span style="color:var(--text-dim);"> # Game class with main logic</span></div>
+        <div class="tree-row"><span class="prefix">├── </span><span class="folder">assets/</span></div>
+        <div class="tree-row"><span class="prefix">│   ├── </span><span class="folder">sprites/</span><span style="color:var(--text-dim);"> # Player, enemies, coins, etc.</span></div>
+        <div class="tree-row"><span class="prefix">│   └── </span><span class="folder">sounds/</span><span style="color:var(--text-dim);"> # Jump, coin, death effects</span></div>
+        <div class="tree-row"><span class="prefix">└── </span><span class="folder">levels/</span></div>
+        <div class="tree-row"><span class="prefix">    ├── </span><span class="file">level1.json</span></div>
+        <div class="tree-row"><span class="prefix">    └── </span><span class="file">level2.json</span></div>
+      </div>
+      <p><strong>Tip:</strong> Keep file names lowercase with underscores. This is the Python convention.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>🎨 Arcade's View System</h3>
+      <p>Arcade uses a <code>View</code> system to organize different screens:</p>
+      <ul>
+        <li><code>MenuView</code> — Start menu</li>
+        <li><code>GameView</code> — Main gameplay</li>
+        <li><code>GameOverView</code> — When player dies</li>
+        <li><code>PausedView</code> — When game is paused</li>
+      </ul>
+      <p>Each View is a separate class. We'll start with a simple <code>GameView</code>.</p>
+    </div>
+
+    <!-- Exercises Section -->
+    <section class="section-header">
+      <div class="section-icon icon-python">💡</div>
+      <div>
+        <h2>Exercises</h2>
+        <p class="sub-label">Test your understanding</p>
+      </div>
+    </section>
+
+    <!-- Question 1: MCQ - Why organize project -->
+    <div class="q-card" id="qcard-q1">
+      <div class="q-header">
+        <span class="q-num">Q1</span>
+        <h3>Why is project organization important in game development?</h3>
+      </div>
+      <div class="q-body">
+        <p>Select the best reason for organizing your platformer game code into separate files.</p>
+        <div class="mcq-opts" id="q1-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">So you can use different programming languages in each file</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">To make it easier to find, edit, and reuse code as the project grows</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'c')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">Python requires all game code to be in separate files</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'd')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">To reduce the file size of your game</span>
+            <span class="opt-indicator"></span>
+          </div>
+        </div>
+        <div class="feedback" id="q1-fb"></div>
+        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
+          <button onclick="showHint('q1', 'Think about what happens when your code gets longer.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
+          <button onclick="revealAnswer('q1', 'To make it easier to find, edit, and reuse code as the project grows')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Question 2: MCQ - Folder for sprites -->
+    <div class="q-card" id="qcard-q2">
+      <div class="q-header">
+        <span class="q-num">Q2</span>
+        <h3>Where should sprite images be stored?</h3>
+      </div>
+      <div class="q-body">
+        <p>According to our recommended project structure, where should PNG image files for sprites be placed?</p>
+        <div class="mcq-opts" id="q2-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'a')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text"><code>mario-game/</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'b')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text"><code>mario-game/assets/sprites/</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'c')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text"><code>mario-game/levels/</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'd')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text"><code>mario-game/sounds/</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+        </div>
+        <div class="feedback" id="q2-fb"></div>
+        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
+          <button onclick="showHint('q2', 'Sprite images are visual assets, not code or levels.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
+          <button onclick="revealAnswer('q2', 'mario-game/assets/sprites/')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Question 3: MCQ - Game class purpose -->
+    <div class="q-card" id="qcard-q3">
+      <div class="q-header">
+        <span class="q-num">Q3</span>
+        <h3>What is the purpose of a Game class?</h3>
+      </div>
+      <div class="q-body">
+        <p>In our platformer game, what does the Game class (in <code>game.py</code>) do?</p>
+        <div class="mcq-opts" id="q3-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'a')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">Contains all the code for the entire game in one place</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'b')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">Manages the main game loop, drawing, and game state</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'c')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">Stores only the player character and its properties</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'd')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">Handles all the collision detection between objects</span>
+            <span class="opt-indicator"></span>
+          </div>
+        </div>
+        <div class="feedback" id="q3-fb"></div>
+        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
+          <button onclick="showHint('q3', 'The Game class is the central coordinator of the game.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
+          <button onclick="revealAnswer('q3', 'Manages the main game loop, drawing, and game state')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Question 4: MCQ - Constants -->
+    <div class="q-card" id="qcard-q4">
+      <div class="q-header">
+        <span class="q-num">Q4</span>
+        <h3>Why use constants for configuration?</h3>
+      </div>
+      <div class="q-body">
+        <p>Why should we use constants like <code>SCREEN_WIDTH = 800</code> instead of hardcoding values like <code>800</code> everywhere?</p>
+        <div class="mcq-opts" id="q4-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'a')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">It makes the code run faster</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'b')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">So you can change the value in one place and it updates everywhere</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'c')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">Python syntax requires it</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'd')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">It makes the code file larger</span>
+            <span class="opt-indicator"></span>
+          </div>
+        </div>
+        <div class="feedback" id="q4-fb"></div>
+        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
+          <button onclick="showHint('q4', 'Imagine you want to change the screen size from 800 to 1024...')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
+          <button onclick="revealAnswer('q4', 'So you can change the value in one place and it updates everywhere')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Question 5: Debugging -->
+    <div class="q-card" id="qcard-q5">
+      <div class="q-header">
+        <span class="q-num">Q5</span>
+        <h3>Debug: Missing Import</h3>
+      </div>
+      <div class="q-body">
+        <p>A student wrote this code but gets a <code>NameError: name 'Sprite' is not defined</code>. What's missing?</p>
+        <div class="debug-block error">
+          <div class="debug-header">
+            <span class="debug-icon debug-error">❌</span>
+            <span class="debug-title">Error Code</span>
+          </div>
+          <div class="debug-code">
+<span class="line"><span class="line-num">1</span>class Player(Sprite):</span>
+<span class="line"><span class="line-num">2</span>    def __init__(self):</span>
+<span class="line"><span class="line-num">3</span>        super().__init__("player.png", 0.5)</span>
+          </div>
+        </div>
+        <div class="mcq-opts" id="q5-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'a')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text"><code>import arcade</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'b')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text"><code>from arcade import Sprite</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'c')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text"><code>Sprite = arcade.Sprite</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'd')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">The class name should be lowercase <code>sprite</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+        </div>
+        <div class="feedback" id="q5-fb"></div>
+        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
+          <button onclick="showHint('q5', 'The Sprite class is part of the Arcade library.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
+          <button onclick="revealAnswer('q5', 'from arcade import Sprite (or import arcade and use arcade.Sprite)')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Question 6: MCQ - main.py purpose -->
+    <div class="q-card" id="qcard-q6">
+      <div class="q-header">
+        <span class="q-num">Q6</span>
+        <h3>What does main.py do?</h3>
+      </div>
+      <div class="q-body">
+        <p>In our recommended project structure, what is the purpose of <code>main.py</code>?</p>
+        <div class="mcq-opts" id="q6-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'a')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">Contains the Game class with all game logic</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'b')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">Entry point that creates the window and starts the game</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'c')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">Stores configuration constants like screen size</span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'd')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">Contains only the player class definition</span>
+            <span class="opt-indicator"></span>
+          </div>
+        </div>
+        <div class="feedback" id="q6-fb"></div>
+        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
+          <button onclick="showHint('q6', 'This file is run with python3 main.py')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
+          <button onclick="revealAnswer('q6', 'Entry point that creates the window and starts the game')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Question 7: Code Tracing -->
+    <div class="q-card" id="qcard-q7">
+      <div class="q-header">
+        <span class="q-num">Q7</span>
+        <h3>Code Tracing: Constants in Action</h3>
+      </div>
+      <div class="q-body">
+        <p>Given these constants, what is the value of <code>PLAYER_SCALE * TILE_SIZE</code>?</p>
+        <div class="code-block">
+          <code><span class="code-line"><span>SCREEN_WIDTH = 800</span></span>
+<span class="code-line"><span>SCREEN_HEIGHT = 600</span></span>
+<span class="code-line"><span>TILE_SIZE = 64</span></span>
+<span class="code-line"><span>PLAYER_SCALE = 0.5</span></span>
+<span class="code-line"><span>GRAVITY = 0.5</span></code>
+        </div>
+        <div class="mcq-opts" id="q7-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'a')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text"><code>32</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'b')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text"><code>64</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'c')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text"><code>128</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'd')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text"><code>0.5</code></span>
+            <span class="opt-indicator"></span>
+          </div>
+        </div>
+        <div class="feedback" id="q7-fb"></div>
+        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
+          <button onclick="showHint('q7', '0.5 * 64 = ?')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
+          <button onclick="revealAnswer('q7', '32 (0.5 * 64)')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Project Task Section -->
+    <section class="section-header">
+      <div class="section-icon icon-folder">💻</div>
+      <div>
+        <h2>Project Task: Create Your Project Structure</h2>
+        <p class="sub-label">Set up the foundation for your platformer game</p>
+      </div>
+    </section>
+
+    <div class="project-task">
+      <h3>🎮 Create the Project Structure</h3>
+      <p class="label">ON YOUR MAC</p>
+      
+      <p>Follow these steps to create your platformer game project:</p>
+      
+      <ol class="project-steps">
+        <li>Open <strong>Terminal</strong> (use Spotlight: Cmd+Space, type "Terminal")</li>
+        <li>Navigate to your <strong>Documents</strong> folder: <code>cd ~/Documents</code></li>
+        <li>Create a new folder for your game: <code>mkdir mario-game</code></li>
+        <li>Go into the folder: <code>cd mario-game</code></li>
+        <li>Create the folder structure:
+          <div class="code-block">
+            <code><span class="code-line"><span>mkdir assets</span></span>
+<span class="code-line"><span>mkdir assets/sprites</span></span>
+<span class="code-line"><span>mkdir assets/sounds</span></span>
+<span class="code-line"><span>mkdir levels</span></code>
+          </div>
+        </li>
+        <li>Create empty files for each component:
+          <div class="code-block">
+            <code><span class="code-line"><span>touch main.py</span></span>
+<span class="code-line"><span>touch game.py</span></span>
+<span class="code-line"><span>touch levels/level1.json</span></span>
+<span class="code-line"><span>touch levels/level2.json</span></code>
+          </div>
+        </li>
+      </ol>
+
+      <div class="info-box">
+        <h3>📁 Verify Your Structure</h3>
+        <p>Run this command to see your structure:</p>
+        <div class="code-block">
+          <code><span class="code-line"><span>tree</span></span>
+<span class="code-line"><span># or on Mac:</span></span>
+<span class="code-line"><span>find . -type f -o -type d | head -20</span></code>
+        </div>
+        <p>You should see: <code>mario-game/</code>, <code>assets/</code>, <code>levels/</code>, <code>main.py</code>, <code>game.py</code></p>
+      </div>
+
+      <div class="checkpoint">
+        <input type="checkbox" id="check1">
+        <label for="check1">Folder structure created (mario-game/assets/sprites, assets/sounds, levels)</label>
+      </div>
+      <div class="checkpoint">
+        <input type="checkbox" id="check2">
+        <label for="check2">Empty files created (main.py, game.py, level1.json, level2.json)</label>
+      </div>
+    </div>
+
+    <!-- Starter Code Section -->
+    <div class="project-task">
+      <h3>📝 Add Starter Code</h3>
+      <p class="label">IN main.py AND game.py</p>
+      
+      <p><strong>Step 1:</strong> Open <code>main.py</code> in your text editor and add:</p>
+      <div class="code-block">
+        <code><span class="code-line"><span>import arcade</span></span>
+<span class="code-line"><span>from game import Game</span></span>
+<span class="code-line"><span></span></span>
+<span class="code-line"><span>def main():</span></span>
+<span class="code-line"><span>    """ Main entry point """</span></span>
+<span class="code-line"><span>    window = arcade.Window(800, 600, "Mario Platformer")</span></span>
+<span class="code-line"><span>    game = Game(window)</span></span>
+<span class="code-line"><span>    window.show_view(game)</span></span>
+<span class="code-line"><span>    arcade.run()</span></span>
+<span class="code-line"><span></span></span>
+<span class="code-line"><span>if __name__ == "__main__":</span></span>
+<span class="code-line"><span>    main()</span></span></code>
+      </div>
+
+      <p><strong>Step 2:</strong> Open <code>game.py</code> and add the Game class:</p>
+      <div class="code-block">
+        <code><span class="code-line"><span>import arcade</span></span>
+<span class="code-line"><span></span></span>
+<span class="code-line"><span>class Game(arcade.View):</span></span>
+<span class="code-line"><span>    """ Main game class """</span></span>
+<span class="code-line"><span>    </span></span>
+<span class="code-line"><span>    def __init__(self, window):</span></span>
+<span class="code-line"><span>        super().__init__(window)</span></span>
+<span class="code-line"><span>        # Window dimensions</span></span>
+<span class="code-line"><span>        self.width = window.width</span></span>
+<span class="code-line"><span>        self.height = window.height</span></span>
+<span class="code-line"><span>        self.title = window.title</span></span>
+<span class="code-line"><span>        </span></span>
+<span class="code-line"><span>        # These will be created in setup()</span></span>
+<span class="code-line"><span>        self.player = None</span></span>
+<span class="code-line"><span>        self.camera = None</span></span>
+<span class="code-line"><span>    </span></span>
+<span class="code-line"><span>    def setup(self):</span></span>
+<span class="code-line"><span>        """ Set up the game here """</span></span>
+<span class="code-line"><span>        pass  # We'll add this in Part 2</span></span>
+<span class="code-line"><span>    </span></span>
+<span class="code-line"><span>    def on_draw(self, delta_time):</span></span>
+<span class="code-line"><span>        """ Render the screen """</span></span>
+<span class="code-line"><span>        self.clear()</span></span>
+<span class="code-line"><span>        # Drawing code will go here</span></code>
+      </div>
+
+      <div class="checkpoint">
+        <input type="checkbox" id="check3">
+        <label for="check3">main.py created with entry point code</label>
+      </div>
+      <div class="checkpoint">
+        <input type="checkbox" id="check4">
+        <label for="check4">game.py created with Game class extending arcade.View</label>
+      </div>
+      <div class="checkpoint">
+        <input type="checkbox" id="check5">
+        <label for="check5">Code runs with <code>python3 main.py</code> and shows empty window</label>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>⚠️ Troubleshooting</h3>
+      <p><strong>"ModuleNotFoundError: No module named 'arcade'"</strong></p>
+      <p>Run: <code>pip3 install arcade</code></p>
+      <p style="margin-top:10px;"><strong>"File not found" errors</strong></p>
+      <p>Make sure you're running from the mario-game folder: <code>cd ~/Documents/mario-game</code></p>
+      <p style="margin-top:10px;"><strong>"ImportError: cannot import name 'Game' from 'game'"</strong></p>
+      <p>Make sure game.py has the Game class defined correctly.</p>
+    </div>
+
+    <!-- Results Panel -->
+    <div class="score-display">
+      <h3 style="font-family:var(--font-display); font-size:1.2rem; margin-bottom:12px;">Your Progress</h3>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:12px;">Complete the exercises to unlock your score!</p>
+      <div class="score-bar-container">
+        <div class="score-bar-fill" id="score-fill"></div>
+      </div>
+      <div class="score-text">
+        <span class="score-label-left">SCORE</span>
+        <span class="score-value" id="global-score-display">0 / 10</span>
+      </div>
+    </div>
+
+    <div class="results-panel" id="results-panel">
+      <div class="results-grade" id="results-grade">0%</div>
+      <div class="results-label" id="results-label">Keep Going!</div>
+      <div class="results-breakdown">
+        <div class="rb-item">
+          <div class="rb-label">CORRECT</div>
+          <div class="rb-value" id="rb-score">0 / 10</div>
+        </div>
+        <div class="rb-item">
+          <div class="rb-label">TIME</div>
+          <div class="rb-value rb-time" id="rb-time">0m 0s</div>
+        </div>
+      </div>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-top:16px;">
+        🎮 Ready for Part 2? Create your Player class next!
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<canvas class="confetti-canvas" id="confetti"></canvas>
+
+<script>
+// STATE
+const state = {
+  answers: {},
+  correct: {},
+  totalMarks: { py: 0 },
+  maxMarks:   { py: 10 },
+  startTime: Date.now()
+};
+
+const marks = {
+  q1:1, q2:1, q3:1, q4:1, q5:2, q6:1, q7:2
+};
+
+const pyQs = ['q1','q2','q3','q4','q5','q6','q7'];
+
+// ── Select MCQ ─────────────────────────────────────────────────
+function selectMCQ(qid, el, val) {
+  // Remove selected from siblings
+  const opts = el.parentElement.querySelectorAll('.mcq-opt');
+  opts.forEach(opt => {
+    opt.classList.remove('selected');
+    const indicator = opt.querySelector('.opt-indicator');
+    if (indicator) indicator.textContent = '';
+  });
+  
+  // Add selected to clicked
+  el.classList.add('selected');
+  const indicator = el.querySelector('.opt-indicator');
+  if (indicator) indicator.textContent = '✓';
+  
+  // Store answer
+  state.answers[qid] = val;
+}
+
+// ── Check MCQ ─────────────────────────────────────────────────
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick')?.match(/'([a-d])'/);
+    const v = m?.[1];
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect, label);
+}
+
+// ── Mark Result ───────────────────────────────────────────────
+function markResult(qid, isCorrect, label) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Try the hint or reveal the answer.`;
+  updateScores();
+}
+
+// ── Hint / Reveal ─────────────────────────────────────────────
+function showHint(qid, hintText) {
+  if (state.correct[qid] !== undefined) return;
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    updateScores();
+  }
+}
+
+// ── Shake ──────────────────────────────────────────────────────
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake');
+  void card.offsetWidth;
+  card.classList.add('shake');
+  setTimeout(() => card.classList.remove('shake'), 400);
+}
+
+// ── Update Scores ─────────────────────────────────────────────
+function updateScores() {
+  let pyScore = 0, answered = 0;
+  pyQs.forEach(qid => {
+    if (state.correct[qid] === true) pyScore += marks[qid];
+    if (state.correct[qid] !== undefined) answered++;
+  });
+  document.getElementById('global-score').textContent = `${pyScore} / ${state.maxMarks.py}`;
+  document.getElementById('global-score-display').textContent = `${pyScore} / ${state.maxMarks.py}`;
+  document.getElementById('progress-bar').style.width = `${(answered/pyQs.length)*100}%`;
+  const pct = (pyScore / state.maxMarks.py) * 100;
+  document.getElementById('score-fill').style.width = pct + '%';
+  
+  if (answered === pyQs.length) showResults(pyScore);
+}
+
+// ── Results ───────────────────────────────────────────────────
+function showResults(py) {
+  const pct = Math.round((py / state.maxMarks.py) * 100);
+  const grade = pct >= 85 ? '🏆 Excellent!' : pct >= 70 ? '⭐ Great Job!' : pct >= 55 ? '👍 Good Effort' : '📚 Keep Practising';
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const mins = Math.floor(elapsed/60), secs = elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  document.getElementById('rb-score').textContent = `${py}/${state.maxMarks.py}`;
+  document.getElementById('rb-time').textContent = `${mins}m ${secs}s`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (pct >= 70) launchConfetti();
+  
+  // Save progress to localStorage
+  try {
+    const key = `python-part1-setup-v1`;
+    localStorage.setItem(key, JSON.stringify({
+      score: py,
+      max: state.maxMarks.py,
+      pct: pct,
+      completed: true,
+      timestamp: Date.now()
+    }));
+  } catch(e) {}
+}
+
+// ── Confetti ──────────────────────────────────────────────────
+function launchConfetti() {
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.classList.add('show');
+  
+  const particles = [];
+  for (let i = 0; i < 150; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 8 + 4,
+      speedX: Math.random() * 6 - 3,
+      speedY: Math.random() * -10 - 5,
+      color: ['#3776ab', '#4f8ef7', '#3ecf8e', '#f5a623'][Math.floor(Math.random() * 4)],
+      rotation: 0,
+      rotationSpeed: Math.random() * 0.2 - 0.1
+    });
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let remaining = 0;
+    particles.forEach(p => {
+      p.y += p.speedY;
+      p.x += p.speedX;
+      p.rotation += p.rotationSpeed;
+      p.speedY += 0.05; // gravity
+      
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+      ctx.restore();
+      
+      if (p.y < canvas.height) remaining++;
+    });
+    
+    if (remaining > 0) requestAnimationFrame(animate);
+    else {
+      canvas.classList.remove('show');
+      canvas.width = 0;
+      canvas.height = 0;
+    }
+  }
+  
+  animate();
+}
+
+// ── Load saved progress ────────────────────────────────────────
+function loadProgress() {
+  try {
+    const key = `python-part1-setup-v1`;
+    const saved = localStorage.getItem(key);
+    if (saved) {
+      const data = JSON.parse(saved);
+      // Don't auto-restore answers, but track completion
+      if (data.completed) {
+        // Just mark as seen, don't restore state
+      }
+    }
+  } catch(e) {}
+}
+
+// Initialize
+loadProgress();
+</script>
+</body>
+</html>
