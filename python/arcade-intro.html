@@ -1525,7 +1525,7 @@ try {
 } catch(e) {}
 
 // Smooth scroll for nav
-_document.querySelectorAll('.sub-tab').forEach(tab => {
+document.querySelectorAll('.sub-tab').forEach(tab => {
   tab.addEventListener('click', (e) => {
     e.preventDefault();
     const target = document.querySelector(tab.getAttribute('href'));
