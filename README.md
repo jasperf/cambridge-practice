@@ -58,7 +58,8 @@ cambridge-practice/
 │   │   ├── part2-player.html            ← Player Class & Movement (10 marks)
 │   │   ├── part3-platforms.html          ← Platforms & Collision (10 marks)
 │   │   ├── part4-jumping-gravity.html    ← Jumping, Gravity & Physics (10 marks)
-│   │   └── part5-camera-scrolling.html   ← Camera View & Scrolling (10 marks)
+│   │   ├── part5-camera-scrolling.html   ← Camera View & Scrolling (10 marks)
+│   │   └── part6-coins-collectibles.html ← Coins, Scoring & Sound (10 marks)
 │   └── challenges/                       ← Practice exercises (planned)
 ├── igcse/                           ← IGCSE (planned)
 │   └── ...
@@ -126,7 +127,8 @@ npx serve .
 | Platformer Part 3 | Platforms, SpriteLists, collision | ✅ 10 marks |
 | Platformer Part 4 | Jumping, Gravity & Physics | ✅ 10 marks |
 | Platformer Part 5 | Camera View & Scrolling | ✅ 10 marks |
-| Platformer Parts 6-9 | Coins, enemies, levels, polish | 🔜 Coming |
+| Platformer Part 6 | Coins, Collectibles & Scoring | ✅ 10 marks |
+| Platformer Parts 7-9 | Enemies, levels, polish | 🔜 Coming |
 | Challenge Sheets | Debugging, code tracing, puzzles | 🔜 Planned |
 
 ### IGCSE

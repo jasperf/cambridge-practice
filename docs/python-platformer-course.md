@@ -47,7 +47,7 @@ cambridge-practice/
 │   │   ├── part3-platforms.html          # ⬜ TODO - Platform class, collision
 │   │   ├── part4-jumping-gravity.html    # ⬜ TODO - Jump physics, gravity
 │   │   ├── part5-camera-scrolling.html   # ✅ Camera follows player
-│   │   ├── part6-coins-collectibles.html # ⬜ TODO - Collect items, scoring
+│   │   ├── part6-coins-collectibles.html # ✅ Coins, scoring, sound effects
 │   │   ├── part7-enemies.html            # ⬜ TODO - Enemy AI, collision
 │   │   ├── part8-levels.html             # ⬜ TODO - Load 2 levels from files
 │   │   ├── part9-polish.html             # ⬜ TODO - Graphics, sound, menu
