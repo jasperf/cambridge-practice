@@ -382,6 +382,35 @@ body::before {
   40%, 80% { transform: translateX(6px); }
 }
 
+.camera-demo {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.camera-demo canvas {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  display: block;
+  margin: 12px auto 0;
+  cursor: pointer;
+}
+.camera-demo .demo-status {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+.camera-demo .demo-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
 .q-header {
   display: flex;
   align-items: center;
@@ -793,6 +822,14 @@ body::before {
         <li><strong>Draw sprites:</strong> All sprites assigned to that camera will be drawn correctly</li>
       </ol>
       <p><strong>Pro tip:</strong> For the best feel, use <code>move_to_with_speed()</code> with a speed between 0.3 and 0.8.</p>
+    </div>
+
+    <!-- Interactive Camera Demo -->
+    <div class="camera-demo" id="camera-demo">
+      <h3 style="font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 4px;">Interactive: Camera Following &amp; Boundaries</h3>
+      <p style="font-size: 0.88rem; color: var(--text-muted);">Drag the blue player to see the camera follow with smooth scrolling. The camera stops at level boundaries. <em style="color: var(--text-dim);">(Collision prevention is turned off for now.)</em></p>
+      <canvas id="camera-demo-canvas" width="600" height="320"></canvas>
+      <div class="demo-status" id="camera-demo-status">Drag the blue player to move around. Camera position updates below.</div>
     </div>
 
   </section>
@@ -1411,6 +1448,234 @@ window.addEventListener('load', () => {
     });
   });
 });
+
+// ── Interactive Camera Demo ─────────────────────────────────
+(function() {
+  const canvas = document.getElementById('camera-demo-canvas');
+  const ctx = canvas.getContext('2d');
+  const statusEl = document.getElementById('camera-demo-status');
+
+  // World dimensions (larger than viewport)
+  const WORLD_WIDTH = 1200;
+  const WORLD_HEIGHT = 400;
+  // Viewport dimensions (what camera shows)
+  const VIEWPORT_WIDTH = 600;
+  const VIEWPORT_HEIGHT = 320;
+  // Level boundaries (where camera can scroll to)
+  const LEVEL_LEFT = VIEWPORT_WIDTH / 2;
+  const LEVEL_RIGHT = WORLD_WIDTH - VIEWPORT_WIDTH / 2;
+  const LEVEL_TOP = WORLD_HEIGHT - VIEWPORT_HEIGHT / 2;
+  const LEVEL_BOTTOM = VIEWPORT_HEIGHT / 2;
+
+  // Player
+  let player = { x: 300, y: 150, w: 36, h: 48 };
+  // Camera
+  let camera = { x: 300, y: 150 };
+  // Smooth camera speed
+  const CAMERA_SPEED = 0.3;
+
+  let dragging = false;
+  let dragOffX = 0, dragOffY = 0;
+
+  // World elements (platforms, background)
+  const platforms = [
+    { x: 0, y: 50, w: 200, h: 24 },
+    { x: 250, y: 100, w: 150, h: 24 },
+    { x: 450, y: 150, w: 200, h: 24 },
+    { x: 700, y: 200, w: 180, h: 24 },
+    { x: 950, y: 100, w: 200, h: 24 },
+    { x: 0, y: 250, w: 1200, h: 32 }
+  ];
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0d1117';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Calculate visible area based on camera
+    const viewX = camera.x - VIEWPORT_WIDTH / 2;
+    const viewY = camera.y - VIEWPORT_HEIGHT / 2;
+
+    // Draw world background (darker)
+    ctx.fillStyle = '#111620';
+    ctx.fillRect(-viewX, -viewY, WORLD_WIDTH, WORLD_HEIGHT);
+
+    // Draw level boundary indicators
+    ctx.strokeStyle = 'rgba(55,118,171,0.3)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([5, 5]);
+    ctx.strokeRect(LEVEL_LEFT - viewX, LEVEL_BOTTOM - viewY, 
+                   LEVEL_RIGHT - LEVEL_LEFT, LEVEL_TOP - LEVEL_BOTTOM);
+    ctx.setLineDash([]);
+
+    // Draw platforms
+    platforms.forEach(p => {
+      const px = p.x - viewX;
+      const py = p.y - viewY;
+      // Only draw if visible
+      if (px + p.w < 0 || px > VIEWPORT_WIDTH || py + p.h < 0 || py > VIEWPORT_HEIGHT) return;
+      
+      ctx.fillStyle = 'rgba(42,48,80,0.8)';
+      ctx.fillRect(px, py, p.w, p.h);
+      ctx.strokeStyle = '#2a3050';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(px, py, p.w, p.h);
+    });
+
+    // Draw player
+    const playerX = player.x - viewX;
+    const playerY = player.y - viewY;
+    ctx.fillStyle = 'rgba(55,118,171,0.9)';
+    ctx.fillRect(playerX, playerY, player.w, player.h);
+    ctx.strokeStyle = '#4f8ef7';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(playerX, playerY, player.w, player.h);
+
+    // Draw camera viewport indicator (in world space)
+    ctx.strokeStyle = 'rgba(62,207,142,0.6)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4, 4]);
+    ctx.strokeRect(camera.x - viewX - VIEWPORT_WIDTH/2, camera.y - viewY - VIEWPORT_HEIGHT/2,
+                   VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+    ctx.setLineDash([]);
+
+    // Labels
+    ctx.font = '11px "DM Mono", monospace';
+    ctx.fillStyle = '#7a84a0';
+    ctx.textAlign = 'center';
+    ctx.fillText('Player', playerX + player.w / 2, playerY - 6);
+
+    // Camera position display
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#3ecf8e';
+    ctx.fillText(`Camera: (${Math.round(camera.x)}, ${Math.round(camera.y)})`, 10, 20);
+    ctx.fillStyle = '#7a84a0';
+    ctx.fillText(`Level bounds: x ${Math.round(LEVEL_LEFT)}-${Math.round(LEVEL_RIGHT)}, y ${Math.round(LEVEL_BOTTOM)}-${Math.round(LEVEL_TOP)}`, 10, 40);
+
+    // Check if camera at boundary
+    let boundaryText = '';
+    if (Math.round(camera.x) <= LEVEL_LEFT) boundaryText = '← LEFT BOUNDARY';
+    else if (Math.round(camera.x) >= LEVEL_RIGHT) boundaryText = 'RIGHT BOUNDARY →';
+    if (Math.round(camera.y) <= LEVEL_BOTTOM) boundaryText += (boundaryText ? ' | ' : '') + '↑ BOTTOM';
+    else if (Math.round(camera.y) >= LEVEL_TOP) boundaryText += (boundaryText ? ' | ' : '') + 'TOP ↓';
+    
+    if (boundaryText) {
+      ctx.fillStyle = '#f5a623';
+      ctx.font = 'bold 11px "DM Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(boundaryText, VIEWPORT_WIDTH / 2, VIEWPORT_HEIGHT - 10);
+    }
+  }
+
+  function updateCamera() {
+    // Calculate target position (centered on player)
+    let targetX = player.x;
+    let targetY = player.y;
+
+    // Clamp to level boundaries
+    targetX = Math.max(LEVEL_LEFT, Math.min(targetX, LEVEL_RIGHT));
+    targetY = Math.max(LEVEL_BOTTOM, Math.min(targetY, LEVEL_TOP));
+
+    // Smooth movement toward target
+    camera.x += (targetX - camera.x) * CAMERA_SPEED;
+    camera.y += (targetY - camera.y) * CAMERA_SPEED;
+
+    // Round to avoid sub-pixel rendering issues
+    if (Math.abs(targetX - camera.x) < 0.1) camera.x = targetX;
+    if (Math.abs(targetY - camera.y) < 0.1) camera.y = targetY;
+
+    // Update status
+    const atLeft = Math.round(camera.x) <= LEVEL_LEFT;
+    const atRight = Math.round(camera.x) >= LEVEL_RIGHT;
+    const atBottom = Math.round(camera.y) <= LEVEL_BOTTOM;
+    const atTop = Math.round(camera.y) >= LEVEL_TOP;
+    
+    let status = `Drag the blue player. Camera: (${Math.round(camera.x)}, ${Math.round(camera.y)})`;
+    if (atLeft) status += ' | At LEFT boundary';
+    if (atRight) status += ' | At RIGHT boundary';
+    if (atBottom) status += ' | At BOTTOM boundary';
+    if (atTop) status += ' | At TOP boundary';
+    statusEl.textContent = status;
+  }
+
+  function getMousePos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
+    };
+  }
+
+  function worldToScreen(worldX, worldY) {
+    const viewX = camera.x - VIEWPORT_WIDTH / 2;
+    const viewY = camera.y - VIEWPORT_HEIGHT / 2;
+    return { x: worldX - viewX, y: worldY - viewY };
+  }
+
+  function screenToWorld(screenX, screenY) {
+    const viewX = camera.x - VIEWPORT_WIDTH / 2;
+    const viewY = camera.y - VIEWPORT_HEIGHT / 2;
+    return { x: screenX + viewX, y: screenY + viewY };
+  }
+
+  canvas.addEventListener('mousedown', e => {
+    const pos = getMousePos(e);
+    const wp = screenToWorld(pos.x, pos.y);
+    if (wp.x >= player.x && wp.x <= player.x + player.w &&
+        wp.y >= player.y && wp.y <= player.y + player.h) {
+      dragging = true;
+      dragOffX = wp.x - player.x;
+      dragOffY = wp.y - player.y;
+    }
+  });
+
+  canvas.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const pos = getMousePos(e);
+    const wp = screenToWorld(pos.x, pos.y);
+    player.x = Math.max(0, Math.min(WORLD_WIDTH - player.w, wp.x - dragOffX));
+    player.y = Math.max(0, Math.min(WORLD_HEIGHT - player.h, wp.y - dragOffY));
+    updateCamera();
+    draw();
+  });
+
+  canvas.addEventListener('mouseup', () => { dragging = false; });
+  canvas.addEventListener('mouseleave', () => { dragging = false; });
+
+  // Touch support
+  canvas.addEventListener('touchstart', e => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const pos = getMousePos(touch);
+    const wp = screenToWorld(pos.x, pos.y);
+    if (wp.x >= player.x && wp.x <= player.x + player.w &&
+        wp.y >= player.y && wp.y <= player.y + player.h) {
+      dragging = true;
+      dragOffX = wp.x - player.x;
+      dragOffY = wp.y - player.y;
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (!dragging) return;
+    const touch = e.touches[0];
+    const pos = getMousePos(touch);
+    const wp = screenToWorld(pos.x, pos.y);
+    player.x = Math.max(0, Math.min(WORLD_WIDTH - player.w, wp.x - dragOffX));
+    player.y = Math.max(0, Math.min(WORLD_HEIGHT - player.h, wp.y - dragOffY));
+    updateCamera();
+    draw();
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', () => { dragging = false; });
+
+  // Initial draw
+  updateCamera();
+  draw();
+})();
 </script>
 </body>
 </html>
