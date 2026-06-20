@@ -370,10 +370,11 @@ body::before {
   padding: 14px;
   margin: 10px 0;
   overflow-x: auto;
-  font-family: var(--font-mono);
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Fira Mono', 'DM Mono', monospace;
   font-size: 0.85rem;
   line-height: 1.6;
   color: #e6edfa;
+  counter-reset: line;
 }
 .code-block .comment { color: #6a737d; }
 .code-block .keyword { color: #ff7b72; }
@@ -385,18 +386,18 @@ body::before {
 .code-line {
   display: block;
   padding: 2px 0;
+  white-space: pre;
 }
-.code-line.numbers { counter-reset: line; }
-.code-line.numbers span {
-  display: inline-block;
+.code-line::before {
   counter-increment: line;
-  width: 32px;
+  content: counter(line);
+  display: inline-block;
+  width: 36px;
   color: #6e7781;
   user-select: none;
   margin-right: 12px;
-}
-.code-line.numbers span::before {
-  content: counter(line);
+  text-align: right;
+  font-family: var(--font-mono);
 }
 
 .btn {
@@ -802,20 +803,20 @@ body::before {
       <h3>The Game Loop</h3>
       <p>Every Arcade game follows this pattern:</p>
       <div class="code-block">
-<span class="code-line numbers"><span></span><span class="keyword">import</span> <span class="variable">arcade</span></span>
-<span class="code-line numbers"><span></span></span>
-<span class="code-line numbers"><span></span><span class="keyword">class</span> <span class="function">MyGame</span>(<span class="variable">arcade.Window</span>):</span>
-<span class="code-line numbers"><span></span>    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>):</span>
-<span class="code-line numbers"><span></span>        <span class="keyword">super</span>().<span class="function">__init__</span>(<span class="number">800</span>, <span class="number">600</span>, <span class="string">"My Game"</span>)</span>
-<span class="code-line numbers"><span></span>        <span class="variable">arcade.set_background_color</span>(<span class="variable">arcade.csscolor.DARK_BLUE</span>)</span>
-<span class="code-line numbers"><span></span>    </span>
-<span class="code-line numbers"><span></span>    <span class="keyword">def</span> <span class="function">on_draw</span>(<span class="variable">self</span>):</span>
-<span class="code-line numbers"><span></span>        <span class="comment"># Draw everything here</span></span>
-<span class="code-line numbers"><span></span>        <span class="variable">self.clear</span>()</span>
-<span class="code-line numbers"><span></span>        <span class="variable">arcade.draw_circle_filled</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="variable">arcade.csscolor.RED</span>)</span>
-<span class="code-line numbers"><span></span></span>
-<span class="code-line numbers"><span></span><span class="variable">game</span> = <span class="function">MyGame</span>()</span>
-<span class="code-line numbers"><span></span><span class="variable">arcade.run</span>()</span>
+<span class="code-line"><span class="keyword">import</span> <span class="variable">arcade</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">class</span> <span class="function">MyGame</span>(<span class="variable">arcade.Window</span>):</span>
+<span class="code-line">    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>):</span>
+<span class="code-line">        <span class="keyword">super</span>().<span class="function">__init__</span>(<span class="number">800</span>, <span class="number">600</span>, <span class="string">"My Game"</span>)</span>
+<span class="code-line">        <span class="variable">arcade.set_background_color</span>(<span class="variable">arcade.csscolor.DARK_BLUE</span>)</span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="keyword">def</span> <span class="function">on_draw</span>(<span class="variable">self</span>):</span>
+<span class="code-line">        <span class="comment"># Draw everything here</span></span>
+<span class="code-line">        <span class="variable">self.clear</span>()</span>
+<span class="code-line">        <span class="variable">arcade.draw_circle_filled</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="variable">arcade.csscolor.RED</span>)</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="variable">game</span> = <span class="function">MyGame</span>()</span>
+<span class="code-line"><span class="variable">arcade.run</span>()</span>
       </div>
       <p><strong>Key concepts:</strong></p>
       <ul>
@@ -998,7 +999,7 @@ body::before {
       </div>
       <div class="q-body">
         <div class="code-block">
-<span class="code-line numbers"><span></span><span class="variable">arcade.draw_circle_filled</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="variable">arcade.csscolor.RED</span>)</span>
+<span class="code-line"><span class="variable">arcade.draw_circle_filled</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="variable">arcade.csscolor.RED</span>)</span>
         </div>
         <div class="mcq-options" id="q4-opts">
           <div class="mcq-opt" onclick="selectMCQ('q4', this, 'a')">
@@ -1039,19 +1040,19 @@ body::before {
       </div>
       <div class="q-body">
         <div class="code-block">
-<span class="code-line numbers"><span></span><span class="keyword">import</span> <span class="variable">arcade</span></span>
-<span class="code-line numbers"><span></span></span>
-<span class="code-line numbers"><span></span><span class="keyword">class</span> <span class="function">MyGame</span>(<span class="variable">arcade.Window</span>):</span>
-<span class="code-line numbers"><span></span>    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>):</span>
-<span class="code-line numbers"><span></span>        <span class="keyword">super</span>().<span class="function">__init__</span>(<span class="number">800</span>, <span class="number">600</span>)</span>
-<span class="code-line numbers"><span></span>        <span class="variable">arcade.set_background_color</span>(<span class="variable">arcade.csscolor.BLUE</span>)</span>
-<span class="code-line numbers"><span></span>    </span>
-<span class="code-line numbers"><span></span>    <span class="keyword">def</span> <span class="function">on_draw</span>(<span class="variable">self</span>):</span>
-<span class="code-line numbers"><span></span>        <span class="variable">self.clear</span>()</span>
-<span class="code-line numbers"><span></span>        <span class="variable">arcade.draw_circle_filled</span>(<span class="number">400</span>, <span class="number">300</span>, <span class="number">50</span>, <span class="variable">arcade.csscolor.YELLOW</span>)</span>
-<span class="code-line numbers"><span></span></span>
-<span class="code-line numbers"><span></span><span class="variable">game</span> = <span class="function">MyGame</span>()</span>
-<span class="code-line numbers"><span></span><span class="comment"># Missing line!</span></span>
+<span class="code-line"><span class="keyword">import</span> <span class="variable">arcade</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">class</span> <span class="function">MyGame</span>(<span class="variable">arcade.Window</span>):</span>
+<span class="code-line">    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>):</span>
+<span class="code-line">        <span class="keyword">super</span>().<span class="function">__init__</span>(<span class="number">800</span>, <span class="number">600</span>)</span>
+<span class="code-line">        <span class="variable">arcade.set_background_color</span>(<span class="variable">arcade.csscolor.BLUE</span>)</span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="keyword">def</span> <span class="function">on_draw</span>(<span class="variable">self</span>):</span>
+<span class="code-line">        <span class="variable">self.clear</span>()</span>
+<span class="code-line">        <span class="variable">arcade.draw_circle_filled</span>(<span class="number">400</span>, <span class="number">300</span>, <span class="number">50</span>, <span class="variable">arcade.csscolor.YELLOW</span>)</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="variable">game</span> = <span class="function">MyGame</span>()</span>
+<span class="code-line"><span class="comment"># Missing line!</span></span>
         </div>
         <div class="debug-block error">
           <div class="debug-header">
@@ -1176,22 +1177,22 @@ body::before {
       <p style="color: var(--text-muted); margin-bottom: 14px;">Create a new file called <code>game.py</code> with the following code:</p>
       
       <div class="code-block">
-<span class="code-line numbers"><span></span><span class="keyword">import</span> <span class="variable">arcade</span></span>
-<span class="code-line numbers"><span></span></span>
-<span class="code-line numbers"><span></span><span class="keyword">class</span> <span class="function">Game</span>(<span class="variable">arcade.Window</span>):</span>
-<span class="code-line numbers"><span></span>    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>):</span>
-<span class="code-line numbers"><span></span>        <span class="keyword">super</span>().<span class="function">__init__</span>(<span class="number">800</span>, <span class="number">600</span>, <span class="string">"My Platformer"</span>)</span>
-<span class="code-line numbers"><span></span>        <span class="variable">arcade.set_background_color</span>(<span class="variable">arcade.csscolor.DARK_BLUE</span>)</span>
-<span class="code-line numbers"><span></span>    </span>
-<span class="code-line numbers"><span></span>    </span>
-<span class="code-line numbers"><span></span>    <span class="keyword">def</span> <span class="function">on_draw</span>(<span class="variable">self</span>):</span>
-<span class="code-line numbers"><span></span>        <span class="variable">self.clear</span>()</span>
-<span class="code-line numbers"><span></span>        <span class="variable">arcade.draw_text</span>(<span class="string">"Hello, Arcade!"</span>, <span class="number">400</span>, <span class="number">300</span>, 
+<span class="code-line"><span class="keyword">import</span> <span class="variable">arcade</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">class</span> <span class="function">Game</span>(<span class="variable">arcade.Window</span>):</span>
+<span class="code-line">    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>):</span>
+<span class="code-line">        <span class="keyword">super</span>().<span class="function">__init__</span>(<span class="number">800</span>, <span class="number">600</span>, <span class="string">"My Platformer"</span>)</span>
+<span class="code-line">        <span class="variable">arcade.set_background_color</span>(<span class="variable">arcade.csscolor.DARK_BLUE</span>)</span>
+<span class="code-line">    </span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="keyword">def</span> <span class="function">on_draw</span>(<span class="variable">self</span>):</span>
+<span class="code-line">        <span class="variable">self.clear</span>()</span>
+<span class="code-line">        <span class="variable">arcade.draw_text</span>(<span class="string">"Hello, Arcade!"</span>, <span class="number">400</span>, <span class="number">300</span>, 
           <span class="variable">arcade.csscolor.WHITE</span>, <span class="number">36</span>)</span>
-<span class="code-line numbers"><span></span>    </span>
-<span class="code-line numbers"><span></span>    </span>
-<span class="code-line numbers"><span></span><span class="variable">window</span> = <span class="function">Game</span>()</span>
-<span class="code-line numbers"><span></span><span class="variable">arcade.run</span>()</span>
+<span class="code-line">    </span>
+<span class="code-line">    </span>
+<span class="code-line"><span class="variable">window</span> = <span class="function">Game</span>()</span>
+<span class="code-line"><span class="variable">arcade.run</span>()</span>
       </div>
 
       <div class="project-steps">
