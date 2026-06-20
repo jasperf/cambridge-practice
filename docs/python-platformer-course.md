@@ -863,7 +863,45 @@ Can be done at student's pace, one sheet per session.
   - Interactive: Coordinate grid visualization
   - LIVE at https://jasperf.github.io/cambridge-practice/python/sprites-graphics.html
 
-#### 5. Git & Deployment
+#### 5. Basics: Movement & Physics
+- ✅ **python/basics/movement-physics.html** — Third basics sheet (Full interactive sheet)
+  - Concepts: Keyboard input, position vs velocity, frame-based movement
+  - Exercises: 6 questions covering keyboard methods, code tracing, debugging
+  - Project Task: Add keyboard controls to move player left/right with velocity
+  - Interactive: SVG with clickable arrow keys to simulate movement
+
+#### 6. Platformer Part 1: Project Setup
+- ✅ **python/platformer/part1-project-setup.html** — First platformer sheet (Full interactive sheet)
+  - Concepts: Project organization, Arcade's View system, folder structure
+  - Exercises: 7 questions (10 marks total) covering project structure, Game class, constants
+  - Project Task: Create mario-game/ folder structure with main.py, game.py, assets/, levels/
+  - Starter Code: Complete main.py entry point and Game class skeleton
+  - LIVE at https://jasperf.github.io/cambridge-practice/python/platformer/part1-project-setup.html
+
+#### 7. Platformer Part 2: Player
+- ✅ **python/platformer/part2-player.html** — Player movement sheet (Full interactive sheet)
+  - Concepts: Player class extending arcade.Sprite, keyboard input handling, movement physics
+  - Exercises: 7 questions (10 marks total) covering inheritance, super(), movement speed constants
+  - Project Task: Create Player class with movement controls and boundaries
+  - LIVE at https://jasperf.github.io/cambridge-practice/python/platformer/part2-player.html
+
+#### 8. Platformer Part 3: Platforms
+- ✅ **python/platformer/part3-platforms.html** — Platform collision sheet (Full interactive sheet)
+  - Concepts: Platform class, SpriteLists, collision detection, landing on platforms
+  - Exercises: 7 questions (10 marks total) covering SpriteLists, collision functions, platform positioning
+  - Project Task: Create Platform class, add multiple platforms, implement collision detection
+  - Interactive: Canvas-based collision visualization
+  - LIVE at https://jasperf.github.io/cambridge-practice/python/platformer/part3-platforms.html
+
+#### 9. Platformer Part 4: Jumping & Gravity
+- ✅ **python/platformer/part4-jumping-gravity.html** — Physics implementation sheet (Full interactive sheet)
+  - Concepts: Gravity simulation, jump mechanics, acceleration, ground detection
+  - Exercises: 7 questions (10 marks total) covering gravity effects, jump timing, debugging
+  - Project Task: Add GRAVITY constant, JUMP_VELOCITY, ground tracking, jump method, collision handling
+  - Interactive: Jump arc visualization with adjustable gravity and jump velocity sliders
+  - Canvas animation shows trajectory path and velocity over time
+
+#### 10. Git & Deployment
 - ✅ All files committed with clean messages (no AI co-authorship)
 - ✅ Pushed to GitHub main branch
 - ✅ Auto-deployed to GitHub Pages:
@@ -878,9 +916,8 @@ Can be done at student's pace, one sheet per session.
 
 ### Remaining 📋
 
-- ⬜ Create movement-physics.html
-- ⬜ Create part2-player.html through part9-polish.html
-- ⬜ Create challenge sheets
+- ⬜ Create part5-camera-scrolling.html through part9-polish.html
+- ⬜ Create challenge sheets (debugging-practice.html, code-tracing.html, algorithm-quiz.html)
 - ⬜ Create simple sprite assets
 - ⬜ Test complete course end-to-end
 
@@ -896,11 +933,16 @@ Can be done at student's pace, one sheet per session.
 6. **Update AGENTS.md** with commit constraints ✅
 7. **Create part1-project-setup.html** — First platformer sheet ✅
 8. **Create sprites-graphics.html** — Second basics sheet ✅
-9. **Create movement-physics.html** — Third basics sheet
-10. **Iterate and refine** based on student feedback
-11. **Create remaining sheets** one by one
-12. **Create assets** (simple sprites, sounds)
-13. **Test complete course** end-to-end
+9. **Create movement-physics.html** — Third basics sheet ✅
+10. **Create part2-player.html** — Player movement ✅
+11. **Create part3-platforms.html** — Platform collision ✅
+12. **Create part4-jumping-gravity.html** — Gravity & Jumping ✅
+13. **Create part5-camera-scrolling.html** — Camera follows player
+14. **Iterate and refine** based on student feedback
+15. **Create remaining sheets** one by one (part6-part9)
+16. **Create challenge sheets**
+17. **Create assets** (simple sprites, sounds)
+18. **Test complete course** end-to-end
 
 ---
 

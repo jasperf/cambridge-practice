@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 4: Jumping & Gravity · Platformer Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --accent-danger: #e05252;
+  --accent-python: #3776ab;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', 'SF Mono', Monaco, Inconsolata, 'Fira Code', 'Fira Mono', monospace;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 58px;
+  gap: 16px;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.logo span { color: var(--accent-python); }
+
+.week-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.back-link {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent-python); }
+
+.timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.timer { font-family: var(--font-mono); color: var(--text); }
+
+.score-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 5px 16px 5px 10px;
+}
+.score-pill .score-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.score-pill .score-val {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-python);
+  transition: color 0.3s;
+  min-width: 48px;
+  text-align: right;
+}
+
+.progress-wrap { height: 3px; background: var(--border); position: relative; }
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-python), var(--accent-sci));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 52px 28px 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+}
+.hero h1 em { font-style: italic; color: var(--accent-python); }
+
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-python { background: var(--accent-python); }
+
+.subject-nav {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.sub-tab {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.sub-tab.active-python { background: var(--accent-python); color: #0f1117; border-color: var(--accent-python); }
+.sub-tab:hover:not(.active-python) { border-color: var(--accent-python); color: var(--text); }
+
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.section-icon {
+  font-size: 1.4rem;
+  color: var(--accent-python);
+  opacity: 0.8;
+}
+.icon-python { font-family: var(--font-mono); }
+
+.info-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.info-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.info-box p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.info-box p:last-child { margin-bottom: 0; }
+.info-box ul {
+  margin: 10px 0 0 20px;
+  padding-left: 5px;
+}
+.info-box li {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+.info-box ol {
+  margin: 10px 0 0 20px;
+  padding-left: 5px;
+}
+.info-box ol li {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.code-block {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text);
+  white-space: pre;
+}
+.code-block .code-line {
+  display: block;
+  counter-increment: line;
+  position: relative;
+}
+.code-block .code-line::before {
+  content: counter(line);
+  position: absolute;
+  left: -28px;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  user-select: none;
+}
+.code-block:not(.inline) {
+  counter-reset: line;
+}
+.code-line {
+  padding-left: 28px;
+}
+.code-block .comment { color: #5a6c88; }
+.code-block .keyword { color: #d2a8ff; }
+.code-block .string { color: #88c9b4; }
+.code-block .number { color: #f5a623; }
+.code-block .variable { color: #6db9f7; }
+.code-block .function { color: #d2a8ff; }
+.code-block .operator { color: #f07178; }
+
+.warning-box {
+  background: rgba(245,166,35,0.1);
+  border: 1px solid var(--accent-warn);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+.warning-box .warn-icon { color: var(--accent-warn); font-size: 1.2rem; margin-right: 10px; }
+.warning-box p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
+.warning-box p strong { color: var(--text); }
+
+.checklist {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.checklist h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.checklist-item:last-child { border-bottom: none; }
+.checklist-item input[type="checkbox"] {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-python);
+  cursor: pointer;
+}
+.checklist-item label {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  cursor: pointer;
+  flex: 1;
+}
+.checklist-item label strong { color: var(--text); }
+
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.q-card.answered-correct { border-color: var(--correct); box-shadow: 0 0 0 2px rgba(46,204,113,0.15); }
+.q-card.answered-wrong { border-color: var(--wrong); box-shadow: 0 0 0 2px rgba(231,76,60,0.1); }
+.q-card.pulse-correct {
+  animation: pulseCorrect 0.6s ease-out;
+}
+@keyframes pulseCorrect {
+  0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(46,204,113,0); }
+  100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); }
+}
+.q-card.shake {
+  animation: shake 0.4s ease-out;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+.q-num {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 36px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.q-num::after {
+  content: attr(data-num);
+}
+.q-header-text {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex: 1;
+}
+.q-text { font-size: 0.97rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-marks {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--accent-python);
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.q-body { padding: 16px 20px; }
+
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.92rem;
+}
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-python); background: rgba(55,118,171,0.08); }
+.mcq-opt.selected { border-color: var(--accent-python); background: rgba(55,118,171,0.12); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; opacity: 0.6; }
+.mcq-opt .opt-indicator {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-python); background: var(--accent-python); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.mcq-opt span { color: var(--text-muted); }
+.mcq-opt.selected span { color: var(--text); }
+.mcq-opt.correct span { color: var(--correct); }
+.mcq-opt code { font-family: var(--font-mono); background: var(--surface); padding: 0 3px; border-radius: 3px; font-size: 0.85em; }
+
+.q-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+.btn-check {
+  background: var(--accent-python);
+  color: #0f1117;
+}
+.btn-check:hover { background: #4a8bc8; }
+.btn-hint {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.btn-hint:hover { border-color: var(--accent-python); color: var(--text); background: rgba(55,118,171,0.1); }
+.btn-reveal {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-dim);
+}
+.btn-reveal:hover { border-color: var(--border); color: var(--text-muted); background: var(--surface); }
+
+.feedback {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-family: var(--font-body);
+}
+.feedback.show { display: block; }
+.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid var(--correct); color: var(--correct); }
+.wrong-fb { background: rgba(231,76,60,0.08); border: 1px solid var(--wrong); color: var(--wrong); }
+.hint-fb { background: rgba(245,166,35,0.1); border: 1px solid var(--accent-warn); color: var(--accent-warn); }
+.reveal-fb { background: rgba(55,118,171,0.08); border: 1px solid var(--accent-python); color: var(--accent-python); }
+.feedback strong { color: inherit; }
+.feedback code { font-family: var(--font-mono); background: rgba(0,0,0,0.15); padding: 0 4px; border-radius: 3px; font-size: 0.85em; }
+
+/* Jump Visualization */
+.jump-demo {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 20px 0;
+}
+.jump-demo h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.jump-demo-canvas {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  height: 250px;
+  display: block;
+}
+.jump-demo-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.jump-demo-controls label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.jump-demo-controls input[type="range"] {
+  width: 150px;
+  accent-color: var(--accent-python);
+  cursor: pointer;
+}
+.jump-demo .demo-btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 6px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.jump-demo .demo-btn:hover {
+  border-color: var(--accent-python);
+  color: var(--text);
+  background: rgba(55,118,171,0.1);
+}
+.jump-demo-info {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+.jump-demo-info span {
+  font-family: var(--font-mono);
+  color: var(--accent-python);
+}
+
+/* Results Panel */
+.results-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+.results-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.results-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.3s;
+}
+.results-overlay.show .results-panel {
+  transform: scale(1);
+}
+
+.results-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.results-grade {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-python);
+  margin-bottom: 8px;
+}
+
+.results-label {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.results-breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.rb-item {
+  text-align: center;
+}
+.rb-item .rb-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-python);
+}
+.rb-item .rb-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.results-restart {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 12px 32px;
+  background: var(--accent-python);
+  border: none;
+  border-radius: 8px;
+  color: #0f1117;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+.results-restart:hover { background: #4a8bc8; }
+
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#confetti-canvas.show { opacity: 1; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { padding: 36px 20px 28px; }
+  .main { padding: 0 20px 48px; }
+  .subject-nav { padding: 0 20px 16px; }
+  .sub-tab { padding: 6px 14px; font-size: 0.72rem; }
+  .results-breakdown { gap: 16px; }
+  .rb-item { min-width: 120px; }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.q-card { animation: fadeIn 0.4s ease-out backwards; }
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Platformer · Part 4: Jumping & Gravity</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../index.html" class="back-link">&larr; All sheets</a>
+    <a href="../index.html" class="back-link">Python overview</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 10</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">PLATFORMER PROJECT</div>
+  <h1>Part 4: <em>Jumping & Gravity</em></h1>
+  <p class="hero-sub">Add the force of gravity to pull the player down, and implement jumping to send them soaring through the air. Master the physics that makes platformers feel real!</p>
+  <div class="hero-meta">
+    <div class="hero-chip"><span class="dot dot-python"></span> Arcade Library</div>
+    <div class="hero-chip">~90 min</div>
+    <div class="hero-chip">Intermediate</div>
+  </div>
+</div>
+
+<div class="subject-nav">
+  <a href="#concepts" class="sub-tab active-python">Concepts</a>
+  <a href="#exercises" class="sub-tab">Exercises</a>
+  <a href="#project" class="sub-tab">Project Task</a>
+</div>
+
+<div class="main">
+
+  <section id="concepts">
+    <div class="section-header">
+      <div class="section-icon icon-python">🚀</div>
+      <div>
+        <h2>Gravity & Jumping</h2>
+        <span class="sub-label">CORE CONCEPTS</span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>What Is Gravity?</h3>
+      <p>In platformer games, <strong>gravity</strong> is a constant downward force that pulls the player (and other objects) toward the bottom of the screen. Without gravity, your player would float in mid-air!</p>
+      <p><strong>How we simulate it:</strong></p>
+      <ul>
+        <li><strong>Gravity constant:</strong> A fixed value (e.g., <code>0.5</code>) subtracted from the player's vertical velocity each frame</li>
+        <li><strong>Vertical velocity:</strong> The <code>change_y</code> property determines how fast the player moves up or down</li>
+        <li><strong>Positive vs negative:</strong> Positive <code>change_y</code> moves up, negative moves down</li>
+      </ul>
+      <p><strong>In code:</strong></p>
+      <div class="code-block">
+<span class="code-line"><span class="comment"># Gravity constant - how fast the player falls</span></span>
+<span class="code-line"><span class="variable">GRAVITY</span> = <span class="number">0.5</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="comment"># In the player's update method:</span></span>
+<span class="code-line"><span class="variable">self.change_y</span> -= <span class="variable">GRAVITY</span></span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Jump Mechanics</h3>
+      <p>Jumping is the opposite of gravity - it gives the player an <strong>upward velocity</strong>. The key principles:</p>
+      <ul>
+        <li><strong>Jump velocity:</strong> A positive value (e.g., <code>12</code>) applied to <code>change_y</code></li>
+        <li><strong>Instant velocity:</strong> Unlike gravity which accelerates, jumping is an instant force</li>
+        <li><strong>Jump arc:</strong> Gravity immediately starts pulling the player down, creating a natural arc</li>
+      </ul>
+      <p><strong>Important:</strong> Players should only be able to jump when they're <strong>on the ground</strong> (standing on a platform), not in mid-air!</p>
+      <div class="code-block">
+<span class="code-line"><span class="variable">JUMP_VELOCITY</span> = <span class="number">12</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">def</span> <span class="function">jump</span>(<span class="variable">self</span>):</span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.is_on_ground</span>:</span>
+<span class="code-line">        <span class="variable">self.change_y</span> = <span class="variable">JUMP_VELOCITY</span></span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Ground Detection</h3>
+      <p>Before allowing a jump, we need to check if the player is standing on a platform. We do this by:</p>
+      <ol>
+        <li>Checking for collisions with platforms</li>
+        <li>Verifying the player is moving downward (falling onto the platform)</li>
+        <li>Setting <code>is_on_ground = True</code> when landing</li>
+        <li>Setting <code>is_on_ground = False</code> when jumping or falling</li>
+      </ol>
+      <div class="code-block">
+<span class="code-line"><span class="comment"># In on_update, after moving the player:</span></span>
+<span class="code-line"><span class="variable">hit_list</span> = <span class="variable">arcade.check_for_collision_with_list</span>(</span>
+<span class="code-line">    <span class="variable">self.player</span>, <span class="variable">self.platform_list</span></span>
+<span class="code-line">)</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="variable">self.player.is_on_ground</span> = <span class="keyword">False</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">for</span> <span class="variable">platform</span> <span class="keyword">in</span> <span class="variable">hit_list</span>:</span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.change_y</span> <= <span class="number">0</span>:</span>
+<span class="code-line">        <span class="comment"># Player is falling onto platform</span></span>
+<span class="code-line">        <span class="variable">self.player.change_y</span> = <span class="number">0</span></span>
+<span class="code-line">        <span class="variable">self.player.center_y</span> = <span class="variable">platform.top</span></span>
+<span class="code-line">        <span class="variable">self.player.is_on_ground</span> = <span class="keyword">True</span></span>
+      </div>
+    </div>
+
+    <div class="jump-demo">
+      <h3>Jump Arc Visualization</h3>
+      <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 12px;">Adjust the gravity and jump velocity sliders to see how they affect the jump trajectory.</p>
+      <canvas class="jump-demo-canvas" id="jump-canvas"></canvas>
+      <div class="jump-demo-controls">
+        <label><span>Gravity:</span> <input type="range" id="gravity-slider" min="0.1" max="2" step="0.1" value="0.5"></label>
+        <span id="gravity-value">0.5</span>
+        <label><span>Jump:</span> <input type="range" id="jump-slider" min="5" max="20" step="1" value="12"></label>
+        <span id="jump-value">12</span>
+        <button class="demo-btn" onclick="resetJumpDemo()">Reset</button>
+        <button class="demo-btn" onclick="launchJump()">Launch</button>
+      </div>
+      <div class="jump-demo-info">
+        <strong>Tip:</strong> Higher gravity = faster fall, shorter jumps. Higher jump velocity = longer jumps, more air time.
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Putting It All Together</h3>
+      <p>The complete movement flow in the player's <code>update()</code> method:</p>
+      <ol>
+        <li><strong>Apply gravity:</strong> Always pull the player down</li>
+        <li><strong>Handle keyboard input:</strong> Update <code>change_x</code> for left/right movement</li>
+        <li><strong>Move the player:</strong> Apply both <code>change_x</code> and <code>change_y</code></li>
+        <li><strong>Check collisions:</strong> Detect if player is standing on a platform</li>
+        <li><strong>Handle jumps:</strong> Only allow jumps when on the ground</li>
+      </ol>
+      <p><strong>Pro tip:</strong> For smoother movement, apply gravity <em>before</em> checking for collisions!</p>
+    </div>
+
+    <div class="warning-box">
+      <span class="warn-icon">⚠️</span>
+      <p><strong>Common Pitfall:</strong> If your player gets stuck in a platform or falls through, check the order of operations. Gravity should be applied <strong>before</strong> collision detection, and the player should be <em>pushed out</em> of platforms they land on (by setting their <code>center_y = platform.top</code>).</p>
+    </div>
+
+  </section>
+
+  <section id="exercises">
+    <div class="section-header">
+      <div class="section-icon icon-python">❓</div>
+      <div>
+        <h2>Exercises</h2>
+        <span class="sub-label">TEST YOUR UNDERSTANDING</span>
+      </div>
+    </div>
+
+    <!-- Q1: Gravity effect -->
+    <div class="q-card" id="qcard-q1">
+      <div class="q-header">
+        <div class="q-num" data-num="Q1"></div>
+        <div class="q-header-text">
+          <div class="q-text">What does the line <code>self.change_y -= GRAVITY</code> do?</div>
+          <div class="q-marks">1 mark</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q1-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) Accelerates the player upward</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) Applies a constant downward acceleration to the player</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) Sets the player's vertical position to zero</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) Makes the player jump higher</span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q1','b','Q1')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q1','This line decreases change_y by GRAVITY each frame')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q1','Applies a constant downward acceleration to the player')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q1-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q2: Jump timing -->
+    <div class="q-card" id="qcard-q2">
+      <div class="q-header">
+        <div class="q-num" data-num="Q2"></div>
+        <div class="q-header-text">
+          <div class="q-text">When should <code>is_on_ground</code> be set to <code>False</code>?</div>
+          <div class="q-marks">1 mark</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q2-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) When the player starts the game</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) After the player jumps or starts falling</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) When the player lands on a platform</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) When the player collects a coin</span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q2','b','Q2')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q2','is_on_ground should be True only when standing on something solid')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q2','After the player jumps or starts falling')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q2-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q3: Gravity zero -->
+    <div class="q-card" id="qcard-q3">
+      <div class="q-header">
+        <div class="q-num" data-num="Q3"></div>
+        <div class="q-header-text">
+          <div class="q-text">What happens if you set <code>GRAVITY = 0</code>?</div>
+          <div class="q-marks">1 mark</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q3-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) The player falls very slowly</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) The player cannot jump</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) The player floats in mid-air and never falls</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) The game crashes</span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q3','c','Q3')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q3','With no gravity, nothing pulls the player down')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q3','The player floats in mid-air and never falls')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q3-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q4: Code tracing - position after jump -->
+    <div class="q-card" id="qcard-q4">
+      <div class="q-header">
+        <div class="q-num" data-num="Q4"></div>
+        <div class="q-header-text">
+          <div class="q-text">A player at position (100, 100) with <code>change_y = 12</code> has gravity of 0.5 applied. After gravity is applied once, what is <code>change_y</code>?</div>
+          <div class="q-marks">2 marks</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q4-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) <code>11.5</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) <code>12.5</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) <code>-6</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) <code>6</code></span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q4','a','Q4')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q4','change_y -= GRAVITY means 12 - 0.5 = ?')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q4','11.5 (12 - 0.5)')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q4-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q5: Debugging - player falls through -->
+    <div class="q-card" id="qcard-q5">
+      <div class="q-header">
+        <div class="q-num" data-num="Q5"></div>
+        <div class="q-header-text">
+          <div class="q-text">Debug: A player falls through platforms. What's most likely missing from the collision code?</div>
+          <div class="q-marks">2 marks</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q5-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) <code>self.player.change_y = 0</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) <code>self.player.center_y = platform.top</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) <code>self.player.is_on_ground = True</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) <code>platform.remove_from_sprite_lists()</code></span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q5','b','Q5')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q5','Without positioning the player above the platform, they will stay inside it')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q5','self.player.center_y = platform.top (or similar positioning code)')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q5-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q6: Jump key -->
+    <div class="q-card" id="qcard-q6">
+      <div class="q-header">
+        <div class="q-num" data-num="Q6"></div>
+        <div class="q-header-text">
+          <div class="q-text">Which key press event should trigger a jump?</div>
+          <div class="q-marks">1 mark</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q6-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) <code>arcade.key.UP</code> or <code>arcade.key.SPACE</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) <code>arcade.key.W</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) <code>arcade.key.LEFT</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) <code>arcade.key.RIGHT</code></span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q6','a','Q6')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q6','Standard platformer controls use UP arrow or SPACE for jumping')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q6','arcade.key.UP or arcade.key.SPACE')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q6-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q7: Order of operations -->
+    <div class="q-card" id="qcard-q7">
+      <div class="q-header">
+        <div class="q-num" data-num="Q7"></div>
+        <div class="q-header-text">
+          <div class="q-text">In what order should these happen in <code>on_update</code>?</div>
+          <div class="q-marks">2 marks</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q7-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) Apply gravity → Move player → Check collisions</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) Move player → Check collisions → Apply gravity</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) Check collisions → Apply gravity → Move player</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) Check collisions → Move player → Apply gravity</span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q7','a','Q7')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q7','Gravity must be applied before collision to calculate the new position')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q7','Apply gravity → Move player → Check collisions')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q7-fb"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="project">
+    <div class="section-header">
+      <div class="section-icon icon-python">💻</div>
+      <div>
+        <h2>Project Task</h2>
+        <span class="sub-label">BUILD YOUR GAME</span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Add Gravity & Jumping to Your Player</h3>
+      <p>Now it's time to implement the physics! Add gravity and jumping to your game project.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>Step 1: Add Constants</h3>
+      <p>At the top of your <code>constants.py</code> file (or in your game class), add these physics constants:</p>
+      <div class="code-block">
+<span class="code-line"><span class="comment"># Physics constants</span></span>
+<span class="code-line"><span class="variable">GRAVITY</span> = <span class="number">0.5</span></span>
+<span class="code-line"><span class="variable">JUMP_VELOCITY</span> = <span class="number">12</span></span>
+<span class="code-line"><span class="variable">PLAYER_MOVEMENT_SPEED</span> = <span class="number">5</span></span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Step 2: Add Ground Tracking to Player</h3>
+      <p>In your <code>Player</code> class <code>__init__</code>, add a property to track if the player is on the ground:</p>
+      <div class="code-block">
+<span class="code-line"><span class="keyword">class</span> <span class="function">Player</span>(<span class="variable">arcade.Sprite</span>):</span>
+<span class="code-line">    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>, <span class="variable">x</span>, <span class="variable">y</span>):</span>
+<span class="code-line">        <span class="keyword">super</span>().<span class="function">__init__</span>(<span class="string">"assets/sprites/player.png"</span>, <span class="variable">SCALE</span>)</span>
+<span class="code-line">        <span class="variable">self.center_x</span> = <span class="variable">x</span></span>
+<span class="code-line">        <span class="variable">self.center_y</span> = <span class="variable">y</span></span>
+<span class="code-line">        <span class="variable">self.is_on_ground</span> = <span class="keyword">False</span></span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Step 3: Update Player Movement</h3>
+      <p>Modify your Player class <code>update()</code> method to apply gravity. This gets called automatically by Arcade every frame if you add the player to a <code>SpriteList</code> and call <code>player_list.update()</code>:</p>
+      <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">update</span>(<span class="variable">self</span>):</span>
+<span class="code-line">    <span class="comment"># Apply gravity</span></span>
+<span class="code-line">    <span class="variable">self.change_y</span> -= <span class="variable">GRAVITY</span></span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="comment"># Move based on current velocity</span></span>
+<span class="code-line">    <span class="variable">self.center_x</span> += <span class="variable">self.change_x</span></span>
+<span class="code-line">    <span class="variable">self.center_y</span> += <span class="variable">self.change_y</span></span>
+      </div>
+      <p><strong>Note:</strong> If your player doesn't have <code>change_x</code> and <code>change_y</code> yet, add them in <code>__init__</code>:</p>
+      <div class="code-block">
+<span class="code-line">        <span class="variable">self.change_x</span> = <span class="number">0</span></span>
+<span class="code-line">        <span class="variable">self.change_y</span> = <span class="number">0</span></span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Step 4: Add Keyboard Jump Control</h3>
+      <p>In your <code>Game</code> class, add a method to handle jump key presses. This should be in your window/view class:</p>
+      <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_key_press</span>(<span class="variable">self</span>, <span class="variable">key</span>, <span class="variable">modifiers</span>):</span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">key</span> == <span class="variable">arcade.key.UP</span> <span class="keyword">or</span> <span class="variable">key</span> == <span class="variable">arcade.key.SPACE</span>:</span>
+<span class="code-line">        <span class="variable">self.player.jump</span>()</span>
+<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.LEFT</span>:</span>
+<span class="code-line">        <span class="variable">self.player.change_x</span> = -<span class="variable">PLAYER_MOVEMENT_SPEED</span></span>
+<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.RIGHT</span>:</span>
+<span class="code-line">        <span class="variable">self.player.change_x</span> = <span class="variable">PLAYER_MOVEMENT_SPEED</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_key_release</span>(<span class="variable">self</span>, <span class="variable">key</span>, <span class="variable">modifiers</span>):</span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">key</span> == <span class="variable">arcade.key.LEFT</span> <span class="keyword">or</span> <span class="variable">key</span> == <span class="variable">arcade.key.RIGHT</span>:</span>
+<span class="code-line">        <span class="variable">self.player.change_x</span> = <span class="number">0</span></span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Step 5: Add Jump Method to Player</h3>
+      <p>Add the jump method to your <code>Player</code> class. Make sure to only jump when on the ground:</p>
+      <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">jump</span>(<span class="variable">self</span>):</span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.is_on_ground</span>:</span>
+<span class="code-line">        <span class="variable">self.change_y</span> = <span class="variable">JUMP_VELOCITY</span></span>
+<span class="code-line">        <span class="variable">self.is_on_ground</span> = <span class="keyword">False</span></span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Step 6: Handle Collisions with Platforms</h3>
+      <p>In your <code>Game</code> class <code>on_update</code> method, add collision detection between the player and platforms:</p>
+      <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_update</span>(<span class="variable">self</span>, <span class="variable">delta_time</span>):</span>
+<span class="code-line">    <span class="comment"># Move player sprites</span></span>
+<span class="code-line">    <span class="variable">self.player_list.update</span>()</span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="comment"># Check for collision with platforms</span></span>
+<span class="code-line">    <span class="variable">hit_list</span> = <span class="variable">arcade.check_for_collision_with_list</span>(</span>
+<span class="code-line">        <span class="variable">self.player</span>, <span class="variable">self.platform_list</span></span>
+<span class="code-line">    )</span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="comment"># Reset ground state</span></span>
+<span class="code-line">    <span class="variable">self.player.is_on_ground</span> = <span class="keyword">False</span></span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="keyword">for</span> <span class="variable">platform</span> <span class="keyword">in</span> <span class="variable">hit_list</span>:</span>
+<span class="code-line">        <span class="keyword">if</span> <span class="variable">self.player.change_y</span> <= <span class="number">0</span>:</span>
+<span class="code-line">            <span class="comment"># Player is falling onto platform</span></span>
+<span class="code-line">            <span class="variable">self.player.change_y</span> = <span class="number">0</span></span>
+<span class="code-line">            <span class="variable">self.player.center_y</span> = <span class="variable">platform.top</span></span>
+<span class="code-line">            <span class="variable">self.player.is_on_ground</span> = <span class="keyword">True</span></span>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <h3>🎯 Checkpoints</h3>
+      <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 12px;"><strong>Verify your implementation:</strong></p>
+      <div class="checklist-item">
+        <input type="checkbox" id="check-1">
+        <label for="check-1"><strong>Gravity works:</strong> Player falls when not on a platform</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="check-2">
+        <label for="check-2"><strong>Jumping works:</strong> Pressing UP or SPACE makes player jump when on ground</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="check-3">
+        <label for="check-3"><strong>No double-jumping:</strong> Player can't jump in mid-air</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="check-4">
+        <label for="check-4"><strong>Stands on platforms:</strong> Player doesn't fall through platforms</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" id="check-5">
+        <label for="check-5"><strong>Left/Right movement:</strong> Player can still move horizontally</label>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>🚀 Ready for Part 5?</h3>
+      <p>Once your player can jump and gravity pulls them down, you're ready for <strong>Part 5: Camera Scrolling</strong>, where we'll make the camera follow the player as they explore the world!</p>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- Results Panel -->
+<div class="results-overlay" id="results-overlay">
+  <div class="results-panel">
+    <div class="results-icon">🏆</div>
+    <div class="results-grade" id="results-grade">0%</div>
+    <div class="results-label" id="results-label">Keep Going!</div>
+    <div class="results-breakdown">
+      <div class="rb-item">
+        <div class="rb-val" id="rb-score">0/10</div>
+        <div class="rb-label">Score</div>
+      </div>
+      <div class="rb-item">
+        <div class="rb-val" id="rb-time">0m 0s</div>
+        <div class="rb-label">Time</div>
+      </div>
+    </div>
+    <button class="results-restart" onclick="restartSheet()">Try Again</button>
+  </div>
+</div>
+
+<script>
+// STATE
+const state = {
+  answers: {},
+  correct: {},
+  totalMarks: { py: 0 },
+  maxMarks:   { py: 10 },
+  startTime: Date.now()
+};
+
+const marks = {
+  q1:1, q2:1, q3:1, q4:2, q5:2, q6:1, q7:2
+};
+
+const pyQs = ['q1','q2','q3','q4','q5','q6','q7'];
+
+// ── TIMER ──
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const m = String(Math.floor(elapsed/60)).padStart(2,'0');
+  const s = String(elapsed%60).padStart(2,'0');
+  document.getElementById('timer').textContent = `${m}:${s}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Select MCQ ─────────────────────────────────────────────────
+function selectMCQ(qid, el, val) {
+  const opts = el.parentElement.querySelectorAll('.mcq-opt');
+  opts.forEach(opt => {
+    opt.classList.remove('selected');
+    const indicator = opt.querySelector('.opt-indicator');
+    if (indicator) indicator.textContent = '';
+  });
+  
+  el.classList.add('selected');
+  const indicator = el.querySelector('.opt-indicator');
+  if (indicator) indicator.textContent = '✓';
+  
+  state.answers[qid] = val;
+}
+
+// ── Check MCQ ─────────────────────────────────────────────────
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick')?.match(/'([a-d])'/);
+    const v = m?.[1];
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect, label);
+}
+
+// ── Mark Result ───────────────────────────────────────────────
+function markResult(qid, isCorrect, label) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Try the hint or reveal the answer.`;
+  updateScores();
+}
+
+// ── Hint / Reveal ─────────────────────────────────────────────
+function showHint(qid, hintText) {
+  if (state.correct[qid] !== undefined) return;
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    updateScores();
+  }
+}
+
+// ── Shake ──────────────────────────────────────────────────────
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake');
+  void card.offsetWidth;
+  card.classList.add('shake');
+  setTimeout(() => card.classList.remove('shake'), 400);
+}
+
+// ── Update Scores ─────────────────────────────────────────────
+function updateScores() {
+  let pyScore = 0, answered = 0;
+  pyQs.forEach(qid => {
+    if (state.correct[qid] === true) pyScore += marks[qid];
+    if (state.correct[qid] !== undefined) answered++;
+  });
+  document.getElementById('global-score').textContent = `${pyScore} / ${state.maxMarks.py}`;
+  document.getElementById('progress-bar').style.width = `${(answered/pyQs.length)*100}%`;
+  
+  if (answered === pyQs.length) showResults(pyScore);
+}
+
+// ── Results ───────────────────────────────────────────────────
+function showResults(py) {
+  const pct = Math.round((py / state.maxMarks.py) * 100);
+  const grade = pct >= 85 ? '🏆 Excellent!' : pct >= 70 ? '⭐ Great Job!' : pct >= 55 ? '👍 Good Effort' : '📚 Keep Practising';
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const mins = Math.floor(elapsed/60), secs = elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  document.getElementById('rb-score').textContent = `${py}/${state.maxMarks.py}`;
+  document.getElementById('rb-time').textContent = `${mins}m ${secs}s`;
+  const panel = document.getElementById('results-overlay');
+  panel.classList.add('show');
+
+  if (pct >= 70) launchConfetti();
+  
+  try {
+    const key = `python-part4-jump-gravity-v1`;
+    localStorage.setItem(key, JSON.stringify({
+      score: py,
+      max: state.maxMarks.py,
+      pct: pct,
+      completed: true,
+      timestamp: Date.now()
+    }));
+  } catch(e) {}
+}
+
+function restartSheet() {
+  location.reload();
+}
+
+// ── Confetti ──────────────────────────────────────────────────
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.classList.add('show');
+  
+  const particles = [];
+  for (let i = 0; i < 150; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - 50,
+      vx: (Math.random() - 0.5) * 6,
+      vy: Math.random() * 3 + 2,
+      size: Math.random() * 8 + 4,
+      color: ['#4f8ef7','#3ecf8e','#f5a623','#e05252','#3776ab'][Math.floor(Math.random()*5)],
+      rotation: 0,
+      rotationSpeed: (Math.random() - 0.5) * 0.2
+    });
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let remaining = 0;
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rotation += p.rotationSpeed;
+      
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+      ctx.restore();
+      
+      if (p.y < canvas.height) remaining++;
+    });
+    
+    if (remaining > 0) requestAnimationFrame(animate);
+    else canvas.classList.remove('show');
+  }
+  
+  animate();
+}
+
+// ── Jump Demo ─────────────────────────────────────────────────
+let jumpAnimationId = null;
+let jumpParticles = [];
+let jumpTime = 0;
+
+function initJumpDemo() {
+  const canvas = document.getElementById('jump-canvas');
+  const ctx = canvas.getContext('2d');
+  
+  function resize() {
+    canvas.width = canvas.parentElement.clientWidth;
+    canvas.height = 250;
+    drawJumpDemo(ctx, canvas.width, canvas.height);
+  }
+  
+  window.addEventListener('resize', resize);
+  resize();
+  
+  // Update display values
+  document.getElementById('gravity-value').textContent = document.getElementById('gravity-slider').value;
+  document.getElementById('jump-value').textContent = document.getElementById('jump-slider').value;
+  
+  // Update on slider change
+  document.getElementById('gravity-slider').addEventListener('input', function() {
+    document.getElementById('gravity-value').textContent = this.value;
+    if (!this.classList.contains(' animating')) {
+      drawJumpDemo(ctx, canvas.width, canvas.height);
+    }
+  });
+  
+  document.getElementById('jump-slider').addEventListener('input', function() {
+    document.getElementById('jump-value').textContent = this.value;
+    if (!this.classList.contains(' animating')) {
+      drawJumpDemo(ctx, canvas.width, canvas.height);
+    }
+  });
+}
+
+function drawJumpDemo(ctx, width, height) {
+  // Clear
+  ctx.fillStyle = '#0f1117';
+  ctx.fillRect(0, 0, width, height);
+  
+  // Grid
+  ctx.strokeStyle = '#2a3050';
+  ctx.lineWidth = 1;
+  for (let x = 0; x < width; x += 50) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, height);
+    ctx.stroke();
+  }
+  for (let y = 0; y < height; y += 50) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(width, y);
+    ctx.stroke();
+  }
+  
+  // Ground
+  ctx.fillStyle = '#1e2336';
+  ctx.fillRect(0, height - 30, width, 30);
+  ctx.strokeStyle = '#3776ab';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(0, height - 30, width, 30);
+  
+  // Get current values
+  const gravity = parseFloat(document.getElementById('gravity-slider').value);
+  const jumpVelocity = parseInt(document.getElementById('jump-slider').value);
+  
+  // Draw jump trajectory
+  if (jumpAnimationId === null) {
+    // Draw static trajectory
+    ctx.strokeStyle = '#3776ab';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    
+    const startX = 100;
+    const startY = height - 60;
+    let x = startX;
+    let y = startY;
+    let velY = jumpVelocity;
+    ctx.moveTo(x, y);
+    
+    for (let i = 0; i < 100; i++) {
+      velY -= gravity;
+      y -= velY;  // Negative because canvas y increases downward
+      x += 2;
+      ctx.lineTo(x, y);
+      
+      if (y >= height - 30) {
+        y = height - 30;
+        ctx.lineTo(x, y);
+        break;
+      }
+    }
+    ctx.stroke();
+    
+    // Draw player at start
+    ctx.fillStyle = '#4f8ef7';
+    ctx.fillRect(startX - 10, startY - 20, 20, 30);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '14px Arial';
+    ctx.fillText('👤', startX - 4, startY - 5);
+  }
+}
+
+function launchJump() {
+  if (jumpAnimationId) {
+    cancelAnimationFrame(jumpAnimationId);
+    jumpAnimationId = null;
+  }
+  
+  const canvas = document.getElementById('jump-canvas');
+  const ctx = canvas.getContext('2d');
+  const gravity = parseFloat(document.getElementById('gravity-slider').value);
+  const jumpVelocity = parseInt(document.getElementById('jump-slider').value);
+  
+  const startX = 100;
+  const startY = canvas.height - 60;
+  let x = startX;
+  let y = startY;
+  let velY = jumpVelocity;
+  let frame = 0;
+  
+  // Mark sliders as animating
+  document.getElementById('gravity-slider').classList.add('animating');
+  document.getElementById('jump-slider').classList.add('animating');
+  
+  function animateJump() {
+    // Clear
+    ctx.fillStyle = '#0f1117';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Grid
+    ctx.strokeStyle = '#2a3050';
+    ctx.lineWidth = 1;
+    for (let gx = 0; gx < canvas.width; gx += 50) {
+      ctx.beginPath();
+      ctx.moveTo(gx, 0);
+      ctx.lineTo(gx, canvas.height);
+      ctx.stroke();
+    }
+    for (let gy = 0; gy < canvas.height; gy += 50) {
+      ctx.beginPath();
+      ctx.moveTo(0, gy);
+      ctx.lineTo(canvas.width, gy);
+      ctx.stroke();
+    }
+    
+    // Ground
+    ctx.fillStyle = '#1e2336';
+    ctx.fillRect(0, canvas.height - 30, canvas.width, 30);
+    ctx.strokeStyle = '#3776ab';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(0, canvas.height - 30, canvas.width, 30);
+    
+    // Update position
+    velY -= gravity;
+    y -= velY;  // Negative because canvas y increases downward
+    x = startX + frame * 2;
+    
+    // Check if landed
+    const landed = y >= canvas.height - 30;
+    if (landed) {
+      y = canvas.height - 30;
+      velY = 0;
+    }
+    
+    // Draw trajectory so far
+    ctx.strokeStyle = '#3776ab';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    
+    let tx = startX, ty = startY;
+    let tvelY = jumpVelocity;
+    for (let i = 0; i <= frame; i++) {
+      tvelY -= gravity;
+      ty -= tvelY;
+      tx += 2;
+      if (ty >= canvas.height - 30) {
+        ty = canvas.height - 30;
+      }
+      ctx.lineTo(tx, ty);
+    }
+    ctx.stroke();
+    
+    // Draw player
+    ctx.fillStyle = landed ? '#2ecc71' : '#4f8ef7';
+    ctx.fillRect(x - 10, y - 20, 20, 30);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '14px Arial';
+    ctx.fillText(landed ? '👤' : '🚀', x - 4, y - 5);
+    
+    // Show velocity info
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '12px DM Mono';
+    ctx.fillText(`vY: ${velY.toFixed(1)}`, x - 10, y - 30);
+    
+    frame++;
+    
+    // Continue if not landed or still moving
+    if (!landed || velY > 0) {
+      jumpAnimationId = requestAnimationFrame(animateJump);
+    } else {
+      jumpAnimationId = null;
+      document.getElementById('gravity-slider').classList.remove('animating');
+      document.getElementById('jump-slider').classList.remove('animating');
+    }
+  }
+  
+  jumpAnimationId = requestAnimationFrame(animateJump);
+}
+
+function resetJumpDemo() {
+  if (jumpAnimationId) {
+    cancelAnimationFrame(jumpAnimationId);
+    jumpAnimationId = null;
+  }
+  document.getElementById('gravity-slider').classList.remove('animating');
+  document.getElementById('jump-slider').classList.remove('animating');
+  drawJumpDemo(
+    document.getElementById('jump-canvas').getContext('2d'),
+    document.getElementById('jump-canvas').width,
+    document.getElementById('jump-canvas').height
+  );
+}
+
+// Initialize jump demo when page loads
+window.addEventListener('load', initJumpDemo);
+window.addEventListener('resize', function() {
+  if (jumpAnimationId === null) {
+    initJumpDemo();
+  }
+});
+</script>
+</body>
+</html>
