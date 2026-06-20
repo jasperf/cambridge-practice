@@ -39,7 +39,7 @@ cambridge-practice/
 │   │                                  #    https://jasperf.github.io/cambridge-practice/python/arcade-intro.html
 │   ├── basics/                       # ✅ Empty, ready for:
 │   │   ├── arcade-intro.html        # ✅ DONE - Arcade setup, first window
-│   │   ├── sprites-graphics.html    # ⬜ TODO - Working with images, sprites
+│   │   ├── sprites-graphics.html    # ✅ DONE - Working with images, sprites, SpriteLists
 │   │   └── movement-physics.html     # ⬜ TODO - Position, velocity, keyboard
 │   ├── platformer/                   # ✅ Empty, ready for:
 │   │   ├── part1-project-setup.html      # ✅ DONE - Project structure, base class, constants
@@ -135,9 +135,10 @@ cambridge-practice/
 
 ---
 
-#### Sheet: `sprites-graphics.html`
+#### Sheet: `sprites-graphics.html` ✅ IMPLEMENTED
 **Format:** Mixed
 **Duration:** 45 min
+**Status:** ✅ LIVE at https://jasperf.github.io/cambridge-practice/python/sprites-graphics.html
 **Topics:**
 - Loading images
 - Sprite class
@@ -854,22 +855,29 @@ Can be done at student's pace, one sheet per session.
   - Starter Code: Complete main.py entry point and Game class skeleton
   - LIVE at https://jasperf.github.io/cambridge-practice/python/platformer/part1-project-setup.html
 
-#### 4. Git & Deployment
+#### 4. Basics: Sprites & Graphics
+- ✅ **python/sprites-graphics.html** — Second basics sheet (Full interactive sheet)
+  - Concepts: Sprites, Sprite class, loading images, scaling, SpriteLists
+  - Exercises: 6 questions (10 marks total) covering file formats, scale, positioning, debugging
+  - Project Task: Add player sprite to existing game project with SpriteList
+  - Interactive: Coordinate grid visualization
+  - LIVE at https://jasperf.github.io/cambridge-practice/python/sprites-graphics.html
+
+#### 5. Git & Deployment
 - ✅ All files committed with clean messages (no AI co-authorship)
 - ✅ Pushed to GitHub main branch
 - ✅ Auto-deployed to GitHub Pages:
   - https://jasperf.github.io/cambridge-practice/python/arcade-intro.html
+  - https://jasperf.github.io/cambridge-practice/python/sprites-graphics.html
   - https://jasperf.github.io/cambridge-practice/python/platformer/part1-project-setup.html
 - ✅ AGENTS.md updated with commit message constraints
 
 ### In Progress 🚧
 
 - ⏳ Awaiting feedback on first sheet before continuing
-- ⏳ Next sheet: `python/sprites-graphics.html` (ready to implement)
 
 ### Remaining 📋
 
-- ⬜ Create sprites-graphics.html
 - ⬜ Create movement-physics.html
 - ⬜ Create part2-player.html through part9-polish.html
 - ⬜ Create challenge sheets
@@ -887,7 +895,7 @@ Can be done at student's pace, one sheet per session.
 5. **Add Python section to index.html** ✅
 6. **Update AGENTS.md** with commit constraints ✅
 7. **Create part1-project-setup.html** — First platformer sheet ✅
-8. **Create sprites-graphics.html** — Second basics sheet
+8. **Create sprites-graphics.html** — Second basics sheet ✅
 9. **Create movement-physics.html** — Third basics sheet
 10. **Iterate and refine** based on student feedback
 11. **Create remaining sheets** one by one
