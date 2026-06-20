@@ -33,28 +33,33 @@ This course teaches game development with Python's **Arcade library** through a 
 
 ```
 cambridge-practice/
-├── python/
-│   ├── README.md                    # Course intro, setup guide
-│   ├── basics/
-│   │   ├── arcade-intro.html        # Arcade setup, first window (IN-BROWSER + PROJECT)
-│   │   ├── sprites-graphics.html    # Working with images, sprites (IN-BROWSER + PROJECT)
-│   │   └── movement-physics.html     # Position, velocity, keyboard (IN-BROWSER + PROJECT)
-│   ├── platformer/
-│   │   ├── part1-project-setup.html      # Project structure, base class
-│   │   ├── part2-player.html            # Player sprite, movement
-│   │   ├── part3-platforms.html          # Platform class, collision
-│   │   ├── part4-jumping-gravity.html    # Jump physics, gravity
-│   │   ├── part5-camera-scrolling.html   # Camera follows player
-│   │   ├── part6-coins-collectibles.html # Collect items, scoring
-│   │   ├── part7-enemies.html            # Enemy AI, collision
-│   │   ├── part8-levels.html             # Load 2 levels from files
-│   │   ├── part9-polish.html             # Graphics, sound, menu
-│   │   └── CHALLENGE-extensions.html     # Optional: power-ups, animations
-│   └── challenges/
-│       ├── debugging-practice.html       # Fix broken code snippets
-│       ├── code-tracing.html             # Trace execution, predict output
-│       └── algorithm-quiz.html            # Game logic puzzles
-└── index.html                         # Updated with Python section
+├── python/                            # ✅ Created
+│   ├── README.md                    # ✅ Course intro, setup guide (8.5KB)
+│   ├── arcade-intro.html            # ✅ First sheet - live at:
+│   │                                  #    https://jasperf.github.io/cambridge-practice/python/arcade-intro.html
+│   ├── basics/                       # ✅ Empty, ready for:
+│   │   ├── arcade-intro.html        # ✅ DONE - Arcade setup, first window
+│   │   ├── sprites-graphics.html    # ⬜ TODO - Working with images, sprites
+│   │   └── movement-physics.html     # ⬜ TODO - Position, velocity, keyboard
+│   ├── platformer/                   # ✅ Empty, ready for:
+│   │   ├── part1-project-setup.html      # ⬜ TODO - Project structure, base class
+│   │   ├── part2-player.html            # ⬜ TODO - Player sprite, movement
+│   │   ├── part3-platforms.html          # ⬜ TODO - Platform class, collision
+│   │   ├── part4-jumping-gravity.html    # ⬜ TODO - Jump physics, gravity
+│   │   ├── part5-camera-scrolling.html   # ⬜ TODO - Camera follows player
+│   │   ├── part6-coins-collectibles.html # ⬜ TODO - Collect items, scoring
+│   │   ├── part7-enemies.html            # ⬜ TODO - Enemy AI, collision
+│   │   ├── part8-levels.html             # ⬜ TODO - Load 2 levels from files
+│   │   ├── part9-polish.html             # ⬜ TODO - Graphics, sound, menu
+│   │   └── CHALLENGE-extensions.html     # ⬜ TODO - Optional: power-ups, animations
+│   └── challenges/                     # ✅ Empty, ready for:
+│       ├── debugging-practice.html       # ⬜ TODO - Fix broken code snippets
+│       ├── code-tracing.html             # ⬜ TODO - Trace execution, predict output
+│       └── algorithm-quiz.html            # ⬜ TODO - Game logic puzzles
+├── index.html                         # ✅ Updated with Python section & nav
+├── AGENTS.md                          # ✅ Updated with commit constraints
+└── docs/
+    └── python-platformer-course.md      # ✅ This document (curriculum plan)
 ```
 
 ---
@@ -92,25 +97,41 @@ cambridge-practice/
 
 ### Phase 1: Arcade Fundamentals (Basics Folder)
 
-#### Sheet: `arcade-intro.html`
+#### Sheet: `arcade-intro.html` ✅ IMPLEMENTED
 **Format:** Mixed in-browser + project setup
 **Duration:** 30-45 min
+**Status:** ✅ LIVE at https://jasperf.github.io/cambridge-practice/python/arcade-intro.html
 **Topics:**
 - Install Arcade on Mac: `pip install arcade`
 - Create first window
-- Game loop concept
-- Drawing shapes
-- Coordinate system
+- Game loop concept (`on_draw()`, `arcade.run()`)
+- Drawing shapes (`arcade.draw_circle_filled`)
+- Coordinate system (bottom-left origin, X right, Y up)
 
-**In-Browser Exercises:**
-1. MCQ: "What command installs Arcade?"
-2. Code tracing: "What does this drawing code produce?" (show image options)
-3. Debug: Fix the window creation code
-4. Interactive: SVG diagram of Arcade coordinate system (click to test understanding)
+**In-Browser Exercises (7 questions, 10 marks total):**
+1. **Q1 (1 mark)** - MCQ: "What command installs Arcade?" → `pip install arcade`
+2. **Q2 (1 mark)** - MCQ: "What are the three parameters for arcade.Window()?" → width, height, title
+3. **Q3 (1 mark)** - MCQ: "Where is the origin (0,0)?" → Bottom-left corner
+4. **Q4 (2 marks)** - Code tracing: "What does `arcade.draw_circle_filled(100, 100, 50, RED)` draw?" with canvas visualization
+5. **Q5 (2 marks)** - Debug: "Window opens but closes immediately" → Missing `arcade.run()`
+6. **Q6 (1 mark)** - MCQ: "Which method draws everything each frame?" → `on_draw()`
+7. **Q7 (2 marks)** - MCQ: "Position relative to center" → Right and above
+
+**Interactive Elements:**
+- SVG coordinate system diagram with click-to-test functionality
+- Canvas visualization for Q4 code output
+- Progress bar tracking completion
+- Confetti celebration on ≥70% score
 
 **Project Task:**
-- Create `game.py` that opens a 800x600 window with a colored background
-- Checkpoint: Run it, see the window
+- **File:** Create `game.py`
+- **Code:** Complete working example with window, background, text
+- **Steps:** Create file, paste code, save, run with `python3 game.py`
+- **Checkpoints:**
+  1. ✓ Created `game.py` with code
+  2. ✓ Game window opened successfully
+  3. ✓ Saw "Hello, Arcade!" on dark blue background
+- **Troubleshooting:** 4 common issues with solutions
 
 ---
 
@@ -772,17 +793,96 @@ Can be done at student's pace, one sheet per session.
 
 ---
 
+## ✅ Implementation Status
+
+### Completed ✅
+
+#### 1. Foundation Setup
+- ✅ **docs/python-platformer-course.md** — This curriculum plan document
+- ✅ **python/ folder structure** — Created with `basics/`, `platformer/`, `challenges/` subfolders
+- ✅ **python/README.md** — Comprehensive course documentation (8.5KB)
+  - Getting started guide
+  - Python installation
+  - Arcade installation
+  - Course structure overview
+  - Troubleshooting tips
+  - Asset resources
+  - Learning path
+
+#### 2. First Worksheet: arcade-intro.html
+- ✅ **Full interactive sheet** (55KB) with:
+  - Hero section with course intro, duration, difficulty
+  - Concepts section:
+    - What is Arcade (with comparison to Pygame)
+    - Installation instructions (`pip3 install arcade`)
+    - The Game Loop explanation
+    - Coordinate System with interactive SVG diagram (click to see coordinates)
+  - Exercises section with **7 questions** (10 marks total):
+    - Q1: Install command MCQ
+    - Q2: Window parameters MCQ
+    - Q3: Coordinate origin MCQ
+    - Q4: Code tracing (draw_circle_filled) with canvas visualization
+    - Q5: Debugging challenge (missing arcade.run())
+    - Q6: Drawing method MCQ (on_draw)
+    - Q7: Coordinate position MCQ
+  - Project Task section:
+    - Complete code for first game window
+    - Step-by-step instructions
+    - Self-verification checkpoints (3 items)
+    - Troubleshooting guide
+  - Full state management:
+    - Score tracking with localStorage
+    - Progress bar
+    - Confetti celebration (≥70%)
+    - Results panel with grade, score, time
+- ✅ **Code block fix** — Fixed CSS counter issue causing squished characters
+  - Changed from `.code-line.numbers span` to `.code-line::before`
+  - Added better monospace font stack: SF Mono, Monaco, Inconsolata, Fira Code, Fira Mono, DM Mono
+  - Proper line numbering with CSS counters
+- ✅ **index.html updated** — Added Python section with:
+  - Navigation link
+  - Hero tag
+  - Grid section with live arcade-intro card
+  - Placeholder cards for upcoming sheets
+
+#### 3. Git & Deployment
+- ✅ All files committed with clean messages (no AI co-authorship)
+- ✅ Pushed to GitHub main branch
+- ✅ Auto-deployed to GitHub Pages: https://jasperf.github.io/cambridge-practice/python/arcade-intro.html
+- ✅ AGENTS.md updated with commit message constraints
+
+### In Progress 🚧
+
+- ⏳ Awaiting feedback on first sheet before continuing
+- ⏳ Next sheet: `python/sprites-graphics.html` (ready to implement)
+- ⏳ Next sheet: `python/platformer/part1-project-setup.html` (ready to implement)
+
+### Remaining 📋
+
+- ⬜ Create sprites-graphics.html
+- ⬜ Create movement-physics.html
+- ⬜ Create part1-project-setup.html through part9-polish.html
+- ⬜ Create challenge sheets
+- ⬜ Create simple sprite assets
+- ⬜ Test complete course end-to-end
+
+---
+
 ## 📝 Next Steps (Implementation Order)
 
 1. **Create docs folder content** (THIS FILE) ✅
-2. **Set up python/ folder structure**
-3. **Create arcade-intro.html** — First sheet, test the format
-4. **Create part2-player.html** — First game milestone
-5. **Add Python section to index.html**
-6. **Iterate and refine** based on student feedback
-7. **Create remaining sheets** one by one
-8. **Create assets** (simple sprites, sounds)
-9. **Test complete course** end-to-end
+2. **Set up python/ folder structure** ✅
+3. **Create arcade-intro.html** — First sheet, test the format ✅
+4. **Fix code block rendering** — CSS counters for line numbers ✅
+5. **Add Python section to index.html** ✅
+6. **Update AGENTS.md** with commit constraints ✅
+7. **Create part1-project-setup.html** — First platformer sheet
+8. **Create sprites-graphics.html** — Second basics sheet
+9. **Create movement-physics.html** — Third basics sheet
+10. **Iterate and refine** based on student feedback
+11. **Create remaining sheets** one by one
+12. **Create assets** (simple sprites, sounds)
+13. **Test complete course** end-to-end
 
 ---
 
