@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 4: Jumping & Gravity · Platformer Course</title>
+<title>Part 5: Camera Scrolling · Platformer Course</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -519,76 +519,6 @@ body::before {
 .feedback strong { color: inherit; }
 .feedback code { font-family: var(--font-mono); background: rgba(0,0,0,0.15); padding: 0 4px; border-radius: 3px; font-size: 0.85em; }
 
-/* Jump Visualization */
-.jump-demo {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin: 20px 0;
-}
-.jump-demo h3 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 12px;
-}
-.jump-demo-canvas {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  width: 100%;
-  height: 250px;
-  display: block;
-}
-.jump-demo-controls {
-  display: flex;
-  gap: 12px;
-  margin-top: 12px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.jump-demo-controls label {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.jump-demo-controls input[type="range"] {
-  width: 150px;
-  accent-color: var(--accent-python);
-  cursor: pointer;
-}
-.jump-demo .demo-btn {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  padding: 6px 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.jump-demo .demo-btn:hover {
-  border-color: var(--accent-python);
-  color: var(--text);
-  background: rgba(55,118,171,0.1);
-}
-.jump-demo-info {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: 12px;
-  line-height: 1.6;
-}
-.jump-demo-info span {
-  font-family: var(--font-mono);
-  color: var(--accent-python);
-}
-
 /* Results Panel */
 .results-overlay {
   position: fixed;
@@ -716,7 +646,7 @@ body::before {
 <div class="topbar">
   <div class="topbar-left">
     <div class="logo">Student<span>'s</span> Study Hub</div>
-    <div class="week-badge">Platformer · Part 4: Jumping & Gravity</div>
+    <div class="week-badge">Platformer · Part 5: Camera Scrolling</div>
   </div>
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="../../index.html" class="back-link">&larr; All sheets</a>
@@ -729,11 +659,11 @@ body::before {
 
 <div class="hero">
   <div class="hero-eyebrow">PLATFORMER PROJECT</div>
-  <h1>Part 4: <em>Jumping & Gravity</em></h1>
-  <p class="hero-sub">Add the force of gravity to pull the player down, and implement jumping to send them soaring through the air. Master the physics that makes platformers feel real!</p>
+  <h1>Part 5: <em>Camera Scrolling</em></h1>
+  <p class="hero-sub">Make the camera follow your player as they explore the world! Learn about viewport boundaries, camera positioning, and smooth scrolling to create a professional-feeling platformer.</p>
   <div class="hero-meta">
     <div class="hero-chip"><span class="dot dot-python"></span> Arcade Library</div>
-    <div class="hero-chip">~90 min</div>
+    <div class="hero-chip">~60 min</div>
     <div class="hero-chip">Intermediate</div>
   </div>
 </div>
@@ -748,109 +678,121 @@ body::before {
 
   <section id="concepts">
     <div class="section-header">
-      <div class="section-icon icon-python">🚀</div>
+      <div class="section-icon icon-python">🎥</div>
       <div>
-        <h2>Gravity & Jumping</h2>
+        <h2>Camera & Viewport</h2>
         <span class="sub-label">CORE CONCEPTS</span>
       </div>
     </div>
 
     <div class="info-box">
-      <h3>What Is Gravity?</h3>
-      <p>In platformer games, <strong>gravity</strong> is a constant downward force that pulls the player (and other objects) toward the bottom of the screen. Without gravity, your player would float in mid-air!</p>
-      <p><strong>How we simulate it:</strong></p>
+      <h3>What Is a Camera?</h3>
+      <p>In game development, the <strong>camera</strong> defines what portion of the game world is visible on screen. Think of it like a movie camera - it can move around, zoom in/out, and focus on different parts of the scene.</p>
+      <p><strong>Why we need it:</strong></p>
       <ul>
-        <li><strong>Gravity constant:</strong> A fixed value (e.g., <code>0.5</code>) subtracted from the player's vertical velocity each frame</li>
-        <li><strong>Vertical velocity:</strong> The <code>change_y</code> property determines how fast the player moves up or down</li>
-        <li><strong>Positive vs negative:</strong> Positive <code>change_y</code> moves up, negative moves down</li>
+        <li><strong>Large worlds:</strong> Your game world is likely bigger than the screen. The camera shows a <em>viewport</em> into that world.</li>
+        <li><strong>Follow player:</strong> The camera should follow the player so they're always visible.</li>
+        <li><strong>Control boundaries:</strong> The camera shouldn't show empty space outside your level.</li>
       </ul>
-      <p><strong>In code:</strong></p>
+      <p><strong>In Arcade:</strong> The <code>arcade.Camera</code> class makes this easy!</p>
       <div class="code-block">
-<span class="code-line"><span class="comment"># Gravity constant - how fast the player falls</span></span>
-<span class="code-line"><span class="variable">GRAVITY</span> = <span class="number">0.5</span></span>
-<span class="code-line"></span>
-<span class="code-line"><span class="comment"># In the player's update method:</span></span>
-<span class="code-line"><span class="variable">self.change_y</span> -= <span class="variable">GRAVITY</span></span>
+<span class="code-line"><span class="keyword">import</span> <span class="variable">arcade</span></span>
+<span class="code-line"><span class="variable">self.camera</span> = <span class="variable">arcade.Camera</span>(<span class="variable">self.width</span>, <span class="variable">self.height</span>)</span>
       </div>
     </div>
 
     <div class="info-box">
-      <h3>Jump Mechanics</h3>
-      <p>Jumping is the opposite of gravity - it gives the player an <strong>upward velocity</strong>. The key principles:</p>
+      <h3>How Cameras Work in Arcade</h3>
+      <p>Arcade's camera system has a few key concepts:</p>
       <ul>
-        <li><strong>Jump velocity:</strong> A positive value (e.g., <code>12</code>) applied to <code>change_y</code></li>
-        <li><strong>Instant velocity:</strong> Unlike gravity which accelerates, jumping is an instant force</li>
-        <li><strong>Jump arc:</strong> Gravity immediately starts pulling the player down, creating a natural arc</li>
+        <li><strong>Camera position:</strong> The center point of what the camera is showing (<code>camera.position = (x, y)</code>)</li>
+        <li><strong>Viewport:</strong> The visible area on screen (same size as your window)</li>
+        <li><strong>Activating the camera:</strong> You must call <code>camera.use()</code> before drawing</li>
+        <li><strong>Sprite lists:</strong> Each <code>SpriteList</code> can use a different camera for parallax effects</li>
       </ul>
-      <p><strong>Important:</strong> Players should only be able to jump when they're <strong>on the ground</strong> (standing on a platform), not in mid-air!</p>
+      <p><strong>Basic usage pattern:</strong></p>
       <div class="code-block">
-<span class="code-line"><span class="variable">JUMP_VELOCITY</span> = <span class="number">12</span></span>
+<span class="code-line"><span class="comment"># In setup()</span></span>
+<span class="code-line"><span class="variable">self.camera</span> = <span class="variable">arcade.Camera</span>(<span class="variable">SCREEN_WIDTH</span>, <span class="variable">SCREEN_HEIGHT</span>)</span>
 <span class="code-line"></span>
-<span class="code-line"><span class="keyword">def</span> <span class="function">jump</span>(<span class="variable">self</span>):</span>
-<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.is_on_ground</span>:</span>
-<span class="code-line">        <span class="variable">self.change_y</span> = <span class="variable">JUMP_VELOCITY</span></span>
+<span class="code-line"><span class="comment"># In on_draw()</span></span>
+<span class="code-line"><span class="variable">self.camera.use</span>()  <span class="comment"># Activate the camera</span></span>
+<span class="code-line"><span class="variable">self.player_list.draw</span>()  <span class="comment"># Draw sprites</span></span>
       </div>
     </div>
 
     <div class="info-box">
-      <h3>Ground Detection</h3>
-      <p>Before allowing a jump, we need to check if the player is standing on a platform. We do this by:</p>
-      <ol>
-        <li>Checking for collisions with platforms</li>
-        <li>Verifying the player is moving downward (falling onto the platform)</li>
-        <li>Setting <code>is_on_ground = True</code> when landing</li>
-        <li>Setting <code>is_on_ground = False</code> when jumping or falling</li>
-      </ol>
+      <h3>Following the Player</h3>
+      <p>To make the camera follow the player, simply update the camera's position to match the player's position in the <code>on_update</code> method:</p>
       <div class="code-block">
-<span class="code-line"><span class="comment"># In on_update, after moving the player:</span></span>
-<span class="code-line"><span class="variable">hit_list</span> = <span class="variable">arcade.check_for_collision_with_list</span>(</span>
-<span class="code-line">    <span class="variable">self.player</span>, <span class="variable">self.platform_list</span></span>
-<span class="code-line">)</span>
-<span class="code-line"></span>
-<span class="code-line"><span class="variable">self.player.is_on_ground</span> = <span class="keyword">False</span></span>
-<span class="code-line"></span>
-<span class="code-line"><span class="keyword">for</span> <span class="variable">platform</span> <span class="keyword">in</span> <span class="variable">hit_list</span>:</span>
-<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.change_y</span> <= <span class="number">0</span>:</span>
-<span class="code-line">        <span class="comment"># Player is falling onto platform</span></span>
-<span class="code-line">        <span class="variable">self.player.change_y</span> = <span class="number">0</span></span>
-<span class="code-line">        <span class="variable">self.player.center_y</span> = <span class="variable">platform.top</span></span>
-<span class="code-line">        <span class="variable">self.player.is_on_ground</span> = <span class="keyword">True</span></span>
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_update</span>(<span class="variable">self</span>, <span class="variable">delta_time</span>):</span>
+<span class="code-line">    <span class="comment"># Update player position</span></span>
+<span class="code-line">    <span class="variable">self.player_list.update</span>()</span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="comment"># Position camera at player</span></span>
+<span class="code-line">    <span class="variable">self.camera.position</span> = (<span class="variable">self.player.center_x</span>, <span class="variable">self.player.center_y</span>)</span>
       </div>
-    </div>
-
-    <div class="jump-demo">
-      <h3>Jump Arc Visualization</h3>
-      <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 12px;">Adjust the gravity and jump velocity sliders to see how they affect the jump trajectory.</p>
-      <canvas class="jump-demo-canvas" id="jump-canvas"></canvas>
-      <div class="jump-demo-controls">
-        <label><span>Gravity:</span> <input type="range" id="gravity-slider" min="0.1" max="2" step="0.1" value="0.5"></label>
-        <span id="gravity-value">0.5</span>
-        <label><span>Jump:</span> <input type="range" id="jump-slider" min="5" max="20" step="1" value="12"></label>
-        <span id="jump-value">12</span>
-        <button class="demo-btn" onclick="resetJumpDemo()">Reset</button>
-        <button class="demo-btn" onclick="launchJump()">Launch</button>
-      </div>
-      <div class="jump-demo-info">
-        <strong>Tip:</strong> Higher gravity = faster fall, shorter jumps. Higher jump velocity = longer jumps, more air time.
-      </div>
+      <p><strong>But wait!</strong> This centers the player perfectly, which means the player can only move half-screen from the edge. We can do better with viewport margins...</p>
     </div>
 
     <div class="info-box">
-      <h3>Putting It All Together</h3>
-      <p>The complete movement flow in the player's <code>update()</code> method:</p>
-      <ol>
-        <li><strong>Apply gravity:</strong> Always pull the player down</li>
-        <li><strong>Handle keyboard input:</strong> Update <code>change_x</code> for left/right movement</li>
-        <li><strong>Move the player:</strong> Apply both <code>change_x</code> and <code>change_y</code></li>
-        <li><strong>Check collisions:</strong> Detect if player is standing on a platform</li>
-        <li><strong>Handle jumps:</strong> Only allow jumps when on the ground</li>
-      </ol>
-      <p><strong>Pro tip:</strong> For smoother movement, apply gravity <em>before</em> checking for collisions!</p>
+      <h3>Viewport Margins & Smooth Scrolling</h3>
+      <p>For a better experience, use <code>move_to_with_speed()</code> which allows viewport margins and smooth movement:</p>
+      <div class="code-block">
+<span class="code-line"><span class="comment"># Constants</span></span>
+<span class="code-line"><span class="variable">CAMERA_SPEED</span> = <span class="number">0.5</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="comment"># In on_update()</span></span>
+<span class="code-line"><span class="variable">self.camera.move_to_with_speed</span>(</span>
+<span class="code-line">    <span class="variable">self.player.center_x</span>, <span class="variable">self.player.center_y</span>, <span class="variable">CAMERA_SPEED</span>)</span>
+      </div>
+      <p><strong>How it works:</strong> <code>move_to_with_speed()</code> creates smooth camera movement. The speed parameter (0.1-1.0) controls how quickly the camera catches up to the player. Lower = smoother but slower.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>Level Boundaries</h3>
+      <p>Your camera shouldn't show empty space outside your level. Constrain the camera to stay within the level boundaries:</p>
+      <div class="code-block">
+<span class="code-line"><span class="comment"># Clamp camera to level boundaries</span></span>
+<span class="code-line"><span class="variable">left_limit</span> = <span class="variable">self.width</span> / <span class="number">2</span></span>
+<span class="code-line"><span class="variable">right_limit</span> = <span class="variable">LEVEL_WIDTH</span> - <span class="variable">self.width</span> / <span class="number">2</span></span>
+<span class="code-line"><span class="variable">camera_x</span> = <span class="variable">max</span>(<span class="variable">left_limit</span>, <span class="variable">min</span>(<span class="variable">self.player.center_x</span>, <span class="variable">right_limit</span>))</span>
+<span class="code-line"><span class="variable">camera_y</span> = <span class="variable">max</span>(<span class="variable">self.height</span>/<span class="number">2</span>, <span class="variable">min</span>(<span class="variable">self.player.center_y</span>, <span class="variable">LEVEL_HEIGHT</span> - <span class="variable">self.height</span>/<span class="number">2</span>))</span>
+<span class="code-line"><span class="variable">self.camera.move_to_with_speed</span>(<span class="variable">camera_x</span>, <span class="variable">camera_y</span>, <span class="variable">CAMERA_SPEED</span>)</span>
+      </div>
+      <p><strong>Pro tip:</strong> Set <code>LEVEL_WIDTH</code> and <code>LEVEL_HEIGHT</code> to match your actual level dimensions.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>Multiple Cameras for Advanced Effects</h3>
+      <p>For parallax scrolling (background moving slower than foreground) or fixed UI, use multiple cameras:</p>
+      <div class="code-block">
+<span class="code-line"><span class="comment"># Create cameras for different layers</span></span>
+<span class="code-line"><span class="variable">self.main_camera</span> = <span class="variable">arcade.Camera</span>(<span class="variable">self.width</span>, <span class="variable">self.height</span>)</span>
+<span class="code-line"><span class="variable">self.ui_camera</span> = <span class="variable">arcade.Camera</span>(<span class="variable">self.width</span>, <span class="variable">self.height</span>)</span>
+<span class="code-line">    </span>
+<span class="code-line"><span class="comment"># Assign to sprite lists</span></span>
+<span class="code-line"><span class="variable">self.player_list</span> = <span class="variable">arcade.SpriteList</span>(<span class="variable">camera</span>=<span class="variable">self.main_camera</span>)</span>
+<span class="code-line"><span class="variable">self.ui_list</span> = <span class="variable">arcade.SpriteList</span>(<span class="variable">camera</span>=<span class="variable">self.ui_camera</span>)</span>
+      </div>
     </div>
 
     <div class="warning-box">
       <span class="warn-icon">⚠️</span>
-      <p><strong>Common Pitfall:</strong> If your player gets stuck in a platform or falls through, check the order of operations. Gravity should be applied <strong>before</strong> collision detection, and the player should be <em>pushed out</em> of platforms they land on (by setting their <code>center_y = platform.top</code>).</p>
+      <p><strong>Common Pitfall:</strong> Forgetting to call <code>camera.use()</code> before drawing will result in nothing appearing on screen! Also, position your camera <em>after</em> updating player position, not before.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>Complete Camera Flow</h3>
+      <p>The complete camera implementation flow:</p>
+      <ol>
+        <li><strong>Create camera:</strong> In <code>setup()</code>, create your camera object</li>
+        <li><strong>Position camera:</strong> In <code>on_update()</code>, update camera position to follow player</li>
+        <li><strong>Clamp to boundaries:</strong> Ensure camera stays within level limits</li>
+        <li><strong>Activate camera:</strong> In <code>on_draw()</code>, call <code>camera.use()</code> before drawing</li>
+        <li><strong>Draw sprites:</strong> All sprites assigned to that camera will be drawn correctly</li>
+      </ol>
+      <p><strong>Pro tip:</strong> For the best feel, use <code>move_to_with_speed()</code> with a speed between 0.3 and 0.8.</p>
     </div>
 
   </section>
@@ -864,12 +806,12 @@ body::before {
       </div>
     </div>
 
-    <!-- Q1: Gravity effect -->
+    <!-- Q1: Camera purpose -->
     <div class="q-card" id="qcard-q1">
       <div class="q-header">
         <div class="q-num" data-num="Q1"></div>
         <div class="q-header-text">
-          <div class="q-text">What does the line <code>self.change_y -= GRAVITY</code> do?</div>
+          <div class="q-text">What is the main purpose of the camera in a platformer game?</div>
           <div class="q-marks">1 mark</div>
         </div>
       </div>
@@ -877,36 +819,36 @@ body::before {
         <div class="mcq-options" id="q1-opts">
           <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')">
             <div class="opt-indicator"></div>
-            <span>A) Accelerates the player upward</span>
+            <span>A) To take screenshots of the game</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')">
             <div class="opt-indicator"></div>
-            <span>B) Applies a constant downward acceleration to the player</span>
+            <span>B) To define which portion of the game world is visible on screen</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q1', this, 'c')">
             <div class="opt-indicator"></div>
-            <span>C) Sets the player's vertical position to zero</span>
+            <span>C) To control the player's movement</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q1', this, 'd')">
             <div class="opt-indicator"></div>
-            <span>D) Makes the player jump higher</span>
+            <span>D) To detect collisions between sprites</span>
           </div>
         </div>
         <div class="q-actions">
           <button class="btn btn-check" onclick="checkMCQ('q1','b','Q1')">Check Answer</button>
-          <button class="btn btn-hint" onclick="showHint('q1','This line decreases change_y by GRAVITY each frame')">Hint</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('q1','Applies a constant downward acceleration to the player')">Show Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q1','The camera is like a window showing part of the game world')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q1','To define which portion of the game world is visible on screen')">Show Answer</button>
         </div>
         <div class="feedback" id="q1-fb"></div>
       </div>
     </div>
 
-    <!-- Q2: Jump timing -->
+    <!-- Q2: Camera activation -->
     <div class="q-card" id="qcard-q2">
       <div class="q-header">
         <div class="q-num" data-num="Q2"></div>
         <div class="q-header-text">
-          <div class="q-text">When should <code>is_on_ground</code> be set to <code>False</code>?</div>
+          <div class="q-text">What method must you call before drawing sprites with a camera?</div>
           <div class="q-marks">1 mark</div>
         </div>
       </div>
@@ -914,36 +856,36 @@ body::before {
         <div class="mcq-options" id="q2-opts">
           <div class="mcq-opt" onclick="selectMCQ('q2', this, 'a')">
             <div class="opt-indicator"></div>
-            <span>A) When the player starts the game</span>
+            <span>A) <code>camera.start()</code></span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q2', this, 'b')">
             <div class="opt-indicator"></div>
-            <span>B) After the player jumps or starts falling</span>
+            <span>B) <code>camera.activate()</code></span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q2', this, 'c')">
             <div class="opt-indicator"></div>
-            <span>C) When the player lands on a platform</span>
+            <span>C) <code>camera.use()</code></span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q2', this, 'd')">
             <div class="opt-indicator"></div>
-            <span>D) When the player collects a coin</span>
+            <span>D) <code>camera.draw()</code></span>
           </div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('q2','b','Q2')">Check Answer</button>
-          <button class="btn btn-hint" onclick="showHint('q2','is_on_ground should be True only when standing on something solid')">Hint</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('q2','After the player jumps or starts falling')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('q2','c','Q2')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q2','This method tells Arcade to use this camera for subsequent draw calls')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q2','camera.use()')">Show Answer</button>
         </div>
         <div class="feedback" id="q2-fb"></div>
       </div>
     </div>
 
-    <!-- Q3: Gravity zero -->
+    <!-- Q3: Camera position property -->
     <div class="q-card" id="qcard-q3">
       <div class="q-header">
         <div class="q-num" data-num="Q3"></div>
         <div class="q-header-text">
-          <div class="q-text">What happens if you set <code>GRAVITY = 0</code>?</div>
+          <div class="q-text">Which property sets where the camera is centered?</div>
           <div class="q-marks">1 mark</div>
         </div>
       </div>
@@ -951,73 +893,73 @@ body::before {
         <div class="mcq-options" id="q3-opts">
           <div class="mcq-opt" onclick="selectMCQ('q3', this, 'a')">
             <div class="opt-indicator"></div>
-            <span>A) The player falls very slowly</span>
+            <span>A) <code>camera.center</code></span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q3', this, 'b')">
             <div class="opt-indicator"></div>
-            <span>B) The player cannot jump</span>
+            <span>B) <code>camera.position</code></span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q3', this, 'c')">
             <div class="opt-indicator"></div>
-            <span>C) The player floats in mid-air and never falls</span>
+            <span>C) <code>camera.focus</code></span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q3', this, 'd')">
             <div class="opt-indicator"></div>
-            <span>D) The game crashes</span>
+            <span>D) <code>camera.viewport</code></span>
           </div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('q3','c','Q3')">Check Answer</button>
-          <button class="btn btn-hint" onclick="showHint('q3','With no gravity, nothing pulls the player down')">Hint</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('q3','The player floats in mid-air and never falls')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('q3','b','Q3')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q3','This is a tuple of (x, y) coordinates')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q3','camera.position')">Show Answer</button>
         </div>
         <div class="feedback" id="q3-fb"></div>
       </div>
     </div>
 
-    <!-- Q4: Code tracing - position after jump -->
+    <!-- Q4: Smooth scrolling method -->
     <div class="q-card" id="qcard-q4">
       <div class="q-header">
         <div class="q-num" data-num="Q4"></div>
         <div class="q-header-text">
-          <div class="q-text">A player at position (100, 100) with <code>change_y = 12</code> has gravity of 0.5 applied. After gravity is applied once, what is <code>change_y</code>?</div>
-          <div class="q-marks">2 marks</div>
+          <div class="q-text">Which method provides smooth camera movement toward a target?</div>
+          <div class="q-marks">1 mark</div>
         </div>
       </div>
       <div class="q-body">
         <div class="mcq-options" id="q4-opts">
           <div class="mcq-opt" onclick="selectMCQ('q4', this, 'a')">
             <div class="opt-indicator"></div>
-            <span>A) <code>11.5</code></span>
+            <span>A) <code>camera.jump_to()</code></span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q4', this, 'b')">
             <div class="opt-indicator"></div>
-            <span>B) <code>12.5</code></span>
+            <span>B) <code>camera.move_to()</code></span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q4', this, 'c')">
             <div class="opt-indicator"></div>
-            <span>C) <code>-6</code></span>
+            <span>C) <code>camera.move_to_with_speed()</code></span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q4', this, 'd')">
             <div class="opt-indicator"></div>
-            <span>D) <code>6</code></span>
+            <span>D) <code>camera.smooth_follow()</code></span>
           </div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('q4','a','Q4')">Check Answer</button>
-          <button class="btn btn-hint" onclick="showHint('q4','change_y -= GRAVITY means 12 - 0.5 = ?')">Hint</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('q4','11.5 (12 - 0.5)')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('q4','c','Q4')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q4','This method takes a speed parameter for smoothness')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q4','camera.move_to_with_speed()')">Show Answer</button>
         </div>
         <div class="feedback" id="q4-fb"></div>
       </div>
     </div>
 
-    <!-- Q5: Debugging - player falls through -->
+    <!-- Q5: Viewport margins purpose -->
     <div class="q-card" id="qcard-q5">
       <div class="q-header">
         <div class="q-num" data-num="Q5"></div>
         <div class="q-header-text">
-          <div class="q-text">Debug: A player falls through platforms. What's most likely missing from the collision code?</div>
+          <div class="q-text">Why use viewport margins when following the player?</div>
           <div class="q-marks">2 marks</div>
         </div>
       </div>
@@ -1025,73 +967,73 @@ body::before {
         <div class="mcq-options" id="q5-opts">
           <div class="mcq-opt" onclick="selectMCQ('q5', this, 'a')">
             <div class="opt-indicator"></div>
-            <span>A) <code>self.player.change_y = 0</code></span>
+            <span>A) To make the camera move faster</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q5', this, 'b')">
             <div class="opt-indicator"></div>
-            <span>B) <code>self.player.center_y = platform.top</code></span>
+            <span>B) To allow the player to see more of the world ahead and behind them</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q5', this, 'c')">
             <div class="opt-indicator"></div>
-            <span>C) <code>self.player.is_on_ground = True</code></span>
+            <span>C) To prevent the camera from moving at all</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q5', this, 'd')">
             <div class="opt-indicator"></div>
-            <span>D) <code>platform.remove_from_sprite_lists()</code></span>
+            <span>D) To automatically zoom the camera in and out</span>
           </div>
         </div>
         <div class="q-actions">
           <button class="btn btn-check" onclick="checkMCQ('q5','b','Q5')">Check Answer</button>
-          <button class="btn btn-hint" onclick="showHint('q5','Without positioning the player above the platform, they will stay inside it')">Hint</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('q5','self.player.center_y = platform.top (or similar positioning code)')">Show Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q5','This allows the player to move partially off-screen')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q5','To allow the player to see more of the world ahead and behind them')">Show Answer</button>
         </div>
         <div class="feedback" id="q5-fb"></div>
       </div>
     </div>
 
-    <!-- Q6: Jump key -->
+    <!-- Q6: Debugging - camera not moving -->
     <div class="q-card" id="qcard-q6">
       <div class="q-header">
         <div class="q-num" data-num="Q6"></div>
         <div class="q-header-text">
-          <div class="q-text">Which key press event should trigger a jump?</div>
-          <div class="q-marks">1 mark</div>
+          <div class="q-text">Debug: The camera doesn't move when the player moves. What's most likely missing?</div>
+          <div class="q-marks">2 marks</div>
         </div>
       </div>
       <div class="q-body">
         <div class="mcq-options" id="q6-opts">
           <div class="mcq-opt" onclick="selectMCQ('q6', this, 'a')">
             <div class="opt-indicator"></div>
-            <span>A) <code>arcade.key.UP</code> or <code>arcade.key.SPACE</code></span>
+            <span>A) <code>camera = arcade.Camera(width, height)</code> in setup</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q6', this, 'b')">
             <div class="opt-indicator"></div>
-            <span>B) <code>arcade.key.W</code></span>
+            <span>B) <code>camera.position = (player.center_x, player.center_y)</code> in on_update</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q6', this, 'c')">
             <div class="opt-indicator"></div>
-            <span>C) <code>arcade.key.LEFT</code></span>
+            <span>C) <code>camera.use()</code> in on_draw</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q6', this, 'd')">
             <div class="opt-indicator"></div>
-            <span>D) <code>arcade.key.RIGHT</code></span>
+            <span>D) <code>camera.draw()</code> in on_draw</span>
           </div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('q6','a','Q6')">Check Answer</button>
-          <button class="btn btn-hint" onclick="showHint('q6','Standard platformer controls use UP arrow or SPACE for jumping')">Hint</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('q6','arcade.key.UP or arcade.key.SPACE')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('q6','b','Q6')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q6','The camera position needs to be updated every frame')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q6','camera.position = (player.center_x, player.center_y) in on_update')">Show Answer</button>
         </div>
         <div class="feedback" id="q6-fb"></div>
       </div>
     </div>
 
-    <!-- Q7: Order of operations -->
+    <!-- Q7: Level boundaries -->
     <div class="q-card" id="qcard-q7">
       <div class="q-header">
         <div class="q-num" data-num="Q7"></div>
         <div class="q-header-text">
-          <div class="q-text">In what order should these happen in <code>on_update</code>?</div>
+          <div class="q-text">How do you prevent the camera from showing outside the level boundaries?</div>
           <div class="q-marks">2 marks</div>
         </div>
       </div>
@@ -1099,25 +1041,25 @@ body::before {
         <div class="mcq-options" id="q7-opts">
           <div class="mcq-opt" onclick="selectMCQ('q7', this, 'a')">
             <div class="opt-indicator"></div>
-            <span>A) Apply gravity → Move player → Check collisions</span>
+            <span>A) Set camera speed to 0</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q7', this, 'b')">
             <div class="opt-indicator"></div>
-            <span>B) Move player → Check collisions → Apply gravity</span>
+            <span>B) Use min() and max() to clamp the camera position</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q7', this, 'c')">
             <div class="opt-indicator"></div>
-            <span>C) Check collisions → Apply gravity → Move player</span>
+            <span>C) Set the viewport size to match the level size</span>
           </div>
           <div class="mcq-opt" onclick="selectMCQ('q7', this, 'd')">
             <div class="opt-indicator"></div>
-            <span>D) Check collisions → Move player → Apply gravity</span>
+            <span>D) Disable camera movement entirely</span>
           </div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('q7','a','Q7')">Check Answer</button>
-          <button class="btn btn-hint" onclick="showHint('q7','Gravity must be applied before collision to calculate the new position')">Hint</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('q7','Apply gravity → Move player → Check collisions')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('q7','b','Q7')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q7','You need to constrain the position between boundary values')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q7','Use min() and max() to clamp the camera position')">Show Answer</button>
         </div>
         <div class="feedback" id="q7-fb"></div>
       </div>
@@ -1135,105 +1077,84 @@ body::before {
     </div>
 
     <div class="info-box">
-      <h3>Add Gravity & Jumping to Your Player</h3>
-      <p>Now it's time to implement the physics! Add gravity and jumping to your game project.</p>
+      <h3>Add Camera Scrolling to Your Game</h3>
+      <p>Now it's time to implement camera scrolling! Make your camera follow the player as they move through the level.</p>
     </div>
 
     <div class="info-box">
-      <h3>Step 1: Add Constants</h3>
-      <p>At the top of your <code>constants.py</code> file (or in your game class), add these physics constants:</p>
+      <h3>Step 1: Create the Camera</h3>
+      <p>In your <code>Game</code> class <code>setup()</code> method, create a camera and assign it to your sprite lists:</p>
       <div class="code-block">
-<span class="code-line"><span class="comment"># Physics constants</span></span>
-<span class="code-line"><span class="variable">GRAVITY</span> = <span class="number">0.5</span></span>
-<span class="code-line"><span class="variable">JUMP_VELOCITY</span> = <span class="number">12</span></span>
-<span class="code-line"><span class="variable">PLAYER_MOVEMENT_SPEED</span> = <span class="number">5</span></span>
-      </div>
-    </div>
-
-    <div class="info-box">
-      <h3>Step 2: Add Ground Tracking to Player</h3>
-      <p>In your <code>Player</code> class <code>__init__</code>, add a property to track if the player is on the ground:</p>
-      <div class="code-block">
-<span class="code-line"><span class="keyword">class</span> <span class="function">Player</span>(<span class="variable">arcade.Sprite</span>):</span>
-<span class="code-line">    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>, <span class="variable">x</span>, <span class="variable">y</span>):</span>
-<span class="code-line">        <span class="keyword">super</span>().<span class="function">__init__</span>(<span class="string">"assets/sprites/player.png"</span>, <span class="variable">SCALE</span>)</span>
-<span class="code-line">        <span class="variable">self.center_x</span> = <span class="variable">x</span></span>
-<span class="code-line">        <span class="variable">self.center_y</span> = <span class="variable">y</span></span>
-<span class="code-line">        <span class="variable">self.is_on_ground</span> = <span class="keyword">False</span></span>
-      </div>
-    </div>
-
-    <div class="info-box">
-      <h3>Step 3: Update Player Movement</h3>
-      <p>Modify your Player class <code>update()</code> method to apply gravity. This gets called automatically by Arcade every frame if you add the player to a <code>SpriteList</code> and call <code>player_list.update()</code>:</p>
-      <div class="code-block">
-<span class="code-line"><span class="keyword">def</span> <span class="function">update</span>(<span class="variable">self</span>):</span>
-<span class="code-line">    <span class="comment"># Apply gravity</span></span>
-<span class="code-line">    <span class="variable">self.change_y</span> -= <span class="variable">GRAVITY</span></span>
+<span class="code-line"><span class="comment"># Create the camera</span></span>
+<span class="code-line"><span class="variable">self.camera</span> = <span class="variable">arcade.Camera</span>(<span class="variable">self.width</span>, <span class="variable">self.height</span>)</span>
 <span class="code-line">    </span>
-<span class="code-line">    <span class="comment"># Move based on current velocity</span></span>
-<span class="code-line">    <span class="variable">self.center_x</span> += <span class="variable">self.change_x</span></span>
-<span class="code-line">    <span class="variable">self.center_y</span> += <span class="variable">self.change_y</span></span>
-      </div>
-      <p><strong>Note:</strong> If your player doesn't have <code>change_x</code> and <code>change_y</code> yet, add them in <code>__init__</code>:</p>
-      <div class="code-block">
-<span class="code-line">        <span class="variable">self.change_x</span> = <span class="number">0</span></span>
-<span class="code-line">        <span class="variable">self.change_y</span> = <span class="number">0</span></span>
+<span class="code-line"><span class="comment"># Assign camera to sprite lists</span></span>
+<span class="code-line"><span class="variable">self.player_list</span> = <span class="variable">arcade.SpriteList</span>(<span class="variable">camera</span>=<span class="variable">self.camera</span>)</span>
+<span class="code-line"><span class="variable">self.platform_list</span> = <span class="variable">arcade.SpriteList</span>(<span class="variable">camera</span>=<span class="variable">self.camera</span>)</span>
       </div>
     </div>
 
     <div class="info-box">
-      <h3>Step 4: Add Keyboard Jump Control</h3>
-      <p>In your <code>Game</code> class, add a method to handle jump key presses. This should be in your window/view class:</p>
+      <h3>Step 2: Define Level Boundaries</h3>
+      <p>Add level boundary constants to your Game class. These define how far the camera can scroll:</p>
       <div class="code-block">
-<span class="code-line"><span class="keyword">def</span> <span class="function">on_key_press</span>(<span class="variable">self</span>, <span class="variable">key</span>, <span class="variable">modifiers</span>):</span>
-<span class="code-line">    <span class="keyword">if</span> <span class="variable">key</span> == <span class="variable">arcade.key.UP</span> <span class="keyword">or</span> <span class="variable">key</span> == <span class="variable">arcade.key.SPACE</span>:</span>
-<span class="code-line">        <span class="variable">self.player.jump</span>()</span>
-<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.LEFT</span>:</span>
-<span class="code-line">        <span class="variable">self.player.change_x</span> = -<span class="variable">PLAYER_MOVEMENT_SPEED</span></span>
-<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.RIGHT</span>:</span>
-<span class="code-line">        <span class="variable">self.player.change_x</span> = <span class="variable">PLAYER_MOVEMENT_SPEED</span></span>
-<span class="code-line"></span>
-<span class="code-line"><span class="keyword">def</span> <span class="function">on_key_release</span>(<span class="variable">self</span>, <span class="variable">key</span>, <span class="variable">modifiers</span>):</span>
-<span class="code-line">    <span class="keyword">if</span> <span class="variable">key</span> == <span class="variable">arcade.key.LEFT</span> <span class="keyword">or</span> <span class="variable">key</span> == <span class="variable">arcade.key.RIGHT</span>:</span>
-<span class="code-line">        <span class="variable">self.player.change_x</span> = <span class="number">0</span></span>
+<span class="code-line"><span class="comment"># Level dimensions (adjust to your level)</span></span>
+<span class="code-line"><span class="variable">LEVEL_WIDTH</span> = <span class="number">2000</span>   <span class="comment"># Total width in pixels</span></span>
+<span class="code-line"><span class="variable">LEVEL_HEIGHT</span> = <span class="number">800</span>  <span class="comment"># Total height in pixels</span></span>
       </div>
     </div>
 
     <div class="info-box">
-      <h3>Step 5: Add Jump Method to Player</h3>
-      <p>Add the jump method to your <code>Player</code> class. Make sure to only jump when on the ground:</p>
-      <div class="code-block">
-<span class="code-line"><span class="keyword">def</span> <span class="function">jump</span>(<span class="variable">self</span>):</span>
-<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.is_on_ground</span>:</span>
-<span class="code-line">        <span class="variable">self.change_y</span> = <span class="variable">JUMP_VELOCITY</span></span>
-<span class="code-line">        <span class="variable">self.is_on_ground</span> = <span class="keyword">False</span></span>
-      </div>
-    </div>
-
-    <div class="info-box">
-      <h3>Step 6: Handle Collisions with Platforms</h3>
-      <p>In your <code>Game</code> class <code>on_update</code> method, add collision detection between the player and platforms:</p>
+      <h3>Step 3: Position the Camera in on_update</h3>
+      <p>Update the camera position in your <code>on_update</code> method to follow the player with smooth movement and boundary clamping:</p>
       <div class="code-block">
 <span class="code-line"><span class="keyword">def</span> <span class="function">on_update</span>(<span class="variable">self</span>, <span class="variable">delta_time</span>):</span>
-<span class="code-line">    <span class="comment"># Move player sprites</span></span>
+<span class="code-line">    <span class="comment"># Update sprite positions</span></span>
 <span class="code-line">    <span class="variable">self.player_list.update</span>()</span>
+<span class="code-line">    <span class="variable">self.platform_list.update</span>()</span>
 <span class="code-line">    </span>
-<span class="code-line">    <span class="comment"># Check for collision with platforms</span></span>
-<span class="code-line">    <span class="variable">hit_list</span> = <span class="variable">arcade.check_for_collision_with_list</span>(</span>
-<span class="code-line">        <span class="variable">self.player</span>, <span class="variable">self.platform_list</span></span>
-<span class="code-line">    )</span>
+<span class="code-line">    <span class="comment"># Camera speed (0.1-1.0)</span></span>
+<span class="code-line">    <span class="variable">CAMERA_SPEED</span> = <span class="number">0.5</span></span>
 <span class="code-line">    </span>
-<span class="code-line">    <span class="comment"># Reset ground state</span></span>
-<span class="code-line">    <span class="variable">self.player.is_on_ground</span> = <span class="keyword">False</span></span>
+<span class="code-line">    <span class="comment"># Clamp camera to level boundaries</span></span>
+<span class="code-line">    <span class="variable">camera_x</span> = <span class="variable">max</span>(<span class="variable">self.width</span>/<span class="number">2</span>, <span class="variable">min</span>(<span class="variable">self.player.center_x</span>, <span class="variable">LEVEL_WIDTH</span> - <span class="variable">self.width</span>/<span class="number">2</span>))</span>
+<span class="code-line">    <span class="variable">camera_y</span> = <span class="variable">max</span>(<span class="variable">self.height</span>/<span class="number">2</span>, <span class="variable">min</span>(<span class="variable">self.player.center_y</span>, <span class="variable">LEVEL_HEIGHT</span> - <span class="variable">self.height</span>/<span class="number">2</span>))</span>
 <span class="code-line">    </span>
-<span class="code-line">    <span class="keyword">for</span> <span class="variable">platform</span> <span class="keyword">in</span> <span class="variable">hit_list</span>:</span>
-<span class="code-line">        <span class="keyword">if</span> <span class="variable">self.player.change_y</span> <= <span class="number">0</span>:</span>
-<span class="code-line">            <span class="comment"># Player is falling onto platform</span></span>
-<span class="code-line">            <span class="variable">self.player.change_y</span> = <span class="number">0</span></span>
-<span class="code-line">            <span class="variable">self.player.center_y</span> = <span class="variable">platform.top</span></span>
-<span class="code-line">            <span class="variable">self.player.is_on_ground</span> = <span class="keyword">True</span></span>
+<span class="code-line">    <span class="comment"># Move camera smoothly</span></span>
+<span class="code-line">    <span class="variable">self.camera.move_to_with_speed</span>(<span class="variable">camera_x</span>, <span class="variable">camera_y</span>, <span class="variable">CAMERA_SPEED</span>)</span>
       </div>
+      <p><strong>How it works:</strong> <code>move_to_with_speed()</code> creates smooth movement. The <code>min()</code> and <code>max()</code> functions keep the camera within the level.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>Step 4: Activate Camera in on_draw</h3>
+      <p>In your <code>on_draw</code> method, activate the camera before drawing sprites:</p>
+      <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_draw</span>(<span class="variable">self</span>):</span>
+<span class="code-line">    <span class="variable">self.clear</span>()</span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="comment"># Activate camera for sprite drawing</span></span>
+<span class="code-line">    <span class="variable">self.camera.use</span>()</span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="comment"># Draw sprite lists</span></span>
+<span class="code-line">    <span class="variable">self.platform_list.draw</span>()</span>
+<span class="code-line">    <span class="variable">self.player_list.draw</span>()</span>
+      </div>
+      <p><strong>Important:</strong> You must call <code>camera.use()</code> <em>before</em> drawing any sprites that should be affected by the camera.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>Step 5: Add UI Camera (Optional)</h3>
+      <p>For score and other UI that should stay fixed on screen, create a separate UI camera:</p>
+      <div class="code-block">
+<span class="code-line"><span class="comment"># In setup()</span></span>
+<span class="code-line"><span class="variable">self.ui_camera</span> = <span class="variable">arcade.Camera</span>(<span class="variable">self.width</span>, <span class="variable">self.height</span>)</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="comment"># In on_draw(), after drawing game elements</span></span>
+<span class="code-line"><span class="variable">self.ui_camera.use</span>()</span>
+<span class="code-line"><span class="variable">arcade.draw_text</span>(<span class="string">f"Score: {self.score}"</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="variable">arcade.color.WHITE</span>)</span>
+      </div>
+      <p><strong>Why:</strong> The UI camera is never moved, so UI elements stay in the same screen position.</p>
     </div>
 
     <div class="checklist">
@@ -1241,30 +1162,30 @@ body::before {
       <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 12px;"><strong>Verify your implementation:</strong></p>
       <div class="checklist-item">
         <input type="checkbox" id="check-1">
-        <label for="check-1"><strong>Gravity works:</strong> Player falls when not on a platform</label>
+        <label for="check-1"><strong>Camera created:</strong> Camera object exists and is used by sprite lists</label>
       </div>
       <div class="checklist-item">
         <input type="checkbox" id="check-2">
-        <label for="check-2"><strong>Jumping works:</strong> Pressing UP or SPACE makes player jump when on ground</label>
+        <label for="check-2"><strong>Camera follows horizontally:</strong> Camera moves right/left as player moves</label>
       </div>
       <div class="checklist-item">
         <input type="checkbox" id="check-3">
-        <label for="check-3"><strong>No double-jumping:</strong> Player can't jump in mid-air</label>
+        <label for="check-3"><strong>Camera follows vertically:</strong> Camera moves up/down as player jumps or falls</label>
       </div>
       <div class="checklist-item">
         <input type="checkbox" id="check-4">
-        <label for="check-4"><strong>Stands on platforms:</strong> Player doesn't fall through platforms</label>
+        <label for="check-4"><strong>Level boundaries respected:</strong> Camera stops at level edges, doesn't show empty space</label>
       </div>
       <div class="checklist-item">
         <input type="checkbox" id="check-5">
-        <label for="check-5"><strong>Left/Right movement:</strong> Player can still move horizontally</label>
+        <label for="check-5"><strong>Smooth scrolling:</strong> Camera movement is smooth, not jumpy</label>
       </div>
     </div>
 
     <div class="info-box">
-      <h3>🚀 Ready for Part 5?</h3>
-      <p>Once your player can jump and gravity pulls them down, you're ready for <strong>Part 5: Camera Scrolling</strong>, where we'll make the camera follow the player as they explore the world!</p>
-      <p style="margin-top: 10px;"><a href="part5-camera-scrolling.html" class="btn" style="color: var(--accent-python); border: 1px solid var(--accent-python); background: transparent; padding: 8px 16px; border-radius: 6px;">Go to Part 5 →</a></p>
+      <h3>🚀 Ready for Part 6?</h3>
+      <p>Once your camera smoothly follows the player through the level, you're ready for <strong>Part 6: Coins & Collectibles</strong>, where we'll add collectible items and a scoring system!</p>
+      <p style="margin-top: 10px;"><a href="part6-coins-collectibles.html" class="btn" style="color: var(--accent-python); border: 1px solid var(--accent-python); background: transparent; padding: 8px 16px; border-radius: 6px;">Go to Part 6 →</a></p>
     </div>
 
   </section>
@@ -1302,12 +1223,12 @@ const state = {
 };
 
 const marks = {
-  q1:1, q2:1, q3:1, q4:2, q5:2, q6:1, q7:2
+  q1:1, q2:1, q3:1, q4:1, q5:2, q6:2, q7:2
 };
 
 const pyQs = ['q1','q2','q3','q4','q5','q6','q7'];
 
-// ── TIMER ──
+// Timer
 function updateTimer() {
   const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
   const m = String(Math.floor(elapsed/60)).padStart(2,'0');
@@ -1316,7 +1237,7 @@ function updateTimer() {
 }
 setInterval(updateTimer, 1000);
 
-// ── Select MCQ ─────────────────────────────────────────────────
+// Select MCQ
 function selectMCQ(qid, el, val) {
   const opts = el.parentElement.querySelectorAll('.mcq-opt');
   opts.forEach(opt => {
@@ -1324,15 +1245,13 @@ function selectMCQ(qid, el, val) {
     const indicator = opt.querySelector('.opt-indicator');
     if (indicator) indicator.textContent = '';
   });
-  
   el.classList.add('selected');
   const indicator = el.querySelector('.opt-indicator');
   if (indicator) indicator.textContent = '✓';
-  
   state.answers[qid] = val;
 }
 
-// ── Check MCQ ─────────────────────────────────────────────────
+// Check MCQ
 function checkMCQ(qid, correctVal, label) {
   const selected = state.answers[qid];
   if (!selected) { shakeCard(qid); return; }
@@ -1349,7 +1268,7 @@ function checkMCQ(qid, correctVal, label) {
   markResult(qid, isCorrect, label);
 }
 
-// ── Mark Result ───────────────────────────────────────────────
+// Mark Result
 function markResult(qid, isCorrect, label) {
   state.correct[qid] = isCorrect;
   const card = document.getElementById(`qcard-${qid}`);
@@ -1363,7 +1282,7 @@ function markResult(qid, isCorrect, label) {
   updateScores();
 }
 
-// ── Hint / Reveal ─────────────────────────────────────────────
+// Hint / Reveal
 function showHint(qid, hintText) {
   if (state.correct[qid] !== undefined) return;
   const fb = document.getElementById(`${qid}-fb`);
@@ -1381,7 +1300,7 @@ function revealAnswer(qid, answerText) {
   }
 }
 
-// ── Shake ──────────────────────────────────────────────────────
+// Shake animation
 function shakeCard(qid) {
   const card = document.getElementById(`qcard-${qid}`);
   card.classList.remove('shake');
@@ -1390,7 +1309,7 @@ function shakeCard(qid) {
   setTimeout(() => card.classList.remove('shake'), 400);
 }
 
-// ── Update Scores ─────────────────────────────────────────────
+// Update Scores
 function updateScores() {
   let pyScore = 0, answered = 0;
   pyQs.forEach(qid => {
@@ -1399,11 +1318,10 @@ function updateScores() {
   });
   document.getElementById('global-score').textContent = `${pyScore} / ${state.maxMarks.py}`;
   document.getElementById('progress-bar').style.width = `${(answered/pyQs.length)*100}%`;
-  
   if (answered === pyQs.length) showResults(pyScore);
 }
 
-// ── Results ───────────────────────────────────────────────────
+// Results
 function showResults(py) {
   const pct = Math.round((py / state.maxMarks.py) * 100);
   const grade = pct >= 85 ? '🏆 Excellent!' : pct >= 70 ? '⭐ Great Job!' : pct >= 55 ? '👍 Good Effort' : '📚 Keep Practising';
@@ -1419,7 +1337,7 @@ function showResults(py) {
   if (pct >= 70) launchConfetti();
   
   try {
-    const key = `python-part4-jump-gravity-v1`;
+    const key = `python-part5-camera-scrolling-v1`;
     localStorage.setItem(key, JSON.stringify({
       score: py,
       max: state.maxMarks.py,
@@ -1434,7 +1352,7 @@ function restartSheet() {
   location.reload();
 }
 
-// ── Confetti ──────────────────────────────────────────────────
+// Confetti
 function launchConfetti() {
   const canvas = document.getElementById('confetti-canvas');
   const ctx = canvas.getContext('2d');
@@ -1463,259 +1381,35 @@ function launchConfetti() {
       p.x += p.vx;
       p.y += p.vy;
       p.rotation += p.rotationSpeed;
-      
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rotation);
       ctx.fillStyle = p.color;
       ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
       ctx.restore();
-      
       if (p.y < canvas.height) remaining++;
     });
-    
     if (remaining > 0) requestAnimationFrame(animate);
     else canvas.classList.remove('show');
   }
-  
   animate();
 }
 
-// ── Jump Demo ─────────────────────────────────────────────────
-let jumpAnimationId = null;
-let jumpParticles = [];
-let jumpTime = 0;
-
-function initJumpDemo() {
-  const canvas = document.getElementById('jump-canvas');
-  const ctx = canvas.getContext('2d');
-  
-  function resize() {
-    canvas.width = canvas.parentElement.clientWidth;
-    canvas.height = 250;
-    drawJumpDemo(ctx, canvas.width, canvas.height);
-  }
-  
-  window.addEventListener('resize', resize);
-  resize();
-  
-  // Update display values
-  document.getElementById('gravity-value').textContent = document.getElementById('gravity-slider').value;
-  document.getElementById('jump-value').textContent = document.getElementById('jump-slider').value;
-  
-  // Update on slider change
-  document.getElementById('gravity-slider').addEventListener('input', function() {
-    document.getElementById('gravity-value').textContent = this.value;
-    if (!this.classList.contains(' animating')) {
-      drawJumpDemo(ctx, canvas.width, canvas.height);
-    }
-  });
-  
-  document.getElementById('jump-slider').addEventListener('input', function() {
-    document.getElementById('jump-value').textContent = this.value;
-    if (!this.classList.contains(' animating')) {
-      drawJumpDemo(ctx, canvas.width, canvas.height);
-    }
-  });
-}
-
-function drawJumpDemo(ctx, width, height) {
-  // Clear
-  ctx.fillStyle = '#0f1117';
-  ctx.fillRect(0, 0, width, height);
-  
-  // Grid
-  ctx.strokeStyle = '#2a3050';
-  ctx.lineWidth = 1;
-  for (let x = 0; x < width; x += 50) {
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, height);
-    ctx.stroke();
-  }
-  for (let y = 0; y < height; y += 50) {
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(width, y);
-    ctx.stroke();
-  }
-  
-  // Ground
-  ctx.fillStyle = '#1e2336';
-  ctx.fillRect(0, height - 30, width, 30);
-  ctx.strokeStyle = '#3776ab';
-  ctx.lineWidth = 2;
-  ctx.strokeRect(0, height - 30, width, 30);
-  
-  // Get current values
-  const gravity = parseFloat(document.getElementById('gravity-slider').value);
-  const jumpVelocity = parseInt(document.getElementById('jump-slider').value);
-  
-  // Draw jump trajectory
-  if (jumpAnimationId === null) {
-    // Draw static trajectory
-    ctx.strokeStyle = '#3776ab';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    
-    const startX = 100;
-    const startY = height - 60;
-    let x = startX;
-    let y = startY;
-    let velY = jumpVelocity;
-    ctx.moveTo(x, y);
-    
-    for (let i = 0; i < 100; i++) {
-      velY -= gravity;
-      y -= velY;  // Negative because canvas y increases downward
-      x += 2;
-      ctx.lineTo(x, y);
+// Smooth scroll for subject nav
+window.addEventListener('load', () => {
+  const navLinks = document.querySelectorAll('.subject-nav a[href^="#"]');
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       
-      if (y >= height - 30) {
-        y = height - 30;
-        ctx.lineTo(x, y);
-        break;
-      }
-    }
-    ctx.stroke();
-    
-    // Draw player at start
-    ctx.fillStyle = '#4f8ef7';
-    ctx.fillRect(startX - 10, startY - 20, 20, 30);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '14px Arial';
-    ctx.fillText('👤', startX - 4, startY - 5);
-  }
-}
-
-function launchJump() {
-  if (jumpAnimationId) {
-    cancelAnimationFrame(jumpAnimationId);
-    jumpAnimationId = null;
-  }
-  
-  const canvas = document.getElementById('jump-canvas');
-  const ctx = canvas.getContext('2d');
-  const gravity = parseFloat(document.getElementById('gravity-slider').value);
-  const jumpVelocity = parseInt(document.getElementById('jump-slider').value);
-  
-  const startX = 100;
-  const startY = canvas.height - 60;
-  let x = startX;
-  let y = startY;
-  let velY = jumpVelocity;
-  let frame = 0;
-  
-  // Mark sliders as animating
-  document.getElementById('gravity-slider').classList.add('animating');
-  document.getElementById('jump-slider').classList.add('animating');
-  
-  function animateJump() {
-    // Clear
-    ctx.fillStyle = '#0f1117';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Grid
-    ctx.strokeStyle = '#2a3050';
-    ctx.lineWidth = 1;
-    for (let gx = 0; gx < canvas.width; gx += 50) {
-      ctx.beginPath();
-      ctx.moveTo(gx, 0);
-      ctx.lineTo(gx, canvas.height);
-      ctx.stroke();
-    }
-    for (let gy = 0; gy < canvas.height; gy += 50) {
-      ctx.beginPath();
-      ctx.moveTo(0, gy);
-      ctx.lineTo(canvas.width, gy);
-      ctx.stroke();
-    }
-    
-    // Ground
-    ctx.fillStyle = '#1e2336';
-    ctx.fillRect(0, canvas.height - 30, canvas.width, 30);
-    ctx.strokeStyle = '#3776ab';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(0, canvas.height - 30, canvas.width, 30);
-    
-    // Update position
-    velY -= gravity;
-    y -= velY;  // Negative because canvas y increases downward
-    x = startX + frame * 2;
-    
-    // Check if landed
-    const landed = y >= canvas.height - 30;
-    if (landed) {
-      y = canvas.height - 30;
-      velY = 0;
-    }
-    
-    // Draw trajectory so far
-    ctx.strokeStyle = '#3776ab';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(startX, startY);
-    
-    let tx = startX, ty = startY;
-    let tvelY = jumpVelocity;
-    for (let i = 0; i <= frame; i++) {
-      tvelY -= gravity;
-      ty -= tvelY;
-      tx += 2;
-      if (ty >= canvas.height - 30) {
-        ty = canvas.height - 30;
-      }
-      ctx.lineTo(tx, ty);
-    }
-    ctx.stroke();
-    
-    // Draw player
-    ctx.fillStyle = landed ? '#2ecc71' : '#4f8ef7';
-    ctx.fillRect(x - 10, y - 20, 20, 30);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '14px Arial';
-    ctx.fillText(landed ? '👤' : '🚀', x - 4, y - 5);
-    
-    // Show velocity info
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '12px DM Mono';
-    ctx.fillText(`vY: ${velY.toFixed(1)}`, x - 10, y - 30);
-    
-    frame++;
-    
-    // Continue if not landed or still moving
-    if (!landed || velY > 0) {
-      jumpAnimationId = requestAnimationFrame(animateJump);
-    } else {
-      jumpAnimationId = null;
-      document.getElementById('gravity-slider').classList.remove('animating');
-      document.getElementById('jump-slider').classList.remove('animating');
-    }
-  }
-  
-  jumpAnimationId = requestAnimationFrame(animateJump);
-}
-
-function resetJumpDemo() {
-  if (jumpAnimationId) {
-    cancelAnimationFrame(jumpAnimationId);
-    jumpAnimationId = null;
-  }
-  document.getElementById('gravity-slider').classList.remove('animating');
-  document.getElementById('jump-slider').classList.remove('animating');
-  drawJumpDemo(
-    document.getElementById('jump-canvas').getContext('2d'),
-    document.getElementById('jump-canvas').width,
-    document.getElementById('jump-canvas').height
-  );
-}
-
-// Initialize jump demo when page loads
-window.addEventListener('load', initJumpDemo);
-window.addEventListener('resize', function() {
-  if (jumpAnimationId === null) {
-    initJumpDemo();
-  }
+      // Update active tab
+      document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active-python'));
+      link.classList.add('active-python');
+    });
+  });
 });
 </script>
 </body>

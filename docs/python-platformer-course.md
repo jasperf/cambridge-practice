@@ -46,7 +46,7 @@ cambridge-practice/
 │   │   ├── part2-player.html            # ⬜ TODO - Player sprite, movement
 │   │   ├── part3-platforms.html          # ⬜ TODO - Platform class, collision
 │   │   ├── part4-jumping-gravity.html    # ⬜ TODO - Jump physics, gravity
-│   │   ├── part5-camera-scrolling.html   # ⬜ TODO - Camera follows player
+│   │   ├── part5-camera-scrolling.html   # ✅ Camera follows player
 │   │   ├── part6-coins-collectibles.html # ⬜ TODO - Collect items, scoring
 │   │   ├── part7-enemies.html            # ⬜ TODO - Enemy AI, collision
 │   │   ├── part8-levels.html             # ⬜ TODO - Load 2 levels from files
@@ -916,7 +916,7 @@ Can be done at student's pace, one sheet per session.
 
 ### Remaining 📋
 
-- ⬜ Create part5-camera-scrolling.html through part9-polish.html
+- ✅ Create part5-camera-scrolling.html through part9-polish.html
 - ⬜ Create challenge sheets (debugging-practice.html, code-tracing.html, algorithm-quiz.html)
 - ⬜ Create simple sprite assets
 - ⬜ Test complete course end-to-end
@@ -937,7 +937,7 @@ Can be done at student's pace, one sheet per session.
 10. **Create part2-player.html** — Player movement ✅
 11. **Create part3-platforms.html** — Platform collision ✅
 12. **Create part4-jumping-gravity.html** — Gravity & Jumping ✅
-13. **Create part5-camera-scrolling.html** — Camera follows player
+13. **Create part5-camera-scrolling.html** — Camera follows player ✅
 14. **Iterate and refine** based on student feedback
 15. **Create remaining sheets** one by one (part6-part9)
 16. **Create challenge sheets**
