@@ -54,10 +54,12 @@ cambridge-practice/
 │   ├── basics/
 │   │   └── movement-physics.html     ← Movement & Physics (10 marks)
 │   ├── platformer/
-│   │   ├── part1-project-setup.html  ← Project Setup (10 marks)
-│   │   ├── part2-player.html        ← Player Class & Movement (10 marks)
-│   │   └── part3-platforms.html      ← Platforms & Collision (10 marks)
-│   └── challenges/                   ← Practice exercises (planned)
+│   │   ├── part1-project-setup.html      ← Project Setup (10 marks)
+│   │   ├── part2-player.html            ← Player Class & Movement (10 marks)
+│   │   ├── part3-platforms.html          ← Platforms & Collision (10 marks)
+│   │   ├── part4-jumping-gravity.html    ← Jumping, Gravity & Physics (10 marks)
+│   │   └── part5-camera-scrolling.html   ← Camera View & Scrolling (10 marks)
+│   └── challenges/                       ← Practice exercises (planned)
 ├── igcse/                           ← IGCSE (planned)
 │   └── ...
 ├── docs/
@@ -122,7 +124,9 @@ npx serve .
 | Platformer Part 1 | Project setup, Game class, constants | ✅ 10 marks |
 | Platformer Part 2 | Player class, keyboard controls | ✅ 10 marks |
 | Platformer Part 3 | Platforms, SpriteLists, collision | ✅ 10 marks |
-| Platformer Parts 4-9 | Jumping, camera, coins, enemies, levels, polish | 🔜 Coming |
+| Platformer Part 4 | Jumping, Gravity & Physics | ✅ 10 marks |
+| Platformer Part 5 | Camera View & Scrolling | ✅ 10 marks |
+| Platformer Parts 6-9 | Coins, enemies, levels, polish | 🔜 Coming |
 | Challenge Sheets | Debugging, code tracing, puzzles | 🔜 Planned |
 
 ### IGCSE
