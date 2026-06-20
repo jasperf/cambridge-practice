@@ -405,6 +405,36 @@ body::before {
 }
 .mcq-opt.selected .opt-indicator { color: var(--accent-python); }
 
+.q-marks {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-python);
+  background: rgba(55,118,171,0.1);
+  border: 1px solid rgba(55,118,171,0.2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.3px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.btn-check { background: var(--accent-python); color: #fff; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+
 /* Feedback */
 .feedback {
   margin-top: 14px;
@@ -789,7 +819,7 @@ body::before {
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="../../index.html" class="back-link">&larr; All sheets</a>
     <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
-    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 10</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 9</div></div>
   </div>
 </div>
 
@@ -883,6 +913,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q1</span>
         <h3>Why is project organization important in game development?</h3>
+        <span class="q-marks">1 mark</span>
       </div>
       <div class="q-body">
         <p>Select the best reason for organizing your platformer game code into separate files.</p>
@@ -908,11 +939,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q1','b','Q1')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q1', 'Think about what happens when your code gets longer.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q1', 'To make it easier to find, edit, and reuse code as the project grows')">Show Answer</button>
+        </div>
         <div class="feedback" id="q1-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q1', 'Think about what happens when your code gets longer.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q1', 'To make it easier to find, edit, and reuse code as the project grows')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -921,6 +953,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q2</span>
         <h3>Where should sprite images be stored?</h3>
+        <span class="q-marks">1 mark</span>
       </div>
       <div class="q-body">
         <p>According to our recommended project structure, where should PNG image files for sprites be placed?</p>
@@ -946,11 +979,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q2','b','Q2')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q2', 'Sprite images are visual assets, not code or levels.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q2', 'mario-game/assets/sprites/')">Show Answer</button>
+        </div>
         <div class="feedback" id="q2-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q2', 'Sprite images are visual assets, not code or levels.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q2', 'mario-game/assets/sprites/')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -959,6 +993,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q3</span>
         <h3>What is the purpose of a Game class?</h3>
+        <span class="q-marks">1 mark</span>
       </div>
       <div class="q-body">
         <p>In our platformer game, what does the Game class (in <code>game.py</code>) do?</p>
@@ -984,11 +1019,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q3','b','Q3')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q3', 'The Game class is the central coordinator of the game.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q3', 'Manages the main game loop, drawing, and game state')">Show Answer</button>
+        </div>
         <div class="feedback" id="q3-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q3', 'The Game class is the central coordinator of the game.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q3', 'Manages the main game loop, drawing, and game state')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -997,6 +1033,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q4</span>
         <h3>Why use constants for configuration?</h3>
+        <span class="q-marks">1 mark</span>
       </div>
       <div class="q-body">
         <p>Why should we use constants like <code>SCREEN_WIDTH = 800</code> instead of hardcoding values like <code>800</code> everywhere?</p>
@@ -1022,11 +1059,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q4','b','Q4')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q4', 'Imagine you want to change the screen size from 800 to 1024...')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q4', 'So you can change the value in one place and it updates everywhere')">Show Answer</button>
+        </div>
         <div class="feedback" id="q4-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q4', 'Imagine you want to change the screen size from 800 to 1024...')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q4', 'So you can change the value in one place and it updates everywhere')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -1035,6 +1073,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q5</span>
         <h3>Debug: Missing Import</h3>
+        <span class="q-marks">2 marks</span>
       </div>
       <div class="q-body">
         <p>A student wrote this code but gets a <code>NameError: name 'Sprite' is not defined</code>. What's missing?</p>
@@ -1071,11 +1110,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q5','b','Q5')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q5', 'The Sprite class is part of the Arcade library.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q5', 'from arcade import Sprite (or import arcade and use arcade.Sprite)')">Show Answer</button>
+        </div>
         <div class="feedback" id="q5-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q5', 'The Sprite class is part of the Arcade library.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q5', 'from arcade import Sprite (or import arcade and use arcade.Sprite)')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -1084,6 +1124,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q6</span>
         <h3>What does main.py do?</h3>
+        <span class="q-marks">1 mark</span>
       </div>
       <div class="q-body">
         <p>In our recommended project structure, what is the purpose of <code>main.py</code>?</p>
@@ -1109,11 +1150,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q6','b','Q6')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q6', 'This file is run with python3 main.py')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q6', 'Entry point that creates the window and starts the game')">Show Answer</button>
+        </div>
         <div class="feedback" id="q6-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q6', 'This file is run with python3 main.py')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q6', 'Entry point that creates the window and starts the game')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -1122,6 +1164,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q7</span>
         <h3>Code Tracing: Constants in Action</h3>
+        <span class="q-marks">2 marks</span>
       </div>
       <div class="q-body">
         <p>Given these constants, what is the value of <code>PLAYER_SCALE * TILE_SIZE</code>?</p>
@@ -1154,11 +1197,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q7','a','Q7')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q7', '0.5 * 64 = ?')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q7', '32 (0.5 * 64)')">Show Answer</button>
+        </div>
         <div class="feedback" id="q7-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q7', '0.5 * 64 = ?')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q7', '32 (0.5 * 64)')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -1303,7 +1347,7 @@ body::before {
       </div>
       <div class="score-text">
         <span class="score-label-left">SCORE</span>
-        <span class="score-value" id="global-score-display">0 / 10</span>
+        <span class="score-value" id="global-score-display">0 / 9</span>
       </div>
     </div>
 
@@ -1313,7 +1357,7 @@ body::before {
       <div class="results-breakdown">
         <div class="rb-item">
           <div class="rb-label">CORRECT</div>
-          <div class="rb-value" id="rb-score">0 / 10</div>
+          <div class="rb-value" id="rb-score">0 / 9</div>
         </div>
         <div class="rb-item">
           <div class="rb-label">TIME</div>
@@ -1334,7 +1378,7 @@ const state = {
   answers: {},
   correct: {},
   totalMarks: { py: 0 },
-  maxMarks:   { py: 10 },
+  maxMarks:   { py: 9 },
   startTime: Date.now()
 };
 

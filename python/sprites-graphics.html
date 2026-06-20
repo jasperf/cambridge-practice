@@ -405,6 +405,36 @@ body::before {
 }
 .mcq-opt.selected .opt-indicator { color: var(--accent-python); }
 
+.q-marks {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-python);
+  background: rgba(55,118,171,0.1);
+  border: 1px solid rgba(55,118,171,0.2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.3px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.btn-check { background: var(--accent-python); color: #fff; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+
 /* Feedback */
 .feedback {
   margin-top: 14px;
@@ -892,6 +922,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q1</span>
         <h3>What file format should sprite images be?</h3>
+        <span class="q-marks">1 mark</span>
       </div>
       <div class="q-body">
         <p>Which file format is recommended for sprite images in Arcade?</p>
@@ -917,11 +948,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q1','b','Q1')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q1', 'Sprites often need transparent backgrounds to show what\'s behind them.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q1', 'PNG (supports transparency)')">Show Answer</button>
+        </div>
         <div class="feedback" id="q1-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q1', 'Sprites often need transparent backgrounds to show what\'s behind them.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q1', 'PNG (supports transparency)')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -930,6 +962,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q2</span>
         <h3>What does the scale parameter do?</h3>
+        <span class="q-marks">1 mark</span>
       </div>
       <div class="q-body">
         <p>In <code>arcade.Sprite("player.png", 0.5)</code>, what does the <code>0.5</code> parameter control?</p>
@@ -955,11 +988,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q2','b','Q2')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q2', 'It\'s a multiplier applied to the image dimensions.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q2', 'Size multiplier (1.0 = original size, 0.5 = half size)')">Show Answer</button>
+        </div>
         <div class="feedback" id="q2-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q2', 'It\'s a multiplier applied to the image dimensions.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q2', 'Size multiplier (1.0 = original size, 0.5 = half size)')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -968,6 +1002,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q3</span>
         <h3>Where does this sprite appear?</h3>
+        <span class="q-marks">1 mark</span>
       </div>
       <div class="q-body">
         <p>A sprite is created with this code:</p>
@@ -999,11 +1034,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q3','b','Q3')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q3', '800/2 = 400, 600/2 = 300')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q3', 'Center of the screen')">Show Answer</button>
+        </div>
         <div class="feedback" id="q3-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q3', '800/2 = 400, 600/2 = 300')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q3', 'Center of the screen')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -1012,6 +1048,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q4</span>
         <h3>Code Tracing: Sprite Coordinates</h3>
+        <span class="q-marks">1 mark</span>
       </div>
       <div class="q-body">
         <p>Given a window of 800x600 and this code, where is the sprite's center?</p>
@@ -1053,11 +1090,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q4','a','Q4')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q4', 'The sprite\'s center_x and center_y directly map to the coordinate system.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q4', '(200, 150) - 200px right, 150px up from bottom-left')">Show Answer</button>
+        </div>
         <div class="feedback" id="q4-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q4', 'The sprite\'s center_x and center_y directly map to the coordinate system.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q4', '(200, 150) - 200px right, 150px up from bottom-left')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -1066,6 +1104,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q5</span>
         <h3>Debug: Sprite Not Showing</h3>
+        <span class="q-marks">2 marks</span>
       </div>
       <div class="q-body">
         <p>A student's sprite doesn't appear on screen. Here's their code:</p>
@@ -1110,11 +1149,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q5','b','Q5')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q5', 'In Arcade, the setup() method is called automatically and is where you should create your sprites.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q5', 'Missing setup() method - sprites should be created in setup(), not __init__()')">Show Answer</button>
+        </div>
         <div class="feedback" id="q5-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q5', 'In Arcade, the setup() method is called automatically and is where you should create your sprites.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q5', 'Missing setup() method - sprites should be created in setup(), not __init__()')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
@@ -1123,6 +1163,7 @@ body::before {
       <div class="q-header">
         <span class="q-num">Q6</span>
         <h3>Why use a SpriteList?</h3>
+        <span class="q-marks">2 marks</span>
       </div>
       <div class="q-body">
         <p>What is the main advantage of using <code>arcade.SpriteList()</code> instead of drawing individual sprites?</p>
@@ -1148,11 +1189,12 @@ body::before {
             <span class="opt-indicator"></span>
           </div>
         </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q6','d','Q6')">Check</button>
+          <button class="btn btn-hint" onclick="showHint('q6', 'SpriteLists provide organization, efficient rendering, AND built-in collision methods.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q6', 'All of the above')">Show Answer</button>
+        </div>
         <div class="feedback" id="q6-fb"></div>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">
-          <button onclick="showHint('q6', 'SpriteLists provide organization, efficient rendering, AND built-in collision methods.')" style="background:none; border:none; color:var(--accent-python); cursor:pointer; padding:4px;">💡 Hint</button>
-          <button onclick="revealAnswer('q6', 'All of the above')" style="background:none; border:none; color:var(--accent-warn); cursor:pointer; padding:4px; margin-left:12px;">📖 Reveal</button>
-        </p>
       </div>
     </div>
 
