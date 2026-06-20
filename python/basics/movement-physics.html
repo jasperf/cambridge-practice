@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movement & Physics · Python Arcade Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --accent-danger: #e05252;
+  --accent-python: #3776ab;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', 'SF Mono', Monaco, Inconsolata, 'Fira Code', 'Fira Mono', monospace;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 58px;
+  gap: 16px;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.logo span { color: var(--accent-python); }
+
+.week-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.score-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 5px 16px 5px 10px;
+}
+.score-pill .score-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.score-pill .score-val {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-python);
+  transition: color 0.3s;
+  min-width: 48px;
+  text-align: right;
+}
+
+.progress-wrap { height: 3px; background: var(--border); position: relative; }
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-python), var(--accent-sci));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 52px 28px 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+}
+.hero h1 em { font-style: italic; color: var(--accent-python); }
+
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-python { background: var(--accent-python); }
+
+.subject-nav {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.sub-tab {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.sub-tab.active-python { background: var(--accent-python); color: #0f1117; border-color: var(--accent-python); }
+.sub-tab:hover:not(.active-python) { border-color: var(--accent-python); color: var(--text); }
+
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 44px 0 24px;
+}
+.section-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.icon-python { background: rgba(55,118,171,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+.info-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.info-box h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.info-box p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.info-box code {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-sci);
+}
+
+.info-box ul {
+  margin: 10px 0 0 20px;
+  padding-left: 15px;
+}
+.info-box li {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.q-card.answered-correct { border-color: var(--correct); box-shadow: 0 0 0 2px rgba(46,204,113,0.15); }
+.q-card.answered-wrong { border-color: var(--wrong); box-shadow: 0 0 0 2px rgba(231,76,60,0.1); }
+.q-card.pulse-correct {
+  animation: pulseCorrect 0.6s ease-out;
+}
+@keyframes pulseCorrect {
+  0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(46,204,113,0); }
+  100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+.q-card.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+.q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.q-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.q-num::after {
+  content: attr(data-num);
+}
+.q-header-text {
+  flex: 1;
+}
+.q-text { font-size: 0.97rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-marks {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-warn);
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.q-body { padding: 16px 20px; }
+
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-size: 0.93rem;
+  user-select: none;
+}
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-python); background: rgba(55,118,171,0.08); }
+.mcq-opt.selected { border-color: var(--accent-python); background: rgba(55,118,171,0.12); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; opacity: 0.6; }
+.opt-indicator {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  transition: all 0.2s;
+}
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-python); background: var(--accent-python); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input {
+  width: 120px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  padding: 9px 12px;
+  text-align: center;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.num-input:focus { border-color: var(--accent-python); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+
+.code-block {
+  background: #0d1117;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 14px;
+  margin: 10px 0;
+  overflow-x: auto;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Fira Mono', 'DM Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #e6edfa;
+  counter-reset: line;
+}
+.code-block .comment { color: #6a737d; }
+.code-block .keyword { color: #ff7b72; }
+.code-block .string { color: #a5d6ff; }
+.code-block .number { color: #79c0ff; }
+.code-block .function { color: #d2a8ff; }
+.code-block .variable { color: #ffa657; }
+
+.code-line {
+  display: block;
+  padding: 2px 0;
+  white-space: pre;
+}
+.code-line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 36px;
+  color: #6e7781;
+  user-select: none;
+  margin-right: 12px;
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn:hover { background: var(--surface); border-color: var(--accent-python); color: var(--accent-python); }
+.btn:disabled { cursor: not-allowed; opacity: 0.4; }
+.btn-check { background: rgba(62,207,142,0.1); border-color: var(--accent-sci); color: var(--accent-sci); }
+.btn-check:hover:not(:disabled) { background: rgba(62,207,142,0.18); }
+.btn-reveal { background: rgba(245,166,35,0.1); border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal:hover:not(:disabled) { background: rgba(245,166,35,0.18); }
+.btn-hint { background: rgba(79,142,247,0.1); border-color: var(--accent-math); color: var(--accent-math); }
+.btn-hint:hover:not(:disabled) { background: rgba(79,142,247,0.18); }
+
+.feedback {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.feedback.show {
+  opacity: 1;
+  height: auto;
+  margin-top: 12px;
+}
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid var(--correct); color: var(--correct); }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid var(--wrong); color: var(--wrong); }
+.feedback.hint-fb { background: rgba(79,142,247,0.08); border: 1px solid var(--accent-math); color: var(--accent-math); }
+.feedback.reveal-fb { background: rgba(245,166,35,0.08); border: 1px solid var(--accent-warn); color: var(--accent-warn); }
+.feedback strong { font-family: var(--font-display); }
+
+.q-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 12px;
+  flex-wrap: wrap;
+}
+
+.q-footer {
+  display: flex;
+  gap: 10px;
+  padding-top: 12px;
+  flex-wrap: wrap;
+}
+
+/* Movement Visualization */
+.movement-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 16px 0;
+}
+.movement-svg-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.movement-svg {
+  width: 100%;
+  height: auto;
+  background: #0d1117;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* Project Task */
+.project-task {
+  background: var(--surface2);
+  border: 1px solid var(--accent-python);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 24px 0;
+}
+.project-task h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-python);
+  margin-bottom: 12px;
+}
+.project-task .label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-python);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.project-steps {
+  margin: 14px 0 0 20px;
+  padding-left: 15px;
+}
+.project-steps li {
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.project-steps li:before {
+  content: "✓";
+  color: var(--accent-python);
+  font-weight: bold;
+  margin-right: 10px;
+}
+.project-steps code {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent-sci);
+}
+
+.checkpoint {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.checkpoint input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-python);
+  cursor: pointer;
+}
+.checkpoint label {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Debug Challenge */
+.debug-block {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 10px 0;
+}
+.debug-block.error {
+  border-color: var(--wrong);
+  background: rgba(231,76,60,0.05);
+}
+.debug-block.fixed {
+  border-color: var(--correct);
+  background: rgba(46,204,113,0.05);
+}
+.debug-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.debug-icon {
+  font-size: 1.2rem;
+}
+.debug-error { color: var(--wrong); }
+.debug-fixed { color: var(--correct); }
+.debug-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Results Panel */
+.results-panel {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 32px 0;
+  padding: 40px;
+  text-align: center;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+.results-panel.show {
+  opacity: 1;
+  max-height: 500px;
+  margin: 32px 0;
+}
+.results-grade {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--accent-python);
+  margin-bottom: 12px;
+}
+.results-label {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.results-breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+.rb-item {
+  text-align: center;
+}
+.rb-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.rb-value {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.rb-time {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Timer & back link */
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-python); }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+
+#confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Score Display */
+.score-display {
+  display: flex;
+  gap: 24px;
+  margin: 24px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.score-bar {
+  width: 200px;
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-python), var(--accent-sci));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { padding: 36px 20px 28px; }
+  .main { padding: 0 20px 48px; }
+  .subject-nav { padding: 0 20px 16px; }
+  .sub-tab { padding: 6px 14px; font-size: 0.72rem; }
+  .results-breakdown { gap: 16px; }
+  .rb-item { min-width: 120px; }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.q-card { animation: fadeIn 0.4s ease-out backwards; }
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Python · Movement & Physics</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 10</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">PYTHON GAME DEVELOPMENT</div>
+  <h1>Movement & <em>Physics</em></h1>
+  <p class="hero-sub">Learn how to handle keyboard input, work with position and velocity, and create smooth frame-based movement. Essential for making your player character move!</p>
+  <div class="hero-meta">
+    <div class="hero-chip"><span class="dot dot-python"></span> Arcade Library</div>
+    <div class="hero-chip">~45-60 min</div>
+    <div class="hero-chip">Beginner Friendly</div>
+  </div>
+</div>
+
+<div class="subject-nav">
+  <a href="#concepts" class="sub-tab active-python">Concepts</a>
+  <a href="#exercises" class="sub-tab">Exercises</a>
+  <a href="#project" class="sub-tab">Project Task</a>
+</div>
+
+<div class="main">
+
+  <section id="concepts">
+    <div class="section-header">
+      <div class="section-icon icon-python">🎮</div>
+      <div>
+        <h2>Understanding Movement</h2>
+        <span class="sub-label">FUNDAMENTALS</span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Position vs. Change in Position</h3>
+      <p><strong>Position</strong> is where something is located (x, y coordinates).</p>
+      <p><strong>Change in position</strong> (or <em>velocity</em>) is how much the position changes each frame.</p>
+      <div class="code-block">
+<span class="code-line"><span class="comment"># Position - where the player is NOW</span></span>
+<span class="code-line"><span class="variable">player_x</span> = <span class="number">100</span></span>
+<span class="code-line"><span class="variable">player_y</span> = <span class="number">50</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="comment"># Velocity - how much position changes each frame</span></span>
+<span class="code-line"><span class="variable">change_x</span> = <span class="number">5</span>  <span class="comment"># Move right 5 pixels per frame</span></span>
+<span class="code-line"><span class="variable">change_y</span> = <span class="number">0</span>  <span class="comment"># No vertical movement</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="comment"># Update position each frame</span></span>
+<span class="code-line"><span class="variable">player_x</span> += <span class="variable">change_x</span></span>
+<span class="code-line"><span class="variable">player_y</span> += <span class="variable">change_y</span></span>
+      </div>
+      <p><strong>Key insight:</strong> We don't set position directly. We change it by adding velocity each frame.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>Keyboard Input in Arcade</h3>
+      <p>Arcade provides methods to capture keyboard input:</p>
+      <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_key_press</span>(<span class="variable">self</span>, <span class="variable">key</span>, <span class="variable">modifiers</span>):</span>
+<span class="code-line">    <span class="comment"># Called when a key is pressed down</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">key</span> == <span class="variable">arcade.key.RIGHT</span>:</span>
+<span class="code-line">        <span class="variable">self.change_x</span> = <span class="number">5</span></span>
+<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.LEFT</span>:</span>
+<span class="code-line">        <span class="variable">self.change_x</span> = <span class="number">-5</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_key_release</span>(<span class="variable">self</span>, <span class="variable">key</span>, <span class="variable">modifiers</span>):</span>
+<span class="code-line">    <span class="comment"># Called when a key is released</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">key</span> == <span class="variable">arcade.key.RIGHT</span> <span class="keyword">or</span> <span class="variable">key</span> == <span class="variable">arcade.key.LEFT</span>:</span>
+<span class="code-line">        <span class="variable">self.change_x</span> = <span class="number">0</span></span>
+      </div>
+      <p><strong>Important:</strong> Always set velocity back to 0 when keys are released, or your player will keep moving!</p>
+    </div>
+
+    <div class="info-box">
+      <h3>The Update Method</h3>
+      <p>The <code>on_update()</code> method is called every frame (typically 60 times per second). This is where you update positions:</p>
+      <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_update</span>(<span class="variable">self</span>, <span class="variable">delta_time</span>):</span>
+<span class="code-line">    <span class="comment"># delta_time is time since last frame in seconds</span></span>
+<span class="code-line">    <span class="variable">self.player.center_x</span> += <span class="variable">self.player.change_x</span></span>
+<span class="code-line">    <span class="variable">self.player.center_y</span> += <span class="variable">self.player.change_y</span></span>
+      </div>
+      <p><strong>Note:</strong> For sprites, use <code>center_x</code> and <code>center_y</code>. For simple positions, use regular variables.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>Screen Boundaries</h3>
+      <p>Prevent your player from going off-screen by checking boundaries:</p>
+      <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_update</span>(<span class="variable">self</span>, <span class="variable">delta_time</span>):</span>
+<span class="code-line">    <span class="variable">self.player.center_x</span> += <span class="variable">self.player.change_x</span></span>
+<span class="code-line">    <span class="variable">self.player.center_y</span> += <span class="variable">self.player.change_y</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="comment"># Keep player on screen</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.left</span> < <span class="number">0</span>:</span>
+<span class="code-line">        <span class="variable">self.player.left</span> = <span class="number">0</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.right</span> > <span class="variable">self.width</span>:</span>
+<span class="code-line">        <span class="variable">self.player.right</span> = <span class="variable">self.width</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.bottom</span> < <span class="number">0</span>:</span>
+<span class="code-line">        <span class="variable">self.player.bottom</span> = <span class="number">0</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.top</span> > <span class="variable">self.height</span>:</span>
+<span class="code-line">        <span class="variable">self.player.top</span> = <span class="variable">self.height</span></span>
+      </div>
+      <p><strong>Sprite properties:</strong> <code>left</code>, <code>right</code>, <code>top</code>, <code>bottom</code> are automatically calculated from <code>center_x</code>, <code>center_y</code>, and the sprite's width/height.</p>
+    </div>
+
+  </section>
+
+  <section id="exercises">
+    <div class="section-header">
+      <div class="section-icon icon-python">⚡</div>
+      <div>
+        <h2>Exercises</h2>
+        <span class="sub-label">TEST YOUR UNDERSTANDING</span>
+      </div>
+    </div>
+
+    <!-- Q1: Keyboard input method -->
+    <div class="q-card" id="qcard-q1">
+      <div class="q-header">
+        <div class="q-num" data-num="Q1"></div>
+        <div class="q-header-text">
+          <div class="q-text">Which method is called when a key is pressed down in Arcade?</div>
+          <div class="q-marks">1 mark</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q1-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) <code>on_key_pressed()</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) <code>on_key_press()</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) <code>key_pressed()</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q1', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) <code>handle_key()</code></span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q1','b','Q1')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q1','Look at the Concepts section - Keyboard Input')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q1','on_key_press()')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q1-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q2: Code tracing - position after frames -->
+    <div class="q-card" id="qcard-q2">
+      <div class="q-header">
+        <div class="q-num" data-num="Q2"></div>
+        <div class="q-header-text">
+          <div class="q-text">Player starts at (0, 0) with <code>change_x = 5</code> and <code>change_y = 0</code>. What's the position after 10 frames?</div>
+          <div class="q-marks">2 marks</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q2-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) (50, 0)</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) (0, 50)</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) (5, 0)</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q2', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) (50, 50)</span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q2','a','Q2')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q2','Each frame adds 5 to x, so 10 frames = 10 * 5 = 50')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q2','(50, 0)')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q2-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q3: Debug - movement not working -->
+    <div class="q-card" id="qcard-q3">
+      <div class="q-header">
+        <div class="q-num" data-num="Q3"></div>
+        <div class="q-header-text">
+          <div class="q-text">Debug: Player doesn't move when pressing keys. What's the issue?</div>
+          <div class="q-marks">2 marks</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="debug-block error">
+          <div class="debug-header">
+            <span class="debug-icon debug-error">⚠️</span>
+            <span class="debug-title">Broken Code</span>
+          </div>
+          <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_key_press</span>(<span class="variable">self</span>, <span class="variable">key</span>, <span class="variable">modifiers</span>):</span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">key</span> == <span class="variable">arcade.key.RIGHT</span>:</span>
+<span class="code-line">        <span class="variable">self.player.center_x</span> = <span class="number">10</span></span>
+<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.LEFT</span>:</span>
+<span class="code-line">        <span class="variable">self.player.center_x</span> = <span class="number">-10</span></span>
+          </div>
+        </div>
+        <div class="mcq-options" id="q3-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) Should set <code>change_x</code> instead of <code>center_x</code> directly</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) Missing <code>on_key_release</code> method</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) Should use <code>player.x</code> instead of <code>player.center_x</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q3', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) Need to call <code>update()</code> manually</span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q3','a','Q3')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q3','Directly setting position jumps to that value - use velocity for smooth movement')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q3','Should set change_x to 5 and -5, not center_x directly')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q3-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q4: Multi-select - what happens without key release -->
+    <div class="q-card" id="qcard-q4">
+      <div class="q-header">
+        <div class="q-num" data-num="Q4"></div>
+        <div class="q-header-text">
+          <div class="q-text">What happens if you don't have an <code>on_key_release</code> method?</div>
+          <div class="q-marks">1 mark</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q4-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) Player moves only once when key is pressed</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) Player keeps moving even after releasing the key</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) Player doesn't move at all</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q4', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) Game crashes</span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q4','b','Q4')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q4','Without resetting change_x to 0, the player continues moving')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q4','Player keeps moving even after releasing the key')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q4-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q5: Boundaries -->
+    <div class="q-card" id="qcard-q5">
+      <div class="q-header">
+        <div class="q-num" data-num="Q5"></div>
+        <div class="q-header-text">
+          <div class="q-text">Which sprite property gives the right edge position?</div>
+          <div class="q-marks">1 mark</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q5-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) <code>right</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) <code>width</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) <code>center_x + width</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q5', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) <code>x</code></span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q5','a','Q5')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q5','Arcade sprites have convenience properties: left, right, top, bottom')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q5','right')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q5-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q6: Velocity concept -->
+    <div class="q-card" id="qcard-q6">
+      <div class="q-header">
+        <div class="q-num" data-num="Q6"></div>
+        <div class="q-header-text">
+          <div class="q-text">If <code>change_x = -3</code> and <code>change_y = 4</code>, which direction is the player moving?</div>
+          <div class="q-marks">2 marks</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q6-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) Left and up</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) Right and up</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) Left and down</span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q6', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) Right and down</span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q6','a','Q6')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q6','Negative X = left, positive Y = up (remember: bottom-left origin)')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q6','Left and up')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q6-fb"></div>
+      </div>
+    </div>
+
+    <!-- Q7: Code completion -->
+    <div class="q-card" id="qcard-q7">
+      <div class="q-header">
+        <div class="q-num" data-num="Q7"></div>
+        <div class="q-header-text">
+          <div class="q-text">Which method should contain the position update code (<code>player.center_x += player.change_x</code>)?</div>
+          <div class="q-marks">1 mark</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="q7-opts">
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'a')">
+            <div class="opt-indicator"></div>
+            <span>A) <code>on_draw()</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'b')">
+            <div class="opt-indicator"></div>
+            <span>B) <code>on_update()</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'c')">
+            <div class="opt-indicator"></div>
+            <span>C) <code>on_key_press()</code></span>
+          </div>
+          <div class="mcq-opt" onclick="selectMCQ('q7', this, 'd')">
+            <div class="opt-indicator"></div>
+            <span>D) <code>setup()</code></span>
+          </div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('q7','b','Q7')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('q7','Position updates happen every frame - which method runs every frame?')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('q7','on_update()')">Show Answer</button>
+        </div>
+        <div class="feedback" id="q7-fb"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="project">
+    <div class="section-header">
+      <div class="section-icon icon-python">💻</div>
+      <div>
+        <h2>Project Task</h2>
+        <span class="sub-label">HANDS-ON CODING</span>
+      </div>
+    </div>
+
+    <div class="project-task">
+      <h3>Add Keyboard Movement to Your Game</h3>
+      <p class="label">EXTEND YOUR SPRITES SHEET PROJECT</p>
+      <p>Build on your game from the Sprites & Graphics sheet. Add keyboard controls to move your player sprite smoothly across the screen.</p>
+
+      <h4 style="margin-top: 20px; color: var(--accent-python); font-family: var(--font-display);">Starter Code</h4>
+      <p style="margin-top: 10px;">Add these methods to your <code>MyGame</code> class:</p>
+
+      <div class="code-block">
+<span class="code-line"><span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>):</span>
+<span class="code-line">    <span class="keyword">super</span>().<span class="function">__init__</span>(<span class="number">800</span>, <span class="number">600</span>, <span class="string">"Movement Demo"</span>)</span>
+<span class="code-line">    <span class="variable">arcade.set_background_color</span>(<span class="variable">arcade.csscolor.DARK_BLUE</span>)</span>
+<span class="code-line">    <span class="variable">self.player</span> = <span class="variable">arcade.Sprite</span>(<span class="string">"assets/sprites/player.png"</span>, <span class="number">0.5</span>)</span>
+<span class="code-line">    <span class="variable">self.player.center_x</span> = <span class="number">100</span></span>
+<span class="code-line">    <span class="variable">self.player.center_y</span> = <span class="number">100</span></span>
+<span class="code-line">    <span class="variable">self.player.change_x</span> = <span class="number">0</span></span>
+<span class="code-line">    <span class="variable">self.player.change_y</span> = <span class="number">0</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_key_press</span>(<span class="variable">self</span>, <span class="variable">key</span>, <span class="variable">modifiers</span>):</span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">key</span> == <span class="variable">arcade.key.RIGHT</span>:</span>
+<span class="code-line">        <span class="variable">self.player.change_x</span> = <span class="number">5</span></span>
+<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.LEFT</span>:</span>
+<span class="code-line">        <span class="variable">self.player.change_x</span> = <span class="number">-5</span></span>
+<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.UP</span>:</span>
+<span class="code-line">        <span class="variable">self.player.change_y</span> = <span class="number">5</span></span>
+<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.DOWN</span>:</span>
+<span class="code-line">        <span class="variable">self.player.change_y</span> = <span class="number">-5</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_key_release</span>(<span class="variable">self</span>, <span class="variable">key</span>, <span class="variable">modifiers</span>):</span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">key</span> == <span class="variable">arcade.key.RIGHT</span> <span class="keyword">or</span> <span class="variable">key</span> == <span class="variable">arcade.key.LEFT</span>:</span>
+<span class="code-line">        <span class="variable">self.player.change_x</span> = <span class="number">0</span></span>
+<span class="code-line">    <span class="keyword">elif</span> <span class="variable">key</span> == <span class="variable">arcade.key.UP</span> <span class="keyword">or</span> <span class="variable">key</span> == <span class="variable">arcade.key.DOWN</span>:</span>
+<span class="code-line">        <span class="variable">self.player.change_y</span> = <span class="number">0</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="keyword">def</span> <span class="function">on_update</span>(<span class="variable">self</span>, <span class="variable">delta_time</span>):</span>
+<span class="code-line">    <span class="variable">self.player.center_x</span> += <span class="variable">self.player.change_x</span></span>
+<span class="code-line">    <span class="variable">self.player.center_y</span> += <span class="variable">self.player.change_y</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="comment"># Keep player on screen</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.left</span> < <span class="number">0</span>:</span>
+<span class="code-line">        <span class="variable">self.player.left</span> = <span class="number">0</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.right</span> > <span class="variable">self.width</span>:</span>
+<span class="code-line">        <span class="variable">self.player.right</span> = <span class="variable">self.width</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.bottom</span> < <span class="number">0</span>:</span>
+<span class="code-line">        <span class="variable">self.player.bottom</span> = <span class="number">0</span></span>
+<span class="code-line">    <span class="keyword">if</span> <span class="variable">self.player.top</span> > <span class="variable">self.height</span>:</span>
+<span class="code-line">        <span class="variable">self.player.top</span> = <span class="variable">self.height</span></span>
+      </div>
+
+      <p style="margin-top: 20px;"><strong>Remember:</strong> Don't forget to add <code>self.player_list.append(self.player)</code> in your <code>setup()</code> method and draw the sprite list in <code>on_draw()</code>.</p>
+
+      <div style="margin-top: 20px;">
+        <h4 style="color: var(--accent-python); font-family: var(--font-display);">Checkpoints</h4>
+        <ul class="project-steps">
+          <li>Player sprite appears on screen at position (100, 100)</li>
+          <li>Pressing arrow keys moves the player smoothly</li>
+          <li>Releasing keys stops the player</li>
+          <li>Player cannot move off-screen (boundaries work)</li>
+        </ul>
+      </div>
+
+      <div class="checkpoint">
+        <input type="checkbox" id="check1">
+        <label for="check1">✓ Player sprite moves with arrow keys</label>
+      </div>
+      <div class="checkpoint">
+        <input type="checkbox" id="check2">
+        <label for="check2">✓ Movement is smooth (not jumping)</label>
+      </div>
+      <div class="checkpoint">
+        <input type="checkbox" id="check3">
+        <label for="check3">✓ Player stops when keys are released</label>
+      </div>
+      <div class="checkpoint">
+        <input type="checkbox" id="check4">
+        <label for="check4">✓ Player stays on screen (boundaries enforced)</label>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Troubleshooting</h3>
+      <ul>
+        <li><strong>Player doesn't move:</strong> Check that you're using <code>change_x</code> and <code>change_y</code>, not setting <code>center_x</code> directly. Also verify <code>on_key_press</code> and <code>on_key_release</code> are registered.</li>
+        <li><strong>Player disappears:</strong> Make sure you're drawing the player sprite list in <code>on_draw()</code>.</li>
+        <li><strong>Player slides off screen:</strong> Check your boundary checks - use <code>left</code>, <code>right</code>, <code>top</code>, <code>bottom</code> properties.</li>
+        <li><strong>Keys stick:</strong> Ensure <code>on_key_release</code> sets velocity back to 0.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- Results Panel -->
+  <div class="results-panel" id="results-panel">
+    <div class="results-grade" id="results-grade">0%</div>
+    <div class="results-label" id="results-label">Loading...</div>
+    <div class="score-display">
+      <div class="rb-item">
+        <div class="rb-label">Score</div>
+        <div class="rb-value" id="rb-score">0/10</div>
+      </div>
+      <div class="rb-item">
+        <div class="rb-label">Time</div>
+        <div class="rb-time" id="rb-time">0m 0s</div>
+      </div>
+    </div>
+    <div style="margin-top: 24px; color: var(--text-muted);">Complete all questions to unlock the next sheet!</div>
+  </div>
+
+</div>
+
+
+<script>
+// STATE
+const state = {
+  answers: {},
+  correct: {},
+  totalMarks: { py: 0 },
+  maxMarks:   { py: 10 },
+  startTime: Date.now()
+};
+
+const marks = {
+  q1:1, q2:2, q3:2, q4:1, q5:1, q6:2, q7:1
+};
+
+const pyQs = ['q1','q2','q3','q4','q5','q6','q7'];
+
+// ── TIMER ──
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const m = String(Math.floor(elapsed/60)).padStart(2,'0');
+  const s = String(elapsed%60).padStart(2,'0');
+  document.getElementById('timer').textContent = `${m}:${s}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Select MCQ ─────────────────────────────────────────────────
+function selectMCQ(qid, el, val) {
+  // Remove selected from siblings
+  const opts = el.parentElement.querySelectorAll('.mcq-opt');
+  opts.forEach(opt => {
+    opt.classList.remove('selected');
+    const indicator = opt.querySelector('.opt-indicator');
+    if (indicator) indicator.textContent = '';
+  });
+  
+  // Add selected to clicked
+  el.classList.add('selected');
+  const indicator = el.querySelector('.opt-indicator');
+  if (indicator) indicator.textContent = '✓';
+  
+  // Store answer
+  state.answers[qid] = val;
+}
+
+// ── Check MCQ ─────────────────────────────────────────────────
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick')?.match(/'([a-d])'/);
+    const v = m?.[1];
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect, label);
+}
+
+// ── Mark Result ───────────────────────────────────────────────
+function markResult(qid, isCorrect, label) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Try the hint or reveal the answer.`;
+  updateScores();
+}
+
+// ── Hint / Reveal ─────────────────────────────────────────────
+function showHint(qid, hintText) {
+  if (state.correct[qid] !== undefined) return;
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    updateScores();
+  }
+}
+
+// ── Shake ──────────────────────────────────────────────────────
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake');
+  void card.offsetWidth;
+  card.classList.add('shake');
+  setTimeout(() => card.classList.remove('shake'), 400);
+}
+
+// ── Update Scores ─────────────────────────────────────────────
+function updateScores() {
+  let pyScore = 0, answered = 0;
+  pyQs.forEach(qid => {
+    if (state.correct[qid] === true) pyScore += marks[qid];
+    if (state.correct[qid] !== undefined) answered++;
+  });
+  document.getElementById('global-score').textContent = `${pyScore} / ${state.maxMarks.py}`;
+  document.getElementById('progress-bar').style.width = `${(answered/pyQs.length)*100}%`;
+  const pct = (pyScore / state.maxMarks.py) * 100;
+  
+  if (answered === pyQs.length) showResults(pyScore);
+}
+
+// ── Results ───────────────────────────────────────────────────
+function showResults(py) {
+  const pct = Math.round((py / state.maxMarks.py) * 100);
+  const grade = pct >= 85 ? '🏆 Excellent!' : pct >= 70 ? '⭐ Great Job!' : pct >= 55 ? '👍 Good Effort' : '📚 Keep Practising';
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const mins = Math.floor(elapsed/60), secs = elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  document.getElementById('rb-score').textContent = `${py}/${state.maxMarks.py}`;
+  document.getElementById('rb-time').textContent = `${mins}m ${secs}s`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (pct >= 70) launchConfetti();
+  
+  // Save progress to localStorage
+  try {
+    const key = `python-movement-physics-v1`;
+    localStorage.setItem(key, JSON.stringify({
+      score: py,
+      max: state.maxMarks.py,
+      pct: pct,
+      completed: true,
+      timestamp: Date.now()
+    }));
+  } catch(e) {}
+}
+
+// ── Confetti ──────────────────────────────────────────────────
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.classList.add('show');
+  
+  const particles = [];
+  for (let i = 0; i < 150; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - 50,
+      vx: (Math.random() - 0.5) * 6,
+      vy: Math.random() * 3 + 2,
+      size: Math.random() * 8 + 4,
+      color: ['#4f8ef7','#3ecf8e','#f5a623','#e05252','#3776ab'][Math.floor(Math.random()*5)],
+      rotation: 0,
+      rotationSpeed: (Math.random() - 0.5) * 0.2
+    });
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let remaining = 0;
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rotation += p.rotationSpeed;
+      
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+      ctx.restore();
+      
+      if (p.y < canvas.height) remaining++;
+    });
+    
+    if (remaining > 0) requestAnimationFrame(animate);
+    else canvas.classList.remove('show');
+  }
+  
+  animate();
+}
+</script>
+</body>
+</html>
