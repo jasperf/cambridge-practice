@@ -116,3 +116,4 @@ git push                          # auto-deploys to GitHub Pages
 
 - Atomic commits: one logical change per commit — one new sheet, one fix, or one index update, never bundled together
 - GitHub Pages: auto-deploys from `main` branch within ~30 seconds of push
+- After push, the site (GitHub free site) will be deployed, which takes some time. Use `gh` CLI tool to check deployment status.

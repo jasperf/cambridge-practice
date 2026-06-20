@@ -42,7 +42,7 @@ cambridge-practice/
 │   │   ├── sprites-graphics.html    # ⬜ TODO - Working with images, sprites
 │   │   └── movement-physics.html     # ⬜ TODO - Position, velocity, keyboard
 │   ├── platformer/                   # ✅ Empty, ready for:
-│   │   ├── part1-project-setup.html      # ⬜ TODO - Project structure, base class
+│   │   ├── part1-project-setup.html      # ✅ DONE - Project structure, base class, constants
 │   │   ├── part2-player.html            # ⬜ TODO - Player sprite, movement
 │   │   ├── part3-platforms.html          # ⬜ TODO - Platform class, collision
 │   │   ├── part4-jumping-gravity.html    # ⬜ TODO - Jump physics, gravity
@@ -183,9 +183,10 @@ cambridge-practice/
 
 ### Phase 2: Platformer Core (Platformer Folder)
 
-#### Sheet: `part1-project-setup.html`
+#### Sheet: `part1-project-setup.html` ✅ IMPLEMENTED
 **Format:** Project guide with embedded checks
 **Duration:** 30 min
+**Status:** ✅ LIVE at https://jasperf.github.io/cambridge-practice/python/platformer/part1-project-setup.html
 **Topics:**
 - Project structure
 - Game class inheritance
@@ -845,23 +846,32 @@ Can be done at student's pace, one sheet per session.
   - Grid section with live arcade-intro card
   - Placeholder cards for upcoming sheets
 
-#### 3. Git & Deployment
+#### 3. Platformer Part 1: Project Setup
+- ✅ **python/platformer/part1-project-setup.html** — First platformer sheet (Full interactive sheet)
+  - Concepts: Project organization, Arcade's View system, folder structure
+  - Exercises: 7 questions (10 marks total) covering project structure, Game class, constants
+  - Project Task: Create mario-game/ folder structure with main.py, game.py, assets/, levels/
+  - Starter Code: Complete main.py entry point and Game class skeleton
+  - LIVE at https://jasperf.github.io/cambridge-practice/python/platformer/part1-project-setup.html
+
+#### 4. Git & Deployment
 - ✅ All files committed with clean messages (no AI co-authorship)
 - ✅ Pushed to GitHub main branch
-- ✅ Auto-deployed to GitHub Pages: https://jasperf.github.io/cambridge-practice/python/arcade-intro.html
+- ✅ Auto-deployed to GitHub Pages:
+  - https://jasperf.github.io/cambridge-practice/python/arcade-intro.html
+  - https://jasperf.github.io/cambridge-practice/python/platformer/part1-project-setup.html
 - ✅ AGENTS.md updated with commit message constraints
 
 ### In Progress 🚧
 
 - ⏳ Awaiting feedback on first sheet before continuing
 - ⏳ Next sheet: `python/sprites-graphics.html` (ready to implement)
-- ⏳ Next sheet: `python/platformer/part1-project-setup.html` (ready to implement)
 
 ### Remaining 📋
 
 - ⬜ Create sprites-graphics.html
 - ⬜ Create movement-physics.html
-- ⬜ Create part1-project-setup.html through part9-polish.html
+- ⬜ Create part2-player.html through part9-polish.html
 - ⬜ Create challenge sheets
 - ⬜ Create simple sprite assets
 - ⬜ Test complete course end-to-end
@@ -876,7 +886,7 @@ Can be done at student's pace, one sheet per session.
 4. **Fix code block rendering** — CSS counters for line numbers ✅
 5. **Add Python section to index.html** ✅
 6. **Update AGENTS.md** with commit constraints ✅
-7. **Create part1-project-setup.html** — First platformer sheet
+7. **Create part1-project-setup.html** — First platformer sheet ✅
 8. **Create sprites-graphics.html** — Second basics sheet
 9. **Create movement-physics.html** — Third basics sheet
 10. **Iterate and refine** based on student feedback
