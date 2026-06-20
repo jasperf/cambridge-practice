@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Game Development · Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent: #4f8ef7;
+  --accent2: #3ecf8e;
+  --accent3: #f5a623;
+  --accent-python: #3776ab;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.5;
+}
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 700;
+  color: var(--text);
+}
+.nav-logo span { color: var(--accent-python); }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+.hero {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 64px 32px 48px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+h1 em { font-style: italic; color: var(--accent-python); }
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.hero-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.grid-wrap {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 0 32px;
+}
+.grid-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  text-decoration: none;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  background: var(--accent-python);
+}
+.card:hover { border-color: #3a4070; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+.card:hover::before { opacity: 1; }
+
+.card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 10px;
+}
+.card-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.icon-py { background: rgba(55,118,171,0.12); }
+.icon-lock { background: var(--surface2); }
+
+.card-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.card-status.live { border-color: rgba(62,207,142,0.4); color: var(--accent2); background: rgba(62,207,142,0.06); }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+.card-footer {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: auto; padding-top: 4px;
+}
+.chip {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text-muted);
+}
+
+.card.coming { opacity: 0.45; pointer-events: none; }
+
+.prereqs {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 0 32px 48px;
+}
+.prereqs-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+.prereqs-box h3 {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.prereqs-box ul {
+  margin: 0 0 0 20px;
+  padding-left: 0;
+}
+.prereqs-box li {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.prereqs-box code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--accent2);
+}
+
+footer {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 24px 32px 0;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 10px;
+}
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Python <span>Game Dev</span></div>
+  <div class="nav-links">
+    <a href="../index.html">&larr; All Sheets</a>
+    <a href="#fundamentals">Fundamentals</a>
+    <a href="#platformer">Platformer</a>
+    <a href="https://github.com/jasperf/cambridge-practice" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Python Arcade Course</div>
+  <h1>Build a <em>Platformer</em><br>with Python</h1>
+  <p class="hero-sub">Learn game development from scratch using the Arcade library. Start with fundamentals, then build a complete Mario-style platformer with physics, enemies, and levels.</p>
+  <div class="hero-tags">
+    <div class="tag">Python 3</div>
+    <div class="tag">Arcade Library</div>
+    <div class="tag">Beginner Friendly</div>
+    <div class="tag">~15-20 hours</div>
+    <div class="tag">Self-marking</div>
+  </div>
+</div>
+
+<div class="prereqs">
+  <div class="prereqs-box">
+    <h3>Before You Start</h3>
+    <ul>
+      <li>Install <strong>Python 3.8+</strong> &mdash; check with <code>python3 --version</code></li>
+      <li>Install Arcade &mdash; run <code>pip3 install arcade</code></li>
+      <li>You should know Python basics: variables, loops, conditionals, functions, and basic classes</li>
+    </ul>
+  </div>
+</div>
+
+<div class="grid-wrap">
+
+  <div class="grid-label" id="fundamentals">Phase 1 &mdash; Arcade Fundamentals</div>
+  <div class="grid">
+
+    <a href="arcade-intro.html" class="card">
+      <div class="card-top">
+        <div class="card-icon icon-py">1</div>
+        <div class="card-status live">Live</div>
+      </div>
+      <div class="card-title">Arcade Introduction</div>
+      <div class="card-meta">Setup, first window, game loop, drawing</div>
+      <div class="card-footer">
+        <span class="chip">Setup</span>
+        <span class="chip">First Window</span>
+        <span class="chip">Game Loop</span>
+        <span class="chip">10 marks</span>
+      </div>
+    </a>
+
+    <a href="sprites-graphics.html" class="card">
+      <div class="card-top">
+        <div class="card-icon icon-py">2</div>
+        <div class="card-status live">Live</div>
+      </div>
+      <div class="card-title">Sprites &amp; Graphics</div>
+      <div class="card-meta">Loading images, Sprite class, scaling</div>
+      <div class="card-footer">
+        <span class="chip">Sprites</span>
+        <span class="chip">Images</span>
+        <span class="chip">SpriteList</span>
+        <span class="chip">10 marks</span>
+      </div>
+    </a>
+
+    <a href="basics/movement-physics.html" class="card">
+      <div class="card-top">
+        <div class="card-icon icon-py">3</div>
+        <div class="card-status live">Live</div>
+      </div>
+      <div class="card-title">Movement &amp; Physics</div>
+      <div class="card-meta">Keyboard input, velocity, boundaries</div>
+      <div class="card-footer">
+        <span class="chip">Velocity</span>
+        <span class="chip">Keyboard</span>
+        <span class="chip">Boundaries</span>
+        <span class="chip">10 marks</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="grid-label" id="platformer">Phase 2 &mdash; Platformer Project</div>
+  <div class="grid">
+
+    <a href="platformer/part1-project-setup.html" class="card">
+      <div class="card-top">
+        <div class="card-icon icon-py">4</div>
+        <div class="card-status live">Live</div>
+      </div>
+      <div class="card-title">Part 1: Project Setup</div>
+      <div class="card-meta">File structure, game class, constants</div>
+      <div class="card-footer">
+        <span class="chip">Project Setup</span>
+        <span class="chip">Game Class</span>
+        <span class="chip">Constants</span>
+        <span class="chip">10 marks</span>
+      </div>
+    </a>
+
+    <a href="platformer/part2-player.html" class="card">
+      <div class="card-top">
+        <div class="card-icon icon-py">5</div>
+        <div class="card-status live">Live</div>
+      </div>
+      <div class="card-title">Part 2: Player</div>
+      <div class="card-meta">Player class, keyboard input, movement</div>
+      <div class="card-footer">
+        <span class="chip">Player Class</span>
+        <span class="chip">Keyboard Input</span>
+        <span class="chip">Movement</span>
+        <span class="chip">10 marks</span>
+      </div>
+    </a>
+
+    <div class="card coming">
+      <div class="card-top">
+        <div class="card-icon icon-lock">6</div>
+        <div class="card-status">Coming soon</div>
+      </div>
+      <div class="card-title">Part 3: Platforms</div>
+      <div class="card-meta">Solid surfaces, collision detection</div>
+      <div class="card-footer">
+        <span class="chip">Platforms</span>
+        <span class="chip">Collisions</span>
+      </div>
+    </div>
+
+    <div class="card coming">
+      <div class="card-top">
+        <div class="card-icon icon-lock">7</div>
+        <div class="card-status">Coming soon</div>
+      </div>
+      <div class="card-title">Part 4: Jumping &amp; Gravity</div>
+      <div class="card-meta">Physics engine, jump mechanics</div>
+      <div class="card-footer">
+        <span class="chip">Gravity</span>
+        <span class="chip">Jumping</span>
+      </div>
+    </div>
+
+    <div class="card coming">
+      <div class="card-top">
+        <div class="card-icon icon-lock">8</div>
+        <div class="card-status">Coming soon</div>
+      </div>
+      <div class="card-title">Part 5: Camera</div>
+      <div class="card-meta">Scrolling view that follows the player</div>
+      <div class="card-footer">
+        <span class="chip">Camera</span>
+        <span class="chip">Scrolling</span>
+      </div>
+    </div>
+
+    <div class="card coming">
+      <div class="card-top">
+        <div class="card-icon icon-lock">9</div>
+        <div class="card-status">Coming soon</div>
+      </div>
+      <div class="card-title">Part 6: Coins &amp; Collectibles</div>
+      <div class="card-meta">Pickups, scoring, sound effects</div>
+      <div class="card-footer">
+        <span class="chip">Coins</span>
+        <span class="chip">Score</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="grid-wrap">
+  <footer>
+    <p>Python Game Dev Course &middot; <a href="../index.html">Cambridge Practice</a></p>
+    <p><a href="https://github.com/jasperf/cambridge-practice" target="_blank">github.com/jasperf/cambridge-practice</a></p>
+  </footer>
+</div>
+
+</body>
+</html>
