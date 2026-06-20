@@ -38,6 +38,14 @@ cambridge-practice/
 │       └── w6/             ← Week 6
 │           ├── term4-week6-english.html
 │           └── term4-week6-science.html
+├── python/                 ← Python Arcade game course
+│   ├── README.md           ← Course intro and setup guide
+│   ├── arcade-intro.html   ← Arcade basics (first sheet)
+│   ├── sprites-graphics.html ← Sprites & Graphics
+│   ├── basics/             ← Fundamentals sheets
+│   ├── platformer/         ← Step-by-step game project sheets
+│   │   └── part1-project-setup.html
+│   └── challenges/         ← Practice exercises
 └── igcse/                  ← IGCSE (planned)
 ```
 
@@ -97,20 +105,48 @@ Key rules:
 - Hero section uses `<div class="hero">`, not `<section>` or `<main>` wrappers
 - Main content area uses `<div class="main">`, not `<main>`
 
+### Question Card Pattern (all sheets must follow this)
+
+Every question card must have:
+1. **Marks badge** in the header: `<span class="q-marks">N mark(s)</span>`
+2. **Check/Hint/Reveal buttons** using proper CSS classes (never inline styles):
+```html
+<div class="q-actions">
+  <button class="btn btn-check" onclick="checkMCQ('q1','b','Q1')">Check</button>
+  <button class="btn btn-hint" onclick="showHint('q1', 'Hint text')">Hint</button>
+  <button class="btn btn-reveal" onclick="revealAnswer('q1', 'Answer text')">Show Answer</button>
+</div>
+<div class="feedback" id="q1-fb"></div>
+```
+3. **Actions before feedback** — the `q-actions` div must come before the `feedback` div
+4. **Every question needs a Check button** — selecting an MCQ option should not auto-check; the student clicks Check when ready
+5. **maxMarks must match** the actual sum of `marks` object values — verify this when creating sheets
+
 ### Question IDs
 - Math: `m1`, `m2`, ..., `mN`
 - Science: `s1`, `s2`, ..., `sN`
 - English: `e1`, `e2`, ..., `eN`
+- Python: `q1`, `q2`, ..., `qN`
 
 ### CSS Design Tokens (defined in `:root` on every sheet)
 ```css
 --bg, --surface, --surface2, --border    /* Dark theme layers */
 --accent-math, --accent-sci, --accent-warn, --accent-danger
+--accent-python: #3776ab                 /* Python course sheets only */
 --text, --text-muted, --text-dim        /* Typography */
 --correct, --wrong                       /* Answer feedback */
 --font-display, --font-body, --font-mono
 --radius, --shadow                       /* UI */
 ```
+
+### Required CSS Classes for Question Actions
+Every sheet must define these button classes (never use inline styles on buttons):
+- `.btn` — base button styling (mono font, padding, border-radius, transition)
+- `.btn-check` — primary action button (green for science, blue for Python)
+- `.btn-hint` — subtle hint button (surface background, muted text)
+- `.btn-reveal` — minimal show-answer button (transparent, dim text)
+- `.q-actions` — flex container for the button row
+- `.q-marks` — marks badge in question header
 
 ### JavaScript State Pattern
 - Central `state` object: `{ answers, correct, totalMarks, maxMarks, startTime }`
