@@ -68,6 +68,35 @@ git push                          # auto-deploys to GitHub Pages
 - **Always update `index.html`** when adding a new sheet
 - Card classes: `.math` (blue), `.sci` (green), `.eng` (amber) for subject color-coding
 
+### Sheet Header Pattern (all sheets must follow this)
+
+Every sheet — regardless of subject or course — must use the same topbar/header structure:
+
+```html
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Subject · Topic</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="path/to/index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / N</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+```
+
+Key rules:
+- Logo is always `Student<span>'s</span> Study Hub` — never a course-specific name
+- Topbar uses `<div>`, not `<header>`
+- Always include a back-link, timer, and score pill in the right side
+- Confetti canvas goes right after `<body>` with `id="confetti-canvas"`
+- Hero section uses `<div class="hero">`, not `<section>` or `<main>` wrappers
+- Main content area uses `<div class="main">`, not `<main>`
+
 ### Question IDs
 - Math: `m1`, `m2`, ..., `mN`
 - Science: `s1`, `s2`, ..., `sN`

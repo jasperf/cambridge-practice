@@ -707,18 +707,18 @@ body::before {
 }
 
 /* Confetti Canvas */
-.confetti-canvas {
+/* Timer & back link */
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-python); }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+
+#confetti-canvas {
   position: fixed;
   top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   pointer-events: none;
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.confetti-canvas.show {
-  opacity: 1;
+  z-index: 999;
 }
 
 /* Score Display */
@@ -779,43 +779,45 @@ body::before {
 </head>
 <body>
 
-<header class="topbar">
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
   <div class="topbar-left">
-    <a href="../../index.html" class="logo">🐍 Cambridge<span>Practice</span></a>
-    <span class="week-badge">Part 1</span>
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Python · Part 1: Setup</div>
   </div>
-  <div class="score-pill">
-    <span class="score-label">SCORE</span>
-    <span class="score-val" id="global-score">0 / 10</span>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 10</div></div>
   </div>
-</header>
+</div>
 
 <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
 
-<main>
-  <section class="hero">
-    <p class="hero-eyebrow">PLATFORMER COURSE</p>
-    <h1><em>Part 1</em>: Project Setup & Structure</h1>
-    <p class="hero-sub">
-      Learn how to organize your platformer game project with proper structure, classes, and configuration constants.
-    </p>
-    <div class="hero-meta">
-      <span class="hero-chip"><span class="dot dot-python"></span>Platformer</span>
-      <span class="hero-chip"><span class="dot dot-time"></span>30 min</span>
-    </div>
-  </section>
+<div class="hero">
+  <div class="hero-eyebrow">PLATFORMER COURSE</div>
+  <h1><em>Part 1</em>: Project Setup &amp; Structure</h1>
+  <p class="hero-sub">
+    Learn how to organize your platformer game project with proper structure, classes, and configuration constants.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-chip"><span class="dot dot-python"></span>Platformer</div>
+    <div class="hero-chip">~30 min</div>
+  </div>
+</div>
 
-  <nav class="subject-nav">
-    <a href="../arcade-intro.html" class="sub-tab">Arcade Basics</a>
-    <a href="../basics/sprites-graphics.html" class="sub-tab">Sprites & Graphics</a>
-    <a href="../basics/movement-physics.html" class="sub-tab">Movement & Physics</a>
-    <a href="part1-project-setup.html" class="sub-tab active-python">Part 1: Setup</a>
-    <a href="part2-player.html" class="sub-tab">Part 2: Player</a>
-    <a href="part3-platforms.html" class="sub-tab">Part 3: Platforms</a>
-    <a href="part4-jumping-gravity.html" class="sub-tab">Part 4: Jumping</a>
-  </nav>
+<div class="subject-nav">
+  <a href="../arcade-intro.html" class="sub-tab">Arcade Basics</a>
+  <a href="../sprites-graphics.html" class="sub-tab">Sprites &amp; Graphics</a>
+  <a href="../movement-physics.html" class="sub-tab">Movement &amp; Physics</a>
+  <a href="part1-project-setup.html" class="sub-tab active-python">Part 1: Setup</a>
+  <a href="part2-player.html" class="sub-tab">Part 2: Player</a>
+  <a href="part3-platforms.html" class="sub-tab">Part 3: Platforms</a>
+  <a href="part4-jumping-gravity.html" class="sub-tab">Part 4: Jumping</a>
+</div>
 
-  <div class="main">
+<div class="main">
 
     <!-- Concepts Section -->
     <section class="section-header">
@@ -1324,9 +1326,7 @@ body::before {
     </div>
 
   </div>
-</main>
-
-<canvas class="confetti-canvas" id="confetti"></canvas>
+</div>
 
 <script>
 // STATE
@@ -1343,6 +1343,15 @@ const marks = {
 };
 
 const pyQs = ['q1','q2','q3','q4','q5','q6','q7'];
+
+// ── TIMER ──
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const m = String(Math.floor(elapsed/60)).padStart(2,'0');
+  const s = String(elapsed%60).padStart(2,'0');
+  document.getElementById('timer').textContent = `${m}:${s}`;
+}
+setInterval(updateTimer, 1000);
 
 // ── Select MCQ ─────────────────────────────────────────────────
 function selectMCQ(qid, el, val) {
@@ -1467,7 +1476,7 @@ function showResults(py) {
 
 // ── Confetti ──────────────────────────────────────────────────
 function launchConfetti() {
-  const canvas = document.getElementById('confetti');
+  const canvas = document.getElementById('confetti-canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;

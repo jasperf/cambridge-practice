@@ -1000,8 +1000,9 @@ Common issues and solutions to include in sheets:
 Once this plan is approved, I can start creating the actual HTML worksheets following the existing repo conventions:
 
 - Match the dark theme CSS from circuits.html
+- Use the standard topbar: "Student's Study Hub" logo, back-link, timer, score pill (see AGENTS.md "Sheet Header Pattern")
 - Use the same state management pattern (state object, marks, etc.)
-- Include the same interactive elements (confetti, progress bar, score pills)
+- Include the same interactive elements (confetti with `id="confetti-canvas"`, progress bar, score pills)
 - Follow the same card-based layout for questions
 - Add the Python section to index.html
 
