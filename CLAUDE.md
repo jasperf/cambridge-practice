@@ -6,9 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static site of self-marking exercise sheets. No build step, no npm, no server. Every file is a single self-contained HTML file that works by opening it directly in a browser.
 
-Two content areas:
+Content:
 - **Cambridge curriculum sheets** (`s1/`) — maths, science, English practice for Stage 1.
-- **Python programming course** (`python/`) — Arcade game-dev worksheets and a multi-part platformer project.
 
 Live at: https://jasperf.github.io/cambridge-practice (deployed automatically from `main` via GitHub Pages).
 
@@ -20,14 +19,6 @@ s1/                          # Cambridge Stage 1
 ├── sa2/                     # Summative assessment 2
 └── science/                 # Topic-based science sheets
 
-python/                      # Python programming course
-├── arcade-intro.html        # Standalone Arcade fundamentals
-├── sprites-graphics.html    # Standalone sprites & graphics
-├── platformer/              # Multi-part platformer project
-│   └── part1-project-setup.html
-├── basics/                  # (planned) Python basics sheets
-└── challenges/              # (planned) Challenge sheets
-
 docs/                        # Course planning / design docs
 material/                    # Source material (English, math, science)
 ```
@@ -37,7 +28,6 @@ material/                    # Source material (English, math, science)
 ```bash
 # Open a sheet directly
 open s1/t4/w1/term4-week1-maths-science.html
-open python/arcade-intro.html
 
 # Or serve with a local server (needed for index page links)
 npx serve .
@@ -50,12 +40,6 @@ No install step. No linting or test suite.
 ### Cambridge sheets
 1. Copy an existing sheet as the template.
 2. Place it at `s1/{section}/{filename}.html` (e.g. `s1/t4/w2/term4-week2-english.html`).
-3. Update `index.html` to add a card linking to the new sheet.
-4. Push to `main` — Pages deploys within ~30 seconds.
-
-### Python sheets
-1. Copy an existing Python sheet as the template.
-2. Place standalone sheets in `python/`, multi-part project sheets in `python/platformer/`.
 3. Update `index.html` to add a card linking to the new sheet.
 4. Push to `main` — Pages deploys within ~30 seconds.
 
@@ -76,7 +60,6 @@ const state = {
 
 **Question ID conventions**:
 - Cambridge sheets: math questions `m1`–`mN`, science `s1`–`sN`. Arrays `mathQs`, `sciQs` drive score aggregation.
-- Python sheets: questions `q1`–`qN`. Array `pyQs` drives score aggregation.
 
 Marks per question are in a `marks` object keyed by qid.
 

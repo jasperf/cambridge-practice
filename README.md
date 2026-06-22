@@ -15,8 +15,6 @@ Each exercise sheet is a single self-contained HTML file with:
 - Live score tracker and session timer
 - No dependencies, no server required — pure HTML/CSS/JS
 
-The **Python Game Development course** sheets also include hands-on coding projects using the Arcade library.
-
 ## Structure
 
 ```
@@ -45,22 +43,6 @@ cambridge-practice/
 │   │   ├── circuits.html                 ← Electric Circuits (16 q, 26 marks, interactive SVG)
 │   │   ├── chemical-reactions.html       ← Chemical Reactions & Particle Model (17 q, 25 marks)
 │   │   └── forces-speed-pressure.html    ← Forces, Speed & Pressure (17 q, 25 marks)
-│   └── python/                       ← Legacy directory (empty)
-├── python/                          ← Python Game Development Course
-│   ├── README.md                    ← Course overview, setup guide, learning path
-│   ├── index.html                   ← Python course landing page
-│   ├── arcade-intro.html            ← Arcade basics (10 marks)
-│   ├── sprites-graphics.html         ← Sprites & Graphics (10 marks)
-│   ├── basics/
-│   │   └── movement-physics.html     ← Movement & Physics (10 marks)
-│   ├── platformer/
-│   │   ├── part1-project-setup.html      ← Project Setup (10 marks)
-│   │   ├── part2-player.html            ← Player Class & Movement (10 marks)
-│   │   ├── part3-platforms.html          ← Platforms & Collision (10 marks)
-│   │   ├── part4-jumping-gravity.html    ← Jumping, Gravity & Physics (10 marks)
-│   │   ├── part5-camera-scrolling.html   ← Camera View & Scrolling (10 marks)
-│   │   └── part6-coins-collectibles.html ← Coins, Scoring & Sound (10 marks)
-│   └── challenges/                       ← Practice exercises (planned)
 ├── igcse/                           ← IGCSE (planned)
 │   └── ...
 ├── docs/
@@ -115,22 +97,6 @@ npx serve .
 | Science (Chemical Reactions & Particle Model) | Secondary 1 | ✅ Topic drill |
 | Science (Forces, Speed & Pressure) | Secondary 1 | ✅ Topic drill |
 
-### Python Game Development
-
-| Course | Topics | Status |
-|--------|--------|--------|
-| Arcade Introduction | Setup, first window, game loop | ✅ 10 marks |
-| Sprites & Graphics | Loading images, Sprite class, scaling | ✅ 10 marks |
-| Movement & Physics | Velocity, position, keyboard input | ✅ 10 marks |
-| Platformer Part 1 | Project setup, Game class, constants | ✅ 10 marks |
-| Platformer Part 2 | Player class, keyboard controls | ✅ 10 marks |
-| Platformer Part 3 | Platforms, SpriteLists, collision | ✅ 10 marks |
-| Platformer Part 4 | Jumping, Gravity & Physics | ✅ 10 marks |
-| Platformer Part 5 | Camera View & Scrolling | ✅ 10 marks |
-| Platformer Part 6 | Coins, Collectibles & Scoring | ✅ 10 marks |
-| Platformer Parts 7-9 | Enemies, levels, polish | 🔜 Coming |
-| Challenge Sheets | Debugging, code tracing, puzzles | 🔜 Planned |
-
 ### IGCSE
 
 | Subject | Topics | Status |
@@ -141,8 +107,6 @@ npx serve .
 ## Tech
 
 Pure HTML + CSS + JavaScript. No frameworks, no build tools, no CDN dependencies beyond Google Fonts. Every file works offline once loaded.
-
-The Python course requires Python 3.8+ and the Arcade library (`pip3 install arcade`).
 
 ---
 

@@ -38,14 +38,6 @@ cambridge-practice/
 │       └── w6/             ← Week 6
 │           ├── term4-week6-english.html
 │           └── term4-week6-science.html
-├── python/                 ← Python Arcade game course
-│   ├── README.md           ← Course intro and setup guide
-│   ├── arcade-intro.html   ← Arcade basics (first sheet)
-│   ├── sprites-graphics.html ← Sprites & Graphics
-│   ├── basics/             ← Fundamentals sheets
-│   ├── platformer/         ← Step-by-step game project sheets
-│   │   └── part1-project-setup.html
-│   └── challenges/         ← Practice exercises
 └── igcse/                  ← IGCSE (planned)
 ```
 
@@ -126,13 +118,11 @@ Every question card must have:
 - Math: `m1`, `m2`, ..., `mN`
 - Science: `s1`, `s2`, ..., `sN`
 - English: `e1`, `e2`, ..., `eN`
-- Python: `q1`, `q2`, ..., `qN`
 
 ### CSS Design Tokens (defined in `:root` on every sheet)
 ```css
 --bg, --surface, --surface2, --border    /* Dark theme layers */
 --accent-math, --accent-sci, --accent-warn, --accent-danger
---accent-python: #3776ab                 /* Python course sheets only */
 --text, --text-muted, --text-dim        /* Typography */
 --correct, --wrong                       /* Answer feedback */
 --font-display, --font-body, --font-mono
@@ -142,7 +132,7 @@ Every question card must have:
 ### Required CSS Classes for Question Actions
 Every sheet must define these button classes (never use inline styles on buttons):
 - `.btn` — base button styling (mono font, padding, border-radius, transition)
-- `.btn-check` — primary action button (green for science, blue for Python)
+- `.btn-check` — primary action button (green for science, blue for math)
 - `.btn-hint` — subtle hint button (surface background, muted text)
 - `.btn-reveal` — minimal show-answer button (transparent, dim text)
 - `.q-actions` — flex container for the button row
