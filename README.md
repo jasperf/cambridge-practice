@@ -45,8 +45,8 @@ cambridge-practice/
 │   │   └── forces-speed-pressure.html    ← Forces, Speed & Pressure (17 q, 25 marks)
 ├── s2/                              ← Secondary 2
 │   └── t1/                          ← Term 1
-│       └── w1/                      ← Week 1
-│           └── term1-week1-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (15 q, 30 marks, interactive)
+│       └── w2/                      ← Week 2
+│           └── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (15 q, 30 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
 │   └── ...
 ├── docs/
@@ -105,7 +105,7 @@ npx serve .
 
 | Subject | Level | Status |
 |---------|-------|--------|
-| Science (Atomic Structure & Periodic Table) | Secondary 2 | ✅ Term 1 Week 1 |
+| Science (Atomic Structure & Periodic Table) | Secondary 2 | ✅ Term 1 Week 2 |
 
 ### IGCSE
 
