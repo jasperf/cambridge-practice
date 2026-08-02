@@ -43,6 +43,10 @@ cambridge-practice/
 │   │   ├── circuits.html                 ← Electric Circuits (16 q, 26 marks, interactive SVG)
 │   │   ├── chemical-reactions.html       ← Chemical Reactions & Particle Model (17 q, 25 marks)
 │   │   └── forces-speed-pressure.html    ← Forces, Speed & Pressure (17 q, 25 marks)
+├── s2/                              ← Secondary 2
+│   └── t1/                          ← Term 1
+│       └── w1/                      ← Week 1
+│           └── term1-week1-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (15 q, 30 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
 │   └── ...
 ├── docs/
@@ -96,6 +100,12 @@ npx serve .
 | Science (Electric Circuits) | Secondary 1 | ✅ Topic drill |
 | Science (Chemical Reactions & Particle Model) | Secondary 1 | ✅ Topic drill |
 | Science (Forces, Speed & Pressure) | Secondary 1 | ✅ Topic drill |
+
+### Cambridge Secondary 2
+
+| Subject | Level | Status |
+|---------|-------|--------|
+| Science (Atomic Structure & Periodic Table) | Secondary 2 | ✅ Term 1 Week 1 |
 
 ### IGCSE
 
