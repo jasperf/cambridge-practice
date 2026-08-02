@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atomic Structure & Periodic Table · Interactive Exercises</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-sci { background: var(--accent-sci); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-sci); color: var(--accent-sci); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.periodic-table-wrap { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 16px 14px; margin: 16px 0 24px; overflow-x: auto; }
+.periodic-table { display: grid; grid-template-columns: repeat(18, 1fr); gap: 4px; font-family: var(--font-mono); font-size: 0.7rem; }
+.periodic-header { grid-column: span 18; display: grid; grid-template-columns: subgrid; gap: 4px; text-align: center; font-size: 0.65rem; color: var(--text-muted); padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+.periodic-header span { padding: 2px; }
+.periodic-element { aspect-ratio: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; transition: all 0.2s; padding: 2px; }
+.periodic-element:hover { background: rgba(62,207,142,0.15); border-color: var(--accent-sci); }
+.periodic-element.selected { background: var(--accent-sci); color: #0f1117; border-color: var(--accent-sci); }
+.periodic-element .symbol { font-weight: 700; font-size: 0.85rem; }
+.periodic-element .number { font-size: 0.55rem; color: var(--text-muted); }
+.element-meta { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 12px; font-size: 0.8rem; }
+.element-meta .meta-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+.element-meta .meta-label { color: var(--text-muted); }
+.element-meta .meta-value { font-weight: 600; }
+.atom-diagram { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0 24px; text-align: center; }
+.atom-canvas { display: block; width: 200px; height: 200px; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.atom-controls { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+.atom-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 18px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.atom-btn:hover { border-color: var(--accent-sci); color: var(--text); }
+.atom-btn.active { background: var(--accent-sci); color: #0f1117; border-color: var(--accent-sci); }
+.atom-info { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.5; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-sci); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.text-input { width: 100%; max-width: 380px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--body); font-size: 0.95rem; padding: 10px 14px; transition: border-color 0.2s; outline: none; display: block; }
+.text-input:focus { border-color: var(--accent-sci); }
+.text-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.06); }
+.text-input.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.06); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) { 
+  .topbar { padding: 0 16px; } 
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; } 
+  .hero h1 { font-size: 1.8rem; } 
+  .periodic-table { font-size: 0.6rem; }
+  .periodic-header span { font-size: 0.55rem; }
+  .periodic-element .symbol { font-size: 0.7rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 · Atomic Structure & Periodic Table</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 30</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Chapter 2.1</div>
+  <h1>Atomic Structure &<br><em>The Periodic Table</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-sci"></div>Atoms &amp; Elements &middot; Electron Configuration &middot; Periodic Trends</div>
+    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>15 questions &middot; self-marked &middot; 30 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128250; Watch &amp; Learn first</h3>
+  <p>Stuck? Watch a short video, then come back and try the questions.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/watch?v=2P8QxI9J5Xo" target="_blank" rel="noopener">FuseSchool &middot; Atomic Structure</a>
+    <a class="watch-link" href="https://www.youtube.com/watch?v=GC7mib3rZ0Y" target="_blank" rel="noopener">FuseSchool &middot; The Periodic Table</a>
+    <a class="watch-link" href="https://www.youtube.com/watch?v=zuddiWtFtEM" target="_blank" rel="noopener">FuseSchool &middot; Electron Configuration</a>
+    <a class="watch-link" href="https://www.youtube.com/watch?v=4qW9u8nx71s" target="_blank" rel="noopener">FuseSchool &middot; Groups &amp; Periods</a>
+    <a class="watch-link" href="https://www.bbc.co.uk/bitesize/topics/zg28k7h" target="_blank" rel="noopener">BBC Bitesize &middot; Atomic Structure</a>
+    <a class="watch-link" href="https://www.bbc.co.uk/bitesize/topics/zpffr82" target="_blank" rel="noopener">BBC Bitesize &middot; Periodic Table</a>
+    <a class="watch-link" href="../../../resources.html" target="_blank" rel="noopener">More videos &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#atomic-structure" class="sub-tab">&#9883; Atomic Structure</a>
+  <a href="#electron-config" class="sub-tab">&#9733; Electron Configuration</a>
+  <a href="#periodic-table" class="sub-tab">&#9638; Periodic Table</a>
+  <a href="#properties" class="sub-tab">&#9881; Properties &amp; Trends</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: ATOMIC STRUCTURE ═══════════════ -->
+<div id="atomic-structure">
+  <div class="section-header"><div class="section-icon">&#9883;</div><div><div class="sub-label">Section A</div><h2>Atomic Structure</h2></div></div>
+  <div class="info-box"><strong>Atoms</strong> are the building blocks of all matter. They are made of <em>protons</em> (+ charge, in nucleus), <em>neutrons</em> (no charge, in nucleus), and <em>electrons</em> (- charge, orbiting nucleus). <strong>Atomic number</strong> = number of protons. <strong>Mass number</strong> = protons + neutrons.</div>
+
+  <!-- Interactive atom diagram -->
+  <div class="atom-diagram">
+    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">Click to explore atom structure</div>
+    <canvas id="atom-canvas" width="200" height="200" aria-label="Interactive atom diagram showing protons, neutrons and electrons"></canvas>
+    <div class="atom-controls">
+      <button class="atom-btn active" id="atom-hydrogen" onclick="setAtom('hydrogen')">Hydrogen (1)</button>
+      <button class="atom-btn" id="atom-carbon" onclick="setAtom('carbon')">Carbon (6)</button>
+      <button class="atom-btn" id="atom-oxygen" onclick="setAtom('oxygen')">Oxygen (8)</button>
+      <button class="atom-btn" id="atom-sodium" onclick="setAtom('sodium')">Sodium (11)</button>
+      <button class="atom-btn" id="atom-chlorine" onclick="setAtom('chlorine')">Chlorine (17)</button>
+    </div>
+    <div class="atom-info" id="atom-info">Hydrogen: 1 proton, 0 neutrons, 1 electron</div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">What is the <em>atomic number</em> of an atom?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'a')"><div class="opt-indicator"></div><span>Number of protons in the nucleus</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span>Number of protons plus neutrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span>Number of electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span>Total mass of the atom</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s1','a','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','A — The atomic number is the number of protons in the nucleus. This also equals the number of electrons in a neutral atom.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">What is the <em>mass number</em> of an atom?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'a')"><div class="opt-indicator"></div><span>Number of protons only</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'b')"><div class="opt-indicator"></div><span>Number of protons plus neutrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span>Number of electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span>Atomic number plus electron count</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s2','b','Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','B — The mass number is the total number of protons and neutrons in the nucleus.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">A carbon atom has 6 protons, 6 neutrons, and 6 electrons. What is its mass number?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="s3-ans" placeholder="Enter mass number...">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s3',12,'Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','12 — Mass number = protons (6) + neutrons (6) = 12')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">An atom has atomic number 17 and mass number 35. How many neutrons does it have?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="s4-ans" placeholder="Enter neutron count...">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s4',18,'Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s4','Neutrons = mass number - atomic number')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','18 — Neutrons = mass number (35) - atomic number (17) = 18')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Which subatomic particle has a <em>negative</em> charge?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'a')"><div class="opt-indicator"></div><span>Proton</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'b')"><div class="opt-indicator"></div><span>Neutron</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'c')"><div class="opt-indicator"></div><span>Electron</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'd')"><div class="opt-indicator"></div><span>Nucleus</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s5','c','Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','C — Electrons have a negative charge. Protons are positive, neutrons have no charge.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">ATOMIC STRUCTURE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-as-fill"></div></div>
+    <div class="section-score-val" id="sec-as-val">0/6</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: ELECTRON CONFIGURATION ═══════════════ -->
+<div id="electron-config">
+  <div class="section-header"><div class="section-icon">&#9733;</div><div><div class="sub-label">Section B</div><h2>Electron Configuration</h2></div></div>
+  <div class="info-box"><strong>Electron shells:</strong> Electrons orbit the nucleus in <em>shells</em> (energy levels). The first shell holds up to 2 electrons, the second up to 8, the third up to 8 (for elements 1-20). <strong>Electron configuration</strong> shows how electrons are arranged, e.g., Carbon (6 electrons) = 2,4.</div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">What is the electron configuration of a <em>sodium</em> atom (atomic number 11)?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'a')"><div class="opt-indicator"></div><span>2,8,1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'b')"><div class="opt-indicator"></div><span>2,9</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>11</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>2,8,2</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s6','a','Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','A — Sodium has 11 electrons: first shell 2, second shell 8, third shell 1 → 2,8,1')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">A chlorine atom has atomic number 17. What is its electron configuration?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'a')"><div class="opt-indicator"></div><span>2,8,7</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'b')"><div class="opt-indicator"></div><span>2,8,8</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'c')"><div class="opt-indicator"></div><span>2,9</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'd')"><div class="opt-indicator"></div><span>2,8,6</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s7','a','Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','A — Chlorine has 17 electrons: first shell 2, second shell 8, third shell 7 → 2,8,7')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">How many electrons are in the <em>outer shell</em> of a fluorine atom (atomic number 9)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="s8-ans" placeholder="Enter electron count...">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s8',7,'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s8','Fluorine: 2,7 configuration')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','7 — Fluorine electron configuration is 2,7, so the outer shell has 7 electrons.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">ELECTRON CONFIGURATION &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ec-fill"></div></div>
+    <div class="section-score-val" id="sec-ec-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: PERIODIC TABLE ═══════════════ -->
+<div id="periodic-table">
+  <div class="section-header"><div class="section-icon">&#9638;</div><div><div class="sub-label">Section C</div><h2>The Periodic Table</h2></div></div>
+  <div class="info-box"><strong>The Periodic Table</strong> organizes all known elements by <em>atomic number</em>. <strong>Groups</strong> are vertical columns (elements with similar properties). <strong>Periods</strong> are horizontal rows (elements with the same number of electron shells). <strong>Metals</strong> are on the left and centre, <strong>non-metals</strong> on the right.</div>
+
+  <!-- Simplified periodic table -->
+  <div class="periodic-table-wrap">
+    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); margin-bottom:8px; text-align:center;">Click on any element to select it</div>
+    <div class="periodic-table" id="periodic-table-grid">
+      <div class="periodic-header">
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+      </div>
+      <!-- Period 1 -->
+      <div class="periodic-element" onclick="selectElement('H')"><div class="symbol">H</div><div class="number">1</div></div>
+      <div class="periodic-element" style="grid-column: 18;"></div>
+      <div class="periodic-element" onclick="selectElement('He')"><div class="symbol">He</div><div class="number">2</div></div>
+      <div class="periodic-element" style="grid-column: 4;"></div>
+      <!-- Period 2 -->
+      <div class="periodic-element" onclick="selectElement('Li')"><div class="symbol">Li</div><div class="number">3</div></div>
+      <div class="periodic-element" onclick="selectElement('Be')"><div class="symbol">Be</div><div class="number">4</div></div>
+      <div class="periodic-element" style="grid-column: 13;"></div>
+      <div class="periodic-element" onclick="selectElement('B')"><div class="symbol">B</div><div class="number">5</div></div>
+      <div class="periodic-element" onclick="selectElement('C')"><div class="symbol">C</div><div class="number">6</div></div>
+      <div class="periodic-element" onclick="selectElement('N')"><div class="symbol">N</div><div class="number">7</div></div>
+      <div class="periodic-element" onclick="selectElement('O')"><div class="symbol">O</div><div class="number">8</div></div>
+      <div class="periodic-element" onclick="selectElement('F')"><div class="symbol">F</div><div class="number">9</div></div>
+      <div class="periodic-element" onclick="selectElement('Ne')"><div class="symbol">Ne</div><div class="number">10</div></div>
+      <!-- Period 3 -->
+      <div class="periodic-element" onclick="selectElement('Na')"><div class="symbol">Na</div><div class="number">11</div></div>
+      <div class="periodic-element" onclick="selectElement('Mg')"><div class="symbol">Mg</div><div class="number">12</div></div>
+      <div class="periodic-element" style="grid-column: 13;"></div>
+      <div class="periodic-element" onclick="selectElement('Al')"><div class="symbol">Al</div><div class="number">13</div></div>
+      <div class="periodic-element" onclick="selectElement('Si')"><div class="symbol">Si</div><div class="number">14</div></div>
+      <div class="periodic-element" onclick="selectElement('P')"><div class="symbol">P</div><div class="number">15</div></div>
+      <div class="periodic-element" onclick="selectElement('S')"><div class="symbol">S</div><div class="number">16</div></div>
+      <div class="periodic-element" onclick="selectElement('Cl')"><div class="symbol">Cl</div><div class="number">17</div></div>
+      <div class="periodic-element" onclick="selectElement('Ar')"><div class="symbol">Ar</div><div class="number">18</div></div>
+    </div>
+    <div class="element-meta" id="element-meta">
+      <div class="meta-row"><span class="meta-label">Selected:</span><span class="meta-value" id="selected-element">None</span></div>
+      <div class="meta-row"><span class="meta-label">Atomic Number:</span><span class="meta-value" id="selected-number">-</span></div>
+      <div class="meta-row"><span class="meta-label">Group:</span><span class="meta-value" id="selected-group">-</span></div>
+      <div class="meta-row"><span class="meta-label">Period:</span><span class="meta-value" id="selected-period">-</span></div>
+      <div class="meta-row"><span class="meta-label">Type:</span><span class="meta-value" id="selected-type">-</span></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">In the periodic table, elements in the <em>same group</em> have what in common?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'a')"><div class="opt-indicator"></div><span>Same number of electron shells</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'b')"><div class="opt-indicator"></div><span>Same number of outer electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'c')"><div class="opt-indicator"></div><span>Same atomic mass</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'd')"><div class="opt-indicator"></div><span>Same number of protons and neutrons</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s9','b','Q9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','B — Elements in the same group have the same number of electrons in their outer shell (valence electrons), giving them similar chemical properties.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">In the periodic table, elements in the <em>same period</em> have what in common?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'a')"><div class="opt-indicator"></div><span>Same number of electron shells</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'b')"><div class="opt-indicator"></div><span>Same number of outer electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'c')"><div class="opt-indicator"></div><span>Same atomic number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'd')"><div class="opt-indicator"></div><span>Same chemical properties</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s10','a','Q10')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','A — Elements in the same period have the same number of electron shells.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Which group contains the <em>noble gases</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'a')"><div class="opt-indicator"></div><span>Group 0</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'b')"><div class="opt-indicator"></div><span>Group 1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'c')"><div class="opt-indicator"></div><span>Group 7</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'd')"><div class="opt-indicator"></div><span>Group 8</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s11','a','Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','A — Noble gases are in Group 0 (or Group 18 in modern notation). They have full outer electron shells and are chemically unreactive.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">PERIODIC TABLE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pt-fill"></div></div>
+    <div class="section-score-val" id="sec-pt-val">0/3</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: PROPERTIES & TRENDS ═════════════ -->
+<div id="properties">
+  <div class="section-header"><div class="section-icon">&#9881;</div><div><div class="sub-label">Section D</div><h2>Properties & Trends</h2></div></div>
+  <div class="info-box"><strong>Metals</strong> (left of the zig-zag line) are shiny, malleable, ductile, conduct heat/electricity, and have high melting points. <strong>Non-metals</strong> (right of the zig-zag line) are dull, brittle, poor conductors, and have lower melting points. Going <em>down</em> a group, atomic size increases and reactivity increases for metals, decreases for non-metals.</div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Which of these is a <em>metal</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'a')"><div class="opt-indicator"></div><span>Carbon</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'b')"><div class="opt-indicator"></div><span>Oxygen</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'c')"><div class="opt-indicator"></div><span>Sulfur</span>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'd')"><div class="opt-indicator"></div><span>Magnesium</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s12','d','Q12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','D — Magnesium is a metal. Carbon, oxygen, and sulfur are all non-metals.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Which of these is a <em>non-metal</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s13-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'a')"><div class="opt-indicator"></div><span>Iron</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'b')"><div class="opt-indicator"></div><span>Copper</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'c')"><div class="opt-indicator"></div><span>Chlorine</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'd')"><div class="opt-indicator"></div><span>Aluminium</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s13','c','Q13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','C — Chlorine is a non-metal. Iron, copper, and aluminium are all metals.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">What happens to atomic size as you go <em>down</em> a group in the periodic table?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'a')"><div class="opt-indicator"></div><span>Increases</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'b')"><div class="opt-indicator"></div><span>Decreases</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'c')"><div class="opt-indicator"></div><span>Stays the same</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'd')"><div class="opt-indicator"></div><span>First increases then decreases</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s14','a','Q14')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','A — Atomic size increases as you go down a group because each successive element has one more electron shell.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Which element in Group 1 is the <em>most reactive</em>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s15-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'a')"><div class="opt-indicator"></div><span>Lithium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'b')"><div class="opt-indicator"></div><span>Sodium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'c')"><div class="opt-indicator"></div><span>Potassium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'd')"><div class="opt-indicator"></div><span>Francium</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s15','c','Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s15','Group 1 reactivity increases down the group. Think about which is lowest in Group 1 among these options.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','C — Potassium is the most reactive among the given options. In Group 1, reactivity increases down the group because the outer electron is further from the nucleus and easier to lose. Francium would be even more reactive but is not among the first 20 elements typically studied at this level.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">PROPERTIES & TRENDS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pr-fill"></div></div>
+    <div class="section-score-val" id="sec-pr-val">0/6</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  s1:1, s2:1, s3:1, s4:2, s5:1,
+  s6:2, s7:2, s8:1,
+  s9:1, s10:1, s11:1,
+  s12:1, s13:1, s14:1, s15:2
+};
+
+const sections = {
+  as: { label: 'Atomic Structure', qs: ['s1','s2','s3','s4','s5'] },
+  ec: { label: 'Electron Config', qs: ['s6','s7','s8'] },
+  pt: { label: 'Periodic Table', qs: ['s9','s10','s11'] },
+  pr: { label: 'Properties', qs: ['s12','s13','s14','s15'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Atom diagram animator ──────────────────────────────────
+const atomView = { element: 'hydrogen', protons: 1, neutrons: 0, electrons: 1, electronsConfig: [1] };
+const atomCanvas = document.getElementById('atom-canvas');
+const atomCtx = atomCanvas.getContext('2d');
+
+function drawAtom() {
+  const w = atomCanvas.width, h = atomCanvas.height;
+  const centerX = w / 2, centerY = h / 2;
+  
+  // Clear canvas
+  atomCtx.clearRect(0, 0, w, h);
+  
+  // Draw nucleus
+  const nucleusRadius = 20;
+  atomCtx.beginPath();
+  atomCtx.arc(centerX, centerY, nucleusRadius, 0, Math.PI * 2);
+  atomCtx.fillStyle = '#4f8ef7';
+  atomCtx.fill();
+  atomCtx.strokeStyle = '#ffffff';
+  atomCtx.lineWidth = 2;
+  atomCtx.stroke();
+  
+  // Label nucleus with P and N
+  atomCtx.font = 'bold 10px Arial';
+  atomCtx.fillStyle = '#ffffff';
+  atomCtx.textAlign = 'center';
+  atomCtx.textBaseline = 'middle';
+  atomCtx.fillText('P', centerX - 6, centerY - 3);
+  atomCtx.fillText(String(atomView.protons), centerX - 6, centerY + 8);
+  if (atomView.neutrons > 0) {
+    atomCtx.fillText('N', centerX + 6, centerY - 3);
+    atomCtx.fillText(String(atomView.neutrons), centerX + 6, centerY + 8);
+  }
+  
+  // Draw electron shells
+  const shellRadii = [35, 60, 85];
+  for (let i = 0; i < atomView.electronsConfig.length; i++) {
+    const shellRadius = shellRadii[i];
+    const electronCount = atomView.electronsConfig[i];
+    
+    // Draw shell orbit
+    atomCtx.beginPath();
+    atomCtx.arc(centerX, centerY, shellRadius, 0, Math.PI * 2);
+    atomCtx.strokeStyle = 'rgba(62, 207, 142, 0.4)';
+    atomCtx.lineWidth = 1;
+    atomCtx.stroke();
+    
+    // Draw electrons
+    const angleStep = (Math.PI * 2) / electronCount;
+    const electronRadius = 4;
+    
+    for (let j = 0; j < electronCount; j++) {
+      const angle = j * angleStep;
+      const ex = centerX + shellRadius * Math.cos(angle);
+      const ey = centerY + shellRadius * Math.sin(angle);
+      
+      atomCtx.beginPath();
+      atomCtx.arc(ex, ey, electronRadius, 0, Math.PI * 2);
+      atomCtx.fillStyle = '#3ecf8e';
+      atomCtx.fill();
+      
+      atomCtx.strokeStyle = '#ffffff';
+      atomCtx.lineWidth = 1;
+      atomCtx.stroke();
+      
+      // Add minus sign
+      atomCtx.font = 'bold 8px Arial';
+      atomCtx.fillStyle = '#ffffff';
+      atomCtx.textAlign = 'center';
+      atomCtx.textBaseline = 'middle';
+      atomCtx.fillText('-', ex, ey);
+    }
+  }
+}
+
+function setAtom(elementName) {
+  const atoms = {
+    hydrogen: { protons: 1, neutrons: 0, electrons: 1, electronsConfig: [1], name: 'Hydrogen' },
+    carbon: { protons: 6, neutrons: 6, electrons: 6, electronsConfig: [2, 4], name: 'Carbon' },
+    oxygen: { protons: 8, neutrons: 8, electrons: 8, electronsConfig: [2, 6], name: 'Oxygen' },
+    sodium: { protons: 11, neutrons: 12, electrons: 11, electronsConfig: [2, 8, 1], name: 'Sodium' },
+    chlorine: { protons: 17, neutrons: 18, electrons: 17, electronsConfig: [2, 8, 7], name: 'Chlorine' }
+  };
+  
+  const atom = atoms[elementName];
+  if (atom) {
+    atomView.element = elementName;
+    atomView.protons = atom.protons;
+    atomView.neutrons = atom.neutrons;
+    atomView.electrons = atom.electrons;
+    atomView.electronsConfig = atom.electronsConfig;
+    
+    // Update button styles
+    ['hydrogen', 'carbon', 'oxygen', 'sodium', 'chlorine'].forEach(el => {
+      document.getElementById(`atom-${el}`).classList.toggle('active', el === elementName);
+    });
+    
+    document.getElementById('atom-info').textContent = `${atom.name}: ${atom.protons} proton${atom.protons > 1 ? 's' : ''}, ${atom.neutrons} neutron${atom.neutrons !== 1 ? 's' : ''}, ${atom.electrons} electron${atom.electrons > 1 ? 's' : ''}`;
+    drawAtom();
+  }
+}
+
+// Initialize atom diagram
+drawAtom();
+
+// ── Periodic table selection ────────────────────────────────
+const elementData = {
+  H: { number: 1, group: 1, period: 1, type: 'Non-metal' },
+  He: { number: 2, group: 0, period: 1, type: 'Noble gas' },
+  Li: { number: 3, group: 1, period: 2, type: 'Metal' },
+  Be: { number: 4, group: 2, period: 2, type: 'Metal' },
+  B: { number: 5, group: 13, period: 2, type: 'Metalloid' },
+  C: { number: 6, group: 14, period: 2, type: 'Non-metal' },
+  N: { number: 7, group: 15, period: 2, type: 'Non-metal' },
+  O: { number: 8, group: 16, period: 2, type: 'Non-metal' },
+  F: { number: 9, group: 17, period: 2, type: 'Non-metal' },
+  Ne: { number: 10, group: 0, period: 2, type: 'Noble gas' },
+  Na: { number: 11, group: 1, period: 3, type: 'Metal' },
+  Mg: { number: 12, group: 2, period: 3, type: 'Metal' },
+  Al: { number: 13, group: 13, period: 3, type: 'Metal' },
+  Si: { number: 14, group: 14, period: 3, type: 'Metalloid' },
+  P: { number: 15, group: 15, period: 3, type: 'Non-metal' },
+  S: { number: 16, group: 16, period: 3, type: 'Non-metal' },
+  Cl: { number: 17, group: 17, period: 3, type: 'Non-metal' },
+  Ar: { number: 18, group: 0, period: 3, type: 'Noble gas' }
+};
+
+let selectedElement = null;
+
+function selectElement(symbol) {
+  // Clear previous selection
+  const elements = document.querySelectorAll('.periodic-element');
+  elements.forEach(el => el.classList.remove('selected'));
+  
+  // Set new selection
+  const element = elementData[symbol];
+  if (element) {
+    selectedElement = symbol;
+    document.getElementById('selected-element').textContent = symbol;
+    document.getElementById('selected-number').textContent = element.number;
+    document.getElementById('selected-group').textContent = element.group === 0 ? '0 (Noble gases)' : element.group;
+    document.getElementById('selected-period').textContent = element.period;
+    document.getElementById('selected-type').textContent = element.type;
+    
+    // Highlight the selected element
+    const selectedEl = Array.from(elements).find(el => {
+      const symbolEl = el.querySelector('.symbol');
+      return symbolEl && symbolEl.textContent === symbol;
+    });
+    if (selectedEl) selectedEl.classList.add('selected');
+  }
+}
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function checkText(qid, correctVal, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = input.value.toLowerCase().replace(/\s+/g,'');
+  const correct = correctVal.toLowerCase().replace(/\s+/g,'');
+  const isCorrect = val === correct || val.includes(correct) || correct.includes(val);
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`atomic-periodic_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && (active.classList.contains('num-input') || active.classList.contains('text-input'))) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
