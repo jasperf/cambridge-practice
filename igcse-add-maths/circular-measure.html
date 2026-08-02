@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circular Measure: Radians &amp; Degrees · Interactive Exercises</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --accent-danger: #e05252;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 58px;
+  gap: 16px;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.logo span { color: var(--accent-math); }
+
+.week-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.score-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 5px 16px 5px 10px;
+}
+.score-pill .score-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.score-pill .score-val {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-math);
+  transition: color 0.3s;
+  min-width: 48px;
+  text-align: right;
+}
+
+.progress-wrap { height: 3px; background: var(--border); position: relative; }
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-math), var(--accent-sci));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 52px 28px 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+}
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.dot-warn { background: var(--accent-warn); }
+
+.subject-nav {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 24px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sub-tab {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.sub-tab.active-math { background: var(--accent-math); color: #0f1117; border-color: var(--accent-math); }
+
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 44px 0 24px;
+}
+.section-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.icon-math { background: rgba(79,142,247,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+
+.q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.q-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.q-text { font-size: 0.97rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-marks {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-warn);
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.q-body { padding: 16px 20px; }
+
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-size: 0.93rem;
+  user-select: none;
+}
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  transition: all 0.2s;
+}
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input {
+  width: 120px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  padding: 9px 12px;
+  text-align: center;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.3px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+
+.feedback {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+
+.info-box {
+  background: var(--surface2);
+  border-left: 3px solid var(--accent-math);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.info-box code {
+  font-family: var(--font-mono);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--text);
+}
+
+/* Radian demo */
+.demo-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 20px 24px;
+  margin: 16px 0 24px;
+}
+.demo-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-math);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.demo-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.demo-controls label { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); flex-shrink: 0; }
+.angle-slider { flex: 1; min-width: 180px; accent-color: var(--accent-math); }
+.btn-fullcircle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.18s;
+  flex-shrink: 0;
+}
+.btn-fullcircle:hover { border-color: var(--accent-math); color: var(--accent-math); }
+
+.demo-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap: 10px; margin-bottom: 18px; }
+.stat-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+.stat-tile-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.stat-tile-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text); }
+
+.demo-circle-wrap, .angles-circle-wrap { display: flex; justify-content: center; }
+.angles-caption {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 10px;
+}
+
+.section-score {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 24px;
+}
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-math), var(--accent-sci));
+  width: 0%;
+  transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1);
+  border-radius: 3px;
+}
+
+.results-panel {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--accent-math);
+  border-radius: 14px;
+  padding: 32px;
+  margin-top: 40px;
+  text-align: center;
+  animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+
+#confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.q-card { animation: slideIn 0.4s ease both; }
+.q-card:nth-child(1) { animation-delay: 0.05s; }
+.q-card:nth-child(2) { animation-delay: 0.10s; }
+.q-card:nth-child(3) { animation-delay: 0.15s; }
+.q-card:nth-child(4) { animation-delay: 0.20s; }
+.q-card:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.shake { animation: shake 0.4s ease; }
+
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(46,204,113,0); }
+  100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); }
+}
+.pulse-correct { animation: pulse-green 0.6s ease; }
+
+@media (max-width: 600px) {
+  .topbar { padding: 0 16px; }
+  .hero, .subject-nav, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">IGCSE Add Maths · Circular Measure</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">
+      <span style="font-size:0.85rem;">⏱</span>
+      <div class="timer" id="timer">00:00</div>
+    </div>
+    <div class="score-pill">
+      <div class="score-label">Score</div>
+      <div class="score-val" id="global-score">0 / 0</div>
+    </div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Cambridge IGCSE Additional Mathematics (0606) · Circular Measure</div>
+  <h1>Radians <em>vs</em> Degrees</h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Radian definition · Conversion · Arc length · Sector area</div>
+    <div class="hero-chip"><div class="dot dot-warn"></div>16 questions · interactive circle · self-marked</div>
+  </div>
+</div>
+
+<div class="subject-nav">
+  <a href="#basics" class="sub-tab active-math">📐 Basics</a>
+  <a href="#convert" class="sub-tab" style="color:var(--text-muted);">🔄 Convert</a>
+  <a href="#arclength" class="sub-tab" style="color:var(--text-muted);">📏 Arc &amp; Sector</a>
+  <a href="#challenge" class="sub-tab" style="color:var(--text-muted);">⭐ Challenge</a>
+</div>
+
+<div class="main">
+
+  <!-- ═══════════════════ SECTION A: BASICS ═══════════════════ -->
+  <div id="basics">
+    <div class="section-header">
+      <div class="section-icon icon-math">📐</div>
+      <div>
+        <div class="sub-label">Section A</div>
+        <h2>What Is a Radian?</h2>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>One radian</strong> is the angle formed at the centre of a circle by an arc whose length equals the radius. A full turn (360°) measures <code>2π</code> radians (≈ 6.28 rad). Because the arc length of a full circle is its circumference, <code>2πr</code>, dividing by <code>r</code> gives exactly <code>2π</code> radians — the definition and the circumference formula are the same idea.
+    </div>
+
+    <!-- Interactive radian demo -->
+    <div class="demo-wrap">
+      <div class="demo-label">Drag the slider — watch radians, degrees and arc length change together</div>
+      <div class="demo-controls">
+        <label for="angle-slider">Angle</label>
+        <input type="range" id="angle-slider" class="angle-slider" min="0" max="6.283185" step="0.001" value="0" oninput="updateDemo()">
+        <button class="btn-fullcircle" onclick="setFullCircle()">Full circle</button>
+      </div>
+      <div class="demo-stats">
+        <div class="stat-tile">
+          <div class="stat-tile-label">Radians</div>
+          <div class="stat-tile-val" id="demo-radians">0.00</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile-label">Degrees</div>
+          <div class="stat-tile-val" id="demo-degrees">0°</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile-label">Arc length</div>
+          <div class="stat-tile-val" id="demo-arc">0.00 r</div>
+        </div>
+      </div>
+      <div class="demo-circle-wrap">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;" aria-label="Interactive circle showing the current angle in radians and degrees">
+          <circle cx="150" cy="150" r="110" fill="none" stroke="var(--border)" stroke-width="2"/>
+          <path id="demo-arc-path" fill="none" stroke="var(--accent-math)" stroke-width="5" stroke-linecap="round" d=""/>
+          <line id="demo-radius-line" x1="150" y1="150" x2="260" y2="150" stroke="var(--accent-warn)" stroke-width="3"/>
+          <circle cx="150" cy="150" r="4" fill="var(--text-dim)"/>
+          <circle id="demo-end-dot" cx="260" cy="150" r="6" fill="var(--accent-math)"/>
+          <text id="demo-angle-label" x="95" y="130" fill="var(--text)" font-family="DM Mono, monospace" font-size="13">0.00 rad</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Static common-angles reference diagram -->
+    <div class="demo-wrap">
+      <div class="demo-label">Common angles to memorise</div>
+      <div class="angles-circle-wrap">
+        <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;" aria-label="Unit circle showing common angles in degrees and radians">
+          <line x1="30" y1="150" x2="270" y2="150" stroke="var(--border)" stroke-width="1.5"/>
+          <line x1="150" y1="30" x2="150" y2="270" stroke="var(--border)" stroke-width="1.5"/>
+          <circle cx="150" cy="150" r="100" fill="none" stroke="var(--text-dim)" stroke-width="2"/>
+          <g fill="var(--accent-warn)">
+            <circle cx="250" cy="150" r="5"/>
+            <circle cx="236.6" cy="100" r="5"/>
+            <circle cx="220.7" cy="79.3" r="5"/>
+            <circle cx="200" cy="63.4" r="5"/>
+            <circle cx="150" cy="50" r="5"/>
+            <circle cx="50" cy="150" r="5"/>
+            <circle cx="150" cy="250" r="5"/>
+          </g>
+          <g fill="var(--text)" font-family="DM Mono, monospace" font-size="11" text-anchor="middle">
+            <text x="150" y="24">90° (π/2)</text>
+            <text x="27" y="145" text-anchor="end">180° (π)</text>
+            <text x="150" y="286">270° (3π/2)</text>
+            <text x="260" y="145" text-anchor="start">0° (0)</text>
+            <text x="260" y="160" text-anchor="start" font-size="9" fill="var(--text-muted)">360° (2π)</text>
+            <text x="208" y="88" text-anchor="start">60° (π/3)</text>
+            <text x="228" y="68" text-anchor="start">45° (π/4)</text>
+            <text x="242" y="50" text-anchor="start">30° (π/6)</text>
+          </g>
+        </svg>
+      </div>
+      <div class="angles-caption">These are the angles you'll meet again and again — worth learning by heart.</div>
+    </div>
+
+    <!-- M1 -->
+    <div class="q-card" id="qcard-m1">
+      <div class="q-header">
+        <div class="q-num">M1</div>
+        <div class="q-text">What is the definition of one radian?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="m1-opts">
+          <div class="mcq-opt" onclick="selectMCQ('m1',this,'a')"><div class="opt-indicator">A</div>The angle in a right angle divided by 90</div>
+          <div class="mcq-opt" onclick="selectMCQ('m1',this,'b')"><div class="opt-indicator">B</div>The angle at the centre of a circle formed when the arc length equals the radius</div>
+          <div class="mcq-opt" onclick="selectMCQ('m1',this,'c')"><div class="opt-indicator">C</div>One 360th of a full turn</div>
+          <div class="mcq-opt" onclick="selectMCQ('m1',this,'d')"><div class="opt-indicator">D</div>The angle between two radii, each 1 cm long</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('m1','b','M1')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m1','Look at the interactive circle above — try to line the orange radius line up with the blue arc so they look the same length.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m1','B — A radian is defined purely by a length comparison: it is the angle where the arc length equals the radius. It has nothing to do with the number 360.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m1-fb"></div>
+      </div>
+    </div>
+
+    <!-- M2 -->
+    <div class="q-card" id="qcard-m2">
+      <div class="q-header">
+        <div class="q-num">M2</div>
+        <div class="q-text">How many radians make a full turn (360°)? Give your answer to 2 decimal places.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m2-ans" placeholder="?" step="0.01">
+          <span class="num-unit">radians</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m2', 6.28, 'M2', 0.02)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m2','A full turn is 2π radians. Use π ≈ 3.14.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m2','2π ≈ 2 × 3.14 = 6.28 radians.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m2-fb"></div>
+      </div>
+    </div>
+
+    <!-- M3 -->
+    <div class="q-card" id="qcard-m3">
+      <div class="q-header">
+        <div class="q-num">M3</div>
+        <div class="q-text">Using the common-angles diagram above, what is π/2 radians in degrees?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="m3-opts">
+          <div class="mcq-opt" onclick="selectMCQ('m3',this,'a')"><div class="opt-indicator">A</div>45°</div>
+          <div class="mcq-opt" onclick="selectMCQ('m3',this,'b')"><div class="opt-indicator">B</div>60°</div>
+          <div class="mcq-opt" onclick="selectMCQ('m3',this,'c')"><div class="opt-indicator">C</div>90°</div>
+          <div class="mcq-opt" onclick="selectMCQ('m3',this,'d')"><div class="opt-indicator">D</div>180°</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('m3','c','M3')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m3','C — π/2 is a quarter turn, and a quarter of 360° is 90°.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m3-fb"></div>
+      </div>
+    </div>
+
+    <!-- M4 -->
+    <div class="q-card" id="qcard-m4">
+      <div class="q-header">
+        <div class="q-num">M4</div>
+        <div class="q-text">What is π/3 radians in degrees?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="m4-opts">
+          <div class="mcq-opt" onclick="selectMCQ('m4',this,'a')"><div class="opt-indicator">A</div>30°</div>
+          <div class="mcq-opt" onclick="selectMCQ('m4',this,'b')"><div class="opt-indicator">B</div>45°</div>
+          <div class="mcq-opt" onclick="selectMCQ('m4',this,'c')"><div class="opt-indicator">C</div>60°</div>
+          <div class="mcq-opt" onclick="selectMCQ('m4',this,'d')"><div class="opt-indicator">D</div>90°</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('m4','c','M4')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m4','C — 360° ÷ 3 = 120° would be a third of the full circle from 0; π/3 is one of the labelled reference angles worth memorising directly: π/3 = 60°.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m4-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ SECTION B: CONVERT ═══════════════════ -->
+  <div id="convert">
+    <div class="section-header">
+      <div class="section-icon icon-math">🔄</div>
+      <div>
+        <div class="sub-label">Section B</div>
+        <h2>Converting Degrees ⇄ Radians</h2>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Degrees to radians:</strong> <code>θ(rad) = θ(deg) × π ÷ 180</code>. <strong>Radians to degrees:</strong> <code>θ(deg) = θ(rad) × 180 ÷ π</code>. Use π ≈ 3.14 (or 3.14159 for more precision) throughout this section.
+    </div>
+
+    <!-- M5 -->
+    <div class="q-card" id="qcard-m5">
+      <div class="q-header">
+        <div class="q-num">M5</div>
+        <div class="q-text">Convert 90° to radians. Give your answer to 2 decimal places.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m5-ans" placeholder="?" step="0.01">
+          <span class="num-unit">radians</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m5', 1.57, 'M5', 0.02)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m5','θ(rad) = 90 × π ÷ 180.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m5','90 × π ÷ 180 = π/2 ≈ 1.57 radians.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m5-fb"></div>
+      </div>
+    </div>
+
+    <!-- M6 -->
+    <div class="q-card" id="qcard-m6">
+      <div class="q-header">
+        <div class="q-num">M6</div>
+        <div class="q-text">Convert 45° to radians. Give your answer to 2 decimal places.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m6-ans" placeholder="?" step="0.01">
+          <span class="num-unit">radians</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m6', 0.79, 'M6', 0.02)">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m6','45 × π ÷ 180 = π/4 ≈ 0.79 radians.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m6-fb"></div>
+      </div>
+    </div>
+
+    <!-- M7 -->
+    <div class="q-card" id="qcard-m7">
+      <div class="q-header">
+        <div class="q-num">M7</div>
+        <div class="q-text">Convert 3 radians to degrees. Give your answer to 1 decimal place.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m7-ans" placeholder="?" step="0.1">
+          <span class="num-unit">degrees</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m7', 171.9, 'M7', 0.5)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m7','θ(deg) = 3 × 180 ÷ π.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m7','3 × 180 ÷ π ≈ 171.9°.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m7-fb"></div>
+      </div>
+    </div>
+
+    <!-- M8 -->
+    <div class="q-card" id="qcard-m8">
+      <div class="q-header">
+        <div class="q-num">M8</div>
+        <div class="q-text">What is 270° in radians, expressed as a multiple of π?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="m8-opts">
+          <div class="mcq-opt" onclick="selectMCQ('m8',this,'a')"><div class="opt-indicator">A</div>π/2</div>
+          <div class="mcq-opt" onclick="selectMCQ('m8',this,'b')"><div class="opt-indicator">B</div>π</div>
+          <div class="mcq-opt" onclick="selectMCQ('m8',this,'c')"><div class="opt-indicator">C</div>3π/2</div>
+          <div class="mcq-opt" onclick="selectMCQ('m8',this,'d')"><div class="opt-indicator">D</div>2π</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('m8','c','M8')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m8','270° is three-quarters of a full turn. A full turn is 2π.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m8','C — 270° is ¾ of 360°, so it is ¾ × 2π = 3π/2 radians.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m8-fb"></div>
+      </div>
+    </div>
+
+    <!-- M9 -->
+    <div class="q-card" id="qcard-m9">
+      <div class="q-header">
+        <div class="q-num">M9</div>
+        <div class="q-text">Convert 1 radian to degrees. Give your answer to 1 decimal place.</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m9-ans" placeholder="?" step="0.1">
+          <span class="num-unit">degrees</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m9', 57.3, 'M9', 0.3)">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m9','1 × 180 ÷ π ≈ 57.3°. This is why the interactive circle in Section A hits about 57° when the slider shows 1.00 rad.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m9-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ SECTION C: ARC & SECTOR ═══════════════════ -->
+  <div id="arclength">
+    <div class="section-header">
+      <div class="section-icon icon-math">📏</div>
+      <div>
+        <div class="sub-label">Section C</div>
+        <h2>Arc Length &amp; Sector Area</h2>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Arc length:</strong> <code>s = rθ</code>. <strong>Sector area:</strong> <code>A = ½r²θ</code>. Both formulas only work when <code>θ</code> is measured in <strong>radians</strong> — that's the whole reason radians exist as a unit.
+    </div>
+
+    <!-- M10 -->
+    <div class="q-card" id="qcard-m10">
+      <div class="q-header">
+        <div class="q-num">M10</div>
+        <div class="q-text">A sector has radius 5 cm and angle 2 radians at the centre. Find the arc length.</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m10-ans" placeholder="?" step="0.1">
+          <span class="num-unit">cm</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m10', 10, 'M10', 0.1)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m10','s = rθ = 5 × 2.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m10','s = rθ = 5 × 2 = 10 cm.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m10-fb"></div>
+      </div>
+    </div>
+
+    <!-- M11 -->
+    <div class="q-card" id="qcard-m11">
+      <div class="q-header">
+        <div class="q-num">M11</div>
+        <div class="q-text">A sector has radius 8 cm and angle 1.5 radians at the centre. Find the area of the sector.</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m11-ans" placeholder="?" step="0.1">
+          <span class="num-unit">cm²</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m11', 48, 'M11', 0.5)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m11','A = ½r²θ = ½ × 8² × 1.5.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m11','A = ½ × 8² × 1.5 = ½ × 64 × 1.5 = 48 cm².')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m11-fb"></div>
+      </div>
+    </div>
+
+    <!-- M12 -->
+    <div class="q-card" id="qcard-m12">
+      <div class="q-header">
+        <div class="q-num">M12</div>
+        <div class="q-text">An arc is 12 cm long and subtends an angle of 3 radians at the centre. Find the radius.</div>
+        <div class="q-marks">2 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m12-ans" placeholder="?" step="0.1">
+          <span class="num-unit">cm</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m12', 4, 'M12', 0.1)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m12','Rearrange s = rθ to r = s ÷ θ.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m12','r = s ÷ θ = 12 ÷ 3 = 4 cm.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m12-fb"></div>
+      </div>
+    </div>
+
+    <!-- M13 -->
+    <div class="q-card" id="qcard-m13">
+      <div class="q-header">
+        <div class="q-num">M13</div>
+        <div class="q-text">Which formula gives the arc length <em>s</em> of a sector with radius <em>r</em> and angle <em>θ</em> (in radians)?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="m13-opts">
+          <div class="mcq-opt" onclick="selectMCQ('m13',this,'a')"><div class="opt-indicator">A</div>s = rθ</div>
+          <div class="mcq-opt" onclick="selectMCQ('m13',this,'b')"><div class="opt-indicator">B</div>s = r²θ</div>
+          <div class="mcq-opt" onclick="selectMCQ('m13',this,'c')"><div class="opt-indicator">C</div>s = ½rθ</div>
+          <div class="mcq-opt" onclick="selectMCQ('m13',this,'d')"><div class="opt-indicator">D</div>s = 2rθ</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('m13','a','M13')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m13','A — s = rθ. No fractions or squares involved.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m13-fb"></div>
+      </div>
+    </div>
+
+    <!-- M14 -->
+    <div class="q-card" id="qcard-m14">
+      <div class="q-header">
+        <div class="q-num">M14</div>
+        <div class="q-text">Which formula gives the area <em>A</em> of a sector with radius <em>r</em> and angle <em>θ</em> (in radians)?</div>
+        <div class="q-marks">1 mark</div>
+      </div>
+      <div class="q-body">
+        <div class="mcq-options" id="m14-opts">
+          <div class="mcq-opt" onclick="selectMCQ('m14',this,'a')"><div class="opt-indicator">A</div>A = r²θ</div>
+          <div class="mcq-opt" onclick="selectMCQ('m14',this,'b')"><div class="opt-indicator">B</div>A = ½rθ</div>
+          <div class="mcq-opt" onclick="selectMCQ('m14',this,'c')"><div class="opt-indicator">C</div>A = ½r²θ</div>
+          <div class="mcq-opt" onclick="selectMCQ('m14',this,'d')"><div class="opt-indicator">D</div>A = 2r²θ</div>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkMCQ('m14','c','M14')">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m14','Compare it to the area of a full circle, πr² — a sector is a fraction θ/2π of that.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m14','C — A = ½r²θ. (Check: a full circle has θ = 2π, giving A = ½r² × 2π = πr² as expected.)')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m14-fb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ SECTION D: CHALLENGE ═══════════════════ -->
+  <div id="challenge">
+    <div class="section-header">
+      <div class="section-icon icon-math">⭐</div>
+      <div>
+        <div class="sub-label">Section D</div>
+        <h2>Challenge Questions</h2>
+      </div>
+    </div>
+
+    <!-- M15 -->
+    <div class="q-card" id="qcard-m15">
+      <div class="q-header">
+        <div class="q-num">M15 ⭐</div>
+        <div class="q-text"><strong>Challenge:</strong> A sector has radius 6 cm. The arc length is 15 cm. Find the angle at the centre in radians. Give your answer to 2 decimal places.</div>
+        <div class="q-marks">3 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m15-ans" placeholder="?" step="0.01">
+          <span class="num-unit">radians</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m15', 2.5, 'M15', 0.02)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m15','Rearrange s = rθ to θ = s ÷ r.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m15','θ = s ÷ r = 15 ÷ 6 = 2.5 radians.')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m15-fb"></div>
+      </div>
+    </div>
+
+    <!-- M16 -->
+    <div class="q-card" id="qcard-m16">
+      <div class="q-header">
+        <div class="q-num">M16 ⭐</div>
+        <div class="q-text"><strong>Challenge:</strong> A sector has radius 7 cm and the angle at the centre is 2.4 radians. Find the area of the sector. Give your answer to 1 decimal place.</div>
+        <div class="q-marks">3 marks</div>
+      </div>
+      <div class="q-body">
+        <div class="num-row">
+          <input type="number" class="num-input" id="m16-ans" placeholder="?" step="0.1">
+          <span class="num-unit">cm²</span>
+        </div>
+        <div class="q-actions">
+          <button class="btn btn-check" onclick="checkNum('m16', 58.8, 'M16', 0.2)">Check Answer</button>
+          <button class="btn btn-hint" onclick="showHint('m16','A = ½r²θ = ½ × 7² × 2.4.')">Hint</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('m16','A = ½ × 49 × 2.4 = 58.8 cm².')">Show Answer</button>
+        </div>
+        <div class="feedback" id="m16-fb"></div>
+      </div>
+    </div>
+
+    <div class="section-score" id="math-score-bar">
+      <div class="section-score-label">Maths score</div>
+      <div class="section-score-bar"><div class="section-score-fill" id="math-score-fill"></div></div>
+      <div class="section-score-val" id="math-score-val">—</div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-panel" id="results-panel">
+    <div class="results-grade" id="results-grade">—</div>
+    <div class="results-label" id="results-label">Complete all questions to see your final score</div>
+    <div class="results-breakdown">
+      <div class="rb-chip">Maths<span class="rb-val" id="rb-math">—</span></div>
+      <div class="rb-chip">Time<span class="rb-val" id="rb-time">—</span></div>
+    </div>
+  </div>
+
+</div><!-- .main -->
+
+<script>
+// STATE
+const state = {
+  answers: {},
+  correct: {},
+  totalMarks: { math: 0 },
+  maxMarks:   { math: 23 },
+  startTime: Date.now()
+};
+
+const marks = {
+  m1:1, m2:1, m3:1, m4:1,
+  m5:1, m6:1, m7:1, m8:1, m9:1,
+  m10:2, m11:2, m12:2, m13:1, m14:1,
+  m15:3, m16:3
+};
+
+const mathQs = ['m1','m2','m3','m4','m5','m6','m7','m8','m9','m10','m11','m12','m13','m14','m15','m16'];
+
+// ── Interactive radian demo ─────────────────────────────────────
+const TWO_PI = Math.PI * 2;
+const DEMO_CX = 150, DEMO_CY = 150, DEMO_R = 110;
+
+function fullCirclePath(cx, cy, r) {
+  return `M ${cx-r} ${cy} A ${r} ${r} 0 1 0 ${cx+r} ${cy} A ${r} ${r} 0 1 0 ${cx-r} ${cy}`;
+}
+
+function updateDemo() {
+  const slider = document.getElementById('angle-slider');
+  const theta = parseFloat(slider.value);
+  const deg = theta * 180 / Math.PI;
+
+  document.getElementById('demo-radians').textContent = theta.toFixed(2);
+  document.getElementById('demo-degrees').textContent = Math.round(deg) + '°';
+  document.getElementById('demo-arc').textContent = theta.toFixed(2) + ' r';
+  document.getElementById('demo-angle-label').textContent = theta.toFixed(2) + ' rad';
+
+  const x = DEMO_CX + DEMO_R * Math.cos(theta);
+  const y = DEMO_CY - DEMO_R * Math.sin(theta);
+
+  document.getElementById('demo-radius-line').setAttribute('x2', x);
+  document.getElementById('demo-radius-line').setAttribute('y2', y);
+  document.getElementById('demo-end-dot').setAttribute('cx', x);
+  document.getElementById('demo-end-dot').setAttribute('cy', y);
+
+  const arcPath = document.getElementById('demo-arc-path');
+  if (theta >= TWO_PI - 0.001) {
+    arcPath.setAttribute('d', fullCirclePath(DEMO_CX, DEMO_CY, DEMO_R));
+  } else if (theta <= 0.001) {
+    arcPath.setAttribute('d', '');
+  } else {
+    const largeArc = theta > Math.PI ? 1 : 0;
+    const startX = DEMO_CX + DEMO_R, startY = DEMO_CY;
+    arcPath.setAttribute('d', `M ${startX} ${startY} A ${DEMO_R} ${DEMO_R} 0 ${largeArc} 0 ${x} ${y}`);
+  }
+}
+
+function setFullCircle() {
+  document.getElementById('angle-slider').value = TWO_PI;
+  updateDemo();
+}
+
+updateDemo();
+
+// ── Timer ──────────────────────────────────────────────────────
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const m = String(Math.floor(elapsed/60)).padStart(2,'0');
+  const s = String(elapsed%60).padStart(2,'0');
+  document.getElementById('timer').textContent = `${m}:${s}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── MCQ single-select ─────────────────────────────────────────
+function selectMCQ(qid, el, val) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => {
+    o.classList.remove('selected');
+    const ind = o.querySelector('.opt-indicator');
+    ind.textContent = ind.textContent.replace('✓','').trim();
+  });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  state.answers[qid] = val;
+}
+
+// ── Check MCQ ─────────────────────────────────────────────────
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick')?.match(/'([a-d])'/);
+    const v = m?.[1];
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect, label);
+}
+
+// ── Check Numeric ─────────────────────────────────────────────
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect, label);
+}
+
+// ── Mark Result ───────────────────────────────────────────────
+function markResult(qid, isCorrect, label) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Try the hint or reveal the answer.`;
+  updateScores();
+}
+
+// ── Hint / Reveal ─────────────────────────────────────────────
+function showHint(qid, hintText) {
+  if (state.correct[qid] !== undefined) return;
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    updateScores();
+  }
+}
+
+// ── Shake ──────────────────────────────────────────────────────
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake');
+  void card.offsetWidth;
+  card.classList.add('shake');
+}
+
+// ── Update Scores ─────────────────────────────────────────────
+function updateScores() {
+  let mathScore = 0, answered = 0;
+  mathQs.forEach(qid => {
+    if (state.correct[qid] === true) mathScore += marks[qid];
+    if (state.correct[qid] !== undefined) answered++;
+  });
+  document.getElementById('global-score').textContent = `${mathScore} / ${state.maxMarks.math}`;
+  document.getElementById('progress-bar').style.width = `${(answered/mathQs.length)*100}%`;
+  const pct = (mathScore / state.maxMarks.math) * 100;
+  document.getElementById('math-score-fill').style.width = pct + '%';
+  document.getElementById('math-score-val').textContent = `${mathScore}/${state.maxMarks.math}`;
+  if (answered === mathQs.length) showResults(mathScore);
+}
+
+// ── Results ───────────────────────────────────────────────────
+function showResults(math) {
+  const pct = Math.round((math / state.maxMarks.math) * 100);
+  const grade = pct >= 85 ? '🏆 Excellent!' : pct >= 70 ? '⭐ Great Job!' : pct >= 55 ? '👍 Good Effort' : '📚 Keep Practising';
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  const mins = Math.floor(elapsed/60), secs = elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  document.getElementById('rb-math').textContent = `${math}/${state.maxMarks.math}`;
+  document.getElementById('rb-time').textContent = `${mins}m ${secs}s`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`circular_measure_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, math, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+// ── Confetti ──────────────────────────────────────────────────
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ['#4f8ef7','#3ecf8e','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length: 120}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * -canvas.height,
+    w: Math.random() * 10 + 4,
+    h: Math.random() * 6 + 3,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    rot: Math.random() * Math.PI * 2,
+    vy: Math.random() * 3 + 2,
+    vx: (Math.random() - 0.5) * 2,
+    vr: (Math.random() - 0.5) * 0.1
+  }));
+  let frame = 0;
+  (function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = 0.85;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+      p.y += p.vy; p.x += p.vx; p.rot += p.vr;
+    });
+    frame++;
+    if (frame < 200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  })();
+}
+
+// ── Keyboard: Enter submits focused num-input ─────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      const checkBtn = active.closest('.q-body')?.querySelector('.btn-check');
+      if (checkBtn) checkBtn.click();
+    }
+  }
+});
+</script>
+</body>
+</html>

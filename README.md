@@ -47,6 +47,8 @@ cambridge-practice/
 │   └── t1/                          ← Term 1
 │       └── w2/                      ← Week 2
 │           └── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (16 q, 20 marks, interactive)
+├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
+│   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
 │   └── ...
 ├── docs/
@@ -111,6 +113,7 @@ npx serve .
 
 | Subject | Topics | Status |
 |---------|--------|--------|
+| Mathematics (Circular Measure — Radians & Degrees) | Additional Maths (0606) | ✅ Topic drill |
 | Physics (Electricity & Magnetism) | Core + Extended | 🔜 Coming |
 | Mathematics (Statistics & Probability) | Core + Extended | 🔜 Coming |
 
