@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Indices (Powers & Exponents) · Interactive Exercises</title>
+<title>Indices & Standard Form · Interactive Exercises</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -155,22 +155,22 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <div class="topbar">
   <div class="topbar-left">
     <div class="logo">Student<span>'s</span> Study Hub</div>
-    <div class="week-badge">Stage 9 · Indices (Powers & Exponents)</div>
+    <div class="week-badge">Stage 9 · Indices & Standard Form</div>
   </div>
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="../../../index.html" class="back-link">&larr; All sheets</a>
     <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
-    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 19</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 49</div></div>
   </div>
 </div>
 <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
 
 <div class="hero">
-  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Chapter 1.2</div>
-  <h1>Indices:<br><em>Powers & Exponents</em></h1>
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Chapters 1.2&ndash;1.3</div>
+  <h1>Indices &amp;<br><em>Standard Form</em></h1>
   <div class="hero-meta">
-    <div class="hero-chip"><div class="dot dot-math"></div>Powers &amp; Roots &middot; Laws of Indices &middot; Exponent Rules</div>
-    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>14 questions &middot; self-marked &middot; 19 marks</div>
+    <div class="hero-chip"><div class="dot dot-math"></div>Laws of Indices &middot; Multi-Step Problems &middot; Standard Form</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>37 questions &middot; self-marked &middot; 49 marks</div>
   </div>
 </div>
 
@@ -191,6 +191,12 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <a href="#dividing" class="sub-tab">&#247; Dividing Powers</a>
   <a href="#brackets" class="sub-tab">( ) Power of a Power</a>
   <a href="#negative" class="sub-tab">Negative &amp; Zero</a>
+  <a href="#multistep" class="sub-tab">Multi-Step Problems</a>
+  <a href="#standard-form-intro" class="sub-tab">What is Standard Form?</a>
+  <a href="#standard-form-large" class="sub-tab">Large &rarr; Standard Form</a>
+  <a href="#standard-form-small" class="sub-tab">Small &rarr; Standard Form</a>
+  <a href="#standard-form-back" class="sub-tab">Standard Form &rarr; Ordinary</a>
+  <a href="#standard-form-multdiv" class="sub-tab">&times; &amp; &divide; Standard Form</a>
 </div>
 
 <div class="main">
@@ -535,6 +541,527 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   </div>
 </div>
 
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: MULTI-STEP PROBLEMS ═══════════════ -->
+<div id="multistep">
+  <div class="section-header"><div class="section-icon">&#8734;</div><div><div class="sub-label">Section E</div><h2>Multi-Step Problems</h2></div></div>
+  <div class="info-box"><strong>Combining laws:</strong> Harder questions mix multiplying, dividing and power-of-a-power in one expression. Work <strong>left to right</strong>, and if there's a fraction, simplify the numerator and denominator <em>separately</em> before combining them.</div>
+  <div class="info-box"><strong>Example:</strong> <span class="math-expr">(8<sup>2</sup> &times; 8<sup>5</sup>) &divide; 8<sup>3</sup> = 8<sup>7</sup> &divide; 8<sup>3</sup> = 8<sup>4</sup></span> &mdash; simplify inside the brackets first, then apply the next law.</div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-e1">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Simplify: <span class="math-expr">(7<sup>2</sup> &times; 7<sup>5</sup>) &divide; 7<sup>3</sup></span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">7<sup>4</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">7<sup>10</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">7<sup>0</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">7<sup>15</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e1','a','Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e1','First combine the brackets: 7<sup>2+5</sup> = 7<sup>7</sup>, then divide: 7<sup>7-3</sup> = 7<sup>4</sup>')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e1','A — 7<sup>4</sup> (7<sup>2+5</sup> = 7<sup>7</sup>, then 7<sup>7-3</sup> = 7<sup>4</sup>)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-e2">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Simplify: <span class="math-expr">3<sup>2</sup> &times; 3<sup>9</sup> &times; 3<sup>5</sup></span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">3<sup>16</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">3<sup>45</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">3<sup>7</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">9<sup>16</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e2','a','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e2','All three are multiplied with the same base, so add all the exponents: 2 + 9 + 5 = 16')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e2','A — 3<sup>16</sup> (add all exponents: 2 + 9 + 5 = 16)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-e3">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Simplify: <span class="math-expr">(4<sup>3</sup> &times; 4<sup>7</sup>)<sup>2</sup> &divide; 4<sup>5</sup></span></div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">4<sup>15</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">4<sup>19</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">4<sup>9</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">4<sup>25</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e3','a','Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e3','Inside the brackets first: 4<sup>3+7</sup> = 4<sup>10</sup>. Then power of a power: (4<sup>10</sup>)<sup>2</sup> = 4<sup>20</sup>. Finally divide: 4<sup>20-5</sup> = 4<sup>15</sup>')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e3','A — 4<sup>15</sup> (4<sup>10</sup> &rarr; 4<sup>20</sup> &rarr; 4<sup>15</sup>)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-e4">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Evaluate: <span class="math-expr">2<sup>3</sup> &times; 2<sup>2</sup> &divide; 2<sup>4</sup></span></div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="e4-ans" placeholder="Enter answer...">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e4',2,'Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e4','Working left to right: 2<sup>3+2</sup> = 2<sup>5</sup>, then 2<sup>5-4</sup> = 2<sup>1</sup>')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e4','2 — 2<sup>3</sup> &times; 2<sup>2</sup> &divide; 2<sup>4</sup> = 2<sup>3+2-4</sup> = 2<sup>1</sup> = 2')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MULTI-STEP PROBLEMS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ms-fill"></div></div>
+    <div class="section-score-val" id="sec-ms-val">0/6</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: WHAT IS STANDARD FORM? ═══════════════ -->
+<div id="standard-form-intro">
+  <div class="section-header"><div class="section-icon">10<sup>x</sup></div><div><div class="sub-label">Section F</div><h2>What is Standard Form?</h2></div></div>
+  <div class="info-box"><strong>Definition:</strong> Standard form writes a number as <span class="math-expr">a &times; 10<sup>b</sup></span>, where <strong>a</strong> is between 1 and 9.9&#775; (it can be negative) and <strong>b</strong> is a whole number (also can be negative). It's used to write very large or very small numbers concisely, and to compare them easily.</div>
+  <div class="info-box"><strong>Example:</strong> <span class="math-expr">3 &times; 10<sup>8</sup> = 300,000,000</span>. The "3" gives the digits used; the "10<sup>8</sup>" tells us the scale &mdash; how many places the first digit sits from the units column.</div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-f1">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Which of these numbers is written correctly in standard form?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="f1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('f1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">0.8 &times; 10<sup>5</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('f1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">82 &times; 10<sup>6</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('f1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">1.1 &times; 10<sup>3</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('f1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">3 &times; 9<sup>4</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('f1','c','Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('f1','The first number must be between 1 and 9.9&#775;, and it must be a power of exactly 10')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('f1','C — 1.1 &times; 10<sup>3</sup> (the others break the 1&ndash;9.9&#775; rule or aren&rsquo;t a power of 10)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="f1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-f2">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">In standard form <span class="math-expr">a &times; 10<sup>b</sup></span>, what must be true about <strong>a</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="f2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('f2', this, 'a')"><div class="opt-indicator"></div><span>1 &le; a &lt; 10 (can be negative)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('f2', this, 'b')"><div class="opt-indicator"></div><span>a must be a whole number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('f2', this, 'c')"><div class="opt-indicator"></div><span>0 &lt; a &lt; 1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('f2', this, 'd')"><div class="opt-indicator"></div><span>a must always be positive</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('f2','a','Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('f2','a is a number between 1 and 9.9&#775; &mdash; it just can&rsquo;t have two or more digits before the decimal point')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('f2','A — 1 &le; a &lt; 10, and a can be negative')">Show Answer</button>
+      </div>
+      <div class="feedback" id="f2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-f3">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">China's population is <span class="math-expr">1.4 &times; 10<sup>9</sup></span>. The USA's population is <span class="math-expr">3.2 &times; 10<sup>8</sup></span>. Which country has the larger population, and why?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="f3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('f3', this, 'a')"><div class="opt-indicator"></div><span>China &mdash; because 10<sup>9</sup> is a bigger scale than 10<sup>8</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('f3', this, 'b')"><div class="opt-indicator"></div><span>USA &mdash; because 3.2 is bigger than 1.4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('f3', this, 'c')"><div class="opt-indicator"></div><span>They are equal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('f3', this, 'd')"><div class="opt-indicator"></div><span>Can't tell without converting both first</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('f3','a','Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('f3','Compare the powers of 10 first &mdash; a bigger power of 10 always wins, regardless of the front number')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('f3','A — China, because 10<sup>9</sup> &gt; 10<sup>8</sup> (1,400,000,000 vs 320,000,000)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="f3-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WHAT IS STANDARD FORM? &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sfi-fill"></div></div>
+    <div class="section-score-val" id="sec-sfi-val">0/4</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION G: LARGE NUMBERS TO STANDARD FORM ═══════════════ -->
+<div id="standard-form-large">
+  <div class="section-header"><div class="section-icon">&#8593;</div><div><div class="sub-label">Section G</div><h2>Converting Large Numbers to Standard Form</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> Keep dividing the number by 10 until you get a number between 1 and 9.9&#775; &mdash; that's <strong>a</strong>. Count how many times you divided (how many places the decimal point moved left) &mdash; that's <strong>b</strong>.</div>
+  <div class="info-box"><strong>Example:</strong> <span class="math-expr">4000 &rarr; 4 &times; 10<sup>3</sup></span> (the decimal point moved 3 places left).</div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-g1">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Convert <span class="math-expr">4000</span> to standard form.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="g1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('g1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">4 &times; 10<sup>3</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">4 &times; 10<sup>4</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">0.4 &times; 10<sup>4</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">40 &times; 10<sup>2</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('g1','a','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('g1','The decimal point in 4000. moves 3 places left to sit after the 4')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('g1','A — 4 &times; 10<sup>3</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="g1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-g2">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Convert <span class="math-expr">3,800,000</span> to standard form.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="g2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('g2', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">3.8 &times; 10<sup>6</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g2', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">3.8 &times; 10<sup>5</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">38 &times; 10<sup>5</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g2', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">3.8 &times; 10<sup>7</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('g2','a','Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('g2','Count the digits after the 3: 8,0,0,0,0,0 &mdash; that&rsquo;s 6 places')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('g2','A — 3.8 &times; 10<sup>6</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="g2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-g3">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">Convert <span class="math-expr">850,000</span> to standard form.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="g3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('g3', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">8.5 &times; 10<sup>5</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">8.5 &times; 10<sup>4</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">85 &times; 10<sup>4</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g3', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">0.85 &times; 10<sup>6</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('g3','a','Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('g3','850000. &rarr; the point moves 5 places left to sit after the 8')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('g3','A — 8.5 &times; 10<sup>5</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="g3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-g4">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Convert <span class="math-expr">267,800,000</span> to standard form.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="g4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('g4', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">2.678 &times; 10<sup>8</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g4', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">2.678 &times; 10<sup>7</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g4', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">26.78 &times; 10<sup>7</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('g4', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">2.678 &times; 10<sup>9</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('g4','a','Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('g4','Count the digits after the 2: 6,7,8,0,0,0,0,0 &mdash; that&rsquo;s 8 places')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('g4','A — 2.678 &times; 10<sup>8</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="g4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">LARGE &rarr; STANDARD FORM &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sfl-fill"></div></div>
+    <div class="section-score-val" id="sec-sfl-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION H: SMALL NUMBERS TO STANDARD FORM ═══════════════ -->
+<div id="standard-form-small">
+  <div class="section-header"><div class="section-icon">&#8595;</div><div><div class="sub-label">Section H</div><h2>Converting Small Numbers to Standard Form</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> For numbers smaller than 1, the decimal point moves <strong>right</strong> to reach the first non-zero digit &mdash; that makes <strong>b</strong> <em>negative</em>. A quick trick: for negative powers, the power matches the number of leading zeroes (including the one before the decimal point).</div>
+  <div class="info-box"><strong>Example:</strong> <span class="math-expr">0.002 &rarr; 2 &times; 10<sup>-3</sup></span> (the point moved 3 places right).</div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-h1">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Convert <span class="math-expr">0.002</span> to standard form.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="h1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('h1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">2 &times; 10<sup>-3</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">2 &times; 10<sup>3</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">0.2 &times; 10<sup>-2</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">2 &times; 10<sup>-2</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('h1','a','Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('h1','The point in 0.002 moves 3 places right to sit after the 2, so the power is -3')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('h1','A — 2 &times; 10<sup>-3</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="h1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-h2">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Convert <span class="math-expr">0.0000006</span> to standard form.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="h2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('h2', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">6 &times; 10<sup>-7</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h2', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">6 &times; 10<sup>-6</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">6 &times; 10<sup>7</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h2', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">0.6 &times; 10<sup>-6</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('h2','a','Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('h2','Count the leading zeroes before the 6: 0,0,0,0,0,0 &mdash; that&rsquo;s 7 places moved')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('h2','A — 6 &times; 10<sup>-7</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="h2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-h3">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Convert <span class="math-expr">0.0041</span> to standard form.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="h3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('h3', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">4.1 &times; 10<sup>-3</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">4.1 &times; 10<sup>-2</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">4.1 &times; 10<sup>3</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h3', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">41 &times; 10<sup>-4</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('h3','a','Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('h3','0.0041 &mdash; the point moves 3 places right to sit after the 4')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('h3','A — 4.1 &times; 10<sup>-3</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="h3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-h4">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Convert <span class="math-expr">0.00000723</span> to standard form.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="h4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('h4', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">7.23 &times; 10<sup>-6</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h4', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">7.23 &times; 10<sup>-5</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h4', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">7.23 &times; 10<sup>-7</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('h4', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">7.23 &times; 10<sup>6</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('h4','a','Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('h4','Count the leading zeroes before the 7: 0,0,0,0,0,0 &mdash; that&rsquo;s 6 places moved')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('h4','A — 7.23 &times; 10<sup>-6</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="h4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SMALL &rarr; STANDARD FORM &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sfs-fill"></div></div>
+    <div class="section-score-val" id="sec-sfs-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION I: STANDARD FORM BACK TO ORDINARY NUMBERS ═══════════════ -->
+<div id="standard-form-back">
+  <div class="section-header"><div class="section-icon">&#8646;</div><div><div class="sub-label">Section I</div><h2>Converting from Standard Form</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> This is the reverse process. The power of 10 tells you how many places to move the decimal point &mdash; <strong>right</strong> for a positive power (number gets bigger), <strong>left</strong> for a negative power (number gets smaller). Pad with zeroes as needed.</div>
+  <div class="info-box"><strong>Example:</strong> <span class="math-expr">9 &times; 10<sup>4</sup> = 90,000</span> and <span class="math-expr">8.7 &times; 10<sup>-3</sup> = 0.0087</span></div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-i1">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Convert <span class="math-expr">9 &times; 10<sup>4</sup></span> to an ordinary number.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="i1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('i1', this, 'a')"><div class="opt-indicator"></div><span>90,000</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i1', this, 'b')"><div class="opt-indicator"></div><span>9,000</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i1', this, 'c')"><div class="opt-indicator"></div><span>900,000</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i1', this, 'd')"><div class="opt-indicator"></div><span>0.00009</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('i1','a','Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i1','Positive power 4 means move the decimal point 4 places right, adding zeroes')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i1','A — 90,000')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-i2">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">Convert <span class="math-expr">8.7 &times; 10<sup>-3</sup></span> to an ordinary number.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="i2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'a')"><div class="opt-indicator"></div><span>0.0087</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'b')"><div class="opt-indicator"></div><span>8,700</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'c')"><div class="opt-indicator"></div><span>0.00087</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'd')"><div class="opt-indicator"></div><span>0.087</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('i2','a','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i2','Negative power 3 means move the decimal point 3 places left, adding leading zeroes')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i2','A — 0.0087')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-i3">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">Convert <span class="math-expr">7.31 &times; 10<sup>5</sup></span> to an ordinary number.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="i3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'a')"><div class="opt-indicator"></div><span>731,000</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'b')"><div class="opt-indicator"></div><span>73,100</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'c')"><div class="opt-indicator"></div><span>7,310,000</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'd')"><div class="opt-indicator"></div><span>0.0000731</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('i3','a','Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i3','Move the decimal point 5 places right: 7.31000 &rarr; 731000')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i3','A — 731,000')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-i4">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">Convert <span class="math-expr">2.65 &times; 10<sup>-7</sup></span> to an ordinary number.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" step="any" class="num-input" id="i4-ans" placeholder="Enter answer...">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('i4',0.000000265,'Q33',0.0000000001)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i4','Move the decimal point 7 places left, adding leading zeroes: 0.0000002 65')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i4','0.000000265')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">STANDARD FORM &rarr; ORDINARY &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sfb-fill"></div></div>
+    <div class="section-score-val" id="sec-sfb-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION J: MULTIPLYING & DIVIDING IN STANDARD FORM ═══════════════ -->
+<div id="standard-form-multdiv">
+  <div class="section-header"><div class="section-icon">&#215;&#247;</div><div><div class="sub-label">Section J</div><h2>Multiplying & Dividing in Standard Form</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> Multiply/divide the front numbers together, and use the laws of indices on the powers of 10 (add for &times;, subtract for &divide;). If the front number ends up outside 1&ndash;9.9&#775;, renormalise it and adjust the power of 10 to compensate.</div>
+  <div class="info-box"><strong>Example:</strong> <span class="math-expr">(7 &times; 10<sup>3</sup>) &times; (6 &times; 10<sup>10</sup>) = 42 &times; 10<sup>13</sup> = 4.2 &times; 10<sup>14</sup></span> &mdash; 42 isn't in range, so it becomes 4.2 and the power increases by 1 to compensate.</div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-j1">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Simplify: <span class="math-expr">(3 &times; 10<sup>7</sup>) &times; (2 &times; 10<sup>4</sup>)</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="j1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('j1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">6 &times; 10<sup>11</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">6 &times; 10<sup>28</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">5 &times; 10<sup>11</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">6 &times; 10<sup>3</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('j1','a','Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('j1','Multiply the front numbers: 3 &times; 2 = 6. Add the powers: 10<sup>7</sup> &times; 10<sup>4</sup> = 10<sup>11</sup>')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('j1','A — 6 &times; 10<sup>11</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="j1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-j2">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Simplify: <span class="math-expr">(7 &times; 10<sup>3</sup>) &times; (6 &times; 10<sup>10</sup>)</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="j2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('j2', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">4.2 &times; 10<sup>14</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j2', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">42 &times; 10<sup>13</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">4.2 &times; 10<sup>13</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j2', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">42 &times; 10<sup>14</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('j2','a','Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('j2','7 &times; 6 = 42, and 10<sup>3</sup> &times; 10<sup>10</sup> = 10<sup>13</sup>. But 42 isn&rsquo;t in range, so turn it into 4.2 and bump the power up by 1')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('j2','A — 4.2 &times; 10<sup>14</sup> (42 &times; 10<sup>13</sup> renormalised)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="j2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-j3">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Simplify: <span class="math-expr">(8 &times; 10<sup>9</sup>) &divide; (4 &times; 10<sup>3</sup>)</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="j3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('j3', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">2 &times; 10<sup>6</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">2 &times; 10<sup>3</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">2 &times; 10<sup>12</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j3', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">4 &times; 10<sup>6</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('j3','a','Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('j3','Divide the front numbers: 8 &divide; 4 = 2. Subtract the powers: 10<sup>9</sup> &divide; 10<sup>3</sup> = 10<sup>6</sup>')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('j3','A — 2 &times; 10<sup>6</sup>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="j3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-j4">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Simplify: <span class="math-expr">(2 &times; 10<sup>8</sup>) &divide; (4 &times; 10<sup>3</sup>)</span></div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="j4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('j4', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">5 &times; 10<sup>4</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j4', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">0.5 &times; 10<sup>5</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j4', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">5 &times; 10<sup>5</sup></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('j4', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">8 &times; 10<sup>11</sup></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('j4','a','Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('j4','2 &divide; 4 = 0.5, and 10<sup>8</sup> &divide; 10<sup>3</sup> = 10<sup>5</sup>. But 0.5 isn&rsquo;t in range, so turn it into 5 and drop the power by 1')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('j4','A — 5 &times; 10<sup>4</sup> (0.5 &times; 10<sup>5</sup> renormalised)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="j4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">&times; &amp; &divide; STANDARD FORM &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sfmd-fill"></div></div>
+    <div class="section-score-val" id="sec-sfmd-val">0/5</div>
+  </div>
+</div>
+
 <!-- Results Panel -->
 <div class="results-panel" id="results-panel">
   <div class="results-grade" id="results-grade">0%</div>
@@ -551,14 +1078,26 @@ const marks = {
   m1:1, m2:1, m3:1, m4:2,
   m5:1, m6:1, m7:1, m8:2,
   m9:1, m10:1, m11:2, m12:2,
-  m13:1, m14:2
+  m13:1, m14:2,
+  e1:1, e2:1, e3:2, e4:2,
+  f1:1, f2:1, f3:2,
+  g1:1, g2:1, g3:1, g4:2,
+  h1:1, h2:1, h3:1, h4:2,
+  i1:1, i2:1, i3:1, i4:2,
+  j1:1, j2:1, j3:1, j4:2
 };
 
 const sections = {
   mp: { label: 'Multiplying Powers', qs: ['m1','m2','m3','m4'] },
   dp: { label: 'Dividing Powers', qs: ['m5','m6','m7','m8'] },
   pp: { label: 'Power of a Power', qs: ['m9','m10','m11','m12'] },
-  nz: { label: 'Negative & Zero', qs: ['m13','m14'] }
+  nz: { label: 'Negative & Zero', qs: ['m13','m14'] },
+  ms: { label: 'Multi-Step Problems', qs: ['e1','e2','e3','e4'] },
+  sfi: { label: 'What is Standard Form?', qs: ['f1','f2','f3'] },
+  sfl: { label: 'Large → Standard Form', qs: ['g1','g2','g3','g4'] },
+  sfs: { label: 'Small → Standard Form', qs: ['h1','h2','h3','h4'] },
+  sfb: { label: 'Standard Form → Ordinary', qs: ['i1','i2','i3','i4'] },
+  sfmd: { label: '× & ÷ Standard Form', qs: ['j1','j2','j3','j4'] }
 };
 
 const allQs = Object.values(sections).flatMap(s => s.qs);
