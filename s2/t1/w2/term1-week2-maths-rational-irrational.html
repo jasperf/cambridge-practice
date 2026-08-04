@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rational & Irrational Numbers · Interactive Exercises</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(79,142,247,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.math-expr { font-family: var(--font-mono); font-size: 1.15rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; display: inline-block; margin: 4px 0; }
+.number-line-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0 24px; }
+.number-line-box .nl-caption { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; text-align: center; }
+.number-line { position: relative; height: 46px; margin: 0 10px; }
+.nl-track { position: absolute; top: 20px; left: 0; right: 0; height: 2px; background: var(--border); }
+.nl-tick { position: absolute; top: 12px; width: 1px; height: 18px; background: var(--text-dim); }
+.nl-tick-label { position: absolute; top: 32px; transform: translateX(-50%); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
+.nl-point { position: absolute; top: 14px; width: 10px; height: 10px; border-radius: 50%; transform: translateX(-50%); border: 2px solid #fff; }
+.nl-point-label { position: absolute; top: -14px; transform: translateX(-50%); font-family: var(--font-mono); font-size: 0.76rem; white-space: nowrap; }
+.grid-groups { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0; }
+.group-col { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px; text-align: center; }
+.group-col .group-title { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.5px; }
+.group-col .group-val { font-family: var(--font-mono); font-size: 0.92rem; color: var(--text); padding: 3px 0; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .watch-links { justify-content: center; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+  .grid-groups { grid-template-columns: repeat(2, 1fr); }
+  .number-line-box { padding: 14px; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 · Rational & Irrational Numbers</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 20</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Chapter 1.1</div>
+  <h1>Rational &amp;<br><em>Irrational Numbers</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Rational Numbers &middot; Irrational Numbers &middot; Surds &middot; Number Lines</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>16 questions &middot; self-marked &middot; 20 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Watch &amp; Learn first</h3>
+  <p>Need a refresher on rational vs. irrational numbers and surds before you start?</p>
+  <div class="watch-links">
+    <a class="watch-link" href="../../../resources.html" target="_blank" rel="noopener">More resources &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#rational" class="sub-tab">Rational Numbers</a>
+  <a href="#irrational" class="sub-tab">Irrational Numbers</a>
+  <a href="#surds" class="sub-tab">Surds</a>
+  <a href="#numberline" class="sub-tab">On a Number Line</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: RATIONAL NUMBERS ═══════════════ -->
+<div id="rational">
+  <div class="section-header"><div class="section-icon">&#8477;</div><div><div class="sub-label">Section A</div><h2>Rational Numbers</h2></div></div>
+  <div class="info-box"><strong>Definition:</strong> A rational number can be written as a <strong>ratio of two integers</strong>, <span class="math-expr">a/b</span> (where b &ne; 0). This includes whole numbers, negative integers, fractions, percentages, decimals that <em>terminate</em> (end), and decimals that <em>repeat</em> forever in a pattern.</div>
+  <div class="info-box"><strong>Examples:</strong> <span class="math-expr">3 = 3/1</span> &middot; <span class="math-expr">0.10 = 1/10</span> &middot; <span class="math-expr">0.333... = 1/3</span> &middot; <span class="math-expr">-8 = -8/1</span> &middot; <span class="math-expr">25% = 25/100</span></div>
+
+  <div class="grid-groups">
+    <div class="group-col"><div class="group-title">GROUP 1</div><div class="group-val">1</div><div class="group-val">2</div><div class="group-val">3</div></div>
+    <div class="group-col"><div class="group-title">GROUP 2</div><div class="group-val">-5</div><div class="group-val">-8</div><div class="group-val">-12</div></div>
+    <div class="group-col"><div class="group-title">GROUP 3</div><div class="group-val">1/2</div><div class="group-val">3/4</div><div class="group-val">5 2/5</div></div>
+    <div class="group-col"><div class="group-title">GROUP 4</div><div class="group-val">&pi;</div><div class="group-val">&radic;2</div><div class="group-val">0.1434...</div></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-r1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Look at the four groups of numbers above. Which group is the <strong>odd one out</strong> &mdash; the only group that is <em>not</em> rational?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="r1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('r1', this, 'a')"><div class="opt-indicator"></div><span>Group 1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r1', this, 'b')"><div class="opt-indicator"></div><span>Group 2</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r1', this, 'c')"><div class="opt-indicator"></div><span>Group 3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r1', this, 'd')"><div class="opt-indicator"></div><span>Group 4</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('r1','d','Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r1','Groups 1&ndash;3 are whole numbers, negative integers and fractions &mdash; all ratios of two integers. Group 4 contains &pi;, &radic;2 and a non-repeating decimal')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r1','D — Group 4 (&pi;, &radic;2 and 0.1434... are all irrational)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-r2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Which of these can be written as a ratio of two integers, like <span class="math-expr">3/1</span>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="r2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('r2', this, 'a')"><div class="opt-indicator"></div><span>3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r2', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">&pi;</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;5</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r2', this, 'd')"><div class="opt-indicator"></div><span>0.1010010001...</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('r2','a','Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r2','Every whole number can be written over 1, e.g. 3 = 3/1')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r2','A — 3 (equals 3/1; the others are irrational)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-r3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text"><span class="math-expr">0.333...</span> (recurring forever) is equivalent to which fraction?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="r3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('r3', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">1/2</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">1/3</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">1/4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r3', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">3/10</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('r3','b','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r3','A repeating decimal is always rational &mdash; here, one third gives exactly 0.333...')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r3','B — 1/3')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-r4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Which of the following is <strong>rational</strong>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="r4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('r4', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;2</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r4', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">&pi;</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r4', this, 'c')"><div class="opt-indicator"></div><span>-8</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r4', this, 'd')"><div class="opt-indicator"></div><span>0.1010010001...</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('r4','c','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r4','Negative integers are rational: -8 = -8/1')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r4','C — -8 (equals -8/1; the others are irrational)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">RATIONAL NUMBERS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-rn-fill"></div></div>
+    <div class="section-score-val" id="sec-rn-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: IRRATIONAL NUMBERS ═══════════════ -->
+<div id="irrational">
+  <div class="section-header"><div class="section-icon">&#960;</div><div><div class="sub-label">Section B</div><h2>Irrational Numbers</h2></div></div>
+  <div class="info-box"><strong>Definition:</strong> An irrational number <strong>cannot</strong> be written as a ratio of two integers. Its decimal expansion goes on forever <em>without</em> repeating in a pattern. Examples: <span class="math-expr">&pi; = 3.14159...</span>, square roots of non-perfect squares like <span class="math-expr">&radic;2</span>, and decimals like <span class="math-expr">0.1010010001...</span></div>
+  <div class="info-box"><strong>Together, rational + irrational numbers make up the <em>real number system</em></strong> &mdash; every point on the number line is either one or the other, never both.</div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-i1">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Which of these is <strong>irrational</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="i1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('i1', this, 'a')"><div class="opt-indicator"></div><span>0.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">3/4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;9</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;7</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('i1','d','Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i1','9 is a perfect square (&radic;9 = 3), but 7 isn&rsquo;t a perfect square')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i1','D — &radic;7 (7 is not a perfect square, so &radic;7 cannot be simplified to a whole number)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-i2">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Why is <span class="math-expr">&pi;</span> classed as irrational?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="i2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'a')"><div class="opt-indicator"></div><span>Because it's negative</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'b')"><div class="opt-indicator"></div><span>Because its decimal expansion never terminates or repeats</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'c')"><div class="opt-indicator"></div><span>Because it's bigger than 1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'd')"><div class="opt-indicator"></div><span>Because it's a fraction</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('i2','b','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i2','&pi; = 3.14159265... forever, with no repeating pattern &mdash; that&rsquo;s the defining feature of an irrational number')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i2','B — its decimal expansion never terminates or repeats')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-i3">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which of these is a non-terminating, <strong>non-repeating</strong> decimal?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="i3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'a')"><div class="opt-indicator"></div><span>0.25</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'b')"><div class="opt-indicator"></div><span>0.666...</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'c')"><div class="opt-indicator"></div><span>0.1010010001...</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'd')"><div class="opt-indicator"></div><span>-3</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('i3','c','Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i3','0.25 terminates, 0.666... repeats a single digit &mdash; only one option never settles into a repeating pattern')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i3','C — 0.1010010001... (the pattern of zeroes keeps growing, so it never repeats)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-i4">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Is <span class="math-expr">&radic;16</span> rational or irrational, and why?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="i4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('i4', this, 'a')"><div class="opt-indicator"></div><span>Rational, because 16 is a perfect square so &radic;16 = 4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i4', this, 'b')"><div class="opt-indicator"></div><span>Irrational, because it has a square root symbol</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i4', this, 'c')"><div class="opt-indicator"></div><span>Rational, because 16 is an even number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i4', this, 'd')"><div class="opt-indicator"></div><span>Irrational, because 4 is rational</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('i4','a','Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i4','A square root symbol alone doesn&rsquo;t make a number irrational &mdash; check whether the number under the root is a perfect square first')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i4','A — Rational, because 16 is a perfect square, so &radic;16 simplifies to the whole number 4')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">IRRATIONAL NUMBERS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-irn-fill"></div></div>
+    <div class="section-score-val" id="sec-irn-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: SURDS ═══════════════ -->
+<div id="surds">
+  <div class="section-header"><div class="section-icon">&radic;</div><div><div class="sub-label">Section C</div><h2>Surds</h2></div></div>
+  <div class="info-box"><strong>Definition:</strong> A <strong>surd</strong> is a root of a number that <strong>cannot be simplified to a rational number</strong>. Roots of perfect squares (like <span class="math-expr">&radic;4 = 2</span>) are <em>not</em> surds, because they simplify to a whole number.</div>
+  <div class="info-box"><strong>Example:</strong> <span class="math-expr">&radic;2</span> is a surd (2 isn't a perfect square). <span class="math-expr">&radic;9</span> is not a surd, because it simplifies to the rational number 3.</div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Which of these <strong>is</strong> a surd?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;9</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;5</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;25</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s1','c','Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s1','4, 9 and 25 are all perfect squares. Is 5 a perfect square?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','C — &radic;5 (5 is not a perfect square, so it can&rsquo;t be simplified to a rational number)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Which of these is <strong>NOT</strong> a surd?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;2</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;3</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;16</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;7</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s2','c','Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s2','16 is a perfect square: &radic;16 = 4, a whole number')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','C — &radic;16 (equals the whole number 4, so it&rsquo;s rational, not a surd)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Is <span class="math-expr">&radic;(1/4)</span> a surd?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>Yes, because it has a root symbol</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>No, because &radic;(1/4) = 1/2, which is rational</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'c')"><div class="opt-indicator"></div><span>Yes, because 1/4 is a fraction</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'd')"><div class="opt-indicator"></div><span>No, because 1/4 is less than 1</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s3','b','Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s3','What is 1/2 &times; 1/2? If &radic;(1/4) simplifies to a rational number, it isn&rsquo;t a surd')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','B — No, because &radic;(1/4) = 1/2, which is rational (not a surd)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Which is the best definition of a surd?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>Any number with a root symbol in front of it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>A root of a number that cannot be simplified to a rational number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>A number between 1 and 10</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>A decimal that repeats forever</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s4','b','Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s4','Think about why &radic;4 doesn&rsquo;t count as a surd even though it has a root symbol')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','B — a root of a number that cannot be simplified to a rational number')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SURDS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-surds-fill"></div></div>
+    <div class="section-score-val" id="sec-surds-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: IRRATIONAL NUMBERS ON A NUMBER LINE ═══════════════ -->
+<div id="numberline">
+  <div class="section-header"><div class="section-icon">&#8596;</div><div><div class="sub-label">Section D</div><h2>Irrational Numbers on a Number Line</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> Use the decimal expansion to estimate where an irrational number sits. Find two consecutive perfect squares either side of the number under the root, then compare.</div>
+  <div class="info-box"><strong>Example:</strong> <span class="math-expr">&radic;12 = 3.4641...</span> &mdash; since 9 &lt; 12 &lt; 16, and &radic;9 = 3, &radic;16 = 4, we know <span class="math-expr">&radic;12</span> lies between 3 and 4 (closer to 3.5).</div>
+
+  <div class="number-line-box">
+    <div class="nl-caption">&radic;12 &asymp; 3.46, plotted between 3 and 4</div>
+    <div class="number-line">
+      <div class="nl-track"></div>
+      <div class="nl-tick" style="left:0%"></div><div class="nl-tick-label" style="left:0%">0</div>
+      <div class="nl-tick" style="left:16.6%"></div><div class="nl-tick-label" style="left:16.6%">1</div>
+      <div class="nl-tick" style="left:33.3%"></div><div class="nl-tick-label" style="left:33.3%">2</div>
+      <div class="nl-tick" style="left:50%"></div><div class="nl-tick-label" style="left:50%">3</div>
+      <div class="nl-tick" style="left:66.6%"></div><div class="nl-tick-label" style="left:66.6%">4</div>
+      <div class="nl-tick" style="left:83.3%"></div><div class="nl-tick-label" style="left:83.3%">5</div>
+      <div class="nl-tick" style="left:100%"></div><div class="nl-tick-label" style="left:100%">6</div>
+      <div class="nl-point" style="left:57.7%; background:var(--accent-sci);"></div>
+      <div class="nl-point-label" style="left:57.7%; color:var(--accent-sci);">&radic;12</div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-n1">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text"><span class="math-expr">&radic;20</span> lies between which two integers?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="n1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('n1', this, 'a')"><div class="opt-indicator"></div><span>3 and 4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n1', this, 'b')"><div class="opt-indicator"></div><span>4 and 5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n1', this, 'c')"><div class="opt-indicator"></div><span>5 and 6</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n1', this, 'd')"><div class="opt-indicator"></div><span>2 and 3</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('n1','b','Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('n1','16 &lt; 20 &lt; 25, and &radic;16 = 4, &radic;25 = 5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('n1','B — 4 and 5 (&radic;20 &asymp; 4.47)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="n1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-n2">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text"><span class="math-expr">&radic;50</span> lies between which two integers?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="n2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('n2', this, 'a')"><div class="opt-indicator"></div><span>6 and 7</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n2', this, 'b')"><div class="opt-indicator"></div><span>7 and 8</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n2', this, 'c')"><div class="opt-indicator"></div><span>8 and 9</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n2', this, 'd')"><div class="opt-indicator"></div><span>5 and 6</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('n2','b','Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('n2','49 &lt; 50 &lt; 64, and &radic;49 = 7, &radic;64 = 8')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('n2','B — 7 and 8 (&radic;50 &asymp; 7.07)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="n2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-n3">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text"><span class="math-expr">&radic;12</span> lies between which two integers?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="n3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('n3', this, 'a')"><div class="opt-indicator"></div><span>2 and 3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n3', this, 'b')"><div class="opt-indicator"></div><span>3 and 4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n3', this, 'c')"><div class="opt-indicator"></div><span>4 and 5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n3', this, 'd')"><div class="opt-indicator"></div><span>1 and 2</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('n3','b','Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('n3','9 &lt; 12 &lt; 16, and &radic;9 = 3, &radic;16 = 4 (see the number line above)')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('n3','B — 3 and 4 (&radic;12 &asymp; 3.46)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="n3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-n4">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Estimate <span class="math-expr">&radic;30</span> to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" step="any" class="num-input" id="n4-ans" placeholder="Enter answer...">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('n4',5.5,'Q16',0.1)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('n4','25 &lt; 30 &lt; 36, and &radic;25 = 5, &radic;36 = 6, so &radic;30 is between 5 and 6 &mdash; closer to which side?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('n4','5.5 — &radic;30 &asymp; 5.477, which rounds to 5.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="n4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">NUMBER LINE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-numline-fill"></div></div>
+    <div class="section-score-val" id="sec-numline-val">0/5</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  r1:1, r2:1, r3:1, r4:2,
+  i1:1, i2:1, i3:1, i4:2,
+  s1:1, s2:1, s3:1, s4:2,
+  n1:1, n2:1, n3:1, n4:2
+};
+
+const sections = {
+  rn: { label: 'Rational Numbers', qs: ['r1','r2','r3','r4'] },
+  irn: { label: 'Irrational Numbers', qs: ['i1','i2','i3','i4'] },
+  surds: { label: 'Surds', qs: ['s1','s2','s3','s4'] },
+  numline: { label: 'On a Number Line', qs: ['n1','n2','n3','n4'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`rational-irrational-stage9_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && (active.classList.contains('num-input') || active.classList.contains('text-input'))) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
