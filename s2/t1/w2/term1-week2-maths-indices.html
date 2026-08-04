@@ -100,6 +100,17 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 .feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
 .math-expr { font-family: var(--font-mono); font-size: 1.15rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; display: inline-block; margin: 4px 0; }
 .math-large { font-family: var(--font-mono); font-size: 2rem; color: var(--accent-math); text-align: center; margin: 10px 0; }
+.graph-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0 24px; text-align: center; }
+.graph-box .graph-caption { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+#growth-canvas { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.graph-controls { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+.graph-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 18px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.graph-btn:hover { border-color: var(--accent-math); color: var(--text); }
+.graph-btn.active { background: var(--accent-math); color: #0f1117; border-color: var(--accent-math); }
+.graph-slider-row { margin-top: 16px; padding: 0 8px; }
+#growth-slider { width: 100%; accent-color: var(--accent-math); cursor: pointer; }
+.graph-info { font-family: var(--font-mono); font-size: 0.95rem; color: var(--text); text-align: center; margin-top: 12px; min-height: 1.4em; }
+.graph-info .val { color: var(--accent-math); font-weight: 600; }
 .section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
 .section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
 .section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
@@ -133,6 +144,8 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   .main { padding-bottom: 60px; }
   .results-panel { padding: 20px; }
   .results-grade { font-size: 2.8rem; }
+  .graph-box { padding: 14px; }
+  .graph-btn { padding: 7px 12px; font-size: 0.72rem; }
 }
 </style>
 </head>
@@ -187,6 +200,22 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div class="section-header"><div class="section-icon">&#215;</div><div><div class="sub-label">Section A</div><h2>Multiplying Powers</h2></div></div>
   <div class="info-box"><strong>Law:</strong> When multiplying powers with the <em>same base</em>, you <strong>add</strong> the exponents: <span class="math-expr">a<sup>m</sup> &times; a<sup>n</sup> = a<sup>m+n</sup></span>. The base stays the same, only the exponents change.</div>
   <div class="info-box"><strong>Example:</strong> <span class="math-expr">x<sup>3</sup> &times; x<sup>5</sup> = x<sup>3+5</sup> = x<sup>8</sup></span> or <span class="math-expr">2<sup>4</sup> &times; 2<sup>2</sup> = 2<sup>4+2</sup> = 2<sup>6</sup> = 64</span></div>
+
+  <!-- Exponential growth explorer -->
+  <div class="graph-box">
+    <div class="graph-caption">&#128640; Drag the slider to watch base<sup>x</sup> explode as x grows</div>
+    <canvas id="growth-canvas" width="560" height="260" aria-label="Interactive graph showing exponential growth y equals base to the power of x"></canvas>
+    <div class="graph-controls">
+      <button class="graph-btn active" id="base-2" onclick="setGrowthBase(2)">Base 2</button>
+      <button class="graph-btn" id="base-3" onclick="setGrowthBase(3)">Base 3</button>
+      <button class="graph-btn" id="base-5" onclick="setGrowthBase(5)">Base 5</button>
+      <button class="graph-btn" id="base-10" onclick="setGrowthBase(10)">Base 10</button>
+    </div>
+    <div class="graph-slider-row">
+      <input type="range" id="growth-slider" min="0" max="10" step="0.1" value="0" oninput="updateGrowth(this.value)" aria-label="Exponent x">
+    </div>
+    <div class="graph-info" id="growth-info">2<sup>0</sup> = <span class="val">1</span></div>
+  </div>
 
   <!-- Q1 -->
   <div class="q-card" id="qcard-m1">
@@ -531,6 +560,105 @@ function updateTimer() {
   document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
 }
 setInterval(updateTimer, 1000);
+
+// ── Exponential growth explorer ─────────────────────────────
+const growthCanvas = document.getElementById('growth-canvas');
+const growthCtx = growthCanvas.getContext('2d');
+let growthBase = 2;
+let growthX = 0;
+const growthMaxX = 10;
+
+function formatGrowthValue(v) {
+  if (v >= 1e6) return v.toExponential(2).replace('e+', ' × 10^');
+  if (Number.isInteger(v)) return v.toLocaleString();
+  return v.toFixed(2);
+}
+
+function drawGrowthCurve() {
+  const w = growthCanvas.width, h = growthCanvas.height;
+  const padL = 44, padB = 26, padT = 16, padR = 16;
+  const plotW = w - padL - padR, plotH = h - padT - padB;
+  growthCtx.clearRect(0, 0, w, h);
+
+  const maxY = Math.pow(growthBase, growthMaxX);
+
+  // axes
+  growthCtx.strokeStyle = 'rgba(122,132,160,0.35)';
+  growthCtx.lineWidth = 1;
+  growthCtx.beginPath();
+  growthCtx.moveTo(padL, padT);
+  growthCtx.lineTo(padL, padT + plotH);
+  growthCtx.lineTo(padL + plotW, padT + plotH);
+  growthCtx.stroke();
+
+  // x gridlines + labels
+  growthCtx.font = '10px monospace';
+  growthCtx.fillStyle = '#7a84a0';
+  growthCtx.textAlign = 'center';
+  for (let gx = 0; gx <= growthMaxX; gx += 2) {
+    const px = padL + (gx / growthMaxX) * plotW;
+    growthCtx.strokeStyle = 'rgba(122,132,160,0.1)';
+    growthCtx.beginPath();
+    growthCtx.moveTo(px, padT);
+    growthCtx.lineTo(px, padT + plotH);
+    growthCtx.stroke();
+    growthCtx.fillText(String(gx), px, padT + plotH + 15);
+  }
+  growthCtx.textAlign = 'right';
+  growthCtx.fillText('0', padL - 6, padT + plotH + 3);
+  growthCtx.fillText(formatGrowthValue(maxY), padL - 6, padT + 9);
+
+  // curve: y = base^x, linear scale so growth reads as dramatic as it is
+  growthCtx.strokeStyle = '#4f8ef7';
+  growthCtx.lineWidth = 2.5;
+  growthCtx.beginPath();
+  for (let i = 0; i <= 200; i++) {
+    const x = (i / 200) * growthMaxX;
+    const y = Math.pow(growthBase, x);
+    const px = padL + (x / growthMaxX) * plotW;
+    const py = padT + plotH - (y / maxY) * plotH;
+    if (i === 0) growthCtx.moveTo(px, py); else growthCtx.lineTo(px, py);
+  }
+  growthCtx.stroke();
+
+  // marker + guide lines at the current x
+  const curY = Math.pow(growthBase, growthX);
+  const mx = padL + (growthX / growthMaxX) * plotW;
+  const my = padT + plotH - (curY / maxY) * plotH;
+
+  growthCtx.strokeStyle = 'rgba(62,207,142,0.55)';
+  growthCtx.setLineDash([3, 3]);
+  growthCtx.lineWidth = 1;
+  growthCtx.beginPath();
+  growthCtx.moveTo(mx, padT + plotH);
+  growthCtx.lineTo(mx, my);
+  growthCtx.lineTo(padL, my);
+  growthCtx.stroke();
+  growthCtx.setLineDash([]);
+
+  growthCtx.beginPath();
+  growthCtx.arc(mx, my, 5, 0, Math.PI * 2);
+  growthCtx.fillStyle = '#3ecf8e';
+  growthCtx.fill();
+  growthCtx.strokeStyle = '#ffffff';
+  growthCtx.lineWidth = 1.5;
+  growthCtx.stroke();
+}
+
+function setGrowthBase(n) {
+  growthBase = n;
+  [2, 3, 5, 10].forEach(b => document.getElementById(`base-${b}`).classList.toggle('active', b === n));
+  updateGrowth(document.getElementById('growth-slider').value);
+}
+
+function updateGrowth(xVal) {
+  growthX = parseFloat(xVal);
+  const y = Math.pow(growthBase, growthX);
+  document.getElementById('growth-info').innerHTML = `${growthBase}<sup>${growthX.toFixed(1)}</sup> = <span class="val">${formatGrowthValue(y)}</span>`;
+  drawGrowthCurve();
+}
+
+updateGrowth(0);
 
 // ── Common functions ────────────────────────────────────────
 
