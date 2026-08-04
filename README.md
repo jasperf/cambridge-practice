@@ -46,7 +46,8 @@ cambridge-practice/
 ├── s2/                              ← Secondary 2
 │   └── t1/                          ← Term 1
 │       └── w2/                      ← Week 2
-│           └── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (16 q, 20 marks, interactive)
+│           ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (16 q, 20 marks, interactive)
+│           └── term1-week2-maths-indices.html               ← Indices: Powers & Exponents (14 q, 19 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
@@ -108,6 +109,7 @@ npx serve .
 | Subject | Level | Status |
 |---------|-------|--------|
 | Science (Atomic Structure & Periodic Table) | Secondary 2 | ✅ Term 1 Week 2 |
+| Mathematics (Indices: Powers & Exponents) | Secondary 2 | ✅ Term 1 Week 2 |
 
 ### IGCSE
 
