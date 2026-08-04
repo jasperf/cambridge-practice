@@ -217,6 +217,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="graph-info" id="growth-info">2<sup>0</sup> = <span class="val">1</span></div>
   </div>
 
+  <!-- Real-life exponential growth: billionaire wealth -->
+  <div class="info-box" style="border-left-color: var(--accent-warn);">
+    <strong>&#128176; Real life: this is how billionaires' wealth compounds.</strong> Growing by a fixed <em>percentage</em> every year is the same maths as <span class="math-expr">base<sup>x</sup></span> above — each year's total gets multiplied by the same number again, so the curve stays flat for a while, then rockets upward. This is called <strong>compound growth</strong> (the same rule behind compound interest on a bank loan or savings account).
+    <br><br>
+    In 2025, the collective wealth of US billionaires grew by about <strong>22%</strong> — from roughly <strong>$6.7 trillion</strong> to <strong>$8.2 trillion</strong> in a single year. That's a "base" of <span class="math-expr">1.22</span>: multiply by 1.22, year after year, and the numbers explode just like the steep end of the curves above &mdash; <a href="https://www.theguardian.com/us-news/2025/nov/03/wealth-billionaires-increase-trump" target="_blank" rel="noopener" style="color:var(--accent-warn);">source: The Guardian, Nov 2025</a>.
+    <br><br>
+    The formula is: <span class="math-expr">A = P &times; (1 + r/100)<sup>x</sup></span>, where <span class="math-expr">P</span> is the starting amount, <span class="math-expr">r</span> is the percentage growth rate, and <span class="math-expr">x</span> is the number of years — the exponent <span class="math-expr">x</span> does exactly the same job here as it does in the questions below. Growing at 22% a year means wealth roughly <strong>doubles every ~3.5 years</strong>, because <span class="math-expr">1.22<sup>3.5</sup> &approx; 2</span>.
+  </div>
+
   <!-- Q1 -->
   <div class="q-card" id="qcard-m1">
     <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Simplify: <span class="math-expr">x<sup>4</sup> &times; x<sup>3</sup></span></div><div class="q-marks">1 mark</div></div>
