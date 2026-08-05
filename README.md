@@ -45,7 +45,10 @@ cambridge-practice/
 │   │   └── forces-speed-pressure.html    ← Forces, Speed & Pressure (17 q, 25 marks)
 ├── s2/                              ← Secondary 2
 │   └── t1/                          ← Term 1
-│       └── w2/                      ← Week 2
+│       ├── README.md                     ← Printable worksheets TOC & index
+│       ├── term1-maths-rational-irrational.md    ← Printable worksheet (16 q, 20 marks)
+│       ├── term1-maths-indices-standard-form.md  ← Printable worksheet (37 q, 49 marks)
+│       └── w2/                      ← Week 2 (interactive versions)
 │           ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (16 q, 20 marks, interactive)
 │           ├── term1-week2-maths-rational-irrational.html  ← Rational & Irrational Numbers (16 q, 20 marks)
 │           └── term1-week2-maths-indices-standard-form.html ← Indices & Standard Form (37 q, 49 marks)
@@ -58,6 +61,14 @@ cambridge-practice/
 │   └── state-management.md          ← State object and score tracking explained
 └── README.md
 ```
+
+## Printable Worksheets (Parallel Path)
+
+In addition to the interactive HTML sheets, **printable markdown worksheets** are available in `s2/t1/` for classroom use where students write answers in notebooks with pen and paper. These contain the exact same questions as the interactive versions but in a format suitable for printing or copying into notebooks.
+
+Use the printable versions for **written practice/exams** and the interactive versions for **self-assessment with hints and instant feedback**.
+
+See [s2/t1/README.md](./s2/t1/README.md) for the table of contents of all printable documents.
 
 ## Adding a New Sheet
 
