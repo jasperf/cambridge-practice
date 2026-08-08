@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ionic Bonding & Why Elements React · Interactive Exercises</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-sci { background: var(--accent-sci); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-sci); color: var(--accent-sci); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.atom-diagram { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0 24px; text-align: center; }
+.atom-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.atom-controls { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+.atom-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 18px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.atom-btn:hover { border-color: var(--accent-sci); color: var(--text); }
+.atom-btn.active { background: var(--accent-sci); color: #0f1117; border-color: var(--accent-sci); }
+.atom-btn.react-btn { border-color: var(--accent-warn); color: var(--accent-warn); }
+.atom-btn.react-btn:hover { background: var(--accent-warn); color: #0f1117; }
+.atom-info { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.5; }
+.reactivity-ladder { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin: 16px 0 24px; }
+.ladder-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.ladder-col-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.ladder-item { font-family: var(--font-mono); font-size: 0.85rem; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 9px 22px; min-width: 130px; text-align: center; }
+.ladder-item.hot { border-color: var(--accent-warn); color: var(--accent-warn); }
+.ladder-arrow { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-dim); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-sci); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 · Ionic Bonding</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 25</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Chapter 2.3</div>
+  <h1>Why Elements React &<br><em>Ionic Bonding</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-sci"></div>Forming Ions &middot; Ionic Bonds &middot; Reactivity Trends</div>
+    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>21 questions &middot; self-marked &middot; 25 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128250; Watch &amp; Learn first</h3>
+  <p>Stuck? Watch a short video, then come back and try the questions. This sheet follows on from <a href="../w2/term1-week2-atomic-structure-periodic.html" style="color:var(--accent-sci);">Atomic Structure &amp; the Periodic Table</a>.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/watch?v=900dXBWgx3Y" target="_blank" rel="noopener">FuseSchool &middot; What are Ions?</a>
+    <a class="watch-link" href="https://www.youtube.com/watch?v=zpaHPXVR8WU" target="_blank" rel="noopener">FuseSchool &middot; What are Ionic Bonds?</a>
+    <a class="watch-link" href="https://www.youtube.com/watch?v=vfYnhnfdsD0" target="_blank" rel="noopener">FuseSchool &middot; Formulae of Ionic Compounds</a>
+    <a class="watch-link" href="https://www.bbc.co.uk/bitesize/subjects/znxtyrd" target="_blank" rel="noopener">BBC Bitesize &middot; KS3 Chemistry</a>
+    <a class="watch-link" href="../../../resources.html" target="_blank" rel="noopener">More videos &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#why-react" class="sub-tab">&#9883; Why Atoms React</a>
+  <a href="#forming-ions" class="sub-tab">&#9889; Forming Ions</a>
+  <a href="#ionic-compounds" class="sub-tab">&#9670; Ionic Compounds</a>
+  <a href="#reactivity" class="sub-tab">&#128200; Reactivity Trends</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: WHY ATOMS REACT ═══════════════ -->
+<div id="why-react">
+  <div class="section-header"><div class="section-icon">&#9883;</div><div><div class="sub-label">Section A</div><h2>Why Atoms React</h2></div></div>
+  <div class="info-box"><strong>Atoms</strong> have electrons arranged in shells (energy levels). The outermost shell is called the <em>highest energy level</em>. An atom has <strong>no overall charge</strong> because it has equal numbers of protons and electrons. Elements in <strong>Group 8</strong> (the noble gases) already have a full outermost shell, so they are <em>stable</em> and do not react. All other elements react to try to get a full outer shell too &mdash; either by <strong>losing or gaining electrons</strong> (ionic bonding) or by <strong>sharing electrons</strong> (covalent bonding, which you'll meet later).</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">What is the <em>atomic number</em> of an atom equal to?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'a')"><div class="opt-indicator"></div><span>The number of protons in the nucleus</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span>The number of neutrons in the nucleus</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span>The number of protons plus neutrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span>The number of electron shells</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s1','a','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','A — The atomic number is the number of protons in the nucleus, which also equals the number of electrons in a neutral atom.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">An atom has no overall electrical charge. Why not?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'a')"><div class="opt-indicator"></div><span>It has equal numbers of protons and electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'b')"><div class="opt-indicator"></div><span>It has no neutrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span>It has more protons than electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span>It has more electrons than protons</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s2','a','Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','A — There are an equal number of protons (positive) and electrons (negative), so the charges cancel out.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Elements in <em>Group 8</em>, the noble gases, do not react to form compounds. Why not?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>Their outermost electron shell is already full</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>They have no electrons at all</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'c')"><div class="opt-indicator"></div><span>They have no protons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'd')"><div class="opt-indicator"></div><span>They are the smallest atoms of all</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s3','a','Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','A — Noble gases already have a full outermost electron shell, so they are stable and do not need to react.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">There are two main ways atoms can achieve a full, stable outer shell when they react. What are they?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>Losing or gaining electrons, or sharing electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>Losing protons or gaining neutrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>Splitting the nucleus in two</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>Changing their atomic number</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s4','a','Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','A — Atoms can lose or gain electrons to form ions (ionic bonding), or share electrons with another atom (covalent bonding).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WHY ATOMS REACT &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wr-fill"></div></div>
+    <div class="section-score-val" id="sec-wr-val">0/4</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: FORMING IONS ═══════════════ -->
+<div id="forming-ions">
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Section B</div><h2>Forming Ions</h2></div></div>
+  <div class="info-box"><strong>Metal atoms</strong> (Groups 1 &amp; 2) <em>lose</em> electrons from their outer shell to form <strong>positive ions</strong> &mdash; e.g. sodium (2,8,1) loses 1 electron to become Na<sup>+</sup> (2,8). <strong>Non-metal atoms</strong> (e.g. Group 7) <em>gain</em> electrons to fill their outer shell, forming <strong>negative ions</strong> &mdash; e.g. chlorine (2,8,7) gains 1 electron to become Cl<sup>&minus;</sup> (2,8,8). An <strong>ion</strong> is a charged particle formed when an atom loses or gains electrons.</div>
+
+  <!-- Interactive ion builder -->
+  <div class="atom-diagram">
+    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">Pick an atom, then click "React!" to see the ion it forms</div>
+    <canvas id="ion-canvas" width="220" height="220" aria-label="Interactive diagram showing an atom turning into an ion"></canvas>
+    <div class="atom-controls">
+      <button class="atom-btn active" id="ion-btn-li" onclick="setIonAtom('li')">Lithium</button>
+      <button class="atom-btn" id="ion-btn-na" onclick="setIonAtom('na')">Sodium</button>
+      <button class="atom-btn" id="ion-btn-k" onclick="setIonAtom('k')">Potassium</button>
+      <button class="atom-btn" id="ion-btn-mg" onclick="setIonAtom('mg')">Magnesium</button>
+      <button class="atom-btn" id="ion-btn-ca" onclick="setIonAtom('ca')">Calcium</button>
+      <button class="atom-btn" id="ion-btn-f" onclick="setIonAtom('f')">Fluorine</button>
+      <button class="atom-btn" id="ion-btn-cl" onclick="setIonAtom('cl')">Chlorine</button>
+      <button class="atom-btn" id="ion-btn-o" onclick="setIonAtom('o')">Oxygen</button>
+    </div>
+    <div class="atom-controls">
+      <button class="atom-btn react-btn" id="ion-react-btn" onclick="toggleIonReact()">&#9889; React!</button>
+    </div>
+    <div class="atom-info" id="ion-info"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">When a sodium atom (2,8,1) reacts, what happens to its single outer electron?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'a')"><div class="opt-indicator"></div><span>It is lost, forming a Na<sup>+</sup> ion</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'b')"><div class="opt-indicator"></div><span>It is shared with another sodium atom</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'c')"><div class="opt-indicator"></div><span>Two more electrons join it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'd')"><div class="opt-indicator"></div><span>Nothing happens to it</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s5','a','Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','A — The sodium atom loses its one outer electron, leaving a full 2,8 shell and forming the positive ion Na⁺.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Which symbol correctly represents the ion formed when a sodium atom loses an electron?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'a')"><div class="opt-indicator"></div><span>Na<sup>+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'b')"><div class="opt-indicator"></div><span>Na<sup>&minus;</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>Na<sup>2+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>Na (no charge)</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s6','a','Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','A — Na⁺. Sodium loses 1 electron but keeps all 11 protons, so it has one more positive charge than negative, giving a charge of +1.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which symbol correctly represents the ion formed when a chlorine atom (2,8,7) gains an electron?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'a')"><div class="opt-indicator"></div><span>Cl<sup>&minus;</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'b')"><div class="opt-indicator"></div><span>Cl<sup>+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'c')"><div class="opt-indicator"></div><span>Cl<sup>2&minus;</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'd')"><div class="opt-indicator"></div><span>Cl (no charge)</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s7','a','Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','A — Cl⁻. Chlorine gains 1 electron but keeps 17 protons, so it has one more negative charge than positive, giving a charge of -1.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">What is the electronic structure of the chloride ion, Cl<sup>&minus;</sup>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'a')"><div class="opt-indicator"></div><span>2,8,8</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'b')"><div class="opt-indicator"></div><span>2,8,7</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'c')"><div class="opt-indicator"></div><span>2,8,6</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'd')"><div class="opt-indicator"></div><span>2,9,7</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s8','a','Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s8','A chlorine atom is 2,8,7. It gains one electron to fill its outer shell.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','A — 2,8,8. The chlorine atom (2,8,7) gains one electron in its outermost shell, which is now full.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Magnesium (2,8,2) loses two electrons when it reacts. Which symbol correctly represents the magnesium ion formed?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'a')"><div class="opt-indicator"></div><span>Mg<sup>2+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'b')"><div class="opt-indicator"></div><span>Mg<sup>+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'c')"><div class="opt-indicator"></div><span>Mg<sup>2&minus;</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'd')"><div class="opt-indicator"></div><span>Mg (no charge)</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s9','a','Q9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','A — Mg²⁺. Magnesium loses 2 electrons but keeps all 12 protons, so it ends up with a charge of +2.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">An oxygen atom (2,6) gains electrons to complete its outer shell, forming the oxide ion, O<sup>2&minus;</sup>. What is the <em>charge</em> on the oxide ion? (enter as a number, e.g. -1)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row">
+        <input type="number" class="num-input" id="s10-ans" placeholder="Enter charge...">
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s10',-2,'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s10','Oxygen (2,6) needs 2 more electrons to reach a full outer shell of 8.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','-2 — Oxygen (2,6) gains 2 electrons to become (2,8). It now has 2 more electrons than protons, giving a charge of -2.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">FORMING IONS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-fi-fill"></div></div>
+    <div class="section-score-val" id="sec-fi-val">0/7</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: IONIC COMPOUNDS ═══════════════ -->
+<div id="ionic-compounds">
+  <div class="section-header"><div class="section-icon">&#9670;</div><div><div class="sub-label">Section C</div><h2>Ionic Compounds &amp; Formulae</h2></div></div>
+  <div class="info-box"><strong>Ionic bonding</strong> is the strong <em>electrostatic attraction</em> between oppositely charged ions, e.g. Na<sup>+</sup> and Cl<sup>&minus;</sup> in sodium chloride, NaCl. In any ionic compound, the total positive charge must <strong>balance</strong> the total negative charge. Magnesium (Mg<sup>2+</sup>) needs <em>two</em> Cl<sup>&minus;</sup> ions to balance its +2 charge, forming <strong>MgCl<sub>2</sub></strong>.</div>
+
+  <!-- Interactive ionic bond builder -->
+  <div class="atom-diagram">
+    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">Pick a reaction, then click "React!" to see the electron transfer and the ions formed</div>
+    <canvas id="bond-canvas" width="560" height="220" aria-label="Interactive diagram showing electron transfer forming an ionic compound"></canvas>
+    <div class="atom-controls">
+      <button class="atom-btn active" id="bond-btn-na-cl" onclick="setBondReaction('na-cl')">NaCl</button>
+      <button class="atom-btn" id="bond-btn-li-f" onclick="setBondReaction('li-f')">LiF</button>
+      <button class="atom-btn" id="bond-btn-k-cl" onclick="setBondReaction('k-cl')">KCl</button>
+      <button class="atom-btn" id="bond-btn-mg-o" onclick="setBondReaction('mg-o')">MgO</button>
+      <button class="atom-btn" id="bond-btn-mg-cl2" onclick="setBondReaction('mg-cl2')">MgCl₂</button>
+      <button class="atom-btn" id="bond-btn-ca-cl2" onclick="setBondReaction('ca-cl2')">CaCl₂</button>
+      <button class="atom-btn" id="bond-btn-ca-o" onclick="setBondReaction('ca-o')">CaO</button>
+    </div>
+    <div class="atom-controls">
+      <button class="atom-btn react-btn" id="bond-react-btn" onclick="toggleBondReact()">&#9889; React!</button>
+    </div>
+    <div class="atom-info" id="bond-info"></div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">A sodium ion (Na<sup>+</sup>) and a chloride ion (Cl<sup>&minus;</sup>) are held together in sodium chloride. What holds them together?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'a')"><div class="opt-indicator"></div><span>Electrostatic attraction between oppositely charged ions</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'b')"><div class="opt-indicator"></div><span>A shared pair of electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'c')"><div class="opt-indicator"></div><span>Gravity between the two nuclei</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'd')"><div class="opt-indicator"></div><span>Magnetism between the ions</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s11','a','Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','A — This is called an ionic bond: the positive Na⁺ ion and negative Cl⁻ ion attract each other electrostatically.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">What is the formula for the ionic compound formed between sodium and chlorine?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'a')"><div class="opt-indicator"></div><span>NaCl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'b')"><div class="opt-indicator"></div><span>NaCl<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'c')"><div class="opt-indicator"></div><span>Na<sub>2</sub>Cl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'd')"><div class="opt-indicator"></div><span>Na<sub>2</sub>Cl<sub>2</sub></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s12','a','Q12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','A — NaCl. One Na⁺ (+1) balances exactly with one Cl⁻ (-1).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">What is the formula for the ionic compound formed between magnesium and oxygen?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s13-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'a')"><div class="opt-indicator"></div><span>MgO</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'b')"><div class="opt-indicator"></div><span>MgO<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'c')"><div class="opt-indicator"></div><span>Mg<sub>2</sub>O</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'd')"><div class="opt-indicator"></div><span>Mg<sub>2</sub>O<sub>2</sub></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s13','a','Q13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','A — MgO. Magnesium loses 2 electrons (Mg²⁺) and oxygen gains 2 electrons (O²⁻), so the +2 and -2 charges balance exactly, one-to-one.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Magnesium (Mg<sup>2+</sup>) reacts with chlorine (Cl<sup>&minus;</sup>) to form magnesium chloride. Why are <em>two</em> chloride ions needed for every one magnesium ion?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'a')"><div class="opt-indicator"></div><span>So the +2 charge on Mg²⁺ is balanced by two -1 charges on Cl⁻</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'b')"><div class="opt-indicator"></div><span>Because magnesium has two protons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'c')"><div class="opt-indicator"></div><span>Because chlorine only has one electron in total</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'd')"><div class="opt-indicator"></div><span>Every ionic compound must contain exactly two ions</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s14','a','Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s14','The overall charge on an ionic compound must add up to zero.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','A — The magnesium atom loses 2 electrons to become Mg²⁺. Each chlorine atom can only gain 1 electron (forming Cl⁻), so two chlorine atoms are needed to take up the two electrons, giving 2 Cl⁻ ions that balance the +2 charge.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">What is the formula for magnesium chloride?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s15-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'a')"><div class="opt-indicator"></div><span>MgCl<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'b')"><div class="opt-indicator"></div><span>MgCl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'c')"><div class="opt-indicator"></div><span>Mg<sub>2</sub>Cl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'd')"><div class="opt-indicator"></div><span>MgCl<sub>3</sub></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s15','a','Q15')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','A — MgCl₂. One Mg²⁺ ion needs two Cl⁻ ions to balance its charge.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-s16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Calcium forms a Ca<sup>2+</sup> ion. What is the formula for calcium chloride (calcium + chlorine)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'a')"><div class="opt-indicator"></div><span>CaCl<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'b')"><div class="opt-indicator"></div><span>CaCl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'c')"><div class="opt-indicator"></div><span>Ca<sub>2</sub>Cl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'd')"><div class="opt-indicator"></div><span>CaCl<sub>3</sub></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s16','a','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s16','Ca²⁺ needs the same number of Cl⁻ ions as Mg²⁺ did.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','A — CaCl₂. Just like magnesium, calcium\'s +2 charge needs two -1 chloride ions to balance it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s16-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">What is the formula for calcium oxide (calcium + oxygen)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s17-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'a')"><div class="opt-indicator"></div><span>CaO</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'b')"><div class="opt-indicator"></div><span>CaO<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'c')"><div class="opt-indicator"></div><span>Ca<sub>2</sub>O</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'd')"><div class="opt-indicator"></div><span>Ca<sub>2</sub>O<sub>3</sub></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s17','a','Q17')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','A — CaO. Ca²⁺ and O²⁻ balance exactly one-to-one, just like MgO.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">IONIC COMPOUNDS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ic-fill"></div></div>
+    <div class="section-score-val" id="sec-ic-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: REACTIVITY TRENDS ═══════════════ -->
+<div id="reactivity">
+  <div class="section-header"><div class="section-icon">&#128200;</div><div><div class="sub-label">Section D</div><h2>Reactivity Trends</h2></div></div>
+  <div class="info-box"><strong>Group 1</strong> (lithium, sodium, potassium): reactivity <em>increases</em> down the group. The outer electron is further from the nucleus in bigger atoms, so it is held less strongly by the protons and is easier to lose. <strong>Group 7</strong> (fluorine, chlorine): reactivity <em>decreases</em> down the group. The electron being gained enters a shell closer to the nucleus in smaller atoms, so it is attracted more strongly.</div>
+
+  <div class="reactivity-ladder">
+    <div class="ladder-col">
+      <div class="ladder-col-label">Group 1 &middot; most&rarr;least reactive</div>
+      <div class="ladder-item hot">Potassium (K)</div>
+      <div class="ladder-arrow">&uarr; more reactive</div>
+      <div class="ladder-item">Sodium (Na)</div>
+      <div class="ladder-arrow">&uarr; more reactive</div>
+      <div class="ladder-item">Lithium (Li)</div>
+    </div>
+    <div class="ladder-col">
+      <div class="ladder-col-label">Group 7 &middot; most&rarr;least reactive</div>
+      <div class="ladder-item hot">Fluorine (F)</div>
+      <div class="ladder-arrow">&uarr; more reactive</div>
+      <div class="ladder-item">Chlorine (Cl)</div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Lithium, sodium and potassium are all in Group 1. Which is the <em>most reactive</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'a')"><div class="opt-indicator"></div><span>Lithium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'b')"><div class="opt-indicator"></div><span>Sodium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'c')"><div class="opt-indicator"></div><span>Potassium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'd')"><div class="opt-indicator"></div><span>They are all equally reactive</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s18','c','Q18')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','C — Potassium. Reactivity increases down Group 1, so potassium (lowest of the three) is the most reactive.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-s19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Why is potassium <em>more reactive</em> than lithium?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s19-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'a')"><div class="opt-indicator"></div><span>Potassium's outermost electron is further from the nucleus, so it is held less strongly and is easier to lose</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'b')"><div class="opt-indicator"></div><span>Potassium has fewer protons than lithium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'c')"><div class="opt-indicator"></div><span>Potassium's outer shell is already full</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'd')"><div class="opt-indicator"></div><span>Potassium has more neutrons than lithium</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s19','a','Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s19','Think about electrostatic forces and distance from the nucleus, like in Q\'s about Li, Na and K.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s19','A — Potassium\'s outer electron is in a shell further from the nucleus than lithium\'s. The electrostatic force of attraction between this electron and the positively charged nucleus is weaker, so it is easier to lose, making potassium more reactive.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s19-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-s20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Fluorine and chlorine are both in Group 7. Which is the <em>more reactive</em> element?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s20-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'a')"><div class="opt-indicator"></div><span>Fluorine</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'b')"><div class="opt-indicator"></div><span>Chlorine</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'c')"><div class="opt-indicator"></div><span>Both are equally reactive</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'd')"><div class="opt-indicator"></div><span>Neither reacts at all</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s20','a','Q20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','A — Fluorine. Reactivity decreases down Group 7, so fluorine (highest of the two) is more reactive than chlorine.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s20-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-s21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Why is fluorine <em>more reactive</em> than chlorine?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s21-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'a')"><div class="opt-indicator"></div><span>The electron fluorine gains enters a shell closer to the nucleus, so it is attracted more strongly by the protons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'b')"><div class="opt-indicator"></div><span>Fluorine has more protons than chlorine</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'c')"><div class="opt-indicator"></div><span>Fluorine's outer shell is further from the nucleus than chlorine's</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'd')"><div class="opt-indicator"></div><span>Chlorine has no electron shells at all</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s21','a','Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s21','Fluorine\'s outer shell (2,7) is closer to the nucleus than chlorine\'s (2,8,7).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','A — The outer shell fluorine gains an electron into is closer to the nucleus than chlorine\'s outer shell. This electron is attracted more strongly by the positive protons in the nucleus, so it is gained more easily, making fluorine more reactive.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s21-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">REACTIVITY TRENDS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-rt-fill"></div></div>
+    <div class="section-score-val" id="sec-rt-val">0/6</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  s1:1, s2:1, s3:1, s4:1,
+  s5:1, s6:1, s7:1, s8:2, s9:1, s10:1,
+  s11:1, s12:1, s13:1, s14:2, s15:1, s16:1, s17:1,
+  s18:1, s19:2, s20:1, s21:2
+};
+
+const sections = {
+  wr: { label: 'Why Atoms React', qs: ['s1','s2','s3','s4'] },
+  fi: { label: 'Forming Ions', qs: ['s5','s6','s7','s8','s9','s10'] },
+  ic: { label: 'Ionic Compounds', qs: ['s11','s12','s13','s14','s15','s16','s17'] },
+  rt: { label: 'Reactivity Trends', qs: ['s18','s19','s20','s21'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Shared shell-diagram drawing helper ─────────────────────
+function drawAtomUnit(ctx, cx, cy, protons, config, chargeText, unit) {
+  ctx.beginPath();
+  ctx.arc(cx, cy, unit.nucleusR, 0, Math.PI * 2);
+  ctx.fillStyle = '#4f8ef7';
+  ctx.fill();
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.font = unit.fontNucleus;
+  ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(`${protons}+`, cx, cy);
+
+  config.forEach((count, i) => {
+    const r = unit.shellRadii[i];
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(62, 207, 142, 0.4)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    const angleStep = (Math.PI * 2) / count;
+    for (let j = 0; j < count; j++) {
+      const angle = j * angleStep - Math.PI / 2;
+      const ex = cx + r * Math.cos(angle);
+      const ey = cy + r * Math.sin(angle);
+      ctx.beginPath();
+      ctx.arc(ex, ey, unit.electronR, 0, Math.PI * 2);
+      ctx.fillStyle = '#3ecf8e';
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 0.75;
+      ctx.stroke();
+    }
+  });
+
+  if (chargeText) {
+    const outerR = unit.shellRadii[config.length - 1];
+    ctx.font = unit.fontCharge;
+    ctx.fillStyle = '#f5a623';
+    ctx.textAlign = 'left';
+    ctx.fillText(chargeText, cx + outerR * 0.55, cy - outerR * 0.75);
+  }
+}
+
+function ionise(atom) {
+  const cfg = atom.config.slice();
+  if (atom.type === 'metal') {
+    const lost = cfg[cfg.length - 1];
+    cfg.pop();
+    return { config: cfg, charge: lost, sign: '+' };
+  } else {
+    const idx = cfg.length - 1;
+    const gained = 8 - cfg[idx];
+    cfg[idx] = 8;
+    return { config: cfg, charge: gained, sign: '−' };
+  }
+}
+
+function chargeLabel(symbol, charge, sign) {
+  return `${symbol}${charge > 1 ? charge : ''}${sign}`;
+}
+
+const ION_UNIT = { nucleusR: 20, shellRadii: [35, 58, 81, 104], electronR: 4, fontNucleus: 'bold 11px Arial', fontCharge: 'bold 18px Arial' };
+const BOND_UNIT = { nucleusR: 13, shellRadii: [22, 37, 52, 67], electronR: 3, fontNucleus: 'bold 9px Arial', fontCharge: 'bold 14px Arial' };
+
+// ── Section B: single-atom ion builder ──────────────────────
+const ionAtoms = {
+  li: { symbol: 'Li', name: 'Lithium', protons: 3, config: [2,1], type: 'metal' },
+  na: { symbol: 'Na', name: 'Sodium', protons: 11, config: [2,8,1], type: 'metal' },
+  k:  { symbol: 'K', name: 'Potassium', protons: 19, config: [2,8,8,1], type: 'metal' },
+  mg: { symbol: 'Mg', name: 'Magnesium', protons: 12, config: [2,8,2], type: 'metal' },
+  ca: { symbol: 'Ca', name: 'Calcium', protons: 20, config: [2,8,8,2], type: 'metal' },
+  f:  { symbol: 'F', name: 'Fluorine', protons: 9, config: [2,7], type: 'nonmetal' },
+  cl: { symbol: 'Cl', name: 'Chlorine', protons: 17, config: [2,8,7], type: 'nonmetal' },
+  o:  { symbol: 'O', name: 'Oxygen', protons: 8, config: [2,6], type: 'nonmetal' }
+};
+
+const ionView = { key: 'li', reacted: false };
+const ionCanvas = document.getElementById('ion-canvas');
+const ionCtx = ionCanvas.getContext('2d');
+
+function renderIonView() {
+  const atom = ionAtoms[ionView.key];
+  ionCtx.clearRect(0, 0, ionCanvas.width, ionCanvas.height);
+  const cx = ionCanvas.width / 2, cy = ionCanvas.height / 2;
+  const btn = document.getElementById('ion-react-btn');
+  if (!ionView.reacted) {
+    drawAtomUnit(ionCtx, cx, cy, atom.protons, atom.config, null, ION_UNIT);
+    document.getElementById('ion-info').textContent = `${atom.name} atom: ${atom.config.join(',')} — ${atom.protons} protons, ${atom.protons} electrons, no overall charge`;
+    btn.textContent = '⚡ React!';
+  } else {
+    const ion = ionise(atom);
+    const label = chargeLabel(atom.symbol, ion.charge, ion.sign);
+    drawAtomUnit(ionCtx, cx, cy, atom.protons, ion.config, label, ION_UNIT);
+    const electrons = atom.type === 'metal' ? atom.protons - ion.charge : atom.protons + ion.charge;
+    const verb = atom.type === 'metal' ? `loses ${ion.charge} electron${ion.charge>1?'s':''}` : `gains ${ion.charge} electron${ion.charge>1?'s':''}`;
+    document.getElementById('ion-info').textContent = `${atom.name} ${verb} → ${label} ion: ${ion.config.join(',')} — ${atom.protons} protons, ${electrons} electrons, charge ${ion.sign}${ion.charge}`;
+    btn.textContent = '↺ Show atom';
+  }
+}
+
+function setIonAtom(key) {
+  ionView.key = key;
+  ionView.reacted = false;
+  Object.keys(ionAtoms).forEach(k => document.getElementById(`ion-btn-${k}`).classList.toggle('active', k === key));
+  renderIonView();
+}
+
+function toggleIonReact() {
+  ionView.reacted = !ionView.reacted;
+  renderIonView();
+}
+
+renderIonView();
+
+// ── Section C: ionic bond builder (metal + non-metal) ───────
+const reactions = {
+  'na-cl': { metal: 'na', nonmetal: 'cl', ratio: 1, compound: 'NaCl', name: 'Sodium chloride' },
+  'li-f':  { metal: 'li', nonmetal: 'f',  ratio: 1, compound: 'LiF',  name: 'Lithium fluoride' },
+  'k-cl':  { metal: 'k',  nonmetal: 'cl', ratio: 1, compound: 'KCl',  name: 'Potassium chloride' },
+  'mg-o':  { metal: 'mg', nonmetal: 'o',  ratio: 1, compound: 'MgO',  name: 'Magnesium oxide' },
+  'mg-cl2':{ metal: 'mg', nonmetal: 'cl', ratio: 2, compound: 'MgCl₂', name: 'Magnesium chloride' },
+  'ca-cl2':{ metal: 'ca', nonmetal: 'cl', ratio: 2, compound: 'CaCl₂', name: 'Calcium chloride' },
+  'ca-o':  { metal: 'ca', nonmetal: 'o',  ratio: 1, compound: 'CaO',  name: 'Calcium oxide' }
+};
+
+const bondView = { key: 'na-cl', reacted: false };
+const bondCanvas = document.getElementById('bond-canvas');
+const bondCtx = bondCanvas.getContext('2d');
+
+function drawArrow(ctx, x1, y1, x2, y2, label) {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.strokeStyle = '#f5a623';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([]);
+  ctx.stroke();
+
+  const angle = Math.atan2(y2 - y1, x2 - x1);
+  const headLen = 8;
+  ctx.beginPath();
+  ctx.moveTo(x2, y2);
+  ctx.lineTo(x2 - headLen * Math.cos(angle - Math.PI / 6), y2 - headLen * Math.sin(angle - Math.PI / 6));
+  ctx.lineTo(x2 - headLen * Math.cos(angle + Math.PI / 6), y2 - headLen * Math.sin(angle + Math.PI / 6));
+  ctx.closePath();
+  ctx.fillStyle = '#f5a623';
+  ctx.fill();
+
+  if (label) {
+    ctx.font = 'bold 11px Arial';
+    ctx.fillStyle = '#f5a623';
+    ctx.textAlign = 'center';
+    ctx.fillText(label, (x1 + x2) / 2, (y1 + y2) / 2 - 8);
+  }
+}
+
+function drawDashedLink(ctx, x1, y1, x2, y2) {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.strokeStyle = 'rgba(232, 234, 240, 0.35)';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 4]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+function renderBondView() {
+  const rx = reactions[bondView.key];
+  const metal = ionAtoms[rx.metal];
+  const nonmetal = ionAtoms[rx.nonmetal];
+  const cy = bondCanvas.height / 2;
+  const btn = document.getElementById('bond-react-btn');
+  bondCtx.clearRect(0, 0, bondCanvas.width, bondCanvas.height);
+
+  let metalX, nm1X, nm2X;
+  if (rx.ratio === 2) {
+    metalX = bondCanvas.width / 2; nm1X = 100; nm2X = bondCanvas.width - 100;
+  } else {
+    metalX = 170; nm1X = 390;
+  }
+
+  if (!bondView.reacted) {
+    drawAtomUnit(bondCtx, metalX, cy, metal.protons, metal.config, null, BOND_UNIT);
+    drawAtomUnit(bondCtx, nm1X, cy, nonmetal.protons, nonmetal.config, null, BOND_UNIT);
+    if (rx.ratio === 2) drawAtomUnit(bondCtx, nm2X, cy, nonmetal.protons, nonmetal.config, null, BOND_UNIT);
+
+    const metalOuter = BOND_UNIT.shellRadii[metal.config.length - 1];
+    const nmOuter = BOND_UNIT.shellRadii[nonmetal.config.length - 1];
+    const eachTransfer = rx.ratio === 2 ? 1 : (metal.config[metal.config.length-1]);
+    if (rx.ratio === 2) {
+      drawArrow(bondCtx, metalX - metalOuter, cy - 10, nm1X + nmOuter, cy - 10, `${eachTransfer}e⁻`);
+      drawArrow(bondCtx, metalX + metalOuter, cy - 10, nm2X - nmOuter, cy - 10, `${eachTransfer}e⁻`);
+    } else {
+      drawArrow(bondCtx, metalX + metalOuter, cy - 10, nm1X - nmOuter, cy - 10, `${eachTransfer}e⁻`);
+    }
+    document.getElementById('bond-info').textContent = `${metal.name} atom + ${nonmetal.name} atom${rx.ratio===2?' × 2':''} — before reacting, neither has a full outer shell`;
+    btn.textContent = '⚡ React!';
+  } else {
+    const metalIon = ionise(metal);
+    const nmIon = ionise(nonmetal);
+    const metalLabel = chargeLabel(metal.symbol, metalIon.charge, metalIon.sign);
+    const nmLabel = chargeLabel(nonmetal.symbol, nmIon.charge, nmIon.sign);
+
+    drawAtomUnit(bondCtx, metalX, cy, metal.protons, metalIon.config, metalLabel, BOND_UNIT);
+    drawAtomUnit(bondCtx, nm1X, cy, nonmetal.protons, nmIon.config, nmLabel, BOND_UNIT);
+    if (rx.ratio === 2) drawAtomUnit(bondCtx, nm2X, cy, nonmetal.protons, nmIon.config, nmLabel, BOND_UNIT);
+
+    const metalOuter = BOND_UNIT.shellRadii[metalIon.config.length - 1];
+    const nmOuter = BOND_UNIT.shellRadii[nmIon.config.length - 1];
+    if (rx.ratio === 2) {
+      drawDashedLink(bondCtx, metalX - metalOuter, cy, nm1X + nmOuter, cy);
+      drawDashedLink(bondCtx, metalX + metalOuter, cy, nm2X - nmOuter, cy);
+    } else {
+      drawDashedLink(bondCtx, metalX + metalOuter, cy, nm1X - nmOuter, cy);
+    }
+    document.getElementById('bond-info').textContent = `${metalLabel} + ${rx.ratio===2?'2 '+nmLabel:nmLabel} → ${rx.name} (${rx.compound}), held together by electrostatic attraction`;
+    btn.textContent = '↺ Show atoms';
+  }
+}
+
+function setBondReaction(key) {
+  bondView.key = key;
+  bondView.reacted = false;
+  Object.keys(reactions).forEach(k => document.getElementById(`bond-btn-${k}`).classList.toggle('active', k === key));
+  renderBondView();
+}
+
+function toggleBondReact() {
+  bondView.reacted = !bondView.reacted;
+  renderBondView();
+}
+
+renderBondView();
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`ionic-bonding_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
