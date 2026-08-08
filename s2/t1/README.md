@@ -16,6 +16,7 @@ This directory contains **printable markdown worksheets** derived from the inter
 | Topic | Questions | Marks | File |
 |-------|-----------|-------|------|
 | **Atomic Structure & Periodic Table** | 16 | 20 | [term1-week2-atomic-structure-periodic.html](../w2/term1-week2-atomic-structure-periodic.html) |
+| **Why Elements React & Ionic Bonding** — Chapter 2.3 | 21 | 25 | [term1-science-ionic-bonding.md](./term1-science-ionic-bonding.md) |
 
 ## Usage
 
@@ -65,9 +66,13 @@ cambridge-practice/
 │       ├── README.md                    ← This file (TOC for printable docs)
 │       ├── term1-maths-rational-irrational.md    ← Printable worksheet
 │       ├── term1-maths-indices-standard-form.md  ← Printable worksheet
-│       └── w2/
-│           ├── term1-week2-maths-rational-irrational.html    ← Interactive
-│           └── term1-week2-maths-indices-standard-form.html  ← Interactive
+│       ├── term1-science-ionic-bonding.md        ← Printable worksheet
+│       ├── w2/
+│       │   ├── term1-week2-maths-rational-irrational.html    ← Interactive
+│       │   ├── term1-week2-maths-indices-standard-form.html  ← Interactive
+│       │   └── term1-week2-atomic-structure-periodic.html    ← Interactive
+│       └── w3/
+│           └── term1-week3-science-ionic-bonding.html        ← Interactive
 ```
 
 ## See Also
