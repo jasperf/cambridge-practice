@@ -9,23 +9,23 @@ This document contains all questions from the interactive sheet in a printable f
 
 ## Section A: Why Atoms React
 
-**Key ideas:** Atoms have electrons arranged in shells (energy levels). The outermost shell is called the *highest energy level*. An atom has no overall charge because it has equal numbers of protons and electrons. Elements in **Group 8** (the noble gases) already have a full outermost shell, so they are stable and do not react. All other elements react to try to get a full outer shell too — either by **losing or gaining electrons** (ionic bonding) or by **sharing electrons** (covalent bonding).
+**Key ideas:** Atoms have electrons arranged in shells (energy levels). The outermost shell is called the *highest energy level*. An atom has no overall charge because it has equal numbers of protons and electrons. Elements in **Group 8** (the noble gases — also labelled **Group 18** on modern periodic tables) already have a full outermost shell, so they are stable and do not react. All other elements react to try to get a full outer shell too — either by **losing or gaining electrons** (ionic bonding) or by **sharing electrons** (covalent bonding).
 
 ### Questions
 
 **Q1** (1 mark)
 What is the atomic number of an atom equal to?
-- A) The number of protons in the nucleus
-- B) The number of neutrons in the nucleus
+- A) The number of neutrons in the nucleus
+- B) The number of protons in the nucleus
 - C) The number of protons plus neutrons
 - D) The number of electron shells
 
 **Q2** (1 mark)
 An atom has no overall electrical charge. Why not?
-- A) It has equal numbers of protons and electrons
-- B) It has no neutrons
-- C) It has more protons than electrons
-- D) It has more electrons than protons
+- A) It has no neutrons
+- B) It has more protons than electrons
+- C) It has more electrons than protons
+- D) It has equal numbers of protons and electrons
 
 **Q3** (1 mark)
 Elements in Group 8, the noble gases, do not react to form compounds. Why not?
@@ -36,9 +36,9 @@ Elements in Group 8, the noble gases, do not react to form compounds. Why not?
 
 **Q4** (1 mark)
 There are two main ways atoms can achieve a full, stable outer shell when they react. What are they?
-- A) Losing or gaining electrons, or sharing electrons
-- B) Losing protons or gaining neutrons
-- C) Splitting the nucleus in two
+- A) Losing protons or gaining neutrons
+- B) Splitting the nucleus in two
+- C) Losing or gaining electrons, or sharing electrons
 - D) Changing their atomic number
 
 ---
@@ -51,17 +51,17 @@ There are two main ways atoms can achieve a full, stable outer shell when they r
 
 **Q5** (1 mark)
 When a sodium atom (2,8,1) reacts, what happens to its single outer electron?
-- A) It is lost, forming a Na⁺ ion
-- B) It is shared with another sodium atom
+- A) It is shared with another sodium atom
+- B) It is lost, forming a Na⁺ ion
 - C) Two more electrons join it
 - D) Nothing happens to it
 
 **Q6** (1 mark)
 Which symbol correctly represents the ion formed when a sodium atom loses an electron?
-- A) Na⁺
-- B) Na⁻
-- C) Na²⁺
-- D) Na (no charge)
+- A) Na⁻
+- B) Na²⁺
+- C) Na (no charge)
+- D) Na⁺
 
 **Q7** (1 mark)
 Which symbol correctly represents the ion formed when a chlorine atom (2,8,7) gains an electron?
@@ -72,17 +72,17 @@ Which symbol correctly represents the ion formed when a chlorine atom (2,8,7) ga
 
 **Q8** (2 marks)
 What is the electronic structure of the chloride ion, Cl⁻?
-- A) 2,8,8
-- B) 2,8,7
-- C) 2,8,6
-- D) 2,9,7
+- A) 2,8,7
+- B) 2,9,7
+- C) 2,8,8
+- D) 2,8,6
 
 **Q9** (1 mark)
 Magnesium (2,8,2) loses two electrons when it reacts. Which symbol correctly represents the magnesium ion formed?
-- A) Mg²⁺
-- B) Mg⁺
-- C) Mg²⁻
-- D) Mg (no charge)
+- A) Mg⁺
+- B) Mg²⁺
+- C) Mg (no charge)
+- D) Mg²⁻
 
 **Q10** (1 mark)
 An oxygen atom (2,6) gains electrons to complete its outer shell, forming the oxide ion, O²⁻. What is the charge on the oxide ion? (enter as a number, e.g. -1)
@@ -97,10 +97,10 @@ An oxygen atom (2,6) gains electrons to complete its outer shell, forming the ox
 
 **Q11** (1 mark)
 A sodium ion (Na⁺) and a chloride ion (Cl⁻) are held together in sodium chloride. What holds them together?
-- A) Electrostatic attraction between oppositely charged ions
-- B) A shared pair of electrons
-- C) Gravity between the two nuclei
-- D) Magnetism between the ions
+- A) A shared pair of electrons
+- B) Gravity between the two nuclei
+- C) Magnetism between the ions
+- D) Electrostatic attraction between oppositely charged ions
 
 **Q12** (1 mark)
 What is the formula for the ionic compound formed between sodium and chlorine?
@@ -111,24 +111,24 @@ What is the formula for the ionic compound formed between sodium and chlorine?
 
 **Q13** (1 mark)
 What is the formula for the ionic compound formed between magnesium and oxygen?
-- A) MgO
-- B) MgO₂
-- C) Mg₂O
+- A) MgO₂
+- B) Mg₂O
+- C) MgO
 - D) Mg₂O₂
 
 **Q14** (2 marks)
 Magnesium (Mg²⁺) reacts with chlorine (Cl⁻) to form magnesium chloride. Why are two chloride ions needed for every one magnesium ion?
-- A) So the +2 charge on Mg²⁺ is balanced by two -1 charges on Cl⁻
-- B) Because magnesium has two protons
+- A) Because magnesium has two protons
+- B) So the +2 charge on Mg²⁺ is balanced by two -1 charges on Cl⁻
 - C) Because chlorine only has one electron in total
 - D) Every ionic compound must contain exactly two ions
 
 **Q15** (1 mark)
 What is the formula for magnesium chloride?
-- A) MgCl₂
-- B) MgCl
-- C) Mg₂Cl
-- D) MgCl₃
+- A) MgCl
+- B) Mg₂Cl
+- C) MgCl₃
+- D) MgCl₂
 
 **Q16** (1 mark)
 Calcium forms a Ca²⁺ ion. What is the formula for calcium chloride (calcium + chlorine)?
@@ -139,9 +139,9 @@ Calcium forms a Ca²⁺ ion. What is the formula for calcium chloride (calcium +
 
 **Q17** (1 mark)
 What is the formula for calcium oxide (calcium + oxygen)?
-- A) CaO
-- B) CaO₂
-- C) Ca₂O
+- A) CaO₂
+- B) Ca₂O
+- C) CaO
 - D) Ca₂O₃
 
 ---
@@ -161,17 +161,17 @@ Lithium, sodium and potassium are all in Group 1. Which is the most reactive?
 
 **Q19** (2 marks)
 Why is potassium more reactive than lithium?
-- A) Potassium's outermost electron is further from the nucleus, so it is held less strongly and is easier to lose
-- B) Potassium has fewer protons than lithium
+- A) Potassium has fewer protons than lithium
+- B) Potassium's outermost electron is further from the nucleus, so it is held less strongly and is easier to lose
 - C) Potassium's outer shell is already full
 - D) Potassium has more neutrons than lithium
 
 **Q20** (1 mark)
 Fluorine and chlorine are both in Group 7. Which is the more reactive element?
-- A) Fluorine
-- B) Chlorine
-- C) Both are equally reactive
-- D) Neither reacts at all
+- A) Chlorine
+- B) Both are equally reactive
+- C) Neither reacts at all
+- D) Fluorine
 
 **Q21** (2 marks)
 Why is fluorine more reactive than chlorine?
