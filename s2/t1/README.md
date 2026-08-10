@@ -10,6 +10,7 @@ This directory contains **printable markdown worksheets** derived from the inter
 |-------|-----------|-------|------|
 | **Rational & Irrational Numbers** — Chapter 1.1 | 16 | 20 | [term1-maths-rational-irrational.md](./term1-maths-rational-irrational.md) |
 | **Indices & Standard Form** — Chapters 1.2–1.3 | 37 | 49 | [term1-maths-indices-standard-form.md](./term1-maths-indices-standard-form.md) |
+| **Unit 1 Revision** — Chapters 1.1–1.3 combined | 53 | 69 | [term1-maths-unit1-revision.md](./term1-maths-unit1-revision.md) |
 
 ### Science
 
@@ -66,6 +67,7 @@ cambridge-practice/
 │       ├── README.md                    ← This file (TOC for printable docs)
 │       ├── term1-maths-rational-irrational.md    ← Printable worksheet
 │       ├── term1-maths-indices-standard-form.md  ← Printable worksheet
+│       ├── term1-maths-unit1-revision.md         ← Combined revision handout (Ch 1.1–1.3)
 │       ├── term1-science-ionic-bonding.md        ← Printable worksheet
 │       ├── w2/
 │       │   ├── term1-week2-maths-rational-irrational.html    ← Interactive

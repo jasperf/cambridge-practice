@@ -48,6 +48,7 @@ cambridge-practice/
 │       ├── README.md                     ← Printable worksheets TOC & index
 │       ├── term1-maths-rational-irrational.md    ← Printable worksheet (16 q, 20 marks)
 │       ├── term1-maths-indices-standard-form.md  ← Printable worksheet (37 q, 49 marks)
+│       ├── term1-maths-unit1-revision.md         ← Combined revision handout (53 q, 69 marks)
 │       ├── term1-science-ionic-bonding.md        ← Printable worksheet (21 q, 25 marks)
 │       ├── w2/                      ← Week 2 (interactive versions)
 │       │   ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (16 q, 20 marks, interactive)
