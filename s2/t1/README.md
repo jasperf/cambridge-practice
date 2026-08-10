@@ -1,23 +1,39 @@
-# Secondary 2 · Term 1 — Printable Worksheets
+# Secondary 2 · Term 1 — Worksheet Index
 
-This directory contains **printable markdown worksheets** derived from the interactive HTML exercise sheets. These documents are designed for classroom use where students write answers directly in their notebooks using pen and paper.
+Each weekly folder holds a topic's **interactive sheet** (`.html`) and its **printable worksheet** (`.md`) side by side, under the same basename. The printable versions are for classroom use where students write answers directly in their notebooks with pen and paper; the interactive versions are for self-checking afterwards.
 
-## Available Documents
+Revision handouts that span more than one week live at this level rather than in a week folder.
+
+## Week 2
 
 ### Mathematics
 
-| Topic | Questions | Marks | File |
-|-------|-----------|-------|------|
-| **Rational & Irrational Numbers** — Chapter 1.1 | 16 | 20 | [term1-maths-rational-irrational.md](./term1-maths-rational-irrational.md) |
-| **Indices & Standard Form** — Chapters 1.2–1.3 | 37 | 49 | [term1-maths-indices-standard-form.md](./term1-maths-indices-standard-form.md) |
-| **Unit 1 Revision** — Chapters 1.1–1.3 combined | 53 | 69 | [term1-maths-unit1-revision.md](./term1-maths-unit1-revision.md) |
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Rational & Irrational Numbers** — Chapter 1.1 | 16 | 20 | [.md](./w2/term1-week2-maths-rational-irrational.md) | [.html](./w2/term1-week2-maths-rational-irrational.html) |
+| **Indices & Standard Form** — Chapters 1.2–1.3 | 37 | 49 | [.md](./w2/term1-week2-maths-indices-standard-form.md) | [.html](./w2/term1-week2-maths-indices-standard-form.html) |
 
 ### Science
 
-| Topic | Questions | Marks | File |
-|-------|-----------|-------|------|
-| **Atomic Structure & Periodic Table** | 16 | 20 | [term1-week2-atomic-structure-periodic.html](../w2/term1-week2-atomic-structure-periodic.html) |
-| **Why Elements React & Ionic Bonding** — Chapter 2.3 | 21 | 25 | [term1-science-ionic-bonding.md](./term1-science-ionic-bonding.md) |
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Atomic Structure & Periodic Table** | 16 | 20 | — | [.html](./w2/term1-week2-atomic-structure-periodic.html) |
+
+## Week 3
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Why Elements React & Ionic Bonding** — Chapter 2.3 | 21 | 25 | [.md](./w3/term1-week3-science-ionic-bonding.md) | [.html](./w3/term1-week3-science-ionic-bonding.html) |
+
+## Revision Handouts
+
+Combined documents drawing on more than one weekly sheet, for test preparation.
+
+| Handout | Covers | Questions | Marks | File |
+|---------|--------|-----------|-------|------|
+| **Unit 1 Revision** | Chapters 1.1–1.3 (both Week 2 maths sheets) | 53 | 69 | [term1-maths-unit1-revision.md](./term1-maths-unit1-revision.md) |
 
 ## Usage
 
@@ -48,7 +64,7 @@ Each markdown document includes:
 
 ## Relationship to Interactive Sheets
 
-These printable documents contain the **exact same questions** as the interactive HTML sheets in `s2/t1/w2/`. The interactive versions provide:
+Each printable document contains the **exact same questions** as the interactive sheet it sits beside. The interactive versions add:
 
 - Instant answer checking
 - Hints for each question
@@ -58,27 +74,27 @@ These printable documents contain the **exact same questions** as the interactiv
 
 Use the printable versions for **written practice** and the interactive versions for **self-assessment and review**.
 
-## Structure Comparison
+## Structure
 
 ```
 cambridge-practice/
 ├── s2/
 │   └── t1/
-│       ├── README.md                    ← This file (TOC for printable docs)
-│       ├── term1-maths-rational-irrational.md    ← Printable worksheet
-│       ├── term1-maths-indices-standard-form.md  ← Printable worksheet
-│       ├── term1-maths-unit1-revision.md         ← Combined revision handout (Ch 1.1–1.3)
-│       ├── term1-science-ionic-bonding.md        ← Printable worksheet
+│       ├── README.md                         ← This file (worksheet index)
+│       ├── term1-maths-unit1-revision.md     ← Revision handout (spans Ch 1.1–1.3)
 │       ├── w2/
 │       │   ├── term1-week2-maths-rational-irrational.html    ← Interactive
+│       │   ├── term1-week2-maths-rational-irrational.md      ← Printable
 │       │   ├── term1-week2-maths-indices-standard-form.html  ← Interactive
+│       │   ├── term1-week2-maths-indices-standard-form.md    ← Printable
 │       │   └── term1-week2-atomic-structure-periodic.html    ← Interactive
 │       └── w3/
-│           └── term1-week3-science-ionic-bonding.html        ← Interactive
+│           ├── term1-week3-science-ionic-bonding.html        ← Interactive
+│           └── term1-week3-science-ionic-bonding.md          ← Printable
 ```
 
 ## See Also
 
-- [Main README](../../../README.md) — Project overview and all interactive sheets
-- [Resources](../../../resources.html) — Curated external learning resources
-- [Index](../../../index.html) — All interactive exercise sheets
+- [Main README](../../README.md) — Project overview and all interactive sheets
+- [Resources](../../resources.html) — Curated external learning resources
+- [Index](../../index.html) — All interactive exercise sheets

@@ -45,17 +45,14 @@ cambridge-practice/
 │   │   └── forces-speed-pressure.html    ← Forces, Speed & Pressure (17 q, 25 marks)
 ├── s2/                              ← Secondary 2
 │   └── t1/                          ← Term 1
-│       ├── README.md                     ← Printable worksheets TOC & index
-│       ├── term1-maths-rational-irrational.md    ← Printable worksheet (16 q, 20 marks)
-│       ├── term1-maths-indices-standard-form.md  ← Printable worksheet (37 q, 49 marks)
-│       ├── term1-maths-unit1-revision.md         ← Combined revision handout (53 q, 69 marks)
-│       ├── term1-science-ionic-bonding.md        ← Printable worksheet (21 q, 25 marks)
-│       ├── w2/                      ← Week 2 (interactive versions)
-│       │   ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (16 q, 20 marks, interactive)
-│       │   ├── term1-week2-maths-rational-irrational.html  ← Rational & Irrational Numbers (16 q, 20 marks)
-│       │   └── term1-week2-maths-indices-standard-form.html ← Indices & Standard Form (37 q, 49 marks)
-│       └── w3/                      ← Week 3 (interactive versions)
-│           └── term1-week3-science-ionic-bonding.html  ← Why Elements React & Ionic Bonding (21 q, 25 marks, interactive)
+│       ├── README.md                     ← Worksheet index (interactive + printable)
+│       ├── term1-maths-unit1-revision.md ← Revision handout, spans Ch 1.1–1.3 (53 q, 69 marks)
+│       ├── w2/                      ← Week 2 (.html interactive + .md printable)
+│       │   ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (16 q, 20 marks)
+│       │   ├── term1-week2-maths-rational-irrational.*     ← Rational & Irrational Numbers (16 q, 20 marks)
+│       │   └── term1-week2-maths-indices-standard-form.*   ← Indices & Standard Form (37 q, 49 marks)
+│       └── w3/                      ← Week 3 (.html interactive + .md printable)
+│           └── term1-week3-science-ionic-bonding.*         ← Why Elements React & Ionic Bonding (21 q, 25 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
@@ -68,11 +65,13 @@ cambridge-practice/
 
 ## Printable Worksheets (Parallel Path)
 
-In addition to the interactive HTML sheets, **printable markdown worksheets** are available in `s2/t1/` for classroom use where students write answers in notebooks with pen and paper. These contain the exact same questions as the interactive versions but in a format suitable for printing or copying into notebooks.
+In addition to the interactive HTML sheets, **printable markdown worksheets** are available for classroom use where students write answers in notebooks with pen and paper. Each one sits in the same weekly folder as its interactive sheet, under the same basename — `term1-week2-maths-rational-irrational.md` beside `term1-week2-maths-rational-irrational.html`. They contain the exact same questions, in a format suitable for printing or copying into notebooks.
 
 Use the printable versions for **written practice/exams** and the interactive versions for **self-assessment with hints and instant feedback**.
 
-See [s2/t1/README.md](./s2/t1/README.md) for the table of contents of all printable documents.
+Revision handouts that combine several weekly sheets live one level up, in the term folder (e.g. `s2/t1/term1-maths-unit1-revision.md`).
+
+See [s2/t1/README.md](./s2/t1/README.md) for the full index.
 
 ## Adding a New Sheet
 
