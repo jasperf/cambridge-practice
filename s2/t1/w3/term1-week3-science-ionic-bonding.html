@@ -281,7 +281,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <!-- Interactive ion builder -->
   <div class="atom-diagram">
     <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">Pick an atom, then click "React!" to see the ion it forms</div>
-    <canvas id="ion-canvas" width="220" height="220" aria-label="Interactive diagram showing an atom turning into an ion"></canvas>
+    <canvas id="ion-canvas" class="atom-canvas" width="220" height="220" aria-label="Interactive diagram showing an atom turning into an ion"></canvas>
     <div class="atom-controls">
       <button class="atom-btn active" id="ion-btn-li" onclick="setIonAtom('li')">Lithium</button>
       <button class="atom-btn" id="ion-btn-na" onclick="setIonAtom('na')">Sodium</button>
@@ -422,7 +422,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <!-- Interactive ionic bond builder -->
   <div class="atom-diagram">
     <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">Pick a reaction, then click "React!" to see the electron transfer and the ions formed</div>
-    <canvas id="bond-canvas" width="560" height="220" aria-label="Interactive diagram showing electron transfer forming an ionic compound"></canvas>
+    <canvas id="bond-canvas" class="atom-canvas" width="560" height="220" aria-label="Interactive diagram showing electron transfer forming an ionic compound"></canvas>
     <div class="atom-controls">
       <button class="atom-btn active" id="bond-btn-na-cl" onclick="setBondReaction('na-cl')">NaCl</button>
       <button class="atom-btn" id="bond-btn-li-f" onclick="setBondReaction('li-f')">LiF</button>
@@ -885,34 +885,67 @@ function drawDashedLink(ctx, x1, y1, x2, y2) {
   ctx.setLineDash([]);
 }
 
+// Point on the line between two atom centres, pulled back to each atom's edge —
+// works for horizontal, vertical or diagonal pairs alike.
+function edgePoints(c1, r1, c2, r2) {
+  const dx = c2.x - c1.x, dy = c2.y - c1.y;
+  const dist = Math.hypot(dx, dy) || 1;
+  const ux = dx / dist, uy = dy / dist;
+  return {
+    from: { x: c1.x + ux * r1, y: c1.y + uy * r1 },
+    to:   { x: c2.x - ux * r2, y: c2.y - uy * r2 }
+  };
+}
+
+// On narrow screens the side-by-side layout doesn't leave room for the arrow
+// and the far atom, so the metal atom sits on top with the non-metal(s)
+// stacked below it and the arrow(s) pointing down instead of across.
+const bondMobileQuery = window.matchMedia('(max-width: 600px)');
+const BOND_SIZE = { desktop: { w: 560, h: 220 }, mobile: { w: 280, h: 440 } };
+
+function getBondLayout(rx, mobile, w, h) {
+  if (mobile) {
+    const metal = { x: w / 2, y: 100 };
+    return rx.ratio === 2
+      ? { metal, nm1: { x: w / 2 - 62, y: 350 }, nm2: { x: w / 2 + 62, y: 350 } }
+      : { metal, nm1: { x: w / 2, y: 350 } };
+  }
+  const cy = h / 2;
+  return rx.ratio === 2
+    ? { metal: { x: w / 2, y: cy }, nm1: { x: 100, y: cy }, nm2: { x: w - 100, y: cy } }
+    : { metal: { x: 170, y: cy }, nm1: { x: 390, y: cy } };
+}
+
 function renderBondView() {
   const rx = reactions[bondView.key];
   const metal = ionAtoms[rx.metal];
   const nonmetal = ionAtoms[rx.nonmetal];
-  const cy = bondCanvas.height / 2;
   const btn = document.getElementById('bond-react-btn');
+
+  const mobile = bondMobileQuery.matches;
+  const size = mobile ? BOND_SIZE.mobile : BOND_SIZE.desktop;
+  bondCanvas.width = size.w;
+  bondCanvas.height = size.h;
   bondCtx.clearRect(0, 0, bondCanvas.width, bondCanvas.height);
 
-  let metalX, nm1X, nm2X;
-  if (rx.ratio === 2) {
-    metalX = bondCanvas.width / 2; nm1X = 100; nm2X = bondCanvas.width - 100;
-  } else {
-    metalX = 170; nm1X = 390;
-  }
+  const pos = getBondLayout(rx, mobile, size.w, size.h);
 
   if (!bondView.reacted) {
-    drawAtomUnit(bondCtx, metalX, cy, metal.protons, metal.config, null, BOND_UNIT);
-    drawAtomUnit(bondCtx, nm1X, cy, nonmetal.protons, nonmetal.config, null, BOND_UNIT);
-    if (rx.ratio === 2) drawAtomUnit(bondCtx, nm2X, cy, nonmetal.protons, nonmetal.config, null, BOND_UNIT);
+    drawAtomUnit(bondCtx, pos.metal.x, pos.metal.y, metal.protons, metal.config, null, BOND_UNIT);
+    drawAtomUnit(bondCtx, pos.nm1.x, pos.nm1.y, nonmetal.protons, nonmetal.config, null, BOND_UNIT);
+    if (rx.ratio === 2) drawAtomUnit(bondCtx, pos.nm2.x, pos.nm2.y, nonmetal.protons, nonmetal.config, null, BOND_UNIT);
 
     const metalOuter = BOND_UNIT.shellRadii[metal.config.length - 1];
     const nmOuter = BOND_UNIT.shellRadii[nonmetal.config.length - 1];
     const eachTransfer = rx.ratio === 2 ? 1 : (metal.config[metal.config.length-1]);
     if (rx.ratio === 2) {
-      drawArrow(bondCtx, metalX - metalOuter, cy - 10, nm1X + nmOuter, cy - 10, `${eachTransfer}e⁻`);
-      drawArrow(bondCtx, metalX + metalOuter, cy - 10, nm2X - nmOuter, cy - 10, `${eachTransfer}e⁻`);
+      const e1 = edgePoints(pos.metal, metalOuter, pos.nm1, nmOuter);
+      drawArrow(bondCtx, e1.from.x, e1.from.y, e1.to.x, e1.to.y, `${eachTransfer}e⁻`);
+      const e2 = edgePoints(pos.metal, metalOuter, pos.nm2, nmOuter);
+      drawArrow(bondCtx, e2.from.x, e2.from.y, e2.to.x, e2.to.y, `${eachTransfer}e⁻`);
     } else {
-      drawArrow(bondCtx, metalX + metalOuter, cy - 10, nm1X - nmOuter, cy - 10, `${eachTransfer}e⁻`);
+      const e = edgePoints(pos.metal, metalOuter, pos.nm1, nmOuter);
+      drawArrow(bondCtx, e.from.x, e.from.y, e.to.x, e.to.y, `${eachTransfer}e⁻`);
     }
     document.getElementById('bond-info').textContent = `${metal.name} atom + ${nonmetal.name} atom${rx.ratio===2?' × 2':''} — before reacting, neither has a full outer shell`;
     btn.textContent = '⚡ React!';
@@ -922,22 +955,27 @@ function renderBondView() {
     const metalLabel = chargeLabel(metal.symbol, metalIon.charge, metalIon.sign);
     const nmLabel = chargeLabel(nonmetal.symbol, nmIon.charge, nmIon.sign);
 
-    drawAtomUnit(bondCtx, metalX, cy, metal.protons, metalIon.config, metalLabel, BOND_UNIT);
-    drawAtomUnit(bondCtx, nm1X, cy, nonmetal.protons, nmIon.config, nmLabel, BOND_UNIT);
-    if (rx.ratio === 2) drawAtomUnit(bondCtx, nm2X, cy, nonmetal.protons, nmIon.config, nmLabel, BOND_UNIT);
+    drawAtomUnit(bondCtx, pos.metal.x, pos.metal.y, metal.protons, metalIon.config, metalLabel, BOND_UNIT);
+    drawAtomUnit(bondCtx, pos.nm1.x, pos.nm1.y, nonmetal.protons, nmIon.config, nmLabel, BOND_UNIT);
+    if (rx.ratio === 2) drawAtomUnit(bondCtx, pos.nm2.x, pos.nm2.y, nonmetal.protons, nmIon.config, nmLabel, BOND_UNIT);
 
     const metalOuter = BOND_UNIT.shellRadii[metalIon.config.length - 1];
     const nmOuter = BOND_UNIT.shellRadii[nmIon.config.length - 1];
     if (rx.ratio === 2) {
-      drawDashedLink(bondCtx, metalX - metalOuter, cy, nm1X + nmOuter, cy);
-      drawDashedLink(bondCtx, metalX + metalOuter, cy, nm2X - nmOuter, cy);
+      const l1 = edgePoints(pos.metal, metalOuter, pos.nm1, nmOuter);
+      drawDashedLink(bondCtx, l1.from.x, l1.from.y, l1.to.x, l1.to.y);
+      const l2 = edgePoints(pos.metal, metalOuter, pos.nm2, nmOuter);
+      drawDashedLink(bondCtx, l2.from.x, l2.from.y, l2.to.x, l2.to.y);
     } else {
-      drawDashedLink(bondCtx, metalX + metalOuter, cy, nm1X - nmOuter, cy);
+      const l = edgePoints(pos.metal, metalOuter, pos.nm1, nmOuter);
+      drawDashedLink(bondCtx, l.from.x, l.from.y, l.to.x, l.to.y);
     }
     document.getElementById('bond-info').textContent = `${metalLabel} + ${rx.ratio===2?'2 '+nmLabel:nmLabel} → ${rx.name} (${rx.compound}), held together by electrostatic attraction`;
     btn.textContent = '↺ Show atoms';
   }
 }
+
+bondMobileQuery.addEventListener('change', renderBondView);
 
 function setBondReaction(key) {
   bondView.key = key;
