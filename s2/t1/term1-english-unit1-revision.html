@@ -104,6 +104,9 @@ body::before {
 
 .info-box { background: var(--surface2); border-left: 3px solid var(--accent-eng); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
 .passage-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 0 0 20px; font-style: italic; color: var(--text); line-height: 1.75; }
+.passage-box p { margin: 0 0 12px; }
+.passage-box p:last-of-type { margin-bottom: 0; }
+.passage-box .passage-source { margin-top: 12px; font-style: normal; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); }
 .passage-box .passage-q { margin-top: 12px; font-style: normal; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-eng); }
 
 .q-card {
@@ -859,8 +862,15 @@ body::before {
   <div class="info-box">P.E.E.E stands for <strong>Point</strong> (your main idea, directly answering the question), <strong>Evidence</strong> (a short, well-chosen quotation from the text), <strong>Explanation</strong> (how the evidence supports your point &mdash; don't just repeat the quotation), and <strong>Explore</strong> (zoom in on one word, phrase or technique and analyse its effect on the reader).</div>
 
   <div class="passage-box">
-    Sam stood outside the examination room. His notes shook in his hands. Everyone else appeared calm, but his thoughts crashed into one another. When his name was called, he took a slow breath and stepped forward.
-    <div class="passage-q">Question used below: How does the writer present Sam's challenge?</div>
+    <p>Suddenly there was a flash of light, and a quantity of luminous greenish smoke came out of the pit in three distinct puffs, which drove up, one after the other, straight into the still air.</p>
+    <p>This smoke (or flame, perhaps, would be the better word for it) was so bright that the deep blue sky overhead and the hazy stretches of brown common towards Chertsey, set with black pine trees, seemed to darken abruptly as these puffs arose, and to remain the darker after their dispersal. At the same time a faint hissing sound became audible.</p>
+    <p>Beyond the pit stood the little wedge of people with the white flag at its apex, arrested by these phenomena, a little knot of small vertical black shapes upon the black ground. As the green smoke arose, their faces flashed out pallid green, and faded again as it vanished. Then slowly the hissing passed into a humming, into a long, loud, droning noise. Slowly a humped shape rose out of the pit, and the ghost of a beam of light seemed to flicker out from it.</p>
+    <p>Forthwith flashes of actual flame, a bright glare leaping from one to another, sprang from the scattered group of men. It was as if some invisible jet impinged upon them and flashed into white flame. It was as if each man were suddenly and momentarily turned to fire.</p>
+    <p>Then, by the light of their own destruction, I saw them staggering and falling, and their supporters turning to run.</p>
+    <p>I stood staring, not as yet realising that this was death leaping from man to man in that little distant crowd. All I felt was that it was something very strange. An almost noiseless and blinding flash of light, and a man fell headlong and lay still; and as the unseen shaft of heat passed over them, pine trees burst into fire, and every dry furze bush became with one dull thud a mass of flames. And far away towards Knaphill I saw the flashes of trees and hedges and wooden buildings suddenly set alight.</p>
+    <p>It was sweeping round swiftly and steadily, this flaming death, this invisible, inevitable sword of heat. I perceived it coming towards me by the flashing bushes it touched, and was too astounded and stupefied to stir. I heard the crackle of fire in the sand-pits and the sudden squeal of a horse that was as suddenly stilled. Then it was as if an invisible yet intensely heated finger were drawn through the heather between me and the Martians, and all along a curving line beyond the sand-pits the dark ground smoked and crackled. Something fell with a crash far away to the left where the road from Woking station opens out on the common. Forthwith the hissing and humming ceased, and the black, dome-like object sank slowly out of sight into the pit.</p>
+    <div class="passage-source">From <em>The War of the Worlds</em> by H. G. Wells (1898)</div>
+    <div class="passage-q">Question used below: How does the writer present the destructive power of the heat-ray?</div>
   </div>
 
   <!-- Q34 -->
@@ -901,13 +911,13 @@ body::before {
 
   <!-- Q36 -->
   <div class="q-card" id="qcard-e36">
-    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">In the Sam passage, which single quoted phrase best serves as <em>evidence</em> that Sam is mentally overwhelmed? Type the phrase exactly as it appears (no quotation marks needed).</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">In this passage, which single quoted phrase best serves as <em>evidence</em> that the heat-ray is presented as an unstoppable, almost supernatural weapon? Type the phrase exactly as it appears (no quotation marks needed).</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="text-row"><input type="text" class="text-input" id="e36-ans" placeholder="Type the quotation..." style="max-width:460px;"></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkText('e36','his thoughts crashed into one another','Q36')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('e36','Look for the phrase describing what happens to Sam\'s thoughts.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('e36','his thoughts crashed into one another — this phrase shows Sam\'s mind is overwhelmed and out of control.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkText('e36','this invisible, inevitable sword of heat','Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e36','Look for the phrase in the final paragraph that names the heat-ray using a weapon metaphor.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e36','this invisible, inevitable sword of heat — this phrase presents the heat-ray as an unstoppable, weapon-like force sweeping through the landscape.')">Show Answer</button>
       </div>
       <div class="feedback" id="e36-fb"></div>
     </div>
@@ -915,18 +925,18 @@ body::before {
 
   <!-- Q37 -->
   <div class="q-card" id="qcard-e37">
-    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Which is the strongest <em>Explain</em> step for the evidence "his thoughts crashed into one another"?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Which is the strongest <em>Explain</em> step for the evidence "this invisible, inevitable sword of heat"?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <div class="mcq-options" id="e37-opts">
         <div class="mcq-opt" onclick="selectMCQ('e37', this, 'a')"><div class="opt-indicator"></div><span>This is a metaphor.</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'b')"><div class="opt-indicator"></div><span>Sam is walking into a room.</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'c')"><div class="opt-indicator"></div><span>The writer uses short sentences.</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'd')"><div class="opt-indicator"></div><span>This suggests that Sam is struggling to control his anxious thoughts before entering the exam room.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'b')"><div class="opt-indicator"></div><span>The Martians are standing in a pit.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'c')"><div class="opt-indicator"></div><span>The writer uses long sentences.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'd')"><div class="opt-indicator"></div><span>This suggests that the heat-ray is presented as an unstoppable, almost supernatural weapon against which the humans have no defence, emphasising their helplessness.</span></div>
       </div>
       <div class="q-actions">
         <button class="btn btn-check" onclick="checkMCQ('e37','d','Q37')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('e37','A good Explain step interprets what the quotation reveals about the character\'s state of mind, not just labels a technique.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('e37','D — this interprets what the quotation reveals about Sam\'s state of mind, rather than just naming a technique or restating the plot.')">Show Answer</button>
+        <button class="btn btn-hint" onclick="showHint('e37','A good Explain step interprets what the metaphor reveals about the humans\' helplessness, not just labels a technique.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e37','D — this interprets what the metaphor reveals about the humans\' helplessness in the face of the heat-ray, rather than just naming a technique or restating the plot.')">Show Answer</button>
       </div>
       <div class="feedback" id="e37-fb"></div>
     </div>
@@ -952,17 +962,17 @@ body::before {
 
   <!-- Q39 -->
   <div class="q-card" id="qcard-e39">
-    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">In the model answer, the verb "crashed" is described as suggesting:</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">In the model answer, the phrase "staggering and falling" is described as suggesting:</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="e39-opts">
-        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'a')"><div class="opt-indicator"></div><span>Sam's thoughts are calm and orderly</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'b')"><div class="opt-indicator"></div><span>Sam's thoughts are colliding violently and uncontrollably</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'c')"><div class="opt-indicator"></div><span>Sam is physically falling</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'd')"><div class="opt-indicator"></div><span>Sam is angry at another person</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'a')"><div class="opt-indicator"></div><span>The men are dancing joyfully</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'b')"><div class="opt-indicator"></div><span>The men are being fatally struck down by the heat-ray, dying in real time before the narrator's eyes</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'c')"><div class="opt-indicator"></div><span>The men are simply resting</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'd')"><div class="opt-indicator"></div><span>The men are hiding safely behind the pine trees</span></div>
       </div>
       <div class="q-actions">
         <button class="btn btn-check" onclick="checkMCQ('e39','b','Q39')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('e39','B — \'Crashed\' suggests Sam\'s thoughts are colliding violently and uncontrollably, capturing his anxiety.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e39','B — \'staggering and falling\' shows the men being fatally struck down by the heat-ray, dramatised in real time as the narrator watches helplessly.')">Show Answer</button>
       </div>
       <div class="feedback" id="e39-fb"></div>
     </div>

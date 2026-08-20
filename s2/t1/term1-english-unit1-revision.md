@@ -256,10 +256,23 @@ Answer: _______________________________________
 
 **Key ideas:** P.E.E.E stands for **Point** (your main idea, directly answering the question), **Evidence** (a short, well-chosen quotation from the text), **Explanation** (how the evidence supports your point — don't just repeat the quotation), and **Explore** (zoom in on one word, phrase or technique and analyse its effect on the reader).
 
-**Passage:**
-> Sam stood outside the examination room. His notes shook in his hands. Everyone else appeared calm, but his thoughts crashed into one another. When his name was called, he took a slow breath and stepped forward.
+**Passage:** *from* The War of the Worlds *by H. G. Wells (1898)*
 
-**Question used below:** *How does the writer present Sam's challenge?*
+> Suddenly there was a flash of light, and a quantity of luminous greenish smoke came out of the pit in three distinct puffs, which drove up, one after the other, straight into the still air.
+>
+> This smoke (or flame, perhaps, would be the better word for it) was so bright that the deep blue sky overhead and the hazy stretches of brown common towards Chertsey, set with black pine trees, seemed to darken abruptly as these puffs arose, and to remain the darker after their dispersal. At the same time a faint hissing sound became audible.
+>
+> Beyond the pit stood the little wedge of people with the white flag at its apex, arrested by these phenomena, a little knot of small vertical black shapes upon the black ground. As the green smoke arose, their faces flashed out pallid green, and faded again as it vanished. Then slowly the hissing passed into a humming, into a long, loud, droning noise. Slowly a humped shape rose out of the pit, and the ghost of a beam of light seemed to flicker out from it.
+>
+> Forthwith flashes of actual flame, a bright glare leaping from one to another, sprang from the scattered group of men. It was as if some invisible jet impinged upon them and flashed into white flame. It was as if each man were suddenly and momentarily turned to fire.
+>
+> Then, by the light of their own destruction, I saw them staggering and falling, and their supporters turning to run.
+>
+> I stood staring, not as yet realising that this was death leaping from man to man in that little distant crowd. All I felt was that it was something very strange. An almost noiseless and blinding flash of light, and a man fell headlong and lay still; and as the unseen shaft of heat passed over them, pine trees burst into fire, and every dry furze bush became with one dull thud a mass of flames. And far away towards Knaphill I saw the flashes of trees and hedges and wooden buildings suddenly set alight.
+>
+> It was sweeping round swiftly and steadily, this flaming death, this invisible, inevitable sword of heat. I perceived it coming towards me by the flashing bushes it touched, and was too astounded and stupefied to stir. I heard the crackle of fire in the sand-pits and the sudden squeal of a horse that was as suddenly stilled. Then it was as if an invisible yet intensely heated finger were drawn through the heather between me and the Martians, and all along a curving line beyond the sand-pits the dark ground smoked and crackled. Something fell with a crash far away to the left where the road from Woking station opens out on the common. Forthwith the hissing and humming ceased, and the black, dome-like object sank slowly out of sight into the pit.
+
+**Question used below:** *How does the writer present the destructive power of the heat-ray?*
 
 ### Questions
 
@@ -278,16 +291,16 @@ What is the purpose of the "Evidence" step in P.E.E.E?
 - D) To predict what happens next
 
 **Q36** (1 mark)
-In the Sam passage, which single quoted phrase best serves as **evidence** that Sam is mentally overwhelmed? Write the phrase exactly as it appears (no quotation marks needed).
+In this passage, which single quoted phrase best serves as **evidence** that the heat-ray is presented as an unstoppable, almost supernatural weapon? Write the phrase exactly as it appears (no quotation marks needed).
 
 Answer: _______________________________________
 
 **Q37** (2 marks)
-Which is the strongest **Explain** step for the evidence "his thoughts crashed into one another"?
+Which is the strongest **Explain** step for the evidence "this invisible, inevitable sword of heat"?
 - A) This is a metaphor.
-- B) Sam is walking into a room.
-- C) The writer uses short sentences.
-- D) This suggests that Sam is struggling to control his anxious thoughts before entering the exam room.
+- B) The Martians are standing in a pit.
+- C) The writer uses long sentences.
+- D) This suggests that the heat-ray is presented as an unstoppable, almost supernatural weapon against which the humans have no defence, emphasising their helplessness.
 
 **Q38** (2 marks)
 What does the "Explore" step in P.E.E.E ask you to do?
@@ -297,11 +310,11 @@ What does the "Explore" step in P.E.E.E ask you to do?
 - D) Give your overall opinion of the passage
 
 **Q39** (1 mark)
-In the model answer, the verb "crashed" is described as suggesting:
-- A) Sam's thoughts are calm and orderly
-- B) Sam's thoughts are colliding violently and uncontrollably
-- C) Sam is physically falling
-- D) Sam is angry at another person
+In the model answer, the phrase "staggering and falling" is described as suggesting:
+- A) The men are dancing joyfully
+- B) The men are being fatally struck down by the heat-ray, dying in real time before the narrator's eyes
+- C) The men are simply resting
+- D) The men are hiding safely behind the pine trees
 
 **Q40** (1 mark)
 "The little girl gave a cry of amazement and looked about her, her eyes growing bigger and bigger..." Which literary technique is created by repeating "bigger"? (one word)
