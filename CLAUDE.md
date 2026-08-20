@@ -35,6 +35,19 @@ npx serve .
 
 No install step. No linting or test suite.
 
+## Generating a PDF from a printable `.md` sheet
+
+Revision handouts (e.g. `s2/t1/term1-english-unit1-revision.md`) are plain GFM Markdown. To generate a PDF, use `pandoc` with `xelatex`:
+
+```bash
+pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pdf \
+  --pdf-engine=xelatex -V geometry:margin=2.2cm -V fontsize=11pt -V colorlinks=true
+```
+
+**`-f gfm` is required, not optional.** These sheets write MCQ options as a `-` list directly under the question line with no blank line in between (matching GitHub's rendering, since GFM lets a list interrupt a paragraph). Pandoc's default `markdown` reader does *not* allow that — it requires a blank line before a list starts, so without `-f gfm` the options get swallowed into the question paragraph as run-on text (e.g. "...What are they? - A) ... - B) ...") instead of rendering as a bulleted list. Always spot-check the generated PDF's first MCQ question to confirm the options actually render as bullets, not inline dashes.
+
+This is an on-demand, local step — no PDF output is committed or wired into any build/deploy process (see Constraints below).
+
 ## Adding a New Exercise Sheet
 
 ### Cambridge sheets

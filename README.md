@@ -97,6 +97,17 @@ npx serve .
 # then visit http://localhost:3000
 ```
 
+## Generating PDFs
+
+The printable `.md` worksheets can be turned into a PDF locally with [pandoc](https://pandoc.org/) — no PDFs are committed to the repo (see `.gitignore`), so generate one whenever you need it:
+
+```bash
+pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pdf \
+  --pdf-engine=xelatex -V geometry:margin=2.2cm -V fontsize=11pt -V colorlinks=true
+```
+
+`-f gfm` matters: these sheets write MCQ options as a `-` list directly under the question line with no blank line before it (as GitHub renders it). Pandoc's default markdown reader needs that blank line to start a list, so without `-f gfm` the options collapse into run-on paragraph text instead of bullets. Requires `pandoc` and a LaTeX engine (`xelatex`, from a TeX distribution like MacTeX/TeX Live) installed locally.
+
 ## Subjects Covered
 
 ### Cambridge Secondary 1
