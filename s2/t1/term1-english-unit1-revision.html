@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Unit Test 1 Revision · Sentence Types & Reading Comprehension</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent-eng: #f5a623;
+  --accent-math: #4f8ef7;
+  --accent-sci: #3ecf8e;
+  --accent-warn: #f5a623;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --correct: #2ecc71;
+  --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px; height: 58px; gap: 16px;
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-eng); }
+.week-badge {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px;
+}
+.score-pill {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 24px; padding: 5px 16px 5px 10px;
+}
+.score-pill .score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-pill .score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-eng); transition: color 0.3s; min-width: 48px; text-align: right; }
+
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-eng), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-eng); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-eng { background: var(--accent-eng); }
+
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab {
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px;
+  padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s;
+}
+.sub-tab:hover { border-color: var(--accent-eng); color: var(--text); }
+
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(245,166,35,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-eng); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.passage-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 0 0 20px; font-style: italic; color: var(--text); line-height: 1.75; }
+.passage-box .passage-q { margin-top: 12px; font-style: normal; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-eng); }
+
+.q-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s;
+  animation: slideIn 0.35s ease both;
+}
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-eng); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-eng); background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface2); border: 1.5px solid var(--border);
+  border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none;
+}
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-eng); }
+.mcq-opt.selected { border-color: var(--accent-eng); background: rgba(245,166,35,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator {
+  width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; transition: all 0.2s;
+}
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-eng); background: var(--accent-eng); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+
+.text-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.text-input {
+  width: 100%; max-width: 420px;
+  background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px;
+  color: var(--text); font-family: var(--font-body); font-size: 0.95rem; padding: 10px 14px;
+  transition: border-color 0.2s; outline: none;
+}
+.text-input:focus { border-color: var(--accent-eng); }
+.text-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.06); }
+.text-input.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.06); }
+
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-eng); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-eng); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-eng), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+
+.extended-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px; margin-top: 16px; }
+.extended-box h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 6px; color: var(--accent-eng); }
+.extended-box p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.6; }
+.ew-task { border-top: 1px solid var(--border); padding: 14px 0; }
+.ew-task:first-of-type { border-top: none; padding-top: 0; }
+.ew-task strong { color: var(--text); }
+.ew-list { margin: 8px 0 0 20px; font-size: 0.88rem; color: var(--text-muted); }
+.ew-list li { margin-bottom: 4px; }
+
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-eng); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-eng); }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+
+#confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+
+@keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { from { opacity: 0; transform: scale(0.92) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+@keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); } 70% { box-shadow: 0 0 0 10px rgba(46,204,113,0); } 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); } }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">S2 · Unit Test 1</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 50</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Term 1 &middot; English &middot; Level 2/3</div>
+  <h1>Unit Test 1 Revision:<br><em>Sentence Types &amp; Reading Comprehension</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-eng"></div>Sentence Types &middot; Conjunctive Adverbs &middot; P.E.E.E Reading Comprehension</div>
+    <div class="hero-chip"><div class="dot dot-eng" style="background:var(--text-dim)"></div>42 questions &middot; self-marked &middot; 50 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Unit Test 1 &mdash; 26 August 2026</h3>
+  <p>Scope: Reading Comprehension &amp; Grammar (Sentence Types). This sheet covers all five topics from class: simple sentences, FANBOYS compound sentences, conjunctive adverbs (MOTH) &amp; semicolons, complex &amp; compound-complex sentences, and answering reading comprehension questions with P.E.E.E. For four longer, open-ended writing tasks (not auto-marked), see the <a href="./term1-english-unit1-revision.md" style="color:var(--accent-eng);">printable version</a>.</p>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#sentence-basics" class="sub-tab">&#9997;&#65039; The Sentence &amp; Simple Sentences</a>
+  <a href="#fanboys" class="sub-tab">&#128279; Compound &mdash; FANBOYS</a>
+  <a href="#moth" class="sub-tab">&#8987; Compound &mdash; MOTH &amp; Semicolons</a>
+  <a href="#complex" class="sub-tab">&#129504; Complex &amp; Compound-Complex</a>
+  <a href="#peee" class="sub-tab">&#128214; Reading Comprehension: P.E.E.E</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: THE SENTENCE & SIMPLE SENTENCES ═══════════════ -->
+<div id="sentence-basics">
+  <div class="section-header"><div class="section-icon">&#9997;&#65039;</div><div><div class="sub-label">Section A</div><h2>The Sentence &amp; Simple Sentences</h2></div></div>
+  <div class="info-box">Every sentence needs a <strong>subject</strong> (who/what is being discussed) and a <strong>predicate</strong> (the part containing the verb). A <strong>simple sentence</strong> contains only one subject and one predicate &mdash; but that subject or predicate can be <em>compound</em> (more than one person/place/thing, or more than one action). The four types: <strong>SS</strong> (single subject/single predicate), <strong>CS</strong> (compound subject/single predicate), <strong>SC</strong> (single subject/compound predicate), <strong>CC</strong> (compound subject/compound predicate).</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-e1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Every sentence must contain two essential parts. What are they?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'a')"><div class="opt-indicator"></div><span>A subject and a predicate</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'b')"><div class="opt-indicator"></div><span>A noun and an adjective</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'c')"><div class="opt-indicator"></div><span>A verb and an object</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'd')"><div class="opt-indicator"></div><span>A conjunction and a clause</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e1','a','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e1','A — Subject (who/what is discussed) + predicate (the part containing the verb).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-e2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">"Technology benefits society." &mdash; Type the <em>predicate</em> of this sentence (the part containing the verb).</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e2-ans" placeholder="Type the predicate..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e2','benefits society','Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e2','The predicate is everything except the subject.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e2','benefits society — everything in the sentence except the subject (\'Technology\').')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-e3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">What does "CS" stand for in the sentence-type abbreviations?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'a')"><div class="opt-indicator"></div><span>Complex sentence</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'b')"><div class="opt-indicator"></div><span>Compound subject, single predicate</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'c')"><div class="opt-indicator"></div><span>Single subject, compound predicate</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'd')"><div class="opt-indicator"></div><span>Compound subject, compound predicate</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e3','b','Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e3','B — Compound subject, single predicate.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-e4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Which sentence below is <em>CC</em> (compound subject / compound predicate)?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'a')"><div class="opt-indicator"></div><span>The internet allows us to communicate easily and access information.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'b')"><div class="opt-indicator"></div><span>Technology has benefitted society.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'c')"><div class="opt-indicator"></div><span>Middle-aged people and the older generation read the news and communicate with friends online.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'd')"><div class="opt-indicator"></div><span>Instagram helps entertain teenagers.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e4','c','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e4','Look for a sentence with two subjects AND two actions.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e4','C — Two subjects (\'Middle-aged people\' and \'the older generation\') and two actions (\'read\' and \'communicate\').')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-e5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Classify this sentence using SS, CS, SC or CC: "Most students and teachers use the internet every day."</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e5-ans" placeholder="Type SS, CS, SC or CC..." style="max-width:160px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e5','cs','Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e5','CS — one predicate (\'use\'), but a compound subject (\'students and teachers\').')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-e6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Classify this sentence: "The internet provides information and helps us communicate."</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e6-ans" placeholder="Type SS, CS, SC or CC..." style="max-width:160px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e6','sc','Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e6','SC — one subject (\'The internet\'), but a compound predicate (\'provides\' and \'helps\').')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-e7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">What is a "compound subject"?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'a')"><div class="opt-indicator"></div><span>A predicate with two verbs</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'b')"><div class="opt-indicator"></div><span>Two sentences joined by "and"</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'c')"><div class="opt-indicator"></div><span>A subject that repeats itself</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'd')"><div class="opt-indicator"></div><span>A subject containing more than one person, place or thing</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e7','d','Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e7','D — A subject that includes more than one person, place or thing.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-e8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A simple sentence, regardless of its SS/CS/SC/CC type, always contains:</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e8', this, 'a')"><div class="opt-indicator"></div><span>only one independent clause</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e8', this, 'b')"><div class="opt-indicator"></div><span>a dependent clause</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e8', this, 'c')"><div class="opt-indicator"></div><span>two independent clauses</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e8', this, 'd')"><div class="opt-indicator"></div><span>a semicolon</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e8','a','Q8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e8','A — A simple sentence is always just one independent clause, however its subject/predicate is arranged.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">THE SENTENCE &amp; SIMPLE SENTENCES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sa-fill"></div></div>
+    <div class="section-score-val" id="sec-sa-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: FANBOYS ═══════════════ -->
+<div id="fanboys">
+  <div class="section-header"><div class="section-icon">&#128279;</div><div><div class="sub-label">Section B</div><h2>Compound Sentences &mdash; FANBOYS</h2></div></div>
+  <div class="info-box">A <strong>compound sentence</strong> joins <strong>two or more independent clauses</strong>. The first way to do this is with a <strong>coordinating conjunction</strong> &mdash; remember them with <strong>FANBOYS</strong>: for, and, nor, but, or, yet, so. A comma usually goes before the conjunction, though it can be dropped if both clauses are short.</div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-e9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">What do we call a sentence formed by joining two or more independent clauses?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e9-ans" placeholder="Type your answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e9','compound sentence','Q9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e9','A compound sentence.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-e10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Which of the following is <em>NOT</em> one of the FANBOYS conjunctions?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e10', this, 'a')"><div class="opt-indicator"></div><span>for</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e10', this, 'b')"><div class="opt-indicator"></div><span>however</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e10', this, 'c')"><div class="opt-indicator"></div><span>yet</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e10', this, 'd')"><div class="opt-indicator"></div><span>so</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e10','b','Q10')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e10','B — \'However\' is a conjunctive adverb (MOTH), not a FANBOYS conjunction.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-e11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Fill in the blank with the correct FANBOYS conjunction (it means "for that reason"): "Robots don't make mistakes, ___ they are used in factories."</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e11-ans" placeholder="Type the conjunction..." style="max-width:160px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e11','so','Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e11','so — \'so\' joins two clauses when the first is the reason for the second.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-e12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Which coordinating conjunction means "also not" and requires inverted word order (e.g. "nor can she...")?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e12', this, 'a')"><div class="opt-indicator"></div><span>but</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e12', this, 'b')"><div class="opt-indicator"></div><span>or</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e12', this, 'c')"><div class="opt-indicator"></div><span>nor</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e12', this, 'd')"><div class="opt-indicator"></div><span>yet</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e12','c','Q12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e12','C — \'Nor\' means \'also not\', e.g. \'Siri cannot do your homework, nor can she solve your friendship issues.\'')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-e13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Rewrite using "nor": "Siri can't do your homework. Siri can't solve your friendship issues." Type only the words that follow the comma.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e13-ans" placeholder="nor can she..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e13','nor can she solve','Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e13','Start with &quot;nor&quot;, then flip the auxiliary verb and subject into question order.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e13','nor can she solve your friendship issues — the auxiliary verb (can) moves before the subject (she), and the verb becomes positive.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-e14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">"But" is used to:</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'a')"><div class="opt-indicator"></div><span>show two equally weighted options</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'b')"><div class="opt-indicator"></div><span>give a reason</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'c')"><div class="opt-indicator"></div><span>show time order</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'd')"><div class="opt-indicator"></div><span>contrast two ideas</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e14','d','Q14')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e14','D — \'But\' contrasts two ideas, usually a positive verb followed by a negative one (or vice versa).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-e15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">"Robots are very efficient and reliable, ___ they are not very creative." Which FANBOYS conjunction fits?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e15-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e15', this, 'a')"><div class="opt-indicator"></div><span>but</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e15', this, 'b')"><div class="opt-indicator"></div><span>so</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e15', this, 'c')"><div class="opt-indicator"></div><span>for</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e15', this, 'd')"><div class="opt-indicator"></div><span>nor</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e15','a','Q15')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e15','A — \'But\' contrasts the positive first clause with the negative second clause.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-e16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">According to the comma rule, when is a comma optional before a FANBOYS conjunction?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'a')"><div class="opt-indicator"></div><span>When using "nor"</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'b')"><div class="opt-indicator"></div><span>When both independent clauses are short</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'c')"><div class="opt-indicator"></div><span>When the sentence is a question</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'd')"><div class="opt-indicator"></div><span>Never — a comma is always required</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e16','b','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e16','Think about &quot;Robots do not make mistakes so they are used in factories&quot; versus a longer example.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e16','B — If both clauses are short, the comma is not necessary, though you can still add one if unsure.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e16-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">FANBOYS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sb-fill"></div></div>
+    <div class="section-score-val" id="sec-sb-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: MOTH & SEMICOLONS ═══════════════ -->
+<div id="moth">
+  <div class="section-header"><div class="section-icon">&#8987;</div><div><div class="sub-label">Section C</div><h2>Compound Sentences &mdash; MOTH &amp; Semicolons</h2></div></div>
+  <div class="info-box">A compound sentence can also be formed with a <strong>conjunctive adverb</strong> &mdash; remember four of them with <strong>MOTH</strong>: Moreover, Otherwise, Therefore, However. Punctuation rule: <strong>semicolon before</strong>, <strong>comma after</strong> the conjunctive adverb. A third way to join independent clauses is with <strong>only a semicolon</strong> &mdash; but only when the two clauses are very closely related.</div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-e17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">What punctuation comes immediately <em>BEFORE</em> a conjunctive adverb like "however" when joining two independent clauses?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e17-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e17', this, 'a')"><div class="opt-indicator"></div><span>a comma</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e17', this, 'b')"><div class="opt-indicator"></div><span>a full stop</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e17', this, 'c')"><div class="opt-indicator"></div><span>a semicolon</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e17', this, 'd')"><div class="opt-indicator"></div><span>a colon</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e17','c','Q17')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e17','C — A semicolon goes before the conjunctive adverb, e.g. \'...stay in touch; however, it can be used for bullying.\'')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e17-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-e18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">What punctuation comes immediately <em>AFTER</em> a conjunctive adverb (type the punctuation mark's name)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e18-ans" placeholder="Type the punctuation mark's name..." style="max-width:200px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e18','comma','Q18')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e18','comma — semicolon before, comma after: \'...stay in touch; however, it can be used for bullying.\'')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e18-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-e19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">MOTH is a memory acronym for four conjunctive adverbs. Which is the <em>odd one out</em> (NOT part of MOTH)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e19-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e19', this, 'a')"><div class="opt-indicator"></div><span>Moreover</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e19', this, 'b')"><div class="opt-indicator"></div><span>Otherwise</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e19', this, 'c')"><div class="opt-indicator"></div><span>Therefore</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e19', this, 'd')"><div class="opt-indicator"></div><span>Nevertheless</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e19','d','Q19')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e19','D — MOTH stands for Moreover, Otherwise, Therefore, However. \'Nevertheless\' is not part of the acronym (though it is another valid conjunctive adverb).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e19-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-e20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">"However" is the MOTH equivalent of which FANBOYS conjunction?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e20-ans" placeholder="Type the conjunction..." style="max-width:160px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e20','but','Q20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e20','but — Moreover=And, Otherwise=Or, Therefore=So, However=But.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e20-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-e21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Which conjunctive adverb correctly completes: "Social media helps people stay in touch; ___, it can be used for bullying."?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e21-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'a')"><div class="opt-indicator"></div><span>however</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'b')"><div class="opt-indicator"></div><span>otherwise</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'c')"><div class="opt-indicator"></div><span>moreover</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'd')"><div class="opt-indicator"></div><span>therefore</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e21','a','Q21')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e21','A — \'However\' signals the contrast between staying in touch (positive) and bullying (negative).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e21-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-e22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Which word below signals <em>cause-and-effect</em> rather than contrast?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e22-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'a')"><div class="opt-indicator"></div><span>nevertheless</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'b')"><div class="opt-indicator"></div><span>consequently</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'c')"><div class="opt-indicator"></div><span>alternatively</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'd')"><div class="opt-indicator"></div><span>meanwhile</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e22','b','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e22','Look at the Cause-and-Effect list in the Conjunctive Adverbs Reference.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e22','B — \'Consequently\' is in the Cause-and-Effect group, alongside \'thus\', \'as a result\', \'accordingly\'.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e22-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-e23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Which word shows <em>comparison/similarity</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e23-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e23', this, 'a')"><div class="opt-indicator"></div><span>hence</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e23', this, 'b')"><div class="opt-indicator"></div><span>meanwhile</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e23', this, 'c')"><div class="opt-indicator"></div><span>likewise</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e23', this, 'd')"><div class="opt-indicator"></div><span>essentially</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e23','c','Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e23','Look at the Compare/Similar list in the Conjunctive Adverbs Reference.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e23','C — \'Likewise\' is in the Compare/Similar group, alongside \'similarly\', \'comparatively\', \'in the same way\'.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e23-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-e24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">Joining two independent clauses with only a semicolon (no conjunction/adverb) is only appropriate when:</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e24-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'a')"><div class="opt-indicator"></div><span>the two clauses are of different lengths</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'b')"><div class="opt-indicator"></div><span>FANBOYS words are unavailable</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'c')"><div class="opt-indicator"></div><span>the sentence is a question</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'd')"><div class="opt-indicator"></div><span>the relationship between the clauses is very close</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e24','d','Q24')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e24','D — e.g. \'Robots might destroy our civilization; their power must be limited.\' The clauses are closely linked (one is because of the other).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e24-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MOTH &amp; SEMICOLONS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sc-fill"></div></div>
+    <div class="section-score-val" id="sec-sc-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: COMPLEX & COMPOUND-COMPLEX ═══════════════ -->
+<div id="complex">
+  <div class="section-header"><div class="section-icon">&#129504;</div><div><div class="sub-label">Section D</div><h2>Complex &amp; Compound-Complex Sentences</h2></div></div>
+  <div class="info-box">A <strong>complex sentence</strong> has at least one independent clause plus at least one <strong>dependent clause</strong>, joined by a <strong>dependent marker</strong> (e.g. although, because, if, when, since, unless...). Comma rule: comma <strong>after</strong> the dependent clause if it comes first; <strong>no comma</strong> if it comes after the independent clause. A <strong>compound-complex</strong> sentence combines at least two independent clauses with one or more dependent clauses.</div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-e25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A complex sentence contains at least one independent clause and:</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e25-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'a')"><div class="opt-indicator"></div><span>at least one dependent clause</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'b')"><div class="opt-indicator"></div><span>another independent clause</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'c')"><div class="opt-indicator"></div><span>no clauses at all</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'd')"><div class="opt-indicator"></div><span>two conjunctions</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e25','a','Q25')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e25','A — one independent clause + at least one dependent clause, linked by a subordinating (dependent marker) conjunction.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e25-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-e26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">"If we rely on technology too much, we will never learn to study independently." Type the dependent marker word that begins this sentence.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e26-ans" placeholder="Type the dependent marker..." style="max-width:160px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e26','if','Q26')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e26','if — a dependent marker word turns the clause that follows it into a dependent clause.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e26-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-e27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Which of these is <em>NOT</em> a common dependent marker?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e27-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e27', this, 'a')"><div class="opt-indicator"></div><span>although</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e27', this, 'b')"><div class="opt-indicator"></div><span>moreover</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e27', this, 'c')"><div class="opt-indicator"></div><span>because</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e27', this, 'd')"><div class="opt-indicator"></div><span>unless</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e27','b','Q27')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e27','B — \'Moreover\' is a conjunctive adverb (MOTH), used for compound sentences, not a dependent marker.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e27-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-e28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">"___ robots are smarter than people, they will take over the world!" Which dependent marker fits best, meaning "at the time that"?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e28-ans" placeholder="Type the dependent marker..." style="max-width:160px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e28','when','Q28')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e28','when — \'When robots become smarter than us, they will take over the world!\'')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-e29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">When a dependent clause comes <em>before</em> the independent clause, you should:</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e29-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'a')"><div class="opt-indicator"></div><span>never use a comma</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'b')"><div class="opt-indicator"></div><span>insert a semicolon instead</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'c')"><div class="opt-indicator"></div><span>insert a comma after the dependent clause</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'd')"><div class="opt-indicator"></div><span>insert a comma before the dependent clause</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e29','c','Q29')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e29','C — e.g. \'When robots become smarter than us, they will take over the world!\'')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e29-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-e30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">"Robots will take over the world when they become smarter than us!" Why is there no comma before "when" here?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'a')"><div class="opt-indicator"></div><span>Because the sentence is a question</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'b')"><div class="opt-indicator"></div><span>Because "when" is not a dependent marker</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'c')"><div class="opt-indicator"></div><span>Because the sentence is compound, not complex</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'd')"><div class="opt-indicator"></div><span>Because the dependent clause comes after the independent clause</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e30','d','Q30')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e30','D — No comma is needed when the dependent clause follows the independent clause.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e30-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-e31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">"Although drones are fun, not everybody likes them because they can invade our privacy." How many dependent clauses does this sentence contain? (type the number)</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e31-ans" placeholder="Type a number..." style="max-width:100px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e31','2','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e31','Find each dependent marker: &quot;Although...&quot; and &quot;because...&quot;')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e31','2 — \'Although drones are fun\' and \'because they can invade our privacy\' are both dependent clauses.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e31-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-e32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">A compound-complex sentence must contain:</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e32-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e32', this, 'a')"><div class="opt-indicator"></div><span>at least two independent clauses and one or more dependent clauses</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e32', this, 'b')"><div class="opt-indicator"></div><span>one independent clause only</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e32', this, 'c')"><div class="opt-indicator"></div><span>only dependent clauses</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e32', this, 'd')"><div class="opt-indicator"></div><span>exactly three clauses</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e32','a','Q32')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e32','A — at least two independent clauses that could each stand alone, plus one or more dependent clauses.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e32-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-e33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">"Although gaming is a lot of fun, it can be addictive, so parents need to restrict their children's screen time." Type the dependent marker that begins this compound-complex sentence.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e33-ans" placeholder="Type the dependent marker..." style="max-width:160px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e33','although','Q33')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e33','although — the dependent clause; \'it can be addictive\' and \'parents need to restrict their children\'s screen time\' are the two independent clauses, joined by \'so\'.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e33-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">COMPLEX &amp; COMPOUND-COMPLEX &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sd-fill"></div></div>
+    <div class="section-score-val" id="sec-sd-val">0/11</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: READING COMPREHENSION WITH P.E.E.E ═══════════════ -->
+<div id="peee">
+  <div class="section-header"><div class="section-icon">&#128214;</div><div><div class="sub-label">Section E</div><h2>Reading Comprehension with P.E.E.E</h2></div></div>
+  <div class="info-box">P.E.E.E stands for <strong>Point</strong> (your main idea, directly answering the question), <strong>Evidence</strong> (a short, well-chosen quotation from the text), <strong>Explanation</strong> (how the evidence supports your point &mdash; don't just repeat the quotation), and <strong>Explore</strong> (zoom in on one word, phrase or technique and analyse its effect on the reader).</div>
+
+  <div class="passage-box">
+    Sam stood outside the examination room. His notes shook in his hands. Everyone else appeared calm, but his thoughts crashed into one another. When his name was called, he took a slow breath and stepped forward.
+    <div class="passage-q">Question used below: How does the writer present Sam's challenge?</div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-e34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">What does the "P" in P.E.E.E stand for?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e34-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'a')"><div class="opt-indicator"></div><span>Passage</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'b')"><div class="opt-indicator"></div><span>Point</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'c')"><div class="opt-indicator"></div><span>Paragraph</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'd')"><div class="opt-indicator"></div><span>Proof</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e34','b','Q34')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e34','B — Point: the main idea that directly answers the question.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e34-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-e35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">What is the purpose of the "Evidence" step in P.E.E.E?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e35-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e35', this, 'a')"><div class="opt-indicator"></div><span>To restate the point in different words</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e35', this, 'b')"><div class="opt-indicator"></div><span>To summarise the whole passage</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e35', this, 'c')"><div class="opt-indicator"></div><span>To provide a short quotation from the text that supports the point</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e35', this, 'd')"><div class="opt-indicator"></div><span>To predict what happens next</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e35','c','Q35')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e35','C — Evidence is a short, well-chosen quotation that directly supports your point.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e35-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-e36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">In the Sam passage, which single quoted phrase best serves as <em>evidence</em> that Sam is mentally overwhelmed? Type the phrase exactly as it appears (no quotation marks needed).</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e36-ans" placeholder="Type the quotation..." style="max-width:460px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e36','his thoughts crashed into one another','Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e36','Look for the phrase describing what happens to Sam\'s thoughts.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e36','his thoughts crashed into one another — this phrase shows Sam\'s mind is overwhelmed and out of control.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e36-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-e37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Which is the strongest <em>Explain</em> step for the evidence "his thoughts crashed into one another"?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e37-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'a')"><div class="opt-indicator"></div><span>This is a metaphor.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'b')"><div class="opt-indicator"></div><span>Sam is walking into a room.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'c')"><div class="opt-indicator"></div><span>The writer uses short sentences.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'd')"><div class="opt-indicator"></div><span>This suggests that Sam is struggling to control his anxious thoughts before entering the exam room.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e37','d','Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e37','A good Explain step interprets what the quotation reveals about the character\'s state of mind, not just labels a technique.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e37','D — this interprets what the quotation reveals about Sam\'s state of mind, rather than just naming a technique or restating the plot.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e37-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-e38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">What does the "Explore" step in P.E.E.E ask you to do?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e38-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'a')"><div class="opt-indicator"></div><span>Zoom in on one word or technique from the quotation and analyse its effect on the reader</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'b')"><div class="opt-indicator"></div><span>Find a second piece of evidence</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'c')"><div class="opt-indicator"></div><span>Restate the question</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'd')"><div class="opt-indicator"></div><span>Give your overall opinion of the passage</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e38','a','Q38')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e38','A — Explore zooms in on a single word/phrase/technique and analyses why the writer chose it and its effect on the reader.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e38-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-e39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">In the model answer, the verb "crashed" is described as suggesting:</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e39-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'a')"><div class="opt-indicator"></div><span>Sam's thoughts are calm and orderly</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'b')"><div class="opt-indicator"></div><span>Sam's thoughts are colliding violently and uncontrollably</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'c')"><div class="opt-indicator"></div><span>Sam is physically falling</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'd')"><div class="opt-indicator"></div><span>Sam is angry at another person</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e39','b','Q39')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e39','B — \'Crashed\' suggests Sam\'s thoughts are colliding violently and uncontrollably, capturing his anxiety.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e39-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-e40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">"The little girl gave a cry of amazement and looked about her, her eyes growing bigger and bigger..." Which literary technique is created by repeating "bigger"? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="text-row"><input type="text" class="text-input" id="e40-ans" placeholder="Type the technique..." style="max-width:200px;"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e40','repetition','Q40')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e40','repetition — repeating \'bigger\' emphasises that her surprise keeps increasing as she looks around.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e40-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-e41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">Why do good P.E.E.E answers avoid simply repeating the quotation in the Explain step?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e41-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'a')"><div class="opt-indicator"></div><span>Because quotations are not allowed in essays</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'b')"><div class="opt-indicator"></div><span>Because quotations should only appear once per essay</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'c')"><div class="opt-indicator"></div><span>Because the Explain step must interpret what the quotation reveals, not restate it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'd')"><div class="opt-indicator"></div><span>Because the Explain step is optional</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e41','c','Q41')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e41','C — Explain should interpret and analyse what the evidence reveals, adding new meaning rather than repeating the quote.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e41-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="q-card" id="qcard-e42">
+    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">When choosing evidence to support a point, which is generally the better choice?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e42-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e42', this, 'a')"><div class="opt-indicator"></div><span>A long, vague quotation</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e42', this, 'b')"><div class="opt-indicator"></div><span>No quotation at all</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e42', this, 'c')"><div class="opt-indicator"></div><span>A quotation from a different text</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e42', this, 'd')"><div class="opt-indicator"></div><span>A short, well-chosen quotation</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e42','d','Q42')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e42','D — Short, well-chosen quotations are better than long, vague ones.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e42-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">READING COMPREHENSION: P.E.E.E &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-se-fill"></div></div>
+    <div class="section-score-val" id="sec-se-val">0/12</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ EXTENDED WRITING (not auto-marked) ═══════════════ -->
+<div id="extended-writing">
+  <div class="section-header"><div class="section-icon">&#9997;&#65039;</div><div><div class="sub-label">Not Auto-Marked</div><h2>Extended Writing</h2></div></div>
+  <div class="extended-box">
+    <h3>Four longer writing tasks</h3>
+    <p>These open-ended tasks don't have a single correct answer, so they're not self-marked here. Print the <a href="./term1-english-unit1-revision.md" style="color:var(--accent-eng);">printable version</a> to complete them in your notebook, then review your work against the checklist there with your teacher or a study partner.</p>
+    <div class="ew-task"><strong>EW1 — Compound sentences.</strong> Write a short paragraph (5 sentences) persuading your grandmother to buy a smartphone, using only compound sentences with FANBOYS conjunctions.</div>
+    <div class="ew-task"><strong>EW2 — Complex sentences.</strong> Combine three pairs of simple sentences into complex sentences using appropriate dependent markers.</div>
+    <div class="ew-task"><strong>EW3 — Reading comprehension.</strong> Answer "How does the writer present Leila's challenge?" using a full P.E.E.E paragraph.</div>
+    <div class="ew-task"><strong>EW4 — Mission Possible.</strong> Write a 10-sentence paragraph using a required mix of sentence types (1 simple, 3 compound, 4 complex, 2 compound-complex), each labelled.</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  e1:1, e2:1, e3:1, e4:2, e5:1, e6:1, e7:1, e8:1,
+  e9:1, e10:1, e11:1, e12:1, e13:2, e14:1, e15:1, e16:1,
+  e17:1, e18:1, e19:1, e20:1, e21:1, e22:1, e23:1, e24:2,
+  e25:1, e26:1, e27:1, e28:1, e29:1, e30:1, e31:2, e32:1, e33:2,
+  e34:1, e35:1, e36:1, e37:2, e38:2, e39:1, e40:1, e41:2, e42:1
+};
+
+const sections = {
+  sa: { label: 'The Sentence & Simple Sentences', qs: ['e1','e2','e3','e4','e5','e6','e7','e8'] },
+  sb: { label: 'FANBOYS', qs: ['e9','e10','e11','e12','e13','e14','e15','e16'] },
+  sc: { label: 'MOTH & Semicolons', qs: ['e17','e18','e19','e20','e21','e22','e23','e24'] },
+  sd: { label: 'Complex & Compound-Complex', qs: ['e25','e26','e27','e28','e29','e30','e31','e32','e33'] },
+  se: { label: 'Reading Comprehension: P.E.E.E', qs: ['e34','e35','e36','e37','e38','e39','e40','e41','e42'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkText(qid, correctVal, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value.trim() === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = input.value.toLowerCase().trim();
+  const correct = correctVal.toLowerCase().trim();
+  const isCorrect = val === correct || val.includes(correct) || correct.includes(val);
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Try the hint, or reveal the answer below.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`english-unit1-revision_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#f5a623','#4f8ef7','#3ecf8e','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('text-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>

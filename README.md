@@ -46,7 +46,8 @@ cambridge-practice/
 ├── s2/                              ← Secondary 2
 │   └── t1/                          ← Term 1
 │       ├── README.md                     ← Worksheet index (interactive + printable)
-│       ├── term1-maths-unit1-revision.md ← Revision handout, spans Ch 1.1–1.3 (53 q, 69 marks)
+│       ├── term1-maths-unit1-revision.md   ← Revision handout, spans Ch 1.1–1.3 (53 q, 69 marks)
+│       ├── term1-english-unit1-revision.*  ← Revision handout: Sentence Types + Reading Comprehension (42 q, 50 marks; .md also has 4 extended writing tasks)
 │       ├── w2/                      ← Week 2 (.html interactive + .md printable)
 │       │   ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (16 q, 20 marks)
 │       │   ├── term1-week2-maths-rational-irrational.*     ← Rational & Irrational Numbers (16 q, 20 marks)
@@ -127,6 +128,7 @@ npx serve .
 | Mathematics (Rational & Irrational Numbers) | Secondary 2 | ✅ Term 1 Week 2 |
 | Mathematics (Indices & Standard Form) | Secondary 2 | ✅ Term 1 Week 2 |
 | Science (Why Elements React & Ionic Bonding) | Secondary 2 | ✅ Term 1 Week 3 |
+| English Unit Test 1 Revision (Sentence Types & Reading Comprehension) | Secondary 2 | ✅ Unit Test 1, 26 Aug 2026 |
 
 ### IGCSE
 

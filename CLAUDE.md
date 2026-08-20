@@ -41,7 +41,18 @@ No install step. No linting or test suite.
 1. Copy an existing sheet as the template.
 2. Place it at `s1/{section}/{filename}.html` (e.g. `s1/t4/w2/term4-week2-english.html`).
 3. Update `index.html` to add a card linking to the new sheet.
-4. Push to `main` — Pages deploys within ~30 seconds.
+4. Update the READMEs that index the content (see below).
+5. Push to `main` — Pages deploys within ~30 seconds.
+
+### READMEs to update after adding content
+
+New sheets/handouts are referenced in more than one README — check all that apply:
+
+- **Root `README.md`** — the `Structure` tree, and the relevant `Subjects Covered` table (Secondary 1 / Secondary 2 / IGCSE).
+- **`s2/t1/README.md`** (or an equivalent term-level index, if one exists for the term/stage you're adding to) — its worksheet table (or revision-handouts table) and its own structure diagram.
+- **`index.html`** — a card in the matching subject grid (already covered above, but easy to forget when a change is "just docs").
+
+A new revision handout that mixes an auto-marked `.html` with extra open-ended/printable-only content (e.g. extended writing tasks) should say so explicitly in these READMEs — don't let a "printable has the exact same questions as interactive" claim go stale.
 
 ## Exercise Sheet Architecture
 
