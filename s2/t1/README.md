@@ -31,9 +31,10 @@ Revision handouts that span more than one week live at this level rather than in
 
 Combined documents drawing on more than one weekly sheet, for test preparation.
 
-| Handout | Covers | Questions | Marks | File |
-|---------|--------|-----------|-------|------|
-| **Unit 1 Revision** | Chapters 1.1–1.3 (both Week 2 maths sheets) | 53 | 69 | [term1-maths-unit1-revision.md](./term1-maths-unit1-revision.md) |
+| Handout | Covers | Questions | Marks | Printable | Interactive |
+|---------|--------|-----------|-------|-----------|-------------|
+| **Maths Unit 1 Revision** | Chapters 1.1–1.3 (both Week 2 maths sheets) | 53 | 69 | [.md](./term1-maths-unit1-revision.md) | — (self-check against the Week 2 sheets above) |
+| **English Unit Test 1 Revision** | Sentence Types (simple, FANBOYS, MOTH & semicolons, complex/compound-complex) + Reading Comprehension with P.E.E.E. Plus 4 open-ended extended writing tasks (printable only, not auto-marked). | 42 (+4 extended writing) | 50 | [.md](./term1-english-unit1-revision.md) | [.html](./term1-english-unit1-revision.html) |
 
 ## Usage
 
@@ -64,7 +65,7 @@ Each markdown document includes:
 
 ## Relationship to Interactive Sheets
 
-Each printable document contains the **exact same questions** as the interactive sheet it sits beside. The interactive versions add:
+Each printable document contains the **exact same questions** as the interactive sheet it sits beside (the English Unit Test 1 Revision printable also has four open-ended Extended Writing tasks that aren't in the interactive version — see its self-review checklist instead). The interactive versions add:
 
 - Instant answer checking
 - Hints for each question
@@ -82,6 +83,8 @@ cambridge-practice/
 │   └── t1/
 │       ├── README.md                         ← This file (worksheet index)
 │       ├── term1-maths-unit1-revision.md     ← Revision handout (spans Ch 1.1–1.3)
+│       ├── term1-english-unit1-revision.md   ← Revision handout (Sentence Types + Reading Comprehension)
+│       ├── term1-english-unit1-revision.html ← Interactive version of the above
 │       ├── w2/
 │       │   ├── term1-week2-maths-rational-irrational.html    ← Interactive
 │       │   ├── term1-week2-maths-rational-irrational.md      ← Printable
