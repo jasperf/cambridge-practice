@@ -152,7 +152,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="../../../index.html" class="back-link">&larr; All sheets</a>
     <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
-    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 25</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 27</div></div>
   </div>
 </div>
 <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
@@ -162,7 +162,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <h1>Why Elements React &<br><em>Ionic Bonding</em></h1>
   <div class="hero-meta">
     <div class="hero-chip"><div class="dot dot-sci"></div>Forming Ions &middot; Ionic Bonds &middot; Reactivity Trends</div>
-    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>21 questions &middot; self-marked &middot; 25 marks</div>
+    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>23 questions &middot; self-marked &middot; 27 marks</div>
   </div>
 </div>
 
@@ -405,10 +405,28 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     </div>
   </div>
 
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-s22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Handy tip: for elements in <em>Groups 1&ndash;3</em>, the number of electrons lost equals the group number. For elements in <em>Groups 6&ndash;7</em>, the number of electrons gained equals 8 minus the group number. Using this rule, what ion does aluminium (Group 3) form?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s22-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'a')"><div class="opt-indicator"></div><span>Al&minus;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'b')"><div class="opt-indicator"></div><span>Al<sup>2+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'c')"><div class="opt-indicator"></div><span>Al<sup>3+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'd')"><div class="opt-indicator"></div><span>Al<sup>3&minus;</sup></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s22','c','Q22')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s22','C — Aluminium is in Group 3, so it loses 3 electrons (electrons lost = group number for Groups 1&ndash;3), forming the ion Al³⁺.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s22-fb"></div>
+    </div>
+  </div>
+
   <div class="section-score">
     <div class="section-score-label">FORMING IONS &mdash; SECTION SCORE</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-fi-fill"></div></div>
-    <div class="section-score-val" id="sec-fi-val">0/7</div>
+    <div class="section-score-val" id="sec-fi-val">0/8</div>
   </div>
 </div>
 
@@ -566,10 +584,28 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     </div>
   </div>
 
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-s23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Lithium forms Li<sup>+</sup> ions and oxygen forms O<sup>2&minus;</sup> ions. What is the formula for lithium oxide?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s23-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'a')"><div class="opt-indicator"></div><span>LiO</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'b')"><div class="opt-indicator"></div><span>Li<sub>2</sub>O</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'c')"><div class="opt-indicator"></div><span>LiO<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'd')"><div class="opt-indicator"></div><span>Li<sub>2</sub>O<sub>2</sub></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s23','b','Q23')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','B — Two Li⁺ ions are needed to balance the 2&minus; charge on one O²⁻ ion, giving the formula Li₂O.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s23-fb"></div>
+    </div>
+  </div>
+
   <div class="section-score">
     <div class="section-score-label">IONIC COMPOUNDS &mdash; SECTION SCORE</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-ic-fill"></div></div>
-    <div class="section-score-val" id="sec-ic-val">0/8</div>
+    <div class="section-score-val" id="sec-ic-val">0/9</div>
   </div>
 </div>
 
@@ -692,15 +728,15 @@ const state = { answers: {}, correct: {}, startTime: Date.now() };
 
 const marks = {
   s1:1, s2:1, s3:1, s4:1,
-  s5:1, s6:1, s7:1, s8:2, s9:1, s10:1,
-  s11:1, s12:1, s13:1, s14:2, s15:1, s16:1, s17:1,
+  s5:1, s6:1, s7:1, s8:2, s9:1, s10:1, s22:1,
+  s11:1, s12:1, s13:1, s14:2, s15:1, s16:1, s17:1, s23:1,
   s18:1, s19:2, s20:1, s21:2
 };
 
 const sections = {
   wr: { label: 'Why Atoms React', qs: ['s1','s2','s3','s4'] },
-  fi: { label: 'Forming Ions', qs: ['s5','s6','s7','s8','s9','s10'] },
-  ic: { label: 'Ionic Compounds', qs: ['s11','s12','s13','s14','s15','s16','s17'] },
+  fi: { label: 'Forming Ions', qs: ['s5','s6','s7','s8','s9','s10','s22'] },
+  ic: { label: 'Ionic Compounds', qs: ['s11','s12','s13','s14','s15','s16','s17','s23'] },
   rt: { label: 'Reactivity Trends', qs: ['s18','s19','s20','s21'] }
 };
 

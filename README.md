@@ -53,7 +53,7 @@ cambridge-practice/
 │       │   ├── term1-week2-maths-rational-irrational.*     ← Rational & Irrational Numbers (16 q, 20 marks)
 │       │   └── term1-week2-maths-indices-standard-form.*   ← Indices & Standard Form (37 q, 49 marks)
 │       ├── w3/                      ← Week 3 (.html interactive + .md printable)
-│       │   └── term1-week3-science-ionic-bonding.*         ← Why Elements React & Ionic Bonding (21 q, 25 marks)
+│       │   └── term1-week3-science-ionic-bonding.*         ← Why Elements React & Ionic Bonding (23 q, 27 marks)
 │       └── w4/                      ← Week 4 (.html interactive + .md printable)
 │           └── term1-week4-science-covalent-metallic-bonding.* ← Why Atoms Bond, Covalent & Metallic Bonding (12 q, 13 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)

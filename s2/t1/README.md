@@ -25,7 +25,7 @@ Revision handouts that span more than one week live at this level rather than in
 
 | Topic | Questions | Marks | Printable | Interactive |
 |-------|-----------|-------|-----------|-------------|
-| **Why Elements React & Ionic Bonding** — Chapter 2.3 | 21 | 25 | [.md](./w3/term1-week3-science-ionic-bonding.md) | [.html](./w3/term1-week3-science-ionic-bonding.html) |
+| **Why Elements React & Ionic Bonding** — Chapter 2.3 | 23 | 27 | [.md](./w3/term1-week3-science-ionic-bonding.md) | [.html](./w3/term1-week3-science-ionic-bonding.html) |
 
 ## Week 4
 

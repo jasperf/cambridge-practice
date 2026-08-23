@@ -1,7 +1,7 @@
 # Secondary 2 · Term 1 · Science — Why Elements React & Ionic Bonding
 
 **Stage 9 · Chapter 2.3**
-**21 questions · 25 marks**
+**23 questions · 27 marks**
 
 This document contains all questions from the interactive sheet in a printable format. Students write their answers directly in their notebooks.
 
@@ -87,6 +87,13 @@ Magnesium (2,8,2) loses two electrons when it reacts. Which symbol correctly rep
 **Q10** (1 mark)
 An oxygen atom (2,6) gains electrons to complete its outer shell, forming the oxide ion, O²⁻. What is the charge on the oxide ion? (enter as a number, e.g. -1)
 
+**Q22** (1 mark)
+Handy tip: for elements in Groups 1–3, the number of electrons lost equals the group number. For elements in Groups 6–7, the number of electrons gained equals 8 minus the group number. Using this rule, what ion does aluminium (Group 3) form?
+- A) Al⁻
+- B) Al²⁺
+- C) Al³⁺
+- D) Al³⁻
+
 ---
 
 ## Section C: Ionic Compounds & Formulae
@@ -143,6 +150,13 @@ What is the formula for calcium oxide (calcium + oxygen)?
 - B) Ca₂O
 - C) CaO
 - D) Ca₂O₃
+
+**Q23** (1 mark)
+Lithium forms Li⁺ ions and oxygen forms O²⁻ ions. What is the formula for lithium oxide?
+- A) LiO
+- B) Li₂O
+- C) LiO₂
+- D) Li₂O₂
 
 ---
 
