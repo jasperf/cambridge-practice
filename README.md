@@ -49,7 +49,7 @@ cambridge-practice/
 │       ├── term1-maths-unit1-revision.md   ← Revision handout, spans Ch 1.1–1.3 (53 q, 69 marks)
 │       ├── term1-english-unit1-revision.*  ← Revision handout: Sentence Types + Reading Comprehension (42 q, 50 marks; .md also has 4 extended writing tasks)
 │       ├── w2/                      ← Week 2 (.html interactive + .md printable)
-│       │   ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (16 q, 20 marks)
+│       │   ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (18 q, 22 marks)
 │       │   ├── term1-week2-maths-rational-irrational.*     ← Rational & Irrational Numbers (16 q, 20 marks)
 │       │   └── term1-week2-maths-indices-standard-form.*   ← Indices & Standard Form (37 q, 49 marks)
 │       ├── w3/                      ← Week 3 (.html interactive + .md printable)

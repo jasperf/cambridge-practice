@@ -164,7 +164,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="../../../index.html" class="back-link">&larr; All sheets</a>
     <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
-    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 20</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 22</div></div>
   </div>
 </div>
 <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
@@ -174,7 +174,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <h1>Atomic Structure &<br><em>The Periodic Table</em></h1>
   <div class="hero-meta">
     <div class="hero-chip"><div class="dot dot-sci"></div>Atoms &amp; Elements &middot; Electronic Structure &middot; Periodic Trends</div>
-    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>16 questions &middot; self-marked &middot; 20 marks</div>
+    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>18 questions &middot; self-marked &middot; 22 marks</div>
   </div>
 </div>
 
@@ -304,10 +304,28 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     </div>
   </div>
 
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">In the notation <sup>23</sup><sub>11</sub>Na for a sodium atom, what do the numbers 23 and 11 represent, in order?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s17-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'a')"><div class="opt-indicator"></div><span>Atomic number; mass number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'b')"><div class="opt-indicator"></div><span>Mass number; atomic number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'c')"><div class="opt-indicator"></div><span>Number of protons; number of neutrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'd')"><div class="opt-indicator"></div><span>Number of neutrons; number of electrons</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s17','b','Q17')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','B — The mass number (protons + neutrons) is written above the atomic number (protons), both to the left of the element\'s symbol. For sodium, 23 is the mass number and 11 is the atomic number.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+
   <div class="section-score">
     <div class="section-score-label">ATOMIC STRUCTURE &mdash; SECTION SCORE</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-as-fill"></div></div>
-    <div class="section-score-val" id="sec-as-val">0/6</div>
+    <div class="section-score-val" id="sec-as-val">0/7</div>
   </div>
 </div>
 
@@ -389,10 +407,28 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     </div>
   </div>
 
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Electron shells fill from the shell closest to the nucleus outwards. What is the maximum number of electrons that can occupy the first three shells, in order?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'a')"><div class="opt-indicator"></div><span>2, 6, 8</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'b')"><div class="opt-indicator"></div><span>8, 8, 2</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'c')"><div class="opt-indicator"></div><span>2, 8, 18</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'd')"><div class="opt-indicator"></div><span>2, 8, 8</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s18','d','Q18')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','D — The first shell holds up to 2 electrons, the second up to 8, and the third up to 8 (for the first 20 elements). A shell must be full before the next electron moves into the shell beyond it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+
   <div class="section-score">
     <div class="section-score-label">ELECTRONIC STRUCTURE &mdash; SECTION SCORE</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-ec-fill"></div></div>
-    <div class="section-score-val" id="sec-ec-val">0/6</div>
+    <div class="section-score-val" id="sec-ec-val">0/7</div>
   </div>
 </div>
 
@@ -609,15 +645,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 const state = { answers: {}, correct: {}, startTime: Date.now() };
 
 const marks = {
-  s1:1, s2:1, s3:1, s4:2, s5:1,
-  s6:2, s7:2, s8:1, s16:1,
+  s1:1, s2:1, s3:1, s4:2, s5:1, s17:1,
+  s6:2, s7:2, s8:1, s16:1, s18:1,
   s9:1, s10:1, s11:1,
   s12:1, s13:1, s14:1, s15:2
 };
 
 const sections = {
-  as: { label: 'Atomic Structure', qs: ['s1','s2','s3','s4','s5'] },
-  ec: { label: 'Electronic Structure', qs: ['s6','s7','s8','s16'] },
+  as: { label: 'Atomic Structure', qs: ['s1','s2','s3','s4','s5','s17'] },
+  ec: { label: 'Electronic Structure', qs: ['s6','s7','s8','s16','s18'] },
   pt: { label: 'Periodic Table', qs: ['s9','s10','s11'] },
   pr: { label: 'Properties', qs: ['s12','s13','s14','s15'] }
 };

@@ -17,7 +17,7 @@ Revision handouts that span more than one week live at this level rather than in
 
 | Topic | Questions | Marks | Printable | Interactive |
 |-------|-----------|-------|-----------|-------------|
-| **Atomic Structure & Periodic Table** | 16 | 20 | — | [.html](./w2/term1-week2-atomic-structure-periodic.html) |
+| **Atomic Structure & Periodic Table** | 18 | 22 | — | [.html](./w2/term1-week2-atomic-structure-periodic.html) |
 
 ## Week 3
 
