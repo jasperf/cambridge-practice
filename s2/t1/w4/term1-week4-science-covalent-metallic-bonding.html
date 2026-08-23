@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Covalent & Metallic Bonding · Interactive Exercises</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-sci { background: var(--accent-sci); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-sci); color: var(--accent-sci); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.atom-diagram { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0 24px; text-align: center; }
+.atom-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.atom-info { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.5; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+.electron-sea { position: relative; height: 170px; border-radius: 8px; background: rgba(15,17,23,0.5); overflow: hidden; }
+.metal-ion { position: absolute; width: 30px; height: 30px; border-radius: 50%; background: rgba(79,142,247,0.25); border: 1.5px solid var(--accent-math); color: var(--accent-math); font-family: var(--font-mono); font-size: 0.65rem; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+.free-electron { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-sci); box-shadow: 0 0 6px rgba(62,207,142,0.8); animation: drift 5s ease-in-out infinite; }
+@keyframes drift {
+  0%, 100% { transform: translate(0,0); }
+  25% { transform: translate(14px, -8px); }
+  50% { transform: translate(-6px, 10px); }
+  75% { transform: translate(-14px, -6px); }
+}
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 · Covalent &amp; Metallic Bonding</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 13</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Chapter 2.4</div>
+  <h1>Why Atoms Bond &<br><em>Covalent &amp; Metallic Bonding</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-sci"></div>Why Atoms Bond &middot; Covalent Bonding &middot; Metallic Bonding</div>
+    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>12 questions &middot; self-marked &middot; 13 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128250; Watch &amp; Learn first</h3>
+  <p>Stuck? Watch a short video, then come back and try the questions. This sheet is the third part of the bonding sequence &mdash; see also <a href="../w2/term1-week2-atomic-structure-periodic.html" style="color:var(--accent-sci);">Atomic Structure &amp; the Periodic Table</a> and <a href="../w3/term1-week3-science-ionic-bonding.html" style="color:var(--accent-sci);">Why Elements React &amp; Ionic Bonding</a>. Together, all three sheets cover the full Unit Test 1 scope (26 August 2026).</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/watch?v=VbifG53cBR4" target="_blank" rel="noopener">FuseSchool &middot; Ionic &amp; Covalent Bonding Animation</a>
+    <a class="watch-link" href="https://www.youtube.com/watch?v=Wieo5M3H4GI" target="_blank" rel="noopener">FuseSchool &middot; Covalent Bonding in a Fluorine Molecule</a>
+    <a class="watch-link" href="https://www.youtube.com/watch?v=bedJIet9hMM" target="_blank" rel="noopener">Metallic Bonding Explained &middot; IGCSE &amp; MYP Chemistry</a>
+    <a class="watch-link" href="https://www.bbc.co.uk/bitesize/subjects/znxtyrd" target="_blank" rel="noopener">BBC Bitesize &middot; KS3 Chemistry</a>
+    <a class="watch-link" href="../../../resources.html" target="_blank" rel="noopener">More videos &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#why-bond" class="sub-tab">&#9889; Why Atoms Bond</a>
+  <a href="#covalent-bonding" class="sub-tab">&#128279; Covalent Bonding</a>
+  <a href="#metallic-bonding" class="sub-tab">&#127754; Metallic Bonding</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: WHY ATOMS BOND ═══════════════ -->
+<div id="why-bond">
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Section A</div><h2>Why Atoms Bond</h2></div></div>
+  <div class="info-box">Atoms bond because they want a <strong>full outer shell</strong>, <strong>greater stability</strong>, and <strong>lower energy</strong>. They achieve this by <strong>sharing</strong>, <strong>gaining</strong>, or <strong>losing</strong> electrons. There are three main types of chemical bonding: <strong>ionic</strong> (electrons transferred, covered in the Week 3 sheet), <strong>covalent</strong> (electrons shared), and <strong>metallic</strong> (electrons move freely between atoms) &mdash; the two new types on this sheet.</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Why do atoms bond with other atoms?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'a')"><div class="opt-indicator"></div><span>To increase their atomic number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span>To achieve a full outer shell, greater stability and lower energy</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span>To lose all their protons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span>To become radioactive</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s1','b','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','B — Atoms bond to achieve a full outer shell, which gives them greater stability and lower energy.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Which of these is <em>not</em> one of the three main types of chemical bonding?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'a')"><div class="opt-indicator"></div><span>Ionic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'b')"><div class="opt-indicator"></div><span>Covalent</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span>Metallic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span>Magnetic</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s2','d','Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','D — The three main types of chemical bonding are ionic, covalent and metallic. &ldquo;Magnetic bonding&rdquo; is not a type of chemical bond.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">In an <em>ionic</em> bond, what happens to electrons?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>They are transferred from one atom to another</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>They are shared between the two atoms</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'c')"><div class="opt-indicator"></div><span>They move freely between many atoms</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'd')"><div class="opt-indicator"></div><span>They are destroyed</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s3','a','Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','A — In ionic bonding, electrons are transferred from a metal atom to a non-metal atom (see the Week 3 sheet for the full picture).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">In a <em>covalent</em> bond, what happens to electrons?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>They are transferred from one atom to another</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>They move freely between many atoms</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>They are shared between atoms</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>They are destroyed</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s4','c','Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','C — In covalent bonding, electrons are shared between two (usually non-metal) atoms.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">In a <em>metallic</em> bond, what happens to electrons?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'a')"><div class="opt-indicator"></div><span>They are shared between two atoms only</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'b')"><div class="opt-indicator"></div><span>They move freely between many atoms (a "sea of electrons")</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'c')"><div class="opt-indicator"></div><span>They are transferred from one atom to another</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'd')"><div class="opt-indicator"></div><span>They are destroyed</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s5','b','Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','B — In metallic bonding, outer-shell electrons move freely between many metal atoms, often described as a &ldquo;sea of electrons&rdquo;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WHY ATOMS BOND &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wb-fill"></div></div>
+    <div class="section-score-val" id="sec-wb-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: COVALENT BONDING ═══════════════ -->
+<div id="covalent-bonding">
+  <div class="section-header"><div class="section-icon">&#128279;</div><div><div class="sub-label">Section B</div><h2>Covalent Bonding</h2></div></div>
+  <div class="info-box">Covalent bonds usually form between <strong>two non-metals</strong>. Instead of transferring electrons, the atoms <strong>share</strong> one or more pairs of electrons so that both achieve a full outer shell. E.g. two fluorine atoms each contribute one electron to a shared pair, forming F<sub>2</sub>. Water (H<sub>2</sub>O) has two covalent O&ndash;H bonds. In some molecules (e.g. SO<sub>2</sub>) atoms share <em>two</em> pairs of electrons with each neighbour, forming a <strong>double covalent bond</strong>.</div>
+
+  <!-- Shared-pair diagram -->
+  <div class="atom-diagram">
+    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">Two fluorine atoms (2,7) sharing one pair of electrons to form F&#8322;</div>
+    <canvas id="covalent-canvas" class="atom-canvas" width="360" height="180" aria-label="Diagram showing two fluorine atoms sharing a pair of electrons in a covalent bond"></canvas>
+    <div class="atom-info">Neither atom loses or gains electrons &mdash; the shared pair counts towards <em>both</em> outer shells at once.</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Covalent bonds typically form between:</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'a')"><div class="opt-indicator"></div><span>Two non-metals</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'b')"><div class="opt-indicator"></div><span>Two metals</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>A metal and a non-metal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>Two ions of the same charge</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s6','a','Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','A — Covalent bonds form between two non-metal atoms, which share electrons rather than transferring them.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Each fluorine atom in F<sub>2</sub> has 7 outer-shell electrons. How do both atoms achieve a full outer shell?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'a')"><div class="opt-indicator"></div><span>One fluorine atom gives away all 7 electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'b')"><div class="opt-indicator"></div><span>Both atoms gain 8 new electrons from nowhere</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'c')"><div class="opt-indicator"></div><span>The electrons are destroyed and reformed</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'd')"><div class="opt-indicator"></div><span>The two atoms share one pair of electrons between them</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s7','d','Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','D — Each fluorine atom contributes one electron to a shared pair. That shared pair counts towards both atoms\' outer shells, giving each atom a full shell of 8.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A water molecule (H<sub>2</sub>O) is held together by covalent bonds. How many covalent bonds does one water molecule contain?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'a')"><div class="opt-indicator"></div><span>1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'b')"><div class="opt-indicator"></div><span>3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'c')"><div class="opt-indicator"></div><span>2</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'd')"><div class="opt-indicator"></div><span>4</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s8','c','Q8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','C — Water has two covalent O–H bonds: oxygen shares one electron pair with each of the two hydrogen atoms.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">In sulfur dioxide (SO<sub>2</sub>), sulfur forms a <em>double covalent bond</em> with each oxygen atom. What does "double covalent bond" mean?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'a')"><div class="opt-indicator"></div><span>Two separate single bonds joined end to end</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'b')"><div class="opt-indicator"></div><span>The bond is simply twice as long as a normal bond</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'c')"><div class="opt-indicator"></div><span>Two pairs of electrons (4 electrons in total) are shared between the two atoms</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'd')"><div class="opt-indicator"></div><span>Two electrons are transferred instead of shared</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s9','c','Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s9','No electrons are transferred in covalent bonding — they are always shared.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','C — In a double covalent bond, each atom contributes two electrons, so two pairs (4 electrons total) are shared between the sulfur and oxygen atoms.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">COVALENT BONDING &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-cb-fill"></div></div>
+    <div class="section-score-val" id="sec-cb-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: METALLIC BONDING ═══════════════ -->
+<div id="metallic-bonding">
+  <div class="section-header"><div class="section-icon">&#127754;</div><div><div class="sub-label">Section C</div><h2>Metallic Bonding</h2></div></div>
+  <div class="info-box">Metallic bonding happens only in <strong>metals</strong>. The outer-shell electrons are not held by any one atom &mdash; they move <strong>freely</strong> between all the metal atoms, often called a <strong>"sea of electrons"</strong>. This explains why metals are <strong>shiny</strong>, <strong>conduct electricity</strong>, and can be <strong>bent or shaped</strong> without breaking.</div>
+
+  <div class="atom-diagram">
+    <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">A "sea of electrons" (green) moving freely between fixed metal ions (blue)</div>
+    <div class="electron-sea" id="electron-sea"></div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Metallic bonding is often described as:</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'a')"><div class="opt-indicator"></div><span>A lattice of ions with a single shared pair of electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'b')"><div class="opt-indicator"></div><span>Electrons transferred completely from one metal atom to another</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'c')"><div class="opt-indicator"></div><span>Metal atoms with no electrons at all</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'd')"><div class="opt-indicator"></div><span>A "sea of electrons" moving freely between metal atoms</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s10','d','Q10')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','D — In metallic bonding, electrons move freely between many metal atoms, forming a &ldquo;sea of electrons&rdquo; that holds the structure together.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Which property of metals is explained by their freely-moving electrons?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'a')"><div class="opt-indicator"></div><span>They conduct electricity</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'b')"><div class="opt-indicator"></div><span>They are usually gases at room temperature</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'c')"><div class="opt-indicator"></div><span>They are the least reactive elements</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'd')"><div class="opt-indicator"></div><span>They have no measurable mass</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s11','a','Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','A — Free-moving electrons can carry electrical charge through the metal, which is why metals conduct electricity.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Why can most metals be bent or shaped without breaking?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'a')"><div class="opt-indicator"></div><span>Because their electrons are shared in fixed pairs, like in covalent bonds</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'b')"><div class="opt-indicator"></div><span>Because the sea of electrons lets metal ions slide past each other while staying bonded</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'c')"><div class="opt-indicator"></div><span>Because metals contain no protons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'd')"><div class="opt-indicator"></div><span>Because metallic bonds are broken and reformed every time the metal moves</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s12','b','Q12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','B — Because the electrons are not fixed between specific atoms, the metal ions can slide past one another while the sea of electrons keeps holding the structure together, so the metal bends without breaking.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">METALLIC BONDING &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mb-fill"></div></div>
+    <div class="section-score-val" id="sec-mb-val">0/3</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  s1:1, s2:1, s3:1, s4:1, s5:1,
+  s6:1, s7:1, s8:1, s9:2,
+  s10:1, s11:1, s12:1
+};
+
+const sections = {
+  wb: { label: 'Why Atoms Bond', qs: ['s1','s2','s3','s4','s5'] },
+  cb: { label: 'Covalent Bonding', qs: ['s6','s7','s8','s9'] },
+  mb: { label: 'Metallic Bonding', qs: ['s10','s11','s12'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Shared shell-diagram drawing helper ─────────────────────
+function drawAtomUnit(ctx, cx, cy, protons, config, chargeText, unit) {
+  ctx.beginPath();
+  ctx.arc(cx, cy, unit.nucleusR, 0, Math.PI * 2);
+  ctx.fillStyle = '#4f8ef7';
+  ctx.fill();
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.font = unit.fontNucleus;
+  ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(`${protons}+`, cx, cy);
+
+  config.forEach((count, i) => {
+    const r = unit.shellRadii[i];
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(62, 207, 142, 0.4)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    const angleStep = (Math.PI * 2) / count;
+    for (let j = 0; j < count; j++) {
+      const angle = j * angleStep - Math.PI / 2;
+      const ex = cx + r * Math.cos(angle);
+      const ey = cy + r * Math.sin(angle);
+      ctx.beginPath();
+      ctx.arc(ex, ey, unit.electronR, 0, Math.PI * 2);
+      ctx.fillStyle = '#3ecf8e';
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 0.75;
+      ctx.stroke();
+    }
+  });
+}
+
+// ── Section B: covalent shared-pair diagram (static) ─────────
+const covalentCanvas = document.getElementById('covalent-canvas');
+const covalentCtx = covalentCanvas.getContext('2d');
+
+function drawCovalentDiagram() {
+  const ctx = covalentCtx;
+  const w = covalentCanvas.width, h = covalentCanvas.height;
+  ctx.clearRect(0, 0, w, h);
+  const fUnit = { nucleusR: 15, shellRadii: [26, 44], electronR: 3.5, fontNucleus: 'bold 10px Arial', fontCharge: 'bold 14px Arial' };
+  const leftX = w * 0.32, rightX = w * 0.68, cy = h / 2;
+
+  // Draw outer shells only up to the second shell (6 non-bonding electrons each,
+  // spaced to leave the inner-facing position open for the shared pair).
+  const config = [2, 6];
+  drawAtomUnit(ctx, leftX, cy, 9, config, null, fUnit);
+  drawAtomUnit(ctx, rightX, cy, 9, config, null, fUnit);
+
+  // Shared pair, drawn in the overlap between the two atoms
+  const midX = (leftX + rightX) / 2;
+  ctx.beginPath(); ctx.arc(midX - 6, cy, 4, 0, Math.PI * 2); ctx.fillStyle = '#f5a623'; ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 0.75; ctx.stroke();
+  ctx.beginPath(); ctx.arc(midX + 6, cy, 4, 0, Math.PI * 2); ctx.fillStyle = '#f5a623'; ctx.fill(); ctx.stroke();
+
+  ctx.font = 'bold 11px Arial';
+  ctx.fillStyle = '#f5a623';
+  ctx.textAlign = 'center';
+  ctx.fillText('shared pair', midX, cy - 30);
+
+  ctx.font = 'bold 12px Arial';
+  ctx.fillStyle = '#e8eaf0';
+  ctx.fillText('F', leftX, cy + 60);
+  ctx.fillText('F', rightX, cy + 60);
+}
+
+drawCovalentDiagram();
+
+// ── Section C: metallic "sea of electrons" (CSS) ──────────────
+function buildElectronSea() {
+  const box = document.getElementById('electron-sea');
+  const cols = 4, rows = 3;
+  const cellW = 100 / cols, cellH = 100 / rows;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const ion = document.createElement('div');
+      ion.className = 'metal-ion';
+      ion.textContent = 'M+';
+      ion.style.left = `calc(${c*cellW + cellW/2}% - 15px)`;
+      ion.style.top = `calc(${r*cellH + cellH/2}% - 15px)`;
+      box.appendChild(ion);
+    }
+  }
+  for (let i = 0; i < 14; i++) {
+    const e = document.createElement('div');
+    e.className = 'free-electron';
+    e.style.left = `${4 + (i * 37) % 92}%`;
+    e.style.top = `${6 + (i * 53) % 86}%`;
+    e.style.animationDelay = `${(i % 5) * 0.4}s`;
+    e.style.animationDuration = `${4 + (i % 4)}s`;
+    box.appendChild(e);
+  }
+}
+buildElectronSea();
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`covalent-metallic-bonding_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
