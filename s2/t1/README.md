@@ -27,6 +27,24 @@ Revision handouts that span more than one week live at this level rather than in
 |-------|-----------|-------|-----------|-------------|
 | **Why Elements React & Ionic Bonding** — Chapter 2.3 | 21 | 25 | [.md](./w3/term1-week3-science-ionic-bonding.md) | [.html](./w3/term1-week3-science-ionic-bonding.html) |
 
+## Week 4
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Why Atoms Bond, Covalent & Metallic Bonding** — Chapter 2.4 | 12 | 13 | [.md](./w4/term1-week4-science-covalent-metallic-bonding.md) | [.html](./w4/term1-week4-science-covalent-metallic-bonding.html) |
+
+### Unit Test 1 — 26 August 2026
+
+Unit Test 1 covers **Atomic Structure, the Periodic Table, and Chemical Bonding**. That scope is spread across three sheets rather than one combined revision doc, so each topic only lives in one place:
+
+| Sheet | Covers |
+|-------|--------|
+| [Week 2 — Atomic Structure & Periodic Table](./w2/term1-week2-atomic-structure-periodic.html) | Protons/neutrons/electrons, atomic & mass number, electronic structure, periods & groups, metals/non-metals, Group 1 reactivity |
+| [Week 3 — Why Elements React & Ionic Bonding](./w3/term1-week3-science-ionic-bonding.html) | Forming ions, ionic bonding, ionic compound formulae, Group 1/7 reactivity trends |
+| [Week 4 — Why Atoms Bond, Covalent & Metallic Bonding](./w4/term1-week4-science-covalent-metallic-bonding.html) | Why atoms bond generally, covalent bonding, metallic bonding |
+
 ## Revision Handouts
 
 Combined documents drawing on more than one weekly sheet, for test preparation.
@@ -91,9 +109,12 @@ cambridge-practice/
 │       │   ├── term1-week2-maths-indices-standard-form.html  ← Interactive
 │       │   ├── term1-week2-maths-indices-standard-form.md    ← Printable
 │       │   └── term1-week2-atomic-structure-periodic.html    ← Interactive
-│       └── w3/
-│           ├── term1-week3-science-ionic-bonding.html        ← Interactive
-│           └── term1-week3-science-ionic-bonding.md          ← Printable
+│       ├── w3/
+│       │   ├── term1-week3-science-ionic-bonding.html        ← Interactive
+│       │   └── term1-week3-science-ionic-bonding.md          ← Printable
+│       └── w4/
+│           ├── term1-week4-science-covalent-metallic-bonding.html ← Interactive
+│           └── term1-week4-science-covalent-metallic-bonding.md   ← Printable
 ```
 
 ## See Also
