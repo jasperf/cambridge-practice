@@ -95,9 +95,9 @@ Which subatomic particle has a *negative* charge?
 **Q6** (1 mark)
 In the notation ²³₁₁Na for a sodium atom, what do the numbers 23 and 11 represent, in order?
 - A) Atomic number; mass number
-- B) Mass number; atomic number
+- B) Number of neutrons; number of electrons
 - C) Number of protons; number of neutrons
-- D) Number of neutrons; number of electrons
+- D) Mass number; atomic number
 
 ---
 
@@ -109,15 +109,15 @@ In the notation ²³₁₁Na for a sodium atom, what do the numbers 23 and 11 re
 
 **Q7** (2 marks)
 What is the electronic structure of a *sodium* atom (atomic number 11)?
-- A) 2,8,1
+- A) 11
 - B) 2,9
-- C) 11
+- C) 2,8,1
 - D) 2,8,2
 
 **Q8** (2 marks)
 A chlorine atom has atomic number 17. What is its electronic structure?
-- A) 2,8,7
-- B) 2,8,8
+- A) 2,8,8
+- B) 2,8,7
 - C) 2,9
 - D) 2,8,6
 
@@ -157,9 +157,9 @@ In the periodic table, elements in the *same group* have what in common?
 
 **Q13** (1 mark)
 In the periodic table, elements in the *same period* have what in common?
-- A) Same number of electron shells
+- A) Same atomic number
 - B) Same number of outer electrons
-- C) Same atomic number
+- C) Same number of electron shells
 - D) Same chemical properties
 
 **Q14** (1 mark)
@@ -180,9 +180,9 @@ Which group contains the *noble gases*?
 **Q15** (1 mark)
 Which of these is a *metal*?
 - A) Carbon
-- B) Oxygen
+- B) Magnesium
 - C) Sulfur
-- D) Magnesium
+- D) Oxygen
 
 **Q16** (1 mark)
 Which of these is a *non-metal*?
