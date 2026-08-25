@@ -46,6 +46,16 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 
 **`-f gfm` is required, not optional.** These sheets write MCQ options as a `-` list directly under the question line with no blank line in between (matching GitHub's rendering, since GFM lets a list interrupt a paragraph). Pandoc's default `markdown` reader does *not* allow that — it requires a blank line before a list starts, so without `-f gfm` the options get swallowed into the question paragraph as run-on text (e.g. "...What are they? - A) ... - B) ...") instead of rendering as a bulleted list. Always spot-check the generated PDF's first MCQ question to confirm the options actually render as bullets, not inline dashes.
 
+**Chemistry sheets need `-V mainfont="Arial Unicode MS"`.** The default Latin Modern font has no subscript/superscript digit glyphs, so xelatex silently drops them (`MgCl₂` prints as "MgCl", `Na⁺` as "Na") — with only a `Missing character` warning in the log. Any sheet using formulae or ion charges must add the font override:
+
+```bash
+pandoc -f gfm term1-science-unit1-revision.md -o term1-science-unit1-revision.pdf \
+  --pdf-engine=xelatex -V mainfont="Arial Unicode MS" \
+  -V geometry:margin=2.2cm -V fontsize=11pt -V colorlinks=true
+```
+
+A clean run prints no `Missing character` lines at all; if any appear, the glyphs they name are missing from the PDF.
+
 This is an on-demand, local step — no PDF output is committed or wired into any build/deploy process (see Constraints below).
 
 ## Adding a New Exercise Sheet
