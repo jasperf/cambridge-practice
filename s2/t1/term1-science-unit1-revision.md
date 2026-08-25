@@ -7,7 +7,7 @@ Combined revision handout for **Unit Test 1 (26 August 2026)**. Questions are dr
 
 Two questions that appeared on two sheets in almost identical wording have been merged, so nothing is asked twice: the Week 3 "what is the atomic number equal to" question (kept as Q1) and the Week 2 "most reactive Group 1 element" question (kept as Q36).
 
-**Part 4 · Extended Answer** at the end has eight longer, open-ended questions that are **not** on any interactive sheet and are not auto-marked. They cover all three weeks at once and are the closest practice to the longer written questions in the test. Marking points for them are at the very end of this document — cover them up until the answers are written.
+**Part 4 · Extended Answer** at the end has eight longer, open-ended questions that are **not** on any interactive sheet and are not auto-marked. They cover all three weeks at once and are the closest practice to the longer written questions in the test.
 
 ---
 
@@ -527,7 +527,7 @@ Copy and complete the table below, giving one word for what happens to electrons
 
 *8 open-ended questions, 22 marks — not on any interactive sheet, not auto-marked*
 
-These are longer written questions covering all three weeks together. Write full sentences and always explain **in terms of electrons**. Diagrams should be drawn neatly with a pencil and labelled. Marking points are at the end of this document — write the answer first, then check.
+These are longer written questions covering all three weeks together. Write full sentences and always explain **in terms of electrons**. Diagrams should be drawn neatly with a pencil and labelled.
 
 **E1** (3 marks)
 An atom of potassium has atomic number 19 and mass number 39.
@@ -585,26 +585,4 @@ Leave blank space below each question for students to write their working and fi
 
 ---
 
-## Part 4 — Marking Points
-
-Cover this section until the extended answers are written.
-
-**E1** — a) 19 protons, 19 electrons, 39 − 19 = **20 neutrons** (1). b) **2,8,8,1** (1). c) **Group 1** (one outer electron), **Period 4** (four occupied shells) (1).
-
-**E2** — Diagram: nucleus labelled **17+** (or 17 protons), three shells holding **2, 8, 7** electrons, outer shell labelled (2). Explanation: chlorine's outer shell has 7 of 8 electrons, so it is one short of full and reacts to gain one; argon's outer shell is already full (2,8,8), so it is stable and does not react (1).
-
-**E3** — Sodium (2,8,1) **loses** its single outer electron so its next shell down is full; chlorine (2,8,7) **gains** that electron so its outer shell is full (1). Ions formed: **Na⁺** and **Cl⁻** (1). They are held together by the strong **electrostatic attraction between oppositely charged ions** — an ionic bond (1). Full marks need both "loses"/"gains" *and* the reason (full outer shell).
-
-**E4** — Diagram shows oxygen with 6 outer electrons, each hydrogen with 1, and **two shared pairs** — one between oxygen and each hydrogen — with each shared pair containing one dot and one cross (1). Stated answer: **2 shared pairs** (= 2 covalent bonds) (1). Oxygen's outer shell must end up with 8 electrons counting the shared ones, each hydrogen with 2.
-
-**E5** — One mark each for correctly describing **ionic** (electrons transferred; metal + non-metal; e.g. NaCl), **covalent** (electrons shared in pairs; two non-metals; e.g. H₂O), **metallic** (electrons free to move as a sea; metal only; e.g. copper) (3). Final mark: **metallic** — it is the only one with electrons free to move through the solid and carry charge (1). (Ionic compounds only conduct when molten or dissolved, because the ions cannot move in a solid lattice.)
-
-**E6** — Down both groups, atoms get bigger, so the outer shell is **further from the nucleus** and held **less strongly** (1). Group 1 atoms need to **lose** an electron, and a loosely held electron is **easier to lose** → more reactive down the group (1). Group 7 atoms need to **gain** an electron, and a distant outer shell attracts an incoming electron **less strongly** → less reactive down the group (1).
-
-**E7** — Conducts electricity: the free-moving ("sea") electrons can flow through the metal and carry electrical charge (1). Bends without breaking: the metal ions can **slide past each other** into new positions while the sea of electrons keeps holding them together, so the bonding is not broken (1).
-
-**E8** — Charges must balance: two Al³⁺ gives +6, three O²⁻ gives −6 (1) → formula **Al₂O₃** (1).
-
----
-
-*Sources: interactive versions at `s2/t1/w2/term1-week2-atomic-structure-periodic.html`, `s2/t1/w3/term1-week3-science-ionic-bonding.html` and `s2/t1/w4/term1-week4-science-covalent-metallic-bonding.html` — use these to self-check Q1–Q54 after finishing. Part 4 is printable only and has no interactive equivalent; check it against the marking points above or with a teacher.*
+*Sources: interactive versions at `s2/t1/w2/term1-week2-atomic-structure-periodic.html`, `s2/t1/w3/term1-week3-science-ionic-bonding.html` and `s2/t1/w4/term1-week4-science-covalent-metallic-bonding.html` — Q1–Q54 come from these three sheets. Part 4 is printable only and has no interactive equivalent.*
