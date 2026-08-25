@@ -48,6 +48,7 @@ cambridge-practice/
 │       ├── README.md                     ← Worksheet index (interactive + printable)
 │       ├── term1-maths-unit1-revision.md   ← Revision handout, spans Ch 1.1–1.3 (53 q, 69 marks)
 │       ├── term1-english-unit1-revision.*  ← Revision handout: Sentence Types + Reading Comprehension (42 q, 50 marks; .md also has 4 extended writing tasks)
+│       ├── term1-science-unit1-revision.md ← Revision handout: Unit Test 1, Weeks 2–4 science (54 q, 66 marks + 8 extended-answer q, 22 marks)
 │       ├── w2/                      ← Week 2 (.html interactive + .md printable)
 │       │   ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (18 q, 22 marks)
 │       │   ├── term1-week2-maths-rational-irrational.*     ← Rational & Irrational Numbers (16 q, 20 marks)
@@ -143,6 +144,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Science (Why Elements React & Ionic Bonding) | Secondary 2 | ✅ Term 1 Week 3 |
 | Science (Why Atoms Bond, Covalent & Metallic Bonding) | Secondary 2 | ✅ Term 1 Week 4 |
 | English Unit Test 1 Revision (Sentence Types & Reading Comprehension) | Secondary 2 | ✅ Unit Test 1, 26 Aug 2026 |
+| Science Unit Test 1 Revision (Atomic Structure, Periodic Table & Bonding) | Secondary 2 | ✅ Unit Test 1, 26 Aug 2026 |
 
 ### IGCSE
 

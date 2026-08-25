@@ -37,7 +37,7 @@ Revision handouts that span more than one week live at this level rather than in
 
 ### Unit Test 1 — 26 August 2026
 
-Unit Test 1 covers **Atomic Structure, the Periodic Table, and Chemical Bonding**. That scope is spread across three sheets rather than one combined revision doc, so each topic only lives in one place:
+Unit Test 1 covers **Atomic Structure, the Periodic Table, and Chemical Bonding**. The whole scope is pulled together in the [Science Unit Test 1 Revision](./term1-science-unit1-revision.md) handout (printable only, see Revision Handouts below); the three weekly sheets below are where each topic is taught and self-checked interactively:
 
 | Sheet | Covers |
 |-------|--------|
@@ -53,6 +53,7 @@ Combined documents drawing on more than one weekly sheet, for test preparation.
 |---------|--------|-----------|-------|-----------|-------------|
 | **Maths Unit 1 Revision** | Chapters 1.1–1.3 (both Week 2 maths sheets) | 53 | 69 | [.md](./term1-maths-unit1-revision.md) | — (self-check against the Week 2 sheets above) |
 | **English Unit Test 1 Revision** | Sentence Types (simple, FANBOYS, MOTH & semicolons, complex/compound-complex) + Reading Comprehension with P.E.E.E. Plus 4 open-ended extended writing tasks (printable only, not auto-marked). | 42 (+4 extended writing) | 50 | [.md](./term1-english-unit1-revision.md) | [.html](./term1-english-unit1-revision.html) |
+| **Science Unit Test 1 Revision** | Atomic Structure & Periodic Table + Why Elements React & Ionic Bonding + Covalent & Metallic Bonding (all three Week 2–4 science sheets, merged and renumbered Q1–Q54). Plus 8 open-ended extended-answer questions with marking points (printable only, not auto-marked). | 54 (+8 extended answer) | 66 (+22) | [.md](./term1-science-unit1-revision.md) | — (self-check against the weekly sheets above) |
 
 ## Usage
 
@@ -83,7 +84,12 @@ Each markdown document includes:
 
 ## Relationship to Interactive Sheets
 
-Each printable document contains the **exact same questions** as the interactive sheet it sits beside (the English Unit Test 1 Revision printable also has four open-ended Extended Writing tasks that aren't in the interactive version — see its self-review checklist instead). The interactive versions add:
+Each weekly printable contains the **exact same questions** as the interactive sheet it sits beside. The two revision handouts are the exceptions:
+
+- **English Unit Test 1 Revision** — same questions as its `.html`, plus four open-ended Extended Writing tasks that aren't in the interactive version (see its self-review checklist instead).
+- **Science Unit Test 1 Revision** — printable only. Q1–Q54 are the questions from the three Week 2–4 science sheets, merged and renumbered (two near-duplicate questions across sheets were merged into one), so self-checking means opening the weekly sheets. Its eight Part 4 extended-answer questions are new and are marked against the marking points at the end of the handout.
+
+The interactive versions add:
 
 - Instant answer checking
 - Hints for each question
@@ -103,6 +109,7 @@ cambridge-practice/
 │       ├── term1-maths-unit1-revision.md     ← Revision handout (spans Ch 1.1–1.3)
 │       ├── term1-english-unit1-revision.md   ← Revision handout (Sentence Types + Reading Comprehension)
 │       ├── term1-english-unit1-revision.html ← Interactive version of the above
+│       ├── term1-science-unit1-revision.md   ← Revision handout (Unit Test 1: Weeks 2–4 science, printable only)
 │       ├── w2/
 │       │   ├── term1-week2-maths-rational-irrational.html    ← Interactive
 │       │   ├── term1-week2-maths-rational-irrational.md      ← Printable
