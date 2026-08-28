@@ -58,8 +58,10 @@ cambridge-practice/
 │       │   └── term1-week2-maths-indices-standard-form.*   ← Indices & Standard Form (37 q, 49 marks)
 │       ├── w3/                      ← Week 3 (.html interactive + .md printable)
 │       │   └── term1-week3-science-ionic-bonding.*         ← Why Elements React & Ionic Bonding (23 q, 27 marks)
-│       └── w4/                      ← Week 4 (.html interactive + .md printable)
-│           └── term1-week4-science-covalent-metallic-bonding.* ← Why Atoms Bond, Covalent & Metallic Bonding (12 q, 13 marks)
+│       ├── w4/                      ← Week 4 (.html interactive + .md printable)
+│       │   └── term1-week4-science-covalent-metallic-bonding.* ← Why Atoms Bond, Covalent & Metallic Bonding (12 q, 13 marks)
+│       └── w5/                      ← Week 5 (.html interactive + .md printable)
+│           └── term1-week5-maths-expressions-formulae.*    ← Expressions & Formulae (26 q, 34 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
@@ -146,6 +148,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Mathematics (Indices & Standard Form) | Secondary 2 | ✅ Term 1 Week 2 |
 | Science (Why Elements React & Ionic Bonding) | Secondary 2 | ✅ Term 1 Week 3 |
 | Science (Why Atoms Bond, Covalent & Metallic Bonding) | Secondary 2 | ✅ Term 1 Week 4 |
+| Mathematics (Expressions & Formulae) | Secondary 2 | ✅ Term 1 Week 5 |
 | English Unit Test 1 Revision (Sentence Types & Reading Comprehension) | Secondary 2 | ✅ Unit Test 1, 26 Aug 2026 |
 | Science Unit Test 1 Revision (Atomic Structure, Periodic Table & Bonding) | Secondary 2 | ✅ Unit Test 1, 26 Aug 2026 |
 
