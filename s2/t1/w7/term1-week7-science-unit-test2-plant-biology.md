@@ -1,7 +1,6 @@
 # Secondary 2 · Term 1 · Science — Unit Test 2: Plant Biology
 
 **Stage 9 · Unit 2 — Plant Biology**
-**Unit Test 2 · Thursday, 10 September 2026**
 **38 questions · 49 marks** (plus 6 extended-answer questions for written practice)
 
 This document contains all questions from the interactive sheet in a printable format, plus extra extended-answer questions that are not auto-marked. Students write their answers directly in their notebooks.
