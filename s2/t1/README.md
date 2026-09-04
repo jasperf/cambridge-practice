@@ -53,15 +53,33 @@ Unit Test 1 covers **Atomic Structure, the Periodic Table, and Chemical Bonding*
 | [Week 3 — Why Elements React & Ionic Bonding](./w3/term1-week3-science-ionic-bonding.html) | Forming ions, ionic bonding, ionic compound formulae, Group 1/7 reactivity trends |
 | [Week 4 — Why Atoms Bond, Covalent & Metallic Bonding](./w4/term1-week4-science-covalent-metallic-bonding.html) | Why atoms bond generally, covalent bonding, metallic bonding |
 
-### Unit Test 2 — 1 September 2026
+### Maths Unit Test 2 — 1 September 2026
 
-Unit Test 2 covers **Unit 1: Numbers and Calculations** and **Unit 2: Expressions and Formulae**. The combined scope is pulled together in the [Maths Unit Test 2 Revision](./term1-maths-unit2-revision.md) handout (printable only, see Revision Handouts below); the three interactive maths sheets are where each topic is taught and self-checked:
+Maths Unit Test 2 covers **Unit 1: Numbers and Calculations** and **Unit 2: Expressions and Formulae**. The combined scope is pulled together in the [Maths Unit Test 2 Revision](./term1-maths-unit2-revision.md) handout (printable only, see Revision Handouts below); the three interactive maths sheets are where each topic is taught and self-checked:
 
 | Sheet | Covers |
 |-------|--------|
 | [Week 2 — Rational & Irrational Numbers](./w2/term1-week2-maths-rational-irrational.html) | Rational numbers, irrational numbers, surds, irrational numbers on a number line |
 | [Week 2 — Indices & Standard Form](./w2/term1-week2-maths-indices-standard-form.html) | Laws of indices, negative/zero exponents, multi-step problems, standard form |
 | [Week 5 — Expressions & Formulae](./w5/term1-week5-maths-expressions-formulae.html) | Substituting, constructing expressions, expressions and indices, expanding brackets, algebraic fractions, deriving and using formulae |
+
+## Week 7
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 2: Plant Biology** — Unit 2 | 38 | 49 | [.md](./w7/term1-week7-science-unit-test2-plant-biology.md) | [.html](./w7/term1-week7-science-unit-test2-plant-biology.html) |
+
+### Science Unit Test 2 — 10 September 2026
+
+Science Unit Test 2 covers **Unit 2: Plant Biology**. The whole scope sits on the single Week 7 sheet above, which is written as test practice rather than as a teaching sheet:
+
+| Sheet | Covers |
+|-------|--------|
+| [Week 7 — Unit Test 2: Plant Biology](./w7/term1-week7-science-unit-test2-plant-biology.html) | Photosynthesis (reactants, products, word equation, why it matters), chloroplasts & chlorophyll, what glucose is used for, energy stores in plants, magnesium & nitrate, fertilisers & yield, and the two investigations (light intensity; testing a leaf for starch) |
+
+Its printable `.md` has the same 38 questions **plus six extended-answer questions** (Q39–Q44, 22 marks) that are not on the interactive sheet and are not auto-marked.
 
 ## Revision Handouts
 
@@ -107,6 +125,7 @@ Each weekly printable contains the **exact same questions** as the interactive s
 
 - **English Unit Test 1 Revision** — same questions as its `.html`, plus four open-ended Extended Writing tasks that aren't in the interactive version (see its self-review checklist instead).
 - **Science Unit Test 1 Revision** — printable only. Q1–Q54 are the questions from the three Week 2–4 science sheets, merged and renumbered (two near-duplicate questions across sheets were merged into one), so self-checking can also be done on the weekly sheets. Its eight Part 4 extended-answer questions are new. All answers, including the Part 4 marking points, are in a separate file (`term1-science-unit1-revision-answers.md`) rather than in the handout itself.
+- **Week 7 — Unit Test 2: Plant Biology** — the printable has the same Q1–Q38 as its `.html`, plus six extended-answer questions (Q39–Q44, 22 marks) for written practice that are not auto-marked.
 - **Maths Unit Test 2 Revision** — printable only. Q1–Q79 are the Maths Unit 1 Revision questions (Q1–Q53) plus the Week 5 Expressions & Formulae sheet's questions (Q54–Q79), merged and renumbered into one run, so self-checking can be done on the Week 2 and Week 5 interactive sheets.
 
 The interactive versions add:
@@ -144,9 +163,12 @@ cambridge-practice/
 │       ├── w4/
 │       │   ├── term1-week4-science-covalent-metallic-bonding.html ← Interactive
 │       │   └── term1-week4-science-covalent-metallic-bonding.md   ← Printable
-│       └── w5/
-│           ├── term1-week5-maths-expressions-formulae.html   ← Interactive
-│           └── term1-week5-maths-expressions-formulae.md     ← Printable
+│       ├── w5/
+│       │   ├── term1-week5-maths-expressions-formulae.html   ← Interactive
+│       │   └── term1-week5-maths-expressions-formulae.md     ← Printable
+│       └── w7/
+│           ├── term1-week7-science-unit-test2-plant-biology.html ← Interactive
+│           └── term1-week7-science-unit-test2-plant-biology.md   ← Printable (+6 extended-answer q)
 ```
 
 ## See Also
