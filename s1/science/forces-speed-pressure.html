@@ -217,17 +217,17 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q1 -->
   <div class="q-card" id="qcard-q1">
-    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Which is the correct formula for <em>speed</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">A cyclist covers 120&nbsp;m in 15&nbsp;s. Which calculation gives their <em>speed</em>?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="q1-opts">
-        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')"><div class="opt-indicator"></div><span>speed = distance &divide; time</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')"><div class="opt-indicator"></div><span>speed = distance &times; time</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'c')"><div class="opt-indicator"></div><span>speed = time &divide; distance</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'd')"><div class="opt-indicator"></div><span>speed = distance + time</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')"><div class="opt-indicator"></div><span>120 &divide; 15</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')"><div class="opt-indicator"></div><span>120 &times; 15</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'c')"><div class="opt-indicator"></div><span>15 &divide; 120</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'd')"><div class="opt-indicator"></div><span>120 + 15</span></div>
       </div>
       <div class="q-actions">
         <button class="btn btn-check" onclick="checkMCQ('q1','a','Q1')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q1','A — speed = distance &divide; time. It tells you the distance covered in each unit of time, e.g. metres per second.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q1','A — Speed is the distance covered in each second, so you divide the distance by the time: 120 &divide; 15 = 8 m/s. Dividing the other way round gives the seconds taken per metre, which is not a speed.')">Show Answer</button>
       </div>
       <div class="feedback" id="q1-fb"></div>
     </div>
