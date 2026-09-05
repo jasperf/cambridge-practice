@@ -120,10 +120,17 @@ Treat its hits as a shortlist to read, not a verdict: a 100% match on a definiti
 Most `.html` sheets have an `.md` printable beside them holding the same questions in the same option order. Reordering options in one and not the other desyncs them silently — the printable ends up with a different answer letter than the interactive sheet. After any shuffle:
 
 ```bash
-python3 scripts/mcq_sync.py s2/t1/w3/*.html
+python3 scripts/mcq_sync.py s2/t1/w3/*.html          # report drift
+python3 scripts/mcq_sync.py --fix s2/t1/w3/*.html    # reorder the .md to match
 ```
 
-See `scripts/README.md` for what the two tools check and how they decide.
+To apply a fix for check 1 rather than just detect it, `scripts/mcq_shuffle.py`
+reorders the options, rewrites the `checkMCQ()` letter and the reveal's leading
+letter, and re-syncs the printable. It bails out on sheets whose reveals
+cross-reference options by letter, and it never touches question wording — so
+a check-2 giveaway is always fixed by hand.
+
+See `scripts/README.md` for what the three tools check and how they decide.
 
 ## Exercise Sheet Architecture
 

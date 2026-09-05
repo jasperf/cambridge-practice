@@ -144,6 +144,18 @@ def check_giveaways(qs, threshold):
             hits.append((score, q, src))
     return sorted(hits, key=lambda h: -h[0])
 
+# --------------------------------------------------------- integrity ---
+
+REVEAL = re.compile(r"revealAnswer\('([^']+)','\s*([A-D])[\s&:—-]")
+
+def check_reveals(path):
+    """Reveal text usually leads with the answer letter - it must still agree
+    with checkMCQ() after any reshuffle."""
+    src = path.read_text(encoding='utf-8')
+    ans = dict(re.findall(r"checkMCQ\('([^']+)','([a-f])'", src))
+    rev = dict(REVEAL.findall(src))
+    return [(q, ans[q].upper(), rev[q]) for q in ans if q in rev and ans[q].upper() != rev[q]]
+
 # ------------------------------------------------------------------- main ---
 
 def main():
@@ -160,6 +172,12 @@ def main():
         if not qs:
             continue
         print(f'\n\033[1m{f}\033[0m  ({len(qs)} MCQ)')
+        mism = check_reveals(f)
+        failed += bool(mism)
+        if mism:
+            print(f"  [FAIL] {len(mism)} reveal(s) name the wrong letter")
+            for qid, want, got in mism[:6]:
+                print(f"         {qid}: answer is {want}, reveal says {got}")
         if a.check in ('1', 'both'):
             r = check_spread(qs)
             flag = 'OK ' if r['ok'] else 'FAIL'

@@ -43,6 +43,25 @@ material often is not. `CLAUDE.md` allows one or two straight recall
 questions per sheet as a warm-up — the script counts them, it does not
 decide.
 
+## `mcq_shuffle.py` — apply the fix
+
+```bash
+python3 scripts/mcq_shuffle.py --dry-run s2/t1/w3/term1-week3-science-ionic-bonding.html
+python3 scripts/mcq_shuffle.py s2/t1/w3/term1-week3-science-ionic-bonding.html
+```
+
+Moves option *text* between fixed letter slots to hit a target sequence that
+is balanced, has no run over two, and scores under 55% predictable. It then
+updates the `checkMCQ()` letter and the leading letter of `revealAnswer()`,
+and re-syncs the `.md` printable.
+
+It **refuses to run** on a sheet whose reveal text cross-references another
+option by letter ("Option A describes respiration"), because a permutation
+would silently invalidate that prose. Reshuffle those by hand.
+
+It does not touch question wording, so it cannot fix a check-2 giveaway —
+that is always a human edit.
+
 ## `mcq_sync.py` — keep the printable in step
 
 ```bash
@@ -58,5 +77,14 @@ questions shift its numbering — and it normalises `<sub>`/`<sup>` markup
 against the unicode glyphs the `.md` uses (`Na<sup>+</sup>` vs `Na⁺`), so
 chemistry sheets do not report drift that isn't there. A printable with no
 options at all is reported as free-response and skipped.
+
+`--fix` reorders the `.md` options to match the html rather than the other
+way round. It is derived from the html each time, so it is idempotent and
+will repair a half-applied shuffle:
+
+```bash
+python3 scripts/mcq_sync.py --fix s2/t1/w3/*.html
+python3 scripts/mcq_sync.py s2/t1/w3/*.html   # re-run to confirm
+```
 
 **Run it after every shuffle**, before committing.

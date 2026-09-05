@@ -53,6 +53,64 @@ def parse_md(path):
     flush()
     return out
 
+FIX = False
+
+def md_option_blocks(text):
+    """(start_index, end_index, [(prefix, letter, sep, body)]) for each option block."""
+    lines = text.splitlines()
+    blocks, i = [], 0
+    while i < len(lines):
+        if re.match(r'\s*[-*]\s*[A-F]\)', lines[i]):
+            start = i
+            rows = []
+            while i < len(lines) and re.match(r'\s*[-*]\s*[A-F]\)', lines[i]):
+                rows.append(re.match(r'(\s*[-*]\s*)([A-F])(\)\s*)(.*)', lines[i]).groups())
+                i += 1
+            blocks.append((start, i, rows))
+            continue
+        i += 1
+    return lines, blocks
+
+def fix_md(html_path, md_path, pairs):
+    """Reorder md options to match the html sibling's current order.
+
+    Derived from the html rather than replaying a permutation, so it is
+    idempotent and repairs a half-applied shuffle.
+    """
+    text = md_path.read_text(encoding='utf-8')
+    lines, blocks = md_option_blocks(text)
+    want = {}
+    for h, mnum, mopts in pairs:
+        want[tuple(sorted(norm(v) for v in mopts.values()))] = h
+    fixed = 0
+    for start, end, rows in blocks:
+        key = tuple(sorted(norm(r[3]) for r in rows))
+        h = want.get(key)
+        if not h:
+            continue
+        by_text = {norm(v): l for l, v in h['options'].items()}
+        if len(by_text) != len(rows):
+            continue
+        slot = {}
+        for prefix, letter, sep, body in rows:
+            target = by_text.get(norm(body))
+            if target is None:
+                slot = None
+                break
+            slot[target] = body
+        if not slot or len(slot) != len(rows):
+            continue
+        order = [r[1].lower() for r in rows]
+        newrows = []
+        for idx, (prefix, letter, sep, body) in enumerate(rows):
+            newrows.append(f'{prefix}{letter}{sep}{slot[order[idx]]}')
+        if newrows != [f'{p}{l}{s_}{b}' for p, l, s_, b in rows]:
+            fixed += 1
+        lines[start:end] = newrows
+    if fixed:
+        md_path.write_text('\n'.join(lines) + ('\n' if text.endswith('\n') else ''), encoding='utf-8')
+    return fixed
+
 def main(paths):
     bad = 0
     for html_path in sorted(pathlib.Path(p) for p in paths):
@@ -69,7 +127,7 @@ def main(paths):
         note = f'  (+{extra} printable-only)' if extra > 0 else ''
         print(f'\n\033[1m{md_path}\033[0m  (html {len(hq)} MCQ / md {len(mq)} MCQ){note}')
 
-        drift, unmatched = [], []
+        drift, unmatched, pairs = [], [], []
         for h in hq:
             best, score = None, 0.0
             for num, stem, mopts in mq:
@@ -80,6 +138,7 @@ def main(paths):
                 unmatched.append(h)
                 continue
             num, mopts = best
+            pairs.append((h, num, mopts))
             for letter, mtext in mopts.items():
                 htext = h['options'].get(letter)
                 if htext is None or norm(htext) != norm(mtext):
@@ -89,6 +148,10 @@ def main(paths):
         if unmatched:
             print(f"         {len(unmatched)} html question(s) had no md counterpart: "
                   + ', '.join(q['num'] for q in unmatched[:8]))
+        if drift and FIX:
+            n = fix_md(html_path, md_path, pairs)
+            print(f'         fixed {n} block(s) in {md_path.name} - re-run to confirm')
+            continue
         for num, letter, htext, mtext in drift[:8]:
             print(f'         {num} {letter.upper()}')
             print(f'            html: {(htext or "(missing)")[:80]}')
@@ -96,4 +159,6 @@ def main(paths):
     return 1 if bad else 0
 
 if __name__ == '__main__':
-    sys.exit(main(sys.argv[1:]))
+    args = [a for a in sys.argv[1:] if a != '--fix']
+    FIX = '--fix' in sys.argv
+    sys.exit(main(args))
