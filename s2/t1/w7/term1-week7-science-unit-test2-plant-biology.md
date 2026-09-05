@@ -31,29 +31,29 @@ Which statement best describes photosynthesis?
 Plants are called *producers*. Why?
 - A) They produce the minerals found in the soil
 - B) They eat other organisms to get their energy
-- C) They produce their own food, using sunlight as the energy source
-- D) They produce more offspring than animals do
+- C) They produce more offspring than animals do
+- D) They produce their own food, using sunlight as the energy source
 
 **Q3** (1 mark)
 Which pair are the *reactants* of photosynthesis?
-- A) Glucose and oxygen
-- B) Carbon dioxide and water
+- A) Carbon dioxide and water
+- B) Glucose and oxygen
 - C) Oxygen and water
 - D) Glucose and carbon dioxide
 
 **Q4** (1 mark)
 Which pair are the *products* of photosynthesis?
 - A) Carbon dioxide and water
-- B) Glucose and oxygen
-- C) Water and minerals
+- B) Water and minerals
+- C) Glucose and oxygen
 - D) Chlorophyll and starch
 
 **Q5** (2 marks)
 In the "what goes where?" sorting activity, *light* was not placed with the reactants or with the products. Why not?
 - A) Light is a product that plants only make at night
 - B) Light is a mineral that is absorbed by the roots
-- C) Light is not a substance — it is the energy source that drives the reaction
-- D) Light is both a reactant and a product at the same time
+- C) Light is both a reactant and a product at the same time
+- D) Light is not a substance — it is the energy source that drives the reaction
 
 **Q6** (1 mark)
 Where does a plant get the *water* it uses in photosynthesis?
@@ -95,8 +95,8 @@ Photosynthesis matters to *every* living thing, for two main reasons. Tick **bot
 In which organelle does photosynthesis take place?
 - A) The nucleus
 - B) The cell wall
-- C) The chloroplast
-- D) The cell membrane
+- C) The cell membrane
+- D) The chloroplast
 
 **Q11** (1 mark)
 What is the difference between a *chloroplast* and *chlorophyll*?
@@ -119,9 +119,9 @@ A student says: *"Plants photosynthesise but they can also respire. This means t
 
 **Q14** (1 mark)
 Which of these is *not* something a plant uses its glucose for?
-- A) Respiration
+- A) Absorbing minerals from the soil
 - B) Making cellulose for cell walls
-- C) Absorbing minerals from the soil
+- C) Respiration
 - D) Making starch stores
 
 **Q15** (3 marks)
@@ -135,10 +135,10 @@ Tick **all four** things a plant uses the glucose made in photosynthesis for.
 
 **Q16** (1 mark)
 Nuts and seeds are energy stores. What do they mainly store?
-- A) Fats and oils
+- A) Nitrates from the soil
 - B) Starch and glucose
 - C) Chlorophyll
-- D) Nitrates from the soil
+- D) Fats and oils
 
 **Q17** (1 mark)
 Tubers and roots (for example a potato) are stores of:
@@ -156,8 +156,8 @@ Where inside a leaf cell is the starch stored?
 
 **Q19** (2 marks)
 On a warm, sunny day, why does a plant turn some of its carbohydrate into *starch*?
-- A) Because starch attracts more sunlight to the leaf than glucose does
-- B) Because it makes more carbohydrate than it needs immediately, and stores some for later — at night, or at a time of year with less sunlight
+- A) Because it makes more carbohydrate than it needs immediately, and stores some for later — at night, or at a time of year with less sunlight
+- B) Because starch attracts more sunlight to the leaf than glucose does
 - C) Because starch is a mineral the plant cannot get from the soil
 - D) Because glucose cannot be used in respiration
 
@@ -176,10 +176,10 @@ On a warm, sunny day, why does a plant turn some of its carbohydrate into *starc
 
 **Q20** (1 mark)
 What are minerals, and how does a plant get them?
-- A) Water-soluble substances, absorbed from the soil through the roots
+- A) Fats, stored in the seeds
 - B) Gases, absorbed from the air through the leaves
 - C) Sugars, made inside the chloroplasts
-- D) Fats, stored in the seeds
+- D) Water-soluble substances, absorbed from the soil through the roots
 
 **Q21** (1 mark)
 Which mineral does a plant need in order to make *chlorophyll*? (Give the name or its symbol.)
@@ -202,17 +202,17 @@ Explain the *chain*: why does a magnesium-deficient plant grow badly?
 
 **Q24** (1 mark)
 Nitrate contains nitrogen atoms. What does a plant mainly need nitrogen for?
-- A) Making the cell wall waterproof
-- B) Converting carbohydrates into proteins
+- A) Converting carbohydrates into proteins
+- B) Making the cell wall waterproof
 - C) Absorbing carbon dioxide from the air
 - D) Storing fats and oils in the seeds
 
 **Q25** (1 mark)
 Why do proteins matter so much for a plant's growth?
-- A) Proteins are essential for making new cells
+- A) Proteins are released from the leaf as a waste gas
 - B) Proteins are the plant's main store of fats and oils
 - C) Proteins absorb sunlight instead of chlorophyll
-- D) Proteins are released from the leaf as a waste gas
+- D) Proteins are essential for making new cells
 
 **Q26** (1 mark)
 What happens to a plant, such as maize, that does not get enough nitrogen?
@@ -230,23 +230,23 @@ Match the description to the mineral: *"The plant cannot make proteins, so growt
 
 **Q28** (1 mark)
 Why do farmers add fertiliser to a field of wheat?
-- A) Fertiliser supplies the carbon dioxide the crop needs
+- A) Fertiliser contains minerals the soil may be short of, so crops grow larger and give a higher yield
 - B) Fertiliser replaces sunlight on cloudy days
-- C) Fertiliser contains minerals the soil may be short of, so crops grow larger and give a higher yield
+- C) Fertiliser supplies the carbon dioxide the crop needs
 - D) Fertiliser stops the crop from respiring, saving its energy
 
 **Q29** (1 mark)
 How can a farmer work out *where* in a field fertiliser is actually needed?
-- A) By testing the soil in different parts of the field to see which minerals are lacking
+- A) By counting how many leaves each plant has
 - B) By spreading exactly the same amount everywhere
 - C) By measuring the air temperature above the crop
-- D) By counting how many leaves each plant has
+- D) By testing the soil in different parts of the field to see which minerals are lacking
 
 **Q30** (2 marks)
 Legumes — beans, peanuts and soy — flourish even on nitrogen-deficient soils. Why?
 - A) They have no need for nitrogen at all
-- B) With help from *Rhizobium* bacteria they can fix nitrogen from the air
-- C) They make their own nitrate inside their chloroplasts
+- B) They make their own nitrate inside their chloroplasts
+- C) With help from *Rhizobium* bacteria they can fix nitrogen from the air
 - D) They use magnesium in place of nitrogen
 
 ---
@@ -259,8 +259,8 @@ Legumes — beans, peanuts and soy — flourish even on nitrogen-deficient soils
 
 **Q31** (1 mark)
 In the pondweed investigation, how is the *rate of photosynthesis* measured?
-- A) By counting the bubbles of gas given off each minute
-- B) By weighing the lamp
+- A) By weighing the lamp
+- B) By counting the bubbles of gas given off each minute
 - C) By measuring how long the pondweed is
 - D) By counting how many leaves the pondweed has
 
@@ -271,8 +271,8 @@ Answer: _______________________________________
 
 **Q33** (1 mark)
 How is the *light intensity* changed during the investigation?
-- A) By warming the water with a heater
-- B) By moving the lamp closer to, or further from, the pondweed
+- A) By moving the lamp closer to, or further from, the pondweed
+- B) By warming the water with a heater
 - C) By adding fertiliser to the water
 - D) By swapping in a different species of pondweed each time
 
@@ -280,8 +280,8 @@ How is the *light intensity* changed during the investigation?
 The graph of bubbles per minute against light intensity rises at first, then *levels off*. What does the flat part show?
 - A) The pondweed has died
 - B) The light intensity has started to fall again
-- C) Extra light no longer speeds things up, because something else — such as carbon dioxide or temperature — is now the limit
-- D) The pondweed has switched from photosynthesis to respiration
+- C) The pondweed has switched from photosynthesis to respiration
+- D) Extra light no longer speeds things up, because something else — such as carbon dioxide or temperature — is now the limit
 
 **Q35** (1 mark)
 Which of these must be kept the *same* throughout the investigation, so the test is fair?
@@ -292,15 +292,15 @@ Which of these must be kept the *same* throughout the investigation, so the test
 
 **Q36** (2 marks)
 A leaf is tested for starch with iodine solution. What is a *positive* result?
-- A) The iodine turns blue-black
-- B) The iodine turns completely colourless
+- A) The iodine turns completely colourless
+- B) The iodine turns blue-black
 - C) The leaf turns bright green again
 - D) The leaf starts giving off bubbles
 
 **Q37** (1 mark)
 Before adding the iodine, the leaf is boiled in ethanol. Why?
-- A) To add extra starch to the leaf
-- B) To remove the green chlorophyll, so the colour change can actually be seen
+- A) To remove the green chlorophyll, so the colour change can actually be seen
+- B) To add extra starch to the leaf
 - C) To make the leaf photosynthesise faster
 - D) To turn the glucose in the leaf into starch
 
