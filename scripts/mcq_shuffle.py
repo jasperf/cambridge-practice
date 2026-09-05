@@ -73,8 +73,17 @@ def shuffle_html(src, targets):
         for pos, src_idx in enumerate(order):
             d = divs[src_idx]
             d = re.sub(r"(selectMCQ\('[^']+',\s*this,\s*')[a-f]('\))", r'\g<1>' + letters[pos] + r'\g<2>', d)
+            # Some sheets print the letter in the bullet instead of leaving it
+            # empty. That belongs to the slot, not to the option text, so it
+            # stays put while the text around it moves.
+            d = re.sub(r'(class="opt-indicator"[^>]*>)[A-F](</div>)',
+                       r'\g<1>' + letters[pos].upper() + r'\g<2>', d)
             rebuilt.append(d)
-        new_inner = '\n        ' + '\n        '.join(x.strip() for x in rebuilt) + '\n      '
+        # Re-use the sheet's own indentation so the diff is the reordering only.
+        ind = re.match(r'\s*\n(\s*)', inner)
+        pad = ind.group(1) if ind else '        '
+        close = re.search(r'\n(\s*)$', inner)
+        new_inner = '\n' + pad + ('\n' + pad).join(x.strip() for x in rebuilt) + '\n' + (close.group(1) if close else '      ')
         src = src[:m.start(2)] + new_inner + src[m.end(2):]
         src = re.sub(r"(checkMCQ\('" + re.escape(qid) + r"',')[a-f](')", r'\g<1>' + want + r'\g<2>', src)
         # Only a letter followed by a dash is the answer letter; a reveal that
