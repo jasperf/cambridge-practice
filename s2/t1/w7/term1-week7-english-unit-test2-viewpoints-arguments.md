@@ -24,18 +24,18 @@ Sections A–D cover the Level 2/3 scope. Section E is the Level 1 grammar focus
 ### Questions
 
 **Q1** (1 mark)
-In academic work, what is an *argument*?
-- A) An angry disagreement between two people
-- B) A list of facts with no opinion attached
-- C) A clear claim supported by reasons and evidence
-- D) A summary of what everybody else has already written
+Which of these is an *academic* argument, rather than an everyday one?
+- A) "You never listen to me — you always take her side!"
+- B) "A school uniform costs £45 on average. Sixty-two per cent of schools require one."
+- C) "Schools should drop the uniform rule, because its cost falls hardest on low-income families — 62% of them report struggling to pay."
+- D) "Many writers have discussed school uniform over the years."
 
 **Q2** (1 mark)
-What is a writer's *viewpoint*?
-- A) The writer's overall belief about the topic
-- B) The specific statement the writer wants us to accept
-- C) A statistic or expert opinion that supports a reason
-- D) The sentence that closes the final paragraph
+A writer opens: "Social media has done more harm than good to teenagers." She goes on to argue that it wrecks their sleep, quoting a study that found under-16s lose 40 minutes a night. Which part is her *viewpoint*?
+- A) That social media has done more harm than good to teenagers
+- B) That social media wrecks teenagers' sleep
+- C) That under-16s lose 40 minutes of sleep a night
+- D) That she quotes a study at all
 
 **Q3** (2 marks)
 What is the difference between a *viewpoint* and an *argument*?
