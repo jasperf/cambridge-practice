@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viewpoints &amp; Arguments &middot; English Unit Test 2 Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #f5a623; --accent-eng: #f5a623; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-eng); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-eng); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-eng); min-width: 62px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-eng), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-eng); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-eng { background: var(--accent-eng); }
+.exam-banner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.exam-inner { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.28); border-radius: 12px; padding: 14px 18px; font-size: 0.88rem; color: var(--text-muted); }
+.exam-inner strong { color: var(--accent-warn); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.5px; }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-eng); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(245,166,35,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-eng); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.diagram-wrap { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0 24px; text-align: center; }
+.diagram-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.diagram-note { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.5; }
+.diagram-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+.extract { background: rgba(15,17,23,0.5); border: 1px dashed var(--border); border-left: 3px solid var(--accent-eng); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0 24px; font-size: 0.92rem; line-height: 1.8; color: var(--text); }
+.extract .extract-label { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+.extract em { color: var(--accent-eng); font-style: italic; }
+.parts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0 24px; }
+.part-card { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--accent-eng); border-radius: 0 8px 8px 0; padding: 14px 16px; }
+.part-card h4 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 6px; color: var(--text); }
+.part-card .ask { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-warn); letter-spacing: 0.5px; }
+.part-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-top: 4px; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-eng); }
+.q-text q { quotes: '\201C' '\201D'; color: var(--text); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-eng); background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-eng); }
+.mcq-opt.selected { border-color: var(--accent-eng); background: rgba(245,166,35,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-eng); background: var(--accent-eng); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.multi-opt .opt-indicator { border-radius: 5px; }
+.multi-note { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-warn); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent-eng); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-eng); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-eng); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-eng), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-eng); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-amber { 0%{box-shadow:0 0 0 0 rgba(46,204,113,0.4)} 70%{box-shadow:0 0 0 10px rgba(46,204,113,0)} 100%{box-shadow:0 0 0 0 rgba(46,204,113,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-amber 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .exam-banner { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">English &middot; Unit Test 2</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 59</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; English &middot; Unit Test 2</div>
+  <h1>English Unit Test 2<br><em>Viewpoints &amp; Arguments</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-eng"></div>Parts of an Argument &middot; Word Choices &middot; Text Features</div>
+    <div class="hero-chip"><div class="dot dot-eng" style="background:var(--text-dim)"></div>45 questions &middot; self-marked &middot; 59 marks</div>
+  </div>
+</div>
+
+<div class="exam-banner"><div class="exam-inner">
+  <strong>UNIT TEST 2 &middot; THURSDAY 10 SEPTEMBER &middot; WHAT TO REVISE</strong><br>
+  <strong style="color:var(--text)">Level 2/3 &mdash; The World We Live In: Viewpoint and Argument in Persuasive Writing.</strong> Scope: the parts of an argument (claim, reason, evidence and explanation questions), word choices, and text features.<br>
+  <strong style="color:var(--text)">Level 1 &mdash; Past Continuous Tense.</strong> &nbsp;<strong style="color:var(--text)">English Support &mdash; Subject&ndash;Verb Agreement.</strong> Sections E and F below cover these two.
+</div></div>
+
+<div class="section-tabs">
+  <a href="#viewpoint" class="sub-tab">&#128172; A &middot; Viewpoint &amp; Argument</a>
+  <a href="#parts" class="sub-tab">&#129513; B &middot; Parts of an Argument</a>
+  <a href="#words" class="sub-tab">&#9997; C &middot; Word Choices</a>
+  <a href="#features" class="sub-tab">&#128196; D &middot; Text Features</a>
+  <a href="#pastcont" class="sub-tab">&#9203; E &middot; Past Continuous</a>
+  <a href="#sva" class="sub-tab">&#128295; F &middot; Subject&ndash;Verb Agreement</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: VIEWPOINT & ARGUMENT ═══════════════ -->
+<div id="viewpoint">
+  <div class="section-header"><div class="section-icon">&#128172;</div><div><div class="sub-label">Section A &middot; Level 2/3</div><h2>Viewpoint &amp; Argument</h2></div></div>
+  <div class="info-box">In everyday life an <strong>argument</strong> is a disagreement. In academic work it is something calmer: a <strong>clear claim supported by reasons and evidence</strong> &mdash; a structured exploration of an idea, not an attempt to &ldquo;win&rdquo;. A <strong>viewpoint</strong> is the writer&rsquo;s overall belief about the topic; the <strong>argument</strong> is the case the writer builds to make that belief convincing. Always ask two more questions of any persuasive text: <strong>purpose</strong> (what is it trying to do?) and <strong>audience</strong> (who needs to be convinced?).</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-e1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">In academic work, what is an <em>argument</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'a')"><div class="opt-indicator"></div><span>An angry disagreement between two people</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'b')"><div class="opt-indicator"></div><span>A list of facts with no opinion attached</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'c')"><div class="opt-indicator"></div><span>A clear claim supported by reasons and evidence</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'd')"><div class="opt-indicator"></div><span>A summary of what everybody else has already written</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e1','c','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e1','C &mdash; Everyday arguments can be emotional and are about winning. An <em>academic</em> argument is a calm, structured exploration of an idea: a clear claim, supported by reasons and evidence.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-e2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">What is a writer&rsquo;s <em>viewpoint</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'a')"><div class="opt-indicator"></div><span>The writer&rsquo;s overall belief about the topic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'b')"><div class="opt-indicator"></div><span>The specific statement the writer wants us to accept</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'c')"><div class="opt-indicator"></div><span>A statistic or expert opinion that supports a reason</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'd')"><div class="opt-indicator"></div><span>The sentence that closes the final paragraph</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e2','a','Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e2','A &mdash; Viewpoint answers &ldquo;What does the writer believe?&rdquo; Option B describes the claim, which is narrower and more specific.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-e3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">What is the difference between a <em>viewpoint</em> and an <em>argument</em>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'a')"><div class="opt-indicator"></div><span>A viewpoint belongs to the reader; an argument belongs to the writer</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'b')"><div class="opt-indicator"></div><span>A viewpoint must be a fact, while an argument must be an opinion</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'c')"><div class="opt-indicator"></div><span>They are two words for exactly the same thing</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'd')"><div class="opt-indicator"></div><span>The viewpoint is the writer&rsquo;s overall belief; the argument is the structured case &mdash; claim, reason, evidence, explanation &mdash; built to make that belief convincing</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e3','One of the two is a belief. The other is the machinery built to make a reader accept that belief.')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e3','d','Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e3','D &mdash; The viewpoint is what the writer thinks. The argument is how they prove it: a claim, the reasons behind it, evidence for those reasons, and an explanation tying the evidence back to the claim.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e3-fb"></div>
+    </div>
+  </div>
+
+  <div class="extract">
+    <span class="extract-label">Extract 1 &mdash; read this before Q4&ndash;Q6</span>
+    Schools should teach students how to use AI responsibly because students are likely to use it in their education and future careers. For example, students already use AI tools to explain unfamiliar vocabulary and check their writing. This shows that students need guidance so that they can benefit from AI without allowing it to replace their own thinking.
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-e4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">In Extract 1, what is the writer&rsquo;s <em>viewpoint</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'a')"><div class="opt-indicator"></div><span>AI should be banned from every classroom</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'b')"><div class="opt-indicator"></div><span>AI can be useful in education</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'c')"><div class="opt-indicator"></div><span>Teachers do not understand how AI works</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'd')"><div class="opt-indicator"></div><span>An AI program can write a whole essay in seconds</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e4','b','Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e4','B &mdash; The viewpoint sits underneath everything else the writer says. They are not against AI; they believe it can be useful, which is why they want it taught responsibly rather than banned.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-e5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">What is the <em>purpose</em> of Extract 1?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e5', this, 'a')"><div class="opt-indicator"></div><span>To entertain the reader with a funny story</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e5', this, 'b')"><div class="opt-indicator"></div><span>To explain, step by step, how an AI model is built</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e5', this, 'c')"><div class="opt-indicator"></div><span>To describe what a typical school day looks like</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e5', this, 'd')"><div class="opt-indicator"></div><span>To persuade schools to teach responsible AI use</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e5','d','Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e5','D &mdash; Purpose asks what the text is trying to <em>do</em>. The word &ldquo;should&rdquo; is the giveaway: this text wants something to change, so it is persuading.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-e6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Who is the most likely <em>audience</em> for Extract 1?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e6', this, 'a')"><div class="opt-indicator"></div><span>Children in nursery school</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e6', this, 'b')"><div class="opt-indicator"></div><span>People who have never heard of a school</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e6', this, 'c')"><div class="opt-indicator"></div><span>Teachers and school leaders</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e6', this, 'd')"><div class="opt-indicator"></div><span>The engineers who build AI models</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e6','c','Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e6','C &mdash; Ask who has the power to act on the claim. Only teachers and school leaders can decide what schools teach. You do not have to name your audience in an essay, but you must keep them in mind as you write.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">VIEWPOINT &amp; ARGUMENT &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-vp-fill"></div></div>
+    <div class="section-score-val" id="sec-vp-val">0/7</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: PARTS OF AN ARGUMENT ═══════════════ -->
+<div id="parts">
+  <div class="section-header"><div class="section-icon">&#129513;</div><div><div class="sub-label">Section B &middot; Level 2/3</div><h2>Parts of an Argument</h2></div></div>
+  <div class="info-box">The <strong>four core elements</strong> of a written argument, in the order they normally appear in a paragraph. Learn the question each one answers &mdash; that is how you identify them in a text.</div>
+
+  <div class="parts-grid">
+    <div class="part-card"><h4>1. Claim</h4><div class="ask">What is the writer saying?</div><p>The specific statement the writer wants us to accept. It must be arguable, not just a statement of fact.</p></div>
+    <div class="part-card"><h4>2. Reason</h4><div class="ask">Why does the writer think this?</div><p>Logical support for the claim. It follows the word <strong>because</strong>: if the claim is challenged with &ldquo;Why do you say that?&rdquo;, the reason is your answer.</p></div>
+    <div class="part-card"><h4>3. Evidence</h4><div class="ask">What support can the writer provide?</div><p>A fact, example, statistic, research finding or expert opinion that proves the reason is valid.</p></div>
+    <div class="part-card"><h4>4. Explanation</h4><div class="ask">How does this evidence prove the point?</div><p>The logical bridge: it shows how the evidence supports the reason and the claim, and tells the reader why that information matters.</p></div>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">How the four parts fit together</div>
+    <canvas id="argument-canvas" class="diagram-canvas" width="520" height="300" aria-label="Diagram: the writer's viewpoint sits above a chain running from claim to reason to evidence to explanation, which loops back to the claim"></canvas>
+    <div class="diagram-note">The <em>viewpoint</em> is the belief underneath. The four parts are the case built on top of it.</div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-e7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which of these sentences would work as a <em>claim</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'a')"><div class="opt-indicator"></div><span>The school day currently begins at 8 a.m.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'b')"><div class="opt-indicator"></div><span>The school day should begin an hour later.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'c')"><div class="opt-indicator"></div><span>Most students in Year 9 own a mobile phone.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'd')"><div class="opt-indicator"></div><span>This essay will discuss the school timetable.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e7','b','Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e7','B &mdash; A claim has to be <em>arguable</em>: someone could reasonably disagree with it. A and C are plain statements of fact that nobody would dispute, and D only announces the topic without taking a position.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-e8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A writer claims: <q>Our school should open a homework club after lessons.</q> Which sentence is the <em>reason</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e8', this, 'a')"><div class="opt-indicator"></div><span>Last term, 40 students said they had nowhere quiet to work at home.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e8', this, 'b')"><div class="opt-indicator"></div><span>This shows that a quiet space would help students finish their work.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e8', this, 'c')"><div class="opt-indicator"></div><span>Many students have no quiet place to study at home.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e8', this, 'd')"><div class="opt-indicator"></div><span>Homework clubs already run in schools across the country.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e8','Try each one in the gap: &ldquo;Our school should open a homework club <strong>because</strong>&hellip;&rdquo; Only one of them fits.')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e8','c','Q8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e8','C &mdash; It passes the <em>because</em> test. A is the evidence (a specific number from a specific term) and B is the explanation. Notice how close A and C are: the reason is the general point, the evidence is the hard data behind it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-e9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Which of these would count as <em>evidence</em> in an argument about screen time?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e9', this, 'a')"><div class="opt-indicator"></div><span>A 2023 survey of 1,200 teenagers found that 68% used a screen within an hour of bedtime.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e9', this, 'b')"><div class="opt-indicator"></div><span>Screens are obviously bad for young people.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e9', this, 'c')"><div class="opt-indicator"></div><span>Everyone agrees that teenagers spend too long on their phones.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e9', this, 'd')"><div class="opt-indicator"></div><span>I think people should read more books instead.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e9','a','Q9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e9','A &mdash; Evidence is factual, specific and traceable to a source the reader could check. B and D are the writer&rsquo;s own opinion, and C is a sweeping general statement that proves nothing.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-e10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">A body paragraph gives a claim, a reason and a strong statistic &mdash; then stops. What is the problem?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e10', this, 'a')"><div class="opt-indicator"></div><span>Nothing &mdash; a strong statistic speaks for itself, so anything after it would only repeat the point</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e10', this, 'b')"><div class="opt-indicator"></div><span>The paragraph has too much evidence in it and should be shortened</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e10', this, 'c')"><div class="opt-indicator"></div><span>The claim is in the wrong place and should be moved to the end</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e10', this, 'd')"><div class="opt-indicator"></div><span>The explanation is missing, so nothing tells the reader what the statistic proves or links it back to the claim</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e10','Count the four parts. Which one has the paragraph not reached yet?')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e10','d','Q10')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e10','D &mdash; Evidence cannot stand alone. Without the explanation the reader is left to work out for themselves what the data means, and the paragraph never closes the loop back to the claim.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-e11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">In what order do the four parts usually appear in a body paragraph?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e11', this, 'a')"><div class="opt-indicator"></div><span>Evidence &rarr; Claim &rarr; Explanation &rarr; Reason</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e11', this, 'b')"><div class="opt-indicator"></div><span>Claim &rarr; Reason &rarr; Evidence &rarr; Explanation</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e11', this, 'c')"><div class="opt-indicator"></div><span>Reason &rarr; Claim &rarr; Explanation &rarr; Evidence</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e11', this, 'd')"><div class="opt-indicator"></div><span>Explanation &rarr; Evidence &rarr; Reason &rarr; Claim</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e11','b','Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e11','B &mdash; Say what you think, say why, prove it, then explain what your proof shows. Each part depends on the one before it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-e12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Which single word usually comes straight after a claim to introduce the reason? <span style="color:var(--text-muted);font-size:0.85rem;">(Type one word.)</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e12-ans" placeholder="one word&hellip;" autocomplete="off" spellcheck="false">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e12',['because'],'Q12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e12','<strong>because</strong> &mdash; &ldquo;Schools should start later <em>[claim]</em> <strong>because</strong> teenagers need sufficient sleep <em>[reason]</em>.&rdquo;')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e12-fb"></div>
+    </div>
+  </div>
+
+  <div class="extract">
+    <span class="extract-label">Extract 2 &mdash; read this before Q13&ndash;Q16</span>
+    <strong>(i)</strong> Schools should establish clear rules for using AI. <strong>(ii)</strong> Students may otherwise submit work that does not show their own understanding. <strong>(iii)</strong> For example, an AI program can generate an entire essay in seconds. <strong>(iv)</strong> This demonstrates that clear rules can protect independent learning.
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-e13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Which part of the argument is sentence <strong>(i)</strong> &mdash; <q>Schools should establish clear rules for using AI</q>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e13-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e13', this, 'a')"><div class="opt-indicator"></div><span>Reason</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e13', this, 'b')"><div class="opt-indicator"></div><span>Evidence</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e13', this, 'c')"><div class="opt-indicator"></div><span>Claim</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e13', this, 'd')"><div class="opt-indicator"></div><span>Explanation</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e13','c','Q13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e13','C &mdash; It is the claim: the arguable statement the writer wants the reader to accept.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-e14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Which part is sentence <strong>(ii)</strong> &mdash; <q>Students may otherwise submit work that does not show their own understanding</q>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'a')"><div class="opt-indicator"></div><span>Reason</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'b')"><div class="opt-indicator"></div><span>Claim</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'c')"><div class="opt-indicator"></div><span>Explanation</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'd')"><div class="opt-indicator"></div><span>Evidence</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e14','a','Q14')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e14','A &mdash; It is the reason. Test it: &ldquo;Schools should establish clear rules <em>because</em> students may otherwise submit work that does not show their own understanding.&rdquo;')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-e15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Which part is sentence <strong>(iii)</strong> &mdash; <q>For example, an AI program can generate an entire essay in seconds</q>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e15-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e15', this, 'a')"><div class="opt-indicator"></div><span>Explanation</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e15', this, 'b')"><div class="opt-indicator"></div><span>Claim</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e15', this, 'c')"><div class="opt-indicator"></div><span>Reason</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e15', this, 'd')"><div class="opt-indicator"></div><span>Evidence</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e15','Look at the two words it opens with. They signal one part of an argument almost every time.')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e15','d','Q15')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e15','D &mdash; It is the evidence. &ldquo;For example&hellip;&rdquo; introduces the specific, factual support that proves the reason deserves to be believed.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-e16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Which part is sentence <strong>(iv)</strong> &mdash; <q>This demonstrates that clear rules can protect independent learning</q>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'a')"><div class="opt-indicator"></div><span>Evidence</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'b')"><div class="opt-indicator"></div><span>Explanation</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'c')"><div class="opt-indicator"></div><span>Reason</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'd')"><div class="opt-indicator"></div><span>Claim</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e16','b','Q16')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e16','B &mdash; It is the explanation. &ldquo;This demonstrates that&hellip;&rdquo; links the evidence back to the claim and tells the reader what it proves.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e16-fb"></div>
+    </div>
+  </div>
+
+  <div class="extract">
+    <span class="extract-label">Extract 3 &mdash; read this before Q17</span>
+    The primary benefit of a shortened academic week is that it significantly improves student attendance. A 2021 study by the RAND Corporation, analysing schools in the western United States, found that districts operating on a four-day schedule saw a 15% decrease in chronic student absenteeism. Because the extra weekday provides families with dedicated time to schedule appointments and allows students to rest, teenagers are less likely to miss instructional time.
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-e17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">In Extract 3, which part of the argument is the sentence about the <em>RAND Corporation study</em>, and how can you tell?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e17-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e17', this, 'a')"><div class="opt-indicator"></div><span>The claim &mdash; because it is the longest sentence in the paragraph</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e17', this, 'b')"><div class="opt-indicator"></div><span>The reason &mdash; because it explains why the writer believes the claim</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e17', this, 'c')"><div class="opt-indicator"></div><span>The evidence &mdash; because it is specific factual data (a named study and a percentage) that proves the reason is true</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e17', this, 'd')"><div class="opt-indicator"></div><span>The explanation &mdash; because it tells the reader how to interpret the figures</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e17','A named source and a number are almost always one particular part of an argument.')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e17','c','Q17')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e17','C &mdash; Evidence. The first sentence is the reason (the topic sentence), the RAND study is the evidence, and the final sentence beginning &ldquo;Because the extra weekday&hellip;&rdquo; is the explanation.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e17-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-e18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Select <strong>all three</strong> things a good <em>explanation</em> does.</div><div class="q-marks">3 marks</div></div>
+    <div class="q-body">
+      <div class="multi-note">Select 3 &middot; all three must be right for the marks</div>
+      <div class="mcq-options" id="e18-opts">
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e18', this, 'a')"><div class="opt-indicator"></div><span>Connects the evidence back to the reason and the claim</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e18', this, 'b')"><div class="opt-indicator"></div><span>Tells the reader why that information matters</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e18', this, 'c')"><div class="opt-indicator"></div><span>Copies the evidence out again word for word, adding nothing</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e18', this, 'd')"><div class="opt-indicator"></div><span>Shows how the evidence proves the point</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e18', this, 'e')"><div class="opt-indicator"></div><span>Removes the need for any evidence at all</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e18', this, 'f')"><div class="opt-indicator"></div><span>Introduces a brand-new claim the reader has not seen before</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMulti('e18',['a','b','d'],'Q18')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e18','A, B and D &mdash; the explanation is the logical bridge back to the claim, it interprets the evidence, and it says why the information matters. It never just repeats the evidence, and it never replaces it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e18-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">PARTS OF AN ARGUMENT &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pa-fill"></div></div>
+    <div class="section-score-val" id="sec-pa-val">0/16</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: WORD CHOICES ═══════════════ -->
+<div id="words">
+  <div class="section-header"><div class="section-icon">&#9997;</div><div><div class="sub-label">Section C &middot; Level 2/3</div><h2>Word Choices</h2></div></div>
+  <div class="info-box">Persuasive writing lives or dies on word choice. A <strong>hook</strong> opens the introduction; a <strong>thesis statement</strong> states your opinion and what should be done; <strong>transition words</strong> connect one argument to the next; <strong>specific</strong> examples beat general ones every time. Avoid sweeping general statements &mdash; <em>everybody knows&hellip;, nobody wants&hellip;, anyone can see&hellip;</em> &mdash; because nothing about them can be proved.</div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-e19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Why should you avoid writing <q>Everybody knows that&hellip;</q> in a persuasive essay?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e19-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e19', this, 'a')"><div class="opt-indicator"></div><span>It is a little informal, though the point it makes is still proved</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e19', this, 'b')"><div class="opt-indicator"></div><span>It uses the wrong tense for an essay</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e19', this, 'c')"><div class="opt-indicator"></div><span>It gives away the writer&rsquo;s audience too early</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e19', this, 'd')"><div class="opt-indicator"></div><span>It is a sweeping general statement &mdash; it cannot be proved, so it does not work as evidence</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e19','d','Q19')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e19','D &mdash; A general statement dressed up as a fact is not evidence. Replace it with something specific and sourced: a statistic, a study, an expert opinion.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e19-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-e20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Select <strong>all three</strong> openings you should avoid in persuasive writing.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="multi-note">Select 3 &middot; all three must be right for the marks</div>
+      <div class="mcq-options" id="e20-opts">
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e20', this, 'a')"><div class="opt-indicator"></div><span>&ldquo;Everyone knows that&hellip;&rdquo;</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e20', this, 'b')"><div class="opt-indicator"></div><span>&ldquo;According to a 2021 study by the RAND Corporation&hellip;&rdquo;</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e20', this, 'c')"><div class="opt-indicator"></div><span>&ldquo;Nobody wants&hellip;&rdquo;</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e20', this, 'd')"><div class="opt-indicator"></div><span>&ldquo;Research published last year found that&hellip;&rdquo;</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e20', this, 'e')"><div class="opt-indicator"></div><span>&ldquo;Anyone can see that&hellip;&rdquo;</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMulti('e20',['a','c','e'],'Q20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e20','A, C and E &mdash; all three claim that everyone agrees, which proves nothing. B and D are fine: they name a source, so the reader can check them.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e20-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-e21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">What is a <em>hook</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e21-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'a')"><div class="opt-indicator"></div><span>The final memorable sentence of the conclusion</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'b')"><div class="opt-indicator"></div><span>A word that joins two clauses together</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'c')"><div class="opt-indicator"></div><span>An opening statement or question that captures the reader&rsquo;s attention</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'd')"><div class="opt-indicator"></div><span>A statistic placed in the middle of a body paragraph</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e21','c','Q21')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e21','C &mdash; The hook comes first. It paints a picture or tells a story before the thesis statement arrives, and it must relate to the topic.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e21-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-e22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">What is a <em>thesis statement</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e22-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'a')"><div class="opt-indicator"></div><span>A quotation from an expert used to open the essay</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'b')"><div class="opt-indicator"></div><span>A short, easy-to-read sentence stating your opinion and what should be done</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'c')"><div class="opt-indicator"></div><span>A list of the sources the writer used</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'd')"><div class="opt-indicator"></div><span>A question asked of the reader in the very last line</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e22','b','Q22')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e22','B &mdash; e.g. &ldquo;Students in American public schools should be required to wear school uniforms.&rdquo; Everything that follows exists to support that one sentence.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e22-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-e23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Why do persuasive writers use <em>transition words</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e23-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e23', this, 'a')"><div class="opt-indicator"></div><span>They connect arguments together, so the writing flows from one idea to the next</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e23', this, 'b')"><div class="opt-indicator"></div><span>They make the essay longer without adding any ideas</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e23', this, 'c')"><div class="opt-indicator"></div><span>They remove the need to write a conclusion</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e23', this, 'd')"><div class="opt-indicator"></div><span>They tell the reader who the intended audience is</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e23','a','Q23')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e23','A &mdash; Words such as <em>first of all, not only&hellip; also, however, in conclusion</em> show the reader how each idea relates to the one before it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e23-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-e24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">Which pair of transition words completes this sentence? <q>____ do uniforms bring a sense of belonging, they ____ allow for a sense of equality among students.</q></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e24-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'a')"><div class="opt-indicator"></div><span>Because &hellip; therefore</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'b')"><div class="opt-indicator"></div><span>However &hellip; although</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'c')"><div class="opt-indicator"></div><span>Firstly &hellip; firstly</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'd')"><div class="opt-indicator"></div><span>Not only &hellip; also</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e24','d','Q24')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e24','D &mdash; <em>Not only&hellip; also</em> adds a second benefit on top of the first. Note the inversion it forces: &ldquo;Not only <strong>do</strong> uniforms bring&hellip;&rdquo;')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e24-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-e25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Which of these is the <em>strongest</em> supporting detail for the claim that uniforms help students feel they belong?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e25-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'a')"><div class="opt-indicator"></div><span>&ldquo;Uniforms have always been popular.&rdquo;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'b')"><div class="opt-indicator"></div><span>&ldquo;Everybody knows that uniforms work.&rdquo;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'c')"><div class="opt-indicator"></div><span>&ldquo;Students wearing the same uniform will feel included because they look like others.&rdquo;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'd')"><div class="opt-indicator"></div><span>&ldquo;Uniforms are good for everyone in every school.&rdquo;</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e25','Three of these four say something about <em>everyone</em>, <em>always</em> or <em>every school</em>. Only one names something specific that actually happens.')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e25','c','Q25')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e25','C &mdash; It is specific and it carries its own reason (&ldquo;because they look like others&rdquo;). A, B and D are all sweeping general statements that cannot be proved.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e25-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-e26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">What should a <em>conclusion</em> paragraph do?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e26-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e26', this, 'a')"><div class="opt-indicator"></div><span>Restate the thesis in different words, then close with a memorable statement</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e26', this, 'b')"><div class="opt-indicator"></div><span>Introduce a completely new argument the reader has not met before</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e26', this, 'c')"><div class="opt-indicator"></div><span>Copy the introduction out word for word</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e26', this, 'd')"><div class="opt-indicator"></div><span>List everything the writer could not fit into the essay</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e26','a','Q26')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e26','A &mdash; Begin with a concluding phrase, <em>paraphrase</em> the thesis (different words, same meaning), then leave the reader thinking with a closing statement or question.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e26-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WORD CHOICES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wc-fill"></div></div>
+    <div class="section-score-val" id="sec-wc-val">0/10</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: TEXT FEATURES ═══════════════ -->
+<div id="features">
+  <div class="section-header"><div class="section-icon">&#128196;</div><div><div class="sub-label">Section D &middot; Level 2/3</div><h2>Text Features</h2></div></div>
+  <div class="info-box"><strong>Text features</strong> are the structural signposts a persuasive text uses to guide its reader: the introduction with its hook and thesis, subheadings, <strong>topic sentences</strong> opening each body paragraph, supporting details and statistics, an acknowledged <strong>counter-argument</strong>, and a conclusion that paraphrases the thesis. Each one has a job &mdash; in the test you may be asked what that job is.</div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-e27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">What is a <em>topic sentence</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e27-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e27', this, 'a')"><div class="opt-indicator"></div><span>The last sentence of a body paragraph, summing it up</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e27', this, 'b')"><div class="opt-indicator"></div><span>The sentence at the beginning of a body paragraph that clearly states its idea</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e27', this, 'c')"><div class="opt-indicator"></div><span>The title printed at the top of the page</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e27', this, 'd')"><div class="opt-indicator"></div><span>Any sentence in the text that contains a statistic</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e27','b','Q27')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e27','B &mdash; e.g. &ldquo;First of all, students should wear uniforms because they bring a sense of belonging.&rdquo; In a well-built paragraph the topic sentence is usually the <em>reason</em>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e27-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-e28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">What job does a <em>subheading</em> do in a persuasive text?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e28-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e28', this, 'a')"><div class="opt-indicator"></div><span>It supplies the evidence for the claim</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e28', this, 'b')"><div class="opt-indicator"></div><span>It takes the place of the conclusion</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e28', this, 'c')"><div class="opt-indicator"></div><span>It tells the reader who wrote the text</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e28', this, 'd')"><div class="opt-indicator"></div><span>It signals what the next section is about, so the reader can follow the argument</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e28','d','Q28')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e28','D &mdash; Subheadings break a long argument into stages and let a reader see its shape before reading a word of it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-e29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A writer adds: <q>While not wearing uniforms allows for self-expression, it can also divide students based on socio-economic status.</q> Why include the other side of the argument at all?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e29-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'a')"><div class="opt-indicator"></div><span>It shows the writer has considered the opposing view and can answer it, which makes their own argument more convincing</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'b')"><div class="opt-indicator"></div><span>It shows the writer has changed their mind halfway through</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'c')"><div class="opt-indicator"></div><span>It is only there to help the essay reach the required length</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'd')"><div class="opt-indicator"></div><span>It replaces the need for a topic sentence in that paragraph</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e29','Notice the shape of the sentence: <em>While</em> X is true, Y matters more. The writer concedes something small in order to win something bigger.')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e29','a','Q29')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e29','A &mdash; Addressing the counter-argument is a supporting-detail technique. A reader who sees their own objection raised, and answered, is far more likely to be persuaded.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e29-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-e30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Why does a persuasive text so often include <em>statistics</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'a')"><div class="opt-indicator"></div><span>Because numbers make a page look longer</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'b')"><div class="opt-indicator"></div><span>Because a statistic can stand in for the claim itself</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'c')"><div class="opt-indicator"></div><span>Because specific data is strong evidence that a reason deserves to be believed</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'd')"><div class="opt-indicator"></div><span>Because statistics are quicker to write than full sentences</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e30','c','Q30')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e30','C &mdash; &ldquo;A 15% decrease in chronic absenteeism&rdquo; is checkable in a way that &ldquo;attendance got better&rdquo; is not. Remember it still needs an explanation after it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e30-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-e31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">A text opens: <q>Do you hate having to figure out what to wear each day to school?</q> What is this feature doing?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e31-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e31', this, 'a')"><div class="opt-indicator"></div><span>Giving evidence for the claim</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e31', this, 'b')"><div class="opt-indicator"></div><span>Hooking the reader and making them think about the topic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e31', this, 'c')"><div class="opt-indicator"></div><span>Asking a question the writer expects the reader to answer in writing</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e31', this, 'd')"><div class="opt-indicator"></div><span>Stating the thesis of the essay</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e31','b','Q31')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e31','B &mdash; It is a hook in the form of a rhetorical question: no answer is expected, but the reader pictures the problem before the thesis statement arrives.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e31-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-e32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">Select <strong>all four</strong> features you would expect to find in a well-structured persuasive essay.</div><div class="q-marks">3 marks</div></div>
+    <div class="q-body">
+      <div class="multi-note">Select 4 &middot; all four must be right for the marks</div>
+      <div class="mcq-options" id="e32-opts">
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e32', this, 'a')"><div class="opt-indicator"></div><span>A list of every book in the school library</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e32', this, 'b')"><div class="opt-indicator"></div><span>A hook in the introduction</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e32', this, 'c')"><div class="opt-indicator"></div><span>A thesis statement</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e32', this, 'd')"><div class="opt-indicator"></div><span>A topic sentence at the start of each body paragraph</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e32', this, 'e')"><div class="opt-indicator"></div><span>The writer&rsquo;s home address</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e32', this, 'f')"><div class="opt-indicator"></div><span>A conclusion that paraphrases the introduction</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMulti('e32',['b','c','d','f'],'Q32')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e32','B, C, D and F &mdash; hook, thesis, topic sentences, and a conclusion that paraphrases the introduction. Those four give the essay its shape from first line to last.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e32-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">TEXT FEATURES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-tf-fill"></div></div>
+    <div class="section-score-val" id="sec-tf-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: PAST CONTINUOUS ═══════════════ -->
+<div id="pastcont">
+  <div class="section-header"><div class="section-icon">&#9203;</div><div><div class="sub-label">Section E &middot; Level 1</div><h2>Past Continuous Tense</h2></div></div>
+  <div class="info-box">The past continuous is formed with <strong>was</strong> / <strong>were</strong> + the <strong>-ing</strong> form of the verb. Use <em>was</em> with <em>I, he, she, it</em> and <em>were</em> with <em>you, we, they</em>. It describes an action that <strong>was already in progress</strong> at a moment in the past &mdash; often one that a shorter past-simple action <strong>interrupted</strong> (<em>when</em>), or two longer actions running side by side (<em>while</em>). The negative is <strong>wasn&rsquo;t</strong> / <strong>weren&rsquo;t</strong> + -ing.</div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Past continuous vs past simple &mdash; the interruption</div>
+    <canvas id="timeline-canvas" class="diagram-canvas" width="520" height="200" aria-label="Timeline showing a long past continuous action, I was reading, interrupted at one point by a short past simple action, my sister called"></canvas>
+    <div class="diagram-note">The long bar is the past continuous. The single point on it is the past simple.</div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-e33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">How is the past continuous formed?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e33-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e33', this, 'a')"><div class="opt-indicator"></div><span>did + base verb</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e33', this, 'b')"><div class="opt-indicator"></div><span>have / has + past participle</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e33', this, 'c')"><div class="opt-indicator"></div><span>was / were + verb + -ing</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e33', this, 'd')"><div class="opt-indicator"></div><span>will + be + verb + -ing</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e33','c','Q33')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e33','C &mdash; was / were + -ing. Option B is the present perfect and option D is the future continuous.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e33-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-e34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Which sentence is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e34-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'a')"><div class="opt-indicator"></div><span>They were writing their essays when the bell rang.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'b')"><div class="opt-indicator"></div><span>They was writing their essays when the bell rang.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'c')"><div class="opt-indicator"></div><span>They were wrote their essays when the bell rang.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'd')"><div class="opt-indicator"></div><span>They is writing their essays when the bell rang.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e34','a','Q34')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e34','A &mdash; <em>They</em> takes <em>were</em>, and the main verb must be the -ing form: <em>were writing</em>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e34-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-e35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Complete with the <em>past continuous</em> of <strong>explain</strong>: <q>While the teacher ________ the four parts of an argument, I took notes.</q> <span style="color:var(--text-muted);font-size:0.85rem;">(Type two words.)</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e35-ans" placeholder="two words&hellip;" autocomplete="off" spellcheck="false">
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e35','<em>The teacher</em> is singular, so which of <em>was</em> / <em>were</em> do you need? Then add the -ing form.')">Hint</button>
+        <button class="btn btn-check" onclick="checkText('e35',['was explaining'],'Q35')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e35','<strong>was explaining</strong> &mdash; the longer action in progress. <em>Took</em> stays in the past simple.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e35-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-e36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">In <q>I was reading the article when my sister called me</q>, what does the past continuous show?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e36-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e36', this, 'a')"><div class="opt-indicator"></div><span>A habit that happened every day in the past</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e36', this, 'b')"><div class="opt-indicator"></div><span>A short, sudden action that interrupted a longer one</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e36', this, 'c')"><div class="opt-indicator"></div><span>An action that has not started yet</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e36', this, 'd')"><div class="opt-indicator"></div><span>A longer action already in progress, which the shorter past-simple action interrupted</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e36','Which of the two things had already started before the other one happened?')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e36','d','Q36')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e36','D &mdash; <em>was reading</em> is the long action already under way; <em>called</em> is the short past-simple action that cut across it. Option B describes the past simple, not the past continuous.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e36-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-e37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Which sentence correctly shows <em>two</em> actions happening at the same time in the past?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e37-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'a')"><div class="opt-indicator"></div><span>While Dad was cook dinner, Mum reading the news.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'b')"><div class="opt-indicator"></div><span>While Dad was cooking dinner, Mum was reading the news.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'c')"><div class="opt-indicator"></div><span>While Dad cooks dinner, Mum is reading the news.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'd')"><div class="opt-indicator"></div><span>While Dad has cooked dinner, Mum has read the news.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e37','b','Q37')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e37','B &mdash; two long actions running side by side, so <em>both</em> verbs go into the past continuous, joined by <em>while</em>. Option C is in the present.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e37-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-e38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">Which is the correct <em>negative</em> past continuous?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e38-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'a')"><div class="opt-indicator"></div><span>We didn&rsquo;t listening to the debate.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'b')"><div class="opt-indicator"></div><span>We wasn&rsquo;t listening to the debate.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'c')"><div class="opt-indicator"></div><span>We weren&rsquo;t listening to the debate.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'd')"><div class="opt-indicator"></div><span>We not were listening to the debate.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e38','c','Q38')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e38','C &mdash; <em>We</em> takes <em>were</em>, so the negative is <em>weren&rsquo;t listening</em>. The <em>not</em> attaches to was/were, never to <em>did</em>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e38-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-e39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Select <strong>both</strong> sentences that use the past continuous correctly.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="multi-note">Select 2 &middot; both must be right for the marks</div>
+      <div class="mcq-options" id="e39-opts">
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e39', this, 'a')"><div class="opt-indicator"></div><span>The students was building their arguments all lesson.</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e39', this, 'b')"><div class="opt-indicator"></div><span>The students were building their arguments all lesson.</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e39', this, 'c')"><div class="opt-indicator"></div><span>It was raining while we were walking to school.</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('e39', this, 'd')"><div class="opt-indicator"></div><span>It were raining while we was walking to school.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMulti('e39',['b','c'],'Q39')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e39','B and C &mdash; plural subjects (<em>the students</em>, <em>we</em>) take <em>were</em>; singular <em>it</em> takes <em>was</em>. A and D have those two the wrong way round.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e39-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">PAST CONTINUOUS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pc-fill"></div></div>
+    <div class="section-score-val" id="sec-pc-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: SUBJECT–VERB AGREEMENT ═══════════════ -->
+<div id="sva">
+  <div class="section-header"><div class="section-icon">&#128295;</div><div><div class="sub-label">Section F &middot; English Support</div><h2>Subject&ndash;Verb Agreement</h2></div></div>
+  <div class="info-box">A <strong>singular subject takes a singular verb</strong>; a plural subject takes a plural verb. Four traps to watch for: <strong>(1)</strong> a phrase between the subject and the verb (<em>the list <span style="color:var(--text-dim)">of reasons</span> <strong>is</strong></em>&hellip;) &mdash; ignore it and find the real subject; <strong>(2)</strong> words like <em>everyone, each, nobody, somebody</em> are always <strong>singular</strong>; <strong>(3)</strong> with <em>there is / there are</em>, the verb agrees with what comes <em>after</em> it; <strong>(4)</strong> with <em>either&hellip; or</em> and <em>neither&hellip; nor</em>, the verb agrees with the subject <strong>nearest</strong> to it.</div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-e40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">Which sentence is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e40-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e40', this, 'a')"><div class="opt-indicator"></div><span>The evidence support the writer&rsquo;s reason.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e40', this, 'b')"><div class="opt-indicator"></div><span>The evidences supports the writer&rsquo;s reason.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e40', this, 'c')"><div class="opt-indicator"></div><span>The evidence are supporting the writer&rsquo;s reason.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e40', this, 'd')"><div class="opt-indicator"></div><span>The evidence supports the writer&rsquo;s reason.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e40','d','Q40')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e40','D &mdash; <em>Evidence</em> is uncountable, so it behaves as singular (<em>supports</em>) and has no plural form &ldquo;evidences&rdquo;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e40-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-e41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text"><q>The list of reasons ______ on the second page.</q> Which verb is correct, and why?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e41-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'a')"><div class="opt-indicator"></div><span><em>is</em> &mdash; the subject is <em>list</em> (singular); <em>of reasons</em> is only a phrase sitting in between</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'b')"><div class="opt-indicator"></div><span><em>are</em> &mdash; because <em>reasons</em> is plural and sits closest to the verb</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'c')"><div class="opt-indicator"></div><span><em>were</em> &mdash; because the reasons were written earlier</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'd')"><div class="opt-indicator"></div><span><em>be</em> &mdash; because the subject is uncountable</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e41','Cover up <em>of reasons</em> with your finger and read the sentence again. What is left?')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e41','a','Q41')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e41','A &mdash; The head of the subject is <em>list</em>, which is singular, so the verb is <em>is</em>. A prepositional phrase between the subject and the verb never changes the agreement.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e41-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="q-card" id="qcard-e42">
+    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">Choose the correct verb: <q>Everyone in the two classes ______ written a claim.</q></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e42-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e42', this, 'a')"><div class="opt-indicator"></div><span>have</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e42', this, 'b')"><div class="opt-indicator"></div><span>has</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e42', this, 'c')"><div class="opt-indicator"></div><span>are</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e42', this, 'd')"><div class="opt-indicator"></div><span>were</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e42','b','Q42')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e42','B &mdash; <em>Everyone</em> is always singular, however many people it covers. <em>In the two classes</em> is just a phrase in between.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e42-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q43 -->
+  <div class="q-card" id="qcard-e43">
+    <div class="q-header"><div class="q-num">Q43</div><div class="q-text">Which sentence is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e43-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e43', this, 'a')"><div class="opt-indicator"></div><span>There is four parts to an argument.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e43', this, 'b')"><div class="opt-indicator"></div><span>There was four parts to an argument.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e43', this, 'c')"><div class="opt-indicator"></div><span>There are four parts to an argument.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e43', this, 'd')"><div class="opt-indicator"></div><span>There be four parts to an argument.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e43','c','Q43')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e43','C &mdash; With <em>there is / there are</em> the verb agrees with what follows it. <em>Four parts</em> is plural, so <em>there are</em>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e43-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q44 -->
+  <div class="q-card" id="qcard-e44">
+    <div class="q-header"><div class="q-num">Q44</div><div class="q-text">Choose the correct verb: <q>Neither the writer nor the readers ______ convinced.</q></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e44-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e44', this, 'a')"><div class="opt-indicator"></div><span>is</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e44', this, 'b')"><div class="opt-indicator"></div><span>was</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e44', this, 'c')"><div class="opt-indicator"></div><span>has been</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e44', this, 'd')"><div class="opt-indicator"></div><span>were</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e44','With <em>neither&hellip; nor</em>, look only at the subject standing closest to the gap.')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('e44','d','Q44')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e44','D &mdash; The verb agrees with the nearer subject. <em>Readers</em> is plural, so <em>were</em>. Swap the order (&ldquo;Neither the readers nor the writer <strong>was</strong>&hellip;&rdquo;) and the verb changes with it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e44-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q45 -->
+  <div class="q-card" id="qcard-e45">
+    <div class="q-header"><div class="q-num">Q45</div><div class="q-text">Type the correct present-tense form of <strong>to be</strong>: <q>The claim and the reason ______ the foundation of a strong paragraph.</q> <span style="color:var(--text-muted);font-size:0.85rem;">(One word.)</span></div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e45-ans" placeholder="one word&hellip;" autocomplete="off" spellcheck="false">
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('e45','Two subjects joined by <em>and</em> add up to how many?')">Hint</button>
+        <button class="btn btn-check" onclick="checkText('e45',['are'],'Q45')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e45','<strong>are</strong> &mdash; two singular subjects joined by <em>and</em> form a plural subject, so they take the plural verb.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e45-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SUBJECT&ndash;VERB AGREEMENT &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sv-fill"></div></div>
+    <div class="section-score-val" id="sec-sv-val">0/8</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  e1:1, e2:1, e3:2, e4:1, e5:1, e6:1,
+  e7:1, e8:1, e9:1, e10:1, e11:2, e12:1, e13:1, e14:1, e15:1, e16:1, e17:2, e18:3,
+  e19:1, e20:2, e21:1, e22:1, e23:1, e24:1, e25:2, e26:1,
+  e27:1, e28:1, e29:2, e30:1, e31:1, e32:3,
+  e33:1, e34:1, e35:1, e36:2, e37:1, e38:1, e39:2,
+  e40:1, e41:2, e42:1, e43:1, e44:1, e45:2
+};
+
+const sections = {
+  vp: { label: 'Viewpoint & Argument', qs: ['e1','e2','e3','e4','e5','e6'] },
+  pa: { label: 'Parts of an Argument', qs: ['e7','e8','e9','e10','e11','e12','e13','e14','e15','e16','e17','e18'] },
+  wc: { label: 'Word Choices',         qs: ['e19','e20','e21','e22','e23','e24','e25','e26'] },
+  tf: { label: 'Text Features',        qs: ['e27','e28','e29','e30','e31','e32'] },
+  pc: { label: 'Past Continuous',      qs: ['e33','e34','e35','e36','e37','e38','e39'] },
+  sv: { label: 'Subject–Verb',         qs: ['e40','e41','e42','e43','e44','e45'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Drawing helpers ─────────────────────────────────────────
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function arrow(ctx, x1, y1, x2, y2, colour) {
+  ctx.strokeStyle = colour;
+  ctx.fillStyle = colour;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+  const a = Math.atan2(y2-y1, x2-x1), head = 7;
+  ctx.beginPath();
+  ctx.moveTo(x2, y2);
+  ctx.lineTo(x2 - head*Math.cos(a - Math.PI/7), y2 - head*Math.sin(a - Math.PI/7));
+  ctx.lineTo(x2 - head*Math.cos(a + Math.PI/7), y2 - head*Math.sin(a + Math.PI/7));
+  ctx.closePath();
+  ctx.fill();
+}
+
+// ── Section B: the four parts of an argument ────────────────
+function drawArgumentDiagram() {
+  const c = document.getElementById('argument-canvas');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+
+  // viewpoint band
+  ctx.setLineDash([5, 4]);
+  ctx.strokeStyle = 'rgba(245,166,35,0.6)';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, 92, 12, 336, 34, 8);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.font = 'bold 11px Arial';
+  ctx.fillStyle = '#f5a623';
+  ctx.fillText('VIEWPOINT', 150, 29);
+  ctx.font = '10px Arial';
+  ctx.fillStyle = '#7a84a0';
+  ctx.fillText('the belief the whole argument rests on', 310, 29);
+
+  const parts = [
+    ['1. CLAIM',       'What is the writer saying?'],
+    ['2. REASON',      'Why does the writer think this?'],
+    ['3. EVIDENCE',    'What support can they provide?'],
+    ['4. EXPLANATION', 'How does that prove the point?']
+  ];
+
+  const boxX = 92, boxW = 336, boxH = 40, gap = 12, top = 62;
+  parts.forEach((p, i) => {
+    const y = top + i * (boxH + gap);
+    ctx.fillStyle = 'rgba(30,35,54,0.9)';
+    ctx.strokeStyle = '#2a3050';
+    ctx.lineWidth = 1;
+    roundRect(ctx, boxX, y, boxW, boxH, 7);
+    ctx.fill();
+    ctx.stroke();
+    // amber spine on the left edge
+    ctx.fillStyle = '#f5a623';
+    ctx.fillRect(boxX, y + 6, 3, boxH - 12);
+
+    ctx.textAlign = 'left';
+    ctx.font = 'bold 11px Arial';
+    ctx.fillStyle = '#e8eaf0';
+    ctx.fillText(p[0], boxX + 16, y + boxH / 2);
+    ctx.textAlign = 'right';
+    ctx.font = '10px Arial';
+    ctx.fillStyle = '#7a84a0';
+    ctx.fillText(p[1], boxX + boxW - 14, y + boxH / 2);
+
+    if (i < parts.length - 1) arrow(ctx, 260, y + boxH + 1, 260, y + boxH + gap - 1, '#4a5270');
+  });
+
+  // arrow down from the viewpoint band into the claim
+  arrow(ctx, 260, 47, 260, 60, 'rgba(245,166,35,0.7)');
+
+  // return loop: explanation ties back to the claim
+  const lastY = top + 3 * (boxH + gap);
+  ctx.strokeStyle = 'rgba(62,207,142,0.55)';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(boxX - 4, lastY + boxH / 2);
+  ctx.bezierCurveTo(46, lastY + boxH / 2, 46, top + boxH / 2, boxX - 8, top + boxH / 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  arrow(ctx, boxX - 14, top + boxH / 2, boxX - 3, top + boxH / 2, 'rgba(62,207,142,0.8)');
+  ctx.save();
+  ctx.translate(30, (top + lastY + boxH) / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = 'center';
+  ctx.font = '9px Arial';
+  ctx.fillStyle = '#3ecf8e';
+  ctx.fillText('ties back to the claim', 0, 0);
+  ctx.restore();
+}
+drawArgumentDiagram();
+
+// ── Section E: past continuous vs past simple timeline ──────
+function drawTimeline() {
+  const c = document.getElementById('timeline-canvas');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  const axisY = 150;
+
+  // timeline axis
+  arrow(ctx, 40, axisY, 480, axisY, '#7a84a0');
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.font = '10px Arial';
+  ctx.fillStyle = '#4a5270';
+  ctx.fillText('PAST', 40, axisY + 10);
+  ctx.textAlign = 'right';
+  ctx.fillText('NOW', 480, axisY + 10);
+
+  // the long past-continuous action
+  ctx.fillStyle = 'rgba(245,166,35,0.28)';
+  ctx.strokeStyle = '#f5a623';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, 90, 88, 290, 24, 12);
+  ctx.fill();
+  ctx.stroke();
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.font = 'bold 11px Arial';
+  ctx.fillStyle = '#f5a623';
+  ctx.fillText('I was reading the article', 235, 100);
+  ctx.font = '9px Arial';
+  ctx.fillStyle = '#7a84a0';
+  ctx.textBaseline = 'bottom';
+  ctx.fillText('past continuous  ·  already in progress', 235, 82);
+
+  // the short past-simple interruption
+  const ix = 300;
+  ctx.strokeStyle = '#3ecf8e';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(ix, 88);
+  ctx.lineTo(ix, axisY);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(ix, axisY, 5, 0, Math.PI * 2);
+  ctx.fillStyle = '#3ecf8e';
+  ctx.fill();
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.font = 'bold 11px Arial';
+  ctx.fillStyle = '#3ecf8e';
+  ctx.fillText('when my sister called me', ix + 62, 40);
+  ctx.font = '9px Arial';
+  ctx.fillStyle = '#7a84a0';
+  ctx.fillText('past simple  ·  one point in time', ix + 62, 56);
+  ctx.strokeStyle = 'rgba(62,207,142,0.5)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath();
+  ctx.moveTo(ix, 74);
+  ctx.lineTo(ix + 40, 62);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+drawTimeline();
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-f])'\)/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-f])'\)/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function toggleMulti(qid, el, val) {
+  if (state.correct[qid] !== undefined) return;
+  const chosen = state.answers[qid] instanceof Set ? state.answers[qid] : new Set();
+  if (chosen.has(val)) {
+    chosen.delete(val);
+    el.classList.remove('selected');
+    el.querySelector('.opt-indicator').textContent = '';
+  } else {
+    chosen.add(val);
+    el.classList.add('selected');
+    el.querySelector('.opt-indicator').textContent = '✓';
+  }
+  state.answers[qid] = chosen;
+}
+
+function checkMulti(qid, correctVals, label) {
+  const chosen = state.answers[qid];
+  if (!(chosen instanceof Set) || chosen.size === 0) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = chosen.size === correctVals.length && correctVals.every(v => chosen.has(v));
+  document.querySelectorAll(`#${qid}-opts .mcq-opt`).forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-f])'\)/);
+    const v = m ? m[1] : null;
+    if (correctVals.includes(v)) opt.classList.add('correct');
+    else if (opt.classList.contains('selected')) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/[’‘]/g, "'").replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Reveal the answer, then make sure you understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  const input = document.getElementById(`${qid}-ans`);
+  if (input) input.disabled = true;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`english-viewpoints-arguments-unit-test2_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#f5a623','#4f8ef7','#3ecf8e','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('text-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
