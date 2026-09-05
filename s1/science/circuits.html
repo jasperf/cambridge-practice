@@ -566,14 +566,14 @@ body::before {
       </div>
       <div class="q-body">
         <div class="mcq-options" id="s1-opts">
-          <div class="mcq-opt" onclick="selectMCQ('s1',this,'a')"><div class="opt-indicator">A</div>It lights up dimly</div>
-          <div class="mcq-opt" onclick="selectMCQ('s1',this,'b')"><div class="opt-indicator">B</div>It does not light up</div>
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'a')"><div class="opt-indicator">A</div>It does not light up</div>
+          <div class="mcq-opt" onclick="selectMCQ('s1',this,'b')"><div class="opt-indicator">B</div>It lights up dimly</div>
           <div class="mcq-opt" onclick="selectMCQ('s1',this,'c')"><div class="opt-indicator">C</div>It lights up at full brightness</div>
           <div class="mcq-opt" onclick="selectMCQ('s1',this,'d')"><div class="opt-indicator">D</div>It flashes on and off</div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('s1','b','S1')">Check Answer</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('s1','B — An open switch breaks the circuit. No current can flow, so the bulb stays off.')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('s1','a','S1')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s1','A — An open switch breaks the circuit. No current can flow, so the bulb stays off.')">Show Answer</button>
         </div>
         <div class="feedback" id="s1-fb"></div>
       </div>
@@ -589,13 +589,13 @@ body::before {
       <div class="q-body">
         <div class="mcq-options" id="s2-opts">
           <div class="mcq-opt" onclick="selectMCQ('s2',this,'a')"><div class="opt-indicator">A</div>It still does not light up</div>
-          <div class="mcq-opt" onclick="selectMCQ('s2',this,'b')"><div class="opt-indicator">B</div>It lights up</div>
-          <div class="mcq-opt" onclick="selectMCQ('s2',this,'c')"><div class="opt-indicator">C</div>The battery explodes</div>
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'b')"><div class="opt-indicator">B</div>The battery explodes</div>
+          <div class="mcq-opt" onclick="selectMCQ('s2',this,'c')"><div class="opt-indicator">C</div>It lights up</div>
           <div class="mcq-opt" onclick="selectMCQ('s2',this,'d')"><div class="opt-indicator">D</div>The battery runs out instantly</div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('s2','b','S2')">Check Answer</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('s2','B — Closing the switch completes the circuit loop, so current flows from the battery through the bulb, making it light up.')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('s2','c','S2')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s2','C — Closing the switch completes the circuit loop, so current flows from the battery through the bulb, making it light up.')">Show Answer</button>
         </div>
         <div class="feedback" id="s2-fb"></div>
       </div>
@@ -698,14 +698,14 @@ body::before {
       </div>
       <div class="q-body">
         <div class="mcq-options" id="s4-opts">
-          <div class="mcq-opt" onclick="selectMCQ('s4',this,'a')"><div class="opt-indicator">A</div>L1 lights up</div>
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'a')"><div class="opt-indicator">A</div>L1 flickers</div>
           <div class="mcq-opt" onclick="selectMCQ('s4',this,'b')"><div class="opt-indicator">B</div>L1 does not light up</div>
-          <div class="mcq-opt" onclick="selectMCQ('s4',this,'c')"><div class="opt-indicator">C</div>L1 flickers</div>
+          <div class="mcq-opt" onclick="selectMCQ('s4',this,'c')"><div class="opt-indicator">C</div>L1 lights up</div>
           <div class="mcq-opt" onclick="selectMCQ('s4',this,'d')"><div class="opt-indicator">D</div>L1 lights up then goes out</div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('s4','a','S4')">Check Answer</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('s4','A — When both switches are closed the circuit is complete. Current flows all the way around and L1 lights up.')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('s4','c','S4')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s4','C — When both switches are closed the circuit is complete. Current flows all the way around and L1 lights up.')">Show Answer</button>
         </div>
         <div class="feedback" id="s4-fb"></div>
       </div>
@@ -722,12 +722,12 @@ body::before {
         <div class="mcq-options" id="s5-opts">
           <div class="mcq-opt" onclick="selectMCQ('s5',this,'a')"><div class="opt-indicator">A</div>L1 lights up because SW2 is closed</div>
           <div class="mcq-opt" onclick="selectMCQ('s5',this,'b')"><div class="opt-indicator">B</div>L1 lights up dimly</div>
-          <div class="mcq-opt" onclick="selectMCQ('s5',this,'c')"><div class="opt-indicator">C</div>L1 does not light up — one open switch breaks the whole series loop</div>
-          <div class="mcq-opt" onclick="selectMCQ('s5',this,'d')"><div class="opt-indicator">D</div>L1 lights up because the current bypasses SW1</div>
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'c')"><div class="opt-indicator">C</div>L1 lights up because the current bypasses SW1</div>
+          <div class="mcq-opt" onclick="selectMCQ('s5',this,'d')"><div class="opt-indicator">D</div>L1 does not light up — one open switch breaks the whole series loop</div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('s5','c','S5')">Check Answer</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('s5','C — In a series circuit there is only ONE path. A single open switch breaks that path, so no current flows anywhere in the circuit.')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('s5','d','S5')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s5','D — In a series circuit there is only ONE path. A single open switch breaks that path, so no current flows anywhere in the circuit.')">Show Answer</button>
         </div>
         <div class="feedback" id="s5-fb"></div>
       </div>
@@ -765,14 +765,14 @@ body::before {
       </div>
       <div class="q-body">
         <div class="mcq-options" id="s7-opts">
-          <div class="mcq-opt" onclick="selectMCQ('s7',this,'a')"><div class="opt-indicator">A</div>Brighter</div>
+          <div class="mcq-opt" onclick="selectMCQ('s7',this,'a')"><div class="opt-indicator">A</div>Dimmer</div>
           <div class="mcq-opt" onclick="selectMCQ('s7',this,'b')"><div class="opt-indicator">B</div>The same brightness</div>
-          <div class="mcq-opt" onclick="selectMCQ('s7',this,'c')"><div class="opt-indicator">C</div>Dimmer</div>
+          <div class="mcq-opt" onclick="selectMCQ('s7',this,'c')"><div class="opt-indicator">C</div>Brighter</div>
           <div class="mcq-opt" onclick="selectMCQ('s7',this,'d')"><div class="opt-indicator">D</div>Off</div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('s7','c','S7')">Check Answer</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('s7','C — More components in series means more total resistance. Less current flows, so each bulb receives less energy and glows dimmer.')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('s7','a','S7')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s7','A — More components in series means more total resistance. Less current flows, so each bulb receives less energy and glows dimmer.')">Show Answer</button>
         </div>
         <div class="feedback" id="s7-fb"></div>
       </div>
@@ -898,14 +898,14 @@ body::before {
       </div>
       <div class="q-body">
         <div class="mcq-options" id="s9-opts">
-          <div class="mcq-opt" onclick="selectMCQ('s9',this,'a')"><div class="opt-indicator">A</div>L2 also goes out</div>
-          <div class="mcq-opt" onclick="selectMCQ('s9',this,'b')"><div class="opt-indicator">B</div>L2 stays on</div>
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'a')"><div class="opt-indicator">A</div>L2 stays on</div>
+          <div class="mcq-opt" onclick="selectMCQ('s9',this,'b')"><div class="opt-indicator">B</div>L2 also goes out</div>
           <div class="mcq-opt" onclick="selectMCQ('s9',this,'c')"><div class="opt-indicator">C</div>L2 glows dimmer</div>
           <div class="mcq-opt" onclick="selectMCQ('s9',this,'d')"><div class="opt-indicator">D</div>L2 glows brighter</div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('s9','b','S9')">Check Answer</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('s9','B — In a parallel circuit, each branch has its own path. The L1 branch fails, but the L2 branch still has a complete path and continues to work.')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('s9','a','S9')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s9','A — In a parallel circuit, each branch has its own path. The L1 branch fails, but the L2 branch still has a complete path and continues to work.')">Show Answer</button>
         </div>
         <div class="feedback" id="s9-fb"></div>
       </div>
@@ -920,14 +920,14 @@ body::before {
       </div>
       <div class="q-body">
         <div class="mcq-options" id="s10-opts">
-          <div class="mcq-opt" onclick="selectMCQ('s10',this,'a')"><div class="opt-indicator">A</div>Parallel wiring uses less wire</div>
-          <div class="mcq-opt" onclick="selectMCQ('s10',this,'b')"><div class="opt-indicator">B</div>Each appliance works independently and gets full voltage</div>
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'a')"><div class="opt-indicator">A</div>Each appliance works independently and gets full voltage</div>
+          <div class="mcq-opt" onclick="selectMCQ('s10',this,'b')"><div class="opt-indicator">B</div>Parallel wiring uses less wire</div>
           <div class="mcq-opt" onclick="selectMCQ('s10',this,'c')"><div class="opt-indicator">C</div>Parallel wiring is cheaper to install</div>
           <div class="mcq-opt" onclick="selectMCQ('s10',this,'d')"><div class="opt-indicator">D</div>Parallel wiring prevents short circuits</div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('s10','b','S10')">Check Answer</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('s10','B — In parallel, each device receives the full supply voltage and can be switched on or off without affecting others. In series, turning off one device would cut power to everything.')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('s10','a','S10')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s10','A — In parallel, each device receives the full supply voltage and can be switched on or off without affecting others. In series, turning off one device would cut power to everything.')">Show Answer</button>
         </div>
         <div class="feedback" id="s10-fb"></div>
       </div>
@@ -980,13 +980,13 @@ body::before {
       <div class="q-body">
         <div class="mcq-options" id="s12-opts">
           <div class="mcq-opt" onclick="selectMCQ('s12',this,'a')"><div class="opt-indicator">A</div>Resistor</div>
-          <div class="mcq-opt" onclick="selectMCQ('s12',this,'b')"><div class="opt-indicator">B</div>Switch</div>
-          <div class="mcq-opt" onclick="selectMCQ('s12',this,'c')"><div class="opt-indicator">C</div>Battery (cell)</div>
+          <div class="mcq-opt" onclick="selectMCQ('s12',this,'b')"><div class="opt-indicator">B</div>Battery (cell)</div>
+          <div class="mcq-opt" onclick="selectMCQ('s12',this,'c')"><div class="opt-indicator">C</div>Switch</div>
           <div class="mcq-opt" onclick="selectMCQ('s12',this,'d')"><div class="opt-indicator">D</div>Bulb</div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('s12','c','S12')">Check Answer</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('s12','C — A battery (or cell) converts chemical energy into electrical energy, providing the voltage (electromotive force) that pushes current around the circuit.')">Show Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('s12','b','S12')">Check Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s12','B — A battery (or cell) converts chemical energy into electrical energy, providing the voltage (electromotive force) that pushes current around the circuit.')">Show Answer</button>
         </div>
         <div class="feedback" id="s12-fb"></div>
       </div>
@@ -1078,13 +1078,13 @@ body::before {
         <div class="mcq-options" id="s16-opts">
           <div class="mcq-opt" onclick="selectMCQ('s16',this,'a')"><div class="opt-indicator">A</div>Branch A carries more current (2 A vs 1 A)</div>
           <div class="mcq-opt" onclick="selectMCQ('s16',this,'b')"><div class="opt-indicator">B</div>Both branches carry the same current (1 A each)</div>
-          <div class="mcq-opt" onclick="selectMCQ('s16',this,'c')"><div class="opt-indicator">C</div>Branch B carries more current — 2 A vs 1 A in branch A</div>
-          <div class="mcq-opt" onclick="selectMCQ('s16',this,'d')"><div class="opt-indicator">D</div>Branch B carries more current — 3 A vs 1 A in branch A</div>
+          <div class="mcq-opt" onclick="selectMCQ('s16',this,'c')"><div class="opt-indicator">C</div>Branch B carries more current — 3 A vs 1 A in branch A</div>
+          <div class="mcq-opt" onclick="selectMCQ('s16',this,'d')"><div class="opt-indicator">D</div>Branch B carries more current — 2 A vs 1 A in branch A</div>
         </div>
         <div class="q-actions">
-          <button class="btn btn-check" onclick="checkMCQ('s16','c','S16')">Check Answer</button>
+          <button class="btn btn-check" onclick="checkMCQ('s16','d','S16')">Check Answer</button>
           <button class="btn btn-hint" onclick="showHint('s16','In parallel, both branches have the same voltage (6 V). Use I = V ÷ R separately for each branch.')">Hint</button>
-          <button class="btn btn-reveal" onclick="revealAnswer('s16','C — Each branch sees 6 V. Branch A: I = 6 ÷ 6 = 1 A. Branch B: I = 6 ÷ 3 = 2 A. Lower resistance → more current.')">Show Answer</button>
+          <button class="btn btn-reveal" onclick="revealAnswer('s16','D — Each branch sees 6 V. Branch A: I = 6 ÷ 6 = 1 A. Branch B: I = 6 ÷ 3 = 2 A. Lower resistance → more current.')">Show Answer</button>
         </div>
         <div class="feedback" id="s16-fb"></div>
       </div>

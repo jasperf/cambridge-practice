@@ -220,14 +220,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Which is the correct formula for <em>speed</em>?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="q1-opts">
-        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')"><div class="opt-indicator"></div><span>speed = distance &times; time</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')"><div class="opt-indicator"></div><span>speed = distance &divide; time</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')"><div class="opt-indicator"></div><span>speed = distance &divide; time</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')"><div class="opt-indicator"></div><span>speed = distance &times; time</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q1', this, 'c')"><div class="opt-indicator"></div><span>speed = time &divide; distance</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q1', this, 'd')"><div class="opt-indicator"></div><span>speed = distance + time</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q1','b','Q1')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q1','B — speed = distance &divide; time. It tells you the distance covered in each unit of time, e.g. metres per second.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('q1','a','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q1','A — speed = distance &divide; time. It tells you the distance covered in each unit of time, e.g. metres per second.')">Show Answer</button>
       </div>
       <div class="feedback" id="q1-fb"></div>
     </div>
@@ -281,14 +281,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="q5-opts">
         <div class="mcq-opt" onclick="selectMCQ('q5', this, 'a')"><div class="opt-indicator"></div><span>The object is moving more slowly</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'b')"><div class="opt-indicator"></div><span>The object is moving faster (greater speed)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'b')"><div class="opt-indicator"></div><span>The object is going backwards</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q5', this, 'c')"><div class="opt-indicator"></div><span>The object has stopped</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'd')"><div class="opt-indicator"></div><span>The object is going backwards</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'd')"><div class="opt-indicator"></div><span>The object is moving faster (greater speed)</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q5','b','Q5')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('q5','d','Q5')">Check</button>
         <button class="btn btn-hint" onclick="showHint('q5','Steep line = lots of distance covered in a short time. Try the slider above and watch the line get steeper at higher speeds.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q5','B — the gradient (steepness) of a distance-time line is the speed. A steeper line means a faster speed; a flat (horizontal) line means the object is stationary.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q5','D — the gradient (steepness) of a distance-time line is the speed. A steeper line means a faster speed; a flat (horizontal) line means the object is stationary.')">Show Answer</button>
       </div>
       <div class="feedback" id="q5-fb"></div>
     </div>
@@ -301,12 +301,12 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       <div class="mcq-options" id="q6-opts">
         <div class="mcq-opt" onclick="selectMCQ('q6', this, 'a')"><div class="opt-indicator"></div><span>Speeding up</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q6', this, 'b')"><div class="opt-indicator"></div><span>Moving at a steady, high speed</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q6', this, 'c')"><div class="opt-indicator"></div><span>Stationary (not moving)</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q6', this, 'd')"><div class="opt-indicator"></div><span>Changing direction</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q6', this, 'c')"><div class="opt-indicator"></div><span>Changing direction</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q6', this, 'd')"><div class="opt-indicator"></div><span>Stationary (not moving)</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q6','c','Q6')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q6','C — a flat line means the distance is not changing, so the object is stationary (its speed is zero).')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('q6','d','Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q6','D — a flat line means the distance is not changing, so the object is stationary (its speed is zero).')">Show Answer</button>
       </div>
       <div class="feedback" id="q6-fb"></div>
     </div>
@@ -352,13 +352,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="q7-opts">
         <div class="mcq-opt" onclick="selectMCQ('q7', this, 'a')"><div class="opt-indicator"></div><span>Metre (m)</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q7', this, 'b')"><div class="opt-indicator"></div><span>Newton (N)</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q7', this, 'c')"><div class="opt-indicator"></div><span>Watt (W)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q7', this, 'b')"><div class="opt-indicator"></div><span>Watt (W)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q7', this, 'c')"><div class="opt-indicator"></div><span>Newton (N)</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q7', this, 'd')"><div class="opt-indicator"></div><span>Joule (J)</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q7','b','Q7')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q7','B — force is measured in newtons (N), named after Isaac Newton.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('q7','c','Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q7','C — force is measured in newtons (N), named after Isaac Newton.')">Show Answer</button>
       </div>
       <div class="feedback" id="q7-fb"></div>
     </div>
@@ -369,14 +369,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Which of these is <em>not</em> an example of a force?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="q8-opts">
-        <div class="mcq-opt" onclick="selectMCQ('q8', this, 'a')"><div class="opt-indicator"></div><span>Friction</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q8', this, 'a')"><div class="opt-indicator"></div><span>Temperature</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q8', this, 'b')"><div class="opt-indicator"></div><span>Gravity (weight)</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q8', this, 'c')"><div class="opt-indicator"></div><span>Temperature</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q8', this, 'c')"><div class="opt-indicator"></div><span>Friction</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q8', this, 'd')"><div class="opt-indicator"></div><span>Air resistance</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q8','c','Q8')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q8','C — temperature is not a force. Friction, gravity (weight) and air resistance are all pushes or pulls measured in newtons.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('q8','a','Q8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q8','A — temperature is not a force. Friction, gravity (weight) and air resistance are all pushes or pulls measured in newtons.')">Show Answer</button>
       </div>
       <div class="feedback" id="q8-fb"></div>
     </div>
@@ -401,15 +401,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q10</div><div class="q-text">The forces on a moving car are <em>balanced</em>. What happens to the car?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="q10-opts">
-        <div class="mcq-opt" onclick="selectMCQ('q10', this, 'a')"><div class="opt-indicator"></div><span>It speeds up</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q10', this, 'b')"><div class="opt-indicator"></div><span>It keeps moving at a steady (constant) speed</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q10', this, 'a')"><div class="opt-indicator"></div><span>It keeps moving at a steady (constant) speed</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q10', this, 'b')"><div class="opt-indicator"></div><span>It speeds up</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q10', this, 'c')"><div class="opt-indicator"></div><span>It immediately stops</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q10', this, 'd')"><div class="opt-indicator"></div><span>It turns around</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q10','b','Q10')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('q10','a','Q10')">Check</button>
         <button class="btn btn-hint" onclick="showHint('q10','Balanced forces do not change motion. A moving object keeps moving the same way; a still object stays still.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q10','B — balanced forces mean the resultant force is zero, so the motion does not change. A car that is already moving carries on at a constant speed in the same direction.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q10','A — balanced forces mean the resultant force is zero, so the motion does not change. A car that is already moving carries on at a constant speed in the same direction.')">Show Answer</button>
       </div>
       <div class="feedback" id="q10-fb"></div>
     </div>
@@ -471,13 +471,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="q13-opts">
         <div class="mcq-opt" onclick="selectMCQ('q13', this, 'a')"><div class="opt-indicator"></div><span>pressure = force &times; area</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q13', this, 'b')"><div class="opt-indicator"></div><span>pressure = force &divide; area</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q13', this, 'c')"><div class="opt-indicator"></div><span>pressure = area &divide; force</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q13', this, 'b')"><div class="opt-indicator"></div><span>pressure = area &divide; force</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q13', this, 'c')"><div class="opt-indicator"></div><span>pressure = force &divide; area</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q13', this, 'd')"><div class="opt-indicator"></div><span>pressure = force + area</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q13','b','Q13')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q13','B — pressure = force &divide; area. The same force spread over a smaller area produces a higher pressure.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('q13','c','Q13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q13','C — pressure = force &divide; area. The same force spread over a smaller area produces a higher pressure.')">Show Answer</button>
       </div>
       <div class="feedback" id="q13-fb"></div>
     </div>
@@ -502,15 +502,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Why does a <em>sharp</em> knife cut more easily than a blunt one, even with the same pushing force?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="q15-opts">
-        <div class="mcq-opt" onclick="selectMCQ('q15', this, 'a')"><div class="opt-indicator"></div><span>A sharp blade has a smaller area, so it produces a higher pressure</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q15', this, 'b')"><div class="opt-indicator"></div><span>A sharp blade has a larger area, so it produces a higher pressure</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q15', this, 'a')"><div class="opt-indicator"></div><span>A sharp blade has a larger area, so it produces a higher pressure</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q15', this, 'b')"><div class="opt-indicator"></div><span>A sharp blade has a smaller area, so it produces a higher pressure</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q15', this, 'c')"><div class="opt-indicator"></div><span>A sharp blade uses a bigger force</span></div>
         <div class="mcq-opt" onclick="selectMCQ('q15', this, 'd')"><div class="opt-indicator"></div><span>A sharp blade is always heavier</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q15','a','Q15')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('q15','b','Q15')">Check</button>
         <button class="btn btn-hint" onclick="showHint('q15','Same force, smaller area. Look at the pressure formula — what happens when you divide by a smaller number?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q15','A — a sharp edge has a very small area. Since pressure = force &divide; area, the same force over a tiny area gives a very high pressure, so it cuts more easily.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q15','B — a sharp edge has a very small area. Since pressure = force &divide; area, the same force over a tiny area gives a very high pressure, so it cuts more easily.')">Show Answer</button>
       </div>
       <div class="feedback" id="q15-fb"></div>
     </div>
