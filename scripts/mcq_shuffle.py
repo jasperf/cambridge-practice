@@ -71,7 +71,7 @@ def target_sequence(qs, letters, seed, pinned):
 def option_blocks(body, qid):
     """(letter, whole div, inner html) for each option, in document order."""
     pat = re.compile(
-        r'(<div class="mcq-opt"[^>]*onclick="selectMCQ\(\'' + re.escape(qid) +
+        r'(<div class="mcq-opt"[^>]*onclick="selectMCQ\(\s*\'' + re.escape(qid) +
         r"'\s*,\s*this\s*,\s*'([a-f])'\)\"[^>]*>)(.*?)(</div>\s*(?=<div class=\"mcq-opt|</div>))", re.S)
     return [(m.group(2), m, ) for m in pat.finditer(body)], pat
 
@@ -87,8 +87,8 @@ def shuffle_html(src, targets):
         inner = m.group(2)
         opt_pat = re.compile(r'<div class="mcq-opt".*?</div>\s*(?=<div class="mcq-opt"|\s*$)', re.S)
         divs = opt_pat.findall(inner)
-        letters = [re.search(r"selectMCQ\('[^']+',\s*this,\s*'([a-f])'\)", d).group(1) for d in divs]
-        cur = re.search(r"checkMCQ\('" + re.escape(qid) + r"','([a-f])'", src).group(1)
+        letters = [re.search(r"selectMCQ\(\s*'[^']+'\s*,\s*this\s*,\s*'([a-f])'\)", d).group(1) for d in divs]
+        cur = re.search(r"checkMCQ\(\s*'" + re.escape(qid) + r"'\s*,\s*'([a-f])'", src).group(1)
         if cur == want:
             continue
         order = list(range(len(divs)))
@@ -97,7 +97,7 @@ def shuffle_html(src, targets):
         rebuilt = []
         for pos, src_idx in enumerate(order):
             d = divs[src_idx]
-            d = re.sub(r"(selectMCQ\('[^']+',\s*this,\s*')[a-f]('\))", r'\g<1>' + letters[pos] + r'\g<2>', d)
+            d = re.sub(r"(selectMCQ\(\s*'[^']+'\s*,\s*this\s*,\s*')[a-f]('\))", r'\g<1>' + letters[pos] + r'\g<2>', d)
             # Some sheets print the letter in the bullet instead of leaving it
             # empty. That belongs to the slot, not to the option text, so it
             # stays put while the text around it moves.
@@ -110,11 +110,11 @@ def shuffle_html(src, targets):
         close = re.search(r'\n(\s*)$', inner)
         new_inner = '\n' + pad + ('\n' + pad).join(x.strip() for x in rebuilt) + '\n' + (close.group(1) if close else '      ')
         src = src[:m.start(2)] + new_inner + src[m.end(2):]
-        src = re.sub(r"(checkMCQ\('" + re.escape(qid) + r"',')[a-f](')", r'\g<1>' + want + r'\g<2>', src)
+        src = re.sub(r"(checkMCQ\(\s*'" + re.escape(qid) + r"'\s*,\s*')[a-f](')", r'\g<1>' + want + r'\g<2>', src)
         # Only a letter followed by a dash is the answer letter; a reveal that
         # opens with a real word ("A compass &mdash; its needle...") must not
         # have its first character rewritten.
-        src = re.sub(r"(revealAnswer\('" + re.escape(qid) + r"','\s*)[A-D](\s*(?:&mdash;|&ndash;|[\u2013\u2014]))",
+        src = re.sub(r"(revealAnswer\(\s*'" + re.escape(qid) + r"'\s*,\s*'\s*)[A-D](\s*(?:&mdash;|&ndash;|[\u2013\u2014]))",
                      r'\g<1>' + want.upper() + r'\g<2>', src)
         changed[qid] = (cur, want)
     return src, changed

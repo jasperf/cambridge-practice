@@ -33,7 +33,7 @@ def parse_sheet(path: pathlib.Path):
 
     # correct answer per qid, in document order
     answers = {m.group(1): m.group(2)
-               for m in re.finditer(r"checkMCQ\('([^']+)','([a-f])'", src)}
+               for m in re.finditer(r"checkMCQ\(\s*'([^']+)'\s*,\s*'([a-f])'", src)}
 
     cards = list(re.finditer(r'<div class="q-card"[^>]*id="qcard-([^"]+)"', src))
     if not cards:
@@ -56,11 +56,11 @@ def parse_sheet(path: pathlib.Path):
             continue
         opts = {m.group(1): visible_text(m.group(2)).strip()
                 for m in re.finditer(
-                    r"selectMCQ\('" + re.escape(qid) + r"',\s*this,\s*'([a-f])'\)\"[^>]*>(.*?)</div>\s*(?=<div class=\"mcq-opt|</div>)",
+                    r"selectMCQ\(\s*'" + re.escape(qid) + r"'\s*,\s*this\s*,\s*'([a-f])'\)\"[^>]*>(.*?)</div>\s*(?=<div class=\"mcq-opt|</div>)",
                     body, re.S)}
         if not opts:  # fallback: option letter + span text
             opts = {m.group(1): visible_text(m.group(2)).strip() for m in re.finditer(
-                r"selectMCQ\('" + re.escape(qid) + r"',\s*this,\s*'([a-f])'\).*?<span>(.*?)</span>", body, re.S)}
+                r"selectMCQ\(\s*'" + re.escape(qid) + r"'\s*,\s*this\s*,\s*'([a-f])'\).*?<span>(.*?)</span>", body, re.S)}
         qtext = re.search(r'class="q-text"[^>]*>(.*?)</div>', body, re.S)
         num = re.search(r'class="q-num"[^>]*>(.*?)</div>', body, re.S)
         out.append(dict(
@@ -149,13 +149,13 @@ def check_giveaways(qs, threshold):
 # A leading letter only counts as the answer letter when a dash follows it
 # ("D &mdash; The claim..."). Plenty of reveals open with a real word instead
 # ("A compass - its needle...", "A flat line means..."), which is not a letter.
-REVEAL = re.compile(r"revealAnswer\('([^']+)','\s*([A-D])\s*(?:&mdash;|&ndash;|[\u2013\u2014])")
+REVEAL = re.compile(r"revealAnswer\(\s*'([^']+)'\s*,\s*'\s*([A-D])\s*(?:&mdash;|&ndash;|[\u2013\u2014])")
 
 def check_reveals(path):
     """Reveal text usually leads with the answer letter - it must still agree
     with checkMCQ() after any reshuffle."""
     src = path.read_text(encoding='utf-8')
-    ans = dict(re.findall(r"checkMCQ\('([^']+)','([a-f])'", src))
+    ans = dict(re.findall(r"checkMCQ\(\s*'([^']+)'\s*,\s*'([a-f])'", src))
     rev = dict(REVEAL.findall(src))
     return [(q, ans[q].upper(), rev[q]) for q in ans if q in rev and ans[q].upper() != rev[q]]
 
