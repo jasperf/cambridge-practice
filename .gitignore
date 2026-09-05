@@ -5,3 +5,7 @@ create-pr.sh
 
 # Generated PDFs (see README.md "Generating PDFs" — regenerate locally with pandoc as needed)
 *.pdf
+
+# Python bytecode from the scripts/ audit tools
+__pycache__/
+*.pyc
