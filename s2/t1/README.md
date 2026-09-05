@@ -81,6 +81,26 @@ Science Unit Test 2 covers **Unit 2: Plant Biology**. The whole scope sits on th
 
 Its printable `.md` has the same 38 questions **plus six extended-answer questions** (Q39–Q44, 22 marks) that are not on the interactive sheet and are not auto-marked.
 
+### English
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 2: Viewpoints & Arguments** | 45 | 59 | [.md](./w7/term1-week7-english-unit-test2-viewpoints-arguments.md) | [.html](./w7/term1-week7-english-unit-test2-viewpoints-arguments.html) |
+
+### English Unit Test 2 — 10 September 2026
+
+English Unit Test 2 covers three strands, all on the single Week 7 sheet above:
+
+| Level | Scope | Sheet sections |
+|-------|-------|----------------|
+| **Level 2/3** | *The World We Live In* — Viewpoint and Argument in Persuasive Writing: parts of an argument (claim, reason, evidence and explanation questions), word choices, and text features | A–D |
+| **Level 1** | Past Continuous Tense | E |
+| **English Support** | Subject–Verb Agreement | F |
+
+Its printable `.md` has the same 45 questions **plus six extended-answer questions** (Q46–Q51) — paragraph writing, argument labelling and a past-continuous writing task — that are not on the interactive sheet and are not auto-marked.
+
+Source material for the Level 2/3 strand: `material/english/s2/t1/viewpoints-arguments/`.
+
 ## Revision Handouts
 
 Combined documents drawing on more than one weekly sheet, for test preparation.
@@ -126,6 +146,7 @@ Each weekly printable contains the **exact same questions** as the interactive s
 - **English Unit Test 1 Revision** — same questions as its `.html`, plus four open-ended Extended Writing tasks that aren't in the interactive version (see its self-review checklist instead).
 - **Science Unit Test 1 Revision** — printable only. Q1–Q54 are the questions from the three Week 2–4 science sheets, merged and renumbered (two near-duplicate questions across sheets were merged into one), so self-checking can also be done on the weekly sheets. Its eight Part 4 extended-answer questions are new. All answers, including the Part 4 marking points, are in a separate file (`term1-science-unit1-revision-answers.md`) rather than in the handout itself.
 - **Week 7 — Unit Test 2: Plant Biology** — the printable has the same Q1–Q38 as its `.html`, plus six extended-answer questions (Q39–Q44, 22 marks) for written practice that are not auto-marked.
+- **Week 7 — Unit Test 2: Viewpoints & Arguments** — the printable has the same Q1–Q45 as its `.html`, plus six open-ended extended-answer questions (Q46–Q51) for written practice that are not auto-marked. The interactive sheet is multiple-choice, multi-select and short typed answers only.
 - **Maths Unit Test 2 Revision** — printable only. Q1–Q79 are the Maths Unit 1 Revision questions (Q1–Q53) plus the Week 5 Expressions & Formulae sheet's questions (Q54–Q79), merged and renumbered into one run, so self-checking can be done on the Week 2 and Week 5 interactive sheets.
 
 The interactive versions add:
@@ -168,7 +189,9 @@ cambridge-practice/
 │       │   └── term1-week5-maths-expressions-formulae.md     ← Printable
 │       └── w7/
 │           ├── term1-week7-science-unit-test2-plant-biology.html ← Interactive
-│           └── term1-week7-science-unit-test2-plant-biology.md   ← Printable (+6 extended-answer q)
+│           ├── term1-week7-science-unit-test2-plant-biology.md   ← Printable (+6 extended-answer q)
+│           ├── term1-week7-english-unit-test2-viewpoints-arguments.html ← Interactive
+│           └── term1-week7-english-unit-test2-viewpoints-arguments.md   ← Printable (+6 extended-answer q)
 ```
 
 ## See Also

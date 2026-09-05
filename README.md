@@ -63,7 +63,8 @@ cambridge-practice/
 │       ├── w5/                      ← Week 5 (.html interactive + .md printable)
 │       │   └── term1-week5-maths-expressions-formulae.*    ← Expressions & Formulae (26 q, 34 marks)
 │       └── w7/                      ← Week 7 (.html interactive + .md printable)
-│           └── term1-week7-science-unit-test2-plant-biology.* ← Unit Test 2: Plant Biology (38 q, 49 marks + 6 extended-answer q, 22 marks)
+│           ├── term1-week7-science-unit-test2-plant-biology.* ← Unit Test 2: Plant Biology (38 q, 49 marks + 6 extended-answer q, 22 marks)
+│           └── term1-week7-english-unit-test2-viewpoints-arguments.* ← Unit Test 2: Viewpoints & Arguments (45 q, 59 marks + 6 extended-answer q)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
@@ -154,6 +155,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | English Unit Test 1 Revision (Sentence Types & Reading Comprehension) | Secondary 2 | ✅ Unit Test 1, 26 Aug 2026 |
 | Science Unit Test 1 Revision (Atomic Structure, Periodic Table & Bonding) | Secondary 2 | ✅ Unit Test 1, 26 Aug 2026 |
 | Science Unit Test 2 (Plant Biology) | Secondary 2 | ✅ Term 1 Week 7 · Unit Test 2, 10 Sep 2026 |
+| English Unit Test 2 (Viewpoints & Arguments, Past Continuous, Subject–Verb Agreement) | Secondary 2 | ✅ Term 1 Week 7 · Unit Test 2, 10 Sep 2026 |
 
 ### IGCSE
 
