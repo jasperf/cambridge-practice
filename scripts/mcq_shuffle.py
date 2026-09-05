@@ -13,22 +13,45 @@ hand, and a blind permutation would silently invalidate them.
 Usage:  python3 scripts/mcq_shuffle.py s2/t1/w3/term1-week3-science-ionic-bonding.html
         python3 scripts/mcq_shuffle.py --dry-run <file.html>
 """
-import argparse, pathlib, random, re, sys
+import argparse, collections, pathlib, random, re, sys, zlib
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from mcq_audit import parse_sheet, check_spread, available_letters, predictability, longest_run
 
 CROSSREF = re.compile(r'\b(?:option|choice)\s+[A-D]\b', re.I)
 
-def target_sequence(qs, letters, seed):
+NUM = re.compile(r'-?\d+(?:\.\d+)?')
+
+def ordered_options(q):
+    """True when the options read as a scale ("1 clause / 2 clauses / 3 clauses",
+    "30 / 45 / 60 / 90"). Their order carries meaning, so the answer letter is
+    fixed by the content and reshuffling them looks like a mistake."""
+    texts = [q['options'][l] for l in sorted(q['options'])]
+    if len(texts) < 3:
+        return False
+    firsts = [NUM.search(t) for t in texts]
+    if not all(firsts):
+        return False
+    v = [float(m.group()) for m in firsts]
+    return len(set(v)) == len(v) and (v == sorted(v) or v == sorted(v, reverse=True))
+
+def target_sequence(qs, letters, seed, pinned):
     """A balanced letter sequence with no run > 2 and a low predictability score.
 
     Not every question offers every letter - a sheet can mix four-option and
     three-option questions - so a candidate is only usable if each question can
-    actually host the letter it is handed."""
+    actually host the letter it is handed. Pinned questions keep the letter they
+    already have; the rest are chosen to even out the totals around them."""
     rng = random.Random(seed)
     n = len(qs)
     allowed = [set(q['options']) or set(letters) for q in qs]
-    pool = [letters[i % len(letters)] for i in range(n)]
+    fixed = {i: q['letter'] for i, q in enumerate(qs) if q['qid'] in pinned}
+    free = [i for i in range(n) if i not in fixed]
+    counts = collections.Counter(fixed.values())
+    pool = []
+    for _ in free:                       # hand each slot to the scarcest letter
+        l = min(letters, key=lambda x: (counts[x], x))
+        counts[l] += 1
+        pool.append(l)
     # A short sheet cannot reach 55%: with only a handful of transitions, most
     # letters are followed by exactly one other, so the score is dominated by
     # sample size rather than by a guessable pattern. Fall back to the bar the
@@ -36,9 +59,11 @@ def target_sequence(qs, letters, seed):
     for pred_max in (0.55, 0.85):
         for _ in range(20000):
             rng.shuffle(pool)
-            if any(l not in allowed[i] for i, l in enumerate(pool)):
+            cand = dict(fixed)
+            cand.update(zip(free, pool))
+            if any(cand[i] not in allowed[i] for i in range(n)):
                 continue
-            seq = ''.join(pool)
+            seq = ''.join(cand[i] for i in range(n))
             if longest_run(seq) <= 2 and predictability(seq) < pred_max:
                 return seq
     raise SystemExit('could not build a target sequence')
@@ -96,8 +121,9 @@ def shuffle_html(src, targets):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('file'); ap.add_argument('--seed', type=int, default=7)
+    ap.add_argument('file'); ap.add_argument('--seed', type=int)
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--pin', default='', help='comma-separated qids to leave on their current letter')
     a = ap.parse_args()
     path = pathlib.Path(a.file)
     src = path.read_text(encoding='utf-8')
@@ -107,7 +133,15 @@ def main():
 
     qs = parse_sheet(path)
     letters = available_letters(qs)
-    seq = target_sequence(qs, letters, a.seed)
+    # Derived from the filename so it stays reproducible, but two sheets of the
+    # same length do not end up with the same answer sequence.
+    seed = a.seed if a.seed is not None else zlib.crc32(path.name.encode())
+    pinned = {q['qid'] for q in qs if ordered_options(q)}
+    pinned |= {p.strip() for p in a.pin.split(',') if p.strip()}
+    if pinned:
+        print(f"  pinned {len(pinned)} question(s) with ordered options: "
+              f"{', '.join(q['qid'] for q in qs if q['qid'] in pinned)}")
+    seq = target_sequence(qs, letters, seed, pinned)
     targets = {q['qid']: seq[i] for i, q in enumerate(qs)}
 
     before = {q['qid']: q['letter'] for q in qs}
