@@ -146,7 +146,10 @@ def check_giveaways(qs, threshold):
 
 # --------------------------------------------------------- integrity ---
 
-REVEAL = re.compile(r"revealAnswer\('([^']+)','\s*([A-D])[\s&:—-]")
+# A leading letter only counts as the answer letter when a dash follows it
+# ("D &mdash; The claim..."). Plenty of reveals open with a real word instead
+# ("A compass - its needle...", "A flat line means..."), which is not a letter.
+REVEAL = re.compile(r"revealAnswer\('([^']+)','\s*([A-D])\s*(?:&mdash;|&ndash;|[\u2013\u2014])")
 
 def check_reveals(path):
     """Reveal text usually leads with the answer letter - it must still agree

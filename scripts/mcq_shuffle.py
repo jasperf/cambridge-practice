@@ -19,15 +19,28 @@ from mcq_audit import parse_sheet, check_spread, available_letters, predictabili
 
 CROSSREF = re.compile(r'\b(?:option|choice)\s+[A-D]\b', re.I)
 
-def target_sequence(n, letters, seed):
-    """A balanced letter sequence with no run > 2 and a low predictability score."""
+def target_sequence(qs, letters, seed):
+    """A balanced letter sequence with no run > 2 and a low predictability score.
+
+    Not every question offers every letter - a sheet can mix four-option and
+    three-option questions - so a candidate is only usable if each question can
+    actually host the letter it is handed."""
     rng = random.Random(seed)
+    n = len(qs)
+    allowed = [set(q['options']) or set(letters) for q in qs]
     pool = [letters[i % len(letters)] for i in range(n)]
-    for _ in range(20000):
-        rng.shuffle(pool)
-        seq = ''.join(pool)
-        if longest_run(seq) <= 2 and predictability(seq) < 0.55:
-            return seq
+    # A short sheet cannot reach 55%: with only a handful of transitions, most
+    # letters are followed by exactly one other, so the score is dominated by
+    # sample size rather than by a guessable pattern. Fall back to the bar the
+    # audit actually fails on rather than looping forever.
+    for pred_max in (0.55, 0.85):
+        for _ in range(20000):
+            rng.shuffle(pool)
+            if any(l not in allowed[i] for i, l in enumerate(pool)):
+                continue
+            seq = ''.join(pool)
+            if longest_run(seq) <= 2 and predictability(seq) < pred_max:
+                return seq
     raise SystemExit('could not build a target sequence')
 
 def option_blocks(body, qid):
@@ -64,7 +77,10 @@ def shuffle_html(src, targets):
         new_inner = '\n        ' + '\n        '.join(x.strip() for x in rebuilt) + '\n      '
         src = src[:m.start(2)] + new_inner + src[m.end(2):]
         src = re.sub(r"(checkMCQ\('" + re.escape(qid) + r"',')[a-f](')", r'\g<1>' + want + r'\g<2>', src)
-        src = re.sub(r"(revealAnswer\('" + re.escape(qid) + r"','\s*)[A-D](\s*(?:&mdash;|—|-|:|\s))",
+        # Only a letter followed by a dash is the answer letter; a reveal that
+        # opens with a real word ("A compass &mdash; its needle...") must not
+        # have its first character rewritten.
+        src = re.sub(r"(revealAnswer\('" + re.escape(qid) + r"','\s*)[A-D](\s*(?:&mdash;|&ndash;|[\u2013\u2014]))",
                      r'\g<1>' + want.upper() + r'\g<2>', src)
         changed[qid] = (cur, want)
     return src, changed
@@ -82,7 +98,7 @@ def main():
 
     qs = parse_sheet(path)
     letters = available_letters(qs)
-    seq = target_sequence(len(qs), letters, a.seed)
+    seq = target_sequence(qs, letters, a.seed)
     targets = {q['qid']: seq[i] for i, q in enumerate(qs)}
 
     before = {q['qid']: q['letter'] for q in qs}
