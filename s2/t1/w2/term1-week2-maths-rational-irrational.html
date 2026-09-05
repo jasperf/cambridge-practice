@@ -206,14 +206,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="r1-opts">
         <div class="mcq-opt" onclick="selectMCQ('r1', this, 'a')"><div class="opt-indicator"></div><span>Group 1</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('r1', this, 'b')"><div class="opt-indicator"></div><span>Group 2</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r1', this, 'b')"><div class="opt-indicator"></div><span>Group 4</span></div>
         <div class="mcq-opt" onclick="selectMCQ('r1', this, 'c')"><div class="opt-indicator"></div><span>Group 3</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('r1', this, 'd')"><div class="opt-indicator"></div><span>Group 4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r1', this, 'd')"><div class="opt-indicator"></div><span>Group 2</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('r1','d','Q1')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('r1','b','Q1')">Check</button>
         <button class="btn btn-hint" onclick="showHint('r1','Groups 1&ndash;3 are whole numbers, negative integers and fractions &mdash; all ratios of two integers. Group 4 contains &pi;, &radic;2 and a non-repeating decimal')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('r1','D — Group 4 (&pi;, &radic;2 and 0.1434... are all irrational)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r1','B — Group 4 (&pi;, &radic;2 and 0.1434... are all irrational)')">Show Answer</button>
       </div>
       <div class="feedback" id="r1-fb"></div>
     </div>
@@ -244,14 +244,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="r3-opts">
         <div class="mcq-opt" onclick="selectMCQ('r3', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">1/2</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('r3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">1/3</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('r3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">1/4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">1/4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('r3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">1/3</span></span></div>
         <div class="mcq-opt" onclick="selectMCQ('r3', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">3/10</span></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('r3','b','Q3')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('r3','c','Q3')">Check</button>
         <button class="btn btn-hint" onclick="showHint('r3','A repeating decimal is always rational &mdash; here, one third gives exactly 0.333...')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('r3','B — 1/3')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r3','C — 1/3')">Show Answer</button>
       </div>
       <div class="feedback" id="r3-fb"></div>
     </div>
@@ -315,15 +315,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Why is <span class="math-expr">&pi;</span> classed as irrational?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="i2-opts">
-        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'a')"><div class="opt-indicator"></div><span>Because it's negative</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'b')"><div class="opt-indicator"></div><span>Because its decimal expansion never terminates or repeats</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'a')"><div class="opt-indicator"></div><span>Because its decimal expansion never terminates or repeats</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i2', this, 'b')"><div class="opt-indicator"></div><span>Because it's negative</span></div>
         <div class="mcq-opt" onclick="selectMCQ('i2', this, 'c')"><div class="opt-indicator"></div><span>Because it's bigger than 1</span></div>
         <div class="mcq-opt" onclick="selectMCQ('i2', this, 'd')"><div class="opt-indicator"></div><span>Because it's a fraction</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('i2','b','Q6')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('i2','a','Q6')">Check</button>
         <button class="btn btn-hint" onclick="showHint('i2','&pi; = 3.14159265... forever, with no repeating pattern &mdash; that&rsquo;s the defining feature of an irrational number')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('i2','B — its decimal expansion never terminates or repeats')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i2','A — its decimal expansion never terminates or repeats')">Show Answer</button>
       </div>
       <div class="feedback" id="i2-fb"></div>
     </div>
@@ -336,13 +336,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       <div class="mcq-options" id="i3-opts">
         <div class="mcq-opt" onclick="selectMCQ('i3', this, 'a')"><div class="opt-indicator"></div><span>0.25</span></div>
         <div class="mcq-opt" onclick="selectMCQ('i3', this, 'b')"><div class="opt-indicator"></div><span>0.666...</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'c')"><div class="opt-indicator"></div><span>0.1010010001...</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'd')"><div class="opt-indicator"></div><span>-3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'c')"><div class="opt-indicator"></div><span>-3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i3', this, 'd')"><div class="opt-indicator"></div><span>0.1010010001...</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('i3','c','Q7')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('i3','d','Q7')">Check</button>
         <button class="btn btn-hint" onclick="showHint('i3','0.25 terminates, 0.666... repeats a single digit &mdash; only one option never settles into a repeating pattern')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('i3','C — 0.1010010001... (the pattern of zeroes keeps growing, so it never repeats)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i3','D — 0.1010010001... (the pattern of zeroes keeps growing, so it never repeats)')">Show Answer</button>
       </div>
       <div class="feedback" id="i3-fb"></div>
     </div>
@@ -353,15 +353,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Is <span class="math-expr">&radic;16</span> rational or irrational, and why?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <div class="mcq-options" id="i4-opts">
-        <div class="mcq-opt" onclick="selectMCQ('i4', this, 'a')"><div class="opt-indicator"></div><span>Rational, because 16 is a perfect square so &radic;16 = 4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i4', this, 'a')"><div class="opt-indicator"></div><span>Rational, because 16 is an even number</span></div>
         <div class="mcq-opt" onclick="selectMCQ('i4', this, 'b')"><div class="opt-indicator"></div><span>Irrational, because it has a square root symbol</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('i4', this, 'c')"><div class="opt-indicator"></div><span>Rational, because 16 is an even number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('i4', this, 'c')"><div class="opt-indicator"></div><span>Rational, because 16 is a perfect square so &radic;16 = 4</span></div>
         <div class="mcq-opt" onclick="selectMCQ('i4', this, 'd')"><div class="opt-indicator"></div><span>Irrational, because 4 is rational</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('i4','a','Q8')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('i4','c','Q8')">Check</button>
         <button class="btn btn-hint" onclick="showHint('i4','A square root symbol alone doesn&rsquo;t make a number irrational &mdash; check whether the number under the root is a perfect square first')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('i4','A — Rational, because 16 is a perfect square, so &radic;16 simplifies to the whole number 4')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i4','C — Rational, because 16 is a perfect square, so &radic;16 simplifies to the whole number 4')">Show Answer</button>
       </div>
       <div class="feedback" id="i4-fb"></div>
     </div>
@@ -388,14 +388,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="s1-opts">
         <div class="mcq-opt" onclick="selectMCQ('s1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;4</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;9</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;5</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;5</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;9</span></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;25</span></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s1','c','Q9')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('s1','b','Q9')">Check</button>
         <button class="btn btn-hint" onclick="showHint('s1','4, 9 and 25 are all perfect squares. Is 5 a perfect square?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s1','C — &radic;5 (5 is not a perfect square, so it can&rsquo;t be simplified to a rational number)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','B — &radic;5 (5 is not a perfect square, so it can&rsquo;t be simplified to a rational number)')">Show Answer</button>
       </div>
       <div class="feedback" id="s1-fb"></div>
     </div>
@@ -408,13 +408,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       <div class="mcq-options" id="s2-opts">
         <div class="mcq-opt" onclick="selectMCQ('s2', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;2</span></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s2', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;3</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;16</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;7</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;7</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">&radic;16</span></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s2','c','Q10')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('s2','d','Q10')">Check</button>
         <button class="btn btn-hint" onclick="showHint('s2','16 is a perfect square: &radic;16 = 4, a whole number')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s2','C — &radic;16 (equals the whole number 4, so it&rsquo;s rational, not a surd)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','D — &radic;16 (equals the whole number 4, so it&rsquo;s rational, not a surd)')">Show Answer</button>
       </div>
       <div class="feedback" id="s2-fb"></div>
     </div>
@@ -444,15 +444,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Which is the best definition of a surd?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s4-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>Any number with a root symbol in front of it</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>A root of a number that cannot be simplified to a rational number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>A root of a number that cannot be simplified to a rational number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>Any number with a root symbol in front of it</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>A number between 1 and 10</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>A decimal that repeats forever</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s4','b','Q12')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('s4','a','Q12')">Check</button>
         <button class="btn btn-hint" onclick="showHint('s4','Think about why &radic;4 doesn&rsquo;t count as a surd even though it has a root symbol')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s4','B — a root of a number that cannot be simplified to a rational number')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','A — a root of a number that cannot be simplified to a rational number')">Show Answer</button>
       </div>
       <div class="feedback" id="s4-fb"></div>
     </div>
@@ -494,15 +494,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q13</div><div class="q-text"><span class="math-expr">&radic;20</span> lies between which two integers?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="n1-opts">
-        <div class="mcq-opt" onclick="selectMCQ('n1', this, 'a')"><div class="opt-indicator"></div><span>3 and 4</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('n1', this, 'b')"><div class="opt-indicator"></div><span>4 and 5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n1', this, 'a')"><div class="opt-indicator"></div><span>4 and 5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n1', this, 'b')"><div class="opt-indicator"></div><span>3 and 4</span></div>
         <div class="mcq-opt" onclick="selectMCQ('n1', this, 'c')"><div class="opt-indicator"></div><span>5 and 6</span></div>
         <div class="mcq-opt" onclick="selectMCQ('n1', this, 'd')"><div class="opt-indicator"></div><span>2 and 3</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('n1','b','Q13')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('n1','a','Q13')">Check</button>
         <button class="btn btn-hint" onclick="showHint('n1','16 &lt; 20 &lt; 25, and &radic;16 = 4, &radic;25 = 5')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('n1','B — 4 and 5 (&radic;20 &asymp; 4.47)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('n1','A — 4 and 5 (&radic;20 &asymp; 4.47)')">Show Answer</button>
       </div>
       <div class="feedback" id="n1-fb"></div>
     </div>
@@ -533,14 +533,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="n3-opts">
         <div class="mcq-opt" onclick="selectMCQ('n3', this, 'a')"><div class="opt-indicator"></div><span>2 and 3</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('n3', this, 'b')"><div class="opt-indicator"></div><span>3 and 4</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('n3', this, 'c')"><div class="opt-indicator"></div><span>4 and 5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n3', this, 'b')"><div class="opt-indicator"></div><span>4 and 5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('n3', this, 'c')"><div class="opt-indicator"></div><span>3 and 4</span></div>
         <div class="mcq-opt" onclick="selectMCQ('n3', this, 'd')"><div class="opt-indicator"></div><span>1 and 2</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('n3','b','Q15')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('n3','c','Q15')">Check</button>
         <button class="btn btn-hint" onclick="showHint('n3','9 &lt; 12 &lt; 16, and &radic;9 = 3, &radic;16 = 4 (see the number line above)')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('n3','B — 3 and 4 (&radic;12 &asymp; 3.46)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('n3','C — 3 and 4 (&radic;12 &asymp; 3.46)')">Show Answer</button>
       </div>
       <div class="feedback" id="n3-fb"></div>
     </div>

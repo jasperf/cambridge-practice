@@ -36,8 +36,8 @@ Which of these can be written as a ratio of two integers, like 3/1?
 **Q3** (1 mark)  
 0.333... (recurring forever) is equivalent to which fraction?
 - A) 1/2
-- B) 1/3
-- C) 1/4
+- B) 1/4
+- C) 1/3
 - D) 3/10
 
 **Q4** (2 marks)  
@@ -68,8 +68,8 @@ Which of these is **irrational**?
 
 **Q6** (1 mark)  
 Why is π classed as irrational?
-- A) Because it's negative
-- B) Because its decimal expansion never terminates or repeats
+- A) Because its decimal expansion never terminates or repeats
+- B) Because it's negative
 - C) Because it's bigger than 1
 - D) Because it's a fraction
 
@@ -77,14 +77,14 @@ Why is π classed as irrational?
 Which of these is a non-terminating, **non-repeating** decimal?
 - A) 0.25
 - B) 0.666...
-- C) 0.1010010001...
-- D) -3
+- C) -3
+- D) 0.1010010001...
 
 **Q8** (2 marks)  
 Is √16 rational or irrational, and why?
-- A) Rational, because 16 is a perfect square so √16 = 4
+- A) Rational, because 16 is an even number
 - B) Irrational, because it has a square root symbol
-- C) Rational, because 16 is an even number
+- C) Rational, because 16 is a perfect square so √16 = 4
 - D) Irrational, because 4 is rational
 
 ---
@@ -100,16 +100,16 @@ Is √16 rational or irrational, and why?
 **Q9** (1 mark)  
 Which of these **is** a surd?
 - A) √4
-- B) √9
-- C) √5
+- B) √5
+- C) √9
 - D) √25
 
 **Q10** (1 mark)  
 Which of these is **NOT** a surd?
 - A) √2
 - B) √3
-- C) √16
-- D) √7
+- C) √7
+- D) √16
 
 **Q11** (1 mark)  
 Is √(1/4) a surd?
@@ -120,8 +120,8 @@ Is √(1/4) a surd?
 
 **Q12** (2 marks)  
 Which is the best definition of a surd?
-- A) Any number with a root symbol in front of it
-- B) A root of a number that cannot be simplified to a rational number
+- A) A root of a number that cannot be simplified to a rational number
+- B) Any number with a root symbol in front of it
 - C) A number between 1 and 10
 - D) A decimal that repeats forever
 
@@ -146,8 +146,8 @@ Which is the best definition of a surd?
 
 **Q13** (1 mark)  
 √20 lies between which two integers?
-- A) 3 and 4
-- B) 4 and 5
+- A) 4 and 5
+- B) 3 and 4
 - C) 5 and 6
 - D) 2 and 3
 
@@ -161,8 +161,8 @@ Which is the best definition of a surd?
 **Q15** (1 mark)  
 √12 lies between which two integers?
 - A) 2 and 3
-- B) 3 and 4
-- C) 4 and 5
+- B) 4 and 5
+- C) 3 and 4
 - D) 1 and 2
 
 **Q16** (2 marks)  
