@@ -77,6 +77,42 @@ New sheets/handouts are referenced in more than one README — check all that ap
 
 A new revision handout that mixes an auto-marked `.html` with extra open-ended/printable-only content (e.g. extended writing tasks) should say so explicitly in these READMEs — don't let a "printable has the exact same questions as interactive" claim go stale.
 
+## Writing Multiple-Choice Questions
+
+Two checks before a sheet is done. Both are easy to get wrong when questions are written top-to-bottom in one pass.
+
+### 1. Spread the correct answer across A–D
+
+Write each question's options, then go back and shuffle the positions so the correct answer is roughly evenly spread over A/B/C/D, with no long run of the same letter. Writing naturally puts the correct option first (or in the same slot every time), which lets a student guess the sheet instead of the subject. Verify with a script rather than by eye:
+
+```bash
+python3 - <<'EOF'
+import re, collections
+f = 's2/t1/w7/term1-week7-english-unit-test2-viewpoints-arguments.html'
+s = open(f).read()
+mcq = sorted(re.findall(r"checkMCQ\('\w(\d+)','([a-f])'", s), key=lambda x: int(x[0]))
+seq = ''.join(v for _, v in mcq)
+print(len(mcq), dict(sorted(collections.Counter(seq).items())))
+print(seq)
+EOF
+```
+
+Aim for every letter used a comparable number of times and no more than two of the same letter in a row. A distribution with a letter at zero (e.g. `{'a': 7, 'b': 13, 'c': 13, 'd': 0}`) means a student can eliminate an option for free on every question.
+
+Note that reveal text usually names the letter (`revealAnswer('e7','D &mdash; The claim&hellip;')`), and some reveals cross-reference *other* options by letter ("Option A describes respiration"). Reordering options means rewriting both, so shuffle deliberately, not with a blind permutation.
+
+### 2. Don't answer the question in the material above it
+
+Info boxes, `key ideas` paragraphs, definition tables/cards and diagrams sitting above a question block are there to teach — but if a question's correct option repeats one of them close to word for word, the question tests reading-off, not recall. Watch for it especially where a definition table is followed immediately by "which part is *&lt;that exact definition&gt;*?" questions.
+
+Fixes, in order of preference:
+
+- Ask the question about an **extract or worked example** instead of the definition (identify the part in a real paragraph, rather than match the term to its gloss).
+- **Reword** so the option is not the info-box phrasing — ask for the *effect*, the *reason why*, or the *consequence of getting it wrong*.
+- Move the recall-only questions to a **different section** from the box that defines them.
+
+Keeping one or two straight definition-recall questions per sheet is fine as a warm-up. It is a problem when a whole block of them sits directly under the table that gives the answers.
+
 ## Exercise Sheet Architecture
 
 Each sheet is one HTML file with inline CSS and JS — no external dependencies except Google Fonts (Fraunces, Literata, DM Mono).
