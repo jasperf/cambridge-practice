@@ -21,25 +21,25 @@ What is the atomic number of an atom equal to?
 - D) The number of protons in the nucleus
 
 **Q2** (1 mark)
-An atom has no overall electrical charge. Why not?
-- A) It has no neutrons
-- B) It has more protons than electrons
-- C) It has equal numbers of protons and electrons
-- D) It has more electrons than protons
+A neutral atom of aluminium contains 13 protons. How many electrons does it contain?
+- A) 27
+- B) 3
+- C) 13
+- D) 10
 
 **Q3** (1 mark)
-Elements in Group 8, the noble gases, do not react to form compounds. Why not?
-- A) They have no electrons at all
-- B) Their outermost electron shell is already full
-- C) They have no protons
-- D) They are the smallest atoms of all
+Argon is sealed inside filament light bulbs because it will not react with the hot metal filament. Which other element would behave in the same way?
+- A) Sodium
+- B) Neon
+- C) Chlorine
+- D) Magnesium
 
 **Q4** (1 mark)
-There are two main ways atoms can achieve a full, stable outer shell when they react. What are they?
-- A) Losing protons or gaining neutrons
-- B) Splitting the nucleus in two
-- C) Changing their atomic number
-- D) Losing or gaining electrons, or sharing electrons
+Sodium chloride forms when electrons move from sodium atoms to chlorine atoms. A chlorine molecule, Cl₂, forms by the other route instead. Which statement names both correctly?
+- A) Both are made by transferring electrons
+- B) Sodium chloride is covalent; Cl₂ is ionic
+- C) Both are made by transferring protons
+- D) Sodium chloride is ionic; Cl₂ is covalent
 
 ---
 
