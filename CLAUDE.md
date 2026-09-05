@@ -79,25 +79,19 @@ A new revision handout that mixes an auto-marked `.html` with extra open-ended/p
 
 ## Writing Multiple-Choice Questions
 
-Two checks before a sheet is done. Both are easy to get wrong when questions are written top-to-bottom in one pass.
+Three checks before a sheet is done. The first two are easy to get wrong when questions are written top-to-bottom in one pass; the third catches what fixing the first one breaks. `scripts/` holds a dependency-free audit tool for all three.
 
 ### 1. Spread the correct answer across A–D
 
-Write each question's options, then go back and shuffle the positions so the correct answer is roughly evenly spread over A/B/C/D, with no long run of the same letter. Writing naturally puts the correct option first (or in the same slot every time), which lets a student guess the sheet instead of the subject. Verify with a script rather than by eye:
+Write each question's options, then go back and shuffle the positions so the correct answer is roughly evenly spread over A/B/C/D, with no long run of the same letter. Writing naturally puts the correct option first (or in the same slot every time), which lets a student guess the sheet instead of the subject. Verify with the audit script rather than by eye:
 
 ```bash
-python3 - <<'EOF'
-import re, collections
-f = 's2/t1/w7/term1-week7-english-unit-test2-viewpoints-arguments.html'
-s = open(f).read()
-mcq = sorted(re.findall(r"checkMCQ\('\w(\d+)','([a-f])'", s), key=lambda x: int(x[0]))
-seq = ''.join(v for _, v in mcq)
-print(len(mcq), dict(sorted(collections.Counter(seq).items())))
-print(seq)
-EOF
+python3 scripts/mcq_audit.py --check 1 s2/t1/w7/*.html
 ```
 
 Aim for every letter used a comparable number of times and no more than two of the same letter in a row. A distribution with a letter at zero (e.g. `{'a': 7, 'b': 13, 'c': 13, 'd': 0}`) means a student can eliminate an option for free on every question.
+
+**An even spread is not enough on its own.** A sheet answering `abcdabcdabcd…` is perfectly balanced and still completely guessable, so the script also reports a *predictability* score — the share of answers derivable from the previous one. Keep it well below 85%; a properly shuffled sheet sits near 50%. Shuffle to a genuinely irregular order, not to a rotating cycle.
 
 Note that reveal text usually names the letter (`revealAnswer('e7','D &mdash; The claim&hellip;')`), and some reveals cross-reference *other* options by letter ("Option A describes respiration"). Reordering options means rewriting both, so shuffle deliberately, not with a blind permutation.
 
@@ -112,6 +106,24 @@ Fixes, in order of preference:
 - Move the recall-only questions to a **different section** from the box that defines them.
 
 Keeping one or two straight definition-recall questions per sheet is fine as a warm-up. It is a problem when a whole block of them sits directly under the table that gives the answers.
+
+Find the candidates with the same script — it scores each correct option against the teaching material above it and prints the sentence being echoed:
+
+```bash
+python3 scripts/mcq_audit.py --check 2 --verbose s2/t1/w3/*.html
+```
+
+Treat its hits as a shortlist to read, not a verdict: a 100% match on a definition question is a real problem, while a 75% match that only shares vocabulary is often fine.
+
+### 3. Re-sync the printable after any shuffle
+
+Most `.html` sheets have an `.md` printable beside them holding the same questions in the same option order. Reordering options in one and not the other desyncs them silently — the printable ends up with a different answer letter than the interactive sheet. After any shuffle:
+
+```bash
+python3 scripts/mcq_sync.py s2/t1/w3/*.html
+```
+
+See `scripts/README.md` for what the two tools check and how they decide.
 
 ## Exercise Sheet Architecture
 
