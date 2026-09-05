@@ -16,21 +16,21 @@ This document contains all questions from the interactive sheet in a printable f
 **Q1** (1 mark)
 What is the atomic number of an atom equal to?
 - A) The number of neutrons in the nucleus
-- B) The number of protons in the nucleus
+- B) The number of electron shells
 - C) The number of protons plus neutrons
-- D) The number of electron shells
+- D) The number of protons in the nucleus
 
 **Q2** (1 mark)
 An atom has no overall electrical charge. Why not?
 - A) It has no neutrons
 - B) It has more protons than electrons
-- C) It has more electrons than protons
-- D) It has equal numbers of protons and electrons
+- C) It has equal numbers of protons and electrons
+- D) It has more electrons than protons
 
 **Q3** (1 mark)
 Elements in Group 8, the noble gases, do not react to form compounds. Why not?
-- A) Their outermost electron shell is already full
-- B) They have no electrons at all
+- A) They have no electrons at all
+- B) Their outermost electron shell is already full
 - C) They have no protons
 - D) They are the smallest atoms of all
 
@@ -38,8 +38,8 @@ Elements in Group 8, the noble gases, do not react to form compounds. Why not?
 There are two main ways atoms can achieve a full, stable outer shell when they react. What are they?
 - A) Losing protons or gaining neutrons
 - B) Splitting the nucleus in two
-- C) Losing or gaining electrons, or sharing electrons
-- D) Changing their atomic number
+- C) Changing their atomic number
+- D) Losing or gaining electrons, or sharing electrons
 
 ---
 
@@ -60,8 +60,8 @@ When a sodium atom (2,8,1) reacts, what happens to its single outer electron?
 Which symbol correctly represents the ion formed when a sodium atom loses an electron?
 - A) Na⁻
 - B) Na²⁺
-- C) Na (no charge)
-- D) Na⁺
+- C) Na⁺
+- D) Na (no charge)
 
 **Q7** (1 mark)
 Which symbol correctly represents the ion formed when a chlorine atom (2,8,7) gains an electron?
@@ -74,13 +74,13 @@ Which symbol correctly represents the ion formed when a chlorine atom (2,8,7) ga
 What is the electronic structure of the chloride ion, Cl⁻?
 - A) 2,8,7
 - B) 2,9,7
-- C) 2,8,8
-- D) 2,8,6
+- C) 2,8,6
+- D) 2,8,8
 
 **Q9** (1 mark)
 Magnesium (2,8,2) loses two electrons when it reacts. Which symbol correctly represents the magnesium ion formed?
-- A) Mg⁺
-- B) Mg²⁺
+- A) Mg²⁺
+- B) Mg⁺
 - C) Mg (no charge)
 - D) Mg²⁻
 
@@ -105,56 +105,56 @@ Handy tip: for elements in Groups 1–3, the number of electrons lost equals the
 **Q11** (1 mark)
 A sodium ion (Na⁺) and a chloride ion (Cl⁻) are held together in sodium chloride. What holds them together?
 - A) A shared pair of electrons
-- B) Gravity between the two nuclei
+- B) Electrostatic attraction between oppositely charged ions
 - C) Magnetism between the ions
-- D) Electrostatic attraction between oppositely charged ions
+- D) Gravity between the two nuclei
 
 **Q12** (1 mark)
 What is the formula for the ionic compound formed between sodium and chlorine?
-- A) NaCl
+- A) Na₂Cl₂
 - B) NaCl₂
 - C) Na₂Cl
-- D) Na₂Cl₂
+- D) NaCl
 
 **Q13** (1 mark)
 What is the formula for the ionic compound formed between magnesium and oxygen?
-- A) MgO₂
+- A) MgO
 - B) Mg₂O
-- C) MgO
+- C) MgO₂
 - D) Mg₂O₂
 
 **Q14** (2 marks)
 Magnesium (Mg²⁺) reacts with chlorine (Cl⁻) to form magnesium chloride. Why are two chloride ions needed for every one magnesium ion?
 - A) Because magnesium has two protons
-- B) So the +2 charge on Mg²⁺ is balanced by two -1 charges on Cl⁻
-- C) Because chlorine only has one electron in total
+- B) Because chlorine only has one electron in total
+- C) So the +2 charge on Mg²⁺ is balanced by two -1 charges on Cl⁻
 - D) Every ionic compound must contain exactly two ions
 
 **Q15** (1 mark)
 What is the formula for magnesium chloride?
 - A) MgCl
-- B) Mg₂Cl
+- B) MgCl₂
 - C) MgCl₃
-- D) MgCl₂
+- D) Mg₂Cl
 
 **Q16** (1 mark)
 Calcium forms a Ca²⁺ ion. What is the formula for calcium chloride (calcium + chlorine)?
-- A) CaCl₂
+- A) Ca₂Cl
 - B) CaCl
-- C) Ca₂Cl
+- C) CaCl₂
 - D) CaCl₃
 
 **Q17** (1 mark)
 What is the formula for calcium oxide (calcium + oxygen)?
-- A) CaO₂
+- A) CaO
 - B) Ca₂O
-- C) CaO
+- C) CaO₂
 - D) Ca₂O₃
 
 **Q23** (1 mark)
 Lithium forms Li⁺ ions and oxygen forms O²⁻ ions. What is the formula for lithium oxide?
-- A) LiO
-- B) Li₂O
+- A) Li₂O
+- B) LiO
 - C) LiO₂
 - D) Li₂O₂
 
@@ -169,8 +169,8 @@ Lithium forms Li⁺ ions and oxygen forms O²⁻ ions. What is the formula for l
 **Q18** (1 mark)
 Lithium, sodium and potassium are all in Group 1. Which is the most reactive?
 - A) Lithium
-- B) Sodium
-- C) Potassium
+- B) Potassium
+- C) Sodium
 - D) They are all equally reactive
 
 **Q19** (2 marks)
@@ -182,17 +182,17 @@ Why is potassium more reactive than lithium?
 
 **Q20** (1 mark)
 Fluorine and chlorine are both in Group 7. Which is the more reactive element?
-- A) Chlorine
+- A) Fluorine
 - B) Both are equally reactive
 - C) Neither reacts at all
-- D) Fluorine
+- D) Chlorine
 
 **Q21** (2 marks)
 Why is fluorine more reactive than chlorine?
-- A) The electron fluorine gains enters a shell closer to the nucleus, so it is attracted more strongly by the protons
+- A) Chlorine has no electron shells at all
 - B) Fluorine has more protons than chlorine
 - C) Fluorine's outer shell is further from the nucleus than chlorine's
-- D) Chlorine has no electron shells at all
+- D) The electron fluorine gains enters a shell closer to the nucleus, so it is attracted more strongly by the protons
 
 ---
 

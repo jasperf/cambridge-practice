@@ -198,13 +198,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="s1-opts">
         <div class="mcq-opt" onclick="selectMCQ('s1', this, 'a')"><div class="opt-indicator"></div><span>The number of neutrons in the nucleus</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span>The number of protons in the nucleus</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span>The number of electron shells</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span>The number of protons plus neutrons</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span>The number of electron shells</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span>The number of protons in the nucleus</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s1','b','Q1')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s1','B — The atomic number is the number of protons in the nucleus, which also equals the number of electrons in a neutral atom.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s1','d','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','D — The atomic number is the number of protons in the nucleus, which also equals the number of electrons in a neutral atom.')">Show Answer</button>
       </div>
       <div class="feedback" id="s1-fb"></div>
     </div>
@@ -217,12 +217,12 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       <div class="mcq-options" id="s2-opts">
         <div class="mcq-opt" onclick="selectMCQ('s2', this, 'a')"><div class="opt-indicator"></div><span>It has no neutrons</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s2', this, 'b')"><div class="opt-indicator"></div><span>It has more protons than electrons</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span>It has more electrons than protons</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span>It has equal numbers of protons and electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span>It has equal numbers of protons and electrons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span>It has more electrons than protons</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s2','d','Q2')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s2','D — There are an equal number of protons (positive) and electrons (negative), so the charges cancel out.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s2','c','Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','C — There are an equal number of protons (positive) and electrons (negative), so the charges cancel out.')">Show Answer</button>
       </div>
       <div class="feedback" id="s2-fb"></div>
     </div>
@@ -233,14 +233,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Elements in <em>Group 8</em>, the noble gases, do not react to form compounds. Why not?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s3-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>Their outermost electron shell is already full</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>They have no electrons at all</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>They have no electrons at all</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>Their outermost electron shell is already full</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s3', this, 'c')"><div class="opt-indicator"></div><span>They have no protons</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s3', this, 'd')"><div class="opt-indicator"></div><span>They are the smallest atoms of all</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s3','a','Q3')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s3','A — Noble gases already have a full outermost electron shell, so they are stable and do not need to react. (Group 8 is the naming used in your textbook; modern periodic tables label this column Group 18.)')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s3','b','Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','B — Noble gases already have a full outermost electron shell, so they are stable and do not need to react. (Group 8 is the naming used in your textbook; modern periodic tables label this column Group 18.)')">Show Answer</button>
       </div>
       <div class="feedback" id="s3-fb"></div>
     </div>
@@ -253,12 +253,12 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       <div class="mcq-options" id="s4-opts">
         <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>Losing protons or gaining neutrons</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>Splitting the nucleus in two</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>Losing or gaining electrons, or sharing electrons</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>Changing their atomic number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>Changing their atomic number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>Losing or gaining electrons, or sharing electrons</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s4','c','Q4')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s4','C — Atoms can lose or gain electrons to form ions (ionic bonding), or share electrons with another atom (covalent bonding).')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s4','d','Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','D — Atoms can lose or gain electrons to form ions (ionic bonding), or share electrons with another atom (covalent bonding).')">Show Answer</button>
       </div>
       <div class="feedback" id="s4-fb"></div>
     </div>
@@ -323,12 +323,12 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       <div class="mcq-options" id="s6-opts">
         <div class="mcq-opt" onclick="selectMCQ('s6', this, 'a')"><div class="opt-indicator"></div><span>Na<sup>&minus;</sup></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s6', this, 'b')"><div class="opt-indicator"></div><span>Na<sup>2+</sup></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>Na (no charge)</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>Na<sup>+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>Na<sup>+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>Na (no charge)</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s6','d','Q6')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s6','D — Na⁺. Sodium loses 1 electron but keeps all 11 protons, so it has one more positive charge than negative, giving a charge of +1.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s6','c','Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','C — Na⁺. Sodium loses 1 electron but keeps all 11 protons, so it has one more positive charge than negative, giving a charge of +1.')">Show Answer</button>
       </div>
       <div class="feedback" id="s6-fb"></div>
     </div>
@@ -359,13 +359,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       <div class="mcq-options" id="s8-opts">
         <div class="mcq-opt" onclick="selectMCQ('s8', this, 'a')"><div class="opt-indicator"></div><span>2,8,7</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s8', this, 'b')"><div class="opt-indicator"></div><span>2,9,7</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'c')"><div class="opt-indicator"></div><span>2,8,8</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'd')"><div class="opt-indicator"></div><span>2,8,6</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'c')"><div class="opt-indicator"></div><span>2,8,6</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s8', this, 'd')"><div class="opt-indicator"></div><span>2,8,8</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s8','c','Q8')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('s8','d','Q8')">Check</button>
         <button class="btn btn-hint" onclick="showHint('s8','A chlorine atom is 2,8,7. It gains one electron to fill its outer shell.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s8','C — 2,8,8. The chlorine atom (2,8,7) gains one electron in its outermost shell, which is now full.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','D — 2,8,8. The chlorine atom (2,8,7) gains one electron in its outermost shell, which is now full.')">Show Answer</button>
       </div>
       <div class="feedback" id="s8-fb"></div>
     </div>
@@ -376,14 +376,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Magnesium (2,8,2) loses two electrons when it reacts. Which symbol correctly represents the magnesium ion formed?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s9-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'a')"><div class="opt-indicator"></div><span>Mg<sup>+</sup></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'b')"><div class="opt-indicator"></div><span>Mg<sup>2+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'a')"><div class="opt-indicator"></div><span>Mg<sup>2+</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'b')"><div class="opt-indicator"></div><span>Mg<sup>+</sup></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s9', this, 'c')"><div class="opt-indicator"></div><span>Mg (no charge)</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s9', this, 'd')"><div class="opt-indicator"></div><span>Mg<sup>2&minus;</sup></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s9','b','Q9')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s9','B — Mg²⁺. Magnesium loses 2 electrons but keeps all 12 protons, so it ends up with a charge of +2.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s9','a','Q9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','A — Mg²⁺. Magnesium loses 2 electrons but keeps all 12 protons, so it ends up with a charge of +2.')">Show Answer</button>
       </div>
       <div class="feedback" id="s9-fb"></div>
     </div>
@@ -462,13 +462,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="s11-opts">
         <div class="mcq-opt" onclick="selectMCQ('s11', this, 'a')"><div class="opt-indicator"></div><span>A shared pair of electrons</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'b')"><div class="opt-indicator"></div><span>Gravity between the two nuclei</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'b')"><div class="opt-indicator"></div><span>Electrostatic attraction between oppositely charged ions</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s11', this, 'c')"><div class="opt-indicator"></div><span>Magnetism between the ions</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'd')"><div class="opt-indicator"></div><span>Electrostatic attraction between oppositely charged ions</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'd')"><div class="opt-indicator"></div><span>Gravity between the two nuclei</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s11','d','Q11')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s11','D — This is called an ionic bond: the positive Na⁺ ion and negative Cl⁻ ion attract each other electrostatically.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s11','b','Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','B — This is called an ionic bond: the positive Na⁺ ion and negative Cl⁻ ion attract each other electrostatically.')">Show Answer</button>
       </div>
       <div class="feedback" id="s11-fb"></div>
     </div>
@@ -479,14 +479,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q12</div><div class="q-text">What is the formula for the ionic compound formed between sodium and chlorine?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s12-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'a')"><div class="opt-indicator"></div><span>NaCl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'a')"><div class="opt-indicator"></div><span>Na<sub>2</sub>Cl<sub>2</sub></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s12', this, 'b')"><div class="opt-indicator"></div><span>NaCl<sub>2</sub></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s12', this, 'c')"><div class="opt-indicator"></div><span>Na<sub>2</sub>Cl</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'd')"><div class="opt-indicator"></div><span>Na<sub>2</sub>Cl<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'd')"><div class="opt-indicator"></div><span>NaCl</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s12','a','Q12')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s12','A — NaCl. One Na⁺ (+1) balances exactly with one Cl⁻ (-1).')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s12','d','Q12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','D — NaCl. One Na⁺ (+1) balances exactly with one Cl⁻ (-1).')">Show Answer</button>
       </div>
       <div class="feedback" id="s12-fb"></div>
     </div>
@@ -497,14 +497,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q13</div><div class="q-text">What is the formula for the ionic compound formed between magnesium and oxygen?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s13-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'a')"><div class="opt-indicator"></div><span>MgO<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'a')"><div class="opt-indicator"></div><span>MgO</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s13', this, 'b')"><div class="opt-indicator"></div><span>Mg<sub>2</sub>O</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'c')"><div class="opt-indicator"></div><span>MgO</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'c')"><div class="opt-indicator"></div><span>MgO<sub>2</sub></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s13', this, 'd')"><div class="opt-indicator"></div><span>Mg<sub>2</sub>O<sub>2</sub></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s13','c','Q13')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s13','C — MgO. Magnesium loses 2 electrons (Mg²⁺) and oxygen gains 2 electrons (O²⁻), so the +2 and -2 charges balance exactly, one-to-one.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s13','a','Q13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','A — MgO. Magnesium loses 2 electrons (Mg²⁺) and oxygen gains 2 electrons (O²⁻), so the +2 and -2 charges balance exactly, one-to-one.')">Show Answer</button>
       </div>
       <div class="feedback" id="s13-fb"></div>
     </div>
@@ -516,14 +516,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="s14-opts">
         <div class="mcq-opt" onclick="selectMCQ('s14', this, 'a')"><div class="opt-indicator"></div><span>Because magnesium has two protons</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'b')"><div class="opt-indicator"></div><span>So the +2 charge on Mg²⁺ is balanced by two -1 charges on Cl⁻</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'c')"><div class="opt-indicator"></div><span>Because chlorine only has one electron in total</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'b')"><div class="opt-indicator"></div><span>Because chlorine only has one electron in total</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'c')"><div class="opt-indicator"></div><span>So the +2 charge on Mg²⁺ is balanced by two -1 charges on Cl⁻</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s14', this, 'd')"><div class="opt-indicator"></div><span>Every ionic compound must contain exactly two ions</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s14','b','Q14')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('s14','c','Q14')">Check</button>
         <button class="btn btn-hint" onclick="showHint('s14','The overall charge on an ionic compound must add up to zero.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s14','B — The magnesium atom loses 2 electrons to become Mg²⁺. Each chlorine atom can only gain 1 electron (forming Cl⁻), so two chlorine atoms are needed to take up the two electrons, giving 2 Cl⁻ ions that balance the +2 charge.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','C — The magnesium atom loses 2 electrons to become Mg²⁺. Each chlorine atom can only gain 1 electron (forming Cl⁻), so two chlorine atoms are needed to take up the two electrons, giving 2 Cl⁻ ions that balance the +2 charge.')">Show Answer</button>
       </div>
       <div class="feedback" id="s14-fb"></div>
     </div>
@@ -535,13 +535,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="s15-opts">
         <div class="mcq-opt" onclick="selectMCQ('s15', this, 'a')"><div class="opt-indicator"></div><span>MgCl</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'b')"><div class="opt-indicator"></div><span>Mg<sub>2</sub>Cl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'b')"><div class="opt-indicator"></div><span>MgCl<sub>2</sub></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s15', this, 'c')"><div class="opt-indicator"></div><span>MgCl<sub>3</sub></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'd')"><div class="opt-indicator"></div><span>MgCl<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'd')"><div class="opt-indicator"></div><span>Mg<sub>2</sub>Cl</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s15','d','Q15')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s15','D — MgCl₂. One Mg²⁺ ion needs two Cl⁻ ions to balance its charge.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s15','b','Q15')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','B — MgCl₂. One Mg²⁺ ion needs two Cl⁻ ions to balance its charge.')">Show Answer</button>
       </div>
       <div class="feedback" id="s15-fb"></div>
     </div>
@@ -552,15 +552,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Calcium forms a Ca<sup>2+</sup> ion. What is the formula for calcium chloride (calcium + chlorine)?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s16-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'a')"><div class="opt-indicator"></div><span>CaCl<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'a')"><div class="opt-indicator"></div><span>Ca<sub>2</sub>Cl</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s16', this, 'b')"><div class="opt-indicator"></div><span>CaCl</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'c')"><div class="opt-indicator"></div><span>Ca<sub>2</sub>Cl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'c')"><div class="opt-indicator"></div><span>CaCl<sub>2</sub></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s16', this, 'd')"><div class="opt-indicator"></div><span>CaCl<sub>3</sub></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s16','a','Q16')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('s16','c','Q16')">Check</button>
         <button class="btn btn-hint" onclick="showHint('s16','Ca²⁺ needs the same number of Cl⁻ ions as Mg²⁺ did.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s16','A — CaCl₂. Just like magnesium, calcium\'s +2 charge needs two -1 chloride ions to balance it.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','C — CaCl₂. Just like magnesium, calcium\'s +2 charge needs two -1 chloride ions to balance it.')">Show Answer</button>
       </div>
       <div class="feedback" id="s16-fb"></div>
     </div>
@@ -571,14 +571,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q17</div><div class="q-text">What is the formula for calcium oxide (calcium + oxygen)?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s17-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'a')"><div class="opt-indicator"></div><span>CaO<sub>2</sub></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'a')"><div class="opt-indicator"></div><span>CaO</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s17', this, 'b')"><div class="opt-indicator"></div><span>Ca<sub>2</sub>O</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'c')"><div class="opt-indicator"></div><span>CaO</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'c')"><div class="opt-indicator"></div><span>CaO<sub>2</sub></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s17', this, 'd')"><div class="opt-indicator"></div><span>Ca<sub>2</sub>O<sub>3</sub></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s17','c','Q17')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s17','C — CaO. Ca²⁺ and O²⁻ balance exactly one-to-one, just like MgO.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s17','a','Q17')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','A — CaO. Ca²⁺ and O²⁻ balance exactly one-to-one, just like MgO.')">Show Answer</button>
       </div>
       <div class="feedback" id="s17-fb"></div>
     </div>
@@ -589,14 +589,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Lithium forms Li<sup>+</sup> ions and oxygen forms O<sup>2&minus;</sup> ions. What is the formula for lithium oxide?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s23-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'a')"><div class="opt-indicator"></div><span>LiO</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'b')"><div class="opt-indicator"></div><span>Li<sub>2</sub>O</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'a')"><div class="opt-indicator"></div><span>Li<sub>2</sub>O</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'b')"><div class="opt-indicator"></div><span>LiO</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s23', this, 'c')"><div class="opt-indicator"></div><span>LiO<sub>2</sub></span></div>
         <div class="mcq-opt" onclick="selectMCQ('s23', this, 'd')"><div class="opt-indicator"></div><span>Li<sub>2</sub>O<sub>2</sub></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s23','b','Q23')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s23','B — Two Li⁺ ions are needed to balance the 2&minus; charge on one O²⁻ ion, giving the formula Li₂O.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s23','a','Q23')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','A — Two Li⁺ ions are needed to balance the 2&minus; charge on one O²⁻ ion, giving the formula Li₂O.')">Show Answer</button>
       </div>
       <div class="feedback" id="s23-fb"></div>
     </div>
@@ -639,13 +639,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="s18-opts">
         <div class="mcq-opt" onclick="selectMCQ('s18', this, 'a')"><div class="opt-indicator"></div><span>Lithium</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'b')"><div class="opt-indicator"></div><span>Sodium</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'c')"><div class="opt-indicator"></div><span>Potassium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'b')"><div class="opt-indicator"></div><span>Potassium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'c')"><div class="opt-indicator"></div><span>Sodium</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s18', this, 'd')"><div class="opt-indicator"></div><span>They are all equally reactive</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s18','c','Q18')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s18','C — Potassium. Reactivity increases down Group 1, so potassium (lowest of the three) is the most reactive.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s18','b','Q18')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','B — Potassium. Reactivity increases down Group 1, so potassium (lowest of the three) is the most reactive.')">Show Answer</button>
       </div>
       <div class="feedback" id="s18-fb"></div>
     </div>
@@ -675,14 +675,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Fluorine and chlorine are both in Group 7. Which is the <em>more reactive</em> element?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s20-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'a')"><div class="opt-indicator"></div><span>Chlorine</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'a')"><div class="opt-indicator"></div><span>Fluorine</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s20', this, 'b')"><div class="opt-indicator"></div><span>Both are equally reactive</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s20', this, 'c')"><div class="opt-indicator"></div><span>Neither reacts at all</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'd')"><div class="opt-indicator"></div><span>Fluorine</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'd')"><div class="opt-indicator"></div><span>Chlorine</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s20','d','Q20')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s20','D — Fluorine. Reactivity decreases down Group 7, so fluorine (highest of the two) is more reactive than chlorine.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s20','a','Q20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','A — Fluorine. Reactivity decreases down Group 7, so fluorine (highest of the two) is more reactive than chlorine.')">Show Answer</button>
       </div>
       <div class="feedback" id="s20-fb"></div>
     </div>
@@ -693,15 +693,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Why is fluorine <em>more reactive</em> than chlorine?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <div class="mcq-options" id="s21-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'a')"><div class="opt-indicator"></div><span>The electron fluorine gains enters a shell closer to the nucleus, so it is attracted more strongly by the protons</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'a')"><div class="opt-indicator"></div><span>Chlorine has no electron shells at all</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s21', this, 'b')"><div class="opt-indicator"></div><span>Fluorine has more protons than chlorine</span></div>
         <div class="mcq-opt" onclick="selectMCQ('s21', this, 'c')"><div class="opt-indicator"></div><span>Fluorine's outer shell is further from the nucleus than chlorine's</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'd')"><div class="opt-indicator"></div><span>Chlorine has no electron shells at all</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'd')"><div class="opt-indicator"></div><span>The electron fluorine gains enters a shell closer to the nucleus, so it is attracted more strongly by the protons</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s21','a','Q21')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('s21','d','Q21')">Check</button>
         <button class="btn btn-hint" onclick="showHint('s21','Fluorine\'s outer shell (2,7) is closer to the nucleus than chlorine\'s (2,8,7).')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s21','A — The outer shell fluorine gains an electron into is closer to the nucleus than chlorine\'s outer shell. This electron is attracted more strongly by the positive protons in the nucleus, so it is gained more easily, making fluorine more reactive.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','D — The outer shell fluorine gains an electron into is closer to the nucleus than chlorine\'s outer shell. This electron is attracted more strongly by the positive protons in the nucleus, so it is gained more easily, making fluorine more reactive.')">Show Answer</button>
       </div>
       <div class="feedback" id="s21-fb"></div>
     </div>
