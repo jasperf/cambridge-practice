@@ -32,11 +32,11 @@ Every sentence must contain two essential parts. What are they?
 Answer: _______________________________________
 
 **Q3** (1 mark)
-What does "CS" stand for in the sentence-type abbreviations?
-- A) Complex sentence
-- B) Compound subject, single predicate
-- C) Single subject, compound predicate
-- D) Compound subject, compound predicate
+Which of these sentences is a **CS**?
+- A) Maya laughed and cheered.
+- B) Maya and Ben walked to school.
+- C) Maya walked to school.
+- D) Maya and Ben laughed and cheered.
 
 **Q4** (2 marks)
 Which sentence below is **CC** (compound subject / compound predicate)?
