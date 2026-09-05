@@ -21,10 +21,10 @@ A separate **Extended Writing** section at the end has four longer, open-ended w
 
 **Q1** (1 mark)
 Every sentence must contain two essential parts. What are they?
-- A) A subject and a predicate
+- A) A conjunction and a clause
 - B) A noun and an adjective
 - C) A verb and an object
-- D) A conjunction and a clause
+- D) A subject and a predicate
 
 **Q2** (1 mark)
 "Technology benefits society." — Write the **predicate** of this sentence (the part containing the verb).
@@ -40,9 +40,9 @@ What does "CS" stand for in the sentence-type abbreviations?
 
 **Q4** (2 marks)
 Which sentence below is **CC** (compound subject / compound predicate)?
-- A) The internet allows us to communicate easily and access information.
+- A) Middle-aged people and the older generation read the news and communicate with friends online.
 - B) Technology has benefitted society.
-- C) Middle-aged people and the older generation read the news and communicate with friends online.
+- C) The internet allows us to communicate easily and access information.
 - D) Instagram helps entertain teenagers.
 
 **Q5** (1 mark)
@@ -57,15 +57,15 @@ Answer: _______________________________________
 
 **Q7** (1 mark)
 What is a "compound subject"?
-- A) A predicate with two verbs
+- A) A subject containing more than one person, place or thing
 - B) Two sentences joined by "and"
 - C) A subject that repeats itself
-- D) A subject containing more than one person, place or thing
+- D) A predicate with two verbs
 
 **Q8** (1 mark)
 A simple sentence, regardless of its SS/CS/SC/CC type, always contains:
-- A) only one independent clause
-- B) a dependent clause
+- A) a dependent clause
+- B) only one independent clause
 - C) two independent clauses
 - D) a semicolon
 
@@ -85,8 +85,8 @@ Answer: _______________________________________
 **Q10** (1 mark)
 Which of the following is **NOT** one of the FANBOYS conjunctions?
 - A) for
-- B) however
-- C) yet
+- B) yet
+- C) however
 - D) so
 
 **Q11** (1 mark)
@@ -115,17 +115,17 @@ Answer: _______________________________________
 
 **Q15** (1 mark)
 "Robots are very efficient and reliable, ___ they are not very creative." Which FANBOYS conjunction fits?
-- A) but
+- A) for
 - B) so
-- C) for
+- C) but
 - D) nor
 
 **Q16** (1 mark)
 According to the comma rule, when is a comma optional before a FANBOYS conjunction?
 - A) When using "nor"
-- B) When both independent clauses are short
+- B) Never — a comma is always required
 - C) When the sentence is a question
-- D) Never — a comma is always required
+- D) When both independent clauses are short
 
 ---
 
@@ -139,8 +139,8 @@ According to the comma rule, when is a comma optional before a FANBOYS conjuncti
 What punctuation comes immediately **BEFORE** a conjunctive adverb like "however" when joining two independent clauses?
 - A) a comma
 - B) a full stop
-- C) a semicolon
-- D) a colon
+- C) a colon
+- D) a semicolon
 
 **Q18** (1 mark)
 What punctuation comes immediately **AFTER** a conjunctive adverb (name the mark)?
@@ -149,10 +149,10 @@ Answer: _______________________________________
 
 **Q19** (1 mark)
 MOTH is a memory acronym for four conjunctive adverbs. Which is the **odd one out** (NOT part of MOTH)?
-- A) Moreover
+- A) Nevertheless
 - B) Otherwise
 - C) Therefore
-- D) Nevertheless
+- D) Moreover
 
 **Q20** (1 mark)
 "However" is the MOTH equivalent of which FANBOYS conjunction?
@@ -161,31 +161,31 @@ Answer: _______________________________________
 
 **Q21** (1 mark)
 Which conjunctive adverb correctly completes: "Social media helps people stay in touch; ___, it can be used for bullying."?
-- A) however
-- B) otherwise
+- A) otherwise
+- B) however
 - C) moreover
 - D) therefore
 
 **Q22** (1 mark)
 Which word below signals **cause-and-effect** rather than contrast?
 - A) nevertheless
-- B) consequently
+- B) meanwhile
 - C) alternatively
-- D) meanwhile
+- D) consequently
 
 **Q23** (1 mark)
 Which word shows **comparison/similarity**?
 - A) hence
-- B) meanwhile
-- C) likewise
+- B) likewise
+- C) meanwhile
 - D) essentially
 
 **Q24** (2 marks)
 Joining two independent clauses with only a semicolon (no conjunction/adverb) is only appropriate when:
 - A) the two clauses are of different lengths
 - B) FANBOYS words are unavailable
-- C) the sentence is a question
-- D) the relationship between the clauses is very close
+- C) the relationship between the clauses is very close
+- D) the sentence is a question
 
 ---
 
@@ -223,15 +223,15 @@ Answer: _______________________________________
 When a dependent clause comes **before** the independent clause, you should:
 - A) never use a comma
 - B) insert a semicolon instead
-- C) insert a comma after the dependent clause
-- D) insert a comma before the dependent clause
+- C) insert a comma before the dependent clause
+- D) insert a comma after the dependent clause
 
 **Q30** (1 mark)
 "Robots will take over the world when they become smarter than us!" Why is there no comma before "when" here?
 - A) Because the sentence is a question
 - B) Because "when" is not a dependent marker
-- C) Because the sentence is compound, not complex
-- D) Because the dependent clause comes after the independent clause
+- C) Because the dependent clause comes after the independent clause
+- D) Because the sentence is compound, not complex
 
 **Q31** (2 marks)
 "Although drones are fun, not everybody likes them because they can invade our privacy." How many dependent clauses does this sentence contain?
@@ -298,21 +298,21 @@ Answer: _______________________________________
 **Q37** (2 marks)
 Which is the strongest **Explain** step for the evidence "this invisible, inevitable sword of heat"?
 - A) This is a metaphor.
-- B) The Martians are standing in a pit.
+- B) This suggests that the heat-ray is presented as an unstoppable, almost supernatural weapon against which the humans have no defence, emphasising their helplessness.
 - C) The writer uses long sentences.
-- D) This suggests that the heat-ray is presented as an unstoppable, almost supernatural weapon against which the humans have no defence, emphasising their helplessness.
+- D) The Martians are standing in a pit.
 
 **Q38** (2 marks)
 What does the "Explore" step in P.E.E.E ask you to do?
-- A) Zoom in on one word or technique from the quotation and analyse its effect on the reader
+- A) Give your overall opinion of the passage
 - B) Find a second piece of evidence
 - C) Restate the question
-- D) Give your overall opinion of the passage
+- D) Zoom in on one word or technique from the quotation and analyse its effect on the reader
 
 **Q39** (1 mark)
 In the model answer, the phrase "staggering and falling" is described as suggesting:
-- A) The men are dancing joyfully
-- B) The men are being fatally struck down by the heat-ray, dying in real time before the narrator's eyes
+- A) The men are being fatally struck down by the heat-ray, dying in real time before the narrator's eyes
+- B) The men are dancing joyfully
 - C) The men are simply resting
 - D) The men are hiding safely behind the pine trees
 
@@ -330,10 +330,10 @@ Why do good P.E.E.E answers avoid simply repeating the quotation in the Explain 
 
 **Q42** (1 mark)
 When choosing evidence to support a point, which is generally the better choice?
-- A) A long, vague quotation
+- A) A short, well-chosen quotation
 - B) No quotation at all
 - C) A quotation from a different text
-- D) A short, well-chosen quotation
+- D) A long, vague quotation
 
 ---
 
