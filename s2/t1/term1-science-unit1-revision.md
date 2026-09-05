@@ -399,11 +399,11 @@ Why is fluorine more reactive than chlorine?
 ### Questions
 
 **Q40** (1 mark)
-Why do atoms bond with other atoms?
-- A) To increase their atomic number
-- B) To achieve a full outer shell, greater stability and lower energy
-- C) To lose all their protons
-- D) To become radioactive
+Neon's outer shell is already full. Which statement follows from that?
+- A) Neon bonds readily, because full shells attract each other
+- B) Neon is almost completely unreactive — bonding would gain it nothing
+- C) Neon must first lose an electron before it can react
+- D) Neon can bond with metals but not with non-metals
 
 **Q41** (1 mark)
 Which of these is *not* one of the three main types of chemical bonding?
