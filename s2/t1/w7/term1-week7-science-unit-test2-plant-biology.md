@@ -21,11 +21,11 @@ This document contains all questions from the interactive sheet in a printable f
 ### Questions
 
 **Q1** (1 mark)
-Which statement best describes photosynthesis?
-- A) The process by which plants break down glucose to release energy
-- B) The process by which plants use sunlight, water and carbon dioxide to make oxygen and glucose
-- C) The process by which plants absorb minerals from the soil
-- D) The process by which plants lose water vapour from their leaves
+A leafy plant is sealed in a clear jar and left in bright light. Over the next hour the carbon dioxide in the jar falls and the oxygen rises. Which process explains this?
+- A) Respiration
+- B) Photosynthesis
+- C) Transpiration
+- D) Mineral absorption
 
 **Q2** (1 mark)
 Plants are called *producers*. Why?
@@ -56,11 +56,11 @@ In the "what goes where?" sorting activity, *light* was not placed with the reac
 - D) Light is not a substance — it is the energy source that drives the reaction
 
 **Q6** (1 mark)
-Where does a plant get the *water* it uses in photosynthesis?
-- A) From the air, through its leaves
-- B) From the soil, through its roots
-- C) It makes its own water inside the chloroplasts
-- D) From the fertiliser spread on the field
+A gardener accidentally cuts through most of a plant's roots. Which *raw material* for photosynthesis will the plant now struggle to obtain?
+- A) Carbon dioxide
+- B) Water
+- C) Sunlight
+- D) Glucose
 
 **Q7** (1 mark)
 Where does a plant get the *carbon dioxide* it uses in photosynthesis?
