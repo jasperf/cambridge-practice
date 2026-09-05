@@ -35,11 +35,11 @@ Plants are called *producers*. Why?
 - D) They produce their own food, using sunlight as the energy source
 
 **Q3** (1 mark)
-Which pair are the *reactants* of photosynthesis?
-- A) Carbon dioxide and water
-- B) Glucose and oxygen
-- C) Oxygen and water
-- D) Glucose and carbon dioxide
+A student fills in the "what goes in / what comes out" table for a leaf, but writes *glucose* in the "goes in" column. What is wrong with that?
+- A) Glucose is what the leaf builds, not something it takes in
+- B) Nothing — the roots absorb glucose from the soil
+- C) Glucose belongs in both columns, since it is taken in and given out
+- D) Glucose is a mineral, so it needs a column of its own
 
 **Q4** (1 mark)
 Which pair are the *products* of photosynthesis?
@@ -70,11 +70,11 @@ Where does a plant get the *carbon dioxide* it uses in photosynthesis?
 - D) From the minerals in fertiliser
 
 **Q8** (2 marks)
-Which is the correct summary word equation for photosynthesis?
-- A) glucose + oxygen → carbon dioxide + water
-- B) carbon dioxide + oxygen → glucose + water
-- C) carbon dioxide + water → glucose + oxygen
-- D) water + minerals → glucose + carbon dioxide
+A student writes *glucose + oxygen → carbon dioxide + water* and labels it "photosynthesis". What has gone wrong?
+- A) Nothing — that is the correct equation
+- B) The equation is right, but light energy belongs on the left with the reactants
+- C) They have written it the wrong way round — that is respiration
+- D) They should have written minerals in place of oxygen
 
 **Q9** (2 marks)
 Photosynthesis matters to *every* living thing, for two main reasons. Tick **both**.
