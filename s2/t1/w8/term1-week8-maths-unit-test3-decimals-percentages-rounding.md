@@ -23,30 +23,18 @@ Work out 7 × 10⁻²
 
 **Q3** (1 mark)
 Work out 320 ÷ 10³
-- A) 32
-- B) 3.2
-- C) 0.032
-- D) 0.32
 
 **Q4** (1 mark)
 Work out 0.06 × 10⁴
 
 **Q5** (1 mark)
-When you multiply a positive number by 10 raised to a *negative* power, the result is always … than the number you started with.
-- A) larger
-- B) smaller
-- C) the same
-- D) negative
+When you multiply a positive number by 10 raised to a *negative* power, the result is always … than the number you started with. Write one word.
 
 **Q6** (2 marks)
 Work out 8.5 ÷ 10⁻²
 
 **Q7** (2 marks)
-Which of these equals 42 ÷ 10⁻¹?
-- A) 4.2
-- B) 4200
-- C) 420
-- D) 42
+Work out 42 ÷ 10⁻¹
 
 ---
 
@@ -71,11 +59,7 @@ Work out 0.8 ÷ 0.02
 Work out −16 ÷ 0.4
 
 **Q12** (1 mark)
-Which answer is correct for 4.5 ÷ 0.5?
-- A) 9
-- B) 0.9
-- C) 90
-- D) 900
+Work out 4.5 ÷ 0.5
 
 **Q13** (2 marks)
 Work out (36 × 0.5) ÷ (0.2 × 4.5)
@@ -83,9 +67,9 @@ Work out (36 × 0.5) ÷ (0.2 × 4.5)
 **Q14** (1 mark)
 0.23 × 37.8 is closest to which of these values?
 - A) 0.8
-- B) 80
-- C) 800
-- D) 8
+- B) 8
+- C) 80
+- D) 800
 
 ---
 
@@ -101,30 +85,22 @@ Work out (36 × 0.5) ÷ (0.2 × 4.5)
 A price of $250 is increased by 20%, then the new price is decreased by 10%. Work out the final price, in dollars.
 
 **Q16** (1 mark)
-Which multiplier represents a 15% decrease?
-- A) 1.15
-- B) 1.5
-- C) 0.85
-- D) 0.15
+Write the multiplier that represents a 15% decrease.
 
 **Q17** (2 marks)
 $400 is increased by 10%, then increased by a further 10%. Work out the final value, in dollars.
 
 **Q18** (1 mark)
-Which of these is true about a value that is increased by 20%, then decreased by 20%?
-- A) It ends up back at the original value
-- B) It ends up lower than the original value
-- C) It ends up higher than the original value
-- D) It is impossible to say without knowing the starting value
+A value is increased by 20%, then decreased by 20%. Does it end up *higher*, *lower*, or the *same* as the original value? Write one word.
 
 **Q19** (2 marks)
 $2000 is invested at 5% interest per year, compounded annually. Work out the value of the investment after 3 years, to the nearest dollar.
 
 **Q20** (1 mark)
 Which calculation gives the value of $600 after *two* successive 8% decreases?
-- A) 600 × 0.92 × 0.92
-- B) 600 × 0.84
-- C) 600 × 1.08 × 1.08
+- A) 600 × 0.84
+- B) 600 × 1.08 × 1.08
+- C) 600 × 0.92 × 0.92
 - D) 600 × 0.16
 
 **Q21** (2 marks)
@@ -134,8 +110,8 @@ A car bought for $18000 loses 15% of its value in the first year, then loses a f
 A town's population is 8000, and is predicted to fall by 5% each year. Which calculation gives the population after 4 years?
 - A) 8000 × 1.05⁴
 - B) 8000 × (1 − 0.05 × 4)
-- C) 8000 × 0.95⁴
-- D) 8000 × 0.95 × 4
+- C) 8000 × 0.95 × 4
+- D) 8000 × 0.95⁴
 
 ---
 
@@ -155,18 +131,18 @@ Using the same length (40 cm, correct to the nearest cm), write the upper bound 
 
 **Q25** (1 mark)
 A number is rounded to the nearest 100. The answer is 300. Which inequality correctly shows the range of the original number?
-- A) 250 ≤ x < 300
-- B) 295 ≤ x < 305
-- C) 200 ≤ x < 400
-- D) 250 ≤ x < 350
+- A) 250 ≤ x < 350
+- B) 250 ≤ x < 300
+- C) 295 ≤ x < 305
+- D) 200 ≤ x < 400
 
 **Q26** (2 marks)
 The mass of a bag of rice is given as 2.4 kg, correct to 1 decimal place. Write the upper bound of the mass.
 
 **Q27** (2 marks)
 The area of a field is given as 1560 m², correct to the nearest 10 m². Which inequality shows the range of possible exact areas?
-- A) 1555 ≤ x < 1565
-- B) 1550 ≤ x < 1570
+- A) 1550 ≤ x < 1570
+- B) 1555 ≤ x < 1565
 - C) 1559.5 ≤ x < 1560.5
 - D) 1560 ≤ x < 1570
 
@@ -174,11 +150,7 @@ The area of a field is given as 1560 m², correct to the nearest 10 m². Which i
 A stack of 50 identical coins has a height of 40 mm, correct to the nearest mm. Using the lower bound of the stack's height, work out the smallest possible height of a single coin, in mm.
 
 **Q29** (1 mark)
-A decimal number is rounded to the nearest whole number, giving 12. Which of these is the correct upper bound?
-- A) 12.49
-- B) 12.5
-- C) 12.4
-- D) 13
+A decimal number is rounded to the nearest whole number, giving 12. Write the correct upper bound.
 
 ---
 

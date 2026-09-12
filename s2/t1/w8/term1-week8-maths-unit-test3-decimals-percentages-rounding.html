@@ -80,6 +80,11 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 .num-input.correct { border-color: var(--correct); }
 .num-input.wrong { border-color: var(--wrong); }
 .num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.text-input { width: 100%; max-width: 380px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; padding: 10px 14px; transition: border-color 0.2s; outline: none; display: block; }
+.text-input:focus { border-color: var(--accent-math); }
+.text-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.06); }
+.text-input.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.06); }
+.text-input:disabled { opacity: 0.75; }
 .q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
 .btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
 .btn-check { background: var(--accent-math); color: #0f1117; }
@@ -211,16 +216,11 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div class="q-card" id="qcard-pw3">
     <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Work out <span class="math-expr">320 &divide; 10&sup3;</span></div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="pw3-opts">
-        <div class="mcq-opt" onclick="selectMCQ('pw3', this, 'a')"><div class="opt-indicator"></div><span>32</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('pw3', this, 'b')"><div class="opt-indicator"></div><span>3.2</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('pw3', this, 'c')"><div class="opt-indicator"></div><span>0.032</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('pw3', this, 'd')"><div class="opt-indicator"></div><span>0.32</span></div>
-      </div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pw3-ans" placeholder="Enter answer..."></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('pw3','d','Q3')">Check</button>
+        <button class="btn btn-check" onclick="checkNum('pw3',0.32,'Q3')">Check</button>
         <button class="btn btn-hint" onclick="showHint('pw3','10&sup3; = 1000, so divide 320 by 1000')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('pw3','D — 0.32 (320 &divide; 1000)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pw3','0.32 — 320 &divide; 1000')">Show Answer</button>
       </div>
       <div class="feedback" id="pw3-fb"></div>
     </div>
@@ -242,18 +242,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q5 -->
   <div class="q-card" id="qcard-pw5">
-    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">When you multiply a positive number by 10 raised to a <em>negative</em> power, the result is always &hellip; than the number you started with.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">When you multiply a positive number by 10 raised to a <em>negative</em> power, the result is always &hellip; than the number you started with. Write one word.</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="pw5-opts">
-        <div class="mcq-opt" onclick="selectMCQ('pw5', this, 'a')"><div class="opt-indicator"></div><span>larger</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('pw5', this, 'b')"><div class="opt-indicator"></div><span>smaller</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('pw5', this, 'c')"><div class="opt-indicator"></div><span>the same</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('pw5', this, 'd')"><div class="opt-indicator"></div><span>negative</span></div>
-      </div>
+      <input type="text" class="text-input" id="pw5-ans" placeholder="larger or smaller?" autocomplete="off" spellcheck="false">
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('pw5','b','Q5')">Check</button>
+        <button class="btn btn-check" onclick="checkText('pw5',['smaller'],'Q5')">Check</button>
         <button class="btn btn-hint" onclick="showHint('pw5','Try a specialising example: 8 &times; 10&#8315;&sup1; = 0.8 &mdash; is 0.8 bigger or smaller than 8?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('pw5','B — smaller (a negative power of 10 is a fraction less than 1)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pw5','smaller (a negative power of 10 is a fraction less than 1)')">Show Answer</button>
       </div>
       <div class="feedback" id="pw5-fb"></div>
     </div>
@@ -275,18 +270,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q7 -->
   <div class="q-card" id="qcard-pw7">
-    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which of these equals <span class="math-expr">42 &divide; 10&#8315;&sup1;</span>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Work out <span class="math-expr">42 &divide; 10&#8315;&sup1;</span></div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="pw7-opts">
-        <div class="mcq-opt" onclick="selectMCQ('pw7', this, 'a')"><div class="opt-indicator"></div><span>4.2</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('pw7', this, 'b')"><div class="opt-indicator"></div><span>4200</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('pw7', this, 'c')"><div class="opt-indicator"></div><span>420</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('pw7', this, 'd')"><div class="opt-indicator"></div><span>42</span></div>
-      </div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pw7-ans" placeholder="Enter answer..."></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('pw7','c','Q7')">Check</button>
+        <button class="btn btn-check" onclick="checkNum('pw7',420,'Q7')">Check</button>
         <button class="btn btn-hint" onclick="showHint('pw7','10&#8315;&sup1; = 0.1, and dividing by 0.1 is the same as multiplying by 10')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('pw7','C — 420 (dividing by 0.1 is the same as multiplying by 10)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pw7','420 — dividing by 0.1 is the same as multiplying by 10')">Show Answer</button>
       </div>
       <div class="feedback" id="pw7-fb"></div>
     </div>
@@ -365,18 +355,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q12 -->
   <div class="q-card" id="qcard-md5">
-    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Which answer is correct for <span class="math-expr">4.5 &divide; 0.5</span>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Work out <span class="math-expr">4.5 &divide; 0.5</span></div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="md5-opts">
-        <div class="mcq-opt" onclick="selectMCQ('md5', this, 'a')"><div class="opt-indicator"></div><span>9</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('md5', this, 'b')"><div class="opt-indicator"></div><span>0.9</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('md5', this, 'c')"><div class="opt-indicator"></div><span>90</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('md5', this, 'd')"><div class="opt-indicator"></div><span>900</span></div>
-      </div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="md5-ans" placeholder="Enter answer..."></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('md5','a','Q12')">Check</button>
+        <button class="btn btn-check" onclick="checkNum('md5',9,'Q12')">Check</button>
         <button class="btn btn-hint" onclick="showHint('md5','Multiply both numbers by 10 first: 45 &divide; 5')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('md5','A — 9 (45 &divide; 5)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md5','9 — 45 &divide; 5')">Show Answer</button>
       </div>
       <div class="feedback" id="md5-fb"></div>
     </div>
@@ -402,14 +387,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <div class="mcq-options" id="md7-opts">
         <div class="mcq-opt" onclick="selectMCQ('md7', this, 'a')"><div class="opt-indicator"></div><span>0.8</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('md7', this, 'b')"><div class="opt-indicator"></div><span>80</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('md7', this, 'c')"><div class="opt-indicator"></div><span>800</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('md7', this, 'd')"><div class="opt-indicator"></div><span>8</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('md7', this, 'b')"><div class="opt-indicator"></div><span>8</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('md7', this, 'c')"><div class="opt-indicator"></div><span>80</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('md7', this, 'd')"><div class="opt-indicator"></div><span>800</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('md7','d','Q14')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('md7','b','Q14')">Check</button>
         <button class="btn btn-hint" onclick="showHint('md7','Round each number to 1 significant figure first: 0.2 &times; 40')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('md7','D — 8 (0.2 &times; 40 = 8, and the exact answer, 8.694, is close to this)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md7','B — 8 (0.2 &times; 40 = 8, and the exact answer, 8.694, is close to this)')">Show Answer</button>
       </div>
       <div class="feedback" id="md7-fb"></div>
     </div>
@@ -446,18 +431,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q16 -->
   <div class="q-card" id="qcard-cp2">
-    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Which multiplier represents a 15% decrease?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Write the multiplier that represents a 15% decrease.</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="cp2-opts">
-        <div class="mcq-opt" onclick="selectMCQ('cp2', this, 'a')"><div class="opt-indicator"></div><span>1.15</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp2', this, 'b')"><div class="opt-indicator"></div><span>1.5</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp2', this, 'c')"><div class="opt-indicator"></div><span>0.85</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp2', this, 'd')"><div class="opt-indicator"></div><span>0.15</span></div>
-      </div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cp2-ans" placeholder="Enter answer..."></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('cp2','c','Q16')">Check</button>
+        <button class="btn btn-check" onclick="checkNum('cp2',0.85,'Q16')">Check</button>
         <button class="btn btn-hint" onclick="showHint('cp2','Subtract the percentage from 100%, then divide by 100')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('cp2','C — 0.85 (100% &minus; 15% = 85% = 0.85)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cp2','0.85 — 100% &minus; 15% = 85% = 0.85')">Show Answer</button>
       </div>
       <div class="feedback" id="cp2-fb"></div>
     </div>
@@ -479,18 +459,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q18 -->
   <div class="q-card" id="qcard-cp4">
-    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Which of these is true about a value that is increased by 20%, then decreased by 20%?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">A value is increased by 20%, then decreased by 20%. Does it end up <em>higher</em>, <em>lower</em>, or the <em>same</em> as the original value? Write one word.</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="cp4-opts">
-        <div class="mcq-opt" onclick="selectMCQ('cp4', this, 'a')"><div class="opt-indicator"></div><span>It ends up back at the original value</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp4', this, 'b')"><div class="opt-indicator"></div><span>It ends up lower than the original value</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp4', this, 'c')"><div class="opt-indicator"></div><span>It ends up higher than the original value</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp4', this, 'd')"><div class="opt-indicator"></div><span>It is impossible to say without knowing the starting value</span></div>
-      </div>
+      <input type="text" class="text-input" id="cp4-ans" placeholder="higher, lower or same?" autocomplete="off" spellcheck="false">
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('cp4','b','Q18')">Check</button>
+        <button class="btn btn-check" onclick="checkText('cp4',['lower'],'Q18')">Check</button>
         <button class="btn btn-hint" onclick="showHint('cp4','Multiply the two multipliers together: 1.2 &times; 0.8 &mdash; is the result more or less than 1?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('cp4','B — lower (1.2 &times; 0.8 = 0.96, which is less than 1)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cp4','lower (1.2 &times; 0.8 = 0.96, which is less than 1)')">Show Answer</button>
       </div>
       <div class="feedback" id="cp4-fb"></div>
     </div>
@@ -515,15 +490,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Which calculation gives the value of $600 after <em>two</em> successive 8% decreases?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="cp6-opts">
-        <div class="mcq-opt" onclick="selectMCQ('cp6', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">600 &times; 0.92 &times; 0.92</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp6', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">600 &times; 0.84</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp6', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">600 &times; 1.08 &times; 1.08</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cp6', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">600 &times; 0.84</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cp6', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">600 &times; 1.08 &times; 1.08</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cp6', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">600 &times; 0.92 &times; 0.92</span></span></div>
         <div class="mcq-opt" onclick="selectMCQ('cp6', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">600 &times; 0.16</span></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('cp6','a','Q20')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('cp6','c','Q20')">Check</button>
         <button class="btn btn-hint" onclick="showHint('cp6','Each decrease needs its own multiplier, applied one after the other &mdash; you cannot just double the percentage')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('cp6','A — 600 &times; 0.92 &times; 0.92 (option B wrongly adds the percentages together)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cp6','C — 600 &times; 0.92 &times; 0.92 (option A wrongly adds the percentages together)')">Show Answer</button>
       </div>
       <div class="feedback" id="cp6-fb"></div>
     </div>
@@ -550,13 +525,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       <div class="mcq-options" id="cp8-opts">
         <div class="mcq-opt" onclick="selectMCQ('cp8', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">8000 &times; 1.05&#8308;</span></span></div>
         <div class="mcq-opt" onclick="selectMCQ('cp8', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">8000 &times; (1 &minus; 0.05 &times; 4)</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp8', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">8000 &times; 0.95&#8308;</span></span></div>
-        <div class="mcq-opt" onclick="selectMCQ('cp8', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">8000 &times; 0.95 &times; 4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cp8', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">8000 &times; 0.95 &times; 4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cp8', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">8000 &times; 0.95&#8308;</span></span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('cp8','c','Q22')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('cp8','d','Q22')">Check</button>
         <button class="btn btn-hint" onclick="showHint('cp8','A repeated multiplier applied n times is written as a power: &times;(multiplier)&#8319;')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('cp8','C — 8000 &times; 0.95&#8308; (the 0.95 multiplier is applied 4 times, once per year)')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cp8','D — 8000 &times; 0.95&#8308; (the 0.95 multiplier is applied 4 times, once per year)')">Show Answer</button>
       </div>
       <div class="feedback" id="cp8-fb"></div>
     </div>
@@ -610,15 +585,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A number is rounded to the nearest 100. The answer is 300. Which inequality correctly shows the range of the original number?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="bd3-opts">
-        <div class="mcq-opt" onclick="selectMCQ('bd3', this, 'a')"><div class="opt-indicator"></div><span>250 &le; x &lt; 300</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bd3', this, 'b')"><div class="opt-indicator"></div><span>295 &le; x &lt; 305</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bd3', this, 'c')"><div class="opt-indicator"></div><span>200 &le; x &lt; 400</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bd3', this, 'd')"><div class="opt-indicator"></div><span>250 &le; x &lt; 350</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd3', this, 'a')"><div class="opt-indicator"></div><span>250 &le; x &lt; 350</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd3', this, 'b')"><div class="opt-indicator"></div><span>250 &le; x &lt; 300</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd3', this, 'c')"><div class="opt-indicator"></div><span>295 &le; x &lt; 305</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd3', this, 'd')"><div class="opt-indicator"></div><span>200 &le; x &lt; 400</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('bd3','d','Q25')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('bd3','a','Q25')">Check</button>
         <button class="btn btn-hint" onclick="showHint('bd3','Half a unit of rounding here is half of 100, so 50 either side of 300')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('bd3','D — 250 &le; x &lt; 350')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bd3','A — 250 &le; x &lt; 350')">Show Answer</button>
       </div>
       <div class="feedback" id="bd3-fb"></div>
     </div>
@@ -643,15 +618,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-header"><div class="q-num">Q27</div><div class="q-text">The area of a field is given as 1560 m&sup2;, correct to the nearest 10 m&sup2;. Which inequality shows the range of possible exact areas?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <div class="mcq-options" id="bd5-opts">
-        <div class="mcq-opt" onclick="selectMCQ('bd5', this, 'a')"><div class="opt-indicator"></div><span>1555 &le; x &lt; 1565</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bd5', this, 'b')"><div class="opt-indicator"></div><span>1550 &le; x &lt; 1570</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd5', this, 'a')"><div class="opt-indicator"></div><span>1550 &le; x &lt; 1570</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd5', this, 'b')"><div class="opt-indicator"></div><span>1555 &le; x &lt; 1565</span></div>
         <div class="mcq-opt" onclick="selectMCQ('bd5', this, 'c')"><div class="opt-indicator"></div><span>1559.5 &le; x &lt; 1560.5</span></div>
         <div class="mcq-opt" onclick="selectMCQ('bd5', this, 'd')"><div class="opt-indicator"></div><span>1560 &le; x &lt; 1570</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('bd5','a','Q27')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('bd5','b','Q27')">Check</button>
         <button class="btn btn-hint" onclick="showHint('bd5','The unit of rounding is 10, so the bounds are 5 either side of 1560')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('bd5','A — 1555 &le; x &lt; 1565')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bd5','B — 1555 &le; x &lt; 1565')">Show Answer</button>
       </div>
       <div class="feedback" id="bd5-fb"></div>
     </div>
@@ -673,18 +648,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q29 -->
   <div class="q-card" id="qcard-bd7">
-    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A decimal number is rounded to the nearest whole number, giving 12. Which of these is the correct upper bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A decimal number is rounded to the nearest whole number, giving 12. Write the correct upper bound.</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="bd7-opts">
-        <div class="mcq-opt" onclick="selectMCQ('bd7', this, 'a')"><div class="opt-indicator"></div><span>12.49</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bd7', this, 'b')"><div class="opt-indicator"></div><span>12.5</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bd7', this, 'c')"><div class="opt-indicator"></div><span>12.4</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bd7', this, 'd')"><div class="opt-indicator"></div><span>13</span></div>
-      </div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="bd7-ans" placeholder="Enter answer..."></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('bd7','b','Q29')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('bd7','The unit of rounding is 1 whole number, so the upper bound is exactly half of that above 12')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('bd7','B — 12.5 (not 12.49 &mdash; the bound is the exact midpoint)')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('bd7',12.5,'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bd7','The unit of rounding is 1 whole number, so the upper bound is exactly half of that above 12 &mdash; not 12.49')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bd7','12.5 (not 12.49 &mdash; the bound is the exact midpoint)')">Show Answer</button>
       </div>
       <div class="feedback" id="bd7-fb"></div>
     </div>
@@ -766,6 +736,22 @@ function checkNum(qid, correctVal, label, tolerance=0) {
   const val = parseFloat(input.value);
   const isCorrect = Math.abs(val - correctVal) <= tolerance;
   input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  state.answers[qid] = typed;
   markResult(qid, isCorrect);
 }
 
@@ -874,7 +860,7 @@ function launchConfetti() {
 document.addEventListener('keydown', e => {
   if (e.key==='Enter') {
     const active = document.activeElement;
-    if (active && active.classList.contains('num-input')) {
+    if (active && (active.classList.contains('num-input') || active.classList.contains('text-input'))) {
       active.closest('.q-body')?.querySelector('.btn-check')?.click();
     }
   }
