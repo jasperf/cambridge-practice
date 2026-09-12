@@ -62,9 +62,11 @@ cambridge-practice/
 │       │   └── term1-week4-science-covalent-metallic-bonding.* ← Why Atoms Bond, Covalent & Metallic Bonding (12 q, 13 marks)
 │       ├── w5/                      ← Week 5 (.html interactive + .md printable)
 │       │   └── term1-week5-maths-expressions-formulae.*    ← Expressions & Formulae (26 q, 34 marks)
-│       └── w7/                      ← Week 7 (.html interactive + .md printable)
-│           ├── term1-week7-science-unit-test2-plant-biology.* ← Unit Test 2: Plant Biology (38 q, 49 marks + 6 extended-answer q, 22 marks)
-│           └── term1-week7-english-unit-test2-viewpoints-arguments.* ← Unit Test 2: Viewpoints & Arguments (45 q, 59 marks + 6 extended-answer q)
+│       ├── w7/                      ← Week 7 (.html interactive + .md printable)
+│       │   ├── term1-week7-science-unit-test2-plant-biology.* ← Unit Test 2: Plant Biology (38 q, 49 marks + 6 extended-answer q, 22 marks)
+│       │   └── term1-week7-english-unit-test2-viewpoints-arguments.* ← Unit Test 2: Viewpoints & Arguments (45 q, 59 marks + 6 extended-answer q)
+│       └── w8/                      ← Week 8 (.html interactive + .md printable)
+│           └── term1-week8-maths-unit-test3-decimals-percentages-rounding.* ← Unit Test 3: Decimals, Percentages & Rounding (29 q, 40 marks + 5 extended-answer q, 18 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
@@ -156,6 +158,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Science Unit Test 1 Revision (Atomic Structure, Periodic Table & Bonding) | Secondary 2 | ✅ Unit Test 1, 26 Aug 2026 |
 | Science Unit Test 2 (Plant Biology) | Secondary 2 | ✅ Term 1 Week 7 · Unit Test 2, 10 Sep 2026 |
 | English Unit Test 2 (Viewpoints & Arguments, Past Continuous, Subject–Verb Agreement) | Secondary 2 | ✅ Term 1 Week 7 · Unit Test 2, 10 Sep 2026 |
+| Mathematics Unit Test 3 (Decimals, Percentages & Rounding) | Secondary 2 | ✅ Term 1 Week 8 · Unit Test 3 |
 
 ### IGCSE
 

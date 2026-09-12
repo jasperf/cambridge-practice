@@ -99,6 +99,24 @@ English Unit Test 2 covers three strands, all on the single Week 7 sheet above:
 
 Its printable `.md` has the same 45 questions **plus six extended-answer questions** (Q46–Q51) — paragraph writing, argument labelling and a past-continuous writing task — that are not on the interactive sheet and are not auto-marked.
 
+## Week 8
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 3: Decimals, Percentages & Rounding** — Unit 3 | 29 | 40 | [.md](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.md) | [.html](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.html) |
+
+### Maths Unit Test 3
+
+Unit Test 3 covers **Unit 3: Decimals, Percentages and Rounding**. This topic wasn't taught in an earlier weekly sheet, so the whole unit sits on the single Week 8 sheet above, written as test practice rather than as a teaching sheet:
+
+| Sheet | Covers |
+|-------|--------|
+| [Week 8 — Unit Test 3: Decimals, Percentages & Rounding](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.html) | Multiplying/dividing by positive and negative powers of 10, multiplying/dividing decimals using equivalent calculations, compound percentage change (successive and repeated multipliers), and upper/lower bounds of rounded values |
+
+Its printable `.md` has the same 29 questions **plus five extended-answer questions** (Q30–Q34) — explaining reasoning, compound-interest working and a bounds/area problem — that are not on the interactive sheet and are not auto-marked.
+
 Source material for the Level 2/3 strand: `material/english/s2/t1/viewpoints-arguments/`.
 
 ## Revision Handouts
@@ -187,11 +205,14 @@ cambridge-practice/
 │       ├── w5/
 │       │   ├── term1-week5-maths-expressions-formulae.html   ← Interactive
 │       │   └── term1-week5-maths-expressions-formulae.md     ← Printable
-│       └── w7/
-│           ├── term1-week7-science-unit-test2-plant-biology.html ← Interactive
-│           ├── term1-week7-science-unit-test2-plant-biology.md   ← Printable (+6 extended-answer q)
-│           ├── term1-week7-english-unit-test2-viewpoints-arguments.html ← Interactive
-│           └── term1-week7-english-unit-test2-viewpoints-arguments.md   ← Printable (+6 extended-answer q)
+│       ├── w7/
+│       │   ├── term1-week7-science-unit-test2-plant-biology.html ← Interactive
+│       │   ├── term1-week7-science-unit-test2-plant-biology.md   ← Printable (+6 extended-answer q)
+│       │   ├── term1-week7-english-unit-test2-viewpoints-arguments.html ← Interactive
+│       │   └── term1-week7-english-unit-test2-viewpoints-arguments.md   ← Printable (+6 extended-answer q)
+│       └── w8/
+│           ├── term1-week8-maths-unit-test3-decimals-percentages-rounding.html ← Interactive
+│           └── term1-week8-maths-unit-test3-decimals-percentages-rounding.md   ← Printable (+5 extended-answer q)
 ```
 
 ## See Also
