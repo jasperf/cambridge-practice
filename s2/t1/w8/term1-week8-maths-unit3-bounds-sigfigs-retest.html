@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bounds &amp; Significant Figures &middot; Unit 3 Retest</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: rgba(79,142,247,0.15); font-family: var(--font-mono); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box ol { margin: 6px 0 0 20px; }
+.kind-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.kind-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 520px; }
+.kind-table th, .kind-table td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+.kind-table th { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); background: var(--surface2); letter-spacing: 0.5px; }
+.kind-table td strong { color: var(--accent-sci); }
+.sim { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin: 16px 0 24px; }
+.sim-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+.sim-svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.sim-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.sim-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.sim-btn:hover { border-color: var(--accent-math); color: var(--text); }
+.ex-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; max-width: 560px; margin: 0 auto 14px; }
+.ex-inputs label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-inputs input, .ex-inputs select { width: 100%; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 7px 10px; outline: none; }
+.ex-inputs input:focus, .ex-inputs select:focus { border-color: var(--accent-math); }
+.ex-slider { max-width: 560px; margin: 12px auto 0; }
+.ex-slider label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-slider input[type=range] { width: 100%; accent-color: var(--accent-warn); }
+.ex-steps { max-width: 560px; margin: 14px auto 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+.ex-steps b { color: var(--text); }
+.ex-ineq { display: inline-block; font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-sci); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; margin: 6px 0; }
+@media (max-width: 600px) { .ex-inputs { grid-template-columns: 1fr; } .sim { padding: 12px; } }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.math-expr { font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; display: inline-block; margin: 2px 0; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .watch-links { justify-content: center; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Bounds &amp; Sig Figs Retest</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 40</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Unit 3 Retest</div>
+  <h1>Step by Step<br><em>Bounds &amp; Significant Figures</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Significant Figures &middot; The Rounding Unit &middot; Half a Unit &middot; Bounds with s.f. &middot; Which Kind of Number? &middot; Mini Test</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>34 questions &middot; self-marked &middot; 40 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128270; Bounds only, one step at a time</h3>
+  <p>A retest after the Unit 3 follow-up, with no powers or percentages. It builds bounds up in small steps: rounding to significant figures, finding the unit of rounding, halving it, and then asking <em>what kind of number was rounded</em>. Use the Bounds Explorer in Section C to check any example of your own. Watch a video first if bounds still feel confusing.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/watch?v=ebMrP74boHw" target="_blank" rel="noopener">&#128250; Corbettmaths &mdash; Lower &amp; Upper Bounds</a>
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=corbettmaths+significant+figures" target="_blank" rel="noopener">&#128250; Significant figures videos (search)</a>
+    <a class="watch-link" href="term1-week8-maths-unit3-bounds-powers-practice.html">Unit 3 Follow-up &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#sigfigs" class="sub-tab">Significant Figures</a>
+  <a href="#unit" class="sub-tab">The Rounding Unit</a>
+  <a href="#half" class="sub-tab">Half a Unit</a>
+  <a href="#sfbounds" class="sub-tab">Bounds with s.f.</a>
+  <a href="#kinds" class="sub-tab">Which Kind of Number?</a>
+  <a href="#minitest" class="sub-tab">Mini Test</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: SIGNIFICANT FIGURES ═══════════════ -->
+<div id="sigfigs">
+  <div class="section-header"><div class="section-icon">s.f.</div><div><div class="sub-label">Section A &middot; Step 0</div><h2>Rounding to Significant Figures</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> The <strong>first significant figure</strong> is the first digit that is not zero, reading from the left. Zeros <em>before</em> it never count; zeros <em>between</em> other digits do count. To round to <em>n</em> s.f., count <em>n</em> digits from the first significant figure, look at the next digit (5 or more rounds up), and then fill any empty places before the decimal point with zeros so the number keeps its size.</div>
+  <div class="info-box"><strong>Example:</strong> 0.002&thinsp;58 to 2 s.f. &rarr; the significant figures start at the 2 &rarr; <strong>0.0026</strong>. 71&thinsp;460 to 2 s.f. &rarr; 71|460 &rarr; <strong>71&thinsp;000</strong> (not 71: the zeros hold the place value).</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-sf1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">How many significant figures does <span class="math-expr">0.0305</span> have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sf1-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sf1',3,'Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sf1','Start counting at the first digit that is not zero. Does the zero after it count?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sf1','3 — the digits 3, 0, 5. The zeros at the start do not count, but the zero between 3 and 5 does.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sf1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-sf2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Round <span class="math-expr">4782</span> to 2 significant figures.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sf2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sf2',4800,'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sf2','Keep the first two digits, 47. The next digit is 8. Then fill the empty places with zeros.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sf2','4800 — 47|82: the 8 rounds the 7 up to 8, and two zeros keep it in the thousands')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sf2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-sf3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Round <span class="math-expr">0.04671</span> to 2 significant figures.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sf3-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sf3',0.047,'Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sf3','The first significant figure is the 4, not the 0. Which two digits do you keep?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sf3','0.047 — 0.046|71: the 7 rounds the 6 up to 7')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sf3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-sf4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Round <span class="math-expr">36.52</span> to 1 significant figure.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sf4-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sf4',40,'Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sf4','The first significant figure is the 3, which is in the tens. Is 36.52 nearer to 30 or 40?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sf4','40 — 3|6.52: the 6 rounds the 3 up to 4, and a zero keeps it in the tens (not 4)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sf4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-sf5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Which is <span class="math-expr">58&thinsp;347</span> correct to 2 significant figures?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="sf5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('sf5', this, 'a')"><div class="opt-indicator"></div><span>58</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sf5', this, 'b')"><div class="opt-indicator"></div><span>58&thinsp;000</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sf5', this, 'c')"><div class="opt-indicator"></div><span>58&thinsp;300</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sf5', this, 'd')"><div class="opt-indicator"></div><span>60&thinsp;000</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('sf5','b','Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sf5','Count the significant figures in each option. The answer must also still be about fifty-eight thousand.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sf5','B — 58|347 rounds to 58&thinsp;000. 58 is far too small, 58&thinsp;300 has 3 s.f. and 60&thinsp;000 has only 1 s.f.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sf5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-sf6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Which is <span class="math-expr">0.3996</span> written correct to 3 significant figures?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="sf6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('sf6', this, 'a')"><div class="opt-indicator"></div><span>0.399</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sf6', this, 'b')"><div class="opt-indicator"></div><span>0.4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sf6', this, 'c')"><div class="opt-indicator"></div><span>0.40</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sf6', this, 'd')"><div class="opt-indicator"></div><span>0.400</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('sf6','d','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sf6','0.399|6 — the 6 rounds up, and the 9s carry over. How many digits must you still write?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sf6','D — 0.399|6 rounds up to 0.400. The zeros after the 4 are written to show it is correct to 3 s.f.; 0.4 and 0.40 have the same value but only show 1 and 2 s.f.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sf6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SIGNIFICANT FIGURES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sf-fill"></div></div>
+    <div class="section-score-val" id="sec-sf-val">0/6</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: THE ROUNDING UNIT ═══════════════ -->
+<div id="unit">
+  <div class="section-header"><div class="section-icon">1&#8594;</div><div><div class="sub-label">Section B &middot; Step 1</div><h2>Find the Unit of Rounding</h2></div></div>
+  <div class="info-box"><strong>Why this step:</strong> every bound starts from the <strong>unit of rounding</strong> &mdash; the size of the jumps between possible rounded answers. Nearest 1000 &rarr; 1000. Nearest 10 &rarr; 10. Nearest whole number &rarr; 1. One decimal place &rarr; 0.1.</div>
+  <div class="info-box"><strong>For significant figures:</strong> look at the <em>last</em> significant figure of the rounded number and ask which place it is in. Example: 3700, correct to 2 s.f. &rarr; the 2nd significant figure is the 7, in the <strong>hundreds</strong> &rarr; unit 100. Example: 0.058, correct to 2 s.f. &rarr; the 8 is in the <strong>thousandths</strong> &rarr; unit 0.001.</div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-ru1">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">A length is rounded correct to <strong>2 decimal places</strong>. What is the unit of rounding?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ru1-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ru1',0.01,'Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ru1','The 2nd decimal place is the hundredths column')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ru1','0.01 — two decimal places means rounding to the nearest hundredth')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ru1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-ru2">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A height is given as <span class="math-expr">5300 m</span>, correct to 2 significant figures. What is the unit of rounding?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ru2-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ru2',100,'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ru2','The 2nd significant figure is the 3. Which column is it in?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ru2','100 m — the 3 is in the hundreds, so 5300 is rounded to the nearest 100')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ru2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-ru3">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">A mass is given as <span class="math-expr">0.62 kg</span>, correct to 2 significant figures. What is the unit of rounding?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ru3-ans" placeholder="Enter answer..."> <span class="num-unit">kg</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ru3',0.01,'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ru3','The 1st significant figure is the 6 (tenths). The 2nd is the 2. Which column is the 2 in?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ru3','0.01 kg — the 2 is in the hundredths, so the mass is rounded to the nearest 0.01 kg')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ru3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-ru4">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">A distance is given as <span class="math-expr">80&thinsp;000 km</span>, correct to 1 significant figure. What is the unit of rounding?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ru4-ans" placeholder="Enter answer..."> <span class="num-unit">km</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ru4',10000,'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ru4','There is only one significant figure, the 8. Which column is it in?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ru4','10&thinsp;000 km — the 8 is in the ten-thousands column')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ru4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-ru5">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">A time is given as <span class="math-expr">7.0 seconds</span>, correct to 2 significant figures. What is the unit of rounding?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ru5-ans" placeholder="Enter answer..."> <span class="num-unit">s</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ru5',0.1,'Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ru5','The zero after the decimal point is written on purpose: it is the 2nd significant figure. Which column is it in?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ru5','0.1 s — the 0 in 7.0 is the 2nd significant figure and it is in the tenths')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ru5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">THE ROUNDING UNIT &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ru-fill"></div></div>
+    <div class="section-score-val" id="sec-ru-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: HALF A UNIT ═══════════════ -->
+<div id="half">
+  <div class="section-header"><div class="section-icon">&frac12;</div><div><div class="sub-label">Section C &middot; Steps 2 &amp; 3</div><h2>Measurements: Half a Unit Either Side</h2></div></div>
+  <div class="info-box"><strong>Method</strong> for a <strong>measurement</strong> (length, mass, time, area &hellip;), which can have any number of decimal places:
+    <ol>
+      <li>Find the <strong>unit of rounding</strong>.</li>
+      <li><strong>Halve</strong> it.</li>
+      <li>Lower bound = rounded value <strong>&minus;</strong> half. Upper bound = rounded value <strong>+</strong> half. Write lower &le; x &lt; upper.</li>
+    </ol>
+  </div>
+  <div class="info-box"><strong>Example:</strong> A parcel is 850 g, to the nearest 10 g. Unit 10 &rarr; half 5 &rarr; 850 &minus; 5 = 845 and 850 + 5 = 855 &rarr; <strong>845 &le; m &lt; 855</strong>. The &lt; sign is there because 855 g itself would round up to 860 g.</div>
+  <div class="info-box"><strong>Reading the inequality:</strong> <em>x</em> stands for the exact value, and it sits in the middle. Read it from the middle outwards: <strong>845 &le; m</strong> means &ldquo;m is 845 <em>or more</em>&rdquo;, and <strong>m &lt; 855</strong> means &ldquo;m is <em>less than</em> 855&rdquo;. So 850 fits (850 is 845 or more, and less than 855), and so do 845 and 854.99, but 855 does not. A whole-number or one-decimal-place range uses &le; on both sides, such as 4.5 &le; x &le; 5.4: x is 4.5 or more <em>and</em> 5.4 or less.</div>
+
+  <!-- Bounds Explorer -->
+  <div class="sim">
+    <div class="sim-title">Bounds Explorer &mdash; type any rounded value, then drag the orange marker</div>
+    <div class="ex-inputs">
+      <div><label for="ex-value">Rounded value</label><input type="number" step="any" id="ex-value" value="850" oninput="exUpdate()"></div>
+      <div><label for="ex-acc">Rounded to</label>
+        <select id="ex-acc" onchange="exUpdate()">
+          <option value="n1000">nearest 1000</option>
+          <option value="n100">nearest 100</option>
+          <option value="n10" selected>nearest 10</option>
+          <option value="n1">nearest whole number</option>
+          <option value="d1">1 decimal place</option>
+          <option value="d2">2 decimal places</option>
+          <option value="s1">1 significant figure</option>
+          <option value="s2">2 significant figures</option>
+          <option value="s3">3 significant figures</option>
+        </select>
+      </div>
+      <div><label for="ex-kind">Kind of number</label>
+        <select id="ex-kind" onchange="exUpdate()">
+          <option value="meas" selected>measurement / any decimal</option>
+          <option value="whole">whole number (a count)</option>
+          <option value="onedp">number with one decimal place</option>
+        </select>
+      </div>
+    </div>
+    <svg class="sim-svg" viewBox="0 0 560 124" role="img" aria-label="Number line showing the lower and upper bounds of the rounded value"><g id="ex-svg-g"></g></svg>
+    <div class="ex-slider">
+      <label for="ex-x">Try an exact value for x</label>
+      <input type="range" id="ex-x" oninput="exDrawLine()">
+    </div>
+    <div class="ex-steps" id="ex-steps"></div>
+    <div class="sim-controls">
+      <button class="sim-btn" onclick="exPreset(9,'n1','onedp')">9 &middot; one decimal place</button>
+      <button class="sim-btn" onclick="exPreset(9,'n1','meas')">9 &middot; measurement</button>
+      <button class="sim-btn" onclick="exPreset(2300,'s2','meas')">2300 &middot; 2 s.f.</button>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-mb1">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">A suitcase weighs 62 kg, correct to the nearest kg. What is the <strong>lower</strong> bound of its mass?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mb1-ans" placeholder="Enter answer..."> <span class="num-unit">kg</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mb1',61.5,'Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb1','Unit 1 kg &rarr; half is 0.5 kg &rarr; subtract it')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb1','61.5 kg — 62 &minus; 0.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-mb2">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">The circumference of a pond is 1560 cm, correct to the nearest 10 cm. What is the <strong>upper</strong> bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mb2-ans" placeholder="Enter answer..."> <span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mb2',1565,'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb2','Unit 10 cm &rarr; half is 5 cm &rarr; add it')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb2','1565 cm — 1560 + 5, so 1555 &le; C &lt; 1565')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-mb3">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">A runner&rsquo;s time is 7.3 seconds, correct to 1 decimal place. What is the <strong>lower</strong> bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mb3-ans" placeholder="Enter answer..."> <span class="num-unit">s</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mb3',7.25,'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb3','Unit 0.1 &rarr; half of 0.1 is 0.05 &rarr; subtract it')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb3','7.25 s — 7.3 &minus; 0.05')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-mb4">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">A pole is 2.46 m long, correct to 2 decimal places. What is the <strong>upper</strong> bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mb4-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mb4',2.465,'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb4','Unit 0.01 &rarr; half of 0.01 is 0.005 &rarr; add it')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb4','2.465 m — 2.46 + 0.005')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-mb5">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">The mean height of a netball team is 172 cm, correct to the nearest cm. Which inequality shows the range of values the mean height could have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mb5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mb5', this, 'a')"><div class="opt-indicator"></div><span>171.5 &le; h &lt; 172.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb5', this, 'b')"><div class="opt-indicator"></div><span>171 &le; h &lt; 173</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb5', this, 'c')"><div class="opt-indicator"></div><span>171.5 &le; h &le; 172.4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb5', this, 'd')"><div class="opt-indicator"></div><span>171.5 &lt; h &le; 172.5</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mb5','a','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb5','Could h be exactly 171.5? Exactly 172.5? Could it be 172.45?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb5','A — 171.5 rounds up to 172, so it is included (&le;). 172.5 rounds up to 173, so it is not (&lt;). Option C wrongly leaves out heights such as 172.45.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-mb6">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">The area of a soccer pitch is 7200 m&sup2;, correct to the nearest 100 m&sup2;. What is the <strong>lower</strong> bound of the area?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mb6-ans" placeholder="Enter answer..."> <span class="num-unit">m&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mb6',7150,'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb6','Unit 100 &rarr; half is 50')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb6','7150 m&sup2; — 7200 &minus; 50, so 7150 &le; A &lt; 7250')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">HALF A UNIT &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mb-fill"></div></div>
+    <div class="section-score-val" id="sec-mb-val">0/6</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: BOUNDS WITH SIGNIFICANT FIGURES ═══════════════ -->
+<div id="sfbounds">
+  <div class="section-header"><div class="section-icon">s.f.&plusmn;</div><div><div class="sub-label">Section D</div><h2>Bounds with Significant Figures</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> exactly the same three steps as Section C. The only extra work is Step 1: use Section B to turn &ldquo;correct to <em>n</em> s.f.&rdquo; into a unit of rounding first.</div>
+  <div class="info-box"><strong>Example:</strong> A road is 2300 m long, to 2 s.f. &rarr; the 3 is in the hundreds, so unit 100 &rarr; half 50 &rarr; <strong>2250 &le; L &lt; 2350</strong>. A bag of sugar is 0.6 kg, to 1 s.f. &rarr; unit 0.1 &rarr; half 0.05 &rarr; <strong>0.55 &le; m &lt; 0.65</strong>.</div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-bs1">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">A lorry has a mass of 4700 kg, correct to 2 significant figures. What is the <strong>lower</strong> bound of its mass?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="bs1-ans" placeholder="Enter answer..."> <span class="num-unit">kg</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bs1',4650,'Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bs1','Step 1: the 7 is in the hundreds, so the unit is 100. Step 2: halve it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bs1','4650 kg — unit 100, half 50, 4700 &minus; 50')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bs1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-bs2">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A bottle holds 0.38 litres, correct to 2 significant figures. What is the <strong>upper</strong> bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="bs2-ans" placeholder="Enter answer..."> <span class="num-unit">litres</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bs2',0.385,'Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bs2','The 8 is in the hundredths, so the unit is 0.01. What is half of 0.01?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bs2','0.385 litres — unit 0.01, half 0.005, 0.38 + 0.005')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bs2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-bs3">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">A satellite travels 60&thinsp;000 km, correct to 1 significant figure. What is the <strong>upper</strong> bound of the distance?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="bs3-ans" placeholder="Enter answer..."> <span class="num-unit">km</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bs3',65000,'Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bs3','With only 1 s.f., the unit is the column of the 6. It is not 1 and not 10.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bs3','65&thinsp;000 km — the 6 is in the ten-thousands, so unit 10&thinsp;000, half 5000, 60&thinsp;000 + 5000')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bs3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-bs4">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">A screw is 5.0 cm long, correct to 2 significant figures. What is the <strong>lower</strong> bound of its length?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="bs4-ans" placeholder="Enter answer..."> <span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bs4',4.95,'Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bs4','5.0 has 2 s.f., so the zero counts: it is in the tenths. The unit is 0.1, not 1.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bs4','4.95 cm — unit 0.1, half 0.05, 5.0 &minus; 0.05. (If it said just 5 cm to 1 s.f., it would be 4.5 cm.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bs4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-bs5">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">A pill contains 0.09 g of medicine, correct to 1 significant figure. Which inequality shows the range of possible masses?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="bs5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('bs5', this, 'a')"><div class="opt-indicator"></div><span>0.08 &le; m &lt; 0.1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bs5', this, 'b')"><div class="opt-indicator"></div><span>0.0895 &le; m &lt; 0.0905</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bs5', this, 'c')"><div class="opt-indicator"></div><span>0.085 &le; m &lt; 0.095</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bs5', this, 'd')"><div class="opt-indicator"></div><span>0.05 &le; m &lt; 0.15</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('bs5','c','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bs5','The 9 is in the hundredths. Unit 0.01, so half a unit is 0.005.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bs5','C — unit 0.01, half 0.005: 0.09 &minus; 0.005 = 0.085 and 0.09 + 0.005 = 0.095')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bs5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">BOUNDS WITH S.F. &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-bs-fill"></div></div>
+    <div class="section-score-val" id="sec-bs-val">0/7</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: WHICH KIND OF NUMBER? ═══════════════ -->
+<div id="kinds">
+  <div class="section-header"><div class="section-icon">?</div><div><div class="sub-label">Section E</div><h2>Which Kind of Number Was Rounded?</h2></div></div>
+  <div class="info-box"><strong>Step 0 for every bounds question:</strong> read what kind of number was rounded. The lower bound is found the same way every time; it is the <strong>upper</strong> bound that changes. The table shows three numbers that all round to 20, to the nearest 10.</div>
+  <div class="kind-table-wrap">
+    <table class="kind-table">
+      <thead><tr><th>What was rounded</th><th>It can be</th><th>Range</th><th>Upper bound</th></tr></thead>
+      <tbody>
+        <tr><td>A <strong>whole number</strong> (a count: people, pages)</td><td>15, 16, &hellip;, 24</td><td>15 &le; x &le; 24</td><td><strong>24</strong> &mdash; 25 rounds to 30</td></tr>
+        <tr><td>A number with <strong>one decimal place</strong></td><td>15.0, 15.1, &hellip;, 24.9</td><td>15 &le; x &le; 24.9</td><td><strong>24.9</strong> &mdash; 25.0 rounds to 30</td></tr>
+        <tr><td>A <strong>measurement</strong> or any decimal</td><td>anything from 15 up to 24.999&hellip;</td><td>15 &le; x &lt; 25</td><td><strong>25</strong> &mdash; x gets close but never equals it</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-kd1">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">A <strong>whole number</strong> is rounded to the nearest 10. The answer is 30. What is the upper bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="kd1-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('kd1',34,'Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('kd1','List the whole numbers that round to 30. Which is the last one before 35?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('kd1','34 — the whole numbers 25 to 34 round to 30; 35 rounds up to 40')">Show Answer</button>
+      </div>
+      <div class="feedback" id="kd1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-kd2">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">A number with <strong>one decimal place</strong> is rounded to the nearest whole number. The answer is 6. What is the upper bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="kd2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('kd2',6.4,'Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('kd2','It goes up in steps of 0.1: 5.5, 5.6, &hellip; Which is the last step before one that rounds to 7? Try the &ldquo;9 &middot; one decimal place&rdquo; button in the Explorer.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('kd2','6.4 — it can be 5.5, 5.6, &hellip;, 6.4. The next one, 6.5, has one decimal place too, but it rounds up to 7.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="kd2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-kd3">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A <strong>plank</strong> is 6 m long, correct to the nearest metre. What is the upper bound of its length?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="kd3-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('kd3',6.5,'Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('kd3','A length is a measurement. Compare with Q24: what changes when the number can have any number of decimal places?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('kd3','6.5 m — a length could be 6.49, 6.499, &hellip;, so the range is 5.5 &le; L &lt; 6.5. Same rounding as Q24, different kind of number, different upper bound.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="kd3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-kd4">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">A number is rounded to the nearest 100, giving 700. Its upper bound is <strong>749</strong>. What kind of number was rounded?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="kd4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('kd4', this, 'a')"><div class="opt-indicator"></div><span>A whole number, such as a number of people</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('kd4', this, 'b')"><div class="opt-indicator"></div><span>A measurement, such as a length in metres</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('kd4', this, 'c')"><div class="opt-indicator"></div><span>A number with one decimal place</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('kd4', this, 'd')"><div class="opt-indicator"></div><span>A number with two decimal places</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('kd4','a','Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('kd4','Work out the upper bound for each kind: which one gives exactly 749?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('kd4','A — only a whole number stops at 749. A number with one decimal place would reach 749.9, one with two decimal places 749.99, and a measurement has upper bound 750.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="kd4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-kd5">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">A number with <strong>one decimal place</strong> is rounded to the nearest 10. The answer is 50. What is the upper bound?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="kd5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('kd5',54.9,'Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('kd5','Rounding to the nearest 10, the number jumps to 60 at 55. With one decimal place, what is the step just before 55.0?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('kd5','54.9 — it can be 45.0, 45.1, &hellip;, 54.9; the next step, 55.0, rounds to 60')">Show Answer</button>
+      </div>
+      <div class="feedback" id="kd5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-kd6">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">The number of seats in a theatre is 2000, correct to <strong>2 significant figures</strong>. What is the largest possible number of seats?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="kd6-ans" placeholder="Enter answer..."> <span class="num-unit">seats</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('kd6',2049,'Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('kd6','Two steps: 2000 to 2 s.f. means the unit is 100 (the 2nd s.f. is the 0 in the hundreds). Then remember seats are counted in whole numbers.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('kd6','2049 seats — unit 100, so the numbers 1950 to 2049 round to 2000; 2050 would round to 2100')">Show Answer</button>
+      </div>
+      <div class="feedback" id="kd6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WHICH KIND OF NUMBER? &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-kd-fill"></div></div>
+    <div class="section-score-val" id="sec-kd-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: MINI TEST ═══════════════ -->
+<div id="minitest">
+  <div class="section-header"><div class="section-icon">&#9998;</div><div><div class="sub-label">Section F</div><h2>Mini Test</h2></div></div>
+  <div class="info-box"><strong>No method box here.</strong> Try these like a real test: for each one, write down Step 0 (what kind of number?), Step 1 (the unit), Step 2 (half of it) before you answer. Use the hints only if you are stuck.</div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-mt1">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">The crowd at a concert was 38&thinsp;000 people, correct to the nearest 1000. What is the upper bound of the crowd?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mt1-ans" placeholder="Enter answer..."> <span class="num-unit">people</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mt1',38499,'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt1','People are counted in whole numbers')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt1','38&thinsp;499 — 38&thinsp;500 people would round up to 39&thinsp;000')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-mt2">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">A melon has a mass of 0.75 kg, correct to 2 significant figures. What is the lower bound of its mass?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mt2-ans" placeholder="Enter answer..."> <span class="num-unit">kg</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mt2',0.745,'Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt2','Which column is the 5 in? That is the unit.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt2','0.745 kg — unit 0.01, half 0.005, 0.75 &minus; 0.005')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-mt3">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">A decimal number is rounded to the nearest 10, giving 160. Which inequality shows the range of values it could have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mt3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mt3', this, 'a')"><div class="opt-indicator"></div><span>159.5 &le; x &lt; 160.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt3', this, 'b')"><div class="opt-indicator"></div><span>150 &le; x &lt; 170</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt3', this, 'c')"><div class="opt-indicator"></div><span>164.5 &le; x &lt; 165.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt3', this, 'd')"><div class="opt-indicator"></div><span>155 &le; x &lt; 165</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mt3','d','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt3','The unit is 10, not 1. What is half of 10?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt3','D — unit 10, half 5: 155 &le; x &lt; 165. Option A uses half of 1 instead of half of 10.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-mt4">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">A swimmer&rsquo;s time is 12.0 seconds, correct to 3 significant figures. What is the upper bound of the time?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mt4-ans" placeholder="Enter answer..."> <span class="num-unit">s</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mt4',12.05,'Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt4','Count the three significant figures: 1, 2, 0. Which column is the last one in?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt4','12.05 s — the 3rd s.f. is the 0 in the tenths, so unit 0.1, half 0.05, 12.0 + 0.05')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-mt5">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">A decimal number, which could have any number of decimal places, is rounded to 1 significant figure. The answer is 0.4. What is the lower bound?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mt5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mt5',0.35,'Q33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt5','The 4 is in the tenths. Half of 0.1 is 0.05.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt5','0.35 — unit 0.1, half 0.05, 0.4 &minus; 0.05, so 0.35 &le; x &lt; 0.45')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-mt6">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">A rope is 8 m long, correct to the nearest metre. Which of these could <strong>not</strong> be its exact length?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mt6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mt6', this, 'a')"><div class="opt-indicator"></div><span>7.5 m</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt6', this, 'b')"><div class="opt-indicator"></div><span>8.5 m</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt6', this, 'c')"><div class="opt-indicator"></div><span>8.49 m</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt6', this, 'd')"><div class="opt-indicator"></div><span>7.99 m</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mt6','b','Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt6','Round each option to the nearest metre. Which one does not give 8?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt6','B — 8.5 m rounds up to 9 m. It is the upper bound, but the rope can never be exactly that long: 7.5 &le; L &lt; 8.5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MINI TEST &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mt-fill"></div></div>
+    <div class="section-score-val" id="sec-mt-val">0/8</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  sf1:1, sf2:1, sf3:1, sf4:1, sf5:1, sf6:1,
+  ru1:1, ru2:1, ru3:1, ru4:1, ru5:1,
+  mb1:1, mb2:1, mb3:1, mb4:1, mb5:1, mb6:1,
+  bs1:1, bs2:1, bs3:2, bs4:2, bs5:1,
+  kd1:1, kd2:1, kd3:1, kd4:1, kd5:2, kd6:2,
+  mt1:1, mt2:1, mt3:1, mt4:2, mt5:2, mt6:1
+};
+
+const sections = {
+  sf: { label: 'Significant Figures', qs: ['sf1','sf2','sf3','sf4','sf5','sf6'] },
+  ru: { label: 'The Rounding Unit', qs: ['ru1','ru2','ru3','ru4','ru5'] },
+  mb: { label: 'Half a Unit', qs: ['mb1','mb2','mb3','mb4','mb5','mb6'] },
+  bs: { label: 'Bounds with s.f.', qs: ['bs1','bs2','bs3','bs4','bs5'] },
+  kd: { label: 'Which Kind of Number?', qs: ['kd1','kd2','kd3','kd4','kd5','kd6'] },
+  mt: { label: 'Mini Test', qs: ['mt1','mt2','mt3','mt4','mt5','mt6'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+// ── Bounds Explorer (all values held as integers of 1/EX_S to avoid float drift) ──
+const EX_S = 1e6;
+const exI = x => Math.round(x * EX_S);
+const exDec = x => x >= 1 ? 0 : Math.ceil(-Math.log10(x) - 1e-9);
+const exFmt = (n, dp) => (n / EX_S).toFixed(dp);
+const EX_KIND = { meas: 'measurement', whole: 'whole number', onedp: 'number with one decimal place' };
+let ex = null;
+
+function exUnit(acc, value) {
+  const fixed = { n1000: 1000, n100: 100, n10: 10, n1: 1, d1: 0.1, d2: 0.01 };
+  if (acc in fixed) return fixed[acc];
+  return Math.pow(10, Math.floor(Math.log10(value) + 1e-9) - Number(acc.slice(1)) + 1);
+}
+
+function exPreset(value, acc, kind) {
+  document.getElementById('ex-value').value = value;
+  document.getElementById('ex-acc').value = acc;
+  document.getElementById('ex-kind').value = kind;
+  exUpdate();
+}
+
+function exFail(msg) {
+  ex = null;
+  document.getElementById('ex-steps').innerHTML = '&#9888;&#65039; ' + msg;
+  document.getElementById('ex-svg-g').innerHTML = '';
+  document.getElementById('ex-x').disabled = true;
+}
+
+function exUpdate() {
+  const value = parseFloat(document.getElementById('ex-value').value);
+  const acc = document.getElementById('ex-acc').value;
+  const kind = document.getElementById('ex-kind').value;
+  if (!(value > 0)) return exFail('Type a positive rounded value.');
+  const unit = exUnit(acc, value);
+  const v = exI(value), u = exI(unit), h = u / 2;
+  if (u < 2) return exFail('That accuracy is too fine for the Explorer &mdash; try a bigger value or fewer significant figures.');
+  if (v % u !== 0) return exFail(`${value} is not a rounded answer at this accuracy &mdash; it is not a multiple of ${exFmt(u, exDec(unit))}.`);
+  const stepNum = kind === 'whole' ? 1 : kind === 'onedp' ? 0.1 : 0;
+  const s = exI(stepNum);
+  if (s && s >= u) return exFail(`A ${EX_KIND[kind]} does not change when it is rounded that finely &mdash; choose a rougher accuracy, such as the nearest 10.`);
+  let lo, hi;
+  if (s) { lo = Math.ceil((v - h) / s) * s; hi = Math.floor((v + h - 1) / s) * s; }
+  else { lo = v - h; hi = v + h; }
+  const dp = s ? exDec(stepNum) : exDec(unit / 2);
+  ex = { v, u, h, s, lo, hi, dp, valDp: exDec(unit), halfDp: exDec(unit / 2) };
+  const f = n => exFmt(n, dp);
+  const uTxt = exFmt(u, exDec(unit)), hTxt = exFmt(h, ex.halfDp), vTxt = exFmt(v, ex.valDp);
+  let html = `<b>Step 0</b> &mdash; kind: ${EX_KIND[kind]}<br><b>Step 1</b> &mdash; unit of rounding: <b>${uTxt}</b><br><b>Step 2</b> &mdash; half of it: <b>${hTxt}</b><br>`;
+  if (!s) {
+    html += `<b>Step 3</b> &mdash; lower bound ${vTxt} &minus; ${hTxt} = <b>${f(lo)}</b>, upper bound ${vTxt} + ${hTxt} = <b>${f(hi)}</b><br>`
+          + `<span class="ex-ineq">${f(lo)} &le; x &lt; ${f(hi)}</span><br>`
+          + `${f(hi)} itself rounds up to ${exFmt(v + u, ex.valDp)}, so x can get as close to it as you like but never equal it.`;
+  } else {
+    const count = Math.round((hi - lo) / s) + 1;
+    const list = count <= 6
+      ? Array.from({ length: count }, (_, i) => f(lo + i * s)).join(', ')
+      : `${f(lo)}, ${f(lo + s)}, ${f(lo + 2 * s)}, &hellip;, ${f(hi - s)}, ${f(hi)}`;
+    html += `<b>Step 3</b> &mdash; it goes up in steps of ${exFmt(s, dp)}, so list the values from ${vTxt} &minus; ${hTxt} upwards: ${list} (${count} values)<br>`
+          + `<span class="ex-ineq">${f(lo)} &le; x &le; ${f(hi)}</span><br>`
+          + `The next ${EX_KIND[kind]}, ${f(hi + s)}, rounds up to ${exFmt(v + u, ex.valDp)} &mdash; so the upper bound is <b>${f(hi)}</b>, not ${exFmt(v + h, ex.halfDp)}.`;
+  }
+  document.getElementById('ex-steps').innerHTML = html;
+  const slider = document.getElementById('ex-x');
+  slider.disabled = false;
+  slider.min = v - u; slider.max = v + u; slider.step = s || u / 100;
+  slider.value = v;
+  exDrawLine();
+}
+
+function exDrawLine() {
+  if (!ex) return;
+  const { v, u, h, s, lo, hi, dp } = ex;
+  const a = v - u;
+  const X = n => 30 + (n - a) / (2 * u) * 500;
+  const Y = 66;
+  const f = n => exFmt(n, dp);
+  const x = +document.getElementById('ex-x').value;
+  const r = Math.floor((x + h) / u) * u;
+  const inside = r === v;
+  const xDp = s ? dp : exDec(u / EX_S / 100);
+  let g = `<line x1="30" y1="${Y}" x2="530" y2="${Y}" stroke="#4a5270" stroke-width="2"/>`
+        + `<rect x="${X(lo)}" y="${Y - 9}" width="${X(hi) - X(lo)}" height="18" fill="#3ecf8e" opacity="0.18"/>`;
+  [a, v - h, v, v + h, v + u].forEach(t => { g += `<line x1="${X(t)}" y1="${Y - 5}" x2="${X(t)}" y2="${Y + 5}" stroke="#4a5270"/>`; });
+  g += `<text x="30" y="${Y + 44}" font-family="DM Mono, monospace" font-size="10" fill="#4a5270">${exFmt(a, ex.valDp)}</text>`
+     + `<text x="530" y="${Y + 44}" text-anchor="end" font-family="DM Mono, monospace" font-size="10" fill="#4a5270">${exFmt(v + u, ex.valDp)}</text>`;
+  g += `<text x="${X(v)}" y="${Y - 16}" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" fill="#4f8ef7">${exFmt(v, ex.valDp)}</text>`;
+  if (s) {
+    const count = Math.round((hi - lo) / s) + 1;
+    if (count <= 30) for (let i = 0; i < count; i++) g += `<circle cx="${X(lo + i * s)}" cy="${Y}" r="2.2" fill="#3ecf8e"/>`;
+    g += `<circle cx="${X(v + h)}" cy="${Y}" r="5" fill="#0f1117" stroke="#e74c3c" stroke-width="2"/>`
+       + `<text x="${X(v + h)}" y="${Y - 16}" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="#e74c3c">${exFmt(v + h, ex.halfDp)}&#8593;</text>`;
+  }
+  g += `<circle cx="${X(lo)}" cy="${Y}" r="5" fill="#3ecf8e"/>`
+     + `<circle cx="${X(hi)}" cy="${Y}" r="5" fill="${s ? '#3ecf8e' : '#0f1117'}" stroke="#3ecf8e" stroke-width="2"/>`
+     + `<text x="${X(lo)}" y="${Y + 24}" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" fill="#3ecf8e">LB ${f(lo)}</text>`
+     + `<text x="${X(hi)}" y="${Y + 24}" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" fill="#3ecf8e">UB ${f(hi)}</text>`;
+  const px = X(x), anchor = px < 140 ? 'start' : px > 420 ? 'end' : 'middle';
+  const col = inside ? '#3ecf8e' : '#f5a623';
+  g += `<line x1="${px}" y1="${Y - 30}" x2="${px}" y2="${Y + 8}" stroke="#f5a623" stroke-width="2"/>`
+     + `<path d="M ${px - 5} ${Y - 30} L ${px + 5} ${Y - 30} L ${px} ${Y - 24} Z" fill="#f5a623"/>`
+     + `<text x="${px}" y="${Y - 36}" text-anchor="${anchor}" font-family="DM Mono, monospace" font-size="11" fill="${col}">x = ${exFmt(x, xDp)} &#8594; rounds to ${exFmt(r, ex.valDp)} ${inside ? '&#10003;' : '&#10007;'}</text>`;
+  document.getElementById('ex-svg-g').innerHTML = g;
+}
+
+exUpdate();
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=1e-9) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`unit3-bounds-sigfigs-retest_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
