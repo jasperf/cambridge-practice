@@ -1,9 +1,9 @@
 # Secondary 2 · Term 1 · Mathematics — Unit 3 Follow-up: Bounds & Powers
 
 **Stage 9 · Unit 3 (3.1, 3.3, 3.4)**
-**28 questions · 36 marks**
+**31 questions · 40 marks**
 
-A follow-up to Unit Test 3 with all-new questions on powers of 10, powers in compound percentages, and the three kinds of upper bound. This document contains all questions from the interactive sheet in a printable format, plus extra written questions at the end. Students write their answers directly in their notebooks.
+A follow-up to Unit Test 3 with all-new questions on powers of 10, powers in compound percentages, the three kinds of upper bound, and a real-life bridge story that puts bounds to use. This document contains all questions from the interactive sheet in a printable format, plus extra written questions at the end. Students write their answers directly in their notebooks.
 
 ---
 
@@ -177,30 +177,55 @@ Arun counts the passengers on a bus: 40, to the nearest 10. Zara measures the le
 
 ---
 
-## Part 6: Written Questions
+## Section F: Real Life — Will the Van Fit?
+
+**The bridge that opens trucks like tin cans.** In Durham, North Carolina (USA), a railway bridge crosses a street with a gap underneath of just 11 feet 8 inches — about 3.56 m. Again and again, drivers of trucks and vans that were too tall drove into it, and the bridge peeled their roofs open. It became famous online as *"the can opener"*. In 2019 the bridge was raised by about 20 cm, and it has still been hit since.
+
+Height signs are rounded, and so is the height a driver knows for their van. So how can a driver be *sure* they will fit?
+
+*On the interactive sheet, a van simulator lets you set the exact heights and drive under the bridge in both scenarios below.*
+
+### Questions
+
+**Q29** (1 mark)
+**Scenario A.** The bridge sign says 3.5 m, correct to 1 decimal place. What is the *lowest* the gap under the bridge could really be?
+
+**Q30** (1 mark)
+**Scenario A.** The van is 3.4 m tall, correct to 1 decimal place. What is the upper bound of the van's height?
+
+**Q31** (2 marks)
+**Scenario B.** An old bridge sign says 4 m, correct to the nearest metre. The van is 3.8 m tall, correct to 1 decimal place. Can the driver be *certain* the van will fit?
+- A) Yes — 3.8 m is less than 4 m
+- B) Yes — even the tallest the van could be, 3.85 m, is less than 4 m
+- C) No — the gap could be as low as 3.5 m, which is lower than the van
+- D) No — no van can ever fit under a bridge whose sign is rounded to the nearest metre
+
+---
+
+## Written Questions
 
 *These five questions are not on the interactive sheet and are not auto-marked. Show all working in your notebook, and check your answers with your teacher.*
 
-**Q29** (3 marks)
+**Q32** (3 marks)
 A whole number is rounded to the nearest 10, giving 90.
 a) List all the whole numbers it could be.
 b) Write its lower bound and its upper bound.
 
-**Q30** (3 marks)
+**Q33** (3 marks)
 A price in dollars is written with one decimal place. Rounded to the nearest whole number, it is 55.
 a) List all the prices it could be.
 b) Write its lower bound and its upper bound.
 c) Explain why its upper bound is not 55.5.
 
-**Q31** (3 marks)
+**Q34** (3 marks)
 A decimal number is rounded to the nearest whole number, giving 8. Sofia writes its range as 7.5 ≤ x ≤ 8.49999…, and Marcus writes it as 7.5 ≤ x < 8.5. Who has written the range in the better way? Explain why.
 
-**Q32** (4 marks)
+**Q35** (4 marks)
 A painting is worth $20 000, and its value is predicted to rise by 8% each year.
 a) Write a calculation, using a power, for its value after *n* years.
 b) After how many years does its value first go above $30 000? Show your working. You can use a calculator.
 
-**Q33** (3 marks)
+**Q36** (3 marks)
 Copy and complete this sentence, then explain it using an example of your own:
 "When you divide a number by 10ˣ, the smaller the power, the ______ the answer."
 
@@ -215,8 +240,9 @@ Copy and complete this sentence, then explain it using an example of your own:
 | C | Bounds of Whole Numbers | Q15–Q19 | 6 |
 | D | Bounds of Numbers with One Decimal Place | Q20–Q23 | 5 |
 | E | Measurements & Mixed Bounds | Q24–Q28 | 6 |
-| **Interactive total** | | **28** | **36** |
-| Written Questions | Q29–Q33 (printable only) | Q29–Q33 | 16 |
+| F | Real Life — Will the Van Fit? | Q29–Q31 | 4 |
+| **Interactive total** | | **31** | **40** |
+| Written Questions | Q32–Q36 (printable only) | Q32–Q36 | 16 |
 
 ---
 
@@ -226,6 +252,6 @@ Leave blank space below each question for students to write their working and fi
 
 ---
 
-*Note: Q1–Q28 match the interactive sheet's questions exactly, so they can be self-checked there. Q29–Q33 are extra written questions for practice and are not auto-marked.*
+*Note: Q1–Q31 match the interactive sheet's questions exactly, so they can be self-checked there. Q32–Q36 are extra written questions for practice and are not auto-marked.*
 
 *Source: Interactive version at `s2/t1/w8/term1-week8-maths-unit3-bounds-powers-practice.html`*

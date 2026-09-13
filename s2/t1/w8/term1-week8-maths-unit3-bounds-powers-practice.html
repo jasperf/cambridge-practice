@@ -54,6 +54,26 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 .section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
 .section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
 .info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.story-box { background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-left: 3px solid var(--accent-warn); border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 16px; font-size: 0.92rem; line-height: 1.7; }
+.story-box h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 6px; }
+.story-box p + p { margin-top: 8px; }
+.sim { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin: 16px 0 24px; }
+.sim-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+.sim-svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.sim-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.sim-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 18px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.sim-btn:hover { border-color: var(--accent-math); color: var(--text); }
+.sim-btn.active { background: var(--accent-math); color: #0f1117; border-color: var(--accent-math); }
+.sim-btn.go { border-color: var(--accent-warn); color: var(--accent-warn); }
+.sim-btn.go:hover { background: var(--accent-warn); color: #0f1117; }
+.sim-sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 560px; margin: 14px auto 0; }
+.sim-slider label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.sim-slider input[type=range] { width: 100%; accent-color: var(--accent-math); }
+.sim-readout { font-family: var(--font-mono); font-size: 0.78rem; margin-top: 4px; min-height: 1.3em; }
+.sim-readout.ok { color: var(--correct); }
+.sim-readout.bad { color: var(--wrong); }
+.sim-info { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.5; }
+@media (max-width: 600px) { .sim-sliders { grid-template-columns: 1fr; } .sim { padding: 12px; } }
 .q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
 .q-card.answered-correct { border-color: var(--correct); }
 .q-card.answered-wrong { border-color: var(--wrong); }
@@ -147,7 +167,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="../../../index.html" class="back-link">&larr; All sheets</a>
     <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
-    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 36</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 40</div></div>
   </div>
 </div>
 <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
@@ -156,14 +176,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Unit 3 Follow-up</div>
   <h1>Unit 3 Follow-up<br><em>Bounds &amp; Powers</em></h1>
   <div class="hero-meta">
-    <div class="hero-chip"><div class="dot dot-math"></div>Powers of 10 &middot; Powers in Percentages &middot; Three Kinds of Bounds</div>
-    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>28 questions &middot; self-marked &middot; 36 marks</div>
+    <div class="hero-chip"><div class="dot dot-math"></div>Powers of 10 &middot; Powers in Percentages &middot; Three Kinds of Bounds &middot; Will the Van Fit?</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>31 questions &middot; self-marked &middot; 40 marks</div>
   </div>
 </div>
 
 <div class="watch-box"><div class="watch-inner">
   <h3>&#128270; After Unit Test 3</h3>
-  <p>All new questions on the parts of Unit 3 that are easiest to slip on: powers of 10 (including 10&#8304; and missing powers), powers in compound percentages, and the three kinds of upper bound (whole numbers, one decimal place, measurements).</p>
+  <p>All new questions on the parts of Unit 3 that are easiest to slip on: powers of 10 (including 10&#8304; and missing powers), powers in compound percentages, and the three kinds of upper bound (whole numbers, one decimal place, measurements). It ends with a real bridge story and a van simulator you can crash.</p>
   <div class="watch-links">
     <a class="watch-link" href="term1-week8-maths-unit-test3-decimals-percentages-rounding.html">Unit Test 3 &rarr;</a>
     <a class="watch-link" href="../../../resources.html" target="_blank" rel="noopener">More resources &rarr;</a>
@@ -176,6 +196,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <a href="#whole" class="sub-tab">Whole-Number Bounds</a>
   <a href="#onedp" class="sub-tab">One-Decimal-Place Bounds</a>
   <a href="#measure" class="sub-tab">Measurements &amp; Mixed</a>
+  <a href="#reallife" class="sub-tab">Will the Van Fit?</a>
 </div>
 
 <div class="main">
@@ -690,6 +711,105 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   </div>
 </div>
 
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: BOUNDS IN REAL LIFE ═══════════════ -->
+<div id="reallife">
+  <div class="section-header"><div class="section-icon">&#127753;</div><div><div class="sub-label">Section F &middot; Real Life</div><h2>Will the Van Fit?</h2></div></div>
+  <div class="story-box">
+    <h3>&#128240; The bridge that opens trucks like tin cans</h3>
+    <p>In Durham, North Carolina (USA), a railway bridge crosses a street with a gap underneath of just 11 feet 8 inches &mdash; about 3.56 m. Again and again, drivers of trucks and vans that were too tall drove into it, and the bridge peeled their roofs open. It became famous online as <em>&ldquo;the can opener&rdquo;</em>. In 2019 the bridge was raised by about 20 cm, and it has still been hit since.</p>
+    <p>Height signs are rounded, and so is the height a driver knows for their van. So how can a driver be <em>sure</em> they will fit? Use the simulator: set the exact heights with the sliders (they must match the rounded signs), then press Drive. <strong>Challenge:</strong> in each scenario, can you make the van crash?</p>
+  </div>
+
+  <!-- Interactive bridge simulator -->
+  <div class="sim">
+    <div class="sim-title">Pick a scenario, set the exact heights, then press Drive</div>
+    <svg id="bridge-svg" class="sim-svg" viewBox="0 0 560 260" role="img" aria-label="Side view of a van driving towards a low railway bridge">
+      <rect x="0" y="220" width="560" height="40" fill="#2a3050"/>
+      <line x1="0" y1="220" x2="560" y2="220" stroke="#4a5270" stroke-width="2"/>
+      <line x1="0" y1="241" x2="560" y2="241" stroke="#7a84a0" stroke-width="3" stroke-dasharray="18 14"/>
+      <g id="bridge-g"></g>
+      <g id="van-g"></g>
+      <text id="crash-text" x="280" y="120" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="34" font-weight="700" fill="#f5a623" opacity="0">CRUNCH!</text>
+    </svg>
+    <div class="sim-controls">
+      <button class="sim-btn active" id="sim-btn-a" onclick="setSim('a')">Scenario A</button>
+      <button class="sim-btn" id="sim-btn-b" onclick="setSim('b')">Scenario B</button>
+    </div>
+    <div class="sim-info" id="sim-scenario"></div>
+    <div class="sim-sliders">
+      <div class="sim-slider">
+        <label for="sim-bridge">Exact gap under the bridge: <span id="sim-bridge-val"></span></label>
+        <input type="range" id="sim-bridge" step="1" oninput="simMoved()">
+        <div class="sim-readout" id="sim-bridge-read"></div>
+      </div>
+      <div class="sim-slider">
+        <label for="sim-van">Exact height of the van: <span id="sim-van-val"></span></label>
+        <input type="range" id="sim-van" step="1" oninput="simMoved()">
+        <div class="sim-readout" id="sim-van-read"></div>
+      </div>
+    </div>
+    <div class="sim-controls">
+      <button class="sim-btn go" id="sim-drive" onclick="driveVan()">&#128666; Drive!</button>
+    </div>
+    <div class="sim-info" id="sim-info"></div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-bl1">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text"><strong>Scenario A.</strong> The bridge sign says 3.5 m, correct to 1 decimal place. What is the <em>lowest</em> the gap under the bridge could really be?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="bl1-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bl1',3.45,'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bl1','In Scenario A, slide the bridge down: what is the smallest height that still gets a &#10003;?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bl1','3.45 m — the lower bound of 3.5 m, correct to 1 decimal place')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bl1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-bl2">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text"><strong>Scenario A.</strong> The van is 3.4 m tall, correct to 1 decimal place. What is the upper bound of the van&rsquo;s height?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="bl2-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bl2',3.45,'Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bl2','Slide the van up until the &#10003; disappears. A height is a measurement, so the upper bound is exactly where the rounding changes.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bl2','3.45 m — the van is always <em>less than</em> 3.45 m and the gap is always <em>at least</em> 3.45 m, so in Scenario A the van always fits')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bl2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-bl3">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text"><strong>Scenario B.</strong> An old bridge sign says 4 m, correct to the nearest metre. The van is 3.8 m tall, correct to 1 decimal place. Can the driver be <em>certain</em> the van will fit?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="bl3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'a')"><div class="opt-indicator"></div><span>Yes &mdash; 3.8 m is less than 4 m</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'b')"><div class="opt-indicator"></div><span>Yes &mdash; even the tallest the van could be, 3.85 m, is less than 4 m</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'c')"><div class="opt-indicator"></div><span>No &mdash; the gap could be as low as 3.5 m, which is lower than the van</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'd')"><div class="opt-indicator"></div><span>No &mdash; no van can ever fit under a bridge whose sign is rounded to the nearest metre</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('bl3','c','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bl3','Compare the lowest the bridge could be with the tallest the van could be. Then try to crash the van in Scenario B.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bl3','C — the bridge&rsquo;s lower bound is 3.5 m, but the van could be up to 3.85 m tall, so it might crash. To be certain, the van&rsquo;s upper bound must be no more than the bridge&rsquo;s lower bound.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bl3-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WILL THE VAN FIT? &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-bl-fill"></div></div>
+    <div class="section-score-val" id="sec-bl-val">0/4</div>
+  </div>
+</div>
+
 <!-- Results Panel -->
 <div class="results-panel" id="results-panel">
   <div class="results-grade" id="results-grade">0%</div>
@@ -707,7 +827,8 @@ const marks = {
   pc1:1, pc2:1, pc3:1, pc4:2, pc5:2, pc6:1,
   bw1:1, bw2:1, bw3:2, bw4:1, bw5:1,
   bp1:1, bp2:1, bp3:2, bp4:1,
-  bm1:1, bm2:1, bm3:1, bm4:2, bm5:1
+  bm1:1, bm2:1, bm3:1, bm4:2, bm5:1,
+  bl1:1, bl2:1, bl3:2
 };
 
 const sections = {
@@ -715,11 +836,121 @@ const sections = {
   pc: { label: 'Powers in Percentages', qs: ['pc1','pc2','pc3','pc4','pc5','pc6'] },
   bw: { label: 'Whole-Number Bounds', qs: ['bw1','bw2','bw3','bw4','bw5'] },
   bp: { label: 'One-Decimal-Place Bounds', qs: ['bp1','bp2','bp3','bp4'] },
-  bm: { label: 'Measurements & Mixed', qs: ['bm1','bm2','bm3','bm4','bm5'] }
+  bm: { label: 'Measurements & Mixed', qs: ['bm1','bm2','bm3','bm4','bm5'] },
+  bl: { label: 'Will the Van Fit?', qs: ['bl1','bl2','bl3'] }
 };
 
 const allQs = Object.values(sections).flatMap(s => s.qs);
 const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+// ── Bridge simulator (heights in whole cm) ──────────────────
+const SIM = {
+  a: { bridgeSign: 350, bridgeUnit: 10, bridgeText: '3.5 m', bridgeAcc: 'to 1 d.p.', bMin: 330, bMax: 370,
+       vanSign: 340, vanUnit: 10, vanText: '3.4 m', vanAcc: 'to 1 d.p.', vMin: 320, vMax: 360 },
+  b: { bridgeSign: 400, bridgeUnit: 100, bridgeText: '4 m', bridgeAcc: 'to the nearest m', bMin: 330, bMax: 460,
+       vanSign: 380, vanUnit: 10, vanText: '3.8 m', vanAcc: 'to 1 d.p.', vMin: 360, vMax: 400 }
+};
+const SIM_SCALE = 0.38;   // px per cm
+const SIM_GROUND = 220;
+const SIM_BRIDGE_X = 280;
+const SIM_VAN_W = 120;
+let simKey = 'a', simVanX = 20, simAnim = null;
+
+const roundTo = (cm, unit) => Math.round(cm / unit) * unit;
+const fmtM = cm => (cm / 100).toFixed(2) + ' m';
+const fmtRounded = (cm, unit) => (cm / 100).toFixed(unit === 100 ? 0 : 1) + ' m';
+
+function setSim(key) {
+  simKey = key;
+  const s = SIM[key];
+  document.getElementById('sim-btn-a').classList.toggle('active', key === 'a');
+  document.getElementById('sim-btn-b').classList.toggle('active', key === 'b');
+  const b = document.getElementById('sim-bridge'), v = document.getElementById('sim-van');
+  b.min = s.bMin; b.max = s.bMax; b.value = s.bridgeSign;
+  v.min = s.vMin; v.max = s.vMax; v.value = s.vanSign;
+  document.getElementById('sim-scenario').innerHTML =
+    `Bridge sign: <strong>${s.bridgeText}</strong> (${s.bridgeAcc}) &middot; Van: <strong>${s.vanText}</strong> (${s.vanAcc})`;
+  simMoved();
+}
+
+function simMoved() {
+  if (simAnim) { cancelAnimationFrame(simAnim); simAnim = null; }
+  simVanX = 20;
+  document.getElementById('crash-text').setAttribute('opacity', '0');
+  document.getElementById('sim-info').textContent = '';
+  const s = SIM[simKey];
+  const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-van').value;
+  document.getElementById('sim-bridge-val').textContent = fmtM(b);
+  document.getElementById('sim-van-val').textContent = fmtM(v);
+  setReadout('sim-bridge-read', b, s.bridgeUnit, s.bridgeSign);
+  setReadout('sim-van-read', v, s.vanUnit, s.vanSign);
+  drawSim();
+}
+
+function setReadout(id, cm, unit, sign) {
+  const el = document.getElementById(id);
+  const r = roundTo(cm, unit);
+  const ok = r === sign;
+  el.className = 'sim-readout ' + (ok ? 'ok' : 'bad');
+  el.innerHTML = ok ? `rounds to ${fmtRounded(r, unit)} &#10003; matches the sign`
+                    : `rounds to ${fmtRounded(r, unit)} &#10007; not ${fmtRounded(sign, unit)}`;
+}
+
+function drawSim() {
+  const s = SIM[simKey];
+  const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-van').value;
+  const under = SIM_GROUND - b * SIM_SCALE;
+  document.getElementById('bridge-g').innerHTML = `
+    <rect x="${SIM_BRIDGE_X + 76}" y="${under}" width="16" height="${SIM_GROUND - under}" fill="#4a5270" opacity="0.35"/>
+    <rect x="${SIM_BRIDGE_X - 10}" y="${under - 44}" width="120" height="6" fill="#4a5270"/>
+    <rect x="${SIM_BRIDGE_X}" y="${under - 38}" width="100" height="38" fill="#2a3050" stroke="#4a5270"/>
+    <rect x="${SIM_BRIDGE_X + 22}" y="${under - 29}" width="56" height="20" rx="3" fill="#f5a623"/>
+    <text x="${SIM_BRIDGE_X + 50}" y="${under - 14.5}" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" font-weight="500" fill="#0f1117">${s.bridgeText}</text>
+    <line x1="${SIM_BRIDGE_X + 112}" y1="${under}" x2="${SIM_BRIDGE_X + 112}" y2="${SIM_GROUND}" stroke="#7a84a0" stroke-dasharray="4 4"/>
+    <text x="${SIM_BRIDGE_X + 118}" y="${(under + SIM_GROUND) / 2}" font-family="DM Mono, monospace" font-size="11" fill="#7a84a0">${fmtM(b)}</text>`;
+  const top = SIM_GROUND - v * SIM_SCALE;
+  const winH = Math.min(24, (SIM_GROUND - 14 - top) * 0.35);
+  document.getElementById('van-g').setAttribute('transform', `translate(${simVanX},0)`);
+  document.getElementById('van-g').innerHTML = `
+    <rect x="0" y="${top}" width="${SIM_VAN_W}" height="${SIM_GROUND - 14 - top}" rx="6" fill="#4f8ef7"/>
+    <rect x="${SIM_VAN_W - 26}" y="${top + 8}" width="20" height="${winH}" rx="2" fill="#0f1117" opacity="0.65"/>
+    <text x="${(SIM_VAN_W - 26) / 2}" y="${(top + SIM_GROUND - 14) / 2 + 4}" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="#0f1117">${s.vanText}</text>
+    <circle cx="26" cy="${SIM_GROUND - 11}" r="11" fill="#0f1117" stroke="#7a84a0" stroke-width="3"/>
+    <circle cx="${SIM_VAN_W - 26}" cy="${SIM_GROUND - 11}" r="11" fill="#0f1117" stroke="#7a84a0" stroke-width="3"/>`;
+}
+
+function driveVan() {
+  const s = SIM[simKey];
+  const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-van').value;
+  const info = document.getElementById('sim-info');
+  if (roundTo(b, s.bridgeUnit) !== s.bridgeSign || roundTo(v, s.vanUnit) !== s.vanSign) {
+    info.innerHTML = '&#9888;&#65039; Those exact heights do not match the signs. Move both sliders until they show &#10003;.';
+    return;
+  }
+  simMoved();
+  const crash = v >= b;
+  const stopX = crash ? SIM_BRIDGE_X - SIM_VAN_W : 580;
+  function step() {
+    simVanX = Math.min(stopX, simVanX + 5);
+    document.getElementById('van-g').setAttribute('transform', `translate(${simVanX},0)`);
+    if (simVanX < stopX) { simAnim = requestAnimationFrame(step); return; }
+    simAnim = null;
+    if (crash) {
+      const crashText = document.getElementById('crash-text');
+      crashText.setAttribute('x', SIM_BRIDGE_X - 60);
+      crashText.setAttribute('y', Math.max(34, SIM_GROUND - b * SIM_SCALE - 56));
+      crashText.setAttribute('opacity', '1');
+      const svg = document.getElementById('bridge-svg');
+      svg.classList.remove('shake'); void svg.getBoundingClientRect(); svg.classList.add('shake');
+      info.innerHTML = `&#128165; Crash! The van (${fmtM(v)}) is taller than the gap (${fmtM(b)}) &mdash; and both still match their signs.`;
+    } else {
+      info.innerHTML = `&#9989; Cleared with ${b - v} cm to spare.`;
+    }
+  }
+  simAnim = requestAnimationFrame(step);
+}
+
+setSim('a');
 
 function updateTimer() {
   const e = Math.floor((Date.now()-state.startTime)/1000);
