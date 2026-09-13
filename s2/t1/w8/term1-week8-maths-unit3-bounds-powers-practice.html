@@ -541,7 +541,8 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <div id="onedp">
   <div class="section-header"><div class="section-icon">0.1</div><div><div class="sub-label">Section D</div><h2>Bounds of Numbers with One Decimal Place</h2></div></div>
   <div class="info-box"><strong>Method:</strong> Sometimes you are told the exact number has <strong>one decimal place</strong>. Then it can only go up in steps of 0.1, so the upper bound is the largest one-decimal-place number that still rounds to the given value.</div>
-  <div class="info-box"><strong>Example:</strong> A number with one decimal place rounds to 5 (nearest whole number). It could be 4.5, 4.6, &hellip;, 5.4 &rarr; lower bound 4.5, upper bound <strong>5.4</strong>.</div>
+  <div class="info-box"><strong>Example:</strong> A number with one decimal place rounds to 5 (nearest whole number). It could be 4.5, 4.6, &hellip;, 5.4 &rarr; lower bound 4.5, upper bound <strong>5.4</strong>, so 4.5 &le; x &le; 5.4.</div>
+  <div class="info-box"><strong>Compare:</strong> if it were a <em>measurement</em> that rounds to 5, it could have any number of decimal places (5.49, 5.499, &hellip;), so the range would be 4.5 &le; x &lt; 5.5 with upper bound 5.5 &mdash; see Section E. Always check which kind of number the question says.</div>
 
   <!-- Q20 -->
   <div class="q-card" id="qcard-bp1">
@@ -565,7 +566,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       <div class="q-actions">
         <button class="btn btn-check" onclick="checkNum('bp2',9.4,'Q21')">Check</button>
         <button class="btn btn-hint" onclick="showHint('bp2','The number goes up in steps of 0.1. Which is the last step before it would round to 10?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('bp2','9.4 — 9.5 would round up to 10')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bp2','9.4 — the number has <em>one decimal place</em>, so it can only be 8.5, 8.6, &hellip;, 9.4. The next one, 9.5, rounds up to 10, so it is not allowed: 8.5 &le; x &le; 9.4. (9.5 is the upper bound only when the number can have any number of decimal places, like a measurement: 8.5 &le; x &lt; 9.5.)')">Show Answer</button>
       </div>
       <div class="feedback" id="bp2-fb"></div>
     </div>

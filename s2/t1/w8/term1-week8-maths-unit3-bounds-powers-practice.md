@@ -118,7 +118,9 @@ The crowd at a football match is 47 000, correct to the nearest 1000. What is th
 
 **Method:** Sometimes you are told the exact number has one decimal place. Then it can only go up in steps of 0.1, so the upper bound is the largest one-decimal-place number that still rounds to the given value.
 
-**Example:** A number with one decimal place rounds to 5 (nearest whole number). It could be 4.5, 4.6, …, 5.4 → lower bound 4.5, upper bound **5.4**.
+**Example:** A number with one decimal place rounds to 5 (nearest whole number). It could be 4.5, 4.6, …, 5.4 → lower bound 4.5, upper bound **5.4**, so 4.5 ≤ x ≤ 5.4.
+
+**Compare:** if it were a *measurement* that rounds to 5, it could have any number of decimal places (5.49, 5.499, …), so the range would be 4.5 ≤ x < 5.5 with upper bound 5.5 — see Section E. Always check which kind of number the question says.
 
 ### Questions
 
