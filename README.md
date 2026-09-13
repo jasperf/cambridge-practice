@@ -67,7 +67,7 @@ cambridge-practice/
 │       │   └── term1-week7-english-unit-test2-viewpoints-arguments.* ← Unit Test 2: Viewpoints & Arguments (45 q, 59 marks + 6 extended-answer q)
 │       └── w8/                      ← Week 8 (.html interactive + .md printable)
 │           ├── term1-week8-maths-unit-test3-decimals-percentages-rounding.* ← Unit Test 3: Decimals, Percentages & Rounding (29 q, 40 marks + 5 extended-answer q, 18 marks)
-│           └── term1-week8-maths-unit3-bounds-powers-practice.* ← Unit 3 Follow-up: Bounds & Powers (28 q, 36 marks + 5 written q, 16 marks)
+│           └── term1-week8-maths-unit3-bounds-powers-practice.* ← Unit 3 Follow-up: Bounds & Powers (31 q, 40 marks + 5 written q, 16 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)

@@ -106,7 +106,7 @@ Its printable `.md` has the same 45 questions **plus six extended-answer questio
 | Topic | Questions | Marks | Printable | Interactive |
 |-------|-----------|-------|-----------|-------------|
 | **Unit Test 3: Decimals, Percentages & Rounding** — Unit 3 | 29 | 40 | [.md](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.md) | [.html](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.html) |
-| **Unit 3 Follow-up: Bounds & Powers** — Unit 3 (3.1, 3.3, 3.4) | 28 | 36 | [.md](./w8/term1-week8-maths-unit3-bounds-powers-practice.md) | [.html](./w8/term1-week8-maths-unit3-bounds-powers-practice.html) |
+| **Unit 3 Follow-up: Bounds & Powers** — Unit 3 (3.1, 3.3, 3.4) | 31 | 40 | [.md](./w8/term1-week8-maths-unit3-bounds-powers-practice.md) | [.html](./w8/term1-week8-maths-unit3-bounds-powers-practice.html) |
 
 ### Maths Unit Test 3
 
@@ -118,7 +118,7 @@ Unit Test 3 covers **Unit 3: Decimals, Percentages and Rounding**. This topic wa
 
 Its printable `.md` has the same 29 questions **plus five extended-answer questions** (Q30–Q34) — explaining reasoning, compound-interest working and a bounds/area problem — that are not on the interactive sheet and are not auto-marked.
 
-The **Unit 3 Follow-up: Bounds & Powers** sheet was written after the test, with all-new questions (so it is not a repeat of the test) on the areas the test covered thinly: 10⁰ and missing powers of 10, powers in compound percentages (what 1.08ⁿ represents, "after how many years"), and the three kinds of upper bound from textbook section 3.4 — whole-number counts (80 → 84), numbers with one decimal place (12 → 12.4) and measurements (8 → 8.5). Its printable `.md` has the same 28 questions **plus five written questions** (Q29–Q33) — listing possible values, comparing inequality notations and a years-to-target problem — that are not on the interactive sheet and are not auto-marked.
+The **Unit 3 Follow-up: Bounds & Powers** sheet was written after the test, with all-new questions (so it is not a repeat of the test) on the areas the test covered thinly: 10⁰ and missing powers of 10, powers in compound percentages (what 1.08ⁿ represents, "after how many years"), and the three kinds of upper bound from textbook section 3.4 — whole-number counts (80 → 84), numbers with one decimal place (12 → 12.4) and measurements (8 → 8.5). It ends with a real-life section, *Will the Van Fit?*: the story of Durham's "can opener" bridge and an interactive SVG van simulator, where matching exact heights to rounded signs shows when a lower bound of the bridge and an upper bound of the van guarantee a safe fit. Its printable `.md` has the same 31 questions (the simulator is described in words) **plus five written questions** (Q32–Q36) — listing possible values, comparing inequality notations and a years-to-target problem — that are not on the interactive sheet and are not auto-marked.
 
 Source material for Unit 3: `material/math/s2/t1/unit3/` (textbook photos).
 
