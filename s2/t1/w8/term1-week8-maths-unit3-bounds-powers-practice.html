@@ -176,14 +176,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Unit 3 Follow-up</div>
   <h1>Unit 3 Follow-up<br><em>Bounds &amp; Powers</em></h1>
   <div class="hero-meta">
-    <div class="hero-chip"><div class="dot dot-math"></div>Powers of 10 &middot; Powers in Percentages &middot; Three Kinds of Bounds &middot; Will the Van Fit?</div>
+    <div class="hero-chip"><div class="dot dot-math"></div>Powers of 10 &middot; Powers in Percentages &middot; Three Kinds of Bounds &middot; Will the Bus Fit?</div>
     <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>31 questions &middot; self-marked &middot; 40 marks</div>
   </div>
 </div>
 
 <div class="watch-box"><div class="watch-inner">
   <h3>&#128270; After Unit Test 3</h3>
-  <p>All new questions on the parts of Unit 3 that are easiest to slip on: powers of 10 (including 10&#8304; and missing powers), powers in compound percentages, and the three kinds of upper bound (whole numbers, one decimal place, measurements). It ends with a real bridge story and a van simulator you can crash.</p>
+  <p>All new questions on the parts of Unit 3 that are easiest to slip on: powers of 10 (including 10&#8304; and missing powers), powers in compound percentages, and the three kinds of upper bound (whole numbers, one decimal place, measurements). It ends with a real bridge story and a bus simulator you can crash.</p>
   <div class="watch-links">
     <a class="watch-link" href="term1-week8-maths-unit-test3-decimals-percentages-rounding.html">Unit Test 3 &rarr;</a>
     <a class="watch-link" href="../../../resources.html" target="_blank" rel="noopener">More resources &rarr;</a>
@@ -196,7 +196,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <a href="#whole" class="sub-tab">Whole-Number Bounds</a>
   <a href="#onedp" class="sub-tab">One-Decimal-Place Bounds</a>
   <a href="#measure" class="sub-tab">Measurements &amp; Mixed</a>
-  <a href="#reallife" class="sub-tab">Will the Van Fit?</a>
+  <a href="#reallife" class="sub-tab">Will the Bus Fit?</a>
 </div>
 
 <div class="main">
@@ -715,22 +715,22 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
 <!-- ═══════════════ SECTION F: BOUNDS IN REAL LIFE ═══════════════ -->
 <div id="reallife">
-  <div class="section-header"><div class="section-icon">&#127753;</div><div><div class="sub-label">Section F &middot; Real Life</div><h2>Will the Van Fit?</h2></div></div>
+  <div class="section-header"><div class="section-icon">&#127753;</div><div><div class="sub-label">Section F &middot; Real Life</div><h2>Will the Bus Fit?</h2></div></div>
   <div class="story-box">
     <h3>&#128240; The bridge that opens trucks like tin cans</h3>
     <p>In Durham, North Carolina (USA), a railway bridge crosses a street with a gap underneath of just 11 feet 8 inches &mdash; about 3.56 m. Again and again, drivers of trucks and vans that were too tall drove into it, and the bridge peeled their roofs open. It became famous online as <em>&ldquo;the can opener&rdquo;</em>. In 2019 the bridge was raised by about 20 cm, and it has still been hit since.</p>
-    <p>Height signs are rounded, and so is the height a driver knows for their van. So how can a driver be <em>sure</em> they will fit? Use the simulator: set the exact heights with the sliders (they must match the rounded signs), then press Drive. <strong>Challenge:</strong> in each scenario, can you make the van crash?</p>
+    <p>Height signs are rounded, and so is the height a driver knows for their bus. So how can a driver be <em>sure</em> they will fit? Use the simulator: set the exact heights with the sliders (they must match the rounded signs), then press Drive. <strong>Challenge:</strong> in each scenario, can you make the bus crash?</p>
   </div>
 
   <!-- Interactive bridge simulator -->
   <div class="sim">
     <div class="sim-title">Pick a scenario, set the exact heights, then press Drive</div>
-    <svg id="bridge-svg" class="sim-svg" viewBox="0 0 560 260" role="img" aria-label="Side view of a van driving towards a low railway bridge">
+    <svg id="bridge-svg" class="sim-svg" viewBox="0 0 560 260" role="img" aria-label="Side view of a bus driving towards a low railway bridge">
       <rect x="0" y="220" width="560" height="40" fill="#2a3050"/>
       <line x1="0" y1="220" x2="560" y2="220" stroke="#4a5270" stroke-width="2"/>
       <line x1="0" y1="241" x2="560" y2="241" stroke="#7a84a0" stroke-width="3" stroke-dasharray="18 14"/>
       <g id="bridge-g"></g>
-      <g id="van-g"></g>
+      <g id="bus-g"></g>
       <text id="crash-text" x="280" y="120" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="34" font-weight="700" fill="#f5a623" opacity="0">CRUNCH!</text>
     </svg>
     <div class="sim-controls">
@@ -745,13 +745,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
         <div class="sim-readout" id="sim-bridge-read"></div>
       </div>
       <div class="sim-slider">
-        <label for="sim-van">Exact height of the van: <span id="sim-van-val"></span></label>
-        <input type="range" id="sim-van" step="1" oninput="simMoved()">
-        <div class="sim-readout" id="sim-van-read"></div>
+        <label for="sim-bus">Exact height of the bus: <span id="sim-bus-val"></span></label>
+        <input type="range" id="sim-bus" step="1" oninput="simMoved()">
+        <div class="sim-readout" id="sim-bus-read"></div>
       </div>
     </div>
     <div class="sim-controls">
-      <button class="sim-btn go" id="sim-drive" onclick="driveVan()">&#128666; Drive!</button>
+      <button class="sim-btn go" id="sim-drive" onclick="driveBus()">&#128652; Drive!</button>
     </div>
     <div class="sim-info" id="sim-info"></div>
   </div>
@@ -772,13 +772,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q30 -->
   <div class="q-card" id="qcard-bl2">
-    <div class="q-header"><div class="q-num">Q30</div><div class="q-text"><strong>Scenario A.</strong> The van is 3.4 m tall, correct to 1 decimal place. What is the upper bound of the van&rsquo;s height?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text"><strong>Scenario A.</strong> The bus is 3.4 m tall, correct to 1 decimal place. What is the upper bound of the bus&rsquo;s height?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="num-row"><input type="number" step="any" class="num-input" id="bl2-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
       <div class="q-actions">
         <button class="btn btn-check" onclick="checkNum('bl2',3.45,'Q30')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('bl2','Slide the van up until the &#10003; disappears. A height is a measurement, so the upper bound is exactly where the rounding changes.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('bl2','3.45 m — the van is always <em>less than</em> 3.45 m and the gap is always <em>at least</em> 3.45 m, so in Scenario A the van always fits')">Show Answer</button>
+        <button class="btn btn-hint" onclick="showHint('bl2','Slide the bus up until the &#10003; disappears. A height is a measurement, so the upper bound is exactly where the rounding changes.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bl2','3.45 m — the bus is always <em>less than</em> 3.45 m and the gap is always <em>at least</em> 3.45 m, so in Scenario A the bus always fits')">Show Answer</button>
       </div>
       <div class="feedback" id="bl2-fb"></div>
     </div>
@@ -786,25 +786,25 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q31 -->
   <div class="q-card" id="qcard-bl3">
-    <div class="q-header"><div class="q-num">Q31</div><div class="q-text"><strong>Scenario B.</strong> An old bridge sign says 4 m, correct to the nearest metre. The van is 3.8 m tall, correct to 1 decimal place. Can the driver be <em>certain</em> the van will fit?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text"><strong>Scenario B.</strong> An old bridge sign says 4 m, correct to the nearest metre. The bus is 3.8 m tall, correct to 1 decimal place. Can the driver be <em>certain</em> the bus will fit?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <div class="mcq-options" id="bl3-opts">
         <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'a')"><div class="opt-indicator"></div><span>Yes &mdash; 3.8 m is less than 4 m</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'b')"><div class="opt-indicator"></div><span>Yes &mdash; even the tallest the van could be, 3.85 m, is less than 4 m</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'c')"><div class="opt-indicator"></div><span>No &mdash; the gap could be as low as 3.5 m, which is lower than the van</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'd')"><div class="opt-indicator"></div><span>No &mdash; no van can ever fit under a bridge whose sign is rounded to the nearest metre</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'b')"><div class="opt-indicator"></div><span>Yes &mdash; even the tallest the bus could be, 3.85 m, is less than 4 m</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'c')"><div class="opt-indicator"></div><span>No &mdash; the gap could be as low as 3.5 m, which is lower than the bus</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bl3', this, 'd')"><div class="opt-indicator"></div><span>No &mdash; no bus can ever fit under a bridge whose sign is rounded to the nearest metre</span></div>
       </div>
       <div class="q-actions">
         <button class="btn btn-check" onclick="checkMCQ('bl3','c','Q31')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('bl3','Compare the lowest the bridge could be with the tallest the van could be. Then try to crash the van in Scenario B.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('bl3','C — the bridge&rsquo;s lower bound is 3.5 m, but the van could be up to 3.85 m tall, so it might crash. To be certain, the van&rsquo;s upper bound must be no more than the bridge&rsquo;s lower bound.')">Show Answer</button>
+        <button class="btn btn-hint" onclick="showHint('bl3','Compare the lowest the bridge could be with the tallest the bus could be. Then try to crash the bus in Scenario B.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bl3','C — the bridge&rsquo;s lower bound is 3.5 m, but the bus could be up to 3.85 m tall, so it might crash. To be certain, the bus&rsquo;s upper bound must be no more than the bridge&rsquo;s lower bound.')">Show Answer</button>
       </div>
       <div class="feedback" id="bl3-fb"></div>
     </div>
   </div>
 
   <div class="section-score">
-    <div class="section-score-label">WILL THE VAN FIT? &mdash; SECTION SCORE</div>
+    <div class="section-score-label">WILL THE BUS FIT? &mdash; SECTION SCORE</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-bl-fill"></div></div>
     <div class="section-score-val" id="sec-bl-val">0/4</div>
   </div>
@@ -837,7 +837,7 @@ const sections = {
   bw: { label: 'Whole-Number Bounds', qs: ['bw1','bw2','bw3','bw4','bw5'] },
   bp: { label: 'One-Decimal-Place Bounds', qs: ['bp1','bp2','bp3','bp4'] },
   bm: { label: 'Measurements & Mixed', qs: ['bm1','bm2','bm3','bm4','bm5'] },
-  bl: { label: 'Will the Van Fit?', qs: ['bl1','bl2','bl3'] }
+  bl: { label: 'Will the Bus Fit?', qs: ['bl1','bl2','bl3'] }
 };
 
 const allQs = Object.values(sections).flatMap(s => s.qs);
@@ -846,15 +846,15 @@ const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
 // ── Bridge simulator (heights in whole cm) ──────────────────
 const SIM = {
   a: { bridgeSign: 350, bridgeUnit: 10, bridgeText: '3.5 m', bridgeAcc: 'to 1 d.p.', bMin: 330, bMax: 370,
-       vanSign: 340, vanUnit: 10, vanText: '3.4 m', vanAcc: 'to 1 d.p.', vMin: 320, vMax: 360 },
+       busSign: 340, busUnit: 10, busText: '3.4 m', busAcc: 'to 1 d.p.', vMin: 320, vMax: 360 },
   b: { bridgeSign: 400, bridgeUnit: 100, bridgeText: '4 m', bridgeAcc: 'to the nearest m', bMin: 330, bMax: 460,
-       vanSign: 380, vanUnit: 10, vanText: '3.8 m', vanAcc: 'to 1 d.p.', vMin: 360, vMax: 400 }
+       busSign: 380, busUnit: 10, busText: '3.8 m', busAcc: 'to 1 d.p.', vMin: 360, vMax: 400 }
 };
 const SIM_SCALE = 0.38;   // px per cm
 const SIM_GROUND = 220;
-const SIM_BRIDGE_X = 280;
-const SIM_VAN_W = 120;
-let simKey = 'a', simVanX = 20, simAnim = null;
+const SIM_BRIDGE_X = 360;
+const SIM_BUS_W = 240;
+let simKey = 'a', simBusX = 10, simAnim = null;
 
 const roundTo = (cm, unit) => Math.round(cm / unit) * unit;
 const fmtM = cm => (cm / 100).toFixed(2) + ' m';
@@ -865,25 +865,25 @@ function setSim(key) {
   const s = SIM[key];
   document.getElementById('sim-btn-a').classList.toggle('active', key === 'a');
   document.getElementById('sim-btn-b').classList.toggle('active', key === 'b');
-  const b = document.getElementById('sim-bridge'), v = document.getElementById('sim-van');
+  const b = document.getElementById('sim-bridge'), v = document.getElementById('sim-bus');
   b.min = s.bMin; b.max = s.bMax; b.value = s.bridgeSign;
-  v.min = s.vMin; v.max = s.vMax; v.value = s.vanSign;
+  v.min = s.vMin; v.max = s.vMax; v.value = s.busSign;
   document.getElementById('sim-scenario').innerHTML =
-    `Bridge sign: <strong>${s.bridgeText}</strong> (${s.bridgeAcc}) &middot; Van: <strong>${s.vanText}</strong> (${s.vanAcc})`;
+    `Bridge sign: <strong>${s.bridgeText}</strong> (${s.bridgeAcc}) &middot; Bus: <strong>${s.busText}</strong> (${s.busAcc})`;
   simMoved();
 }
 
 function simMoved() {
   if (simAnim) { cancelAnimationFrame(simAnim); simAnim = null; }
-  simVanX = 20;
+  simBusX = 10;
   document.getElementById('crash-text').setAttribute('opacity', '0');
   document.getElementById('sim-info').textContent = '';
   const s = SIM[simKey];
-  const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-van').value;
+  const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-bus').value;
   document.getElementById('sim-bridge-val').textContent = fmtM(b);
-  document.getElementById('sim-van-val').textContent = fmtM(v);
+  document.getElementById('sim-bus-val').textContent = fmtM(v);
   setReadout('sim-bridge-read', b, s.bridgeUnit, s.bridgeSign);
-  setReadout('sim-van-read', v, s.vanUnit, s.vanSign);
+  setReadout('sim-bus-read', v, s.busUnit, s.busSign);
   drawSim();
 }
 
@@ -898,7 +898,7 @@ function setReadout(id, cm, unit, sign) {
 
 function drawSim() {
   const s = SIM[simKey];
-  const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-van').value;
+  const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-bus').value;
   const under = SIM_GROUND - b * SIM_SCALE;
   document.getElementById('bridge-g').innerHTML = `
     <rect x="${SIM_BRIDGE_X + 76}" y="${under}" width="16" height="${SIM_GROUND - under}" fill="#4a5270" opacity="0.35"/>
@@ -908,32 +908,43 @@ function drawSim() {
     <text x="${SIM_BRIDGE_X + 50}" y="${under - 14.5}" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" font-weight="500" fill="#0f1117">${s.bridgeText}</text>
     <line x1="${SIM_BRIDGE_X + 112}" y1="${under}" x2="${SIM_BRIDGE_X + 112}" y2="${SIM_GROUND}" stroke="#7a84a0" stroke-dasharray="4 4"/>
     <text x="${SIM_BRIDGE_X + 118}" y="${(under + SIM_GROUND) / 2}" font-family="DM Mono, monospace" font-size="11" fill="#7a84a0">${fmtM(b)}</text>`;
-  const top = SIM_GROUND - v * SIM_SCALE;
-  const winH = Math.min(24, (SIM_GROUND - 14 - top) * 0.35);
-  document.getElementById('van-g').setAttribute('transform', `translate(${simVanX},0)`);
-  document.getElementById('van-g').innerHTML = `
-    <rect x="0" y="${top}" width="${SIM_VAN_W}" height="${SIM_GROUND - 14 - top}" rx="6" fill="#4f8ef7"/>
-    <rect x="${SIM_VAN_W - 26}" y="${top + 8}" width="20" height="${winH}" rx="2" fill="#0f1117" opacity="0.65"/>
-    <text x="${(SIM_VAN_W - 26) / 2}" y="${(top + SIM_GROUND - 14) / 2 + 4}" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="#0f1117">${s.vanText}</text>
-    <circle cx="26" cy="${SIM_GROUND - 11}" r="11" fill="#0f1117" stroke="#7a84a0" stroke-width="3"/>
-    <circle cx="${SIM_VAN_W - 26}" cy="${SIM_GROUND - 11}" r="11" fill="#0f1117" stroke="#7a84a0" stroke-width="3"/>`;
+  const W = SIM_BUS_W, top = SIM_GROUND - v * SIM_SCALE, bodyB = SIM_GROUND - 12;
+  const winTop = top + 13, winH = Math.max(14, (bodyB - top) * 0.32), stripeY = winTop + winH + 8;
+  const slot = (W - 68) / 6;
+  const windows = Array.from({ length: 6 }, (_, i) =>
+    `<rect x="${10 + i * slot}" y="${winTop}" width="${slot - 5}" height="${winH}" rx="3" fill="#0f1117" opacity="0.6"/>`).join('');
+  document.getElementById('bus-g').setAttribute('transform', `translate(${simBusX},0)`);
+  document.getElementById('bus-g').innerHTML = `
+    <path d="M 8 ${top} H ${W - 16} Q ${W} ${top} ${W} ${top + 16} V ${bodyB} H 0 V ${top + 8} Q 0 ${top} 8 ${top} Z" fill="#4f8ef7"/>
+    <rect x="0" y="${stripeY}" width="${W}" height="5" fill="#3ecf8e" opacity="0.85"/>
+    ${windows}
+    <rect x="${W - 54}" y="${winTop}" width="20" height="${bodyB - winTop - 3}" rx="2" fill="#3f78dc" stroke="#0f1117" stroke-opacity="0.45"/>
+    <rect x="${W - 51}" y="${winTop + 3}" width="14" height="${winH}" rx="2" fill="#0f1117" opacity="0.55"/>
+    <rect x="${W - 27}" y="${winTop}" width="21" height="${winH + 10}" rx="3" fill="#0f1117" opacity="0.72"/>
+    <rect x="${W - 58}" y="${top + 3}" width="44" height="8" rx="2" fill="#f5a623"/>
+    <text x="${(W - 64) / 2}" y="${(stripeY + 5 + bodyB) / 2 + 4}" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="#0f1117">${s.busText}</text>
+    <circle cx="${W - 5}" cy="${bodyB - 10}" r="4" fill="#f5a623"/>
+    <circle cx="48" cy="${SIM_GROUND - 13}" r="13" fill="#0f1117" stroke="#7a84a0" stroke-width="3"/>
+    <circle cx="48" cy="${SIM_GROUND - 13}" r="4" fill="#7a84a0"/>
+    <circle cx="${W - 44}" cy="${SIM_GROUND - 13}" r="13" fill="#0f1117" stroke="#7a84a0" stroke-width="3"/>
+    <circle cx="${W - 44}" cy="${SIM_GROUND - 13}" r="4" fill="#7a84a0"/>`;
 }
 
-function driveVan() {
+function driveBus() {
   const s = SIM[simKey];
-  const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-van').value;
+  const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-bus').value;
   const info = document.getElementById('sim-info');
-  if (roundTo(b, s.bridgeUnit) !== s.bridgeSign || roundTo(v, s.vanUnit) !== s.vanSign) {
+  if (roundTo(b, s.bridgeUnit) !== s.bridgeSign || roundTo(v, s.busUnit) !== s.busSign) {
     info.innerHTML = '&#9888;&#65039; Those exact heights do not match the signs. Move both sliders until they show &#10003;.';
     return;
   }
   simMoved();
   const crash = v >= b;
-  const stopX = crash ? SIM_BRIDGE_X - SIM_VAN_W : 580;
+  const stopX = crash ? SIM_BRIDGE_X - SIM_BUS_W : 580;
   function step() {
-    simVanX = Math.min(stopX, simVanX + 5);
-    document.getElementById('van-g').setAttribute('transform', `translate(${simVanX},0)`);
-    if (simVanX < stopX) { simAnim = requestAnimationFrame(step); return; }
+    simBusX = Math.min(stopX, simBusX + 5);
+    document.getElementById('bus-g').setAttribute('transform', `translate(${simBusX},0)`);
+    if (simBusX < stopX) { simAnim = requestAnimationFrame(step); return; }
     simAnim = null;
     if (crash) {
       const crashText = document.getElementById('crash-text');
@@ -942,7 +953,7 @@ function driveVan() {
       crashText.setAttribute('opacity', '1');
       const svg = document.getElementById('bridge-svg');
       svg.classList.remove('shake'); void svg.getBoundingClientRect(); svg.classList.add('shake');
-      info.innerHTML = `&#128165; Crash! The van (${fmtM(v)}) is taller than the gap (${fmtM(b)}) &mdash; and both still match their signs.`;
+      info.innerHTML = `&#128165; Crash! The bus (${fmtM(v)}) is taller than the gap (${fmtM(b)}) &mdash; and both still match their signs.`;
     } else {
       info.innerHTML = `&#9989; Cleared with ${b - v} cm to spare.`;
     }

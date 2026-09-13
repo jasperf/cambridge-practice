@@ -177,13 +177,13 @@ Arun counts the passengers on a bus: 40, to the nearest 10. Zara measures the le
 
 ---
 
-## Section F: Real Life — Will the Van Fit?
+## Section F: Real Life — Will the Bus Fit?
 
 **The bridge that opens trucks like tin cans.** In Durham, North Carolina (USA), a railway bridge crosses a street with a gap underneath of just 11 feet 8 inches — about 3.56 m. Again and again, drivers of trucks and vans that were too tall drove into it, and the bridge peeled their roofs open. It became famous online as *"the can opener"*. In 2019 the bridge was raised by about 20 cm, and it has still been hit since.
 
-Height signs are rounded, and so is the height a driver knows for their van. So how can a driver be *sure* they will fit?
+Height signs are rounded, and so is the height a driver knows for their bus. So how can a driver be *sure* they will fit?
 
-*On the interactive sheet, a van simulator lets you set the exact heights and drive under the bridge in both scenarios below.*
+*On the interactive sheet, a bus simulator lets you set the exact heights and drive under the bridge in both scenarios below.*
 
 ### Questions
 
@@ -191,14 +191,14 @@ Height signs are rounded, and so is the height a driver knows for their van. So 
 **Scenario A.** The bridge sign says 3.5 m, correct to 1 decimal place. What is the *lowest* the gap under the bridge could really be?
 
 **Q30** (1 mark)
-**Scenario A.** The van is 3.4 m tall, correct to 1 decimal place. What is the upper bound of the van's height?
+**Scenario A.** The bus is 3.4 m tall, correct to 1 decimal place. What is the upper bound of the bus's height?
 
 **Q31** (2 marks)
-**Scenario B.** An old bridge sign says 4 m, correct to the nearest metre. The van is 3.8 m tall, correct to 1 decimal place. Can the driver be *certain* the van will fit?
+**Scenario B.** An old bridge sign says 4 m, correct to the nearest metre. The bus is 3.8 m tall, correct to 1 decimal place. Can the driver be *certain* the bus will fit?
 - A) Yes — 3.8 m is less than 4 m
-- B) Yes — even the tallest the van could be, 3.85 m, is less than 4 m
-- C) No — the gap could be as low as 3.5 m, which is lower than the van
-- D) No — no van can ever fit under a bridge whose sign is rounded to the nearest metre
+- B) Yes — even the tallest the bus could be, 3.85 m, is less than 4 m
+- C) No — the gap could be as low as 3.5 m, which is lower than the bus
+- D) No — no bus can ever fit under a bridge whose sign is rounded to the nearest metre
 
 ---
 
@@ -240,7 +240,7 @@ Copy and complete this sentence, then explain it using an example of your own:
 | C | Bounds of Whole Numbers | Q15–Q19 | 6 |
 | D | Bounds of Numbers with One Decimal Place | Q20–Q23 | 5 |
 | E | Measurements & Mixed Bounds | Q24–Q28 | 6 |
-| F | Real Life — Will the Van Fit? | Q29–Q31 | 4 |
+| F | Real Life — Will the Bus Fit? | Q29–Q31 | 4 |
 | **Interactive total** | | **31** | **40** |
 | Written Questions | Q32–Q36 (printable only) | Q32–Q36 | 16 |
 
