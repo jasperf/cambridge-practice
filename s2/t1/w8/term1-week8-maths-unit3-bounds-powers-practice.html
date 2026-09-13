@@ -719,7 +719,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div class="story-box">
     <h3>&#128240; The bridge that opens trucks like tin cans</h3>
     <p>In Durham, North Carolina (USA), a railway bridge crosses a street with a gap underneath of just 11 feet 8 inches &mdash; about 3.56 m. Again and again, drivers of trucks and vans that were too tall drove into it, and the bridge peeled their roofs open. It became famous online as <em>&ldquo;the can opener&rdquo;</em>. In 2019 the bridge was raised by about 20 cm, and it has still been hit since.</p>
-    <p>Height signs are rounded, and so is the height a driver knows for their bus. So how can a driver be <em>sure</em> they will fit? Use the simulator: set the exact heights with the sliders (they must match the rounded signs), then press Drive. <strong>Challenge:</strong> in each scenario, can you make the bus crash?</p>
+    <p>Height signs are rounded, and so is the height a driver knows for their bus. So how can a driver be <em>sure</em> they will fit? Use the simulator: set the exact heights with the sliders (they must match the rounded signs), then press Drive. <strong>Challenge:</strong> one scenario can end in a crash and the other never can. Which is which &mdash; and why?</p>
   </div>
 
   <!-- Interactive bridge simulator -->
@@ -885,6 +885,17 @@ function simMoved() {
   setReadout('sim-bridge-read', b, s.bridgeUnit, s.bridgeSign);
   setReadout('sim-bus-read', v, s.busUnit, s.busSign);
   drawSim();
+  document.getElementById('sim-info').innerHTML = simHint(b, v);
+}
+
+function simHint(b, v) {
+  const s = SIM[simKey], name = `Scenario ${simKey.toUpperCase()}`;
+  const ok = roundTo(b, s.bridgeUnit) === s.bridgeSign && roundTo(v, s.busUnit) === s.busSign;
+  const gapLow = s.bridgeSign - s.bridgeUnit / 2, busHigh = s.busSign + s.busUnit / 2;
+  if (v < b) return ok ? '' : '&#9888;&#65039; These heights do not match the signs. Move the sliders until both show &#10003;.';
+  if (busHigh <= gapLow) return `&#129300; The bus is taller than the gap &mdash; but it no longer matches its sign. In ${name} the gap is always at least ${fmtM(gapLow)} and the bus is always less than ${fmtM(busHigh)}. Press Drive to see what happens when a bus is taller than its sign says!`;
+  return ok ? '&#128064; The bus is taller than the gap and both heights match their signs &mdash; press Drive!'
+            : 'So close! The bus is taller than the gap &mdash; now move the sliders until both show &#10003;, then press Drive.';
 }
 
 function setReadout(id, cm, unit, sign) {
@@ -934,10 +945,12 @@ function driveBus() {
   const s = SIM[simKey];
   const b = +document.getElementById('sim-bridge').value, v = +document.getElementById('sim-bus').value;
   const info = document.getElementById('sim-info');
-  if (roundTo(b, s.bridgeUnit) !== s.bridgeSign || roundTo(v, s.busUnit) !== s.busSign) {
-    info.innerHTML = '&#9888;&#65039; Those exact heights do not match the signs. Move both sliders until they show &#10003;.';
-    return;
-  }
+  const bRound = roundTo(b, s.bridgeUnit), vRound = roundTo(v, s.busUnit);
+  const ok = bRound === s.bridgeSign && vRound === s.busSign;
+  const alwaysFits = s.busSign + s.busUnit / 2 <= s.bridgeSign - s.bridgeUnit / 2;
+  const mismatches = [];
+  if (vRound !== s.busSign) mismatches.push(`this bus (${fmtM(v)}) would round to ${fmtRounded(vRound, s.busUnit)}, not ${s.busText}`);
+  if (bRound !== s.bridgeSign) mismatches.push(`this gap (${fmtM(b)}) would round to ${fmtRounded(bRound, s.bridgeUnit)}, not ${s.bridgeText}`);
   simMoved();
   const crash = v >= b;
   const stopX = crash ? SIM_BRIDGE_X - SIM_BUS_W : 580;
@@ -953,9 +966,15 @@ function driveBus() {
       crashText.setAttribute('opacity', '1');
       const svg = document.getElementById('bridge-svg');
       svg.classList.remove('shake'); void svg.getBoundingClientRect(); svg.classList.add('shake');
-      info.innerHTML = `&#128165; Crash! The bus (${fmtM(v)}) is taller than the gap (${fmtM(b)}) &mdash; and both still match their signs.`;
+      info.innerHTML = ok
+        ? `&#128165; Crash! The bus (${fmtM(v)}) is taller than the gap (${fmtM(b)}) &mdash; and both heights still match their signs. The signs alone could not keep this bus safe.`
+        : `&#128165; Crash! But ${mismatches.join(', and ')}. ` + (alwaysFits
+          ? `With heights that really match both signs, Scenario ${simKey.toUpperCase()} can never crash &mdash; so try Scenario B.`
+          : 'Can you make it crash with both sliders showing &#10003;?');
     } else {
-      info.innerHTML = `&#9989; Cleared with ${b - v} cm to spare.`;
+      info.innerHTML = ok
+        ? `&#9989; Cleared with ${b - v} cm to spare.` + (alwaysFits ? ' In this scenario there is always room &mdash; can you find a crash in Scenario B?' : '')
+        : `&#9989; Cleared &mdash; but ${mismatches.join(', and ')}, so this does not count.`;
     }
   }
   simAnim = requestAnimationFrame(step);
