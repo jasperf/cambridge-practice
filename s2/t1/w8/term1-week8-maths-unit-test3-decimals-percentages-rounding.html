@@ -549,8 +549,8 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <!-- ═══════════════ SECTION D: UPPER AND LOWER BOUNDS ═══════════════ -->
 <div id="bounds">
   <div class="section-header"><div class="section-icon">&le;&ge;</div><div><div class="sub-label">Section D</div><h2>Upper and Lower Bounds</h2></div></div>
-  <div class="info-box"><strong>Method:</strong> A rounded measurement could have come from a range of exact values. The <strong>lower bound</strong> is half a unit of rounding below the rounded value; the <strong>upper bound</strong> is half a unit of rounding above it. The range is written as an inequality: lower bound &le; exact value &lt; upper bound.</div>
-  <div class="info-box"><strong>Example:</strong> A crowd of 104000, correct to the nearest 1000 &rarr; lower bound = 103500, upper bound = <strong>104500</strong>, so 103500 &le; x &lt; 104500.</div>
+  <div class="info-box"><strong>Method:</strong> A rounded value could have come from a range of exact values. For a <strong>measurement</strong> (length, mass, time), the <strong>lower bound</strong> is half a unit of rounding below the rounded value and the <strong>upper bound</strong> is half a unit of rounding above it, written as an inequality: lower bound &le; exact value &lt; upper bound. For a <strong>count of whole things</strong> (people, cars), the exact value must be a whole number, so the upper bound is the largest whole number that still rounds to the given value.</div>
+  <div class="info-box"><strong>Example:</strong> A crowd of 104000, correct to the nearest 1000 &rarr; lower bound = 103500, upper bound = <strong>104499</strong> (there cannot be half a person). A length of 104 m, correct to the nearest m &rarr; 103.5 &le; x &lt; 104.5.</div>
 
   <!-- Q23 -->
   <div class="q-card" id="qcard-bd1">
@@ -648,7 +648,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q29 -->
   <div class="q-card" id="qcard-bd7">
-    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A decimal number is rounded to the nearest whole number, giving 12. Write the correct upper bound.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A decimal number, which could have any number of decimal places, is rounded to the nearest whole number, giving 12. Write the correct upper bound.</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="num-row"><input type="number" step="any" class="num-input" id="bd7-ans" placeholder="Enter answer..."></div>
       <div class="q-actions">

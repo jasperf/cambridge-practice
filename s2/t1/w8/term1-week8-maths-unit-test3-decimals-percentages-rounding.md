@@ -117,9 +117,9 @@ A town's population is 8000, and is predicted to fall by 5% each year. Which cal
 
 ## Section D: Upper and Lower Bounds
 
-**Method:** A rounded measurement could have come from a range of exact values. The lower bound is half a unit of rounding below the rounded value; the upper bound is half a unit of rounding above it. The range is written as an inequality: lower bound ≤ exact value < upper bound.
+**Method:** A rounded value could have come from a range of exact values. For a measurement (length, mass, time), the lower bound is half a unit of rounding below the rounded value and the upper bound is half a unit of rounding above it, written as an inequality: lower bound ≤ exact value < upper bound. For a count of whole things (people, cars), the exact value must be a whole number, so the upper bound is the largest whole number that still rounds to the given value.
 
-**Example:** A crowd of 104000, correct to the nearest 1000 → lower bound = 103500, upper bound = **104500**, so 103500 ≤ x < 104500.
+**Example:** A crowd of 104000, correct to the nearest 1000 → lower bound = 103500, upper bound = **104499** (there cannot be half a person). A length of 104 m, correct to the nearest m → 103.5 ≤ x < 104.5.
 
 ### Questions
 
@@ -150,7 +150,7 @@ The area of a field is given as 1560 m², correct to the nearest 10 m². Which i
 A stack of 50 identical coins has a height of 40 mm, correct to the nearest mm. Using the lower bound of the stack's height, work out the smallest possible height of a single coin, in mm.
 
 **Q29** (1 mark)
-A decimal number is rounded to the nearest whole number, giving 12. Write the correct upper bound.
+A decimal number, which could have any number of decimal places, is rounded to the nearest whole number, giving 12. Write the correct upper bound.
 
 ---
 
