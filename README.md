@@ -66,7 +66,8 @@ cambridge-practice/
 │       │   ├── term1-week7-science-unit-test2-plant-biology.* ← Unit Test 2: Plant Biology (38 q, 49 marks + 6 extended-answer q, 22 marks)
 │       │   └── term1-week7-english-unit-test2-viewpoints-arguments.* ← Unit Test 2: Viewpoints & Arguments (45 q, 59 marks + 6 extended-answer q)
 │       └── w8/                      ← Week 8 (.html interactive + .md printable)
-│           └── term1-week8-maths-unit-test3-decimals-percentages-rounding.* ← Unit Test 3: Decimals, Percentages & Rounding (29 q, 40 marks + 5 extended-answer q, 18 marks)
+│           ├── term1-week8-maths-unit-test3-decimals-percentages-rounding.* ← Unit Test 3: Decimals, Percentages & Rounding (29 q, 40 marks + 5 extended-answer q, 18 marks)
+│           └── term1-week8-maths-unit3-bounds-powers-practice.* ← Unit 3 Follow-up: Bounds & Powers (28 q, 36 marks + 5 written q, 16 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
@@ -159,6 +160,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Science Unit Test 2 (Plant Biology) | Secondary 2 | ✅ Term 1 Week 7 · Unit Test 2, 10 Sep 2026 |
 | English Unit Test 2 (Viewpoints & Arguments, Past Continuous, Subject–Verb Agreement) | Secondary 2 | ✅ Term 1 Week 7 · Unit Test 2, 10 Sep 2026 |
 | Mathematics Unit Test 3 (Decimals, Percentages & Rounding) | Secondary 2 | ✅ Term 1 Week 8 · Unit Test 3 |
+| Mathematics Unit 3 Follow-up (Bounds & Powers) | Secondary 2 | ✅ Term 1 Week 8 · After Unit Test 3 |
 
 ### IGCSE
 
