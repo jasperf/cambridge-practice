@@ -149,6 +149,14 @@ A pill contains 0.09 g of medicine, correct to 1 significant figure. Which inequ
 | A number with **one decimal place** | 15.0, 15.1, …, 24.9 | 15 ≤ x ≤ 24.9 | **24.9** — 25.0 rounds to 30 |
 | A **measurement** or any decimal | anything from 15 up to 24.999… | 15 ≤ x < 25 | **25** — x gets close but never equals it |
 
+**The ≤ or < rule:**
+
+1. The **lower** bound is always included, so it always uses **≤**.
+2. The **upper** bound is included (**≤**) only when you can list the values: whole numbers, or numbers with one decimal place.
+3. For a measurement or any decimal, the upper bound is the halfway point and is *not* included, so it uses **<**.
+
+If the question does not say what kind of number it is, treat it as a measurement.
+
 ### Questions
 
 **Q23** (1 mark)
