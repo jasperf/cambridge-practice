@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Questions &middot; Unit 3 Practice Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(79,142,247,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box ul { margin: 6px 0 0 18px; }
+.story-box { background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-left: 3px solid var(--accent-warn); border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 32px 0 16px; font-size: 0.92rem; line-height: 1.7; }
+.story-box h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 6px; }
+.story-box p + p { margin-top: 8px; }
+.sim { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin: 4px 0 24px; }
+.sim-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+.sim-svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.sim-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.sim-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 18px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.sim-btn:hover { border-color: var(--accent-math); color: var(--text); }
+.sim-btn.go { border-color: var(--accent-warn); color: var(--accent-warn); }
+.sim-btn.go:hover { background: var(--accent-warn); color: #0f1117; }
+.sim-btn:disabled, .sim-btn:disabled:hover { opacity: 0.6; cursor: not-allowed; background: var(--surface); border-color: var(--border); color: var(--text-muted); }
+.sim-info { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.5; }
+@media (max-width: 600px) { .sim { padding: 12px; } }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.math-expr { font-family: var(--font-mono); font-size: 1.15rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; display: inline-block; margin: 4px 0; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .watch-links { justify-content: center; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Unit 3 Open Questions</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 25</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Unit 3 Practice Test</div>
+  <h1>Unit 3 Practice Test<br><em>20 Open Questions</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Powers of 10 &middot; Decimals &middot; Compound Percentages &middot; Bounds</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>20 questions &middot; no multiple choice &middot; 25 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#9999;&#65039; One more round on Unit 3</h3>
+  <p>Every answer is typed in &mdash; there are no options to guess from. Part A is ten quick one-line questions, one skill each. Part B is five short stories, where you have to work out which skill a question needs before you can use it. Two of the stories end with an animation that unlocks once you have answered their questions.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="term1-week8-maths-unit-test3-decimals-percentages-rounding.html">Unit Test 3 &rarr;</a>
+    <a class="watch-link" href="term1-week8-maths-unit3-bounds-powers-practice.html">Follow-up: Bounds &amp; Powers &rarr;</a>
+    <a class="watch-link" href="term1-week8-maths-unit3-bounds-sigfigs-retest.html">Retest: Bounds &amp; Sig Figs &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#quick" class="sub-tab">Part A &middot; Quick Lines</a>
+  <a href="#stories" class="sub-tab">Part B &middot; Stories</a>
+  <a href="#viral" class="sub-tab">Going Viral</a>
+  <a href="#lift" class="sub-tab">The Goods Lift</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ PART A: QUICK LINES ═══════════════ -->
+<div id="quick">
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Part A</div><h2>Quick Lines</h2></div></div>
+  <div class="info-box"><strong>Toolkit:</strong>
+    <ul>
+      <li><strong>Powers of 10</strong> &mdash; a negative power makes a multiplication smaller and a division bigger.</li>
+      <li><strong>Decimals</strong> &mdash; change the calculation into an equivalent one with whole numbers.</li>
+      <li><strong>Percentages</strong> &mdash; turn each change into a multiplier.</li>
+      <li><strong>Bounds</strong> &mdash; find the unit of rounding, halve it, and ask what kind of number was rounded.</li>
+    </ul>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-ql1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Work out <span class="math-expr">0.072 &times; 10&#8308;</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql1-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql1',720,'Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql1','10&#8308; = 10 000. Multiplying by it moves the digits four places bigger.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql1','720 — 0.072 &times; 10 000 = 720')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-ql2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Work out <span class="math-expr">5.6 &divide; 10&#8315;&sup2;</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql2',560,'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql2','Dividing by a negative power is the same as multiplying by the positive power')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql2','560 — dividing by 10&#8315;&sup2; is the same as multiplying by 100: 5.6 &times; 100 = 560')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-ql3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Find the missing power: <span class="math-expr">830 &times; 10<sup>&#9633;</sup> = 0.83</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql3-ans" placeholder="Power..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql3',-3,'Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql3','830 became 0.83. Did it get bigger or smaller, and by how many places?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql3','&minus;3 — 830 &divide; 1000 = 0.83, and multiplying by 10&#8315;&sup3; is the same as dividing by 1000')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-ql4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Work out <span class="math-expr">0.6 &times; 0.07</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql4-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql4',0.042,'Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql4','Work out 6 &times; 7 first, then count the decimal places in the question')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql4','0.042 — 6 &times; 7 = 42, and 0.6 &times; 0.07 has three decimal places in total')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-ql5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Work out <span class="math-expr">2.4 &divide; 0.08</span></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql5',30,'Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql5','Multiply both numbers by 100 so that you divide by a whole number')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql5','30 — 2.4 &divide; 0.08 = 240 &divide; 8 = 30')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-ql6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Write the multiplier for a <strong>6% decrease</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql6-ans" placeholder="Multiplier..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql6',0.94,'Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql6','Start at 100% and take 6% away, then write it as a decimal')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql6','0.94 — 100% &minus; 6% = 94% = 0.94')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-ql7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Round <span class="math-expr">0.004 739</span> to 2 significant figures.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql7-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql7',0.0047,'Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql7','The zeros at the front do not count. Start counting at the first digit that is not zero.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql7','0.0047 — the first two significant figures are 4 and 7, and the next digit, 3, means round down')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-ql8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A pencil is 7.6 cm long, correct to 1 decimal place. What is the <strong>lower</strong> bound of its length?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql8-ans" placeholder="Enter answer..."> <span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql8',7.55,'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql8','The unit of rounding is 0.1 cm. Go half of that below 7.6.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql8','7.55 cm — half of 0.1 is 0.05, and 7.6 &minus; 0.05 = 7.55')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-ql9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">A <strong>whole number</strong> is rounded to the nearest 100. The answer is 900. What is the upper bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql9-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql9',949,'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql9','It must be a whole number. Which is the largest whole number that still rounds to 900?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql9','949 — every whole number from 850 to 949 rounds to 900; 950 rounds up to 1000')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-ql10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">A tower is 340 m tall, correct to 2 significant figures. What is the <strong>upper</strong> bound of its height?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ql10-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ql10',345,'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ql10','Which place is the 2nd significant figure in? That gives the unit of rounding. A height is a measurement.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ql10','345 m — the 4 is in the tens, so the unit of rounding is 10 m. Half of 10 is 5, so 335 &le; h &lt; 345.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ql10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">QUICK LINES &mdash; PART SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ql-fill"></div></div>
+    <div class="section-score-val" id="sec-ql-val">0/10</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ PART B: STORY QUESTIONS ═══════════════ -->
+<div id="stories">
+  <div class="section-header"><div class="section-icon">&#128214;</div><div><div class="sub-label">Part B</div><h2>Story Questions</h2></div></div>
+  <div class="info-box"><strong>Before you calculate:</strong> read the whole story, pick out the numbers you need, and decide which Unit 3 skill the question is really asking for. Some stories hide a trap for anyone who uses the numbers straight from the text.</div>
+
+  <!-- Story 1 -->
+  <div class="story-box">
+    <h3>&#128300; Under the Microscope</h3>
+    <p>In the science lab, Leo&rsquo;s microscope makes everything look <strong>10&sup3; times</strong> wider than it really is.</p>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-st1">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">A plant cell is really 0.025 mm wide. How wide does it look under Leo&rsquo;s microscope?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="st1-ans" placeholder="Enter answer..."> <span class="num-unit">mm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st1',25,'Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st1','Looking 10&sup3; times wider means multiplying the real width by 10&sup3;')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st1','25 mm — 0.025 &times; 10&sup3; = 0.025 &times; 1000 = 25')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-st2">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Through the same microscope, a bacterium <em>looks</em> 2 mm wide. How wide is it <strong>really</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="st2-ans" placeholder="Enter answer..."> <span class="num-unit">mm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st2',0.002,'Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st2','This time you know how big it looks. Is the real bacterium bigger or smaller than that? So do you multiply or divide?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st2','0.002 mm — the real size is smaller, so divide: 2 &divide; 10&sup3; = 2 &divide; 1000 = 0.002')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story-box">
+    <h3>&#127838; The Sourdough Bakery</h3>
+    <p>Amira runs a small bakery. Each sourdough loaf uses <strong>0.35 kg</strong> of flour, and her flour costs <strong>$1.20 per kg</strong>.</p>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-st3">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Amira opens an 8.4 kg sack of flour. How many loaves can she make from it?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="st3-ans" placeholder="Enter answer..."> <span class="num-unit">loaves</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st3',24,'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st3','Divide the flour in the sack by the flour in one loaf. Multiply both numbers by 100 first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st3','24 loaves — 8.4 &divide; 0.35 = 840 &divide; 35 = 24')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-st4">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">How much does the flour in <strong>one</strong> loaf cost, in dollars?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">$</span><input type="number" step="any" class="num-input" id="st4-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st4',0.42,'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st4','Multiply the mass of flour in one loaf by the price of 1 kg')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st4','$0.42 — 0.35 &times; 1.2: 35 &times; 12 = 420, with three decimal places in the question, gives 0.420')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story-box">
+    <h3>&#128241; The Double Discount</h3>
+    <p>A phone costs <strong>$480</strong>. On Friday the shop takes <strong>25% off</strong>. On Monday it takes a <strong>further 10% off</strong> the Friday price.</p>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-st5">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">What is the price of the phone on Monday?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">$</span><input type="number" step="any" class="num-input" id="st5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st5',324,'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st5','Use two multipliers, one after the other: one for 25% off, then one for 10% off the new price')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st5','$324 — 480 &times; 0.75 = 360 on Friday, then 360 &times; 0.9 = 324 on Monday')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-st6">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Jake says: <em>&ldquo;25% off and then 10% off is 35% off altogether.&rdquo;</em> What percentage of the original $480 has <strong>really</strong> been taken off?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="st6-ans" placeholder="Enter answer..."> <span class="num-unit">%</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st6',32.5,'Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st6','Multiply the two multipliers together to get one multiplier for the whole change. What percentage is left, and so what percentage was taken off?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st6','32.5% — 0.75 &times; 0.9 = 0.675, so the phone costs 67.5% of its original price and 100% &minus; 67.5% = 32.5% was taken off. Jake is wrong because the 10% is taken off the smaller Friday price, not off $480.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Story 4 -->
+  <div id="viral">
+  <div class="story-box">
+    <h3>&#128200; Going Viral</h3>
+    <p>Nina posts a video of her cat walking across a piano. It has <strong>2000 views</strong>. Her friend predicts that the number of views will go up by <strong>40% every day</strong>.</p>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-st7">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Using the prediction, how many views will the video have after <strong>3 days</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="st7-ans" placeholder="Enter answer..."> <span class="num-unit">views</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st7',5488,'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st7','Find the multiplier for a 40% increase, then multiply by it once for each day')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st7','5488 views — 2000 &times; 1.4&sup3;: 2800 after 1 day, 3920 after 2 days, 5488 after 3 days')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-st8">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">After how many days does the prediction first go <em>above</em> 10 000 views? You can use a calculator.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="st8-ans" placeholder="Enter answer..."> <span class="num-unit">days</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st8',5,'Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st8','Carry on from Q17: keep multiplying by 1.4, counting the days, until you pass 10 000')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st8','5 days — after 4 days the prediction is 7683.2 views, still below 10 000; after 5 days it is 10 756.48')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st8-fb"></div>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-title">Watch it happen: the prediction, one day at a time</div>
+    <svg id="vir-svg" class="sim-svg" viewBox="0 0 560 260" role="img" aria-label="Bar chart of predicted video views growing by 40% each day, with a target line at 10 000 views"></svg>
+    <div class="sim-controls">
+      <button class="sim-btn go" id="vir-play" onclick="playGrowth()"></button>
+      <button class="sim-btn" onclick="resetGrowth()">Reset</button>
+    </div>
+    <div class="sim-info" id="vir-info"></div>
+  </div>
+  </div>
+
+  <!-- Story 5 -->
+  <div id="lift">
+  <div class="story-box">
+    <h3>&#128727; The Goods Lift</h3>
+    <p>A warehouse lift has a sign: <strong>Maximum load 450 kg</strong>, correct to the nearest 10 kg. Sam has to move crates of bottles. Each crate weighs <strong>30 kg</strong>, correct to the nearest kg.</p>
+    <p>Sam must be <em>certain</em> the lift is never overloaded.</p>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-st9">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">What is the <strong>lowest</strong> the real maximum load of the lift could be?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="st9-ans" placeholder="Enter answer..."> <span class="num-unit">kg</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st9',445,'Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st9','The sign is rounded to the nearest 10 kg. What is half of the unit of rounding?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st9','445 kg — half of 10 kg is 5 kg, and 450 &minus; 5 = 445')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-st10">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Sam works out <span class="math-expr">450 &divide; 30 = 15</span> and plans to load 15 crates. What is the <strong>largest</strong> number of crates Sam can load and still be <em>certain</em> the lift is safe?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="st10-ans" placeholder="Enter answer..."> <span class="num-unit">crates</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('st10',14,'Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('st10','To be certain, imagine the worst case: every crate as heavy as it could be, and the limit as low as it could be (Q19). Then test 14 and 15 crates.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('st10','14 crates — each crate could be up to 30.5 kg and the limit could be as low as 445 kg. 14 &times; 30.5 = 427 kg, which is safe, but 15 &times; 30.5 = 457.5 kg, which could be over the limit.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="st10-fb"></div>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-title">Watch it happen: load the crates, worst case every time</div>
+    <svg id="lift-svg" class="sim-svg" viewBox="0 0 560 260" role="img" aria-label="A goods lift being loaded with crates, next to a meter comparing the heaviest possible load with the lowest possible limit"></svg>
+    <div class="sim-controls">
+      <button class="sim-btn go" id="lift-play" onclick="playLift()"></button>
+      <button class="sim-btn" onclick="resetLift()">Reset</button>
+    </div>
+    <div class="sim-info" id="lift-info"></div>
+  </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">STORY QUESTIONS &mdash; PART SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-st-fill"></div></div>
+    <div class="section-score-val" id="sec-st-val">0/15</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  ql1:1, ql2:1, ql3:1, ql4:1, ql5:1, ql6:1, ql7:1, ql8:1, ql9:1, ql10:1,
+  st1:1, st2:1, st3:2, st4:1, st5:2, st6:2, st7:1, st8:2, st9:1, st10:2
+};
+
+const sections = {
+  ql: { label: 'Quick Lines', qs: ['ql1','ql2','ql3','ql4','ql5','ql6','ql7','ql8','ql9','ql10'] },
+  st: { label: 'Story Questions', qs: ['st1','st2','st3','st4','st5','st6','st7','st8','st9','st10'] }
+};
+
+// Results are also broken down by Unit 3 skill, across both parts
+const topics = {
+  powers:   { label: 'Powers of 10', qs: ['ql1','ql2','ql3','st1','st2'] },
+  decimals: { label: 'Decimals', qs: ['ql4','ql5','st3','st4'] },
+  percent:  { label: 'Percentages', qs: ['ql6','st5','st6','st7','st8'] },
+  bounds:   { label: 'Bounds & s.f.', qs: ['ql7','ql8','ql9','ql10','st9','st10'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+// ── Animation helpers ───────────────────────────────────────
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const ease = p => 1 - Math.pow(1 - p, 3);
+function tween(ms, onFrame, alive) {
+  return new Promise(resolve => {
+    let t0 = null;
+    function frame(ts) {
+      if (!alive()) return resolve();
+      if (t0 === null) t0 = ts;
+      const p = Math.min(1, (ts - t0) / ms);
+      onFrame(p);
+      if (p < 1) requestAnimationFrame(frame); else resolve();
+    }
+    requestAnimationFrame(frame);
+  });
+}
+const fmtNum = n => {
+  const [i, d] = String(Math.round(n * 100) / 100).split('.');
+  // Space thousands only from 10 000 up, matching the question text (5488, 10 000)
+  return (i.length > 4 ? i.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') : i) + (d ? '.' + d : '');
+};
+function shakeEl(el) { el.classList.remove('shake'); void el.getBoundingClientRect(); el.classList.add('shake'); }
+
+// The animations give the answers away, so each one unlocks only once its questions are answered
+const LOCKS = [
+  { btn: 'vir-play', qs: ['st7','st8'], names: 'Q17 and Q18', label: '&#9654; Watch the views grow' },
+  { btn: 'lift-play', qs: ['st9','st10'], names: 'Q19 and Q20', label: '&#9654; Load the lift' }
+];
+const isUnlocked = btnId => LOCKS.find(l => l.btn === btnId).qs.every(q => state.correct[q] !== undefined);
+function refreshLocks() {
+  LOCKS.forEach(l => {
+    const b = document.getElementById(l.btn), open = isUnlocked(l.btn);
+    b.disabled = !open;
+    b.innerHTML = open ? l.label : `&#128274; Answer ${l.names} to unlock`;
+  });
+}
+
+// ── Going Viral: growth chart ───────────────────────────────
+const VIR_DAYS = 6, VIR_TARGET = 10000, VIR_MULT = 1.4;
+const virVals = Array.from({ length: VIR_DAYS + 1 }, (_, d) => 2000 * Math.pow(VIR_MULT, d));
+const VX0 = 70, VSLOT = 68, VBAR = 40, VBASE = 215, VH = 170, VMAX = 16000;
+const vy = v => VBASE - v / VMAX * VH;
+let virRun = 0;
+
+function drawGrowth(shown, frac) {
+  let g = '';
+  [0, 5000, 15000].forEach(t => {
+    g += `<line x1="${VX0 - 8}" y1="${vy(t)}" x2="546" y2="${vy(t)}" stroke="#2a3050"/>
+      <text x="${VX0 - 12}" y="${vy(t) + 4}" text-anchor="end" font-family="DM Mono, monospace" font-size="10" fill="#4a5270">${fmtNum(t)}</text>`;
+  });
+  let current = virVals[0];
+  for (let d = 0; d <= VIR_DAYS; d++) {
+    const x = VX0 + d * VSLOT + (VSLOT - VBAR) / 2;
+    g += `<text x="${x + VBAR / 2}" y="${VBASE + 17}" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="#7a84a0">Day ${d}</text>`;
+    if (d > shown) continue;
+    const prev = d === 0 ? virVals[0] : virVals[d - 1];
+    const v = d < shown ? virVals[d] : prev + (virVals[d] - prev) * frac;
+    if (d === shown) current = v;
+    const colour = v > VIR_TARGET ? '#3ecf8e' : '#4f8ef7';
+    g += `<rect x="${x}" y="${vy(v)}" width="${VBAR}" height="${VBASE - vy(v)}" rx="3" fill="${colour}"/>`;
+    if (d < shown || frac === 1) {
+      g += `<text x="${x + VBAR / 2}" y="${vy(v) - 5}" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="${colour}">${fmtNum(Math.round(v))}</text>`;
+    }
+  }
+  g += `<line x1="${VX0 - 8}" y1="${vy(VIR_TARGET)}" x2="546" y2="${vy(VIR_TARGET)}" stroke="#f5a623" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="${VX0 - 12}" y="${vy(VIR_TARGET) + 4}" text-anchor="end" font-family="DM Mono, monospace" font-size="10" fill="#f5a623">10 000</text>
+    <text x="${VX0 + 4}" y="26" font-family="DM Mono, monospace" font-size="14" fill="#e8eaf0">&#128064; Day ${shown}: ${fmtNum(Math.round(current))} views</text>`;
+  document.getElementById('vir-svg').innerHTML = g;
+}
+
+async function playGrowth() {
+  if (!isUnlocked('vir-play')) return;
+  const run = ++virRun, alive = () => run === virRun;
+  const info = document.getElementById('vir-info');
+  info.innerHTML = '';
+  drawGrowth(0, 1);
+  await wait(400);
+  let firstAbove = -1;
+  for (let d = 1; d <= VIR_DAYS && alive(); d++) {
+    await tween(650, p => drawGrowth(d, ease(p)), alive);
+    if (!alive()) return;
+    const crossed = virVals[d] > VIR_TARGET && virVals[d - 1] <= VIR_TARGET;
+    if (crossed) firstAbove = d;
+    info.innerHTML = `Day ${d}: ${fmtNum(virVals[d - 1])} &times; 1.4 = <strong>${fmtNum(virVals[d])}</strong>` +
+      (crossed ? ' &mdash; the first day above 10 000! &#127881;' : '');
+    await wait(crossed ? 1800 : 650);
+  }
+  if (!alive()) return;
+  info.innerHTML = `After ${firstAbove - 1} days the prediction is ${fmtNum(virVals[firstAbove - 1])}, still below 10 000. After <strong>${firstAbove} days</strong> it is ${fmtNum(virVals[firstAbove])}. Notice each bar jumps by more than the one before: 40% of a bigger number is a bigger jump.`;
+}
+
+function resetGrowth() {
+  virRun++;
+  drawGrowth(0, 1);
+  document.getElementById('vir-info').innerHTML = '';
+}
+
+// ── The Goods Lift: worst-case loading ──────────────────────
+const LIFT = { crate: 30.5, limit: 445, crates: 15 };
+const CAR_X = 160, FLOOR = 220, CRATE = 28;
+const slotPos = i => ({ x: CAR_X + (i % 5) * CRATE + 1, y: FLOOR - (Math.floor(i / 5) + 1) * CRATE + 1 });
+const meterY = kg => FLOOR - Math.max(0, Math.min(180, kg - 300));   // meter shows 300–480 kg
+let liftRun = 0;
+
+function crateSvg(x, y, red) {
+  return `<rect x="${x}" y="${y}" width="${CRATE - 2}" height="${CRATE - 2}" rx="2" fill="${red ? '#e74c3c' : '#c8893a'}" stroke="#0f1117" stroke-opacity="0.5"/>
+    <line x1="${x + 3}" y1="${y + 3}" x2="${x + CRATE - 5}" y2="${y + CRATE - 5}" stroke="#0f1117" stroke-opacity="0.25"/>
+    <line x1="${x + CRATE - 5}" y1="${y + 3}" x2="${x + 3}" y2="${y + CRATE - 5}" stroke="#0f1117" stroke-opacity="0.25"/>`;
+}
+
+function drawLift({ count = 0, moving = null, carDY = 0, flash = -1 } = {}) {
+  const load = count * LIFT.crate, over = load > LIFT.limit, mono = 'font-family="DM Mono, monospace"';
+  let g = `<rect x="0" y="${FLOOR}" width="560" height="40" fill="#2a3050"/>
+    <rect x="150" y="8" width="160" height="${FLOOR - 8}" fill="#12151f" stroke="#2a3050" stroke-width="2"/>
+    <line x1="230" y1="8" x2="230" y2="${76 + carDY}" stroke="#4a5270" stroke-width="2"/>
+    <g transform="translate(0,${carDY})">
+      <rect x="${CAR_X - 3}" y="76" width="${5 * CRATE + 6}" height="${FLOOR - 76}" fill="#181c27" stroke="#7a84a0" stroke-width="3"/>
+      <rect x="${CAR_X + 34}" y="84" width="72" height="18" rx="3" fill="#f5a623"/>
+      <text x="${CAR_X + 70}" y="97" text-anchor="middle" ${mono} font-size="10" font-weight="500" fill="#0f1117">MAX 450 kg</text>`;
+  for (let i = 0; i < count; i++) { const p = slotPos(i); g += crateSvg(p.x, p.y, i === flash); }
+  g += `</g>`;
+  if (moving) g += crateSvg(moving.x, moving.y, moving.red);
+
+  // Load meter: heaviest possible load against the lowest possible limit
+  g += `<text x="359" y="30" text-anchor="middle" ${mono} font-size="10" fill="#7a84a0">load</text>
+    <rect x="350" y="40" width="18" height="180" fill="#1e2336" stroke="#2a3050"/>`;
+  if (load > 300) g += `<rect x="350" y="${meterY(load)}" width="18" height="${FLOOR - meterY(load)}" fill="${over ? '#e74c3c' : '#4f8ef7'}"/>`;
+  [300, 350, 400, 450].forEach(t => {
+    g += `<line x1="345" y1="${meterY(t)}" x2="350" y2="${meterY(t)}" stroke="#4a5270"/>
+      <text x="342" y="${meterY(t) + 4}" text-anchor="end" ${mono} font-size="9" fill="#4a5270">${t}</text>`;
+  });
+  g += `<line x1="344" y1="${meterY(LIFT.limit)}" x2="376" y2="${meterY(LIFT.limit)}" stroke="#e74c3c" stroke-width="2"/>
+    <text x="380" y="${meterY(LIFT.limit) - 4}" ${mono} font-size="10" fill="#e74c3c">445 kg lowest limit</text>`;
+  if (load >= 400) {
+    g += `<text x="380" y="${meterY(load) + (over ? -16 : 14)}" ${mono} font-size="10" fill="${over ? '#e74c3c' : '#4f8ef7'}">${fmtNum(load)} kg heaviest load</text>`;
+  }
+
+  // Readout
+  const status = count === 0 ? '' : over
+    ? `<text x="390" y="214" ${mono} font-size="11" fill="#e74c3c">&#9888; could be overloaded</text>`
+    : `<text x="390" y="214" ${mono} font-size="11" fill="#3ecf8e">&#10003; certain to be safe</text>`;
+  g += `<text x="390" y="160" ${mono} font-size="11" fill="#e8eaf0">Crates: ${count}</text>
+    <text x="390" y="178" ${mono} font-size="11" fill="#7a84a0">${count} &times; 30.5 = ${fmtNum(load)} kg</text>
+    <text x="390" y="196" ${mono} font-size="11" fill="#7a84a0">limit &ge; 445 kg</text>${status}`;
+  document.getElementById('lift-svg').innerHTML = g;
+}
+
+async function playLift() {
+  if (!isUnlocked('lift-play')) return;
+  const run = ++liftRun, alive = () => run === liftRun;
+  const info = document.getElementById('lift-info');
+  info.innerHTML = 'Every crate is loaded as its heaviest possible mass, 30.5 kg&hellip;';
+  drawLift({ count: 0 });
+  for (let i = 0; i < LIFT.crates; i++) {
+    const p = slotPos(i), slow = i >= 10;
+    await tween(slow ? 450 : 260, t => drawLift({ count: i, moving: { x: -30 + (p.x + 30) * ease(t), y: p.y } }), alive);
+    if (!alive()) return;
+    drawLift({ count: i + 1 });
+    if (i + 1 === 14) {
+      info.innerHTML = '&#9989; 14 crates: even if every crate is 30.5 kg, the load is at most 14 &times; 30.5 = <strong>427 kg</strong>, below the lowest possible limit of 445 kg.';
+      await wait(2400);
+    } else {
+      await wait(slow ? 300 : 60);
+    }
+    if (!alive()) return;
+  }
+  drawLift({ count: LIFT.crates, flash: LIFT.crates - 1 });
+  shakeEl(document.getElementById('lift-svg'));
+  info.innerHTML = '&#9888;&#65039; 15 crates could weigh 15 &times; 30.5 = <strong>457.5 kg</strong> &mdash; more than 445 kg. Sam&rsquo;s 450 &divide; 30 = 15 used the rounded numbers, which hides the risk.';
+  await wait(3200);
+  if (!alive()) return;
+  const p = slotPos(LIFT.crates - 1);
+  await tween(450, t => drawLift({ count: LIFT.crates - 1, moving: { x: p.x - (p.x + 30) * ease(t), y: p.y, red: true } }), alive);
+  if (!alive()) return;
+  info.innerHTML = 'Take one crate off&hellip;';
+  await wait(500);
+  await tween(1200, t => drawLift({ count: LIFT.crates - 1, carDY: -60 * ease(t) }), alive);
+  if (!alive()) return;
+  info.innerHTML = '&#11014;&#65039; Going up with <strong>14 crates</strong> &mdash; the most Sam can load and be <em>certain</em> the lift is safe.';
+}
+
+function resetLift() {
+  liftRun++;
+  drawLift({ count: 0 });
+  document.getElementById('lift-info').innerHTML = '';
+}
+
+drawGrowth(0, 1);
+drawLift({ count: 0 });
+refreshLocks();
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Common functions ────────────────────────────────────────
+
+function checkNum(qid, correctVal, label, tolerance=1e-9) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  state.answers[qid] = val;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+  refreshLocks();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); refreshLocks(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const t of Object.values(topics)) {
+    const tMax = t.qs.reduce((s,q) => s+marks[q], 0);
+    const tScore = t.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${t.label}<span class="rb-val">${tScore}/${tMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`unit3-open-questions_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
