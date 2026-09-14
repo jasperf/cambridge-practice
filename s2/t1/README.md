@@ -108,6 +108,7 @@ Its printable `.md` has the same 45 questions **plus six extended-answer questio
 | **Unit Test 3: Decimals, Percentages & Rounding** — Unit 3 | 29 | 40 | [.md](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.md) | [.html](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.html) |
 | **Unit 3 Follow-up: Bounds & Powers** — Unit 3 (3.1, 3.3, 3.4) | 31 | 40 | [.md](./w8/term1-week8-maths-unit3-bounds-powers-practice.md) | [.html](./w8/term1-week8-maths-unit3-bounds-powers-practice.html) |
 | **Unit 3 Retest: Bounds & Significant Figures** — Unit 3 (3.4) | 34 | 40 | [.md](./w8/term1-week8-maths-unit3-bounds-sigfigs-retest.md) | [.html](./w8/term1-week8-maths-unit3-bounds-sigfigs-retest.html) |
+| **Unit 3 Practice Test: 20 Open Questions** — Unit 3 (3.1–3.4) | 20 | 25 | [.md](./w8/term1-week8-maths-unit3-open-questions.md) | [.html](./w8/term1-week8-maths-unit3-open-questions.html) |
 
 ### Maths Unit Test 3
 
@@ -122,6 +123,8 @@ Its printable `.md` has the same 29 questions **plus five extended-answer questi
 The **Unit 3 Follow-up: Bounds & Powers** sheet was written after the test, with all-new questions (so it is not a repeat of the test) on the areas the test covered thinly: 10⁰ and missing powers of 10, powers in compound percentages (what 1.08ⁿ represents, "after how many years"), and the three kinds of upper bound from textbook section 3.4 — whole-number counts (80 → 84), numbers with one decimal place (12 → 12.4) and measurements (8 → 8.5). It ends with a real-life section, *Will the Bus Fit?*: the story of Durham's "can opener" bridge and an interactive SVG bus simulator, where matching exact heights to rounded signs shows when a lower bound of the bridge and an upper bound of the bus guarantee a safe fit. Its printable `.md` has the same 31 questions (the simulator is described in words) **plus five written questions** (Q32–Q36) — listing possible values, comparing inequality notations and a years-to-target problem — that are not on the interactive sheet and are not auto-marked.
 
 The **Unit 3 Retest: Bounds & Significant Figures** sheet was written after the follow-up, when bounds and significant figures were still the weak spot. It drops powers and percentages and rebuilds bounds one step at a time: rounding to significant figures (which textbook section 3.4 assumes but does not teach), finding the unit of rounding (including from "correct to *n* s.f."), halving it for measurements with the `lower ≤ x < upper` inequality read out in words, bounds with significant figures, and a *Which Kind of Number?* table contrasting whole numbers, one-decimal-place numbers and measurements (20 → 24, 24.9, 25). It ends with a mini test that has no method box. An interactive **Bounds Explorer** draws any rounded value on a number line and shows what a dragged exact value rounds to. Its printable `.md` has the same 34 questions (the Explorer is described in words) **plus four written questions** (Q35–Q38) — a three-kinds table, spotting a significant-figures mistake, reading inequalities back to a rounding — that are not on the interactive sheet and are not auto-marked.
+
+The **Unit 3 Practice Test: 20 Open Questions** sheet is one more round on the whole unit, with no multiple choice: every answer is typed in. Part A is ten quick one-line questions, one skill each (powers of 10, decimals, a percentage multiplier, significant figures and bounds). Part B is five short stories — a microscope (powers of 10), a bakery (decimals), a double discount (successive percentages), a viral video (repeated percentage growth) and a goods lift (bounds, where 450 ÷ 30 = 15 crates is the trap and 14 is the safe answer). The last two stories end with animations — a growing bar chart of views against a 10 000 target, and crates loaded at their heaviest possible mass against the lift's lowest possible limit — which unlock only once their questions are answered, so they explain rather than give away the answers. Results are broken down by skill as well as by part. Its printable `.md` has the same 20 questions (the animations are described in words) and no extra written questions.
 
 Source material for Unit 3: `material/math/s2/t1/unit3/` (textbook photos).
 
@@ -224,7 +227,9 @@ cambridge-practice/
 │           ├── term1-week8-maths-unit3-bounds-powers-practice.html ← Interactive (Unit 3 follow-up)
 │           ├── term1-week8-maths-unit3-bounds-powers-practice.md   ← Printable (+5 written q)
 │           ├── term1-week8-maths-unit3-bounds-sigfigs-retest.html  ← Interactive (bounds & sig figs retest)
-│           └── term1-week8-maths-unit3-bounds-sigfigs-retest.md    ← Printable (+4 written q)
+│           ├── term1-week8-maths-unit3-bounds-sigfigs-retest.md    ← Printable (+4 written q)
+│           ├── term1-week8-maths-unit3-open-questions.html         ← Interactive (20 open questions)
+│           └── term1-week8-maths-unit3-open-questions.md           ← Printable
 ```
 
 ## See Also

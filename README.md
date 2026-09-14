@@ -68,7 +68,8 @@ cambridge-practice/
 │       └── w8/                      ← Week 8 (.html interactive + .md printable)
 │           ├── term1-week8-maths-unit-test3-decimals-percentages-rounding.* ← Unit Test 3: Decimals, Percentages & Rounding (29 q, 40 marks + 5 extended-answer q, 18 marks)
 │           ├── term1-week8-maths-unit3-bounds-powers-practice.* ← Unit 3 Follow-up: Bounds & Powers (31 q, 40 marks + 5 written q, 16 marks)
-│           └── term1-week8-maths-unit3-bounds-sigfigs-retest.* ← Unit 3 Retest: Bounds & Significant Figures (34 q, 40 marks + 4 written q, 12 marks)
+│           ├── term1-week8-maths-unit3-bounds-sigfigs-retest.* ← Unit 3 Retest: Bounds & Significant Figures (34 q, 40 marks + 4 written q, 12 marks)
+│           └── term1-week8-maths-unit3-open-questions.* ← Unit 3 Practice Test: 20 Open Questions (20 q, 25 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
@@ -163,6 +164,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Mathematics Unit Test 3 (Decimals, Percentages & Rounding) | Secondary 2 | ✅ Term 1 Week 8 · Unit Test 3 |
 | Mathematics Unit 3 Follow-up (Bounds & Powers) | Secondary 2 | ✅ Term 1 Week 8 · After Unit Test 3 |
 | Mathematics Unit 3 Retest (Bounds & Significant Figures) | Secondary 2 | ✅ Term 1 Week 8 · After the Follow-up |
+| Mathematics Unit 3 Practice Test (20 Open Questions) | Secondary 2 | ✅ Term 1 Week 8 · After the Retest |
 
 ### IGCSE
 
