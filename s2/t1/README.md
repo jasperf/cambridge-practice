@@ -63,6 +63,10 @@ Maths Unit Test 2 covers **Unit 1: Numbers and Calculations** and **Unit 2: Expr
 | [Week 2 — Indices & Standard Form](./w2/term1-week2-maths-indices-standard-form.html) | Laws of indices, negative/zero exponents, multi-step problems, standard form |
 | [Week 5 — Expressions & Formulae](./w5/term1-week5-maths-expressions-formulae.html) | Substituting, constructing expressions, expressions and indices, expanding brackets, algebraic fractions, deriving and using formulae |
 
+For the retest, the [Maths Unit Test 2 Practice Test](./term1-maths-unit2-practice-test.md) follows the six question types on the marked test paper (see Revision Handouts below).
+
+Source material for Unit Test 2: `material/math/s2/t1/unit2/` (photos of the marked test paper, titled *Unit test 2: Expressions and formulae*).
+
 ## Week 7
 
 ### Science
@@ -138,7 +142,7 @@ Combined documents drawing on more than one weekly sheet, for test preparation.
 |---------|--------|-----------|-------|-----------|-------------|
 | **Maths Unit 1 Revision** | Chapters 1.1–1.3 (both Week 2 maths sheets) | 53 | 69 | [.md](./term1-maths-unit1-revision.md) | — (self-check against the Week 2 sheets above) |
 | **Maths Unit Test 2 Revision** | Chapters 1.1–1.3 & 2.1–2.6 — Unit 1 Revision content plus the Week 5 Expressions & Formulae sheet, merged and renumbered Q1–Q79. | 79 | 103 | [.md](./term1-maths-unit2-revision.md) | — (self-check against the Week 2 and Week 5 sheets above) |
-| **Maths Unit Test 2 Practice Test** | Same scope as the Unit Test 2 Revision, with 20 all-new questions (12 open, 8 multiple choice) for the retest. Part A covers Unit 1, Part B covers Unit 2. Answer key at the end. | 20 | 30 | [.md](./term1-maths-unit2-practice-test.md) | — (answer key in the handout) |
+| **Maths Unit Test 2 Practice Test** | Expressions & Formulae (Ch 2.1–2.6). 20 new questions (12 open, 8 multiple choice) for the retest, following the six question types on the marked Unit Test 2 paper: substituting, writing expressions, simplifying with indices, expanding double brackets, adding/subtracting algebraic fractions, changing the subject. Answer key at the end. | 20 | 32 | [.md](./term1-maths-unit2-practice-test.md) | — (answer key in the handout) |
 | **English Unit Test 1 Revision** | Sentence Types (simple, FANBOYS, MOTH & semicolons, complex/compound-complex) + Reading Comprehension with P.E.E.E. Plus 4 open-ended extended writing tasks (printable only, not auto-marked). | 42 (+4 extended writing) | 50 | [.md](./term1-english-unit1-revision.md) | [.html](./term1-english-unit1-revision.html) |
 | **Science Unit Test 1 Revision** | Atomic Structure & Periodic Table + Why Elements React & Ionic Bonding + Covalent & Metallic Bonding (all three Week 2–4 science sheets, merged and renumbered Q1–Q54). Plus 8 open-ended extended-answer questions (printable only, not auto-marked). Answers live in a **separate** [answer sheet](./term1-science-unit1-revision-answers.md) so the questions can be handed out on their own. | 54 (+8 extended answer) | 66 (+22) | [.md](./term1-science-unit1-revision.md) | — (self-check against the weekly sheets above) |
 
@@ -178,7 +182,7 @@ Each weekly printable contains the **exact same questions** as the interactive s
 - **Week 7 — Unit Test 2: Plant Biology** — the printable has the same Q1–Q38 as its `.html`, plus six extended-answer questions (Q39–Q44, 22 marks) for written practice that are not auto-marked.
 - **Week 7 — Unit Test 2: Viewpoints & Arguments** — the printable has the same Q1–Q45 as its `.html`, plus six open-ended extended-answer questions (Q46–Q51) for written practice that are not auto-marked. The interactive sheet is multiple-choice, multi-select and short typed answers only.
 - **Maths Unit Test 2 Revision** — printable only. Q1–Q79 are the Maths Unit 1 Revision questions (Q1–Q53) plus the Week 5 Expressions & Formulae sheet's questions (Q54–Q79), merged and renumbered into one run, so self-checking can be done on the Week 2 and Week 5 interactive sheets.
-- **Maths Unit Test 2 Practice Test** — printable only. Its 20 questions are new, not taken from any weekly sheet, so they cannot be self-checked on an interactive sheet. Instead, the answer key with working and marking notes is at the end of the handout.
+- **Maths Unit Test 2 Practice Test** — printable only. Its 20 questions are new, not taken from any weekly sheet, and are modelled on the question types of the marked Unit Test 2 paper (photos in `material/math/s2/t1/unit2/`), so they cannot be self-checked on an interactive sheet. Instead, the answer key with working and marking notes is at the end of the handout.
 
 The interactive versions add:
 
@@ -199,7 +203,7 @@ cambridge-practice/
 │       ├── README.md                         ← This file (worksheet index)
 │       ├── term1-maths-unit1-revision.md     ← Revision handout (spans Ch 1.1–1.3)
 │       ├── term1-maths-unit2-revision.md     ← Revision handout (Unit Test 2: Ch 1.1–1.3 & 2.1–2.6, printable only)
-│       ├── term1-maths-unit2-practice-test.md ← Practice test for the Unit Test 2 retest (20 new q, printable only, answer key included)
+│       ├── term1-maths-unit2-practice-test.md ← Practice test for the Unit Test 2 retest (Expressions & Formulae, 20 new q, printable only, answer key included)
 │       ├── term1-english-unit1-revision.md   ← Revision handout (Sentence Types + Reading Comprehension)
 │       ├── term1-english-unit1-revision.html ← Interactive version of the above
 │       ├── term1-science-unit1-revision.md   ← Revision handout (Unit Test 1: Weeks 2–4 science, printable only)
