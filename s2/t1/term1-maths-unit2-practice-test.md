@@ -1,160 +1,208 @@
 # Secondary 2 · Term 1 · Mathematics — Unit Test 2 Practice Test
 
-**Stage 9 · Chapters 1.1–1.3 & 2.1–2.6 — Rational & Irrational Numbers, Indices, Standard Form, Expressions & Formulae**
-**20 questions · 30 marks**
+**Stage 9 · Unit 2 (Chapters 2.1–2.6) — Expressions & Formulae**
+**20 questions · 32 marks**
 
-One more practice test before the **Unit Test 2 retest**, on the same scope as the [Unit Test 2 Revision](./term1-maths-unit2-revision.md) handout. The questions are all new, so none of them repeat the revision handout. There are 12 open questions and 8 multiple-choice questions. Part A covers Unit 1 (Numbers and Calculations) and Part B covers Unit 2 (Expressions and Formulae). Write all answers and working in your notebook. Show your working: on 2- and 3-mark questions, the method earns marks too.
+One more practice test before the **Unit Test 2 retest**. It follows the six question types of the real Unit Test 2 paper, in the same order: substituting, writing expressions, simplifying with indices, expanding double brackets, adding and subtracting algebraic fractions, and changing the subject. All the questions are new, with more practice on the steps that are easiest to get wrong. There are 12 open questions and 8 multiple-choice questions. Write all answers and working in your notebook. Show your working: on 2-mark questions, the method earns marks too.
 
 The answer key is on the last page. Cover it up, or ask a parent to keep it, until you have finished.
 
 ---
 
-# Part A · Numbers & Calculations
+## Section A: Substituting into Expressions
 
-*Unit 1 (Chapters 1.1–1.3) — 10 questions, 14 marks*
+*Like Question 1 on the test — 4 questions, 7 marks*
 
-**Toolkit:**
+**Method:** Put each value in brackets, especially a negative one. Then follow BIDMAS: brackets first, then powers, then × and ÷, then + and −.
 
-- **Rational or irrational?** Try to write the number as one integer over another.
-- **Estimating a root:** find the perfect squares on either side.
-- **Index laws:** × add the powers · ÷ subtract · power of a power multiply · a⁰ = 1 · a⁻ⁿ = 1/aⁿ
-- **Standard form:** a × 10ⁿ with 1 ≤ a < 10. If the front number ends up outside that range, fix it and change the power.
+**Watch out:** in w + z(…), work out the bracket and multiply it by z **first**. Add w last. The w is not multiplied by anything.
+
+For Q1–Q4, use **a = 3, b = −2, c = 6, d = −5, w = 2, x = 4, y = −3, z = −2**.
 
 ### Questions
 
 **Q1** (1 mark)
-Which of these numbers is **irrational**?
-- A) √36
-- B) 0.444… (the 4 repeats forever)
-- C) √13
-- D) −7/2
+Work out the value of ab − cd.
 
-**Q2** (1 mark)
-Which of these is **NOT** a surd?
-- A) √(4/9)
-- B) √10
-- C) √6
-- D) √18
+**Q2** (2 marks)
+Work out the value of bc/a + d.
 
-**Q3** (1 mark)
-√75 lies between which two consecutive whole numbers?
+**Q3** (2 marks)
+Work out the value of z(3w − y).
 
 **Q4** (2 marks)
-Is 0.272727… (the 27 repeats forever) rational or irrational? Give a reason for your answer.
-
-**Q5** (1 mark)
-Simplify, leaving your answer as a power of 6: 6⁵ × 6³ ÷ 6⁴
-
-**Q6** (1 mark)
-Simplify: (x⁴)³ ÷ x⁵
-- A) x²
-- B) x⁷
-- C) x¹²
-- D) x¹⁷
-
-**Q7** (2 marks)
-Work out 10⁰ + 2⁻³. Give your answer as a fraction.
-
-**Q8** (1 mark)
-Which of these is 0.000 305 written in standard form?
-- A) 30.5 × 10⁻⁵
-- B) 3.05 × 10⁴
-- C) 3.05 × 10⁻³
-- D) 3.05 × 10⁻⁴
-
-**Q9** (2 marks)
-(a) Write 5.08 × 10⁶ as an ordinary number.\
-(b) Write 42 700 in standard form.
-
-**Q10** (2 marks)
-Work out (6 × 10⁵) × (4 × 10⁻²). Give your answer in standard form.
+Work out the value of w + z(2x − y).
+- A) 0
+- B) −44
+- C) −20
+- D) 24
 
 ---
 
-# Part B · Expressions & Formulae
+## Section B: Writing Expressions
 
-*Unit 2 (Chapters 2.1–2.6) — 10 questions, 16 marks*
+*Like Question 2 on the test — 3 questions, 4 marks*
 
-**Toolkit:**
+**Method:** Read the sentence in order and turn each step into algebra. "Divide A by B" means A/B: the first thing named goes on top.
 
-- **Substituting:** put the number in brackets, especially a negative one, then use BIDMAS.
-- **Algebraic indices:** deal with the numbers first, then use the index laws on each letter.
-- **Two brackets:** multiply every term in the first bracket by every term in the second, then collect like terms.
-- **Rearranging:** undo + and − first, then × and ÷.
+**Watch out:** "subtract 10 from the number" is n − 10, but "subtract the number from 10" is 10 − n.
+
+Mia thinks of a number **n**. Write an expression, in terms of n, for the number she gets when she…
 
 ### Questions
 
-**Q11** (2 marks)
-If a = −3 and b = 5, evaluate a² − 2b.
+**Q5** (1 mark)
+…divides 12 by triple the number.
+- A) 3n/12
+- B) 12/(3n)
+- C) 12 − 3n
+- D) 3n − 12
 
-**Q12** (1 mark)
-Pens cost $p each. Sam buys 4 pens and pays with a $20 note. Which expression gives Sam's change, in dollars?
-- A) 4p − 20
-- B) 20 − 4p
-- C) 24 − p
-- D) 20 − p + 4
+**Q6** (1 mark)
+…squares the number, then adds 5.
 
-**Q13** (1 mark)
-Simplify: 5a³b × 2ab⁴
-- A) 10a³b⁴
-- B) 7a⁴b⁵
-- C) 10a⁴b⁵
-- D) 10a⁴b⁴
+**Q7** (2 marks)
+(a) …subtracts the number from 8.\
+(b) …divides 20 by one more than the number.
 
-**Q14** (1 mark)
-Simplify: (3y²)³
+---
 
-**Q15** (1 mark)
-Expand: 4x(2x − 3)
+## Section C: Simplifying Expressions with Indices
+
+*Like Question 3 on the test — 5 questions, 6 marks*
+
+**Method:** Deal with the numbers and the letters separately.
+
+- **Multiplying terms:** multiply the numbers, add the powers.
+- **Dividing terms:** divide the numbers (simplify like a fraction), subtract the powers.
+- **Adding or subtracting like terms:** add or subtract the numbers in front. The power stays the same.
+
+**Watch out:** in a × or ÷ question, the numbers are multiplied or divided, never added or subtracted. And any letter divided by itself, like p⁴ ÷ p⁴, is 1.
+
+### Questions
+
+**Q8** (1 mark)
+Simplify: 4a³ × 5a²
+
+**Q9** (1 mark)
+Simplify: 2h⁵ + 4h⁵ − 7h⁵
+- A) −h¹⁵
+- B) −1
+- C) 6h¹⁰ − 7h⁵
+- D) −h⁵
+
+**Q10** (1 mark)
+Simplify: 18c⁷ / 6c⁴
+
+**Q11** (1 mark)
+Simplify: 12w⁶ / 8w⁶
+- A) 3/2
+- B) 4
+- C) 4w
+- D) 3w/2
+
+**Q12** (2 marks)
+Simplify: 21k⁵ / 14k²
+
+---
+
+## Section D: Expanding Double Brackets
+
+*Like Question 4 on the test — 4 questions, 8 marks*
+
+**Method:** Multiply each term in the first bracket by each term in the second, giving four terms. Then collect the two middle terms.
+
+**Watch out for signs:**
+
+- negative × negative = **positive**, and negative × positive = **negative**
+- when collecting the middle terms, use the number line: −3m + 4m = +m, and −20n − 10n = −30n
+
+### Questions
+
+**Q13** (2 marks)
+Expand and simplify: (y − 6)(y − 2)
+- A) y² − 8y − 12
+- B) y² − 8y + 12
+- C) y² − 4y + 12
+- D) y² + 8y + 12
+
+**Q14** (2 marks)
+Expand and simplify: (m + 5)(m − 2)
+
+**Q15** (2 marks)
+Expand and simplify: (p − 10)(p − 30)
+- A) p² − 20p + 300
+- B) p² − 40p − 300
+- C) p² − 40p + 300
+- D) p² + 40p + 300
 
 **Q16** (2 marks)
-Expand and simplify: (x − 5)(x − 3)
-- A) x² − 8x + 15
-- B) x² − 2x + 15
-- C) x² − 8x − 15
-- D) x² + 8x + 15
+Expand and simplify: (3x + 2)(2x − 5)
 
-**Q17** (2 marks)
-Expand and simplify: (2x + 1)(x + 4)
+---
 
-**Q18** (1 mark)
-Simplify: (12x − 8) / 4
-- A) 3x − 8
-- B) 12x − 2
-- C) 8x
-- D) 3x − 2
+## Section E: Adding & Subtracting Algebraic Fractions
+
+*Like Question 5 on the test — 2 questions, 3 marks*
+
+**Method:** Fractions can only be added or subtracted when the denominators (bottom numbers) are the same.
+
+1. If they are different, change one or both fractions so they share a common denominator. Multiply the top and bottom by the same number.
+2. Add or subtract the numerators (top). The denominator stays as it is.
+
+**Worked example** (not on the test): a/4 + b/12 → 3a/12 + b/12 = **(3a + b)/12**
+
+**Watch out:** do not add the denominators, and do not multiply the fractions across.
+
+### Questions
+
+**Q17** (1 mark)
+Simplify: a/3 + b/3
+- A) (a + b)/3
+- B) (a + b)/6
+- C) ab/3
+- D) (a + b)/9
+
+**Q18** (2 marks)
+Simplify, writing each as a single fraction:\
+(a) 3x/10 + y/5\
+(b) 7a/8 − b/24
+
+---
+
+## Section F: Changing the Subject of a Formula
+
+*Like Question 6 on the test — 2 questions, 4 marks*
+
+**Method:** Undo what has been done to x, one step at a time, doing the same to **both** sides. Undo + and − first, then × and ÷.
+
+**Watch out:** when you multiply one side by a number, multiply the **whole** of the other side, and put it in brackets first: 3 × (y − w), not 3y − w.
+
+### Questions
 
 **Q19** (2 marks)
-Rearrange y = 3x − 7 to make x the subject.
+Make x the subject of y = w + x/3
 
-**Q20** (3 marks)
-A taxi charges a fixed $4, plus $2.50 for every kilometre.\
-(a) Write a formula for the cost, C dollars, of a journey of d kilometres.\
-(b) Use your formula to find the cost of a 12 km journey.\
-(c) Rearrange your formula to make d the subject.
+**Q20** (2 marks)
+Make x the subject of y = (x + k)/4m
+- A) x = 4my + k
+- B) x = (y − k)/4m
+- C) x = 4m(y + k)
+- D) x = 4my − k
 
 ---
 
 ## Mark Breakdown
 
-| Part | Topic | Questions | Marks |
-|------|-------|-----------|-------|
-| A | Numbers & Calculations (Unit 1) | Q1–Q10 | 14 |
-| B | Expressions & Formulae (Unit 2) | Q11–Q20 | 16 |
-| **Total** | | **20** | **30** |
-
-By skill:
-
-| Skill | Questions | Marks |
-|-------|-----------|-------|
-| Rational, irrational numbers & surds | Q1–Q4 | 5 |
-| Laws of indices | Q5–Q7 | 4 |
-| Standard form | Q8–Q10 | 5 |
-| Substituting & constructing expressions | Q11–Q12 | 3 |
-| Expressions and indices | Q13–Q14 | 2 |
-| Expanding brackets | Q15–Q17 | 5 |
-| Algebraic fractions | Q18 | 1 |
-| Rearranging & using formulae | Q19–Q20 | 5 |
+| Section | Topic | Test question it practises | Questions | Marks |
+|---------|-------|---------------------------|-----------|-------|
+| A | Substituting into expressions | Q1 | Q1–Q4 | 7 |
+| B | Writing expressions | Q2 | Q5–Q7 | 4 |
+| C | Simplifying with indices | Q3 | Q8–Q12 | 6 |
+| D | Expanding double brackets | Q4 | Q13–Q16 | 8 |
+| E | Adding & subtracting algebraic fractions | Q5 | Q17–Q18 | 3 |
+| F | Changing the subject | Q6 | Q19–Q20 | 4 |
+| **Total** | | | **20** | **32** |
 
 ---
 
@@ -168,29 +216,27 @@ Leave blank space below each question for students to write their working and fi
 
 *For marking after the test is finished.*
 
-| Q | Answer | Working / marking notes |
-|---|--------|-------------------------|
-| 1 | **C** | 13 is not a perfect square, so √13 never ends or repeats. √36 = 6, 0.444… = 4/9 and −7/2 are all rational. |
-| 2 | **A** | √(4/9) = 2/3, which is rational, so it is not a surd. |
-| 3 | **8 and 9** | 64 < 75 < 81, so √64 = 8 < √75 < √81 = 9. |
-| 4 | **Rational** | 1 mark for "rational". 1 mark for a reason: the decimal repeats forever, so it can be written as a fraction (0.2727… = 27/99 = 3/11). |
-| 5 | **6⁴** | 5 + 3 − 4 = 4 |
-| 6 | **B** | (x⁴)³ = x¹², then x¹² ÷ x⁵ = x⁷. (x² comes from adding 4 + 3 instead of multiplying.) |
-| 7 | **9/8** (or 1⅛) | 1 mark: 10⁰ = 1 and 2⁻³ = 1/8. 1 mark: 1 + 1/8 = 9/8. |
-| 8 | **D** | The point moves 4 places right to 3.05, so the power is −4. |
-| 9 | **(a) 5 080 000 (b) 4.27 × 10⁴** | 1 mark each. |
-| 10 | **2.4 × 10⁴** | 1 mark: 6 × 4 = 24 and 10⁵ × 10⁻² = 10³, giving 24 × 10³. 1 mark: 24 is not between 1 and 10, so it becomes 2.4 × 10⁴. |
-| 11 | **−1** | 1 mark: a² = (−3)² = 9 (not −9). 1 mark: 9 − 2(5) = 9 − 10 = −1. |
-| 12 | **B** | 4 pens cost 4p, and that is taken away from the $20. |
-| 13 | **C** | 5 × 2 = 10, a³ × a = a⁴, b × b⁴ = b⁵ |
-| 14 | **27y⁶** | 3³ = 27 and (y²)³ = y⁶. (9y⁶ or 27y⁵ are common slips.) |
-| 15 | **8x² − 12x** | 4x × 2x = 8x² and 4x × (−3) = −12x |
-| 16 | **A** | x² − 3x − 5x + 15 = x² − 8x + 15. Negative × negative gives +15. |
-| 17 | **2x² + 9x + 4** | 1 mark: all four terms 2x² + 8x + x + 4. 1 mark: collected to 2x² + 9x + 4. |
-| 18 | **D** | Divide **both** terms by 4: 12x ÷ 4 = 3x and 8 ÷ 4 = 2. |
-| 19 | **x = (y + 7) / 3** | 1 mark: add 7 to both sides, y + 7 = 3x. 1 mark: divide by 3. |
-| 20 | **(a) C = 4 + 2.5d (b) $34 (c) d = (C − 4) / 2.5** | 1 mark each. (b) 4 + 2.5 × 12 = 4 + 30 = 34. (c) C − 4 = 2.5d, then divide by 2.5. |
+- **Q1 — 24.** ab = 3 × (−2) = −6 and cd = 6 × (−5) = −30. Then −6 − (−30) = −6 + 30 = 24.
+- **Q2 — −9.** 1 mark: bc/a = (−2 × 6)/3 = −12/3 = −4. 1 mark: −4 + (−5) = −9.
+- **Q3 — −18.** 1 mark: bracket first, 3w − y = 6 − (−3) = 9. 1 mark: z × 9 = −2 × 9 = −18.
+- **Q4 — C.** Bracket: 2x − y = 8 − (−3) = 11. Multiply by z: −2 × 11 = −22. Add w last: 2 + (−22) = −20. (−44 comes from multiplying w in too, and 0 from adding w + z first.)
+- **Q5 — B.** The first thing named, 12, goes on top: 12 divided by 3n.
+- **Q6 — n² + 5.**
+- **Q7 — (a) 8 − n (b) 20/(n + 1).** 1 mark each. In (a), the number is taken away from 8, so 8 comes first.
+- **Q8 — 20a⁵.** 4 × 5 = 20 (not 4 + 5), and a³ × a² = a⁵.
+- **Q9 — D.** These are like terms, so only the numbers change: 2 + 4 − 7 = −1, giving −1h⁵ = −h⁵. The power stays 5.
+- **Q10 — 3c³.** 18 ÷ 6 = 3 (not 18 − 6), and c⁷ ÷ c⁴ = c³.
+- **Q11 — A.** 12/8 simplifies to 3/2, and w⁶ ÷ w⁶ = w⁰ = 1, so no w is left.
+- **Q12 — 3k³/2 (or 1.5k³).** 1 mark: 21/14 = 3/2 (divide both by 7). 1 mark: k⁵ ÷ k² = k³.
+- **Q13 — B.** y² − 2y − 6y + 12. −6 × −2 = +12, and −2y − 6y = −8y.
+- **Q14 — m² + 3m − 10.** 1 mark: all four terms m² − 2m + 5m − 10. 1 mark: collected to m² + 3m − 10.
+- **Q15 — C.** p² − 30p − 10p + 300. −10 × −30 = +300, and −30p − 10p = −40p.
+- **Q16 — 6x² − 11x − 10.** 1 mark: all four terms 6x² − 15x + 4x − 10. 1 mark: collected to 6x² − 11x − 10.
+- **Q17 — A.** The denominators are already the same, so add the numerators and keep the 3.
+- **Q18 — (a) (3x + 2y)/10 (b) (21a − b)/24.** 1 mark each. (a) y/5 = 2y/10, then add. (b) 7a/8 = 21a/24, then subtract.
+- **Q19 — x = 3(y − w) (or x = 3y − 3w).** 1 mark: subtract w, y − w = x/3. 1 mark: multiply the whole side by 3. (3y − w is wrong: the w must be multiplied by 3 too.)
+- **Q20 — D.** Multiply both sides by 4m: 4my = x + k. Then subtract k: x = 4my − k.
 
 ---
 
-*Source: new questions written for the Unit Test 2 retest, with the same scope as `s2/t1/term1-maths-unit2-revision.md`. There is no interactive version: check answers with the answer key above, or practise each topic again on `s2/t1/w2/term1-week2-maths-rational-irrational.html`, `s2/t1/w2/term1-week2-maths-indices-standard-form.html` and `s2/t1/w5/term1-week5-maths-expressions-formulae.html`.*
+*Source: new questions written for the Unit Test 2 retest, following the six question types on the marked Unit Test 2 paper (photos in `material/math/s2/t1/unit2/`). There is no interactive version: check answers with the answer key above, or practise each topic again on `s2/t1/w5/term1-week5-maths-expressions-formulae.html`.*
