@@ -47,6 +47,7 @@ cambridge-practice/
 │   └── t1/                          ← Term 1
 │       ├── README.md                     ← Worksheet index (interactive + printable)
 │       ├── term1-maths-unit1-revision.md   ← Revision handout, spans Ch 1.1–1.3 (53 q, 69 marks)
+│       ├── term1-maths-unit2-practice-test.md ← Unit Test 2 Practice Test: Ch 1.1–1.3 & 2.1–2.6 (20 q, 30 marks; 12 open + 8 MCQ, answer key included)
 │       ├── term1-english-unit1-revision.*  ← Revision handout: Sentence Types + Reading Comprehension (42 q, 50 marks; .md also has 4 extended writing tasks)
 │       ├── term1-english-unit1-summary.md  ← Summary of key concepts from the English revision handout
 │       ├── term1-english-unit1-quick-test.md  ← 15 open-ended questions for rapid review
@@ -161,6 +162,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Science Unit Test 1 Revision (Atomic Structure, Periodic Table & Bonding) | Secondary 2 | ✅ Unit Test 1, 26 Aug 2026 |
 | Science Unit Test 2 (Plant Biology) | Secondary 2 | ✅ Term 1 Week 7 · Unit Test 2, 10 Sep 2026 |
 | English Unit Test 2 (Viewpoints & Arguments, Past Continuous, Subject–Verb Agreement) | Secondary 2 | ✅ Term 1 Week 7 · Unit Test 2, 10 Sep 2026 |
+| Mathematics Unit Test 2 Practice Test (Numbers, Expressions & Formulae) | Secondary 2 | ✅ Unit Test 2 retest, 16 Sep 2026 |
 | Mathematics Unit Test 3 (Decimals, Percentages & Rounding) | Secondary 2 | ✅ Term 1 Week 8 · Unit Test 3 |
 | Mathematics Unit 3 Follow-up (Bounds & Powers) | Secondary 2 | ✅ Term 1 Week 8 · After Unit Test 3 |
 | Mathematics Unit 3 Retest (Bounds & Significant Figures) | Secondary 2 | ✅ Term 1 Week 8 · After the Follow-up |
