@@ -220,6 +220,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <!-- ═══════════════ SECTION A: WHAT IS A SOLUTION? ═══════════════ -->
 <div id="intro">
   <div class="section-header"><div class="section-icon">?</div><div><div class="sub-label">Section A &middot; The Idea</div><h2>What Is a Solution?</h2></div></div>
+  <div class="info-box"><strong>Why should I care?</strong> Simultaneous equations are how you find <strong>two mystery numbers from two clues</strong>. That happens all the time:<ul><li><strong>Shopping:</strong> 2 coffees and 1 cake cost $8; 1 coffee and 1 cake cost $5. One clue alone cannot tell you the price of a coffee — both together can.</li><li><strong>Choosing a phone plan:</strong> plan A is $10 a month + $2 per GB, plan B is $25 a month + $0.50 per GB. At how many GB do they cost the same? Where the two lines cross — try the <em>phone plans</em> button in the Graph Explorer (Section C).</li><li><strong>Break-even:</strong> a T-shirt shop spends $500 plus $3 per shirt and sells each for $8. How many shirts before it makes a profit? Where the cost line meets the income line.</li><li><strong>Later on:</strong> the same idea finds where supply meets demand in economics, when one car catches up with another in physics, and it powers the software that solves systems with thousands of unknowns.</li></ul></div>
   <div class="info-box"><strong>One equation is not enough.</strong> <span class="math-expr">x + y = 10</span> has lots of answers: <em>x</em> = 1 and <em>y</em> = 9, <em>x</em> = 2 and <em>y</em> = 8, <em>x</em> = 7.5 and <em>y</em> = 2.5, and so on for ever. Two unknowns need <strong>two clues</strong>.</div>
   <div class="info-box"><strong>A second equation narrows it down.</strong> Add the clue <span class="math-expr">x − y = 4</span>. Of all the pairs that add up to 10, only <em>x</em> = 7 and <em>y</em> = 3 also have a difference of 4. Two equations that must be true <strong>at the same time</strong> are called <strong>simultaneous equations</strong>, and their solution is one pair of values: <em>x</em> = 7, <em>y</em> = 3, often written as the point (7, 3).</div>
   <div class="info-box">There are three ways to find that one pair. This sheet practises all three, then mixes them:</div>
@@ -415,6 +416,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="ex-steps" id="gx-steps"></div>
     <div class="sim-controls">
       <button class="sim-btn" onclick="gxPreset(3,-2,1,4)">y = 3x − 2 &middot; y = x + 4</button>
+      <button class="sim-btn" onclick="gxPreset(2,10,0.5,25)">phone plans</button>
       <button class="sim-btn" onclick="gxPreset(2,1,-1,5)">crossing between gridlines</button>
       <button class="sim-btn" onclick="gxPreset(2,1,2,-3)">parallel lines</button>
     </div>

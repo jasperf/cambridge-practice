@@ -11,6 +11,12 @@ Practice for Exercise 4.2. Section A explains what simultaneous equations are an
 
 ## Section A: What Is a Solution?
 
+**Why should I care?** Simultaneous equations are how you find **two mystery numbers from two clues**. That happens all the time:
+- **Shopping:** 2 coffees and 1 cake cost $8; 1 coffee and 1 cake cost $5. One clue alone cannot tell you the price of a coffee — both together can.
+- **Choosing a phone plan:** plan A is $10 a month + $2 per GB, plan B is $25 a month + $0.50 per GB. At how many GB do they cost the same? Where the two lines cross — try the *phone plans* button in the Graph Explorer (Section C).
+- **Break-even:** a T-shirt shop spends $500 plus $3 per shirt and sells each for $8. How many shirts before it makes a profit? Where the cost line meets the income line.
+- **Later on:** the same idea finds where supply meets demand in economics, when one car catches up with another in physics, and it powers the software that solves systems with thousands of unknowns.
+
 **One equation is not enough.** x + y = 10 has lots of answers: *x* = 1 and *y* = 9, *x* = 2 and *y* = 8, *x* = 7.5 and *y* = 2.5, and so on for ever. Two unknowns need **two clues**.
 
 **A second equation narrows it down.** Add the clue x − y = 4. Of all the pairs that add up to 10, only *x* = 7 and *y* = 3 also have a difference of 4. Two equations that must be true **at the same time** are called **simultaneous equations**, and their solution is one pair of values: *x* = 7, *y* = 3, often written as the point (7, 3).
@@ -101,7 +107,7 @@ Sam solves y = 3x + 2 and y = x + 10. He writes: 3*x* − *x* = 10 + 2, so 2*x* 
 
 **Limits of graphs:** a graph is only as exact as your drawing and the grid. Use the explorer below to see what happens when the crossing is not on a gridline, and when the two lines never meet.
 
-*On the interactive sheet, a Graph Explorer lets you type any two lines y = mx + c, draws them, marks the crossing point and shows the substitution steps. Its presets show a crossing between gridlines and two parallel lines that never meet (no solution).*
+*On the interactive sheet, a Graph Explorer lets you type any two lines y = mx + c, draws them, marks the crossing point and shows the substitution steps. Its presets show the phone-plan example (y = 2x + 10 and y = 0.5x + 25 cross at 10 GB, $30), a crossing between gridlines and two parallel lines that never meet (no solution).*
 
 ### Questions
 
