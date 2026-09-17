@@ -144,22 +144,54 @@ Mia draws y = 2x + 1 and y = 5 − x. Their crossing point is at *x* = 1⅓, *y*
 
 **Why it works:** both equations are true, so you can add them together (left side + left side = right side + right side) and the result is still true. If you choose well, one letter **cancels out** (is *eliminated*) and only one letter is left.
 
-**Add or subtract? Look at the letter you want to get rid of.**
-- x + y = 12 and x − y = 2: one has **+y**, the other **−y**. Adding gives +*y* − *y* = 0*y*. **Add:** 2*x* = 14, so *x* = 7.
-- x + 5y = 23 and x + 2y = 11: both have **+x**. Subtracting gives *x* − *x* = 0*x*. **Subtract:** 3*y* = 12, so *y* = 4.
+**Stack the equations, like the workbook.** Write one equation under the other, with *x* under *x*, *y* under *y* and the numbers under the numbers. Then look at the letter you want to get rid of, and work down each column:
 
-**Then finish like substitution:** put the value you found into the **first** equation to find the other letter (7 + *y* = 12, so *y* = 5), **check** in the second equation (7 − 5 = 2 ✓), and write both answers.
+```text
+    x + y = 12
++   x − y = 2
+  ------------
+  2x + 0y = 14
+```
+
+**+y and −y → add.** *y* + (−*y*) = 0*y*, so 2*x* = 14 and *x* = 7.
+
+```text
+   x + 5y = 23
+−  x + 2y = 11
+  ------------
+  0x + 3y = 12
+```
+
+**+x and +x → subtract** every column: *x* − *x*, 5*y* − 2*y*, 23 − 11. So 3*y* = 12 and *y* = 4.
+
+**Then finish like substitution:** put the value you found into the **first** equation to find the other letter (in the first stack: 7 + *y* = 12, so *y* = 5), **check** in the second equation (7 − 5 = 2 ✓), and write both answers.
 
 ### Questions
 
 **Q15** (1 mark)
 Solve x + y = 15 and x − y = 7 by adding the equations. What is *x*?
 
+```text
+    x + y = 15
++   x − y = 7
+  ------------
+  2x + 0y = ?
+```
+
+
 **Q16** (1 mark)
 Same equations, x + y = 15 and x − y = 7. What is *y*?
 
 **Q17** (1 mark)
-What do you get when you **subtract** x + 2y = 13 from x + 4y = 23?
+Complete the stack: what do you get when you **subtract** x + 2y = 13 from x + 4y = 23?
+
+```text
+  x + 4y = 23
+− x + 2y = 13
+  -----------
+       ? = ?
+```
+
 - A) 2*y* = 10
 - B) 6*y* = 36
 - C) 2*x* + 6*y* = 36
@@ -169,7 +201,15 @@ What do you get when you **subtract** x + 2y = 13 from x + 4y = 23?
 Same equations, x + 4y = 23 and x + 2y = 13. Find *y*, then work out *x*. What is *x*?
 
 **Q19** (2 marks)
-Solve 2x + 3y = 24 and 4x − 3y = 12.
+Solve 2x + 3y = 24 and 4x − 3y = 12. Stack them and choose: add or subtract?
+
+```text
+  2x + 3y = 24
+? 4x − 3y = 12
+  ------------
+        ? = ?
+```
+
 *x* = ______ , *y* = ______
 
 **Q20** (1 mark)

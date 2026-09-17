@@ -87,6 +87,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 .q-graph { max-width: 400px; margin-bottom: 14px; }
 .q-body .kind-table { min-width: 0; max-width: 420px; }
 .num-row .num-input + .num-unit { margin-left: 8px; }
+.stack-row { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 10px; }
+.stack-wrap { flex: 1 1 220px; }
+.stack { display: inline-grid; grid-template-columns: 1.2em auto auto auto; column-gap: 8px; font-family: var(--font-mono); font-size: 1rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; }
+.stack > span:nth-of-type(4n+2) { text-align: right; }
+.stack > span:nth-of-type(4n+1) { color: var(--accent-warn); }
+.stack-rule { grid-column: 1 / -1; border-top: 1.5px solid var(--text-muted); margin: 3px 0; }
+.stack-cap { font-size: 0.84rem; margin-top: 6px; }
+.q-stack { margin: 0 0 14px; }
 .q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
 .q-card.answered-correct { border-color: var(--correct); }
 .q-card.answered-wrong { border-color: var(--wrong); }
@@ -505,14 +513,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <div id="elimination">
   <div class="section-header"><div class="section-icon">&plusmn;</div><div><div class="sub-label">Section D &middot; Workbook Q4 &amp; Q9</div><h2>The Method of Elimination</h2></div></div>
   <div class="info-box"><strong>Why it works:</strong> both equations are true, so you can add them together (left side + left side = right side + right side) and the result is still true. If you choose well, one letter <strong>cancels out</strong> (is <em>eliminated</em>) and only one letter is left.</div>
-  <div class="info-box"><strong>Add or subtract? Look at the letter you want to get rid of.</strong><ul><li><span class="math-expr">x + y = 12</span> and <span class="math-expr">x − y = 2</span>: one has <strong>+y</strong>, the other <strong>−y</strong>. Adding gives +<em>y</em> − <em>y</em> = 0<em>y</em>. <strong>Add:</strong> 2<em>x</em> = 14, so <em>x</em> = 7.</li><li><span class="math-expr">x + 5y = 23</span> and <span class="math-expr">x + 2y = 11</span>: both have <strong>+x</strong>. Subtracting gives <em>x</em> − <em>x</em> = 0<em>x</em>. <strong>Subtract:</strong> 3<em>y</em> = 12, so <em>y</em> = 4.</li></ul></div>
-  <div class="info-box"><strong>Then finish like substitution:</strong> put the value you found into the <strong>first</strong> equation to find the other letter (7 + <em>y</em> = 12, so <em>y</em> = 5), <strong>check</strong> in the second equation (7 − 5 = 2 ✓), and write both answers.</div>
+  <div class="info-box"><strong>Stack the equations, like the workbook.</strong> Write one equation under the other, with <em>x</em> under <em>x</em>, <em>y</em> under <em>y</em> and the numbers under the numbers. Then look at the letter you want to get rid of, and work down each column:<div class="stack-row"><div class="stack-wrap"><div class="stack"><span></span><span>x + y</span><span>=</span><span>12</span><span>+</span><span>x − y</span><span>=</span><span>2</span><i class="stack-rule"></i><span></span><span>2x + 0y</span><span>=</span><span>14</span></div><div class="stack-cap"><strong>+y and −y → add.</strong> <em>y</em> + (−<em>y</em>) = 0<em>y</em>, so 2<em>x</em> = 14 and <em>x</em> = 7.</div></div><div class="stack-wrap"><div class="stack"><span></span><span>x + 5y</span><span>=</span><span>23</span><span>−</span><span>x + 2y</span><span>=</span><span>11</span><i class="stack-rule"></i><span></span><span>0x + 3y</span><span>=</span><span>12</span></div><div class="stack-cap"><strong>+x and +x → subtract</strong> every column: <em>x</em> − <em>x</em>, 5<em>y</em> − 2<em>y</em>, 23 − 11. So 3<em>y</em> = 12 and <em>y</em> = 4.</div></div></div></div>
+  <div class="info-box"><strong>Then finish like substitution:</strong> put the value you found into the <strong>first</strong> equation to find the other letter (in the first stack: 7 + <em>y</em> = 12, so <em>y</em> = 5), <strong>check</strong> in the second equation (7 − 5 = 2 ✓), and write both answers.</div>
 
   <!-- Q15 -->
   <div class="q-card" id="qcard-el1">
     <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Solve <span class="math-expr">x + y = 15</span> and <span class="math-expr">x − y = 7</span> by adding the equations. What is <em>x</em>?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="el1-ans" placeholder="Enter answer..."></div>
+      <div class="stack-row q-stack"><div class="stack-wrap"><div class="stack"><span></span><span>x + y</span><span>=</span><span>15</span><span>+</span><span>x − y</span><span>=</span><span>7</span><i class="stack-rule"></i><span></span><span>2x + 0y</span><span>=</span><span>?</span></div></div></div><div class="num-row"><input type="number" step="any" class="num-input" id="el1-ans" placeholder="Enter answer..."></div>
       <div class="q-actions">
         <button class="btn btn-check" onclick="checkNum('el1',11,'Q15')">Check</button>
         <button class="btn btn-hint" onclick="showHint('el1','Adding gives 2<i>x</i> + 0<i>y</i> = 15 + 7. Then divide by 2.')">Hint</button>
@@ -538,9 +546,9 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q17 -->
   <div class="q-card" id="qcard-el3">
-    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">What do you get when you <strong>subtract</strong> <span class="math-expr">x + 2y = 13</span> from <span class="math-expr">x + 4y = 23</span>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Complete the stack: what do you get when you <strong>subtract</strong> <span class="math-expr">x + 2y = 13</span> from <span class="math-expr">x + 4y = 23</span>?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="el3-opts">
+      <div class="stack-row q-stack"><div class="stack-wrap"><div class="stack"><span></span><span>x + 4y</span><span>=</span><span>23</span><span>−</span><span>x + 2y</span><span>=</span><span>13</span><i class="stack-rule"></i><span></span><span>?</span><span>=</span><span>?</span></div></div></div><div class="mcq-options" id="el3-opts">
         <div class="mcq-opt" onclick="selectMCQ('el3', this, 'a')"><div class="opt-indicator"></div><span>2<em>y</em> = 10</span></div>
         <div class="mcq-opt" onclick="selectMCQ('el3', this, 'b')"><div class="opt-indicator"></div><span>6<em>y</em> = 36</span></div>
         <div class="mcq-opt" onclick="selectMCQ('el3', this, 'c')"><div class="opt-indicator"></div><span>2<em>x</em> + 6<em>y</em> = 36</span></div>
@@ -571,9 +579,9 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
   <!-- Q19 -->
   <div class="q-card" id="qcard-el5">
-    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Solve <span class="math-expr">2x + 3y = 24</span> and <span class="math-expr">4x − 3y = 12</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Solve <span class="math-expr">2x + 3y = 24</span> and <span class="math-expr">4x − 3y = 12</span>. Stack them and choose: add or subtract?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
-      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="el5-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="el5-y" placeholder="y"></div>
+      <div class="stack-row q-stack"><div class="stack-wrap"><div class="stack"><span></span><span>2x + 3y</span><span>=</span><span>24</span><span>?</span><span>4x − 3y</span><span>=</span><span>12</span><i class="stack-rule"></i><span></span><span>?</span><span>=</span><span>?</span></div></div></div><div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="el5-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="el5-y" placeholder="y"></div>
       <div class="q-actions">
         <button class="btn btn-check" onclick="checkPair('el5',6,4,'Q19')">Check</button>
         <button class="btn btn-hint" onclick="showHint('el5','+3<i>y</i> and −3<i>y</i>: add the equations. Then substitute <i>x</i> into 2<i>x</i> + 3<i>y</i> = 24.')">Hint</button>
