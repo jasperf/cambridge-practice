@@ -113,6 +113,7 @@ Its printable `.md` has the same 45 questions **plus six extended-answer questio
 | **Unit 3 Follow-up: Bounds & Powers** — Unit 3 (3.1, 3.3, 3.4) | 31 | 40 | [.md](./w8/term1-week8-maths-unit3-bounds-powers-practice.md) | [.html](./w8/term1-week8-maths-unit3-bounds-powers-practice.html) |
 | **Unit 3 Retest: Bounds & Significant Figures** — Unit 3 (3.4) | 34 | 40 | [.md](./w8/term1-week8-maths-unit3-bounds-sigfigs-retest.md) | [.html](./w8/term1-week8-maths-unit3-bounds-sigfigs-retest.html) |
 | **Unit 3 Practice Test: 20 Open Questions** — Unit 3 (3.1–3.4) | 20 | 25 | [.md](./w8/term1-week8-maths-unit3-open-questions.md) | [.html](./w8/term1-week8-maths-unit3-open-questions.html) |
+| **Simultaneous Equations** — Unit 4.2 | 33 | 45 | [.md](./w8/term1-week8-maths-unit4-simultaneous-equations.md) | [.html](./w8/term1-week8-maths-unit4-simultaneous-equations.html) |
 
 ### Maths Unit Test 3
 
@@ -131,6 +132,12 @@ The **Unit 3 Retest: Bounds & Significant Figures** sheet was written after the 
 The **Unit 3 Practice Test: 20 Open Questions** sheet is one more round on the whole unit, with no multiple choice: every answer is typed in. Part A is ten quick one-line questions, one skill each (powers of 10, decimals, a percentage multiplier, significant figures and bounds). Part B is five short stories — a microscope (powers of 10), a bakery (decimals), a double discount (successive percentages), a viral video (repeated percentage growth) and a goods lift (bounds, where 450 ÷ 30 = 15 crates is the trap and 14 is the safe answer). The last two stories end with animations — a growing bar chart of views against a 10 000 target, and crates loaded at their heaviest possible mass against the lift's lowest possible limit — which unlock only once their questions are answered, so they explain rather than give away the answers. Results are broken down by skill as well as by part. Its printable `.md` has the same 20 questions (the animations are described in words) and no extra written questions.
 
 Source material for Unit 3: `material/math/s2/t1/unit3/` (textbook photos).
+
+### Maths Unit 4.2: Simultaneous Equations
+
+The **Simultaneous Equations** sheet is practice for Exercise 4.2 of the Cambridge Lower Secondary Maths Workbook 9. All questions are new (none are copied from the workbook), so the workbook exercise can still be done on its own. It starts by explaining the idea — one equation with two unknowns has endless answers, a second equation narrows it to one pair, and that pair must make both equations true — with a table of the three methods and when to use each. It then teaches them one per section, each with a worked example in the workbook's four steps (work out *x*, work out *y*, check, write the answers): **substitution** for two *y* = equations, the **graphical method** (tables of values and reading the crossing point), and **elimination** (add when the signs differ, subtract when they match). Sections E and F mix the methods and turn word problems into pairs of equations. An interactive **Graph Explorer** draws any two lines *y* = *mx* + *c*, marks where they cross and shows the matching substitution steps, with presets for a crossing between gridlines and for parallel lines with no solution. Pair answers are typed as *x* and *y* separately; there are 9 multiple-choice questions among the 33. Its printable `.md` has the same 33 questions (the Explorer and the Q13 graph are described in words) **plus four written questions** (Q34–Q37) — solving one pair both graphically and algebraically, comparing the methods, a two-prices word problem and an equation-cards chain — that are not on the interactive sheet and are not auto-marked.
+
+Source material for Unit 4.2: `material/math/s2/t1/unit4/` (workbook photos, Exercise 4.2).
 
 Source material for the Level 2/3 strand: `material/english/s2/t1/viewpoints-arguments/`.
 
@@ -236,7 +243,9 @@ cambridge-practice/
 │           ├── term1-week8-maths-unit3-bounds-sigfigs-retest.html  ← Interactive (bounds & sig figs retest)
 │           ├── term1-week8-maths-unit3-bounds-sigfigs-retest.md    ← Printable (+4 written q)
 │           ├── term1-week8-maths-unit3-open-questions.html         ← Interactive (20 open questions)
-│           └── term1-week8-maths-unit3-open-questions.md           ← Printable
+│           ├── term1-week8-maths-unit3-open-questions.md           ← Printable
+│           ├── term1-week8-maths-unit4-simultaneous-equations.html ← Interactive (Unit 4.2)
+│           └── term1-week8-maths-unit4-simultaneous-equations.md   ← Printable (+4 written q)
 ```
 
 ## See Also
