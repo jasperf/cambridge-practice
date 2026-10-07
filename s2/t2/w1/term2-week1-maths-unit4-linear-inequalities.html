@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linear Inequalities &middot; Unit 4.3</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: rgba(79,142,247,0.15); font-family: var(--font-mono); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box ol { margin: 6px 0 0 20px; }
+.kind-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.kind-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 520px; }
+.kind-table th, .kind-table td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+.kind-table th { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); background: var(--surface2); letter-spacing: 0.5px; }
+.kind-table td strong { color: var(--accent-sci); }
+.sim { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin: 16px 0 24px; }
+.sim-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+.sim-svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.sim-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.sim-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.sim-btn:hover { border-color: var(--accent-math); color: var(--text); }
+.ex-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; max-width: 560px; margin: 0 auto 14px; }
+.ex-inputs label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-inputs input, .ex-inputs select { width: 100%; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 7px 10px; outline: none; }
+.ex-inputs input:focus, .ex-inputs select:focus { border-color: var(--accent-math); }
+.ex-slider { max-width: 560px; margin: 12px auto 0; }
+.ex-slider label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-slider input[type=range] { width: 100%; accent-color: var(--accent-warn); }
+.ex-steps { max-width: 560px; margin: 14px auto 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+.ex-steps b { color: var(--text); }
+.ex-ineq { display: inline-block; font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-sci); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; margin: 6px 0; }
+@media (max-width: 600px) { .ex-inputs { grid-template-columns: 1fr; } .sim { padding: 12px; } }
+.info-box ul { margin: 6px 0 0 20px; }
+.gx-inputs { display: flex; flex-direction: column; gap: 8px; max-width: 560px; margin: 0 auto 14px; }
+.gx-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.85rem; }
+.gx-l1 span:first-child { color: var(--accent-math); }
+.gx-l2 span:first-child { color: var(--accent-sci); }
+.gx-line input { width: 74px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 6px 8px; outline: none; text-align: center; }
+.gx-line input:focus { border-color: var(--accent-math); }
+.q-graph { max-width: 400px; margin-bottom: 14px; }
+.q-body .kind-table { min-width: 0; max-width: 420px; }
+.num-row .num-input + .num-unit { margin-left: 8px; }
+.stack-row { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 10px; }
+.stack-wrap { flex: 1 1 220px; }
+.stack { display: inline-grid; grid-template-columns: 1.2em auto auto auto; column-gap: 8px; font-family: var(--font-mono); font-size: 1rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; }
+.stack > span:nth-of-type(4n+2) { text-align: right; }
+.stack > span:nth-of-type(4n+1) { color: var(--accent-warn); }
+.stack-rule { grid-column: 1 / -1; border-top: 1.5px solid var(--text-muted); margin: 3px 0; }
+.stack-cap { font-size: 0.84rem; margin-top: 6px; }
+.q-stack { margin: 0 0 14px; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.math-expr { font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; display: inline-block; margin: 2px 0; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .watch-links { justify-content: center; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+</style>
+.q-nl { max-width: 520px; margin: 0 0 14px; }
+.written-input { width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; padding: 10px 12px; resize: vertical; outline: none; }
+.written-input:focus { border-color: var(--accent-math); }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Linear Inequalities</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 46</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Unit 4.3</div>
+  <h1>Limits, Not Exact Answers<br><em>Linear Inequalities</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Symbols &amp; Words &middot; Number Lines &middot; Solving Linear Inequalities &middot; Word Problems &middot; Mixed Practice</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>36 questions &middot; self-marked &middot; 46 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#9878;&#65039; At most, at least, more than, fewer than</h3>
+  <p>Practice for Unit 4.3 (Term 2, Week 1). Section A links the four symbols to everyday words, Section B reads and draws number lines, Section C solves linear inequalities step by step (including the one new rule: flip the sign when you divide by a negative), and Section D turns word problems into inequalities. The numbers are new, so the class examples and workbook exercise are still yours to do.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=corbettmaths+linear+inequalities" target="_blank" rel="noopener">&#128250; Corbettmaths &mdash; inequalities (search)</a>
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=inequalities+word+problems+at+least+at+most" target="_blank" rel="noopener">&#128250; Inequality word problems (search)</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#intro" class="sub-tab">Symbols &amp; Words</a>
+  <a href="#numberlines" class="sub-tab">Number Lines</a>
+  <a href="#solving" class="sub-tab">Solving Linear Inequalities</a>
+  <a href="#words" class="sub-tab">Word Problems</a>
+  <a href="#mixed" class="sub-tab">Mixed Practice</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: SYMBOLS & WORDS ═══════════════ -->
+<div id="intro">
+  <div class="section-header"><div class="section-icon">&lt;</div><div><div class="sub-label">Section A &middot; The Idea</div><h2>Symbols &amp; Words</h2></div></div>
+  <div class="info-box"><strong>Why should I care?</strong> An equation says two things are <strong>exactly equal</strong>. Real life is usually looser: a budget is a limit, a target is a minimum.<ul><li><strong>Phone plans:</strong> $20 a month plus $0.50 per GB, with only $35 to spend. You do not need to use <em>exactly</em> 30 GB. You need to use <strong>at most</strong> 30 GB.</li><li><strong>Lifts and bridges:</strong> a lift can carry <strong>at most</strong> 800 kg; a bus must be <strong>less than</strong> 3.5 m tall to fit under a bridge.</li><li><strong>Targets:</strong> collect <strong>at least</strong> 160 blankets. Collecting 170 is fine.</li><li><strong>Later on:</strong> the same idea is how a shop decides how many items to sell to make a profit, and how engineers set safe limits.</li></ul></div>
+  <div class="info-box">An <strong>inequality</strong> compares two things that are not necessarily equal. There are four symbols:</div>
+  <div class="kind-table-wrap"><table class="kind-table"><thead><tr><th>Symbol</th><th>Read as</th><th>Number line circle</th></tr></thead><tbody><tr><td><span class="math-expr">x &gt; 3</span></td><td><em>x</em> is <strong>greater than</strong> 3</td><td><strong>open</strong> circle at 3 (3 itself is not allowed)</td></tr><tr><td><span class="math-expr">x &lt; 3</span></td><td><em>x</em> is <strong>less than</strong> 3</td><td><strong>open</strong> circle at 3</td></tr><tr><td><span class="math-expr">x ≥ 3</span></td><td><em>x</em> is <strong>greater than or equal to</strong> 3</td><td><strong>closed</strong> circle at 3 (3 is allowed)</td></tr><tr><td><span class="math-expr">x ≤ 3</span></td><td><em>x</em> is <strong>less than or equal to</strong> 3</td><td><strong>closed</strong> circle at 3</td></tr></tbody></table></div>
+  <div class="info-box"><strong>Words to symbols (learn these):</strong><ul><li><strong>at least</strong> means <span class="math-expr">≥</span> (the smallest it can be, or more)</li><li><strong>at most</strong> means <span class="math-expr">≤</span> (the largest it can be, or less)</li><li><strong>more than</strong> or <strong>greater than</strong> means <span class="math-expr">&gt;</span></li><li><strong>less than</strong> or <strong>fewer than</strong> means <span class="math-expr">&lt;</span></li></ul></div>
+  <div class="info-box">The pointed end of the symbol always faces the <strong>smaller</strong> side: in <span class="math-expr">x &lt; 3</span>, <em>x</em> is the smaller one.</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-in1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">A bus only runs if it has <strong>at least</strong> 18 passengers. Which inequality shows the number of passengers, <em>p</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="in1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('in1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">p ≤ 18</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">p &gt; 18</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">p ≥ 18</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">p &lt; 18</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('in1','c','Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('in1','At least means 18 or more, and 18 itself is allowed.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('in1','C — <span class="math-expr">p ≥ 18</span>. At least 18 includes 18, so the symbol needs the "or equal to" bar, and "or more" points the symbol towards bigger numbers.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="in1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-in2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">A lift can carry <strong>at most</strong> 12 people. Which inequality shows the number of people, <em>n</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="in2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('in2', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">n ≤ 12</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in2', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">n ≥ 12</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">n &lt; 12</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in2', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">n &gt; 12</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('in2','a','Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('in2','At most means 12 is the biggest allowed number.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('in2','A — <span class="math-expr">n ≤ 12</span>. At most 12 means 12 or fewer, and 12 is allowed.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="in2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-in3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Which inequality means "fewer than 7 tickets"?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="in3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('in3', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">t &gt; 7</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">t ≥ 7</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">t &lt; 7</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in3', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">t ≤ 7</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('in3','d','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('in3','Fewer than 7 does not include 7 itself.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('in3','D — <span class="math-expr">t &lt; 7</span>. Fewer than 7 stops at 6, so 7 is not allowed and the symbol has no "or equal to" bar.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="in3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-in4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Which of these numbers is <strong>not</strong> a solution of <span class="math-expr">x &gt; 5</span>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="in4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('in4', this, 'a')"><div class="opt-indicator"></div><span>5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in4', this, 'b')"><div class="opt-indicator"></div><span>7</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in4', this, 'c')"><div class="opt-indicator"></div><span>9</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in4', this, 'd')"><div class="opt-indicator"></div><span>5.5</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('in4','b','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('in4','A solution has to be strictly bigger than 5.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('in4','B — 5 is not a solution because 5 is not greater than 5. 5.5, 7 and 9 are all bigger than 5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="in4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-in5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Which of these numbers is <strong>not</strong> a solution of <span class="math-expr">x ≤ −2</span>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="in5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('in5', this, 'a')"><div class="opt-indicator"></div><span>−2</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in5', this, 'b')"><div class="opt-indicator"></div><span>−1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in5', this, 'c')"><div class="opt-indicator"></div><span>−7</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('in5', this, 'd')"><div class="opt-indicator"></div><span>−3</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('in5','c','Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('in5','On a number line, −1 is to the right of −2, so it is bigger.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('in5','C — −1 is bigger than −2, so it breaks <span class="math-expr">x ≤ −2</span>. −2 itself is allowed, and −3 and −7 are smaller than −2.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="in5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SYMBOLS &amp; WORDS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-in-fill"></div></div>
+    <div class="section-score-val" id="sec-in-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: NUMBER LINES ═══════════════ -->
+<div id="numberlines">
+  <div class="section-header"><div class="section-icon">&harr;</div><div><div class="sub-label">Section B &middot; Reading &amp; Drawing</div><h2>Number Lines</h2></div></div>
+  <div class="info-box"><strong>Reading a number line:</strong> the circle sits on the boundary number, and the arrow shows which way the allowed values go.<ul><li><strong>Closed (filled) circle</strong> = the boundary number <strong>is</strong> included (<span class="math-expr">≤</span> or <span class="math-expr">≥</span>)</li><li><strong>Open (empty) circle</strong> = the boundary number is <strong>not</strong> included (<span class="math-expr">&lt;</span> or <span class="math-expr">&gt;</span>)</li><li>Arrow to the <strong>right</strong> = bigger numbers (<span class="math-expr">&gt;</span> or <span class="math-expr">≥</span>); arrow to the <strong>left</strong> = smaller numbers (<span class="math-expr">&lt;</span> or <span class="math-expr">≤</span>)</li></ul></div>
+  <div class="info-box">The class example <span class="math-expr">x ≤ −20</span> is drawn with a closed circle at −20 and an arrow pointing left, towards −21, −22 and so on.</div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-nl1">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Which inequality does this number line show?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-nl" viewBox="0 0 520 74" role="img" aria-label="number line"><line x1="14" y1="46" x2="506" y2="46" stroke="#7a84a0" stroke-width="2"/><path d="M12 46 l8 -5 v10 z M508 46 l-8 -5 v10 z" fill="#7a84a0"/><line x1="28.0" y1="40" x2="28.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="28.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−2</text><line x1="74.4" y1="40" x2="74.4" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="74.4" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−1</text><line x1="120.8" y1="40" x2="120.8" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="120.8" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">0</text><line x1="167.2" y1="40" x2="167.2" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="167.2" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">1</text><line x1="213.6" y1="40" x2="213.6" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="213.6" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">2</text><line x1="260.0" y1="40" x2="260.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="260.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">3</text><line x1="306.4" y1="40" x2="306.4" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="306.4" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">4</text><line x1="352.8" y1="40" x2="352.8" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="352.8" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">5</text><line x1="399.2" y1="40" x2="399.2" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="399.2" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">6</text><line x1="445.6" y1="40" x2="445.6" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="445.6" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">7</text><line x1="492.0" y1="40" x2="492.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="492.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">8</text><line x1="260.0" y1="26" x2="506.0" y2="26" stroke="#4f8ef7" stroke-width="4"/><line x1="260.0" y1="26" x2="260.0" y2="46" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="3 3"/><path d="M510.0 26 l-9 -6 v12 z" fill="#4f8ef7"/><circle cx="260.0" cy="26" r="6" fill="#4f8ef7" stroke="#4f8ef7" stroke-width="2.5"/></svg>
+      <div class="mcq-options" id="nl1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('nl1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">x ≥ 3</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">x &gt; 3</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">x ≤ 3</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">x &lt; 3</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('nl1','a','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('nl1','Is the circle filled or empty? Which way does the arrow point?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('nl1','A — <span class="math-expr">x ≥ 3</span>: a closed circle at 3 means 3 is included, and the arrow points right, to bigger numbers.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="nl1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-nl2">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which inequality does this number line show?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-nl" viewBox="0 0 520 74" role="img" aria-label="number line"><line x1="14" y1="46" x2="506" y2="46" stroke="#7a84a0" stroke-width="2"/><path d="M12 46 l8 -5 v10 z M508 46 l-8 -5 v10 z" fill="#7a84a0"/><line x1="28.0" y1="40" x2="28.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="28.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−6</text><line x1="74.4" y1="40" x2="74.4" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="74.4" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−5</text><line x1="120.8" y1="40" x2="120.8" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="120.8" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−4</text><line x1="167.2" y1="40" x2="167.2" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="167.2" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−3</text><line x1="213.6" y1="40" x2="213.6" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="213.6" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−2</text><line x1="260.0" y1="40" x2="260.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="260.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−1</text><line x1="306.4" y1="40" x2="306.4" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="306.4" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">0</text><line x1="352.8" y1="40" x2="352.8" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="352.8" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">1</text><line x1="399.2" y1="40" x2="399.2" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="399.2" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">2</text><line x1="445.6" y1="40" x2="445.6" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="445.6" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">3</text><line x1="492.0" y1="40" x2="492.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="492.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">4</text><line x1="14.0" y1="26" x2="260.0" y2="26" stroke="#4f8ef7" stroke-width="4"/><line x1="260.0" y1="26" x2="260.0" y2="46" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="3 3"/><path d="M10.0 26 l9 -6 v12 z" fill="#4f8ef7"/><circle cx="260.0" cy="26" r="6" fill="#181c27" stroke="#4f8ef7" stroke-width="2.5"/></svg>
+      <div class="mcq-options" id="nl2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('nl2', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">x &gt; −1</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl2', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">x &lt; −1</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl2', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">x ≤ −1</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl2', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">x ≥ −1</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('nl2','c','Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('nl2','An open circle means the number is not included.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('nl2','C — <span class="math-expr">x &lt; −1</span>: an open circle at −1 means −1 is not included, and the arrow points left, to smaller numbers.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="nl2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-nl3">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Which description draws <span class="math-expr">x ≤ 4</span> on a number line?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="nl3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('nl3', this, 'a')"><div class="opt-indicator"></div><span>an open circle at 4 with an arrow to the right</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl3', this, 'b')"><div class="opt-indicator"></div><span>a closed circle at 4 with an arrow to the left</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl3', this, 'c')"><div class="opt-indicator"></div><span>a closed circle at 4 with an arrow to the right</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl3', this, 'd')"><div class="opt-indicator"></div><span>an open circle at 4 with an arrow to the left</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('nl3','b','Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('nl3','The bar under the symbol means 4 is included. Smaller numbers are to the left.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('nl3','B — A closed circle at 4 with an arrow to the left: 4 is included, and ≤ means 4 or smaller.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="nl3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-nl4">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">What is the <strong>smallest whole number</strong> that satisfies <span class="math-expr">x &gt; 3.5</span>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="nl4-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('nl4',4,'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('nl4','Whole numbers bigger than 3.5: is 3 big enough? What about 4?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('nl4','4. 3 is smaller than 3.5, and 4 is the first whole number above it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="nl4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-nl5">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">What is the <strong>largest whole number</strong> that satisfies <span class="math-expr">x ≤ −2.5</span>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="nl5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('nl5',-3,'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('nl5','On a number line −2 is to the right of −2.5. Look to the left.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('nl5','−3. −2 is bigger than −2.5, so it fails; −3 is smaller than −2.5, so it works.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="nl5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-nl6">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">How many <strong>whole numbers</strong> satisfy the inequality drawn on this number line?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-nl" viewBox="0 0 520 74" role="img" aria-label="number line"><line x1="14" y1="46" x2="506" y2="46" stroke="#7a84a0" stroke-width="2"/><path d="M12 46 l8 -5 v10 z M508 46 l-8 -5 v10 z" fill="#7a84a0"/><line x1="28.0" y1="40" x2="28.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="28.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−4</text><line x1="79.6" y1="40" x2="79.6" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="79.6" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−3</text><line x1="131.1" y1="40" x2="131.1" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="131.1" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−2</text><line x1="182.7" y1="40" x2="182.7" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="182.7" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−1</text><line x1="234.2" y1="40" x2="234.2" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="234.2" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">0</text><line x1="285.8" y1="40" x2="285.8" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="285.8" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">1</text><line x1="337.3" y1="40" x2="337.3" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="337.3" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">2</text><line x1="388.9" y1="40" x2="388.9" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="388.9" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">3</text><line x1="440.4" y1="40" x2="440.4" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="440.4" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">4</text><line x1="492.0" y1="40" x2="492.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="492.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">5</text><line x1="131.1" y1="26" x2="388.9" y2="26" stroke="#4f8ef7" stroke-width="4"/><line x1="131.1" y1="26" x2="131.1" y2="46" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="3 3"/><line x1="388.9" y1="26" x2="388.9" y2="46" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="3 3"/><circle cx="131.1" cy="26" r="6" fill="#4f8ef7" stroke="#4f8ef7" stroke-width="2.5"/><circle cx="388.9" cy="26" r="6" fill="#181c27" stroke="#4f8ef7" stroke-width="2.5"/></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="nl6-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('nl6',5,'Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('nl6','List them: start at the closed circle and stop before the open one.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('nl6','5: the whole numbers are −2, −1, 0, 1 and 2. The closed circle at −2 includes −2, but the open circle at 3 leaves 3 out.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="nl6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-nl7">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Which inequality does this number line show?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-nl" viewBox="0 0 520 74" role="img" aria-label="number line"><line x1="14" y1="46" x2="506" y2="46" stroke="#7a84a0" stroke-width="2"/><path d="M12 46 l8 -5 v10 z M508 46 l-8 -5 v10 z" fill="#7a84a0"/><line x1="28.0" y1="40" x2="28.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="28.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−4</text><line x1="70.2" y1="40" x2="70.2" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="70.2" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−3</text><line x1="112.4" y1="40" x2="112.4" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="112.4" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−2</text><line x1="154.5" y1="40" x2="154.5" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="154.5" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">−1</text><line x1="196.7" y1="40" x2="196.7" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="196.7" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">0</text><line x1="238.9" y1="40" x2="238.9" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="238.9" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">1</text><line x1="281.1" y1="40" x2="281.1" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="281.1" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">2</text><line x1="323.3" y1="40" x2="323.3" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="323.3" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">3</text><line x1="365.5" y1="40" x2="365.5" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="365.5" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">4</text><line x1="407.6" y1="40" x2="407.6" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="407.6" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">5</text><line x1="449.8" y1="40" x2="449.8" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="449.8" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">6</text><line x1="492.0" y1="40" x2="492.0" y2="52" stroke="#7a84a0" stroke-width="1.5"/><text x="492.0" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">7</text><line x1="154.5" y1="26" x2="365.5" y2="26" stroke="#4f8ef7" stroke-width="4"/><line x1="154.5" y1="26" x2="154.5" y2="46" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="3 3"/><line x1="365.5" y1="26" x2="365.5" y2="46" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="3 3"/><circle cx="154.5" cy="26" r="6" fill="#4f8ef7" stroke="#4f8ef7" stroke-width="2.5"/><circle cx="365.5" cy="26" r="6" fill="#181c27" stroke="#4f8ef7" stroke-width="2.5"/></svg>
+      <div class="mcq-options" id="nl7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('nl7', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">−1 &lt; x &lt; 4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl7', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">−1 &lt; x ≤ 4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl7', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">−1 ≤ x &lt; 4</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('nl7', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">−1 ≤ x ≤ 4</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('nl7','d','Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('nl7','Check each end separately: is the left circle filled? Is the right circle filled?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('nl7','D — <span class="math-expr">−1 ≤ x &lt; 4</span>: the closed circle at −1 includes −1, and the open circle at 4 leaves 4 out.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="nl7-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">NUMBER LINES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-nl-fill"></div></div>
+    <div class="section-score-val" id="sec-nl-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: SOLVING LINEAR INEQUALITIES ═══════════════ -->
+<div id="solving">
+  <div class="section-header"><div class="section-icon">&equiv;</div><div><div class="sub-label">Section C &middot; Workbook Exercise 4.3</div><h2>Solving Linear Inequalities</h2></div></div>
+  <div class="info-box"><strong>Solve it like an equation.</strong> Treat <span class="math-expr">≤</span>, <span class="math-expr">≥</span>, <span class="math-expr">&lt;</span>, <span class="math-expr">&gt;</span> as if they were <span class="math-expr">=</span>, and do the same thing to both sides. The class example:</div>
+  <div class="info-box"><ol><li><strong>Write it:</strong> <span class="math-expr">3x + 4 ≤ 2x − 16</span></li><li><strong>Collect the x terms on one side and the numbers on the other:</strong> <span class="math-expr">3x − 2x ≤ −16 − 4</span></li><li><strong>Simplify:</strong> <span class="math-expr">x ≤ −20</span></li><li><strong>Draw it:</strong> a closed circle at −20 with an arrow pointing left.</li></ol></div>
+  <div class="info-box"><strong>Check by testing a number:</strong> pick one allowed value, such as −25. Left side: 3 × (−25) + 4 = −71. Right side: 2 × (−25) − 16 = −66. Is −71 ≤ −66? Yes, so the answer works.</div>
+  <div class="info-box"><strong>The one new rule: flip the sign.</strong> If you <strong>multiply or divide both sides by a negative number</strong>, the inequality sign turns round. Check with numbers: 2 &lt; 5 is true, but multiply both sides by −1 and you get −2 and −5, and −2 &gt; −5. So the sign must flip.</div>
+  <div class="info-box"><span class="math-expr">−2x &lt; 10</span> becomes <span class="math-expr">x &gt; −5</span> after dividing both sides by −2. <strong>Adding or subtracting</strong> a number never flips the sign, whatever its sign.</div>
+  <div class="sim">
+    <div class="sim-title">Inequality Explorer &mdash; solve <em>a</em>x + <em>b</em> [sign] <em>c</em>x + <em>d</em> and see the answer on a number line</div>
+    <div class="gx-inputs">
+      <div class="gx-line gx-l1"><input type="number" step="any" id="ie-a" value="3" oninput="ieUpdate()"><span>x +</span><input type="number" step="any" id="ie-b" value="4" oninput="ieUpdate()">
+        <select id="ie-op" onchange="ieUpdate()" style="background:var(--surface);border:1.5px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:0.95rem;padding:6px 8px;">
+          <option value="&lt;">&lt;</option><option value="&lt;=" selected>&le;</option><option value="&gt;">&gt;</option><option value="&gt;=">&ge;</option>
+        </select>
+        <input type="number" step="any" id="ie-c" value="2" oninput="ieUpdate()"><span>x +</span><input type="number" step="any" id="ie-d" value="-16" oninput="ieUpdate()"></div>
+      <div class="gx-line gx-l2"><span>Test a number: x =</span><input type="number" step="any" id="ie-t" value="-25" oninput="ieUpdate()"><span id="ie-test"></span></div>
+    </div>
+    <svg class="sim-svg" viewBox="0 0 520 74" role="img" aria-label="Number line showing the solution"><g id="ie-svg"></g></svg>
+    <div class="ex-steps" id="ie-steps"></div>
+    <div class="sim-controls">
+      <button class="sim-btn" onclick="iePreset(3,4,'<=',2,-16)">class example: 3x + 4 ≤ 2x − 16</button>
+      <button class="sim-btn" onclick="iePreset(0,20,'<=',-0.5,35)">phone plan: 20 + 0.5x ≤ 35</button>
+      <button class="sim-btn" onclick="iePreset(1,0,'>=',0,53)">blankets: x ≥ 53</button>
+      <button class="sim-btn" onclick="iePreset(4,-7,'>=',6,5)">negative: flip the sign</button>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-sv1">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Solve <span class="math-expr">x + 5 &gt; 12</span>. The answer has the form <em>x</em> &gt; ___ . What is the number?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sv1-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sv1',7,'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv1','Take 5 from both sides.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv1','7. <i>x</i> &gt; 12 − 5, so <i>x</i> &gt; 7.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-sv2">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Solve <span class="math-expr">3x ≤ 21</span>. The answer has the form <em>x</em> ≤ ___ . What is the number?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sv2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sv2',7,'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv2','Divide both sides by 3.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv2','7. 21 ÷ 3 = 7, so <i>x</i> ≤ 7.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-sv3">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Solve <span class="math-expr">2x − 5 ≥ 9</span>. The answer has the form <em>x</em> ≥ ___ . What is the number?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sv3-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sv3',7,'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv3','Add 5 to both sides first, then divide by 2.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv3','7. 2<i>x</i> ≥ 14, so <i>x</i> ≥ 7.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-sv4">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Solve <span class="math-expr">5x + 3 &lt; 2x + 18</span>. The answer has the form <em>x</em> &lt; ___ . What is the number?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sv4-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sv4',5,'Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv4','Take 2<i>x</i> from both sides and take 3 from both sides.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv4','5. 5<i>x</i> − 2<i>x</i> &lt; 18 − 3, so 3<i>x</i> &lt; 15 and <i>x</i> &lt; 5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-sv5">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Solve <span class="math-expr">7x − 4 ≤ 4x − 22</span>. The answer has the form <em>x</em> ≤ ___ . What is the number?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sv5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sv5',-6,'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv5','Collect the <i>x</i> terms on the left: 7<i>x</i> − 4<i>x</i>. The right side becomes −22 + 4.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv5','−6. 7<i>x</i> − 4<i>x</i> ≤ −22 + 4, so 3<i>x</i> ≤ −18 and <i>x</i> ≤ −6.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-sv6">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Solve <span class="math-expr">4x − 1 &gt; 3x + 6</span>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="sv6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('sv6', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">x &gt; 7</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv6', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">x &gt; 5</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv6', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">x &lt; 7</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv6', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">x &gt; −7</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('sv6','b','Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv6','Take 3<i>x</i> from both sides, then add 1 to both sides.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv6','B — <span class="math-expr">x &gt; 7</span>. 4<i>x</i> − 3<i>x</i> &gt; 6 + 1, so <i>x</i> &gt; 7.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-sv7">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Solve <span class="math-expr">0.5x + 2 ≤ 6</span>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="sv7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('sv7', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">x ≥ 8</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv7', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">x ≤ 2</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv7', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">x ≤ 8</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv7', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">x ≤ 4</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('sv7','d','Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv7','Take 2 from both sides: 0.5<i>x</i> ≤ 4. Then ask what 0.5<i>x</i> means: half of <i>x</i>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv7','D — <span class="math-expr">x ≤ 8</span>. 0.5<i>x</i> ≤ 4, and since 0.5<i>x</i> is half of <i>x</i>, <i>x</i> ≤ 4 ÷ 0.5 = 8.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-sv8">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Solve <span class="math-expr">−2x &lt; 10</span>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="sv8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('sv8', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">x &gt; −5</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv8', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">x &lt; −5</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv8', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">x &gt; 5</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv8', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">x &lt; 5</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('sv8','a','Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv8','You divide both sides by a negative number. What happens to the sign?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv8','A — <span class="math-expr">x &gt; −5</span>. Dividing by −2 flips the sign: <i>x</i> &gt; 10 ÷ (−2) = −5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-sv9">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Solve <span class="math-expr">−3x ≥ 12</span>. The answer has the form <em>x</em> ≤ ___ (the sign has flipped). What is the number?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="sv9-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('sv9',-4,'Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv9','Divide both sides by −3.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv9','−4. 12 ÷ (−3) = −4 and the sign flips, so <i>x</i> ≤ −4.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-sv10">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Amy solves <span class="math-expr">6 − x &gt; 2</span>. She writes: "−<em>x</em> &gt; −4, so <em>x</em> &gt; 4". What is wrong?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="sv10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('sv10', this, 'a')"><div class="opt-indicator"></div><span>The correct answer is <em>x</em> &gt; −4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv10', this, 'b')"><div class="opt-indicator"></div><span>She did not flip the sign when she divided by −1; the answer is <em>x</em> &lt; 4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv10', this, 'c')"><div class="opt-indicator"></div><span>She should have added 6 to both sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('sv10', this, 'd')"><div class="opt-indicator"></div><span>Nothing, <em>x</em> &gt; 4 is correct</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('sv10','c','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('sv10','Test a number: is <i>x</i> = 5 a solution of 6 − <i>x</i> &gt; 2?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('sv10','C — Amy forgot to flip the sign when she divided both sides by −1. The correct answer is <i>x</i> &lt; 4. Test: <i>x</i> = 5 gives 6 − 5 = 1, which is not greater than 2, so <i>x</i> &gt; 4 cannot be right.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="sv10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SOLVING LINEAR INEQUALITIES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sv-fill"></div></div>
+    <div class="section-score-val" id="sec-sv-val">0/11</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: WORD PROBLEMS ═══════════════ -->
+<div id="words">
+  <div class="section-header"><div class="section-icon">$</div><div><div class="sub-label">Section D &middot; Problems in Words</div><h2>Word Problems</h2></div></div>
+  <div class="info-box"><strong>Four steps for a word problem:</strong><ol><li><strong>Let</strong> a letter stand for what you need to find, for example <em>x</em> = the number of gigabytes.</li><li><strong>Spot the key words</strong> (at least, at most, more than, fewer than) and choose the symbol.</li><li><strong>Write the inequality</strong> and solve it as before.</li><li><strong>Read the answer back in words.</strong> If you can only have whole things (people, boxes, buses), a decimal answer must be rounded in the <strong>safe</strong> direction.</li></ol></div>
+  <div class="info-box"><strong>Class example 1:</strong> a phone company charges $20 a month plus $0.50 per GB. The budget is $35. Then <span class="math-expr">20 + 0.5x ≤ 35</span>, so <span class="math-expr">0.5x ≤ 15</span>, so <span class="math-expr">x ≤ 30</span>. The most you can use is 30 GB.</div>
+  <div class="info-box"><strong>Class example 2:</strong> a club wants <strong>at least</strong> 160 blankets and already has 42 + 65. Then <span class="math-expr">42 + 65 + x ≥ 160</span>, so <span class="math-expr">107 + x ≥ 160</span>, so <span class="math-expr">x ≥ 53</span>. They must collect at least 53 more.</div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-wp1">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">A gym charges $15 a month plus $0.40 per class, and your budget is $27. If <em>x</em> is the number of classes, which inequality shows the situation?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="wp1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('wp1', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">15 + 0.4x ≤ 27</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('wp1', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">15 + 0.4x ≥ 27</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('wp1', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">15x + 0.4 ≤ 27</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('wp1', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">0.4x ≤ 27 + 15</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('wp1','a','Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp1','Total cost = fixed fee + price per class × classes. The total must stay within the budget.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp1','A — <span class="math-expr">15 + 0.4x ≤ 27</span>. The cost is $15 plus $0.40 for each class, and it can be at most the $27 budget.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-wp2">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">From the gym question, solve <span class="math-expr">15 + 0.4x ≤ 27</span>. What is the <strong>greatest number of classes</strong> you can afford?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="wp2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('wp2',30,'Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp2','Take 15 from both sides, then divide by 0.4.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp2','30. 0.4<i>x</i> ≤ 12, so <i>x</i> ≤ 12 ÷ 0.4 = 30.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-wp3">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A school wants to collect <strong>at least</strong> 200 tins. Pupils brought 58 on Monday and 74 on Wednesday. If <em>x</em> is the number of tins needed on Friday, which inequality shows the situation?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="wp3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('wp3', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr">58 + 74 + x &gt; 200</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('wp3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr">58 + 74 + x ≥ 200</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('wp3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">58 + 74 + x ≤ 200</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('wp3', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr">58 + 74 − x ≥ 200</span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('wp3','c','Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp3','At least means the total can be equal to 200 or more.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp3','C — <span class="math-expr">58 + 74 + x ≥ 200</span>. The total of all three days must be 200 or more.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-wp4">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">From the tins question, solve <span class="math-expr">58 + 74 + x ≥ 200</span>. What is the <strong>smallest number</strong> of tins needed on Friday?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="wp4-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('wp4',68,'Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp4','58 + 74 first, then take that from 200.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp4','68. 132 + <i>x</i> ≥ 200, so <i>x</i> ≥ 68.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-wp5">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">A taxi charges $4 plus $1.50 per km. Your fare must be <strong>at most</strong> $22. What is the <strong>greatest distance</strong> in km you can travel?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="wp5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('wp5',12,'Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp5','Write <span class="math-expr">4 + 1.5x ≤ 22</span>, take 4 from both sides, then divide by 1.5.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp5','12. 1.5<i>x</i> ≤ 18, so <i>x</i> ≤ 12 km.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-wp6">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">A minibus holds 14 students. There are 100 students. Solve <span class="math-expr">14x ≥ 100</span> to find the <strong>smallest whole number</strong> of minibuses needed.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="wp6-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('wp6',8,'Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp6','100 ÷ 14 is not a whole number. Can you leave students behind?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp6','8. <i>x</i> ≥ 100 ÷ 14 = 7.14…, and you cannot have 0.14 of a bus, so round <strong>up</strong> to 8. With 7 buses only 98 students fit.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-wp7">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Three times a number, minus 5, is <strong>at most</strong> 40. What is the <strong>largest whole number</strong> that works?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="wp7-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('wp7',15,'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp7','Write <span class="math-expr">3x − 5 ≤ 40</span> and solve it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp7','15. 3<i>x</i> ≤ 45, so <i>x</i> ≤ 15, and 15 itself is allowed.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp7-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WORD PROBLEMS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wp-fill"></div></div>
+    <div class="section-score-val" id="sec-wp-val">0/10</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: MIXED PRACTICE ═══════════════ -->
+<div id="mixed">
+  <div class="section-header"><div class="section-icon">&#9881;</div><div><div class="sub-label">Section E &middot; Putting It Together</div><h2>Mixed Practice</h2></div></div>
+  <div class="info-box"><strong>Solving, then listing.</strong> Questions in this section solve an inequality and then pick whole numbers from the answer. Remember: a closed circle includes the boundary, an open circle does not, and you can check any answer by testing a number from your solution set in the original inequality.</div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-mx1">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Solve <span class="math-expr">2x + 1 ≤ 9</span>. Which description draws the answer on a number line?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="mx1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mx1', this, 'a')"><div class="opt-indicator"></div><span>a closed circle at 4 with an arrow to the left</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx1', this, 'b')"><div class="opt-indicator"></div><span>a closed circle at 8 with an arrow to the left</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx1', this, 'c')"><div class="opt-indicator"></div><span>an open circle at 4 with an arrow to the left</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx1', this, 'd')"><div class="opt-indicator"></div><span>a closed circle at 4 with an arrow to the right</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mx1','b','Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx1','Solve first: take 1, then divide by 2.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx1','B — 2<i>x</i> ≤ 8, so <i>x</i> ≤ 4: a closed circle at 4 (it is included) with an arrow pointing left (smaller numbers).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-mx2">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">Solve <span class="math-expr">3(x − 2) &gt; 12</span>. The answer has the form <em>x</em> &gt; ___ . What is the number?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx2',6,'Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx2','Divide both sides by 3 first, then add 2.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx2','6. <i>x</i> − 2 &gt; 4, so <i>x</i> &gt; 6.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-mx3">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">Solve <span class="math-expr">4x − 7 ≥ 6x + 5</span>. The answer has the form <em>x</em> ≤ ___ . What is the number?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx3-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx3',-6,'Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx3','Get the <i>x</i> terms on the left and the numbers on the right. You will end up dividing by a negative number.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx3','−6. 4<i>x</i> − 6<i>x</i> ≥ 5 + 7 gives −2<i>x</i> ≥ 12. Dividing by −2 flips the sign: <i>x</i> ≤ −6.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-mx4">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">What is the <strong>largest whole number</strong> that satisfies <span class="math-expr">5x − 3 &lt; 22</span>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx4-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx4',4,'Q33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx4','Solve to get <i>x</i> &lt; ___ . Then remember that the boundary itself is not allowed.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx4','4. 5<i>x</i> &lt; 25, so <i>x</i> &lt; 5. The whole numbers below 5 stop at 4.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-mx5">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Find the <strong>sum of all whole numbers</strong> <em>x</em> with <span class="math-expr">2 &lt; x ≤ 6</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx5',18,'Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx5','List them. Does 2 count? Does 6 count?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx5','18. The numbers are 3, 4, 5 and 6 (2 is left out, 6 is included): 3 + 4 + 5 + 6 = 18.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-mx6">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">A rectangle has sides (2<em>x</em> + 1) cm and 5 cm. Its perimeter is <strong>at most</strong> 40 cm. What is the <strong>largest whole number</strong> value of <em>x</em>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx6-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx6',7,'Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx6','Perimeter = 2(2<i>x</i> + 1 + 5). Write 2(2<i>x</i> + 6) ≤ 40 and solve.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx6','7. 4<i>x</i> + 12 ≤ 40, so 4<i>x</i> ≤ 28 and <i>x</i> ≤ 7.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-mx7">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Which statement is true?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="mx7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mx7', this, 'a')"><div class="opt-indicator"></div><span>If <em>x</em> &gt; 3, then <em>x</em> &gt; 1 is always true</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx7', this, 'b')"><div class="opt-indicator"></div><span>If <em>x</em> &gt; 1, then <em>x</em> &gt; 3 is always true</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx7', this, 'c')"><div class="opt-indicator"></div><span>If <em>x</em> ≥ 3, then <em>x</em> &gt; 3 is always true</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx7', this, 'd')"><div class="opt-indicator"></div><span>If <em>x</em> &lt; 3, then <em>x</em> &lt; 1 is always true</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mx7','a','Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx7','Try some numbers: take <i>x</i> = 3.5, <i>x</i> = 2 and <i>x</i> = 3.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx7','A — Anything bigger than 3 is bigger than 1. The other statements fail: <i>x</i> = 2 breaks the second, <i>x</i> = 3 breaks the third, and <i>x</i> = 2 breaks the fourth.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx7-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MIXED PRACTICE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mx-fill"></div></div>
+    <div class="section-score-val" id="sec-mx-val">0/12</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: WRITTEN QUESTIONS ═══════════════ -->
+<div id="written">
+  <div class="section-header"><div class="section-icon">&#9998;</div><div><div class="sub-label">Section F &middot; Open Questions</div><h2>Written Questions</h2></div></div>
+  <div class="info-box">These are <strong>open questions</strong>: write your working and answer in the box, then press <strong>Show Model Answer</strong> to compare. They are <strong>not auto-marked</strong> and do not count towards the score, so mark yourself honestly: did you reach the same answer, and did you show the steps?</div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-wr1">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Solve <span class="math-expr">5 − 2x ≤ 13</span> and show your answer on a number line. Test one value from your solution and one value outside it to check.</div><div class="q-marks">3 marks &middot; self-marked</div></div>
+    <div class="q-body">
+      <textarea class="written-input" id="wr1-ans" rows="5" placeholder="Write your working and answer here..."></textarea>
+      <div class="q-actions">
+        <button class="btn btn-reveal" onclick="revealAnswer('wr1','Take 5 from both sides: −2<i>x</i> ≤ 8. Divide by −2 and flip the sign: <i>x</i> ≥ −4. Number line: a closed circle at −4 with an arrow pointing right. Test <i>x</i> = 0 (inside): 5 − 0 = 5 ≤ 13, true. Test <i>x</i> = −5 (outside): 5 + 10 = 15 ≤ 13, false.')">Show Model Answer</button>
+      </div>
+      <div class="feedback" id="wr1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-wr2">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">Explain, using an example with numbers, why the inequality sign flips when you divide both sides by a negative number.</div><div class="q-marks">4 marks &middot; self-marked</div></div>
+    <div class="q-body">
+      <textarea class="written-input" id="wr2-ans" rows="5" placeholder="Write your working and answer here..."></textarea>
+      <div class="q-actions">
+        <button class="btn btn-reveal" onclick="revealAnswer('wr2','Start with a true statement, 2 &lt; 5. Multiply both sides by −1: you get −2 and −5. On a number line −5 is to the left of −2, so −2 &gt; −5. The sign had to turn round to stay true. Dividing by a negative does the same.')">Show Model Answer</button>
+      </div>
+      <div class="feedback" id="wr2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-wr3">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">A theatre hires a hall for $120 and charges $8 per ticket. The theatre wants to <strong>make at least $200 profit</strong>. Write an inequality for the number of tickets, <em>t</em>, and find the smallest whole number of tickets to sell.</div><div class="q-marks">4 marks &middot; self-marked</div></div>
+    <div class="q-body">
+      <textarea class="written-input" id="wr3-ans" rows="5" placeholder="Write your working and answer here..."></textarea>
+      <div class="q-actions">
+        <button class="btn btn-reveal" onclick="revealAnswer('wr3','Profit = income − cost, so 8<i>t</i> − 120 ≥ 200. Then 8<i>t</i> ≥ 320 and <i>t</i> ≥ 40. The smallest whole number is 40 tickets.')">Show Model Answer</button>
+      </div>
+      <div class="feedback" id="wr3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-wr4">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">Write a word problem of your own that leads to the inequality <span class="math-expr">12 + 3x ≤ 45</span>. Solve it and say what your answer means in the story.</div><div class="q-marks">4 marks &middot; self-marked</div></div>
+    <div class="q-body">
+      <textarea class="written-input" id="wr4-ans" rows="5" placeholder="Write your working and answer here..."></textarea>
+      <div class="q-actions">
+        <button class="btn btn-reveal" onclick="revealAnswer('wr4','Example: a gym charges a $12 joining fee plus $3 per visit, and your budget is $45. 12 + 3<i>x</i> ≤ 45 gives 3<i>x</i> ≤ 33, so <i>x</i> ≤ 11: you can visit the gym at most 11 times.')">Show Model Answer</button>
+      </div>
+      <div class="feedback" id="wr4-fb"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  in1: 1, in2: 1, in3: 1, in4: 1, in5: 1,
+  nl1: 1, nl2: 1, nl3: 1, nl4: 1, nl5: 1, nl6: 2, nl7: 1,
+  sv1: 1, sv2: 1, sv3: 1, sv4: 1, sv5: 2, sv6: 1, sv7: 1, sv8: 1, sv9: 1, sv10: 1,
+  wp1: 1, wp2: 1, wp3: 1, wp4: 1, wp5: 2, wp6: 2, wp7: 2,
+  mx1: 1, mx2: 2, mx3: 2, mx4: 2, mx5: 2, mx6: 2, mx7: 1
+};
+
+const sections = {
+  in: { label: 'Symbols & Words', qs: ['in1','in2','in3','in4','in5'] },
+  nl: { label: 'Number Lines', qs: ['nl1','nl2','nl3','nl4','nl5','nl6','nl7'] },
+  sv: { label: 'Solving Linear Inequalities', qs: ['sv1','sv2','sv3','sv4','sv5','sv6','sv7','sv8','sv9','sv10'] },
+  wp: { label: 'Word Problems', qs: ['wp1','wp2','wp3','wp4','wp5','wp6','wp7'] },
+  mx: { label: 'Mixed Practice', qs: ['mx1','mx2','mx3','mx4','mx5','mx6','mx7'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+// ── Inequality Explorer ─────────────────────────────────────
+const IE_SYM = { '<': '<', '<=': '≤', '>': '>', '>=': '≥' };
+function ieFmt(n) {
+  const r = Math.round(n * 10000) / 10000;
+  return String(r).replace('-', '−');
+}
+function ieHolds(l, op, r) {
+  const eps = 1e-9;
+  if (op === '<') return l < r - eps;
+  if (op === '<=') return l <= r + eps;
+  if (op === '>') return l > r + eps;
+  return l >= r - eps;
+}
+function ieDraw(k, op) {
+  const lo = Math.floor(k) - 5, hi = Math.floor(k) + 6, W = 520, pad = 28;
+  const step = (W - 2 * pad) / (hi - lo);
+  const X = v => pad + (v - lo) * step;
+  let s = `<line x1="${pad-14}" y1="46" x2="${W-pad+14}" y2="46" stroke="#7a84a0" stroke-width="2"/>`;
+  for (let v = lo; v <= hi; v++) {
+    s += `<line x1="${X(v)}" y1="40" x2="${X(v)}" y2="52" stroke="#7a84a0" stroke-width="1.5"/>`;
+    s += `<text x="${X(v)}" y="68" text-anchor="middle" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">${String(v).replace('-', '−')}</text>`;
+  }
+  const right = op === '>' || op === '>=';
+  const closed = op === '<=' || op === '>=';
+  const xk = X(k), xe = right ? W - pad + 14 : pad - 14;
+  s += `<line x1="${xk}" y1="26" x2="${xe}" y2="26" stroke="#4f8ef7" stroke-width="4"/>`;
+  s += right ? `<path d="M${xe+4} 26 l-9 -6 v12 z" fill="#4f8ef7"/>` : `<path d="M${xe-4} 26 l9 -6 v12 z" fill="#4f8ef7"/>`;
+  s += `<line x1="${xk}" y1="26" x2="${xk}" y2="46" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="3 3"/>`;
+  s += `<circle cx="${xk}" cy="26" r="6" fill="${closed ? '#4f8ef7' : '#181c27'}" stroke="#4f8ef7" stroke-width="2.5"/>`;
+  document.getElementById('ie-svg').innerHTML = s;
+}
+function ieUpdate() {
+  const g = id => parseFloat(document.getElementById(id).value);
+  const a = g('ie-a'), b = g('ie-b'), c = g('ie-c'), d = g('ie-d'), t = g('ie-t');
+  const op = document.getElementById('ie-op').value;
+  const steps = document.getElementById('ie-steps');
+  if ([a, b, c, d].some(isNaN)) { steps.innerHTML = ''; document.getElementById('ie-svg').innerHTML = ''; return; }
+  const sym = IE_SYM[op];
+  const term = (k, v) => (k === 0 ? '' : ieFmt(k) + 'x') + (v === 0 && k !== 0 ? '' : (k === 0 ? ieFmt(v) : (v < 0 ? ' − ' + ieFmt(-v) : ' + ' + ieFmt(v))));
+  const A = a - c, B = d - b;
+  let h = `<b>Write it:</b> <span class="ex-ineq">${term(a, b)} ${sym} ${term(c, d)}</span><br>`;
+  if (Math.abs(A) < 1e-12) {
+    const ok = ieHolds(0, op, B);
+    h += `<b>Collect:</b> the <i>x</i> terms cancel, leaving <span class="ex-ineq">0 ${sym} ${ieFmt(B)}</span>, which is <b>${ok ? 'always true: every number is a solution' : 'never true: there is no solution'}</b>.`;
+    document.getElementById('ie-svg').innerHTML = '';
+  } else {
+    h += `<b>Collect the x terms on one side and the numbers on the other:</b> <span class="ex-ineq">${ieFmt(A)}x ${sym} ${ieFmt(B)}</span><br>`;
+    let fop = op;
+    if (A < 0) {
+      fop = { '<': '>', '<=': '>=', '>': '<', '>=': '<=' }[op];
+      h += `<b>Divide both sides by ${ieFmt(A)}</b>, a <b>negative</b> number, so the sign <b>flips</b>: <span class="ex-ineq">x ${IE_SYM[fop]} ${ieFmt(B / A)}</span>`;
+    } else if (A !== 1) {
+      h += `<b>Divide both sides by ${ieFmt(A)}:</b> <span class="ex-ineq">x ${sym} ${ieFmt(B / A)}</span>`;
+    } else {
+      h += `<b>Answer:</b> <span class="ex-ineq">x ${sym} ${ieFmt(B)}</span>`;
+    }
+    ieDraw(B / A, fop);
+  }
+  if (!isNaN(t)) {
+    const l = a * t + b, r = c * t + d, ok = ieHolds(l, op, r);
+    h += `<br><b>Test x = ${ieFmt(t)}:</b> left = ${ieFmt(l)}, right = ${ieFmt(r)}, and ${ieFmt(l)} ${sym} ${ieFmt(r)} is <b style="color:${ok ? 'var(--correct)' : 'var(--wrong)'}">${ok ? 'true' : 'false'}</b>.`;
+  }
+  steps.innerHTML = h;
+}
+function iePreset(a, b, op, c, d) {
+  const set = (id, v) => document.getElementById(id).value = v;
+  set('ie-a', a); set('ie-b', b); set('ie-op', op); set('ie-c', c); set('ie-d', d);
+  ieUpdate();
+}
+
+ieUpdate();
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=1e-9) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`unit4-linear-inequalities_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
