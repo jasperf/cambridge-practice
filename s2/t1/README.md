@@ -253,3 +253,5 @@ cambridge-practice/
 - [Main README](../../README.md) — Project overview and all interactive sheets
 - [Resources](../../resources.html) — Curated external learning resources
 - [Index](../../index.html) — All interactive exercise sheets
+
+Term 2 sheets start in [s2/t2/README.md](../t2/README.md).
