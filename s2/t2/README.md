@@ -16,12 +16,29 @@ The **Linear Inequalities** sheet follows the Term 2 Week 1 class notes (the wor
 
 Source material: `material/math/s2/t2/w1/` (class notes PDF and word-problem sheet; the `material/` folder is not tracked in git).
 
+## Week 2 (12–16 October)
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Calculating Angles** — Unit 5.1–5.2 | 38 | 51 | [.md](./w2/term2-week2-maths-unit5-calculating-angles.md) | [.html](./w2/term2-week2-maths-unit5-calculating-angles.html) |
+
+### Maths Unit 5.1–5.2: Calculating Angles
+
+The **Calculating Angles** sheet follows the Term 2 Week 2 class notes: Unit 5.1 (angles on a straight line and around a point, triangles and exterior angles, parallel lines; Learner's Book Exercise 5.1 and Workbook pages 66–67) and Unit 5.2 (interior and exterior angles of polygons). All questions use new numbers, so the class examples can still be done on their own. Section A covers angles at a point; Section B triangles and exterior angles; Section C corresponding, alternate and co-interior angles; Section D polygon angle sums, exterior angles and regular polygons; Section E angles written with algebra; Section F asks why the rules work (why a triangle's angles make 180°, why an octagon's make 1080°, whether a regular polygon can have 100° angles, and the angle at a bend between parallel lines). Each topic section starts with an animated explorer: an **Angle Spinner**, a **Triangle Tear** (the three corners slide together onto a straight line), a **Parallel Lines** explorer that draws the F, Z and C shapes, and a **Polygon Explorer** that splits a shape into triangles and walks a turtle round the outside to show the exterior angles making 360°. Question diagrams draw themselves in as you scroll, and a correct answer appears in its diagram. 13 of the 38 questions are multiple choice (the correct letter is spread across A–D); the other 25 are typed-number answers, and every question on the interactive sheet is auto-marked. The printable `.md` has the same Q1–Q34 with each diagram described in words, but Q35–Q38 are written out in full there (draw, explain and give reasons; 14 marks, marked by the teacher), while the interactive sheet checks only their final answers.
+
+Source material: `material/math/s2/t2/w2/` (5.1 and 5.2 class notes and the 6 October angles notes).
+
 ## Structure
 
 ```
 s2/t2/
 ├── README.md
-└── w1/
-    ├── term2-week1-maths-unit4-linear-inequalities.html ← Interactive (Unit 4.3)
-    └── term2-week1-maths-unit4-linear-inequalities.md   ← Printable (+4 written q)
+├── w1/
+│   ├── term2-week1-maths-unit4-linear-inequalities.html ← Interactive (Unit 4.3)
+│   └── term2-week1-maths-unit4-linear-inequalities.md   ← Printable (+4 written q)
+└── w2/
+    ├── term2-week2-maths-unit5-calculating-angles.html  ← Interactive (Unit 5.1–5.2)
+    └── term2-week2-maths-unit5-calculating-angles.md    ← Printable (Q35–Q38 written in full)
 ```

@@ -74,8 +74,10 @@ cambridge-practice/
 │           ├── term1-week8-maths-unit4-simultaneous-equations.* ← Unit 4.2: Simultaneous Equations (33 q, 45 marks + 4 written q, 14 marks)
 │   └── t2/                          ← Term 2
 │       ├── README.md                ← Term 2 worksheet index
-│       └── w1/                      ← Week 1 (.html interactive + .md printable)
-│           └── term2-week1-maths-unit4-linear-inequalities.* ← Unit 4.3: Linear Inequalities (36 q, 46 marks + 4 written q, 15 marks)
+│       ├── w1/                      ← Week 1 (.html interactive + .md printable)
+│       │   └── term2-week1-maths-unit4-linear-inequalities.* ← Unit 4.3: Linear Inequalities (36 q, 46 marks + 4 written q, 15 marks)
+│       └── w2/                      ← Week 2 (.html interactive + .md printable)
+│           └── term2-week2-maths-unit5-calculating-angles.* ← Unit 5.1–5.2: Calculating Angles (38 q, 51 marks; printable writes out Q35–Q38 in full, 14 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
@@ -174,6 +176,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Mathematics Unit 3 Practice Test (20 Open Questions) | Secondary 2 | ✅ Term 1 Week 8 · After the Retest |
 | Mathematics Unit 4.2 (Simultaneous Equations) | Secondary 2 | ✅ Term 1 Week 8 · Workbook Exercise 4.2 |
 | Mathematics Unit 4.3 (Linear Inequalities) | Secondary 2 | ✅ Term 2 Week 1 · 5–9 October |
+| Mathematics Unit 5.1–5.2 (Calculating Angles) | Secondary 2 | ✅ Term 2 Week 2 · 12–16 October |
 
 ### IGCSE
 
