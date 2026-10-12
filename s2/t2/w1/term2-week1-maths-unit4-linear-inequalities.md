@@ -63,8 +63,8 @@ Which inequality means "fewer than 7 tickets"?
 **Q4** (1 mark)\
 Which of these numbers is **not** a solution of x > 5?
 
-- A) 5
-- B) 7
+- A) 7
+- B) 5
 - C) 9
 - D) 5.5
 
@@ -72,8 +72,8 @@ Which of these numbers is **not** a solution of x > 5?
 Which of these numbers is **not** a solution of x ≤ −2?
 
 - A) −2
-- B) −1
-- C) −7
+- B) −7
+- C) −1
 - D) −3
 
 ---
@@ -193,8 +193,8 @@ Answer: ______
 **Q18** (1 mark)\
 Solve 4x − 1 > 3x + 6.
 
-- A) x > 7
-- B) x > 5
+- A) x > 5
+- B) x > 7
 - C) x < 7
 - D) x > −7
 
@@ -203,8 +203,8 @@ Solve 0.5x + 2 ≤ 6.
 
 - A) x ≥ 8
 - B) x ≤ 2
-- C) x ≤ 8
-- D) x ≤ 4
+- C) x ≤ 4
+- D) x ≤ 8
 
 **Q20** (1 mark)\
 Solve −2x < 10.
@@ -223,8 +223,8 @@ Answer: ______
 Amy solves 6 − x > 2. She writes: "−*x* > −4, so *x* > 4". What is wrong?
 
 - A) The correct answer is *x* > −4
-- B) She did not flip the sign when she divided by −1; the answer is *x* < 4
-- C) She should have added 6 to both sides
+- B) She should have added 6 to both sides
+- C) She did not flip the sign when she divided by −1; the answer is *x* < 4
 - D) Nothing, *x* > 4 is correct
 
 ---
@@ -295,8 +295,8 @@ Answer: ______
 **Q30** (1 mark)\
 Solve 2x + 1 ≤ 9. Which description draws the answer on a number line?
 
-- A) a closed circle at 4 with an arrow to the left
-- B) a closed circle at 8 with an arrow to the left
+- A) a closed circle at 8 with an arrow to the left
+- B) a closed circle at 4 with an arrow to the left
 - C) an open circle at 4 with an arrow to the left
 - D) a closed circle at 4 with an arrow to the right
 
