@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculating Angles &middot; Unit 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: rgba(79,142,247,0.15); font-family: var(--font-mono); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box ol { margin: 6px 0 0 20px; }
+.kind-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.kind-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 520px; }
+.kind-table th, .kind-table td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+.kind-table th { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); background: var(--surface2); letter-spacing: 0.5px; }
+.kind-table td strong { color: var(--accent-sci); }
+.sim { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin: 16px 0 24px; }
+.sim-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+.sim-svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.sim-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.sim-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.sim-btn:hover { border-color: var(--accent-math); color: var(--text); }
+.ex-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; max-width: 560px; margin: 0 auto 14px; }
+.ex-inputs label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-inputs input, .ex-inputs select { width: 100%; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 7px 10px; outline: none; }
+.ex-inputs input:focus, .ex-inputs select:focus { border-color: var(--accent-math); }
+.ex-slider { max-width: 560px; margin: 12px auto 0; }
+.ex-slider label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-slider input[type=range] { width: 100%; accent-color: var(--accent-warn); }
+.ex-steps { max-width: 560px; margin: 14px auto 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+.ex-steps b { color: var(--text); }
+.ex-ineq { display: inline-block; font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-sci); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; margin: 6px 0; }
+@media (max-width: 600px) { .ex-inputs { grid-template-columns: 1fr; } .sim { padding: 12px; } }
+.info-box ul { margin: 6px 0 0 20px; }
+.gx-inputs { display: flex; flex-direction: column; gap: 8px; max-width: 560px; margin: 0 auto 14px; }
+.gx-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.85rem; }
+.gx-l1 span:first-child { color: var(--accent-math); }
+.gx-l2 span:first-child { color: var(--accent-sci); }
+.gx-line input { width: 74px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 6px 8px; outline: none; text-align: center; }
+.gx-line input:focus { border-color: var(--accent-math); }
+.q-graph { max-width: 400px; margin-bottom: 14px; }
+.q-body .kind-table { min-width: 0; max-width: 420px; }
+.num-row .num-input + .num-unit { margin-left: 8px; }
+.stack-row { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 10px; }
+.stack-wrap { flex: 1 1 220px; }
+.stack { display: inline-grid; grid-template-columns: 1.2em auto auto auto; column-gap: 8px; font-family: var(--font-mono); font-size: 1rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; }
+.stack > span:nth-of-type(4n+2) { text-align: right; }
+.stack > span:nth-of-type(4n+1) { color: var(--accent-warn); }
+.stack-rule { grid-column: 1 / -1; border-top: 1.5px solid var(--text-muted); margin: 3px 0; }
+.stack-cap { font-size: 0.84rem; margin-top: 6px; }
+.q-stack { margin: 0 0 14px; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.math-expr { font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; display: inline-block; margin: 2px 0; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .watch-links { justify-content: center; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+.q-nl { max-width: 520px; margin: 0 0 14px; }
+.written-input { width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; padding: 10px 12px; resize: vertical; outline: none; }
+.written-input:focus { border-color: var(--accent-math); }
+.sim-btn.on { border-color: var(--accent-sci); color: var(--accent-sci); }
+.q-fig { max-width: 400px; margin: 0 0 14px; }
+.q-fig .dl { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.9s ease; }
+.q-fig .da { opacity: 0; transition: opacity 0.4s ease 0.7s; }
+.q-fig text { opacity: 0; transition: opacity 0.4s ease 0.8s, fill 0.3s; }
+.q-fig.drawn .dl { stroke-dashoffset: 0; }
+.q-fig.drawn .da, .q-fig.drawn text { opacity: 1; }
+.q-fig.drawn .unk-arc { animation: unkPulse 2.2s ease-in-out 1.4s infinite; }
+.q-fig text.solved { fill: var(--correct); font-weight: 500; }
+@keyframes unkPulse { 0%,100% { stroke-width: 2; } 50% { stroke-width: 4.5; } }
+.pl-shape.go { stroke-dasharray: 1; stroke-dashoffset: 1; animation: drawIn 0.9s ease forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .dl, .q-fig .da, .q-fig text { transition: none; }
+  .q-fig.drawn .unk-arc, .pl-shape.go { animation: none; stroke-dashoffset: 0; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Calculating Angles</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 51</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Unit 5.1&ndash;5.2</div>
+  <h1>Every Turn Adds Up<br><em>Calculating Angles</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Angle Facts &middot; Triangles &middot; Parallel Lines &middot; Polygons &middot; Algebra with Angles &middot; Reasoning</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>38 questions &middot; self-marked &middot; 51 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128208; Straight lines, triangles, parallel lines and polygons</h3>
+  <p>Practice for Unit 5.1 Calculating angles and Unit 5.2 Interior and exterior angles of polygons (Term 2, Week 2). Every section has a moving diagram to play with first. Most questions want a number typed in; when you get one right, the answer appears in the diagram. The numbers are new, so the class examples and the Learner&rsquo;s Book and Workbook exercises are still yours to do.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=corbettmaths+angles+in+parallel+lines" target="_blank" rel="noopener">&#128250; Corbettmaths &mdash; angles in parallel lines (search)</a>
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=corbettmaths+interior+exterior+angles+polygons" target="_blank" rel="noopener">&#128250; Interior &amp; exterior angles of polygons (search)</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#facts" class="sub-tab">Angle Facts</a>
+  <a href="#triangles" class="sub-tab">Triangles</a>
+  <a href="#parallel" class="sub-tab">Parallel Lines</a>
+  <a href="#polygons" class="sub-tab">Polygons</a>
+  <a href="#algebra" class="sub-tab">Algebra with Angles</a>
+  <a href="#reasoning" class="sub-tab">Reasoning</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: ANGLE FACTS ═══════════════ -->
+<div id="facts">
+  <div class="section-header"><div class="section-icon">&ang;</div><div><div class="sub-label">Section A &middot; Lines &amp; Points</div><h2>Angle Facts</h2></div></div>
+  <div class="info-box"><strong>Why should I care?</strong> An angle measures a turn, and builders, pilots and players use angles all the time.<ul><li><strong>Carpentry:</strong> each corner of a picture frame joins two pieces cut at 45°, so together they make a 90° corner.</li><li><strong>Navigation:</strong> pilots and sailors give directions as angles. Turn through 360° and you face the way you started.</li><li><strong>Sport:</strong> a snooker ball bounces off the cushion at the same angle it hit it. Players use this to plan their shots.</li><li><strong>Nature:</strong> bees build six-sided cells because three of them fit round a point with no gaps. You will work out why in Section D.</li></ul></div>
+  <div class="info-box"><strong>Three facts about angles at a point:</strong><ul><li>Angles on a <strong>straight line</strong> add up to <strong>180°</strong>.</li><li>Angles <strong>around a point</strong> add up to <strong>360°</strong> (a full turn).</li><li>When two straight lines cross, the angles opposite each other across the X are <strong>vertically opposite</strong>, and they are always the same size.</li></ul></div>
+  <div class="info-box"><strong>Class example:</strong> three angles meet at a point: 110°, a right angle and <em>x</em>. So 110 + 90 + <em>x</em> = 360, which gives 200 + <em>x</em> = 360 and <em>x</em> = 160°.</div>
+  <div class="info-box"><strong>Always give a reason.</strong> In a test, write the angle fact next to each step, for example: <em>x</em> = 160° (angles around a point add up to 360°).</div>
+  <div class="sim">
+    <div class="sim-title">Angle Spinner &mdash; turn the line and watch the angles share out the total</div>
+    <div class="sim-controls" id="sp-modes" style="margin:0 0 12px;">
+      <button class="sim-btn on" onclick="spSetMode('line', this)">straight line (180°)</button>
+      <button class="sim-btn" onclick="spSetMode('cross', this)">crossing lines (X)</button>
+      <button class="sim-btn" onclick="spSetMode('point', this)">around a point (360°)</button>
+    </div>
+    <svg class="sim-svg" viewBox="0 0 520 260" role="img" aria-label="Angle spinner"><g id="sp-svg"></g></svg>
+    <div class="ex-slider"><label>Turn the line: <b id="sp-val">50°</b></label><input type="range" id="sp-ang" min="10" max="170" step="5" value="50" oninput="spStop(); spDraw()"></div>
+    <div class="ex-steps" id="sp-out"></div>
+    <div class="sim-controls"><button class="sim-btn" id="sp-play" onclick="spToggle()">&#9654; Spin it</button></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-af1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">The diagram shows a straight line. Work out the size of angle <em>x</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 170" role="img" aria-label="A straight line with a ray: angles 47 degrees and x"><path class="dl" pathLength="1" d="M20.0 140.0 L340.0 140.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M180.0 140.0 L265.2 48.6" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M205.9 112.2 A38 38 0 0 1 218.0 140.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="231.4" y="117.7" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">47°</text><path class="da unk-arc" d="M150.0 140.0 A30 30 0 0 1 200.5 118.1" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 133°" x="160.9" y="96.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text><circle cx="180.0" cy="140.0" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="af1-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('af1',133,'Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af1','Angles on a straight line add up to 180°.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af1','133°. <i>x</i> = 180 − 47 = 133° (angles on a straight line).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-af2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Three lines meet at a point. Work out the size of angle <em>x</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 200" role="img" aria-label="Three lines meeting at a point: a right angle, 125 degrees and x"><path class="dl" pathLength="1" d="M180.0 105.0 L320.0 105.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M180.0 105.0 L180.0 15.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M180.0 105.0 L73.5 179.6" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M180.0 92.0 L193.0 92.0 L193.0 105.0" stroke="#f5a623" stroke-width="2" fill="none"/><path class="da" d="M152.1 124.5 A34 34 0 0 1 180.0 71.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="130.3" y="79.1" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">125°</text><path class="da unk-arc" d="M208.0 105.0 A28 28 0 0 1 157.1 121.1" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 145°" x="193.8" y="148.9" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text><circle cx="180.0" cy="105.0" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="af2-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('af2',145,'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af2','The square corner is 90°. All three angles go round the point.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af2','145°. 90 + 125 + <i>x</i> = 360, so 215 + <i>x</i> = 360 and <i>x</i> = 145° (angles around a point).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-af3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Two straight lines cross. One of the angles is 38°. What are angles <em>a</em>, <em>b</em> and <em>c</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 200" role="img" aria-label="Two crossing lines: 38 degrees, then a, b and c going round clockwise"><path class="dl" pathLength="1" d="M293.5 60.9 L66.5 139.1" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M293.5 139.1 L66.5 60.9" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M217.8 87.0 A40 40 0 0 1 217.8 113.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="242.0" y="100.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">38°</text><path class="da" d="M204.6 108.5 A26 26 0 0 1 155.4 108.5" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="180.0" y="148.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">a</text><path class="da" d="M142.2 113.0 A40 40 0 0 1 142.2 87.0" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="118.0" y="100.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">b</text><path class="da" d="M155.4 91.5 A26 26 0 0 1 204.6 91.5" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="180.0" y="52.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">c</text><circle cx="180.0" cy="100.0" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="mcq-options" id="af3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('af3', this, 'a')"><div class="opt-indicator"></div><span><em>a</em> = 52°, <em>b</em> = 38°, <em>c</em> = 52°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af3', this, 'b')"><div class="opt-indicator"></div><span><em>a</em> = 142°, <em>b</em> = 38°, <em>c</em> = 142°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af3', this, 'c')"><div class="opt-indicator"></div><span><em>a</em> = 142°, <em>b</em> = 142°, <em>c</em> = 38°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af3', this, 'd')"><div class="opt-indicator"></div><span><em>a</em> = 38°, <em>b</em> = 142°, <em>c</em> = 38°</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('af3','b','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af3','Angle <i>b</i> is across the X from the 38°. Angle <i>a</i> sits next to the 38° on a straight line.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af3','B — <i>a</i> = 180 − 38 = 142° (straight line), <i>b</i> = 38° (vertically opposite the 38°), <i>c</i> = 142° (vertically opposite <i>a</i>).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-af4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">The diagram shows a straight line. Work out the size of angle <em>y</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 170" role="img" aria-label="A straight line with two rays: angles 52, 71 and y"><path class="dl" pathLength="1" d="M20.0 140.0 L340.0 140.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M180.0 140.0 L257.0 41.5" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M180.0 140.0 L111.9 35.2" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M203.4 110.1 A38 38 0 0 1 218.0 140.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="230.3" y="115.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">52°</text><path class="da" d="M159.3 108.1 A38 38 0 0 1 203.4 110.1" stroke="#f5a623" stroke-width="2" fill="none"/><text x="182.4" y="84.1" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">71°</text><path class="da unk-arc" d="M150.0 140.0 A30 30 0 0 1 163.7 114.8" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="y = 57°" x="137.8" y="117.1" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">y</text><circle cx="180.0" cy="140.0" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="af4-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('af4',57,'Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af4','All three angles sit on the same straight line.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af4','57°. 52 + 71 + <i>y</i> = 180, so 123 + <i>y</i> = 180 and <i>y</i> = 57° (angles on a straight line).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-af5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Four lines meet at a point. The two angles marked <em>x</em> are equal. Work out <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 240" role="img" aria-label="Four lines meeting at a point: 95 degrees, x, 105 degrees, x"><path class="dl" pathLength="1" d="M180.0 120.0 L285.0 120.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M180.0 120.0 L170.8 224.6" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M180.0 120.0 L75.4 129.2" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M180.0 120.0 L198.2 16.6" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M210.0 120.0 A30 30 0 0 1 177.4 149.9" stroke="#f5a623" stroke-width="2" fill="none"/><text x="215.1" y="158.3" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">95°</text><path class="da unk-arc" d="M177.4 149.9 A30 30 0 0 1 150.1 122.6" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 80°" x="144.6" y="155.4" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text><path class="da" d="M150.1 122.6 A30 30 0 0 1 185.2 90.5" stroke="#f5a623" stroke-width="2" fill="none"/><text x="142.2" y="78.7" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">105°</text><path class="da unk-arc" d="M185.2 90.5 A30 30 0 0 1 210.0 120.0" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 80°" x="218.3" y="87.9" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text><circle cx="180.0" cy="120.0" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="af5-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('af5',80,'Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af5','Write 95 + 105 + 2<i>x</i> = 360.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af5','80°. 95 + 105 + 2<i>x</i> = 360, so 200 + 2<i>x</i> = 360, 2<i>x</i> = 160 and <i>x</i> = 80°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-af6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Two straight lines cross. Angle <em>a</em> = 55°. Which statement about angle <em>b</em> is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 200" role="img" aria-label="Two crossing lines with opposite angles a and b"><path class="dl" pathLength="1" d="M286.9 45.5 L73.1 154.5" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M286.9 154.5 L73.1 45.5" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M213.9 82.7 A38 38 0 0 1 213.9 117.3" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="240.0" y="100.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">a</text><path class="da" d="M146.1 117.3 A38 38 0 0 1 146.1 82.7" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="120.0" y="100.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">b</text><circle cx="180.0" cy="100.0" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="mcq-options" id="af6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('af6', this, 'a')"><div class="opt-indicator"></div><span><em>b</em> = 125°, because <em>a</em> and <em>b</em> make a straight line</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af6', this, 'b')"><div class="opt-indicator"></div><span><em>b</em> = 305°, because <em>a</em> and <em>b</em> make a full turn</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af6', this, 'c')"><div class="opt-indicator"></div><span><em>b</em> = 35°, because <em>a</em> and <em>b</em> make a right angle</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af6', this, 'd')"><div class="opt-indicator"></div><span><em>b</em> = 55°, because it is across the X from <em>a</em></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('af6','d','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af6','Are <i>a</i> and <i>b</i> next to each other, or across the X from each other?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af6','D — <i>b</i> = 55°. <i>a</i> and <i>b</i> are vertically opposite (across the X), so they are equal. They are not next to each other, so they do not make a straight line together.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">ANGLE FACTS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-af-fill"></div></div>
+    <div class="section-score-val" id="sec-af-val">0/7</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: TRIANGLES ═══════════════ -->
+<div id="triangles">
+  <div class="section-header"><div class="section-icon">&#9651;</div><div><div class="sub-label">Section B &middot; Learner&rsquo;s Book Exercise 5.1</div><h2>Triangles</h2></div></div>
+  <div class="info-box"><strong>Angles in a triangle add up to 180°.</strong> Tear the three corners off a paper triangle and put them side by side: they always fill a straight line. Try it in the explorer below. A quadrilateral splits into two triangles, so its angles add up to 2 × 180 = 360°.</div>
+  <div class="info-box"><strong>Exterior angle of a triangle.</strong> Extend one side past a corner. The angle outside the triangle, between the extended side and the next side, is an <strong>exterior angle</strong>. It equals the two interior angles at the other two corners added together.</div>
+  <div class="info-box"><strong>Class example 1:</strong> a triangle has angles of 35° and 27° at two corners. The exterior angle at the third corner is 35 + 27 = 62°. Check: the interior angle there is 180 − 62 = 118°, and 35 + 27 + 118 = 180°.</div>
+  <div class="info-box"><strong>Class example 2:</strong> the base of a triangle is extended at both ends, making exterior angles of 120° and 155°. The interior angles at the base are 180 − 120 = 60° and 180 − 155 = 25°, so the top angle is 180 − 60 − 25 = 95°.</div>
+  <div class="info-box"><strong>Isosceles triangles</strong> have two equal sides (marked with small ticks) and two equal angles, at the ends of the third side.</div>
+  <div class="sim">
+    <div class="sim-title">Triangle Tear &mdash; tear off the three corners and line them up</div>
+    <svg class="sim-svg" viewBox="0 0 520 290" role="img" aria-label="Triangle with its corners torn off and placed on a straight line"><g id="tt-svg"></g></svg>
+    <div class="ex-slider"><label>Move the top corner</label><input type="range" id="tt-ax" min="60" max="280" step="1" value="120" oninput="ttReset()"></div>
+    <div class="ex-steps" id="tt-out"></div>
+    <div class="sim-controls">
+      <button class="sim-btn" onclick="ttTear()">&#9986; Tear off the corners</button>
+      <button class="sim-btn" onclick="ttReset()">&#8634; Put them back</button>
+      <button class="sim-btn" id="tt-ext" onclick="ttToggleExt()">show the exterior angle</button>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-tr1">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Work out the size of angle <em>x</em> in the triangle.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 333" role="img" aria-label="Triangle with angles 58 degrees, 74 degrees and x"><path class="dl" pathLength="1" d="M60.0 305.3 L300.0 305.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M60.0 305.3 L224.5 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M300.0 305.3 L224.5 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M73.8 283.2 A26 26 0 0 1 86.0 305.3" stroke="#f5a623" stroke-width="2" fill="none"/><text x="103.7" y="281.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">58°</text><path class="da" d="M274.0 305.3 A26 26 0 0 1 292.8 280.3" stroke="#f5a623" stroke-width="2" fill="none"/><text x="260.1" y="275.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">74°</text><path class="da unk-arc" d="M233.9 74.7 A34 34 0 0 1 206.5 70.8" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 48°" x="217.6" y="91.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="tr1-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('tr1',48,'Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('tr1','The three angles of a triangle add up to 180°.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('tr1','48°. <i>x</i> = 180 − 58 − 74 = 48° (angles in a triangle).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="tr1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-tr2">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">The triangle is isosceles: the tick marks show two equal sides. The top angle is 40°. Work out <em>y</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 317" role="img" aria-label="Isosceles triangle with top angle 40 degrees and base angles y"><path class="dl" pathLength="1" d="M90.0 289.3 L270.0 289.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M90.0 289.3 L180.0 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M270.0 289.3 L180.0 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M140.6 167.7 L129.4 163.6" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M230.6 163.6 L219.4 167.7" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M191.6 73.9 A34 34 0 0 1 168.4 73.9" stroke="#f5a623" stroke-width="2" fill="none"/><text x="180.0" y="100.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">40°</text><path class="da unk-arc" d="M98.9 264.8 A26 26 0 0 1 116.0 289.3" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="y = 70°" x="124.4" y="265.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">y</text><path class="da unk-arc" d="M244.0 289.3 A26 26 0 0 1 261.1 264.8" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="y = 70°" x="235.6" y="265.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">y</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="tr2-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('tr2',70,'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('tr2','The two base angles are equal, and they share what is left after the 40°.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('tr2','70°. 180 − 40 = 140, and the two equal angles share it: 140 ÷ 2 = 70°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="tr2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-tr3">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">One side of the triangle has been extended. Work out the exterior angle <em>x</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 305" role="img" aria-label="Triangle with interior angles 63 and 48 degrees and exterior angle x"><path class="dl" pathLength="1" d="M50.0 277.1 L320.0 277.1" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M50.0 277.1 L169.8 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M260.0 277.1 L169.8 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M61.8 253.9 A26 26 0 0 1 76.0 277.1" stroke="#f5a623" stroke-width="2" fill="none"/><text x="92.6" y="250.9" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">63°</text><path class="da" d="M182.0 73.7 A34 34 0 0 1 154.3 72.3" stroke="#f5a623" stroke-width="2" fill="none"/><text x="166.7" y="99.9" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">48°</text><path class="da unk-arc" d="M250.7 252.8 A26 26 0 0 1 286.0 277.1" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 111°" x="283.8" y="242.4" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="tr3-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('tr3',111,'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('tr3','You can find the third interior angle first, or add the two interior angles at the other corners.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('tr3','111°. <i>x</i> = 48 + 63 = 111° (exterior angle of a triangle). Check: the interior angle at that corner is 180 − 111 = 69°, and 48 + 63 + 69 = 180.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="tr3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-tr4">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">The base of the triangle is extended at both ends. Work out the top angle <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 380 175" role="img" aria-label="Triangle with exterior angles 115 and 150 degrees on an extended base, top angle x"><path class="dl" pathLength="1" d="M20.0 146.6 L360.0 146.6" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M70.0 146.6 L118.8 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M300.0 146.6 L118.8 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M44.0 146.6 A26 26 0 0 1 81.0 123.1" stroke="#f5a623" stroke-width="2" fill="none"/><text x="43.1" y="104.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">115°</text><path class="da" d="M277.5 133.6 A26 26 0 0 1 326.0 146.6" stroke="#f5a623" stroke-width="2" fill="none"/><text x="312.9" y="98.3" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">150°</text><path class="da unk-arc" d="M141.3 55.0 A26 26 0 0 1 107.8 65.6" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 85°" x="131.4" y="82.1" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="tr4-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('tr4',85,'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('tr4','Find each interior base angle from its straight line first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('tr4','85°. Interior base angles: 180 − 115 = 65° and 180 − 150 = 30°. Then <i>x</i> = 180 − 65 − 30 = 85°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="tr4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-tr5">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">The exterior angle of this triangle is 130° and the top angle is 75°. What is angle <em>y</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 206" role="img" aria-label="Triangle with top angle 75 degrees, angle y and exterior angle 130 degrees"><path class="dl" pathLength="1" d="M50.0 178.4 L320.0 178.4" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M50.0 178.4 L145.5 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M260.0 178.4 L145.5 42.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M162.2 61.9 A26 26 0 0 1 130.6 63.3" stroke="#f5a623" stroke-width="2" fill="none"/><text x="147.7" y="92.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">75°</text><path class="da" d="M64.9 157.1 A26 26 0 0 1 76.0 178.4" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="87.3" y="159.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">y</text><path class="da" d="M243.3 158.5 A26 26 0 0 1 286.0 178.4" stroke="#f5a623" stroke-width="2" fill="none"/><text x="281.1" y="133.1" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">130°</text></svg>
+      <div class="mcq-options" id="tr5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('tr5', this, 'a')"><div class="opt-indicator"></div><span>55°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('tr5', this, 'b')"><div class="opt-indicator"></div><span>50°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('tr5', this, 'c')"><div class="opt-indicator"></div><span>105°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('tr5', this, 'd')"><div class="opt-indicator"></div><span>75°</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('tr5','a','Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('tr5','The exterior angle equals the two interior angles at the other corners added together.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('tr5','A — 55°. 75 + <i>y</i> = 130 (exterior angle of a triangle), so <i>y</i> = 55°. 50° is the interior angle next to the 130°, not <i>y</i>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="tr5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-tr6">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Which set of three angles could <strong>not</strong> be the angles of a triangle?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="tr6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('tr6', this, 'a')"><div class="opt-indicator"></div><span>60°, 60°, 60°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('tr6', this, 'b')"><div class="opt-indicator"></div><span>100°, 50°, 30°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('tr6', this, 'c')"><div class="opt-indicator"></div><span>110°, 40°, 40°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('tr6', this, 'd')"><div class="opt-indicator"></div><span>90°, 45°, 45°</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('tr6','c','Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('tr6','Add up each set.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('tr6','C — 110 + 40 + 40 = 190°, which is more than 180°. Each of the other sets adds up to exactly 180°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="tr6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">TRIANGLES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-tr-fill"></div></div>
+    <div class="section-score-val" id="sec-tr-val">0/7</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: PARALLEL LINES ═══════════════ -->
+<div id="parallel">
+  <div class="section-header"><div class="section-icon">&#8741;</div><div><div class="sub-label">Section C &middot; F, Z and C Shapes</div><h2>Parallel Lines</h2></div></div>
+  <div class="info-box"><strong>Parallel lines</strong> never meet. Diagrams mark them with matching arrows. A line that crosses them is called a <strong>transversal</strong>. It makes eight angles, but they come in only two sizes, and the two sizes add up to 180°.</div>
+  <div class="kind-table-wrap"><table class="kind-table"><thead><tr><th>Name</th><th>Look for</th><th>Rule</th></tr></thead><tbody><tr><td>Corresponding</td><td>an <strong>F</strong> shape: the same position at each crossing</td><td>equal</td></tr><tr><td>Alternate</td><td>a <strong>Z</strong> shape: between the lines, on opposite sides of the transversal</td><td>equal</td></tr><tr><td>Co-interior</td><td>a <strong>C</strong> (or U) shape: between the lines, on the same side</td><td>together make 180°</td></tr></tbody></table></div>
+  <div class="info-box"><strong>Class examples (Workbook page 66):</strong> <em>a</em> = 80° (corresponding angles), <em>b</em> = 80° (vertically opposite), <em>c</em> = 55° (corresponding angles), <em>d</em> = 180 − 55 = 125° (angles on a straight line). Every step has its reason written next to it.</div>
+  <div class="sim">
+    <div class="sim-title">Parallel Lines Explorer &mdash; tilt the transversal, then pick a shape</div>
+    <svg class="sim-svg" viewBox="0 0 520 280" role="img" aria-label="Two parallel lines cut by a transversal"><g id="pl-svg"></g></svg>
+    <div class="ex-slider"><label>Tilt the transversal: <b id="pl-val">60°</b></label><input type="range" id="pl-ang" min="35" max="145" step="5" value="60" oninput="plDraw(false)"></div>
+    <div class="ex-steps" id="pl-out"></div>
+    <div class="sim-controls" id="pl-modes">
+      <button class="sim-btn on" onclick="plSetMode('corr', this)">F &middot; corresponding</button>
+      <button class="sim-btn" onclick="plSetMode('alt', this)">Z &middot; alternate</button>
+      <button class="sim-btn" onclick="plSetMode('co', this)">C &middot; co-interior</button>
+      <button class="sim-btn" onclick="plSetMode('vo', this)">X &middot; vertically opposite</button>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-pl1">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">The arrows show that the two lines are parallel. How are angles <em>p</em> and <em>q</em> related?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 220" role="img" aria-label="Two parallel lines cut by a transversal; p and q are in the same position at each crossing"><path class="dl" pathLength="1" d="M20.0 60.0 L340.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M20.0 165.0 L340.0 165.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M298.2 65.2 L305.6 60.0 L298.2 54.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M298.2 170.2 L305.6 165.0 L298.2 159.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M107.5 21.0 L213.1 204.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M160.0 60.0 A30 30 0 0 1 145.0 86.0" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="169.8" y="83.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">p</text><path class="da" d="M220.6 165.0 A30 30 0 0 1 205.6 191.0" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="230.5" y="188.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">q</text></svg>
+      <div class="mcq-options" id="pl1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pl1', this, 'a')"><div class="opt-indicator"></div><span>They are corresponding angles, so <em>p</em> = <em>q</em></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pl1', this, 'b')"><div class="opt-indicator"></div><span>They are alternate angles, so <em>p</em> = <em>q</em></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pl1', this, 'c')"><div class="opt-indicator"></div><span>They are co-interior angles, so <em>p</em> + <em>q</em> = 180°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pl1', this, 'd')"><div class="opt-indicator"></div><span>They are vertically opposite angles, so <em>p</em> = <em>q</em></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pl1','a','Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pl1','Look at where each angle sits at its own crossing: above or below the line, left or right of the transversal.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pl1','A — Both angles are below their parallel line and to the right of the transversal: the same position at each crossing. That is an F shape, so they are corresponding angles and equal.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pl1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-pl2">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">The two lines are parallel. Work out the size of angle <em>x</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 220" role="img" aria-label="Two parallel lines cut by a transversal: 64 degrees and x between the lines on the same side"><path class="dl" pathLength="1" d="M20.0 60.0 L340.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M20.0 165.0 L340.0 165.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M298.2 65.2 L305.6 60.0 L298.2 54.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M298.2 170.2 L305.6 165.0 L298.2 159.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M100.3 19.6 L190.9 205.4" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M150.0 60.0 A30 30 0 0 1 133.2 87.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="166.3" y="88.9" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">64°</text><path class="da unk-arc" d="M161.6 145.2 A22 22 0 0 1 193.2 165.0" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 116°" x="191.3" y="132.8" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pl2-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pl2',116,'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pl2','Both angles are between the parallel lines, on the same side of the transversal.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pl2','116°. The 64° and <i>x</i> are co-interior angles (C shape), so <i>x</i> = 180 − 64 = 116°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pl2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-pl3">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">The two lines are parallel. Work out the size of angle <em>y</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 220" role="img" aria-label="Two parallel lines cut by a transversal: 72 degrees above the top line on the right, y above the bottom line on the left"><path class="dl" pathLength="1" d="M20.0 60.0 L340.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M20.0 165.0 L340.0 165.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M298.2 65.2 L305.6 60.0 L298.2 54.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M298.2 170.2 L305.6 165.0 L298.2 159.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M233.9 17.2 L172.0 207.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M226.8 39.1 A22 22 0 0 1 242.0 60.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="257.7" y="32.6" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">72°</text><path class="da unk-arc" d="M163.9 165.0 A22 22 0 0 1 192.7 144.1" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="y = 108°" x="163.5" y="134.3" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">y</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pl3-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pl3',108,'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pl3','First find the angle at the bottom crossing that is in the same position as the 72°. Then use a straight line.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pl3','108°. The angle above the bottom line on the right is 72° (corresponding angles). <i>y</i> is next to it on the straight line, so <i>y</i> = 180 − 72 = 108°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pl3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-pl4">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">The two lines are parallel. Which statement about angle <em>x</em> is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 220" role="img" aria-label="Two parallel lines cut by a transversal: 62 degrees and x between the lines on the same side"><path class="dl" pathLength="1" d="M20.0 60.0 L340.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M20.0 165.0 L340.0 165.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M298.2 65.2 L305.6 60.0 L298.2 54.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M298.2 170.2 L305.6 165.0 L298.2 159.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M251.1 20.3 L153.0 204.7" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M215.9 86.5 A30 30 0 0 1 200.0 60.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="183.2" y="88.1" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">62°</text><path class="da" d="M152.2 165.0 A22 22 0 0 1 184.5 145.6" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="154.6" y="132.4" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text></svg>
+      <div class="mcq-options" id="pl4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pl4', this, 'a')"><div class="opt-indicator"></div><span><em>x</em> = 62°, because alternate angles are equal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pl4', this, 'b')"><div class="opt-indicator"></div><span><em>x</em> = 62°, because corresponding angles are equal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pl4', this, 'c')"><div class="opt-indicator"></div><span><em>x</em> = 118°, because vertically opposite angles are equal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pl4', this, 'd')"><div class="opt-indicator"></div><span><em>x</em> = 118°, because co-interior angles add up to 180°</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pl4','d','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pl4','Both angles are between the parallel lines. Are they on the same side of the transversal?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pl4','D — The 62° and <i>x</i> are both between the lines and on the same side of the transversal (a C shape). They are co-interior, so <i>x</i> = 180 − 62 = 118°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pl4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-pl5">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">In triangle ABC, DE is parallel to BC. Angle A = 50° and angle ADE = 70°. Work out angle <em>x</em> = angle ACB.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 370 357" role="img" aria-label="Triangle ABC with DE parallel to BC; angle A is 50 degrees, angle ADE is 70 degrees, angle ACB is x"><path class="dl" pathLength="1" d="M50.0 326.8 L320.0 326.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M50.0 326.8 L154.4 40.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M320.0 326.8 L154.4 40.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M102.2 183.4 L237.2 183.4" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M166.3 188.6 L173.7 183.4 L166.3 178.3" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M181.6 332.0 L189.0 326.8 L181.6 321.7" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="da" d="M169.4 66.0 A30 30 0 0 1 144.1 68.2" stroke="#f5a623" stroke-width="2" fill="none"/><text x="158.6" y="87.8" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">50°</text><path class="da" d="M111.1 159.0 A26 26 0 0 1 128.2 183.4" stroke="#f5a623" stroke-width="2" fill="none"/><text x="138.2" y="158.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">70°</text><path class="da unk-arc" d="M290.0 326.8 A30 30 0 0 1 305.0 300.9" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 60°" x="280.2" y="303.8" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text><text x="154.4" y="26.0" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#e8eaf0" font-family="DM Mono, monospace">A</text><text x="36.0" y="326.8" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#e8eaf0" font-family="DM Mono, monospace">B</text><text x="334.0" y="326.8" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#e8eaf0" font-family="DM Mono, monospace">C</text><text x="88.2" y="183.4" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#e8eaf0" font-family="DM Mono, monospace">D</text><text x="251.2" y="183.4" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#e8eaf0" font-family="DM Mono, monospace">E</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pl5-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pl5',60,'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pl5','Find angle AED in the small triangle ADE first. Then compare it with angle ACB.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pl5','60°. In triangle ADE: angle AED = 180 − 50 − 70 = 60°. AED and ACB are corresponding angles (DE is parallel to BC), so <i>x</i> = 60°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pl5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-pl6">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">The two horizontal lines are parallel. The top corner of the triangle is on the top line. Work out angle <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 205" role="img" aria-label="Triangle between two parallel lines with its top corner on the top line: angles 56 and 47 degrees at the top, x at the bottom right corner"><path class="dl" pathLength="1" d="M20.0 50.0 L340.0 50.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M20.0 180.0 L340.0 180.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M298.2 55.2 L305.6 50.0 L298.2 44.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M298.2 185.2 L305.6 180.0 L298.2 174.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M170.0 50.0 L82.3 180.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M170.0 50.0 L200.0 180.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M82.3 180.0 L200.0 180.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M153.2 74.9 A30 30 0 0 1 140.0 50.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="125.9" y="73.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">56°</text><path class="da" d="M177.6 83.1 A34 34 0 0 1 151.0 78.2" stroke="#f5a623" stroke-width="2" fill="none"/><text x="160.2" y="103.1" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">47°</text><path class="da unk-arc" d="M174.0 180.0 A26 26 0 0 1 194.2 154.7" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 77°" x="165.6" y="152.6" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pl6-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pl6',77,'Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pl6','The three angles at the top corner sit on a straight line. Then look for a Z shape.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pl6','77°. The angle between the right-hand side of the triangle and the top line is 180 − 56 − 47 = 77° (angles on a straight line). <i>x</i> is alternate to it (Z shape), so <i>x</i> = 77°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pl6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">PARALLEL LINES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pl-fill"></div></div>
+    <div class="section-score-val" id="sec-pl-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: INTERIOR & EXTERIOR ANGLES OF POLYGONS ═══════════════ -->
+<div id="polygons">
+  <div class="section-header"><div class="section-icon">&#11040;</div><div><div class="sub-label">Section D &middot; Unit 5.2</div><h2>Interior &amp; Exterior Angles of Polygons</h2></div></div>
+  <div class="info-box">A <strong>polygon</strong> is a flat, closed shape with straight sides. Names to know: pentagon (5 sides), hexagon (6), heptagon (7), octagon (8), nonagon (9), decagon (10).</div>
+  <div class="kind-table-wrap"><table class="kind-table"><thead><tr><th>Polygon</th><th>Sides</th><th>Triangles from one corner</th><th>Sum of interior angles</th></tr></thead><tbody><tr><td>Triangle</td><td>3</td><td>1</td><td>1 × 180 = 180°</td></tr><tr><td>Quadrilateral</td><td>4</td><td>2</td><td>2 × 180 = 360°</td></tr><tr><td>Pentagon</td><td>5</td><td>3</td><td>3 × 180 = 540°</td></tr><tr><td><em>n</em> sides</td><td><em>n</em></td><td><em>n</em> − 2</td><td>180(<em>n</em> − 2)°</td></tr></tbody></table></div>
+  <div class="info-box"><strong>Why <em>n</em> − 2?</strong> Draw every diagonal from one corner. The two sides that touch that corner are already sides of the first and last triangle, so an <em>n</em>-sided polygon splits into <em>n</em> − 2 triangles.</div>
+  <div class="info-box"><strong>Exterior angles always add up to 360°.</strong> Walk all the way round the shape. At each corner you turn through the exterior angle, and when you are back at the start you have made exactly one full turn. At each corner, <strong>interior + exterior = 180°</strong>.</div>
+  <div class="info-box"><strong>Regular polygons</strong> have all sides equal and all angles equal. Each exterior angle is 360 ÷ <em>n</em>, and each interior angle is 180° minus the exterior angle.</div>
+  <div class="info-box"><strong>Class example:</strong> a pentagon has angles <em>a</em>, 160°, 50°, 140° and 90°. The sum is 180 × (5 − 2) = 540°, so <em>a</em> + 440 = 540 and <em>a</em> = 100°.</div>
+  <div class="sim">
+    <div class="sim-title">Polygon Explorer &mdash; split it into triangles, then walk round the outside</div>
+    <svg class="sim-svg" viewBox="0 0 520 300" role="img" aria-label="Regular polygon explorer"><g id="pg-svg"></g></svg>
+    <div class="ex-slider"><label>Number of sides: <b id="pg-val">5</b></label><input type="range" id="pg-n" min="3" max="12" step="1" value="5" oninput="pgSetN()"></div>
+    <div class="ex-steps" id="pg-out"></div>
+    <div class="sim-controls">
+      <button class="sim-btn" onclick="pgSplit()">&#9651; Split into triangles</button>
+      <button class="sim-btn" onclick="pgWalk()">&#128034; Walk round the outside</button>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-pg1">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A polygon has 14 sides. What is the sum of its interior angles?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg1-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg1',2160,'Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg1','Use 180(<i>n</i> − 2).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg1','2160°. 180 × (14 − 2) = 180 × 12 = 2160°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-pg2">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">From one corner of a 16-sided polygon you draw every diagonal you can. How many triangles does this make?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="pg2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg2', this, 'a')"><div class="opt-indicator"></div><span>16</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg2', this, 'b')"><div class="opt-indicator"></div><span>14</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg2', this, 'c')"><div class="opt-indicator"></div><span>15</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg2', this, 'd')"><div class="opt-indicator"></div><span>13</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg2','b','Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg2','Try it on a shape you know: a pentagon (5 sides) splits into 3 triangles.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg2','B — 14. An <i>n</i>-sided polygon splits into <i>n</i> − 2 triangles from one corner, and 16 − 2 = 14.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-pg3">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Work out angle <em>x</em> in the pentagon.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 280" role="img" aria-label="Pentagon with angles 112, 95, 120, 105 degrees and x"><path class="dl" pathLength="1" d="M107.8 234.4 L277.8 234.4" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M277.8 234.4 L288.2 114.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M288.2 114.8 L189.9 46.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M189.9 46.0 L71.8 145.2" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M71.8 145.2 L107.8 234.4" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M99.5 214.0 A22 22 0 0 1 129.8 234.4" stroke="#f5a623" stroke-width="2" fill="none"/><text x="126.8" y="206.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">112°</text><path class="da" d="M255.8 234.4 A22 22 0 0 1 279.7 212.5" stroke="#f5a623" stroke-width="2" fill="none"/><text x="254.8" y="209.3" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">95°</text><path class="da" d="M286.3 136.7 A22 22 0 0 1 270.2 102.2" stroke="#f5a623" stroke-width="2" fill="none"/><text x="257.4" y="129.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">120°</text><path class="da" d="M208.0 58.6 A22 22 0 0 1 173.1 60.1" stroke="#f5a623" stroke-width="2" fill="none"/><text x="191.4" y="80.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">105°</text><path class="da unk-arc" d="M88.6 131.0 A22 22 0 0 1 80.0 165.6" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 108°" x="104.7" y="153.4" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg3-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg3',108,'Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg3','First find the sum of the interior angles of a pentagon.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg3','108°. Sum = 180 × 3 = 540°. 112 + 95 + 120 + 105 = 432, so <i>x</i> = 540 − 432 = 108°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-pg4">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Work out angle <em>x</em> in the hexagon.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 247" role="img" aria-label="Hexagon with angles 135, 120, 100, 140, 115 degrees and x"><path class="dl" pathLength="1" d="M107.7 201.1 L247.7 201.1" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M247.7 201.1 L292.7 123.1" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M292.7 123.1 L200.8 46.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M200.8 46.0 L120.8 46.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M120.8 46.0 L67.3 160.7" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M67.3 160.7 L107.7 201.1" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M92.1 185.5 A22 22 0 0 1 129.7 201.1" stroke="#f5a623" stroke-width="2" fill="none"/><text x="120.7" y="169.7" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">135°</text><path class="da" d="M225.7 201.1 A22 22 0 0 1 258.7 182.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="230.7" y="171.6" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">120°</text><path class="da" d="M281.7 142.2 A22 22 0 0 1 275.8 109.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="259.2" y="129.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">100°</text><path class="da" d="M217.6 60.1 A22 22 0 0 1 178.8 46.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="189.1" y="77.9" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">140°</text><path class="da" d="M142.8 46.0 A22 22 0 0 1 111.5 65.9" stroke="#f5a623" stroke-width="2" fill="none"/><text x="139.0" y="74.7" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">115°</text><path class="da unk-arc" d="M76.6 140.7 A22 22 0 0 1 82.9 176.2" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 110°" x="100.8" y="154.8" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg4-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg4',110,'Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg4','A hexagon has 6 sides, so it splits into 4 triangles.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg4','110°. Sum = 180 × 4 = 720°. 135 + 120 + 100 + 140 + 115 = 610, so <i>x</i> = 720 − 610 = 110°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-pg5">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Each side of the quadrilateral has been extended to make an exterior angle. Work out <em>x</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 233" role="img" aria-label="Quadrilateral with each side extended: exterior angles 85, 70, 110 degrees and x"><path class="dl" pathLength="1" d="M84.4 172.8 L244.4 172.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M244.4 172.8 L285.5 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M285.5 60.0 L74.5 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M74.5 60.0 L84.4 172.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M84.4 172.8 L88.6 220.6" stroke="#7a84a0" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/><path class="da" d="M104.4 172.8 A20 20 0 0 1 86.2 192.7" stroke="#f5a623" stroke-width="2" fill="none"/><text x="115.4" y="201.1" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">85°</text><path d="M244.4 172.8 L292.4 172.8" stroke="#7a84a0" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/><path class="da" d="M251.3 154.0 A20 20 0 0 1 264.4 172.8" stroke="#f5a623" stroke-width="2" fill="none"/><text x="278.8" y="148.7" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">70°</text><path d="M285.5 60.0 L301.9 14.9" stroke="#7a84a0" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/><path class="da" d="M265.5 60.0 A20 20 0 0 1 292.3 41.2" stroke="#f5a623" stroke-width="2" fill="none"/><text x="261.4" y="25.6" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">110°</text><path d="M74.5 60.0 L26.5 60.0" stroke="#7a84a0" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/><path class="da unk-arc" d="M76.3 79.9 A20 20 0 0 1 54.5 60.0" stroke="#4f8ef7" stroke-width="2" fill="none"/><text class="ans-lbl" data-ans="x = 95°" x="46.2" y="91.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg5-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg5',95,'Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg5','Exterior angles of any polygon add up to the same total.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg5','95°. 85 + 70 + 110 + <i>x</i> = 360 (exterior angles), so 265 + <i>x</i> = 360 and <i>x</i> = 95°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-pg6">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">A regular polygon has 20 sides. What is the size of each <strong>exterior</strong> angle?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg6-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg6',18,'Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg6','The exterior angles share 360° equally.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg6','18°. 360 ÷ 20 = 18°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-pg7">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A regular polygon has 18 sides. What is the size of each <strong>interior</strong> angle?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg7-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg7',160,'Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg7','Find the exterior angle first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg7','160°. Each exterior angle is 360 ÷ 18 = 20°, so each interior angle is 180 − 20 = 160°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-pg8">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Each exterior angle of a regular polygon is 24°. How many sides does it have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="pg8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg8', this, 'a')"><div class="opt-indicator"></div><span>24 sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg8', this, 'b')"><div class="opt-indicator"></div><span>12 sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg8', this, 'c')"><div class="opt-indicator"></div><span>15 sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg8', this, 'd')"><div class="opt-indicator"></div><span>10 sides</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg8','c','Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg8','How many 24° turns make one full turn?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg8','C — 15 sides. The exterior angles add up to 360°, and 360 ÷ 24 = 15.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-pg9">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">The interior angles of a polygon add up to 1980°. How many sides does it have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="pg9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg9', this, 'a')"><div class="opt-indicator"></div><span>11 sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg9', this, 'b')"><div class="opt-indicator"></div><span>12 sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg9', this, 'c')"><div class="opt-indicator"></div><span>15 sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg9', this, 'd')"><div class="opt-indicator"></div><span>13 sides</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg9','d','Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg9','Divide by 180 to find the number of triangles. How many more sides than triangles does a polygon have?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg9','D — 13 sides. 1980 ÷ 180 = 11 triangles, and a polygon has 2 more sides than triangles, so <i>n</i> = 13. Check: 180 × (13 − 2) = 1980°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg9-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">POLYGONS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pg-fill"></div></div>
+    <div class="section-score-val" id="sec-pg-val">0/11</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: ALGEBRA WITH ANGLES ═══════════════ -->
+<div id="algebra">
+  <div class="section-header"><div class="section-icon"><i>x</i>°</div><div><div class="sub-label">Section E &middot; Putting It Together</div><h2>Algebra with Angles</h2></div></div>
+  <div class="info-box"><strong>Angles written with letters.</strong> Three steps:<ol><li>Pick the angle fact: straight line, triangle, polygon sum, parallel lines, and so on.</li><li>Write an equation and solve it.</li><li>Put the value back in to find each angle, then check the total.</li></ol></div>
+  <div class="info-box"><strong>Class example 1:</strong> a quadrilateral has angles 3<em>x</em> + 80, 5<em>x</em> + 10, 3<em>x</em> − 20 and 4<em>x</em> − 10. They add up to 360°, so 15<em>x</em> + 60 = 360, 15<em>x</em> = 300 and <em>x</em> = 20. The angles are 140°, 110°, 40° and 70°.</div>
+  <div class="info-box"><strong>Class example 2:</strong> co-interior angles 8<em>x</em> + 15 and 3<em>x</em> add up to 180°, so 11<em>x</em> + 15 = 180, 11<em>x</em> = 165 and <em>x</em> = 15.</div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-mx1">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Three angles of the pentagon are marked <em>x</em>. Work out <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 250" role="img" aria-label="Pentagon with angles x, x, 100 degrees, x and 110 degrees"><path class="dl" pathLength="1" d="M97.5 204.4 L247.5 204.4" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M247.5 204.4 L285.1 101.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M285.1 101.0 L189.8 46.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M189.8 46.0 L74.9 142.4" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M74.9 142.4 L97.5 204.4" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M89.9 183.7 A22 22 0 0 1 119.5 204.4" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="117.0" y="176.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text><path class="da" d="M225.5 204.4 A22 22 0 0 1 255.0 183.7" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="228.0" y="176.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text><path class="da" d="M277.6 121.7 A22 22 0 0 1 266.0 90.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="253.1" y="112.6" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">100°</text><path class="da" d="M208.9 57.0 A22 22 0 0 1 173.0 60.1" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="192.8" y="79.9" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text><path class="da" d="M91.8 128.3 A22 22 0 0 1 82.4 163.1" stroke="#f5a623" stroke-width="2" fill="none"/><text x="107.8" y="151.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">110°</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx1-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx1',110,'Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx1','The angles of a pentagon add up to 540°. Collect the <i>x</i> terms.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx1','110°. 3<i>x</i> + 100 + 110 = 540, so 3<i>x</i> + 210 = 540, 3<i>x</i> = 330 and <i>x</i> = 110°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-mx2">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">The angles of the quadrilateral are written in terms of <em>x</em>. Work out the value of <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 249" role="img" aria-label="Quadrilateral with angles 2x + 10, 3x − 5, x + 40 and 4x + 15"><path class="dl" pathLength="1" d="M60.0 219.3 L300.0 219.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M300.0 219.3 L283.4 30.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M283.4 30.0 L97.3 116.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M97.3 116.8 L60.0 219.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M66.8 200.5 A20 20 0 0 1 80.0 219.3" stroke="#f5a623" stroke-width="2" fill="none"/><text x="97.7" y="192.9" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f5a623" font-family="DM Mono, monospace">2x + 10</text><path class="da" d="M280.0 219.3 A20 20 0 0 1 298.3 199.4" stroke="#f5a623" stroke-width="2" fill="none"/><text x="266.1" y="188.2" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f5a623" font-family="DM Mono, monospace">3x − 5</text><path class="da" d="M285.2 49.9 A20 20 0 0 1 265.3 38.5" stroke="#f5a623" stroke-width="2" fill="none"/><text x="260.4" y="69.8" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f5a623" font-family="DM Mono, monospace">x + 40</text><path class="da" d="M115.4 108.3 A20 20 0 0 1 90.5 135.6" stroke="#f5a623" stroke-width="2" fill="none"/><text x="131.2" y="147.9" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f5a623" font-family="DM Mono, monospace">4x + 15</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx2',30,'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx2','Add all four expressions and set the total equal to 360.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx2','<i>x</i> = 30. (2<i>x</i> + 10) + (3<i>x</i> − 5) + (<i>x</i> + 40) + (4<i>x</i> + 15) = 10<i>x</i> + 60 = 360, so 10<i>x</i> = 300. The angles are 70°, 85°, 70° and 135°, which add up to 360°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-mx3">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">The two lines are parallel. Work out the value of <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 380 250" role="img" aria-label="Two parallel lines cut by a transversal: co-interior angles 3x + 15 and 6x + 12"><path class="dl" pathLength="1" d="M20.0 50.0 L360.0 50.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M20.0 200.0 L360.0 200.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M315.8 55.2 L323.2 50.0 L315.8 44.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M315.8 205.2 L323.2 200.0 L315.8 194.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M91.7 8.9 L195.1 241.1" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M140.0 50.0 A30 30 0 0 1 122.2 77.4" stroke="#f5a623" stroke-width="2" fill="none"/><text x="165.4" y="85.9" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f5a623" font-family="DM Mono, monospace">3x + 15</text><path class="da" d="M167.8 179.9 A22 22 0 0 1 198.8 200.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="209.5" y="149.7" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f5a623" font-family="DM Mono, monospace">6x + 12</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx3-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx3',17,'Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx3','The two angles are co-interior.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx3','<i>x</i> = 17. Co-interior angles add up to 180°: 9<i>x</i> + 27 = 180, so 9<i>x</i> = 153. Check: 3(17) + 15 = 66° and 6(17) + 12 = 114°, and 66 + 114 = 180.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-mx4">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">Two straight lines cross. Work out the value of <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 200" role="img" aria-label="Two crossing lines: vertically opposite angles 5x − 12 and 3x + 28"><path class="dl" pathLength="1" d="M269.9 13.2 L90.1 186.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M269.9 186.8 L90.1 13.2" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M201.6 79.2 A30 30 0 0 1 201.6 120.8" stroke="#f5a623" stroke-width="2" fill="none"/><text x="246.0" y="100.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">5x − 12</text><path class="da" d="M158.4 120.8 A30 30 0 0 1 158.4 79.2" stroke="#f5a623" stroke-width="2" fill="none"/><text x="114.0" y="100.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">3x + 28</text><circle cx="180.0" cy="100.0" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx4-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx4',20,'Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx4','The two marked angles are vertically opposite, so the expressions are equal.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx4','<i>x</i> = 20. 5<i>x</i> − 12 = 3<i>x</i> + 28, so 2<i>x</i> = 40. Check: both angles are 88°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-mx5">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">The angles of a triangle are <em>x</em>, 2<em>x</em> and 3<em>x</em>. What is the largest angle?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mx5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mx5', this, 'a')"><div class="opt-indicator"></div><span>90°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx5', this, 'b')"><div class="opt-indicator"></div><span>60°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx5', this, 'c')"><div class="opt-indicator"></div><span>30°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx5', this, 'd')"><div class="opt-indicator"></div><span>120°</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mx5','a','Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx5','Write <i>x</i> + 2<i>x</i> + 3<i>x</i> = 180.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx5','A — 90°. 6<i>x</i> = 180, so <i>x</i> = 30. The angles are 30°, 60° and 90°, so the largest is 3 × 30 = 90°. It is a right-angled triangle.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-mx6">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">Each interior angle of a regular polygon is 165°. How many sides does it have?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mx6-ans" placeholder="Enter answer..."><span class="num-unit">sides</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mx6',24,'Q33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx6','Find the exterior angle first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx6','24 sides. Each exterior angle is 180 − 165 = 15°, and 360 ÷ 15 = 24.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-mx7">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Lena works out the sum of the interior angles of a hexagon as 6 × 180 = 1080°. What is wrong?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mx7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mx7', this, 'a')"><div class="opt-indicator"></div><span>She should work out 6 × 360 = 2160°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx7', this, 'b')"><div class="opt-indicator"></div><span>Every polygon’s interior angles add up to 360°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx7', this, 'c')"><div class="opt-indicator"></div><span>She should work out (6 − 2) × 180 = 720°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mx7', this, 'd')"><div class="opt-indicator"></div><span>Nothing: 1080° is correct</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mx7','c','Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mx7','How many triangles does a hexagon split into from one corner?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mx7','C — A hexagon splits into 6 − 2 = 4 triangles, so the sum is 4 × 180 = 720°. 1080° is the sum for an octagon.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mx7-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">ALGEBRA WITH ANGLES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mx-fill"></div></div>
+    <div class="section-score-val" id="sec-mx-val">0/12</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: REASONING ═══════════════ -->
+<div id="reasoning">
+  <div class="section-header"><div class="section-icon">&there4;</div><div><div class="sub-label">Section F &middot; Why It Works</div><h2>Reasoning</h2></div></div>
+  <div class="info-box"><strong>Why do the rules work?</strong> Each question here takes a rule from this sheet and asks for the step that makes it true. Use the facts you already know: alternate angles, triangles splitting a polygon, and the 360° of exterior angles.</div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-rs1">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">A line is drawn through the top corner of a triangle, parallel to the base. Which angle fact shows that <em>p</em> = <em>a</em> and <em>q</em> = <em>b</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 380 244" role="img" aria-label="Triangle with base angles a and b and top angle c; a line through the top corner parallel to the base makes angles p on the left and q on the right"><path class="dl" pathLength="1" d="M60.0 219.4 L300.0 219.4" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M60.0 219.4 L157.8 50.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M300.0 219.4 L157.8 50.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M7.8 50.0 L307.8 50.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M274.5 55.2 L281.8 50.0 L274.5 44.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M272.6 224.6 L280.0 219.4 L272.6 214.3" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="da" d="M75.0 193.5 A30 30 0 0 1 90.0 219.4" stroke="#f5a623" stroke-width="2" fill="none"/><text x="99.8" y="196.4" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">a</text><path class="da" d="M270.0 219.4 A30 30 0 0 1 280.7 196.5" stroke="#f5a623" stroke-width="2" fill="none"/><text x="258.3" y="200.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">b</text><path class="da" d="M142.8 76.0 A30 30 0 0 1 127.8 50.0" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="116.3" y="74.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">p</text><path class="da" d="M187.8 50.0 A30 30 0 0 1 177.1 73.0" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="201.3" y="70.3" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">q</text><path class="da" d="M172.0 66.9 A22 22 0 0 1 146.8 69.1" stroke="#e8eaf0" stroke-width="2" fill="none"/><text x="161.1" y="87.9" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#e8eaf0" font-family="DM Mono, monospace">c</text><circle cx="157.8" cy="50.0" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="mcq-options" id="rs1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('rs1', this, 'a')"><div class="opt-indicator"></div><span>corresponding angles (an F shape)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rs1', this, 'b')"><div class="opt-indicator"></div><span>alternate angles (a Z shape between the parallel lines)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rs1', this, 'c')"><div class="opt-indicator"></div><span>co-interior angles (a C shape)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rs1', this, 'd')"><div class="opt-indicator"></div><span>vertically opposite angles (an X shape)</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('rs1','b','Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rs1','The base and the new line are parallel. The left side of the triangle crosses both. Trace the shape it makes with <i>p</i> and <i>a</i>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rs1','B — Alternate angles: <i>p</i> and <i>a</i> are on opposite sides of the left side, between the parallel lines (a Z shape). The same works for <i>q</i> and <i>b</i>. Then <i>p</i>, <i>c</i> and <i>q</i> fill the straight line at the top, so <i>a</i> + <i>b</i> + <i>c</i> = 180°: this is why the angles of every triangle add up to 180°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rs1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-rs2">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">From one corner, an octagon splits into triangles, and the angles of each triangle add up to 180°. What do the interior angles of an octagon add up to?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rs2-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rs2',1080,'Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rs2','How many triangles does an 8-sided shape split into?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rs2','1080°. An octagon splits into 8 − 2 = 6 triangles, and 6 × 180 = 1080°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rs2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-rs3">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Can a regular polygon have interior angles of 100°?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="rs3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('rs3', this, 'a')"><div class="opt-indicator"></div><span>Yes: it would have 4.5 sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rs3', this, 'b')"><div class="opt-indicator"></div><span>Yes: 360 ÷ 100 = 3.6, so it has about 4 sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rs3', this, 'c')"><div class="opt-indicator"></div><span>No: interior angles of a regular polygon are always less than 90°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rs3', this, 'd')"><div class="opt-indicator"></div><span>No: each exterior angle would be 80°, and 360 ÷ 80 = 4.5 is not a whole number of sides</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('rs3','d','Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rs3','Work out the exterior angle, then how many of them make 360°.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rs3','D — No. Each exterior angle would be 180 − 100 = 80°, and 360 ÷ 80 = 4.5. A polygon must have a whole number of sides. (Interior angles of regular polygons can be more than 90°: a regular hexagon has 120°.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rs3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-rs4">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">The two horizontal lines are parallel. Work out angle <em>x</em> at the bend.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="sim-svg q-fig" viewBox="0 0 360 215" role="img" aria-label="Two parallel lines with a bent line between them: 35 degrees at the top line, 48 degrees at the bottom line, x at the bend"><path class="dl" pathLength="1" d="M20.0 50.0 L340.0 50.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M20.0 190.0 L340.0 190.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M304.6 55.2 L312.0 50.0 L304.6 44.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M304.6 195.2 L312.0 190.0 L304.6 184.8" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="dl" pathLength="1" d="M120.0 50.0 L220.0 120.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="dl" pathLength="1" d="M220.0 120.0 L157.0 190.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="da" d="M154.0 50.0 A34 34 0 0 1 147.9 69.5" stroke="#f5a623" stroke-width="2" fill="none"/><text x="173.4" y="66.8" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">35°</text><path class="da" d="M179.7 164.7 A34 34 0 0 1 191.0 190.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="208.1" y="167.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">48°</text><path class="da" d="M203.9 137.8 A24 24 0 0 1 200.3 106.2" stroke="#4f8ef7" stroke-width="2" fill="none"/><text x="178.3" y="124.8" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">x</text><circle cx="220.0" cy="120.0" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rs4-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rs4',83,'Q38')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rs4','Draw a third line through the bend, parallel to the other two. It splits <i>x</i> into two parts.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rs4','83°. A line through the bend parallel to the others splits <i>x</i> into 35° (alternate angles with the top line) and 48° (alternate angles with the bottom line), so <i>x</i> = 35 + 48 = 83°.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rs4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">REASONING &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-rs-fill"></div></div>
+    <div class="section-score-val" id="sec-rs-val">0/6</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  af1: 1, af2: 1, af3: 1, af4: 1, af5: 2, af6: 1,
+  tr1: 1, tr2: 1, tr3: 1, tr4: 2, tr5: 1, tr6: 1,
+  pl1: 1, pl2: 1, pl3: 1, pl4: 1, pl5: 2, pl6: 2,
+  pg1: 1, pg2: 1, pg3: 2, pg4: 2, pg5: 1, pg6: 1, pg7: 1, pg8: 1, pg9: 1,
+  mx1: 2, mx2: 2, mx3: 2, mx4: 2, mx5: 1, mx6: 2, mx7: 1,
+  rs1: 1, rs2: 2, rs3: 1, rs4: 2
+};
+
+const sections = {
+  af: { label: 'Angle Facts', qs: ['af1','af2','af3','af4','af5','af6'] },
+  tr: { label: 'Triangles', qs: ['tr1','tr2','tr3','tr4','tr5','tr6'] },
+  pl: { label: 'Parallel Lines', qs: ['pl1','pl2','pl3','pl4','pl5','pl6'] },
+  pg: { label: 'Polygons', qs: ['pg1','pg2','pg3','pg4','pg5','pg6','pg7','pg8','pg9'] },
+  mx: { label: 'Algebra with Angles', qs: ['mx1','mx2','mx3','mx4','mx5','mx6','mx7'] },
+  rs: { label: 'Reasoning', qs: ['rs1','rs2','rs3','rs4'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+// ── Drawing helpers ─────────────────────────────────────────
+const C_LINE = '#7a84a0', C_TXT = '#e8eaf0', C_A = '#f5a623', C_B = '#4f8ef7', C_G = '#3ecf8e';
+const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function P(V, a, r) { const t = a * Math.PI / 180; return [V[0] + r * Math.cos(t), V[1] + r * Math.sin(t)]; }
+function n1(v) { return Math.round(v * 10) / 10; }
+function dirDeg(A, B) { return (Math.atan2(B[1] - A[1], B[0] - A[0]) * 180 / Math.PI + 360) % 360; }
+function sLine(A, B, c = C_LINE, w = 2, extra = '') { return `<line x1="${n1(A[0])}" y1="${n1(A[1])}" x2="${n1(B[0])}" y2="${n1(B[1])}" stroke="${c}" stroke-width="${w}" stroke-linecap="round" ${extra}/>`; }
+function sArc(V, a1, a2, r, c, w = 2.5) {
+  while (a2 <= a1) a2 += 360;
+  const p = P(V, a1, r), q = P(V, a2, r);
+  return `<path d="M${n1(p[0])} ${n1(p[1])} A${r} ${r} 0 ${a2 - a1 > 180 ? 1 : 0} 1 ${n1(q[0])} ${n1(q[1])}" stroke="${c}" stroke-width="${w}" fill="none"/>`;
+}
+function sWedge(V, a1, a2, r, c, op) {
+  while (a2 <= a1) a2 += 360;
+  const p = P(V, a1, r), q = P(V, a2, r);
+  return `<path d="M${n1(V[0])} ${n1(V[1])} L${n1(p[0])} ${n1(p[1])} A${r} ${r} 0 ${a2 - a1 > 180 ? 1 : 0} 1 ${n1(q[0])} ${n1(q[1])} Z" fill="${c}" fill-opacity="${op}" stroke="${c}" stroke-width="2"/>`;
+}
+function sText(Q, t, c = C_TXT, size = 14) { return `<text x="${n1(Q[0])}" y="${n1(Q[1])}" text-anchor="middle" dominant-baseline="central" font-size="${size}" fill="${c}" font-family="DM Mono, monospace">${t}</text>`; }
+function sAng(V, a1, a2, r, c, t, lr) {
+  let b = a2; while (b <= a1) b += 360;
+  return sWedge(V, a1, a2, r, c, 0.16) + sArc(V, a1, a2, r, c) + sText(P(V, (a1 + b) / 2, lr || r + 20), t, c);
+}
+function chevron(x, y) { return `<path d="M${x - 7} ${y - 6} L${x} ${y} L${x - 7} ${y + 6}" stroke="${C_LINE}" stroke-width="2" fill="none"/>`; }
+function ease(k) { return k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; }
+function animate(dur, step, done) {
+  if (REDUCED) { step(1); if (done) done(); return () => {}; }
+  const t0 = performance.now(); let id;
+  const f = now => { const k = Math.min(1, (now - t0) / dur); step(k); if (k < 1) id = requestAnimationFrame(f); else if (done) done(); };
+  id = requestAnimationFrame(f);
+  return () => cancelAnimationFrame(id);
+}
+const fmtDeg = v => Number.isInteger(Math.round(v * 10) / 10) ? String(Math.round(v)) : v.toFixed(1);
+
+// ── Angle Spinner ───────────────────────────────────────────
+let spMode = 'line', spCancel = null;
+function spSetMode(m, btn) {
+  spMode = m;
+  document.querySelectorAll('#sp-modes .sim-btn').forEach(b => b.classList.toggle('on', b === btn));
+  spDraw();
+}
+function spDraw(thIn) {
+  const th = thIn !== undefined ? thIn : +document.getElementById('sp-ang').value;
+  const t = Math.round(th);
+  document.getElementById('sp-val').textContent = t + '°';
+  let s = '', o = '';
+  const A = `<b style="color:var(--accent-warn)">`, B = `<b style="color:var(--accent-math)">`, G = `<b style="color:var(--accent-sci)">`;
+  if (spMode === 'line') {
+    const V = [260, 190];
+    s += sLine([30, 190], [490, 190]) + sLine(V, P(V, -th, 170));
+    s += sAng(V, 360 - th, 360, 50, C_A, t + '°', 74) + sAng(V, 180, 360 - th, 34, C_B, (180 - t) + '°', 58);
+    o = `${A}${t}°</b> + ${B}${180 - t}°</b> = <b>180°</b>: angles on a straight line. When one angle grows, the other shrinks by exactly the same amount.`;
+  } else if (spMode === 'cross') {
+    const V = [260, 130];
+    s += sLine(P(V, 180, 230), P(V, 0, 230)) + sLine(P(V, -th, 125), P(V, 180 - th, 125));
+    s += sAng(V, 360 - th, 360, 44, C_A, t + '°', 70) + sAng(V, 180 - th, 180, 44, C_A, t + '°', 70);
+    s += sAng(V, 180, 360 - th, 28, C_B, (180 - t) + '°', 56) + sAng(V, 0, 180 - th, 28, C_B, (180 - t) + '°', 56);
+    o = `Vertically opposite angles stay equal: ${A}${t}° = ${t}°</b> and ${B}${180 - t}° = ${180 - t}°</b>. Any two angles next to each other still make 180°.`;
+  } else {
+    const V = [260, 125];
+    s += sLine(V, P(V, 0, 220)) + sLine(V, P(V, -th, 115)) + sLine(V, P(V, 140, 150));
+    s += sAng(V, 360 - th, 360, 46, C_A, t + '°', 70) + sAng(V, 140, 360 - th, 30, C_B, (220 - t) + '°', 56) + sAng(V, 0, 140, 38, C_G, '140°', 62);
+    o = `${A}${t}°</b> + ${B}${220 - t}°</b> + ${G}140°</b> = <b>360°</b>: angles around a point make one full turn.`;
+  }
+  document.getElementById('sp-svg').innerHTML = s;
+  document.getElementById('sp-out').innerHTML = o;
+}
+function spStop() {
+  if (spCancel) { spCancel(); spCancel = null; }
+  document.getElementById('sp-play').innerHTML = '&#9654; Spin it';
+}
+function spToggle() {
+  if (spCancel) { spStop(); spDraw(); return; }
+  document.getElementById('sp-play').innerHTML = '&#10074;&#10074; Stop';
+  const loop = () => { spCancel = animate(7000, k => spDraw(90 - 75 * Math.cos(k * 2 * Math.PI)), () => { if (spCancel) loop(); }); };
+  if (REDUCED) { spDraw(130); spStop(); return; }
+  loop();
+}
+
+// ── Triangle Tear ───────────────────────────────────────────
+let ttK = 0, ttCancel = null, ttExt = false;
+function ttDraw() {
+  const ax = +document.getElementById('tt-ax').value;
+  const A = [ax, 40], B = [30, 215], C = [300, 215], T = [415, 262];
+  const beta = 360 - dirDeg(B, A), gamma = dirDeg(C, A) - 180, alpha = 180 - beta - gamma;
+  const b = Math.round(beta), c = Math.round(gamma), a = 180 - b - c;
+  const ws = [
+    { V: B, s: 360 - beta, sz: beta, col: C_A, t: 180 },
+    { V: A, s: gamma, sz: alpha, col: C_B, t: 180 + beta },
+    { V: C, s: 180, sz: gamma, col: C_G, t: 180 + beta + alpha },
+  ];
+  const k = ease(ttK);
+  let s = sLine([330, 262], [500, 262], C_LINE, 2) + sText([415, 282], ttK >= 1 ? 'a straight line: 180°' : 'straight line', ttK >= 1 ? C_TXT : C_LINE, 12);
+  s += `<polygon points="${[A, B, C].map(q => n1(q[0]) + ',' + n1(q[1])).join(' ')}" fill="rgba(79,142,247,0.05)" stroke="${C_TXT}" stroke-width="2" stroke-linejoin="round"/>`;
+  if (ttExt) {
+    s += sLine(C, [365, 215], C_LINE, 1.5, 'stroke-dasharray="5 4"');
+    s += sArc(C, 180 + gamma, 360, 22, C_TXT, 2) + sText(P(C, (180 + gamma + 360) / 2, 40), (a + b) + '°', C_TXT, 13);
+  }
+  ws.forEach((w, i) => {
+    if (ttK > 0) s += `<path d="${sWedge(w.V, w.s, w.s + w.sz, 40, w.col, 0).match(/d="([^"]+)"/)[1]}" fill="none" stroke="${w.col}" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>`;
+    let phi = w.t - w.s; phi = ((phi % 360) + 540) % 360 - 180;
+    const tx = w.V[0] + (T[0] - w.V[0]) * k, ty = w.V[1] + (T[1] - w.V[1]) * k;
+    s += `<g transform="translate(${n1(tx)} ${n1(ty)}) rotate(${n1(phi * k)}) translate(${-w.V[0]} ${-w.V[1]})">${sWedge(w.V, w.s, w.s + w.sz, 40, w.col, 0.6)}</g>`;
+  });
+  s += sText(P(A, (gamma + 180 - beta) / 2, 56), a + '°', C_B, 13) + sText(P(B, 360 - beta / 2, 58), b + '°', C_A, 13) + sText(P(C, 180 + gamma / 2, 58), c + '°', C_G, 13);
+  document.getElementById('tt-svg').innerHTML = s;
+  let o = `<b style="color:var(--accent-warn)">${b}°</b> + <b style="color:var(--accent-math)">${a}°</b> + <b style="color:var(--accent-sci)">${c}°</b> = <b>180°</b>. Move the corner: the angles change, the total never does.`;
+  if (ttExt) o += `<br>Exterior angle at the right-hand corner = 180 − ${c} = <b>${a + b}°</b>, the same as the two other corners added: ${b} + ${a} = ${a + b}.`;
+  document.getElementById('tt-out').innerHTML = o;
+}
+function ttTear() { if (ttCancel) ttCancel(); ttCancel = animate(1700, k => { ttK = k; ttDraw(); }); }
+function ttReset() { if (ttCancel) ttCancel(); ttK = 0; ttDraw(); }
+function ttToggleExt() { ttExt = !ttExt; document.getElementById('tt-ext').classList.toggle('on', ttExt); ttDraw(); }
+
+// ── Parallel Lines Explorer ─────────────────────────────────
+let plMode = 'corr';
+function plSetMode(m, btn) {
+  plMode = m;
+  document.querySelectorAll('#pl-modes .sim-btn').forEach(b => b.classList.toggle('on', b === btn));
+  plDraw(true);
+}
+function plDraw(anim) {
+  const dd = +document.getElementById('pl-ang').value;
+  document.getElementById('pl-val').textContent = dd + '°';
+  const y1 = 80, y2 = 200, u = [Math.cos(dd * Math.PI / 180), Math.sin(dd * Math.PI / 180)], k = 60 / u[1];
+  const T1 = [260 - u[0] * k, y1], T2 = [260 + u[0] * k, y2];
+  let s = sLine([30, y1], [490, y1]) + sLine([30, y2], [490, y2]) + chevron(455, y1) + chevron(455, y2);
+  s += sLine(P(T1, dd + 180, 62), P(T2, dd, 62));
+  const secs = { LR: [0, dd], LL: [dd, 180], UL: [180, 180 + dd], UR: [180 + dd, 360] };
+  const val = { LR: dd, LL: 180 - dd, UL: dd, UR: 180 - dd };
+  const pairs = { corr: ['tLR', 'bLR'], alt: ['tLR', 'bUL'], co: ['tLR', 'bUR'], vo: ['tLR', 'tUL'] };
+  const hi = pairs[plMode];
+  for (const [pre, T] of [['t', T1], ['b', T2]]) {
+    for (const key in secs) {
+      const on = hi.includes(pre + key), [a1, a2] = secs[key], v = val[key];
+      const c = on ? C_G : (v === dd ? C_A : C_B);
+      s += `<g opacity="${on ? 1 : 0.4}">` + (on ? sWedge(T, a1, a2, 26, C_G, 0.3) : '') + sArc(T, a1, a2, 18, c, 2) + sText(P(T, (a1 + a2) / 2, 38), v + '°', c, 12) + '</g>';
+    }
+  }
+  const pt = Q => `${n1(Q[0])} ${n1(Q[1])}`;
+  const d = {
+    corr: `M${pt(T2)} L${pt(P(T1, dd + 180, 50))} M${pt(T1)} L${n1(T1[0] + 90)} ${y1} M${pt(T2)} L${n1(T2[0] + 90)} ${y2}`,
+    alt: `M${n1(T1[0] + 90)} ${y1} L${pt(T1)} L${pt(T2)} L${n1(T2[0] - 90)} ${y2}`,
+    co: `M${n1(T1[0] + 90)} ${y1} L${pt(T1)} L${pt(T2)} L${n1(T2[0] + 90)} ${y2}`,
+    vo: `M${pt(P(T1, dd + 180, 50))} L${pt(P(T1, dd, 50))} M${n1(T1[0] - 60)} ${y1} L${n1(T1[0] + 60)} ${y1}`,
+  }[plMode];
+  s += `<path class="pl-shape${anim ? ' go' : ''}" pathLength="1" d="${d}" stroke="${C_G}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>`;
+  document.getElementById('pl-svg').innerHTML = s;
+  const g = t => `<b style="color:var(--accent-sci)">${t}</b>`;
+  document.getElementById('pl-out').innerHTML = {
+    corr: `${g('Corresponding angles (F shape)')}: same position at each crossing, so ${g(dd + '° = ' + dd + '°')}.`,
+    alt: `${g('Alternate angles (Z shape)')}: between the lines, on opposite sides of the transversal, so ${g(dd + '° = ' + dd + '°')}.`,
+    co: `${g('Co-interior angles (C shape)')}: between the lines, on the same side, so ${g(dd + '° + ' + (180 - dd) + '° = 180°')}.`,
+    vo: `${g('Vertically opposite angles (X shape)')}: across the crossing, so ${g(dd + '° = ' + dd + '°')}. This works at any crossing, parallel lines or not.`,
+  }[plMode] + ` Only two sizes appear: <b style="color:var(--accent-warn)">${dd}°</b> and <b style="color:var(--accent-math)">${180 - dd}°</b>.`;
+}
+
+// ── Polygon Explorer ────────────────────────────────────────
+const PG_NAMES = { 3: 'triangle', 4: 'quadrilateral', 5: 'pentagon', 6: 'hexagon', 7: 'heptagon', 8: 'octagon', 9: 'nonagon', 10: 'decagon', 11: 'hendecagon', 12: 'dodecagon' };
+let pgN = 5, pgSplitP = 0, pgWalkP = -1, pgCancel = null;
+function pgVerts(n) { const c = [260, 165], out = []; for (let k = 0; k < n; k++) out.push(P(c, 90 + 180 / n - 360 * k / n, 118)); return out; }
+function pgDraw() {
+  const n = pgN, V = pgVerts(n), e = 360 / n;
+  let s = '';
+  for (let i = 0; i < n - 2; i++) {
+    const p = Math.max(0, Math.min(1, pgSplitP - i));
+    if (p <= 0) continue;
+    const tri = [V[0], V[i + 1], V[i + 2]];
+    s += `<polygon points="${tri.map(q => n1(q[0]) + ',' + n1(q[1])).join(' ')}" fill="${i % 2 ? C_B : C_A}" fill-opacity="${n1(0.25 * p)}"/>`;
+    if (i + 2 <= n - 2) { const D = V[i + 2]; s += sLine(V[0], [V[0][0] + (D[0] - V[0][0]) * p, V[0][1] + (D[1] - V[0][1]) * p], C_TXT, 1.5, 'stroke-dasharray="5 4"'); }
+    if (p >= 1) s += sText([(tri[0][0] + tri[1][0] + tri[2][0]) / 3, (tri[0][1] + tri[1][1] + tri[2][1]) / 3], '180°', C_TXT, n > 8 ? 10 : 12);
+  }
+  for (let i = 0; i < n; i++) s += sLine(V[i], V[(i + 1) % n], C_TXT, 2.5);
+  let turned = 0, turtle = null;
+  if (pgWalkP >= 0) {
+    for (let i = 0; i < n; i++) {
+      const ph = pgWalkP - i; if (ph <= 0) break;
+      const mv = Math.min(1, ph / 0.6), tn = Math.max(0, Math.min(1, (ph - 0.6) / 0.4));
+      const h = -e * i, A = V[i], B = V[(i + 1) % n];
+      const pos = [A[0] + (B[0] - A[0]) * mv, A[1] + (B[1] - A[1]) * mv];
+      s += sLine(A, pos, C_G, 4);
+      if (tn > 0) {
+        s += sLine(B, P(B, h, 50), C_LINE, 1.5, 'stroke-dasharray="4 4"') + sArc(B, h - e * tn, h, 24, C_G, 2.5);
+        if (tn >= 1) s += sText(P(B, h - e / 2, 40), fmtDeg(e) + '°', C_G, 11);
+        turned += e * tn;
+      }
+      turtle = { pos, head: h - e * tn };
+    }
+  }
+  V.forEach(q => s += `<circle cx="${n1(q[0])}" cy="${n1(q[1])}" r="3.5" fill="${C_TXT}"/>`);
+  if (turtle) s += `<path d="M12 0 L-8 -7 L-4 0 L-8 7 Z" fill="${C_G}" stroke="#0f1117" stroke-width="1" transform="translate(${n1(turtle.pos[0])} ${n1(turtle.pos[1])}) rotate(${n1(turtle.head)})"/>`;
+  document.getElementById('pg-svg').innerHTML = s;
+  let o = `<b>${n} sides</b> (${PG_NAMES[n]}). `;
+  if (pgSplitP > 0) o += `From one corner: <b>${n} − 2 = ${n - 2}</b> triangle${n - 2 > 1 ? 's' : ''}, so the interior angles add up to <b>${n - 2} × 180 = ${180 * (n - 2)}°</b>. `;
+  if (pgWalkP >= 0) o += `The turtle has turned <b style="color:var(--accent-sci)">${fmtDeg(turned)}°</b>${pgWalkP >= n ? ` = ${n} × ${fmtDeg(e)}°: one full turn. Each exterior angle of a regular ${PG_NAMES[n]} is 360 ÷ ${n} = ${fmtDeg(e)}°, so each interior angle is 180 − ${fmtDeg(e)} = ${fmtDeg(180 - e)}°.` : '.'}`;
+  if (pgSplitP <= 0 && pgWalkP < 0) o += 'Press a button to split it into triangles or to walk round the outside.';
+  document.getElementById('pg-out').innerHTML = o;
+}
+function pgStop() { if (pgCancel) { pgCancel(); pgCancel = null; } }
+function pgSetN() { pgStop(); pgN = +document.getElementById('pg-n').value; document.getElementById('pg-val').textContent = pgN; pgSplitP = 0; pgWalkP = -1; pgDraw(); }
+function pgSplit() { pgStop(); pgWalkP = -1; pgCancel = animate((pgN - 2) * 650, k => { pgSplitP = k * (pgN - 2); pgDraw(); }); }
+function pgWalk() { pgStop(); pgSplitP = 0; pgCancel = animate(pgN * 1100, k => { pgWalkP = k * pgN; pgDraw(); }); }
+
+// ── Question diagrams: draw in when seen, show the answer when solved ──
+function showFigAnswer(qid) {
+  document.querySelectorAll(`#qcard-${qid} .ans-lbl`).forEach(t => { t.textContent = t.dataset.ans; t.classList.add('solved'); });
+}
+(function () {
+  const figs = document.querySelectorAll('.q-fig');
+  if (REDUCED || !('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('drawn')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } }), { threshold: 0.35 });
+  figs.forEach(f => io.observe(f));
+})();
+
+spDraw(); ttDraw(); plDraw(true); pgDraw();
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=1e-9) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  if (isCorrect) showFigAnswer(qid);
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  showFigAnswer(qid);
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`unit5-calculating-angles_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
