@@ -30,6 +30,20 @@ The **Calculating Angles** sheet follows the Term 2 Week 2 class notes: Unit 5.1
 
 Source material: `material/math/s2/t2/w2/` (5.1 and 5.2 class notes and the 6 October angles notes).
 
+## Week 3 (19–23 October)
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 1 practice** — Unit 4.3 + Unit 5.1–5.2 | 30 | 46 | [.md](./w3/term2-week3-maths-unit-test1-inequalities-angles.md) | [.html](./w3/term2-week3-maths-unit-test1-inequalities-angles.html) |
+
+### Maths Unit Test 1 practice: Linear Inequalities & Angles
+
+A practice paper for the Maths Unit Test 1 on **Tuesday 20 October** (linear inequalities and angles; bring a calculator). It covers only the Week 1 and Week 2 topics, with new numbers. Section A (14 questions, 22 marks) reads symbols and number lines, solves inequalities including the sign flip for a negative, and has a taxi-fare and a round-up word problem. Section B (16 questions, 24 marks) covers angles at a point and on a line, vertically opposite angles, triangles and exterior angles, parallel lines (alternate and co-interior, one written with algebra), and polygon angles. 10 of the 30 questions are multiple choice (the correct letter is spread across A–D); the other 20 are typed-number answers, and every question on the interactive sheet is auto-marked. Diagrams are drawn on the sheet and described in words in the printable `.md`. The printable also has five written questions (Q31–Q35, 16 marks, marked by the teacher): solving and drawing an inequality, why the sign flips, the number of sides from an interior angle, a phone-plan inequality, and why an exterior angle equals the sum of the two opposite interior angles. The interactive sheet has no explorers, since the Week 1 and Week 2 sheets already have them (the sheet links to both).
+
+Source material: the Week 1 and Week 2 class notes in `material/math/s2/t2/` (the `material/` folder is not tracked in git).
+
 ## Writing project
 
 ### English: UN Day Writing Project
@@ -45,7 +59,10 @@ s2/t2/
 ├── w1/
 │   ├── term2-week1-maths-unit4-linear-inequalities.html ← Interactive (Unit 4.3)
 │   └── term2-week1-maths-unit4-linear-inequalities.md   ← Printable (+4 written q)
-└── w2/
-    ├── term2-week2-maths-unit5-calculating-angles.html  ← Interactive (Unit 5.1–5.2)
-    └── term2-week2-maths-unit5-calculating-angles.md    ← Printable (Q35–Q38 written in full)
+├── w2/
+│   ├── term2-week2-maths-unit5-calculating-angles.html  ← Interactive (Unit 5.1–5.2)
+│   └── term2-week2-maths-unit5-calculating-angles.md    ← Printable (Q35–Q38 written in full)
+└── w3/
+    ├── term2-week3-maths-unit-test1-inequalities-angles.html ← Interactive (Unit Test 1 practice)
+    └── term2-week3-maths-unit-test1-inequalities-angles.md   ← Printable (+5 written q)
 ```
