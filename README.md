@@ -74,6 +74,7 @@ cambridge-practice/
 │           ├── term1-week8-maths-unit4-simultaneous-equations.* ← Unit 4.2: Simultaneous Equations (33 q, 45 marks + 4 written q, 14 marks)
 │   └── t2/                          ← Term 2
 │       ├── README.md                ← Term 2 worksheet index
+│       ├── term2-english-un-day-writing-project.md ← UN Day Writing Project coaching guide (Zimbabwe/Sweden, 50 marks)
 │       ├── w1/                      ← Week 1 (.html interactive + .md printable)
 │       │   └── term2-week1-maths-unit4-linear-inequalities.* ← Unit 4.3: Linear Inequalities (36 q, 46 marks + 4 written q, 15 marks)
 │       └── w2/                      ← Week 2 (.html interactive + .md printable)

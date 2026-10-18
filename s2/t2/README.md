@@ -30,11 +30,18 @@ The **Calculating Angles** sheet follows the Term 2 Week 2 class notes: Unit 5.1
 
 Source material: `material/math/s2/t2/w2/` (5.1 and 5.2 class notes and the 6 October angles notes).
 
+## Writing project
+
+### English: UN Day Writing Project
+
+[**Journey into the Past**](./term2-english-un-day-writing-project.md) is a coaching guide for the handwritten Semester 1 UN Day assignment (Zimbabwe or Sweden, 300–350 words, 50 marks). It has the timeline to the two deadlines (Component A draft 23 Oct, Component B display piece 20 Nov), topic ideas, a draft outline, tips for visible self-editing, and condensed rubrics and a final checklist. It is a plan and a checklist, not a model answer.
+
 ## Structure
 
 ```
 s2/t2/
 ├── README.md
+├── term2-english-un-day-writing-project.md ← UN Day writing project guide (Zimbabwe/Sweden)
 ├── w1/
 │   ├── term2-week1-maths-unit4-linear-inequalities.html ← Interactive (Unit 4.3)
 │   └── term2-week1-maths-unit4-linear-inequalities.md   ← Printable (+4 written q)
