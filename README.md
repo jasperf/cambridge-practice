@@ -178,6 +178,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Mathematics Unit 4.2 (Simultaneous Equations) | Secondary 2 | ✅ Term 1 Week 8 · Workbook Exercise 4.2 |
 | Mathematics Unit 4.3 (Linear Inequalities) | Secondary 2 | ✅ Term 2 Week 1 · 5–9 October |
 | Mathematics Unit 5.1–5.2 (Calculating Angles) | Secondary 2 | ✅ Term 2 Week 2 · 12–16 October |
+| English UN Day Writing Project (Zimbabwe/Sweden coaching guide) | Secondary 2 | ✅ Term 2 · Draft due 23 Oct, final due 20 Nov |
 
 ### IGCSE
 
