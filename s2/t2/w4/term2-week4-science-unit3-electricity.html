@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electricity · Interactive Exercises</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 62px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-sci); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 4px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-sci); color: var(--accent-sci); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box strong { color: var(--text); }
+.explorer { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 16px 0 24px; }
+.explorer h4 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
+.explorer .ex-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px; }
+.explorer canvas, .explorer svg.ex-svg { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.ex-controls { display: flex; flex-wrap: wrap; gap: 14px 22px; margin-top: 12px; align-items: center; }
+.ex-controls label { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ex-controls input[type=range] { accent-color: var(--accent-sci); width: 150px; }
+.ex-controls select { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; font-family: var(--font-mono); font-size: 0.74rem; }
+.ex-controls output { color: var(--accent-sci); min-width: 52px; display: inline-block; }
+.ex-btn { font-family: var(--font-mono); font-size: 0.74rem; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.ex-btn:hover { border-color: var(--accent-sci); color: var(--text); }
+.ex-btn.on { border-color: var(--accent-sci); background: rgba(62,207,142,0.12); color: var(--accent-sci); }
+.ex-readout { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.6; }
+.ex-readout b { color: var(--accent-sci); font-weight: 500; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 150px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input.wide { width: 240px; }
+.num-input:focus { border-color: var(--accent-sci); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.unit { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .ex-controls input[type=range] { width: 110px; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 · Unit 3 · Electricity</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 45</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Unit 3 &middot; Term 2 Week 4</div>
+  <h1>Electricity:<br><em>Circuits &amp; Ohm&rsquo;s Law</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>Circuit Symbols &middot; Voltage &amp; Resistance &middot; V = IR &middot; Series &amp; Parallel</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--text-dim)"></div>43 questions &middot; self-marked &middot; 45 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Before you start</h3>
+  <p>This sheet follows the Term 2 Week 4 class slides on <strong>Electricity</strong> (circuit diagrams and symbols, voltage, resistance, V = IR, series and parallel). Play with the three animated explorers, then answer the questions. Typed answers are short &mdash; one number or one word. The printable <code>.md</code> version has longer written questions and drawing tasks for your notebook.</p>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#circuit-symbols" class="sub-tab">&#9889; Circuit Symbols</a>
+  <a href="#voltage-current" class="sub-tab">&#128268; Voltage, Current &amp; Resistance</a>
+  <a href="#ohms-law" class="sub-tab">&#129518; Ohm's Law</a>
+  <a href="#resistor-data" class="sub-tab">&#128200; Resistor Data</a>
+  <a href="#series-parallel" class="sub-tab">&#128161; Series &amp; Parallel</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: CIRCUIT SYMBOLS ═══════════════ -->
+<div id="circuit-symbols">
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Section A</div><h2>Circuit Diagrams and Symbols</h2></div></div>
+  <div class="info-box">Circuit diagrams use standard <strong>symbols</strong>, which make complex circuits easier to interpret. A <strong>cell</strong> (or battery) stores energy and provides the energy the circuit needs; a <strong>switch</strong>, when closed, lets electricity flow round the whole circuit; a <strong>lamp</strong> lights up when current flows; an <strong>ammeter</strong> measures the current; a <strong>voltmeter</strong> measures voltage; a <strong>buzzer</strong> turns electricity into sound; <strong>wires</strong> are the electrical connections.</div>
+  <div class="explorer">
+    <h4>Circuit Symbol Gallery</h4>
+    <div class="ex-sub">Try to name each symbol first &mdash; then click it to check</div>
+    <svg class="ex-svg" id="sy-svg" viewBox="0 0 600 270" role="img" aria-label="Ten circuit symbols; click one to reveal its name and function"></svg>
+    <div class="ex-controls">
+      <button class="ex-btn" id="sy-all">Reveal all names</button>
+      <button class="ex-btn" id="sy-none">Hide all names</button>
+    </div>
+    <div class="ex-readout" id="sy-out">Click a symbol.</div>
+  </div>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">A circle with the letter <em>A</em> inside it is the circuit symbol for which component? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s1-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s1',['ammeter','an ammeter'],'Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','An ammeter &mdash; it measures the current flowing in the circuit.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">A circle with a cross inside it is the symbol for which component? (one or two words)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s2-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s2',['lamp','bulb','light bulb','filament bulb','filament lamp','a lamp','light'],'Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','A lamp (filament bulb). It lights up when current flows through it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">In a simple circuit, the switch is <em>open</em>. What happens to the lamp?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>It lights, but more dimly than normal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>It stays off, because an open switch leaves a gap and the circuit is not complete</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'c')"><div class="opt-indicator"></div><span>It lights normally, because the cell still has energy</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'd')"><div class="opt-indicator"></div><span>It lights up and the cell runs out quickly</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s3','b','Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','B — An open switch leaves a gap in the circuit, so current cannot flow all the way round and the lamp stays off. Closing the switch completes the circuit.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">A circle with the letter <em>V</em> inside it is the symbol for which meter? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s4-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s4',['voltmeter','a voltmeter'],'Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','A voltmeter &mdash; it measures voltage.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Which component changes electrical energy into sound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'a')"><div class="opt-indicator"></div><span>A lamp</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'b')"><div class="opt-indicator"></div><span>An ammeter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'c')"><div class="opt-indicator"></div><span>A resistor</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'd')"><div class="opt-indicator"></div><span>A buzzer</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s5','d','Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','D — A buzzer converts electricity into sound when current flows through it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">A circuit diagram shows 1 cell, 1 switch, 3 lamps and 1 ammeter (not counting the wires). How many components is that altogether?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s6-ans" placeholder="Enter answer..."><span class="unit">components</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s6',6,'Q6',0)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','1 + 1 + 3 + 1 = 6 components.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which symbol is a <em>variable resistor</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'a')"><div class="opt-indicator"></div><span>A plain empty rectangle</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'b')"><div class="opt-indicator"></div><span>A circle with a cross inside</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'c')"><div class="opt-indicator"></div><span>A rectangle with a diagonal arrow drawn through it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'd')"><div class="opt-indicator"></div><span>A circle with the letter A inside</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s7','c','Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','C — A plain rectangle is a fixed resistor. Adding an arrow through it shows the resistance can be changed.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Which component stores energy and provides the energy a circuit needs to work? Its symbol is a pair of parallel lines, one long and one short. (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s8-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s8',['cell','battery','a cell','a battery'],'Q8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','A cell (or battery, which is several cells joined together).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">CIRCUIT SYMBOLS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-cs-fill"></div></div>
+    <div class="section-score-val" id="sec-cs-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: VOLTAGE, CURRENT &AMP; RESISTANCE ═══════════════ -->
+<div id="voltage-current">
+  <div class="section-header"><div class="section-icon">&#128268;</div><div><div class="sub-label">Section B</div><h2>Voltage, Current and Resistance</h2></div></div>
+  <div class="info-box"><strong>Voltage</strong> is linked to the electrical energy in a circuit and is measured in <strong>volts (V)</strong>. <strong>Current</strong> is measured in <strong>amperes (A)</strong> using an ammeter connected <strong>in series</strong>. A <strong>resistor</strong> limits (resists) the current flow and is measured in <strong>ohms (&Omega;)</strong>. A voltmeter is connected <strong>in parallel</strong> across the component it measures.</div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">What is the unit of voltage? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s9-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s9',['volt','volts','v'],'Q9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','The volt (V).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">What is the unit of electric current? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s10-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s10',['ampere','amperes','amp','amps','a'],'Q10')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','The ampere, or amp (A), measured with an ammeter.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">What is the unit of resistance? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s11-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s11',['ohm','ohms','ω'],'Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','The ohm (&Omega;).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">How should an <em>ammeter</em> be connected to measure the current through a lamp?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'a')"><div class="opt-indicator"></div><span>In series, in the same loop as the lamp</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'b')"><div class="opt-indicator"></div><span>In parallel, across the lamp</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'c')"><div class="opt-indicator"></div><span>Anywhere, both ways give the same reading</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'd')"><div class="opt-indicator"></div><span>Outside the circuit, held next to the lamp</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s12','a','Q12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','A — An ammeter must be in series so that all the current flows through it. (A voltmeter is the one connected across a component.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">How should a <em>voltmeter</em> be connected to measure the voltage across a lamp?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s13-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'a')"><div class="opt-indicator"></div><span>In series, in line with the lamp</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'b')"><div class="opt-indicator"></div><span>In series, but only if the lamp is off</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'c')"><div class="opt-indicator"></div><span>Between the cell and the switch only</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'd')"><div class="opt-indicator"></div><span>In parallel, with its two leads across the lamp</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s13','d','Q13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','D — A voltmeter is connected in parallel across the component whose voltage you want to measure.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Which quantity is measured in amperes? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s14-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s14',['current','electric current','the current'],'Q14')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','Current.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">True or false: a resistor increases the current in a circuit. (type <em>true</em> or <em>false</em>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s15-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s15',['false','f'],'Q15')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','False &mdash; a resistor limits (resists) the current flow.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-s16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">True or false: an ammeter is connected in parallel with the lamp it measures. (type <em>true</em> or <em>false</em>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s16-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s16',['false','f'],'Q16')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','False &mdash; an ammeter goes in series so that the whole current passes through it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s16-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">VOLTAGE, CURRENT &AMP; RESISTANCE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-vc-fill"></div></div>
+    <div class="section-score-val" id="sec-vc-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: OHM'S LAW ═══════════════ -->
+<div id="ohms-law">
+  <div class="section-header"><div class="section-icon">&#129518;</div><div><div class="sub-label">Section C</div><h2>Ohm's Law: V = I &times; R</h2></div></div>
+  <div class="info-box"><strong>V = I &times; R</strong>, so <strong>I = V &divide; R</strong> and <strong>R = V &divide; I</strong> (cover the quantity you want in the formula triangle). V is in volts, I in amperes and R in ohms. More resistance means less current for the same voltage.</div>
+  <div class="explorer">
+    <h4>Ohm&rsquo;s Law Circuit</h4>
+    <div class="ex-sub">Change the voltage and the variable resistor &mdash; watch the current and the lamp</div>
+    <svg class="ex-svg" id="oh-svg" viewBox="0 0 600 280" role="img" aria-label="A circuit with a cell, switch, variable resistor, lamp and ammeter with moving charges"></svg>
+    <div class="ex-controls">
+      <label>Voltage <input type="range" id="oh-v" min="1.5" max="12" step="1.5" value="12"><output id="oh-v-o"></output></label>
+      <label>Resistance <input type="range" id="oh-r" min="1" max="20" step="1" value="4"><output id="oh-r-o"></output></label>
+      <button class="ex-btn on" id="oh-sw">Switch: closed</button>
+    </div>
+    <div class="ex-readout" id="oh-out"></div>
+  </div>
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">What is the resistance of a 6 V lamp when a current of 2 A flows through it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s17-ans" placeholder="Enter answer..."><span class="unit">Ω</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s17',3,'Q17',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s17','R = V &divide; I.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','R = V &divide; I = 6 &divide; 2 = 3 &Omega;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">A 20 &Omega; resistor has 100 V across it. What current flows through it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s18-ans" placeholder="Enter answer..."><span class="unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s18',5,'Q18',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s18','I = V &divide; R.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','I = V &divide; R = 100 &divide; 20 = 5 A.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-s19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A 10 &Omega; resistor is connected to 240 V and passes a current. A second 10 &Omega; resistor is then added in series, so the total resistance is 20 &Omega;. What is the new current?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s19-ans" placeholder="Enter answer..."><span class="unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s19',12,'Q19',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s19','Work out the total resistance first; then I = V &divide; R.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s19','Total R = 10 + 10 = 20 &Omega;. I = 240 &divide; 20 = 12 A (it was 24 A with one resistor).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s19-fb"></div>
+    </div>
+  </div>
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-s20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">In the circuit above, adding the second resistor made the current go from 24 A to 12 A. What is the correct comment?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s20-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'a')"><div class="opt-indicator"></div><span>The current doubled because there are more resistors</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'b')"><div class="opt-indicator"></div><span>The current halved because the total resistance doubled</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'c')"><div class="opt-indicator"></div><span>The current stayed the same because the voltage stayed the same</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'd')"><div class="opt-indicator"></div><span>The voltage halved so the current halved</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s20','b','Q20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','B — The voltage is unchanged. Doubling the resistance means half the current: more resistance, less current.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s20-fb"></div>
+    </div>
+  </div>
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-s21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">A current of 2 A flows through a 6 &Omega; resistor. What is the voltage across it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s21-ans" placeholder="Enter answer..."><span class="unit">V</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s21',12,'Q21',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s21','V = I &times; R.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','V = I &times; R = 2 &times; 6 = 12 V.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s21-fb"></div>
+    </div>
+  </div>
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-s22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">A 9 V battery is connected across a 3 &Omega; resistor. What current flows?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s22-ans" placeholder="Enter answer..."><span class="unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s22',3,'Q22',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s22','I = 9 &divide; 3 = 3 A.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s22-fb"></div>
+    </div>
+  </div>
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-s23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">A lamp works from the 230 V mains and draws a current of 0.5 A. What is its resistance?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s23-ans" placeholder="Enter answer..."><span class="unit">Ω</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s23',460,'Q23',0.5)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','R = V &divide; I = 230 &divide; 0.5 = 460 &Omega;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s23-fb"></div>
+    </div>
+  </div>
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-s24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">A current of 0.25 A flows through an 8 &Omega; resistor. What is the voltage across it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s24-ans" placeholder="Enter answer..."><span class="unit">V</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s24',2,'Q24',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s24','V = 0.25 &times; 8 = 2 V.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s24-fb"></div>
+    </div>
+  </div>
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-s25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A 1.5 V cell is connected across a 100 &Omega; resistor. What current flows? Give your answer in amperes (A).</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s25-ans" placeholder="Enter answer..."><span class="unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s25',0.015,'Q25',0.0005)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s25','I = 1.5 &divide; 100 = 0.015 A (15 mA).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s25-fb"></div>
+    </div>
+  </div>
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-s26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Using the formula triangle with V at the top and I and R along the bottom, which expression gives the <em>voltage</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s26-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s26', this, 'a')"><div class="opt-indicator"></div><span>V = I &times; R</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s26', this, 'b')"><div class="opt-indicator"></div><span>V = I &divide; R</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s26', this, 'c')"><div class="opt-indicator"></div><span>V = R &divide; I</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s26', this, 'd')"><div class="opt-indicator"></div><span>V = I + R</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s26','a','Q26')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s26','A — Cover V in the triangle: what is left is I &times; R, so V = I &times; R.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s26-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">OHM'S LAW &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ol-fill"></div></div>
+    <div class="section-score-val" id="sec-ol-val">0/11</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: RESISTOR DATA ═══════════════ -->
+<div id="resistor-data">
+  <div class="section-header"><div class="section-icon">&#128200;</div><div><div class="sub-label">Section D</div><h2>Variable Resistors and Resistor Data</h2></div></div>
+  <div class="info-box">A <strong>fixed resistor</strong> gives a fixed amount of resistance. A <strong>variable resistor</strong> lets you change the resistance without replacing the component, so it can vary the current and the brightness of a lamp. To find the resistance from measured data, divide each voltage by its current: <strong>R = V &divide; I</strong>. For a fixed resistor the answers should be close to the same value.</div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-s27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text"><em>Use V and I from the table:</em> reading 1 is 2.0 V and 0.23 A. Calculate the resistance. Give your answer to 2 decimal places.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s27-ans" placeholder="Enter answer..."><span class="unit">Ω</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s27',8.7,'Q27',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s27','R = V &divide; I.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s27','R = 2.0 &divide; 0.23 = 8.70 &Omega;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s27-fb"></div>
+    </div>
+  </div>
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-s28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Reading 3 is 6.0 V and 0.70 A. Calculate the resistance to 2 decimal places.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s28-ans" placeholder="Enter answer..."><span class="unit">Ω</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s28',8.57,'Q28',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s28','R = 6.0 &divide; 0.70 = 8.57 &Omega;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s28-fb"></div>
+    </div>
+  </div>
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-s29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Reading 5 is 10.0 V and 1.15 A. Calculate the resistance to 2 decimal places.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s29-ans" placeholder="Enter answer..."><span class="unit">Ω</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s29',8.7,'Q29',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s29','R = 10.0 &divide; 1.15 = 8.70 &Omega;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s29-fb"></div>
+    </div>
+  </div>
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-s30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Across all five readings the resistance came out between 8.5 &Omega; and 8.7 &Omega;. What does this show about the resistor?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'a')"><div class="opt-indicator"></div><span>Its resistance doubles each time the voltage doubles</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'b')"><div class="opt-indicator"></div><span>Its resistance falls as the voltage rises</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'c')"><div class="opt-indicator"></div><span>Its resistance stays (almost) constant, so the current rises in proportion to the voltage</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'd')"><div class="opt-indicator"></div><span>It has no resistance</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s30','c','Q30')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s30','C — The resistance is roughly constant (about 8.6 &Omega;), so doubling the voltage doubles the current. Small differences come from measurement error.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s30-fb"></div>
+    </div>
+  </div>
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-s31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">The resistance of a variable resistor is turned <em>up</em>. Does the current in the circuit <em>increase</em> or <em>decrease</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s31-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s31',['decrease','decreases','it decreases','go down','goes down'],'Q31')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s31','Decrease &mdash; more resistance means less current (I = V &divide; R).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s31-fb"></div>
+    </div>
+  </div>
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-s32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">With the resistance turned up, does the lamp in the circuit become <em>brighter</em> or <em>dimmer</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s32-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s32',['dimmer','dim','less bright'],'Q32')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s32','Dimmer &mdash; less current flows through the lamp.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s32-fb"></div>
+    </div>
+  </div>
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-s33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">A 12 V cell is connected to a variable resistor set to 4 &Omega;, giving 3 A. The resistor is turned up to 6 &Omega;. What is the new current?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s33-ans" placeholder="Enter answer..."><span class="unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s33',2,'Q33',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s33','I = V &divide; R = 12 &divide; 6 = 2 A. The current fell from 3 A, so the lamp would dim.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s33-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">RESISTOR DATA &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-vr-fill"></div></div>
+    <div class="section-score-val" id="sec-vr-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: SERIES &AMP; PARALLEL ═══════════════ -->
+<div id="series-parallel">
+  <div class="section-header"><div class="section-icon">&#128161;</div><div><div class="sub-label">Section E</div><h2>Series and Parallel Circuits</h2></div></div>
+  <div class="info-box"><strong>Series circuit</strong>: one linear pathway, the <strong>current is the same</strong> everywhere, the <strong>voltage divides</strong> between components, less reliable (if one bulb fails they all go out &mdash; e.g. holiday lights). <strong>Parallel circuit</strong>: multiple pathways, the <strong>voltage is the same</strong> across each branch, the <strong>current divides</strong>, more reliable (used for house wiring).</div>
+  <div class="explorer">
+    <h4>Series or Parallel?</h4>
+    <div class="ex-sub">12 V cell, two identical 4 &Omega; lamps &mdash; switch the wiring, then take a lamp out</div>
+    <svg class="ex-svg" id="sp-svg" viewBox="0 0 600 280" role="img" aria-label="Two lamps wired in series or in parallel with moving charges"></svg>
+    <div class="ex-controls">
+      <button class="ex-btn on" data-sp="series">Series</button>
+      <button class="ex-btn" data-sp="parallel">Parallel</button>
+      <button class="ex-btn" id="sp-rm">Remove lamp 2</button>
+    </div>
+    <div class="ex-readout" id="sp-out"></div>
+  </div>
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-s34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Three lamps are connected in <em>series</em>. One of them blows. What happens to the other two?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s34-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'a')"><div class="opt-indicator"></div><span>They stay lit and get brighter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'b')"><div class="opt-indicator"></div><span>They both go out, because the single path is broken</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'c')"><div class="opt-indicator"></div><span>They stay lit at the same brightness</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'd')"><div class="opt-indicator"></div><span>Only the lamp next to the blown one goes out</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s34','b','Q34')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s34','B — In a series circuit there is only one pathway. A break anywhere stops the current in the whole circuit.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s34-fb"></div>
+    </div>
+  </div>
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-s35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Three lamps are connected in <em>parallel</em>. One of them blows. What happens to the other two?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s35-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'a')"><div class="opt-indicator"></div><span>They both go out</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'b')"><div class="opt-indicator"></div><span>They get dimmer and dimmer</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'c')"><div class="opt-indicator"></div><span>They flash on and off</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'd')"><div class="opt-indicator"></div><span>They stay lit, because each has its own pathway</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s35','d','Q35')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s35','D — In a parallel circuit each lamp is on its own branch, so the other branches still complete the circuit.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s35-fb"></div>
+    </div>
+  </div>
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-s36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Are the sockets and lights in a house wired in <em>series</em> or in <em>parallel</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s36-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s36',['parallel','in parallel'],'Q36')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s36','Parallel &mdash; so each appliance has its own pathway and gets the full voltage, and one failing does not switch the others off.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s36-fb"></div>
+    </div>
+  </div>
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-s37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">In which type of circuit is the <em>current</em> the same at every point: <em>series</em> or <em>parallel</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s37-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s37',['series','in series'],'Q37')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s37','Series &mdash; there is only one path, so the same current passes every component.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s37-fb"></div>
+    </div>
+  </div>
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-s38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">In which type of circuit does every branch get the <em>same voltage</em> as the cell: <em>series</em> or <em>parallel</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s38-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s38',['parallel','in parallel'],'Q38')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s38','Parallel &mdash; each branch is connected straight across the cell, so each has the full voltage. In series the voltage divides.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s38-fb"></div>
+    </div>
+  </div>
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-s39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Three identical lamps of 4 &Omega; each are connected in series. What is the total resistance?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s39-ans" placeholder="Enter answer..."><span class="unit">Ω</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s39',12,'Q39',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s39','In series the resistances add: 4 + 4 + 4 = 12 &Omega;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s39-fb"></div>
+    </div>
+  </div>
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-s40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">An ammeter next to the cell reads 6 A. The current then splits equally between three identical lamps in parallel branches. What is the current in each branch?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s40-ans" placeholder="Enter answer..."><span class="unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s40',2,'Q40',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s40','The current divides: 6 &divide; 3 = 2 A in each branch.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s40-fb"></div>
+    </div>
+  </div>
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-s41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">A 12 V cell is connected to two identical lamps in <em>series</em>. What is the voltage across each lamp?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s41-ans" placeholder="Enter answer..."><span class="unit">V</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s41',6,'Q41',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s41','In series the voltage divides between the identical lamps: 12 &divide; 2 = 6 V each.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s41-fb"></div>
+    </div>
+  </div>
+  <!-- Q42 -->
+  <div class="q-card" id="qcard-s42">
+    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">A 12 V cell is connected to two identical lamps in <em>parallel</em>. What is the voltage across each lamp?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s42-ans" placeholder="Enter answer..."><span class="unit">V</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s42',12,'Q42',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s42','In parallel every branch has the full cell voltage, so 12 V across each lamp.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s42-fb"></div>
+    </div>
+  </div>
+  <!-- Q43 -->
+  <div class="q-card" id="qcard-s43">
+    <div class="q-header"><div class="q-num">Q43</div><div class="q-text">A cheap string of holiday lights goes completely dark when one bulb fails. What does this tell you about how it is wired?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s43-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'a')"><div class="opt-indicator"></div><span>The bulbs are in series, which is less reliable than parallel</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'b')"><div class="opt-indicator"></div><span>The bulbs are in parallel, which is less reliable than series</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'c')"><div class="opt-indicator"></div><span>The bulbs are in parallel, because the current divides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'd')"><div class="opt-indicator"></div><span>It has no circuit, only a battery</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s43','a','Q43')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s43','A — A single failed bulb breaks the only pathway, so everything goes out. That is the weakness of a series circuit.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s43-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SERIES &AMP; PARALLEL &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sp-fill"></div></div>
+    <div class="section-score-val" id="sec-sp-val">0/10</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const SHEET_ID = 'term2-week4-science-unit3-electricity';
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {s1: 1, s2: 1, s3: 1, s4: 1, s5: 1, s6: 1, s7: 1, s8: 1, s9: 1, s10: 1, s11: 1, s12: 1, s13: 1, s14: 1, s15: 1, s16: 1, s17: 1, s18: 1, s19: 2, s20: 1, s21: 1, s22: 1, s23: 1, s24: 1, s25: 1, s26: 1, s27: 1, s28: 1, s29: 1, s30: 1, s31: 1, s32: 1, s33: 2, s34: 1, s35: 1, s36: 1, s37: 1, s38: 1, s39: 1, s40: 1, s41: 1, s42: 1, s43: 1};
+
+const sections = {
+  cs: { label: 'Circuit Symbols', qs: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'] },
+  vc: { label: 'Voltage, Current &amp; Resistance', qs: ['s9', 's10', 's11', 's12', 's13', 's14', 's15', 's16'] },
+  ol: { label: 'Ohm\'s Law', qs: ['s17', 's18', 's19', 's20', 's21', 's22', 's23', 's24', 's25', 's26'] },
+  vr: { label: 'Resistor Data', qs: ['s27', 's28', 's29', 's30', 's31', 's32', 's33'] },
+  sp: { label: 'Series &amp; Parallel', qs: ['s34', 's35', 's36', 's37', 's38', 's39', 's40', 's41', 's42', 's43'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance + 1e-9;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  state.answers[qid] = val;
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    const input = document.getElementById(`${qid}-ans`);
+    if (input) input.disabled = true;
+    updateScores();
+  }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`${SHEET_ID}_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+
+
+const SVGNS = 'http://www.w3.org/2000/svg';
+function svgEl(name, attrs, parent) { const e = document.createElementNS(SVGNS, name); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+const INK = '#e8eaf0', BG = '#171b28', MONO = 'DM Mono, monospace';
+
+// ── Shared symbol builder (centre at 0,0; leads run from x=-40 to x=40) ──
+function symbol(type, opts) {
+  opts = opts || {};
+  const g = svgEl('g', {});
+  const S = { stroke: INK, 'stroke-width': 2.5, fill: 'none', 'stroke-linecap': 'round' };
+  const line = (x1, y1, x2, y2) => svgEl('line', Object.assign({ x1, y1, x2, y2 }, S), g);
+  g.appendChild(svgEl('rect', { x: -30, y: -24, width: 60, height: 48, fill: BG, stroke: 'none' }));
+  const lead = (a, b) => { line(-40, 0, a, 0); line(b, 0, 40, 0); };
+  if (type === 'cell') { lead(-5, 5); line(-5, -17, -5, 17); line(5, -9, 5, 9); }
+  else if (type === 'battery') { lead(-14, 16); line(-14, -17, -14, 17); line(-4, -9, -4, 9); line(6, -17, 6, 17); line(16, -9, 16, 9); }
+  else if (type === 'switch-open') { lead(-14, 14); svgEl('circle', { cx: -14, cy: 0, r: 3, fill: INK }, g); svgEl('circle', { cx: 14, cy: 0, r: 3, fill: INK }, g); line(-14, 0, 11, -18); }
+  else if (type === 'switch-closed') { lead(-14, 14); svgEl('circle', { cx: -14, cy: 0, r: 3, fill: INK }, g); svgEl('circle', { cx: 14, cy: 0, r: 3, fill: INK }, g); line(-14, 0, 14, 0); }
+  else if (type === 'lamp') { lead(-17, 17); svgEl('circle', { cx: 0, cy: 0, r: 17, fill: BG, stroke: INK, 'stroke-width': 2.5 }, g); line(-12, -12, 12, 12); line(-12, 12, 12, -12); }
+  else if (type === 'resistor') { lead(-22, 22); svgEl('rect', Object.assign({ x: -22, y: -9, width: 44, height: 18 }, S), g); }
+  else if (type === 'variable') { lead(-22, 22); svgEl('rect', Object.assign({ x: -22, y: -9, width: 44, height: 18 }, S), g); line(-18, 17, 18, -17); line(18, -17, 9, -15); line(18, -17, 16, -8); }
+  else if (type === 'ammeter' || type === 'voltmeter') {
+    lead(-17, 17); svgEl('circle', { cx: 0, cy: 0, r: 17, fill: BG, stroke: INK, 'stroke-width': 2.5 }, g);
+    const t = svgEl('text', { x: 0, y: 6, 'text-anchor': 'middle', fill: INK, 'font-size': 18, 'font-family': MONO }, g); t.textContent = type === 'ammeter' ? 'A' : 'V';
+    if (opts.id) t.id = opts.id;
+  }
+  else if (type === 'buzzer') { line(-40, 0, -14, 0); line(14, 0, 40, 0); svgEl('path', Object.assign({ d: 'M-18 -8 H18 A18 18 0 0 1 -18 -8 Z' }, S), g).setAttribute('transform', 'translate(0,2)'); }
+  return g;
+}
+
+// ── Explorer 1: Symbol gallery ──────────────────────────────
+(function () {
+  const svg = document.getElementById('sy-svg'), out = document.getElementById('sy-out');
+  const items = [
+    ['cell', 'Cell', 'Stores energy and provides the energy the circuit needs to work.'],
+    ['battery', 'Battery', 'Two or more cells joined together.'],
+    ['switch-open', 'Open switch', 'Gap in the circuit: no current can flow.'],
+    ['switch-closed', 'Closed switch', 'Completes the circuit, so electricity can flow all the way round.'],
+    ['lamp', 'Lamp', 'Lights up when electricity flows through it.'],
+    ['resistor', 'Fixed resistor', 'Limits (resists) the current flow by a fixed amount, measured in ohms (&Omega;).'],
+    ['variable', 'Variable resistor', 'Its resistance can be changed, so it can vary the current.'],
+    ['ammeter', 'Ammeter', 'Measures the amount of current flowing in a circuit (amperes).'],
+    ['voltmeter', 'Voltmeter', 'Measures voltage across a component (volts).'],
+    ['buzzer', 'Buzzer', 'Converts electricity into sound when current flows through it.']
+  ];
+  const labels = [];
+  items.forEach((it, i) => {
+    const cx = 60 + (i % 5) * 120, cy = 70 + Math.floor(i / 5) * 120;
+    const cell = svgEl('g', { style: 'cursor:pointer' }, svg);
+    svgEl('rect', { x: cx - 56, y: cy - 50, width: 112, height: 104, rx: 8, fill: 'rgba(30,35,54,0.8)', stroke: '#2a3050' }, cell);
+    const s = symbol(it[0]); s.setAttribute('transform', `translate(${cx},${cy - 6}) scale(0.78)`); cell.appendChild(s);
+    const t = svgEl('text', { x: cx, y: cy + 40, 'text-anchor': 'middle', fill: '#3ecf8e', 'font-size': 12, 'font-family': MONO }, cell); t.textContent = '?';
+    labels.push(t);
+    cell.onclick = () => { t.textContent = it[1]; out.innerHTML = `<b>${it[1]}</b> &mdash; ${it[2]}`; };
+  });
+  document.getElementById('sy-all').onclick = () => labels.forEach((t, i) => t.textContent = items[i][1]);
+  document.getElementById('sy-none').onclick = () => { labels.forEach(t => t.textContent = '?'); out.textContent = 'Click a symbol.'; };
+})();
+
+// ── Explorer 2: Ohm's law circuit ───────────────────────────
+(function () {
+  const svg = document.getElementById('oh-svg');
+  const X0 = 100, X1 = 500, Y0 = 60, Y1 = 220, W = X1 - X0, H = Y1 - Y0, PER = 2 * (W + H);
+  svgEl('rect', { x: X0, y: Y0, width: W, height: H, fill: 'none', stroke: INK, 'stroke-width': 2.5 }, svg);
+  const place = (g, x, y, rot) => { g.setAttribute('transform', `translate(${x},${y}) rotate(${rot || 0})`); svg.appendChild(g); return g; };
+  place(symbol('cell'), X0, 140, 90);
+  const vlab = svgEl('text', { x: X0 - 14, y: 144, 'text-anchor': 'end', fill: '#f5a623', 'font-size': 14, 'font-family': MONO }, svg);
+  let swG = place(symbol('switch-closed'), 220, Y0, 0);
+  place(symbol('variable'), 390, Y0, 0);
+  const rlab = svgEl('text', { x: 390, y: Y0 - 28, 'text-anchor': 'middle', fill: '#4f8ef7', 'font-size': 14, 'font-family': MONO }, svg);
+  place(symbol('lamp'), X1, 140, 90);
+  const glow = svgEl('circle', { cx: X1, cy: 140, r: 38, fill: '#f5c542', opacity: 0, 'pointer-events': 'none' }, svg);
+  const am = place(symbol('ammeter', { id: 'oh-am' }), 300, Y1, 0);
+  const ireading = svgEl('text', { x: 300, y: Y1 + 40, 'text-anchor': 'middle', fill: '#3ecf8e', 'font-size': 14, 'font-family': MONO }, svg);
+  const dots = [];
+  for (let i = 0; i < 28; i++) dots.push(svgEl('circle', { r: 4, fill: '#3ecf8e', stroke: '#fff', 'stroke-width': 0.6 }, svg));
+  const vIn = document.getElementById('oh-v'), rIn = document.getElementById('oh-r'), swB = document.getElementById('oh-sw');
+  let closed = true, I = 0, pos = 0;
+  function upd() {
+    const V = +vIn.value, R = +rIn.value;
+    I = closed ? V / R : 0;
+    document.getElementById('oh-v-o').textContent = V + ' V';
+    document.getElementById('oh-r-o').innerHTML = R + ' &Omega;';
+    vlab.textContent = V + ' V'; rlab.innerHTML = 'R = ' + R + ' Ω';
+    ireading.textContent = closed ? `ammeter: ${I.toFixed(2)} A` : 'ammeter: 0 A';
+    glow.setAttribute('opacity', Math.min(0.75, I / 4 * 0.75));
+    document.getElementById('oh-out').innerHTML = closed
+      ? `I = V &divide; R = ${V} &divide; ${R} = <b>${I.toFixed(2)} A</b> &mdash; ${I < 0.8 ? 'a dim lamp' : I < 2 ? 'a medium glow' : 'a bright lamp'}. Double R and the current halves.`
+      : 'The switch is open, so the circuit is broken: <b>0 A</b> flows and the lamp is off.';
+  }
+  [vIn, rIn].forEach(e => e.oninput = upd);
+  swB.onclick = () => {
+    closed = !closed;
+    swB.textContent = 'Switch: ' + (closed ? 'closed' : 'open'); swB.classList.toggle('on', closed);
+    const n = symbol(closed ? 'switch-closed' : 'switch-open');
+    n.setAttribute('transform', 'translate(220,60)'); svg.replaceChild(n, swG); swG = n; upd();
+  };
+  upd();
+  function at(s) {
+    s = ((s % PER) + PER) % PER;
+    if (s < W) return [X0 + s, Y0];
+    s -= W; if (s < H) return [X1, Y0 + s];
+    s -= H; if (s < W) return [X1 - s, Y1];
+    s -= W; return [X0, Y1 - s];
+  }
+  (function tick() {
+    pos += I > 0 ? Math.min(5, 0.3 + I * 0.7) : 0;
+    dots.forEach((d, i) => { const [x, y] = at(pos + i * PER / dots.length); d.setAttribute('cx', x); d.setAttribute('cy', y); d.setAttribute('opacity', closed ? 1 : 0.35); });
+    requestAnimationFrame(tick);
+  })();
+})();
+
+// ── Explorer 3: series or parallel ──────────────────────────
+(function () {
+  const svg = document.getElementById('sp-svg');
+  const out = document.getElementById('sp-out');
+  let mode = 'series', rm = false, dyn = [], loops = [], dots = [], lampGlow = [], lampLab = [];
+  const X0 = 100, X1 = 500;
+  function poly(pts) { const segs = []; let tot = 0; for (let i = 0; i < pts.length; i++) { const a = pts[i], b = pts[(i + 1) % pts.length], l = Math.hypot(b[0] - a[0], b[1] - a[1]); segs.push([a, b, l]); tot += l; } return { segs, tot }; }
+  function at(P, s) { s = ((s % P.tot) + P.tot) % P.tot; for (const [a, b, l] of P.segs) { if (s <= l) return [a[0] + (b[0] - a[0]) * s / l, a[1] + (b[1] - a[1]) * s / l]; s -= l; } return P.segs[0][0]; }
+  function build() {
+    svg.innerHTML = ''; dots = []; lampGlow = []; lampLab = []; loops = [];
+    document.querySelectorAll('[data-sp]').forEach(b => b.classList.toggle('on', b.dataset.sp === mode));
+    document.getElementById('sp-rm').textContent = rm ? 'Put lamp 2 back' : 'Remove lamp 2';
+    const wire = (d) => svgEl('path', { d, fill: 'none', stroke: INK, 'stroke-width': 2.5 }, svg);
+    const place = (g, x, y, rot) => { g.setAttribute('transform', `translate(${x},${y}) rotate(${rot || 0})`); svg.appendChild(g); };
+    const lamp = (x, y, k, present) => {
+      if (present) place(symbol('lamp'), x, y, 0);
+      else { svgEl('rect', { x: x - 30, y: y - 24, width: 60, height: 48, fill: BG }, svg); svgEl('path', { d: `M${x - 40} ${y} H${x - 14} M${x + 14} ${y} H${x + 40}`, stroke: INK, 'stroke-width': 2.5, fill: 'none' }, svg); const t = svgEl('text', { x, y: y + 5, 'text-anchor': 'middle', fill: '#e05252', 'font-size': 13, 'font-family': MONO }, svg); t.textContent = 'removed'; }
+      const gl = svgEl('circle', { cx: x, cy: y, r: 34, fill: '#f5c542', opacity: 0, 'pointer-events': 'none' }, svg);
+      const lb = svgEl('text', { x, y: y - 32, 'text-anchor': 'middle', fill: '#f5c542', 'font-size': 13, 'font-family': MONO }, svg);
+      lampGlow[k] = gl; lampLab[k] = lb;
+    };
+    if (mode === 'series') {
+      wire(`M${X0} 230 V60 H${X1} V230 H${X0}`);
+      place(symbol('battery'), 300, 230, 0);
+      lamp(240, 60, 0, true); lamp(380, 60, 1, !rm);
+      loops = [{ P: poly([[X0, 230], [X0, 60], [X1, 60], [X1, 230]]), n: 26, branch: 0 }];
+    } else {
+      wire(`M${X0} 230 V60 H${X1} V230 H${X0} M${X0} 140 H${X1}`);
+      place(symbol('battery'), 300, 230, 0);
+      lamp(300, 60, 0, true); lamp(300, 140, 1, !rm);
+      loops = [{ P: poly([[X0, 230], [X0, 60], [X1, 60], [X1, 230]]), n: 20, branch: 0 }, { P: poly([[X0, 230], [X0, 140], [X1, 140], [X1, 230]]), n: 16, branch: 1 }];
+    }
+    loops.forEach(L => { L.pos = 0; L.dots = []; for (let i = 0; i < L.n; i++) L.dots.push(svgEl('circle', { r: 4, fill: '#3ecf8e', stroke: '#fff', 'stroke-width': 0.6 }, svg)); });
+    calc();
+  }
+  let cur = [0, 0], total = 0;
+  function calc() {
+    const R = 4, V = 12;
+    if (mode === 'series') {
+      const n = rm ? 0 : 2; const I = rm ? 0 : V / (R * 2);
+      cur = [I, I]; total = I;
+      out.innerHTML = rm
+        ? 'Series: lamp 2 is out, so the single path is broken. <b>0 A</b> flows and <b>both lamps go out</b>.'
+        : `Series: one path, so the <b>same current</b> everywhere. Total R = 4 + 4 = 8 &Omega;, I = 12 &divide; 8 = <b>1.5 A</b>. The 12 V is shared: <b>6 V</b> across each lamp.`;
+    } else {
+      cur = [V / R, rm ? 0 : V / R]; total = cur[0] + cur[1];
+      out.innerHTML = rm
+        ? `Parallel: lamp 2 is out but lamp 1 still has its own path &mdash; it stays lit at <b>3 A</b> with the full <b>12 V</b>. Total current drops to 3 A.`
+        : `Parallel: two paths, each lamp has the <b>full 12 V</b>. Each branch: 12 &divide; 4 = <b>3 A</b>. The current <b>divides</b>, and the cell supplies 3 + 3 = <b>6 A</b>.`;
+    }
+    lampGlow.forEach((g, k) => { const present = k === 0 || !rm; const I = present ? cur[k] : 0; g.setAttribute('opacity', Math.min(0.8, I / 3.2 * 0.8)); lampLab[k].textContent = present ? I.toFixed(1) + ' A' : ''; });
+    loops.forEach(L => L.I = mode === 'series' ? cur[0] : cur[L.branch]);
+  }
+  document.querySelectorAll('[data-sp]').forEach(b => b.onclick = () => { mode = b.dataset.sp; build(); });
+  document.getElementById('sp-rm').onclick = () => { rm = !rm; build(); };
+  build();
+  (function tick() {
+    loops.forEach(L => {
+      L.pos += L.I > 0 ? 0.5 + L.I * 0.9 : 0;
+      L.dots.forEach((d, i) => { const [x, y] = at(L.P, L.pos + i * L.P.tot / L.n); d.setAttribute('cx', x); d.setAttribute('cy', y); d.setAttribute('opacity', L.I > 0 ? 1 : 0.25); });
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+
+</script>
+
+</body>
+</html>
