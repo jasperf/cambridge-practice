@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Density · Interactive Exercises</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 62px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-sci); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 4px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-sci); color: var(--accent-sci); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box strong { color: var(--text); }
+.explorer { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 16px 0 24px; }
+.explorer h4 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
+.explorer .ex-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px; }
+.explorer canvas, .explorer svg.ex-svg { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.ex-controls { display: flex; flex-wrap: wrap; gap: 14px 22px; margin-top: 12px; align-items: center; }
+.ex-controls label { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ex-controls input[type=range] { accent-color: var(--accent-sci); width: 150px; }
+.ex-controls select { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; font-family: var(--font-mono); font-size: 0.74rem; }
+.ex-controls output { color: var(--accent-sci); min-width: 52px; display: inline-block; }
+.ex-btn { font-family: var(--font-mono); font-size: 0.74rem; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.ex-btn:hover { border-color: var(--accent-sci); color: var(--text); }
+.ex-btn.on { border-color: var(--accent-sci); background: rgba(62,207,142,0.12); color: var(--accent-sci); }
+.ex-readout { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.6; }
+.ex-readout b { color: var(--accent-sci); font-weight: 500; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 150px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input.wide { width: 240px; }
+.num-input:focus { border-color: var(--accent-sci); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.unit { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .ex-controls input[type=range] { width: 110px; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 · Unit 3 · Density</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 46</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Unit 3 &middot; Term 2 Week 4</div>
+  <h1>Density of<br><em>Solids, Liquids &amp; Gases</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>Density &middot; Calculations &middot; States &middot; Float &amp; Sink &middot; Water</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--text-dim)"></div>41 questions &middot; self-marked &middot; 46 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Before you start</h3>
+  <p>This sheet follows the Term 2 Week 4 class slides <strong>Density Differences of Solids, Liquids and Gases</strong>. Play with the four animated explorers, then answer the questions. Typed answers are short &mdash; one number or one word. The printable <code>.md</code> version has longer written questions for your notebook.</p>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#what-is-density" class="sub-tab">&#9878;&#65039; What Is Density</a>
+  <a href="#calculating" class="sub-tab">&#129518; Calculating Density</a>
+  <a href="#states-temperature" class="sub-tab">&#127777;&#65039; States &amp; Temperature</a>
+  <a href="#float-sink" class="sub-tab">&#128739;&#65039; Float or Sink</a>
+  <a href="#water-anomaly" class="sub-tab">&#10052;&#65039; Water's Anomaly</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: WHAT IS DENSITY ═══════════════ -->
+<div id="what-is-density">
+  <div class="section-header"><div class="section-icon">&#9878;&#65039;</div><div><div class="sub-label">Section A</div><h2>What Is Density?</h2></div></div>
+  <div class="info-box"><strong>Density</strong> tells us how tightly packed the particles are in a material. It depends on the <strong>mass</strong> of the substance and how much space it occupies (its <strong>volume</strong>): <strong>&rho; = m &divide; V</strong>. Generally solids are the most dense, liquids less dense and gases the least, but there are exceptions.</div>
+  <div class="explorer">
+    <h4>Density Lab</h4>
+    <div class="ex-sub">Change the mass and the volume &mdash; the particles squeeze in or spread out</div>
+    <svg class="ex-svg" id="lab-svg" viewBox="0 0 600 250" role="img" aria-label="A box whose size is the volume and whose dots show the mass packed inside">
+      <rect id="lab-box" rx="6" fill="rgba(79,142,247,0.08)" stroke="#4f8ef7" stroke-width="2"/>
+      <g id="lab-dots"></g>
+      <text id="lab-vtxt" x="300" y="246" text-anchor="middle" fill="#7a84a0" font-family="DM Mono, monospace" font-size="13"></text>
+      <text id="lab-mtxt" x="30" y="40" fill="#3ecf8e" font-family="DM Mono, monospace" font-size="14"></text>
+    </svg>
+    <div class="ex-controls">
+      <label>Mass <input type="range" id="lab-m" min="10" max="400" step="10" value="120"><output id="lab-m-out">120 g</output></label>
+      <label>Volume <input type="range" id="lab-v" min="10" max="200" step="10" value="40"><output id="lab-v-out">40 cm&sup3;</output></label>
+    </div>
+    <div class="ex-readout" id="lab-out"></div>
+  </div>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Two blocks are exactly the same size, but block X has a greater mass than block Y. What can you say about their densities?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'a')"><div class="opt-indicator"></div><span>Block Y has the higher density because it is lighter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span>Block X has the higher density</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span>They have the same density because the size is the same</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span>You cannot tell without knowing the material</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s1','b','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','B — Same volume, more mass in block X. Density is mass &divide; volume, so X packs more mass into every cm<sup>3</sup> &mdash; its density is higher.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Which state of matter generally has the <em>highest</em> density? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s2-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s2',['solid','solids','a solid'],'Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','Solid &mdash; the particles are tightly packed, so a lot of mass sits in every cm<sup>3</sup>. (Generally: not every solid beats every liquid.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Aluminium has a density of 2.7 g/cm<sup>3</sup> and water has a density of 1 g/cm<sup>3</sup>. How many times denser is aluminium than water?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s3-ans" placeholder="Enter answer..."><span class="unit">times</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s3',2.7,'Q3',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','2.7 &divide; 1 = 2.7. Each cm<sup>3</sup> of aluminium holds 2.7 times as much mass as each cm<sup>3</sup> of water.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Hydrogen gas has a density of only 0.000089 g/cm<sup>3</sup>. What is the best explanation for such a tiny value?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>Hydrogen particles have no mass at all</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>Hydrogen particles are tightly packed but extremely light</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>Gases do not have a volume, so density cannot be worked out</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>Its particles are very far apart, so each cm<sup>3</sup> holds very little mass</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s4','d','Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','D — In a gas the particles are widely spaced, so a cm<sup>3</sup> of gas contains very few particles and very little mass.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Write the unit used for the density of solids and liquids on this sheet (for example, water is 1 &hellip;). Type it like <em>g/cm3</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s5-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s5',['g/cm3','g/cm³','g per cm3','g cm-3','g/cm^3','gcm-3','g/cm 3'],'Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','g/cm<sup>3</sup> (grams per cubic centimetre): the mass in grams of 1 cm<sup>3</sup> of the material.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">A big iron nail and a tiny iron pin are both made of the same iron. How do their densities compare?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'a')"><div class="opt-indicator"></div><span>They are the same &mdash; density depends on the material, not on how much of it there is</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'b')"><div class="opt-indicator"></div><span>The nail is denser because it has more mass</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>The pin is denser because its particles are squashed together</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>You cannot compare them because they are different sizes</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s6','a','Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','A — The nail has more mass <em>and</em> more volume, so the ratio stays the same. Density is a property of the material.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Of aluminium, water and hydrogen gas, which has the <em>lowest</em> density? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s7-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s7',['hydrogen','hydrogen gas','h2'],'Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','Hydrogen gas (0.000089 g/cm<sup>3</sup>), thousands of times less dense than water.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WHAT IS DENSITY &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wd-fill"></div></div>
+    <div class="section-score-val" id="sec-wd-val">0/7</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: CALCULATING DENSITY ═══════════════ -->
+<div id="calculating">
+  <div class="section-header"><div class="section-icon">&#129518;</div><div><div class="sub-label">Section B</div><h2>Calculating Density, Mass and Volume</h2></div></div>
+  <div class="info-box">Rearrange <strong>&rho; = m &divide; V</strong> to find what you need: <strong>m = &rho; &times; V</strong> and <strong>V = m &divide; &rho;</strong>. For an irregular solid, find its volume by <strong>displacement</strong> (the water level rises by the volume of the object). Units: g and cm<sup>3</sup> give g/cm<sup>3</sup>; 1 mL = 1 cm<sup>3</sup>; 1 dm<sup>3</sup> = 1000 cm<sup>3</sup>; 1 g/cm<sup>3</sup> = 1000 kg/m<sup>3</sup>.</div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A metal block has a mass of 120 g and a volume of 40 cm<sup>3</sup>. Calculate its density.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s8-ans" placeholder="Enter answer..."><span class="unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s8',3,'Q8',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s8','Density = mass &divide; volume.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','&rho; = m &divide; V = 120 &divide; 40 = 3 g/cm<sup>3</sup>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">A gold bar has a mass of 386.4 g and a volume of 20 cm<sup>3</sup>. Calculate its density.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s9-ans" placeholder="Enter answer..."><span class="unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s9',19.32,'Q9',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','&rho; = 386.4 &divide; 20 = 19.32 g/cm<sup>3</sup> &mdash; the density of solid gold.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">The density of aluminium is 2.7 g/cm<sup>3</sup>. What is the mass of 25 cm<sup>3</sup> of aluminium?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s10-ans" placeholder="Enter answer..."><span class="unit">g</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s10',67.5,'Q10',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s10','Rearrange: mass = density &times; volume.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','m = &rho; &times; V = 2.7 &times; 25 = 67.5 g.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Iron has a density of 7.8 g/cm<sup>3</sup>. A piece of iron has a mass of 78 g. What is its volume?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s11-ans" placeholder="Enter answer..."><span class="unit">cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s11',10,'Q11',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s11','Rearrange: volume = mass &divide; density.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','V = m &divide; &rho; = 78 &divide; 7.8 = 10 cm<sup>3</sup>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">A cuboid measures 10 cm &times; 5 cm &times; 4 cm and has a mass of 600 g. Work out its density.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s12-ans" placeholder="Enter answer..."><span class="unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s12',3,'Q12',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s12','Find the volume first: length &times; width &times; height.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','V = 10 &times; 5 &times; 4 = 200 cm<sup>3</sup>. &rho; = 600 &divide; 200 = 3 g/cm<sup>3</sup>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">A stone is lowered into a measuring cylinder. The water level rises from 50 mL to 68 mL. What is the volume of the stone? (1 mL = 1 cm<sup>3</sup>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s13-ans" placeholder="Enter answer..."><span class="unit">cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s13',18,'Q13',0.05)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','The stone pushes aside its own volume of water: 68 &minus; 50 = 18 mL = 18 cm<sup>3</sup>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">The same stone has a mass of 54 g. Using your volume from the last question, calculate the density of the stone.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s14-ans" placeholder="Enter answer..."><span class="unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s14',3,'Q14',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','&rho; = 54 &divide; 18 = 3 g/cm<sup>3</sup>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Hydrogen gas has a density of 0.000089 g/cm<sup>3</sup>. What is the mass of 1000 cm<sup>3</sup> of hydrogen?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s15-ans" placeholder="Enter answer..."><span class="unit">g</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s15',0.089,'Q15',0.001)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','m = 0.000089 &times; 1000 = 0.089 g &mdash; less than a tenth of a gram for a whole litre.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-s16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">A tank holds 2.5 dm<sup>3</sup> of water. How many cm<sup>3</sup> is that? (1 dm<sup>3</sup> = 1000 cm<sup>3</sup>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s16-ans" placeholder="Enter answer..."><span class="unit">cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s16',2500,'Q16',0.5)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','2.5 &times; 1000 = 2500 cm<sup>3</sup>. Each step down the volume-unit ladder (dm<sup>3</sup> &rarr; cm<sup>3</sup>) multiplies by 1000.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s16-fb"></div>
+    </div>
+  </div>
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text"><em>Stretch.</em> Aluminium has a density of 2.7 g/cm<sup>3</sup>. Give this in kg/m<sup>3</sup>. (1 g/cm<sup>3</sup> = 1000 kg/m<sup>3</sup>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s17-ans" placeholder="Enter answer..."><span class="unit">kg/m³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s17',2700,'Q17',0.5)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','2.7 &times; 1000 = 2700 kg/m<sup>3</sup>. Water, at 1 g/cm<sup>3</sup>, is 1000 kg/m<sup>3</sup>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Block A has a mass of 200 g and a volume of 100 cm<sup>3</sup>. Block B has a mass of 150 g and a volume of 50 cm<sup>3</sup>. Which block is denser?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'a')"><div class="opt-indicator"></div><span>Block A (2 g/cm<sup>3</sup>), because it has more mass</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'b')"><div class="opt-indicator"></div><span>They are equally dense</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'c')"><div class="opt-indicator"></div><span>Block B (3 g/cm<sup>3</sup>)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'd')"><div class="opt-indicator"></div><span>Block A, because it has more volume</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s18','c','Q18')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','C — A: 200 &divide; 100 = 2 g/cm<sup>3</sup>. B: 150 &divide; 50 = 3 g/cm<sup>3</sup>. A has more mass, but B packs more mass into each cm<sup>3</sup>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-s19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">An empty beaker has a mass of 80 g. With 50 cm<sup>3</sup> of a liquid in it, the mass is 120 g. What is the density of the liquid?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s19-ans" placeholder="Enter answer..."><span class="unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s19',0.8,'Q19',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s19','Subtract the beaker first to get the mass of the liquid alone.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s19','Mass of liquid = 120 &minus; 80 = 40 g. &rho; = 40 &divide; 50 = 0.8 g/cm<sup>3</sup>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s19-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">CALCULATING DENSITY &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ca-fill"></div></div>
+    <div class="section-score-val" id="sec-ca-val">0/14</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: STATES &AMP; TEMPERATURE ═══════════════ -->
+<div id="states-temperature">
+  <div class="section-header"><div class="section-icon">&#127777;&#65039;</div><div><div class="sub-label">Section C</div><h2>States of Matter and Temperature</h2></div></div>
+  <div class="info-box">Density changes when the state or temperature changes. When a substance is <strong>heated</strong>, its particles gain energy and move more, taking up more space, so its density <strong>decreases</strong>. When it is <strong>cooled</strong>, the particles slow down and take up less space, so its density <strong>increases</strong>. Not every solid is denser than every liquid: wood is a solid but is less dense than water.</div>
+  <div class="explorer">
+    <h4>Heat It, Cool It</h4>
+    <div class="ex-sub">Sealed sample, mass fixed at 100 g (size change exaggerated so you can see it)</div>
+    <svg class="ex-svg" id="ht-svg" viewBox="0 0 600 230" role="img" aria-label="Particles in a sealed box that moves faster and takes up more room as the sample is heated">
+      <rect id="ht-cold" x="60" y="30" width="140" height="170" rx="6" fill="none" stroke="#4a5270" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <rect id="ht-box" x="60" y="30" height="170" rx="6" fill="rgba(245,166,35,0.07)" stroke="#f5a623" stroke-width="2"/>
+      <g id="ht-dots"></g>
+      <text x="62" y="22" fill="#4a5270" font-family="DM Mono, monospace" font-size="11">dashed = size when cold</text>
+      <text id="ht-state" x="590" y="40" text-anchor="end" fill="#e8eaf0" font-family="DM Mono, monospace" font-size="14"></text>
+    </svg>
+    <div class="ex-controls">
+      <label>Heat added <input type="range" id="ht-t" min="0" max="100" step="1" value="0"><output id="ht-t-out">0</output></label>
+    </div>
+    <div class="ex-readout" id="ht-out"></div>
+  </div>
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-s20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">A sealed sample of a substance is heated. Why does its density go down?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s20-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'a')"><div class="opt-indicator"></div><span>The particles lose some of their mass</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'b')"><div class="opt-indicator"></div><span>Some of the particles are destroyed by the heat</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'c')"><div class="opt-indicator"></div><span>The particles become bigger and heavier</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s20', this, 'd')"><div class="opt-indicator"></div><span>The particles gain energy and move more, taking up more space while the mass stays the same</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s20','d','Q20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','D — Heating does not change the mass. The particles move more and spread out, so the volume rises and mass &divide; volume falls.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s20-fb"></div>
+    </div>
+  </div>
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-s21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">A sealed 200 g sample has a volume of 100 cm<sup>3</sup>. After heating, its volume is 125 cm<sup>3</sup>. What is its new density?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s21-ans" placeholder="Enter answer..."><span class="unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s21',1.6,'Q21',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s21','The mass is still 200 g.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','&rho; = 200 &divide; 125 = 1.6 g/cm<sup>3</sup> (down from 200 &divide; 100 = 2.0).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s21-fb"></div>
+    </div>
+  </div>
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-s22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">A substance is cooled. Does its density <em>increase</em> or <em>decrease</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s22-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s22',['increase','increases','it increases'],'Q22')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s22','Increase &mdash; the particles slow down and take up less space, so the same mass fits in a smaller volume.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s22-fb"></div>
+    </div>
+  </div>
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-s23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Solid gold has a density of 19.32 g/cm<sup>3</sup> and molten gold has a density of 17.19 g/cm<sup>3</sup>. How much lower is the density of molten gold?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s23-ans" placeholder="Enter answer..."><span class="unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s23',2.13,'Q23',0.005)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','19.32 &minus; 17.19 = 2.13 g/cm<sup>3</sup>. Melting spreads the particles out a little.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s23-fb"></div>
+    </div>
+  </div>
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-s24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">Which statement about densities is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s24-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'a')"><div class="opt-indicator"></div><span>A solid can be less dense than a liquid, for example wood in water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'b')"><div class="opt-indicator"></div><span>Every solid is denser than every liquid</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'c')"><div class="opt-indicator"></div><span>Gases are always denser than liquids</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'd')"><div class="opt-indicator"></div><span>All liquids have the same density as water</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s24','a','Q24')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s24','A — Not all solids are denser than liquids. Wood is a solid but it is less dense than water &mdash; that is why it floats.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s24-fb"></div>
+    </div>
+  </div>
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-s25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Using the molten gold density of 17.19 g/cm<sup>3</sup>, what is the mass of 10 cm<sup>3</sup> of molten gold?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s25-ans" placeholder="Enter answer..."><span class="unit">g</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s25',171.9,'Q25',0.05)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s25','m = &rho; &times; V = 17.19 &times; 10 = 171.9 g.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s25-fb"></div>
+    </div>
+  </div>
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-s26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">A hot-air balloon rises because the hot air inside is ______ dense than the cooler air outside. Fill in the gap with one word (<em>more</em> or <em>less</em>).</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s26-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s26',['less','less dense'],'Q26')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s26','Less &mdash; heating spreads the air particles out, lowering the density. The balloon is surrounded by denser, cooler air, so it floats up.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s26-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">STATES &AMP; TEMPERATURE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-st-fill"></div></div>
+    <div class="section-score-val" id="sec-st-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: FLOAT OR SINK ═══════════════ -->
+<div id="float-sink">
+  <div class="section-header"><div class="section-icon">&#128739;&#65039;</div><div><div class="sub-label">Section D</div><h2>Float or Sink?</h2></div></div>
+  <div class="info-box">Knowing the density of a substance helps decide whether it floats or sinks in another substance. An object <strong>less dense</strong> than the liquid around it will <strong>float</strong>; an object <strong>denser</strong> than the liquid will <strong>sink</strong>. Compare the two densities &mdash; mass alone does not decide it.</div>
+  <div class="explorer">
+    <h4>Float or Sink?</h4>
+    <div class="ex-sub">Choose an object and a liquid, then drop it in</div>
+    <svg class="ex-svg" id="fl-svg" viewBox="0 0 600 260" role="img" aria-label="An object dropped into a tank of liquid either floating or sinking">
+      <rect id="fl-liq" x="200" y="100" width="200" height="140" fill="#4f8ef7" opacity="0.35"/>
+      <rect id="fl-obj" x="275" y="20" width="50" height="50" rx="4" fill="#c9a36a" stroke="#fff" stroke-width="1.5"/>
+      <path d="M200 40 V240 H400 V40" fill="none" stroke="#e8eaf0" stroke-width="3" stroke-linejoin="round"/>
+      <text id="fl-olabel" x="190" y="130" text-anchor="end" fill="#e8eaf0" font-family="DM Mono, monospace" font-size="13"></text>
+      <text id="fl-llabel" x="410" y="200" fill="#e8eaf0" font-family="DM Mono, monospace" font-size="13"></text>
+    </svg>
+    <div class="ex-controls">
+      <label>Object <select id="fl-o"></select></label>
+      <label>Liquid <select id="fl-l"></select></label>
+      <button class="ex-btn" id="fl-drop">Drop it again</button>
+    </div>
+    <div class="ex-readout" id="fl-out"></div>
+  </div>
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-s27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">A piece of pine wood has a density of 0.55 g/cm<sup>3</sup>. Placed in water (1.00 g/cm<sup>3</sup>), will it <em>float</em> or <em>sink</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s27-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s27',['float','floats','it floats'],'Q27')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s27','Float &mdash; 0.55 is less than 1.00, so the wood is less dense than the water.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s27-fb"></div>
+    </div>
+  </div>
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-s28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">A steel bolt has a density of 7.8 g/cm<sup>3</sup>. Placed in water, will it <em>float</em> or <em>sink</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s28-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s28',['sink','sinks','it sinks'],'Q28')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s28','Sink &mdash; 7.8 is greater than 1.00, so the bolt is denser than the water.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s28-fb"></div>
+    </div>
+  </div>
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-s29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A block has a mass of 90 g and a volume of 100 cm<sup>3</sup>. Work out its density, then say whether it will <em>float</em> or <em>sink</em> in water.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s29-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s29',['float','floats','it floats'],'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s29','Water has a density of 1 g/cm&sup3;.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s29','&rho; = 90 &divide; 100 = 0.9 g/cm<sup>3</sup>, which is less than water (1 g/cm<sup>3</sup>) &mdash; it floats.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s29-fb"></div>
+    </div>
+  </div>
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-s30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Cooking oil (0.92 g/cm<sup>3</sup>) is poured into a glass of water. What happens?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'a')"><div class="opt-indicator"></div><span>The oil sinks to the bottom</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'b')"><div class="opt-indicator"></div><span>The oil forms a layer on top of the water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'c')"><div class="opt-indicator"></div><span>The oil mixes evenly through the water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'd')"><div class="opt-indicator"></div><span>The oil floats only if the water is stirred</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s30','b','Q30')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s30','B — Oil is less dense than water, so it floats in a layer on top.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s30-fb"></div>
+    </div>
+  </div>
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-s31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">A mystery object floats in water (1.00 g/cm<sup>3</sup>) but sinks in oil (0.92 g/cm<sup>3</sup>). Which could be its density?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s31-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'a')"><div class="opt-indicator"></div><span>0.85 g/cm<sup>3</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'b')"><div class="opt-indicator"></div><span>1.05 g/cm<sup>3</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'c')"><div class="opt-indicator"></div><span>0.96 g/cm<sup>3</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'd')"><div class="opt-indicator"></div><span>1.50 g/cm<sup>3</sup></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s31','c','Q31')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s31','C — It floats in water, so it is less than 1.00. It sinks in oil, so it is more than 0.92. Only 0.96 fits between them.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s31-fb"></div>
+    </div>
+  </div>
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-s32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">An inflatable plastic flamingo floats on a pool. What is the correct reason?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s32-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'a')"><div class="opt-indicator"></div><span>Its average density, including the air inside, is less than the density of water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'b')"><div class="opt-indicator"></div><span>All plastic is less dense than water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'c')"><div class="opt-indicator"></div><span>Air is heavier than water, so it holds the flamingo up</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'd')"><div class="opt-indicator"></div><span>The water pushes down on the plastic</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s32','a','Q32')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s32','A — The flamingo is mostly air, so its overall density is below that of water. (Many plastics are actually denser than water &mdash; it is the trapped air that matters.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s32-fb"></div>
+    </div>
+  </div>
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-s33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">An ice cube (0.9168 g/cm<sup>3</sup>) is dropped into a liquid with a density of 1.2 g/cm<sup>3</sup>. Will it <em>float</em> or <em>sink</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s33-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s33',['float','floats','it floats'],'Q33')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s33','Float &mdash; the ice is less dense than the liquid (0.9168 &lt; 1.2).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s33-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">FLOAT OR SINK &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-fs-fill"></div></div>
+    <div class="section-score-val" id="sec-fs-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: WATER'S ANOMALY ═══════════════ -->
+<div id="water-anomaly">
+  <div class="section-header"><div class="section-icon">&#10052;&#65039;</div><div><div class="sub-label">Section E</div><h2>Water's Anomaly &mdash; Why Ice Floats</h2></div></div>
+  <div class="info-box">Water is unusual because it is <strong>less dense as a solid than as a liquid</strong>. In a water molecule the hydrogen atoms are slightly positive (&delta;+) and the oxygen is slightly negative (&delta;&minus;). In ice, each molecule forms <strong>hydrogen bonds</strong> with four others, which pushes the molecules further apart than in liquid water and gives a hexagonal structure. This is why ice cubes and icebergs float. Densities: ice 0.9168, liquid water 0.9971, water vapour 0.000588 g/cm<sup>3</sup>.</div>
+  <div class="explorer">
+    <h4>Water in Three States</h4>
+    <div class="ex-sub">Pick a state &mdash; watch the molecules (red = oxygen, blue = hydrogen)</div>
+    <svg class="ex-svg" id="wa-svg" viewBox="0 0 600 260" role="img" aria-label="Water molecules in ice, liquid water and water vapour">
+      <g id="wa-bonds"></g>
+      <g id="wa-mols"></g>
+      <text id="wa-title" x="590" y="30" text-anchor="end" fill="#e8eaf0" font-family="DM Mono, monospace" font-size="15"></text>
+    </svg>
+    <div class="ex-controls">
+      <button class="ex-btn on" data-wa="ice">Ice &middot; 0&deg;C</button>
+      <button class="ex-btn" data-wa="liquid">Liquid water &middot; 25&deg;C</button>
+      <button class="ex-btn" data-wa="vapour">Water vapour &middot; 100&deg;C</button>
+    </div>
+    <div class="ex-readout" id="wa-out"></div>
+  </div>
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-s34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Ice has a density of 0.9168 g/cm<sup>3</sup>. What is the mass of 1000 cm<sup>3</sup> of ice?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s34-ans" placeholder="Enter answer..."><span class="unit">g</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s34',916.8,'Q34',0.1)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s34','m = 0.9168 &times; 1000 = 916.8 g.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s34-fb"></div>
+    </div>
+  </div>
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-s35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">What volume does 91.68 g of ice take up? (ice density 0.9168 g/cm<sup>3</sup>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s35-ans" placeholder="Enter answer..."><span class="unit">cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s35',100,'Q35',0.1)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s35','V = m &divide; &rho; = 91.68 &divide; 0.9168 = 100 cm<sup>3</sup>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s35-fb"></div>
+    </div>
+  </div>
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-s36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Which list puts the forms of water in order from <em>lowest</em> to <em>highest</em> density?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s36-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'a')"><div class="opt-indicator"></div><span>Ice, liquid water, water vapour</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'b')"><div class="opt-indicator"></div><span>Liquid water, ice, water vapour</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'c')"><div class="opt-indicator"></div><span>Water vapour, liquid water, ice</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'd')"><div class="opt-indicator"></div><span>Water vapour, ice, liquid water</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s36','d','Q36')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s36','D — Vapour (0.000588) &lt; ice (0.9168) &lt; liquid water (0.9971 g/cm<sup>3</sup>). Water is unusual: the solid is less dense than the liquid.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s36-fb"></div>
+    </div>
+  </div>
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-s37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">In ice, each water molecule forms hydrogen bonds with how many other water molecules?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s37-ans" placeholder="Enter answer..."><span class="unit">molecules</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s37',4,'Q37',0)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s37','Four. Those four bonds hold the molecules in an open hexagonal structure.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s37-fb"></div>
+    </div>
+  </div>
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-s38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">What name is given to the attraction between the slightly positive hydrogen of one water molecule and the slightly negative oxygen of another? (two words)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s38-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s38',['hydrogen bond','hydrogen bonds','hydrogen bonding','a hydrogen bond'],'Q38')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s38','A hydrogen bond. It pulls molecules into a fixed pattern as water freezes.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s38-fb"></div>
+    </div>
+  </div>
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-s39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Why does ice float on liquid water?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s39-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s39', this, 'a')"><div class="opt-indicator"></div><span>Ice molecules are lighter than liquid water molecules</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s39', this, 'b')"><div class="opt-indicator"></div><span>Hydrogen bonds hold the molecules in an open structure, further apart than in the liquid, so ice is less dense</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s39', this, 'c')"><div class="opt-indicator"></div><span>Ice molecules move faster, so they spread out more</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s39', this, 'd')"><div class="opt-indicator"></div><span>Ice molecules are packed more tightly, but air is trapped inside</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s39','b','Q39')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s39','B — Freezing locks each molecule into four hydrogen bonds and pushes the molecules further apart. The same mass takes up more volume, so ice is less dense than liquid water.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s39-fb"></div>
+    </div>
+  </div>
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-s40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">In a very cold winter, a pond freezes over but the fish below survive. Which explanation is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s40-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'a')"><div class="opt-indicator"></div><span>The ice sinks to the bottom, leaving the surface water liquid</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'b')"><div class="opt-indicator"></div><span>All the water freezes solid and the fish go dormant</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'c')"><div class="opt-indicator"></div><span>The ice floats on top and forms an insulating layer, so the water beneath stays liquid</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'd')"><div class="opt-indicator"></div><span>The ice gives out heat which keeps the water warm all winter</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s40','c','Q40')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s40','C — Because ice is less dense, it floats and the pond freezes from the top down. The ice layer slows heat loss from the water below, which stays liquid.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s40-fb"></div>
+    </div>
+  </div>
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-s41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">100 cm<sup>3</sup> of ice (mass 91.68 g) melts into liquid water of density 0.9971 g/cm<sup>3</sup>. What volume of liquid water do you get? Give your answer to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s41-ans" placeholder="Enter answer..."><span class="unit">cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s41',91.9,'Q41',0.2)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s41','Mass stays the same when ice melts: volume = mass &divide; density.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s41','V = 91.68 &divide; 0.9971 &asymp; 91.9 cm<sup>3</sup>. Melting makes the volume <em>smaller</em> &mdash; the opposite of what most substances do.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s41-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WATER'S ANOMALY &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wa-fill"></div></div>
+    <div class="section-score-val" id="sec-wa-val">0/9</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const SHEET_ID = 'term2-week4-science-unit3-density';
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {s1: 1, s2: 1, s3: 1, s4: 1, s5: 1, s6: 1, s7: 1, s8: 1, s9: 1, s10: 1, s11: 1, s12: 2, s13: 1, s14: 1, s15: 1, s16: 1, s17: 1, s18: 1, s19: 2, s20: 1, s21: 2, s22: 1, s23: 1, s24: 1, s25: 1, s26: 1, s27: 1, s28: 1, s29: 2, s30: 1, s31: 1, s32: 1, s33: 1, s34: 1, s35: 1, s36: 1, s37: 1, s38: 1, s39: 1, s40: 1, s41: 2};
+
+const sections = {
+  wd: { label: 'What Is Density', qs: ['s1', 's2', 's3', 's4', 's5', 's6', 's7'] },
+  ca: { label: 'Calculating Density', qs: ['s8', 's9', 's10', 's11', 's12', 's13', 's14', 's15', 's16', 's17', 's18', 's19'] },
+  st: { label: 'States &amp; Temperature', qs: ['s20', 's21', 's22', 's23', 's24', 's25', 's26'] },
+  fs: { label: 'Float or Sink', qs: ['s27', 's28', 's29', 's30', 's31', 's32', 's33'] },
+  wa: { label: 'Water\'s Anomaly', qs: ['s34', 's35', 's36', 's37', 's38', 's39', 's40', 's41'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance + 1e-9;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  state.answers[qid] = val;
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    const input = document.getElementById(`${qid}-ans`);
+    if (input) input.disabled = true;
+    updateScores();
+  }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`${SHEET_ID}_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+
+
+const SVGNS = 'http://www.w3.org/2000/svg';
+function svgEl(name, attrs) { const e = document.createElementNS(SVGNS, name); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+// ── Explorer 1: Density Lab ─────────────────────────────────
+(function () {
+  const dots = document.getElementById('lab-dots'), box = document.getElementById('lab-box');
+  const mIn = document.getElementById('lab-m'), vIn = document.getElementById('lab-v');
+  const pool = [];
+  for (let i = 0; i < 80; i++) {
+    const c = svgEl('circle', { r: 3.4, fill: '#3ecf8e', stroke: '#fff', 'stroke-width': 0.6 });
+    dots.appendChild(c); pool.push(c);
+  }
+  const refs = [['hydrogen gas', 0.000089], ['water', 1], ['aluminium', 2.7], ['iron', 7.8], ['gold', 19.32]];
+  function upd() {
+    const m = +mIn.value, v = +vIn.value;
+    const s = 14 * Math.sqrt(v), bx = 300 - s / 2, by = 232 - s;
+    box.setAttribute('x', bx); box.setAttribute('y', by); box.setAttribute('width', s); box.setAttribute('height', s);
+    const n = Math.round(m / 5);
+    pool.forEach((c, i) => {
+      if (i < n) {
+        const h1 = Math.sin(i * 12.9898 + 1.7) * 43758.5453, h2 = Math.sin(i * 78.233 + 4.1) * 12345.6789, u = h1 - Math.floor(h1), w = h2 - Math.floor(h2);
+        c.setAttribute('cx', bx + 7 + u * (s - 14)); c.setAttribute('cy', by + 7 + w * (s - 14));
+        c.setAttribute('display', 'inline');
+      } else c.setAttribute('display', 'none');
+    });
+    const d = m / v;
+    let best = refs[0];
+    refs.forEach(r => { if (Math.abs(Math.log(d / r[1])) < Math.abs(Math.log(d / best[1]))) best = r; });
+    document.getElementById('lab-m-out').textContent = m + ' g';
+    document.getElementById('lab-v-out').innerHTML = v + ' cm&sup3;';
+    document.getElementById('lab-vtxt').textContent = 'volume = ' + v + ' cm³';
+    document.getElementById('lab-mtxt').textContent = 'mass = ' + m + ' g';
+    document.getElementById('lab-out').innerHTML = `&rho; = m &divide; V = ${m} &divide; ${v} = <b>${d.toFixed(2)} g/cm&sup3;</b> &mdash; closest to ${best[0]} (${best[1]} g/cm&sup3;)`;
+  }
+  mIn.oninput = upd; vIn.oninput = upd; upd();
+})();
+
+// ── Explorer 2: Heat it, cool it ────────────────────────────
+(function () {
+  const g = document.getElementById('ht-dots'), box = document.getElementById('ht-box');
+  const tIn = document.getElementById('ht-t');
+  const P = [];
+  for (let i = 0; i < 24; i++) {
+    const c = svgEl('circle', { r: 6, fill: '#4f8ef7', stroke: '#fff', 'stroke-width': 0.8 });
+    g.appendChild(c);
+    const a = i * 2.399;
+    P.push({ c, x: 78 + (i % 6) * 22, y: 52 + Math.floor(i / 6) * 34, vx: Math.cos(a), vy: Math.sin(a) });
+  }
+  let t = 0, w = 140;
+  function upd() {
+    t = +tIn.value; w = 140 + t * 1.4;
+    box.setAttribute('width', w);
+    const V = 100 * w / 140, d = 100 / V;
+    const st = t < 35 ? 'cold: particles barely move' : t < 70 ? 'warm: particles jiggle faster' : 'hot: particles fly about';
+    document.getElementById('ht-t-out').textContent = t;
+    document.getElementById('ht-state').textContent = st;
+    document.getElementById('ht-out').innerHTML = `mass <b>100 g</b> &middot; volume <b>${V.toFixed(0)} cm&sup3;</b> &middot; density = 100 &divide; ${V.toFixed(0)} = <b>${d.toFixed(2)} g/cm&sup3;</b>`;
+  }
+  tIn.oninput = upd; upd();
+  function tick() {
+    const sp = 0.15 + t / 100 * 2.2;
+    P.forEach(p => {
+      p.x += p.vx * sp; p.y += p.vy * sp;
+      if (p.x < 66) { p.x = 66; p.vx = Math.abs(p.vx); }
+      if (p.x > 60 + w - 6) { p.x = 60 + w - 6; p.vx = -Math.abs(p.vx); }
+      if (p.y < 36) { p.y = 36; p.vy = Math.abs(p.vy); }
+      if (p.y > 194) { p.y = 194; p.vy = -Math.abs(p.vy); }
+      p.c.setAttribute('cx', p.x); p.c.setAttribute('cy', p.y);
+    });
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+// ── Explorer 3: Float or sink ───────────────────────────────
+(function () {
+  const objs = [['Cork', 0.25, '#c9a36a'], ['Pine wood', 0.55, '#b07d3f'], ['Ice', 0.9168, '#bfe3ff'], ['Plastic brick', 1.2, '#e05252'], ['Aluminium', 2.7, '#b8c0cc'], ['Iron', 7.8, '#7a84a0'], ['Gold', 19.32, '#f5c542']];
+  const liqs = [['Oil', 0.92, '#f5d442'], ['Water', 1.0, '#4f8ef7'], ['Salt water', 1.03, '#3ecfcf'], ['Mercury', 13.6, '#c0c4cc']];
+  const so = document.getElementById('fl-o'), sl = document.getElementById('fl-l');
+  objs.forEach((o, i) => so.add(new Option(`${o[0]} (${o[1]} g/cm³)`, i)));
+  liqs.forEach((l, i) => sl.add(new Option(`${l[0]} (${l[1]} g/cm³)`, i)));
+  sl.value = 1; so.value = 1;
+  const obj = document.getElementById('fl-obj'), liq = document.getElementById('fl-liq');
+  const SURF = 100, BOTTOM = 240, S = 50;
+  let y = 20, ty = 20;
+  function setup() {
+    const o = objs[so.value], l = liqs[sl.value];
+    liq.setAttribute('fill', l[2]);
+    obj.setAttribute('fill', o[2]);
+    document.getElementById('fl-olabel').textContent = o[0];
+    document.getElementById('fl-llabel').textContent = l[0];
+    const r = o[1] / l[1];
+    let verdict;
+    if (Math.abs(r - 1) < 0.005) { ty = (SURF + BOTTOM - S) / 2; verdict = 'the same density &mdash; it hangs in the middle'; }
+    else if (r < 1) { ty = SURF - S * (1 - r); verdict = `less dense than the liquid &mdash; it <b>floats</b>, about ${Math.round(r * 100)}% under the surface`; }
+    else { ty = BOTTOM - S; verdict = 'denser than the liquid &mdash; it <b>sinks</b>'; }
+    document.getElementById('fl-out').innerHTML = `${o[0]} ${o[1]} g/cm&sup3; vs ${l[0]} ${l[1]} g/cm&sup3;: ${verdict}`;
+    y = 20;
+  }
+  so.onchange = setup; sl.onchange = setup;
+  document.getElementById('fl-drop').onclick = setup;
+  setup();
+  (function tick() {
+    y += (ty - y) * 0.07;
+    obj.setAttribute('y', y);
+    requestAnimationFrame(tick);
+  })();
+})();
+
+// ── Explorer 4: Water in three states ───────────────────────
+(function () {
+  const mols = document.getElementById('wa-mols'), bonds = document.getElementById('wa-bonds');
+  const N = 12, M = [];
+  for (let i = 0; i < N; i++) {
+    const g = svgEl('g', {});
+    g.appendChild(svgEl('circle', { r: 10, fill: '#e0604f', stroke: '#fff', 'stroke-width': 0.8 }));
+    g.appendChild(svgEl('circle', { cx: -9, cy: -8, r: 5.5, fill: '#9db8ff', stroke: '#fff', 'stroke-width': 0.6 }));
+    g.appendChild(svgEl('circle', { cx: 9, cy: -8, r: 5.5, fill: '#9db8ff', stroke: '#fff', 'stroke-width': 0.6 }));
+    mols.appendChild(g);
+    const a = i * 2.399;
+    M.push({ g, x: 300, y: 130, vx: Math.cos(a), vy: Math.sin(a), tx: 300, ty: 130 });
+  }
+  // open hexagonal-style lattice for ice: 4 columns x 3 rows, wide gaps
+  const lat = [];
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) lat.push([190 + c * 58 + (r % 2) * 29, 70 + r * 62]);
+  const links = [];
+  for (let i = 0; i < 12; i++) for (let j = i + 1; j < 12; j++) {
+    const d = Math.hypot(lat[i][0] - lat[j][0], lat[i][1] - lat[j][1]);
+    if (d < 70 && Math.abs(lat[i][1] - lat[j][1]) > 10) links.push([i, j]);   // 4 bonds per molecule (diagonals only)
+  }
+  links.forEach(() => bonds.appendChild(svgEl('line', { stroke: '#f5a623', 'stroke-width': 1.5, 'stroke-dasharray': '3 4', opacity: 0 })));
+  const info = {
+    ice: ['Ice · 0°C', 'density <b>0.9168 g/cm&sup3;</b> &mdash; each molecule hydrogen-bonded (dashed) to its neighbours in an open, spread-out hexagonal structure'],
+    liquid: ['Liquid water · 25°C', 'density <b>0.9971 g/cm&sup3;</b> &mdash; molecules slip past each other and pack closer than in ice'],
+    vapour: ['Water vapour · 100°C', 'density <b>0.000588 g/cm&sup3;</b> &mdash; molecules are far apart and fly about (about 1700&times; less dense than liquid water)']
+  };
+  let mode = 'ice';
+  const box = { ice: null, liquid: [150, 100, 450, 245], vapour: [20, 20, 580, 245] };
+  function set(m) {
+    mode = m;
+    document.querySelectorAll('[data-wa]').forEach(b => b.classList.toggle('on', b.dataset.wa === m));
+    document.getElementById('wa-title').textContent = info[m][0];
+    document.getElementById('wa-out').innerHTML = info[m][1];
+    M.forEach((p, i) => { if (m === 'ice') { p.tx = lat[i][0]; p.ty = lat[i][1]; } });
+  }
+  document.querySelectorAll('[data-wa]').forEach(b => b.onclick = () => set(b.dataset.wa));
+  set('ice');
+  let k = 0;
+  (function tick() {
+    k += 0.12;
+    M.forEach((p, i) => {
+      if (mode === 'ice') {
+        p.x += (p.tx - p.x) * 0.08; p.y += (p.ty - p.y) * 0.08;
+        p.g.setAttribute('transform', `translate(${p.x + Math.sin(k + i) * 1.5},${p.y + Math.cos(k * 1.1 + i) * 1.5}) rotate(${Math.sin(k * 0.5 + i) * 6})`);
+      } else {
+        const b = box[mode], sp = mode === 'liquid' ? 1.1 : 3.2;
+        p.x += p.vx * sp; p.y += p.vy * sp;
+        if (p.x < b[0]) { p.x = b[0]; p.vx = Math.abs(p.vx); }
+        if (p.x > b[2]) { p.x = b[2]; p.vx = -Math.abs(p.vx); }
+        if (p.y < b[1]) { p.y = b[1]; p.vy = Math.abs(p.vy); }
+        if (p.y > b[3]) { p.y = b[3]; p.vy = -Math.abs(p.vy); }
+        p.g.setAttribute('transform', `translate(${p.x},${p.y}) rotate(${(k * 40 + i * 30) % 360})`);
+      }
+    });
+    bonds.childNodes.forEach((ln, n) => {
+      const [i, j] = links[n];
+      ln.setAttribute('x1', M[i].x); ln.setAttribute('y1', M[i].y); ln.setAttribute('x2', M[j].x); ln.setAttribute('y2', M[j].y);
+      ln.setAttribute('opacity', mode === 'ice' ? 0.85 : 0);
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+
+</script>
+
+</body>
+</html>
