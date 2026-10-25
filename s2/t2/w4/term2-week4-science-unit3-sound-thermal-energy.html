@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sound Waves &amp; Thermal Energy · Interactive Exercises</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 62px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-sci); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 4px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-sci); color: var(--accent-sci); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box strong { color: var(--text); }
+.explorer { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 16px 0 24px; }
+.explorer h4 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
+.explorer .ex-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px; }
+.explorer canvas, .explorer svg.ex-svg { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.ex-controls { display: flex; flex-wrap: wrap; gap: 14px 22px; margin-top: 12px; align-items: center; }
+.ex-controls label { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ex-controls input[type=range] { accent-color: var(--accent-sci); width: 150px; }
+.ex-controls select { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; font-family: var(--font-mono); font-size: 0.74rem; }
+.ex-controls output { color: var(--accent-sci); min-width: 52px; display: inline-block; }
+.ex-btn { font-family: var(--font-mono); font-size: 0.74rem; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.ex-btn:hover { border-color: var(--accent-sci); color: var(--text); }
+.ex-btn.on { border-color: var(--accent-sci); background: rgba(62,207,142,0.12); color: var(--accent-sci); }
+.ex-readout { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.6; }
+.ex-readout b { color: var(--accent-sci); font-weight: 500; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 150px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input.wide { width: 240px; }
+.num-input:focus { border-color: var(--accent-sci); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.unit { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .ex-controls input[type=range] { width: 110px; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 · Unit 3 · Sound &amp; Thermal Energy</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 46</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Unit 3 &middot; Term 2 Week 4</div>
+  <h1>Sound Waves &amp;<br><em>Thermal Energy</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>Waves &middot; Interference &middot; Heat &amp; Temperature &middot; Heat Transfer &middot; Evaporation</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--text-dim)"></div>46 questions &middot; self-marked &middot; 46 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Before you start</h3>
+  <p>This sheet follows the Term 2 Week 4 class slides on <strong>Sound Waves</strong> and <strong>Thermal Energy</strong> (3.2 Heat and Temperature, 3.3 Conversion of Energy). Play with the five animated explorers, then answer the questions. Typed answers are short &mdash; one number or one word. The printable <code>.md</code> version has longer written questions for your notebook.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://ophysics.com/w3.html" target="_blank" rel="noopener">Wave superposition simulation (from class)</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#wave-types" class="sub-tab">&#128266; Wave Types</a>
+  <a href="#wave-properties" class="sub-tab">&#12336; Wave Properties</a>
+  <a href="#loudness-interference" class="sub-tab">&#127911; Loudness, Pitch &amp; Interference</a>
+  <a href="#heat-temperature" class="sub-tab">&#127777;&#65039; Heat &amp; Temperature</a>
+  <a href="#heat-transfer" class="sub-tab">&#128293; Heat Transfer</a>
+  <a href="#evaporation" class="sub-tab">&#128167; Evaporation</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: WAVE TYPES ═══════════════ -->
+<div id="wave-types">
+  <div class="section-header"><div class="section-icon">&#128266;</div><div><div class="sub-label">Section A</div><h2>Longitudinal and Transverse Waves</h2></div></div>
+  <div class="info-box">A wave transfers <strong>energy</strong> from a source to a receiver without transferring matter. In a <strong>transverse</strong> wave the particles vibrate at right angles to the direction the wave travels (light, water ripples): the highest part is a <strong>crest</strong> and the lowest part a <strong>trough</strong>. In a <strong>longitudinal</strong> wave the particles vibrate parallel to the direction of travel, making <strong>compressions</strong> (closer together) and <strong>rarefactions</strong> (further apart). Sound is a longitudinal wave.</div>
+  <div class="explorer">
+    <h4>Two Kinds of Wave</h4>
+    <div class="ex-sub">Follow the red particle &mdash; it only vibrates; the wave carries the energy along</div>
+    <svg class="ex-svg" id="tw-svg" viewBox="0 0 600 260" role="img" aria-label="A transverse wave where particles move up and down, and a longitudinal wave where particles move left and right">
+      <text x="20" y="22" fill="#4f8ef7" font-family="DM Mono, monospace" font-size="13">Transverse &mdash; particles move at right angles to the wave</text>
+      <g id="tw-top"></g>
+      <line x1="20" y1="148" x2="580" y2="148" stroke="#2a3050"/>
+      <text x="20" y="168" fill="#3ecf8e" font-family="DM Mono, monospace" font-size="13">Longitudinal &mdash; particles move along the wave (compressions and rarefactions)</text>
+      <g id="tw-bot"></g>
+      <path d="M520 100 H570 M560 94 L570 100 L560 106" fill="none" stroke="#7a84a0" stroke-width="1.5"/>
+      <path d="M520 235 H570 M560 229 L570 235 L560 241" fill="none" stroke="#7a84a0" stroke-width="1.5"/>
+      <text x="470" y="104" fill="#7a84a0" font-family="DM Mono, monospace" font-size="11">wave</text>
+      <text x="470" y="239" fill="#7a84a0" font-family="DM Mono, monospace" font-size="11">wave</text>
+    </svg>
+    <div class="ex-readout">Both waves travel to the right. Energy is transferred; the particles themselves stay in place.</div>
+  </div>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">A wave travels from a source to a receiver. What does it transfer?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'a')"><div class="opt-indicator"></div><span>Matter, carried from the source to the receiver</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'b')"><div class="opt-indicator"></div><span>Both matter and energy equally</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'c')"><div class="opt-indicator"></div><span>Energy, without moving the material along with it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s1', this, 'd')"><div class="opt-indicator"></div><span>Only light</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s1','c','Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','C — Waves transfer <em>energy</em> from the source without transferring matter. The particles only vibrate about a fixed position.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">In a sound wave in air, what is the name for the regions where the air particles are squashed closer together than normal? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s2-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s2',['compression','compressions'],'Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','Compressions. The stretched-out regions between them are called rarefactions.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">What is the name for the regions of a sound wave where the particles are further apart than normal? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s3-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s3',['rarefaction','rarefactions'],'Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','Rarefactions &mdash; where the particles are spread out.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">A loudspeaker sends a sound to your right. As the sound passes, how does one air particle in front of the speaker move?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>It shifts a little to the right and back again, along the line the sound travels</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>It moves up and down while the sound moves to the right</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>It travels all the way from the speaker to your ear</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>It stays perfectly still while the energy passes through it</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s4','a','Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','A — Sound is a longitudinal wave: each particle only vibrates to and fro, parallel to the direction of travel. The energy reaches your ear, not the particle. (Some slides say &ldquo;side to side&rdquo; for longitudinal waves, but that describes a transverse wave.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Is light a <em>transverse</em> or a <em>longitudinal</em> wave? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s5-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s5',['transverse','a transverse wave','transverse wave'],'Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','Transverse &mdash; light is the classic example (the visible spectrum).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Is sound a <em>transverse</em> or a <em>longitudinal</em> wave? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s6-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s6',['longitudinal','a longitudinal wave','longitudinal wave'],'Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','Longitudinal &mdash; sound is made of compressions and rarefactions in the air.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">On a stretched spring, the first compression is at 0 cm and the fourth compression is at 18 cm. What is the wavelength of the wave?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s7-ans" placeholder="Enter answer..."><span class="unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s7',6,'Q7',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s7','Between four compressions there are three gaps.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','Three wavelengths fit between the first and fourth compression: 18 &divide; 3 = 6 cm.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">What is the name for the lowest point of a transverse wave? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s8-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s8',['trough','troughs','a trough'],'Q8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','A trough. The highest point is a crest.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WAVE TYPES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wt-fill"></div></div>
+    <div class="section-score-val" id="sec-wt-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: WAVE PROPERTIES ═══════════════ -->
+<div id="wave-properties">
+  <div class="section-header"><div class="section-icon">&#12336;</div><div><div class="sub-label">Section B</div><h2>Amplitude, Wavelength, Frequency and Period</h2></div></div>
+  <div class="info-box"><strong>Amplitude</strong> is the height of the wave from the middle line to a crest (or trough). <strong>Wavelength</strong> is the distance between two consecutive crests (or two compressions). <strong>Frequency</strong> is the number of waves passing a point each second, measured in <strong>hertz (Hz)</strong>. The <strong>period</strong> is the time for one complete wave to pass a point, so <strong>T = 1 &divide; f</strong>.</div>
+  <div class="explorer">
+    <h4>Wave Maker</h4>
+    <div class="ex-sub">Change amplitude, wavelength and frequency (animation in slow motion)</div>
+    <svg class="ex-svg" id="wm-svg" viewBox="0 0 600 250" role="img" aria-label="A transverse wave with adjustable amplitude, wavelength and frequency">
+      <line x1="20" y1="125" x2="580" y2="125" stroke="#4a5270" stroke-dasharray="4 4"/>
+      <path id="wm-wave" fill="none" stroke="#4f8ef7" stroke-width="3"/>
+      <line id="wm-amp" stroke="#f5a623" stroke-width="2"/>
+      <text id="wm-amp-t" fill="#f5a623" font-family="DM Mono, monospace" font-size="12"></text>
+      <line id="wm-wl" stroke="#3ecf8e" stroke-width="2"/>
+      <text id="wm-wl-t" text-anchor="middle" fill="#3ecf8e" font-family="DM Mono, monospace" font-size="12"></text>
+      <circle id="wm-dot" r="6" fill="#e05252" stroke="#fff"/>
+    </svg>
+    <div class="ex-controls">
+      <label>Amplitude <input type="range" id="wm-a" min="0.5" max="2" step="0.5" value="1"><output id="wm-a-o"></output></label>
+      <label>Wavelength <input type="range" id="wm-l" min="1" max="4" step="0.5" value="2"><output id="wm-l-o"></output></label>
+      <label>Frequency <input type="range" id="wm-f" min="0.5" max="3" step="0.5" value="1"><output id="wm-f-o"></output></label>
+      <button class="ex-btn" id="wm-snd">&#128266; Hear it</button>
+    </div>
+    <div class="ex-readout" id="wm-out"></div>
+  </div>
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text"><em>Use this wave for the next five questions.</em> A transverse wave has crests that are 2.0 m apart. The wave is 0.5 m high from the middle line to a crest, and 3 complete waves pass a point every second. What is its <strong>wavelength</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s9-ans" placeholder="Enter answer..."><span class="unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s9',2,'Q9',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','Wavelength is the distance between two consecutive crests: 2.0 m.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">What is the <strong>amplitude</strong> of that wave?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s10-ans" placeholder="Enter answer..."><span class="unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s10',0.5,'Q10',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','Amplitude is measured from the middle line to a crest: 0.5 m.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">What is the <strong>frequency</strong> of that wave?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s11-ans" placeholder="Enter answer..."><span class="unit">Hz</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s11',3,'Q11',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','Frequency is the number of waves per second: 3 Hz.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">What is the <strong>period</strong> of that wave? Give your answer to 2 decimal places.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s12-ans" placeholder="Enter answer..."><span class="unit">s</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s12',0.33,'Q12',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s12','Period = 1 &divide; frequency.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','T = 1 &divide; f = 1 &divide; 3 = 0.33 s.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">What is the height of that wave from the bottom of a trough to the top of a crest?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s13-ans" placeholder="Enter answer..."><span class="unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s13',1,'Q13',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','Crest to trough = twice the amplitude = 2 &times; 0.5 = 1.0 m.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">A wave has a period of 0.25 s. What is its frequency?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s14-ans" placeholder="Enter answer..."><span class="unit">Hz</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s14',4,'Q14',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s14','Frequency = 1 &divide; period.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','f = 1 &divide; T = 1 &divide; 0.25 = 4 Hz.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">A snapshot of a wave shows 4.5 complete wavelengths along a length of 9 m. What is the wavelength?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s15-ans" placeholder="Enter answer..."><span class="unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s15',2,'Q15',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','9 &divide; 4.5 = 2 m.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-s16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Wave A has a frequency of 2 Hz and wave B has a frequency of 5 Hz. Which statement is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'a')"><div class="opt-indicator"></div><span>Wave A has the shorter period</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'b')"><div class="opt-indicator"></div><span>Both have the same period</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'c')"><div class="opt-indicator"></div><span>Wave B has the longer period</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'd')"><div class="opt-indicator"></div><span>Wave B has the shorter period</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s16','d','Q16')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','D — Period = 1 &divide; frequency. A: 0.5 s. B: 0.2 s. The higher the frequency, the shorter the period.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s16-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">WAVE PROPERTIES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wp-fill"></div></div>
+    <div class="section-score-val" id="sec-wp-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: LOUDNESS, PITCH &AMP; INTERFERENCE ═══════════════ -->
+<div id="loudness-interference">
+  <div class="section-header"><div class="section-icon">&#127911;</div><div><div class="sub-label">Section C</div><h2>Loudness, Pitch and Interference</h2></div></div>
+  <div class="info-box">A larger amplitude makes a <strong>louder</strong> sound; a higher frequency makes a <strong>higher pitch</strong>. When two waves overlap in the same place they combine &mdash; this is <strong>superposition</strong>. Waves that reinforce each other show <strong>constructive interference</strong> (crest meets crest, trough meets trough). Waves that cancel show <strong>destructive interference</strong> (crest meets trough).</div>
+  <div class="explorer">
+    <h4>Interference Explorer</h4>
+    <div class="ex-sub">Two waves meet. Slide the offset &mdash; blue + amber = green</div>
+    <svg class="ex-svg" id="in-svg" viewBox="0 0 600 300" role="img" aria-label="Two waves and their sum showing constructive and destructive interference">
+      <text x="14" y="22" fill="#4f8ef7" font-family="DM Mono, monospace" font-size="12">wave 1</text>
+      <text x="14" y="112" fill="#f5a623" font-family="DM Mono, monospace" font-size="12">wave 2</text>
+      <text x="14" y="202" fill="#3ecf8e" font-family="DM Mono, monospace" font-size="12">combined wave</text>
+      <line x1="20" y1="60" x2="580" y2="60" stroke="#2a3050"/><line x1="20" y1="150" x2="580" y2="150" stroke="#2a3050"/><line x1="20" y1="245" x2="580" y2="245" stroke="#2a3050"/>
+      <path id="in-w1" fill="none" stroke="#4f8ef7" stroke-width="2.5"/>
+      <path id="in-w2" fill="none" stroke="#f5a623" stroke-width="2.5"/>
+      <path id="in-ws" fill="none" stroke="#3ecf8e" stroke-width="3.5"/>
+    </svg>
+    <div class="ex-controls">
+      <label>Offset <input type="range" id="in-p" min="0" max="360" step="15" value="0"><output id="in-p-o"></output></label>
+      <label>Wave 2 amplitude <input type="range" id="in-a" min="0.5" max="2" step="0.5" value="1"><output id="in-a-o"></output></label>
+      <button class="ex-btn" id="in-c">Crest meets crest</button>
+      <button class="ex-btn" id="in-d">Crest meets trough</button>
+    </div>
+    <div class="ex-readout" id="in-out"></div>
+  </div>
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">A sound wave has a bigger amplitude. Is the sound <em>louder</em> or <em>quieter</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s17-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s17',['louder','loud'],'Q17')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','Louder &mdash; bigger amplitude, louder sound.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">A sound wave has a higher frequency. Is its pitch <em>higher</em> or <em>lower</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s18-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s18',['higher','high'],'Q18')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','Higher &mdash; the higher the frequency, the higher the pitch.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-s19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Sound waves X and Y have the same amplitude, but Y has twice the frequency of X. Which description is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s19-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'a')"><div class="opt-indicator"></div><span>Y is louder and has the same pitch</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'b')"><div class="opt-indicator"></div><span>Y has a higher pitch but is no louder</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'c')"><div class="opt-indicator"></div><span>Y is quieter and has a lower pitch</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'd')"><div class="opt-indicator"></div><span>Y has a higher pitch and is also louder</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s19','b','Q19')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s19','B — Same amplitude means the same loudness. Double the frequency means a higher pitch.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s19-fb"></div>
+    </div>
+  </div>
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-s20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">When two waves meet and crest meets crest, what kind of interference happens? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s20-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s20',['constructive','constructive interference'],'Q20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','Constructive interference &mdash; the waves reinforce each other.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s20-fb"></div>
+    </div>
+  </div>
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-s21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">When a crest of one wave meets a trough of another, what kind of interference happens? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s21-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s21',['destructive','destructive interference'],'Q21')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','Destructive interference &mdash; the waves cancel each other.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s21-fb"></div>
+    </div>
+  </div>
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-s22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Two waves with amplitudes of 2 cm and 3 cm meet so that crest meets crest. What is the amplitude of the combined wave?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s22-ans" placeholder="Enter answer..."><span class="unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s22',5,'Q22',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s22','Constructive interference adds the amplitudes: 2 + 3 = 5 cm.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s22-fb"></div>
+    </div>
+  </div>
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-s23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">A crest 4 cm high meets a trough 1 cm deep. How high above the middle line is the combined wave at that point?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s23-ans" placeholder="Enter answer..."><span class="unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s23',3,'Q23',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','Crest +4, trough &minus;1: 4 &minus; 1 = +3 cm.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s23-fb"></div>
+    </div>
+  </div>
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-s24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">Noise-cancelling headphones play their own sound while you listen. How does this make the noise quieter?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s24-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'a')"><div class="opt-indicator"></div><span>Their sound is arranged so its crests meet the noise's crests, which cancel</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'b')"><div class="opt-indicator"></div><span>Their sound is louder and drowns out the noise</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'c')"><div class="opt-indicator"></div><span>Their sound absorbs the noise's energy as heat</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s24', this, 'd')"><div class="opt-indicator"></div><span>Their sound is arranged so its crests meet the noise's troughs, which cancel</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s24','d','Q24')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s24','D — The headphones make a wave that is the mirror image of the noise, so crest meets trough everywhere &mdash; destructive interference.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s24-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">LOUDNESS, PITCH &AMP; INTERFERENCE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ci-fill"></div></div>
+    <div class="section-score-val" id="sec-ci-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: HEAT &AMP; TEMPERATURE ═══════════════ -->
+<div id="heat-temperature">
+  <div class="section-header"><div class="section-icon">&#127777;&#65039;</div><div><div class="sub-label">Section D</div><h2>Heat and Temperature (3.2)</h2></div></div>
+  <div class="info-box"><strong>Thermal energy</strong> is produced when atoms and molecules move faster and collide more. <strong>Heat</strong> is the transfer of thermal energy between objects because of a temperature difference, measured in <strong>joules (J)</strong>. <strong>Temperature</strong> measures how hot or cold an object is &mdash; the <strong>average</strong> kinetic energy of its particles &mdash; and is measured in degrees Celsius (&deg;C). It decides which way heat flows: from high temperature to low.</div>
+  <div class="explorer">
+    <h4>Same Temperature, Different Heat</h4>
+    <div class="ex-sub">Particles buzz faster when hotter &mdash; but more particles hold more thermal energy in total</div>
+    <svg class="ex-svg" id="hv-svg" viewBox="0 0 600 270" role="img" aria-label="Two beakers of water with different volumes and temperatures">
+      <g id="hv-g"></g>
+      <text id="hv-lt" x="160" y="262" text-anchor="middle" fill="#e8eaf0" font-family="DM Mono, monospace" font-size="12"></text>
+      <text id="hv-rt" x="440" y="262" text-anchor="middle" fill="#e8eaf0" font-family="DM Mono, monospace" font-size="12"></text>
+    </svg>
+    <div class="ex-controls">
+      <label>Left volume <input type="range" id="hv-lv" min="100" max="500" step="50" value="250"><output id="hv-lv-o"></output></label>
+      <label>Left temp <input type="range" id="hv-lt-i" min="20" max="100" step="5" value="90"><output id="hv-lt-o"></output></label>
+      <label>Right volume <input type="range" id="hv-rv" min="100" max="500" step="50" value="500"><output id="hv-rv-o"></output></label>
+      <label>Right temp <input type="range" id="hv-rt-i" min="20" max="100" step="5" value="90"><output id="hv-rt-o"></output></label>
+      <button class="ex-btn" id="hv-pre">Class example: 250 mL vs 500 mL at 90&deg;C</button>
+    </div>
+    <div class="ex-readout" id="hv-out"></div>
+  </div>
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-s25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Two cups hold water at 90&deg;C. One cup contains 250 mL and the other 500 mL. Which statement is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s25-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s25', this, 'a')"><div class="opt-indicator"></div><span>They have the same temperature, but the 500 mL cup holds more heat</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s25', this, 'b')"><div class="opt-indicator"></div><span>They have the same temperature and hold the same heat</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s25', this, 'c')"><div class="opt-indicator"></div><span>The 250 mL cup has the higher temperature</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s25', this, 'd')"><div class="opt-indicator"></div><span>The 500 mL cup is at a lower temperature</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s25','a','Q25')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s25','A — Temperature depends on the average energy of the particles, so it is the same. The larger cup has more particles, so its total thermal energy (heat) is greater.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s25-fb"></div>
+    </div>
+  </div>
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-s26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">What unit is heat (thermal energy) measured in? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s26-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s26',['joule','joules','j'],'Q26')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s26','Joules (J).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s26-fb"></div>
+    </div>
+  </div>
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-s27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Heat always flows from the ______ object to the other. Fill in the gap with <em>hotter</em> or <em>cooler</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s27-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s27',['hotter','hot','the hotter'],'Q27')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s27','Hotter &mdash; heat flows from the hotter object to the cooler one.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s27-fb"></div>
+    </div>
+  </div>
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-s28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">A cup of coffee is at 80&deg;C in a room at 20&deg;C. What is the temperature difference?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s28-ans" placeholder="Enter answer..."><span class="unit">°C</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s28',60,'Q28',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s28','80 &minus; 20 = 60&deg;C. This difference drives the flow of heat from the coffee to the room.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s28-fb"></div>
+    </div>
+  </div>
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-s29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Which of these does <em>temperature</em> measure?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s29-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'a')"><div class="opt-indicator"></div><span>The total thermal energy of all the particles</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'b')"><div class="opt-indicator"></div><span>The amount of heat that has flowed</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'c')"><div class="opt-indicator"></div><span>The average kinetic energy of the particles</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'd')"><div class="opt-indicator"></div><span>The number of particles</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s29','c','Q29')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s29','C — Temperature reflects the <em>average</em> kinetic energy of the particles. The total depends on how many particles there are, too.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s29-fb"></div>
+    </div>
+  </div>
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-s30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">A swimming pool at 25&deg;C and a cup of tea at 80&deg;C. Which one has more <em>total</em> thermal energy? (type <em>pool</em> or <em>tea</em>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s30-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s30',['pool','the pool','swimming pool','the swimming pool'],'Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s30','Think about how many particles each one has.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s30','The pool. The tea is hotter, but the pool has vastly more particles, so its total thermal energy is much greater.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s30-fb"></div>
+    </div>
+  </div>
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-s31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">Water A is 250 mL and water B is 500 mL, both at 90&deg;C. B has how many times as many particles as A?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s31-ans" placeholder="Enter answer..."><span class="unit">times</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s31',2,'Q31',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s31','500 &divide; 250 = 2, so B has twice as many particles and twice as much heat.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s31-fb"></div>
+    </div>
+  </div>
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-s32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">You add more water to a cup but keep the water at the same temperature. Which quantity changes: its <em>temperature</em> or its <em>heat</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s32-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s32',['heat','its heat','thermal energy'],'Q32')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s32','Its heat &mdash; more particles means more total thermal energy, but the average energy per particle (temperature) is unchanged.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s32-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">HEAT &AMP; TEMPERATURE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ht-fill"></div></div>
+    <div class="section-score-val" id="sec-ht-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: HEAT TRANSFER ═══════════════ -->
+<div id="heat-transfer">
+  <div class="section-header"><div class="section-icon">&#128293;</div><div><div class="sub-label">Section E</div><h2>Heat Transfer and Conserving Heat (3.3)</h2></div></div>
+  <div class="info-box"><strong>Conduction</strong>: heat passes through direct contact between particles, mainly in solids (metals are best). <strong>Convection</strong>: heat is carried by the movement of a liquid or gas &mdash; warmer, less dense fluid rises and cooler, denser fluid sinks. <strong>Radiation</strong>: heat travels as infrared waves, even through a vacuum. Heat can be <strong>conserved</strong> with <strong>insulation</strong> (loft, clothing layers) and <strong>double-glazed windows</strong>, which saves energy, cuts costs and reduces emissions.</div>
+  <div class="explorer">
+    <h4>Three Ways Heat Travels</h4>
+    <div class="ex-sub">Pick a method and watch the energy move</div>
+    <svg class="ex-svg" id="tr-svg" viewBox="0 0 600 260" role="img" aria-label="Animations of conduction, convection and radiation">
+      <g id="tr-g"></g>
+      <text id="tr-t" x="300" y="248" text-anchor="middle" fill="#e8eaf0" font-family="DM Mono, monospace" font-size="13"></text>
+    </svg>
+    <div class="ex-controls">
+      <button class="ex-btn on" data-tr="cond">Conduction</button>
+      <button class="ex-btn" data-tr="conv">Convection</button>
+      <button class="ex-btn" data-tr="rad">Radiation</button>
+    </div>
+    <div class="ex-readout" id="tr-out"></div>
+  </div>
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-s33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">A metal spoon is left in a hot cup of soup and the handle becomes warm. Name the method of heat transfer. (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s33-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s33',['conduction'],'Q33')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s33','Conduction &mdash; heat passes from particle to particle through the solid metal.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s33-fb"></div>
+    </div>
+  </div>
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-s34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Water at the bottom of a pot is heated, rises, and cooler water sinks to take its place. Name this method of heat transfer. (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s34-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s34',['convection'],'Q34')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s34','Convection &mdash; the heated fluid itself moves and carries the heat, making a convection current.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s34-fb"></div>
+    </div>
+  </div>
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-s35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">You feel the warmth of a campfire on your face from several metres away. Name the main method of heat transfer. (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s35-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s35',['radiation'],'Q35')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s35','Radiation &mdash; infrared waves travel through the air from the fire to you (and need no particles at all).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s35-fb"></div>
+    </div>
+  </div>
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-s36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Which of these can transfer heat through a vacuum (empty space)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s36-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'a')"><div class="opt-indicator"></div><span>Conduction through a metal rod</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'b')"><div class="opt-indicator"></div><span>Radiation from the Sun</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'c')"><div class="opt-indicator"></div><span>A convection current in air</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'd')"><div class="opt-indicator"></div><span>Conduction through glass</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s36','b','Q36')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s36','B — Conduction and convection both need particles. Radiation travels as electromagnetic waves, so it works through empty space.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s36-fb"></div>
+    </div>
+  </div>
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-s37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">True or false: convection can happen in a solid metal bar. (type <em>true</em> or <em>false</em>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s37-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s37',['false','f'],'Q37')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s37','False &mdash; convection happens only in fluids (liquids and gases), because the heated material has to be able to flow.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s37-fb"></div>
+    </div>
+  </div>
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-s38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">True or false: gases are better conductors of heat than metals. (type <em>true</em> or <em>false</em>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s38-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s38',['false','f'],'Q38')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s38','False &mdash; the particles in a gas are far apart, so they pass energy on poorly. Metals are among the best conductors.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s38-fb"></div>
+    </div>
+  </div>
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-s39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">True or false: radiation needs particles in order to transfer heat. (type <em>true</em> or <em>false</em>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s39-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s39',['false','f'],'Q39')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s39','False &mdash; radiation can cross a vacuum, which is how the Sun&rsquo;s heat reaches the Earth.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s39-fb"></div>
+    </div>
+  </div>
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-s40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">Why do double-glazed windows lose less heat than single-glazed ones?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s40-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'a')"><div class="opt-indicator"></div><span>The trapped layer of air or gas between the two panes is a poor conductor, so less heat escapes</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'b')"><div class="opt-indicator"></div><span>The glass is twice as heavy, so heat cannot lift it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'c')"><div class="opt-indicator"></div><span>The two panes reflect all the heat back into the room</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'd')"><div class="opt-indicator"></div><span>The gap between the panes is a vacuum that boils off the heat</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s40','a','Q40')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s40','A — The air or gas between the two panes is an insulator, so less heat is lost through the window &mdash; saving energy, money and emissions.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s40-fb"></div>
+    </div>
+  </div>
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-s41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">In a pan of heated water, does the <em>hotter</em> or the <em>cooler</em> water sink? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s41-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s41',['cooler','cool','the cooler','cooler water'],'Q41')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s41','The cooler water &mdash; it is denser, so it sinks, while the hot, less dense water rises.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s41-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">HEAT TRANSFER &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-tr-fill"></div></div>
+    <div class="section-score-val" id="sec-tr-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: EVAPORATION ═══════════════ -->
+<div id="evaporation">
+  <div class="section-header"><div class="section-icon">&#128167;</div><div><div class="sub-label">Section F</div><h2>Cooling by Evaporation (3.6)</h2></div></div>
+  <div class="info-box"><strong>Evaporation</strong> happens at the surface of a liquid and can happen at any temperature. <strong>Boiling</strong> happens at the boiling point and bubbles of vapour form throughout the liquid. Evaporation cools a liquid because the fastest, most energetic particles are the ones that escape.</div>
+
+  <!-- Q42 -->
+  <div class="q-card" id="qcard-s42">
+    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">At what temperature does pure water boil at normal air pressure?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s42-ans" placeholder="Enter answer..."><span class="unit">°C</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s42',100,'Q42',0.01)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s42','100&deg;C.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s42-fb"></div>
+    </div>
+  </div>
+  <!-- Q43 -->
+  <div class="q-card" id="qcard-s43">
+    <div class="q-header"><div class="q-num">Q43</div><div class="q-text">Which of these happens only at the surface of a liquid and can occur at any temperature?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s43-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'a')"><div class="opt-indicator"></div><span>Boiling</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'b')"><div class="opt-indicator"></div><span>Both evaporation and boiling</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'c')"><div class="opt-indicator"></div><span>Neither of them</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'd')"><div class="opt-indicator"></div><span>Evaporation</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s43','d','Q43')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s43','D — Evaporation happens at the surface at any temperature. Boiling needs the boiling point and bubbles form throughout the liquid.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s43-fb"></div>
+    </div>
+  </div>
+  <!-- Q44 -->
+  <div class="q-card" id="qcard-s44">
+    <div class="q-header"><div class="q-num">Q44</div><div class="q-text">True or false: bubbles of vapour form all through the liquid when it boils. (type <em>true</em> or <em>false</em>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s44-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s44',['true','t'],'Q44')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s44','True &mdash; that is the visible difference from evaporation, which happens only at the surface.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s44-fb"></div>
+    </div>
+  </div>
+  <!-- Q45 -->
+  <div class="q-card" id="qcard-s45">
+    <div class="q-header"><div class="q-num">Q45</div><div class="q-text">Why does sweat evaporating from your skin make you feel cooler?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s45-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'a')"><div class="opt-indicator"></div><span>Sweat is already colder than your skin when it leaves</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'b')"><div class="opt-indicator"></div><span>Evaporation adds heat to the skin</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'c')"><div class="opt-indicator"></div><span>The fastest, most energetic particles escape, so the average energy of what remains falls</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'd')"><div class="opt-indicator"></div><span>Sweat blocks heat from the Sun</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s45','c','Q45')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s45','C — Evaporation removes the most energetic particles, so the remaining liquid (and your skin) has a lower average energy &mdash; it cools.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s45-fb"></div>
+    </div>
+  </div>
+  <!-- Q46 -->
+  <div class="q-card" id="qcard-s46">
+    <div class="q-header"><div class="q-num">Q46</div><div class="q-text">Which one has bubbles throughout the liquid: <em>boiling</em> or <em>evaporation</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s46-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s46',['boiling'],'Q46')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s46','Boiling.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s46-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">EVAPORATION &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ev-fill"></div></div>
+    <div class="section-score-val" id="sec-ev-val">0/5</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const SHEET_ID = 'term2-week4-science-unit3-sound-thermal';
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {s1: 1, s2: 1, s3: 1, s4: 1, s5: 1, s6: 1, s7: 1, s8: 1, s9: 1, s10: 1, s11: 1, s12: 1, s13: 1, s14: 1, s15: 1, s16: 1, s17: 1, s18: 1, s19: 1, s20: 1, s21: 1, s22: 1, s23: 1, s24: 1, s25: 1, s26: 1, s27: 1, s28: 1, s29: 1, s30: 1, s31: 1, s32: 1, s33: 1, s34: 1, s35: 1, s36: 1, s37: 1, s38: 1, s39: 1, s40: 1, s41: 1, s42: 1, s43: 1, s44: 1, s45: 1, s46: 1};
+
+const sections = {
+  wt: { label: 'Wave Types', qs: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'] },
+  wp: { label: 'Wave Properties', qs: ['s9', 's10', 's11', 's12', 's13', 's14', 's15', 's16'] },
+  ci: { label: 'Loudness, Pitch &amp; Interference', qs: ['s17', 's18', 's19', 's20', 's21', 's22', 's23', 's24'] },
+  ht: { label: 'Heat &amp; Temperature', qs: ['s25', 's26', 's27', 's28', 's29', 's30', 's31', 's32'] },
+  tr: { label: 'Heat Transfer', qs: ['s33', 's34', 's35', 's36', 's37', 's38', 's39', 's40', 's41'] },
+  ev: { label: 'Evaporation', qs: ['s42', 's43', 's44', 's45', 's46'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance + 1e-9;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  state.answers[qid] = val;
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) {
+    state.correct[qid] = false;
+    const input = document.getElementById(`${qid}-ans`);
+    if (input) input.disabled = true;
+    updateScores();
+  }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`${SHEET_ID}_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+
+
+const SVGNS = 'http://www.w3.org/2000/svg';
+function svgEl(name, attrs) { const e = document.createElementNS(SVGNS, name); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+// ── Explorer 1: Two kinds of wave ───────────────────────────
+(function () {
+  const top = document.getElementById('tw-top'), bot = document.getElementById('tw-bot');
+  const N = 42, T = [], L = [];
+  for (let i = 0; i < N; i++) {
+    const hi = i === 20;
+    const a = svgEl('circle', { r: hi ? 6 : 4.5, fill: hi ? '#e05252' : '#4f8ef7' });
+    const b = svgEl('circle', { r: hi ? 6 : 4.5, fill: hi ? '#e05252' : '#3ecf8e' });
+    top.appendChild(a); bot.appendChild(b); T.push(a); L.push(b);
+  }
+  let k = 0;
+  (function tick() {
+    k += 0.045;
+    for (let i = 0; i < N; i++) {
+      const x0 = 30 + i * 13.5, ph = i * 0.42 - k;
+      T[i].setAttribute('cx', x0); T[i].setAttribute('cy', 100 + 26 * Math.sin(ph));
+      L[i].setAttribute('cx', x0 + 7 * Math.sin(ph)); L[i].setAttribute('cy', 205 + (i === 20 ? 0 : 0));
+    }
+    requestAnimationFrame(tick);
+  })();
+})();
+
+// ── Explorer 2: Wave maker ──────────────────────────────────
+(function () {
+  const a = document.getElementById('wm-a'), l = document.getElementById('wm-l'), f = document.getElementById('wm-f');
+  const wave = document.getElementById('wm-wave'), dot = document.getElementById('wm-dot');
+  const PX = 70;               // pixels per metre
+  let tau = 0, audio = null, osc = null, gain = null;
+  function vals() { return { A: +a.value, L: +l.value, F: +f.value }; }
+  function readouts() {
+    const { A, L, F } = vals();
+    document.getElementById('wm-a-o').textContent = A.toFixed(1) + ' m';
+    document.getElementById('wm-l-o').textContent = L.toFixed(1) + ' m';
+    document.getElementById('wm-f-o').textContent = F.toFixed(1) + ' Hz';
+    const loud = A <= 0.5 ? 'quiet' : A <= 1 ? 'medium' : A <= 1.5 ? 'loud' : 'very loud';
+    const pitch = F <= 1 ? 'low' : F <= 2 ? 'medium' : 'high';
+    document.getElementById('wm-out').innerHTML = `amplitude <b>${A.toFixed(1)} m</b> &middot; wavelength <b>${L.toFixed(1)} m</b> &middot; frequency <b>${F.toFixed(1)} Hz</b> &middot; period T = 1 &divide; f = <b>${(1 / F).toFixed(2)} s</b><br>If this were sound: <b>${loud}</b>, <b>${pitch}</b> pitch`;
+    if (osc) { osc.frequency.value = 180 + F * 180; gain.gain.value = 0.04 * A; }
+  }
+  [a, l, f].forEach(i => i.oninput = readouts);
+  readouts();
+  document.getElementById('wm-snd').onclick = function () {
+    try {
+      if (osc) { osc.stop(); osc = null; this.classList.remove('on'); return; }
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      osc = audio.createOscillator(); gain = audio.createGain();
+      osc.connect(gain); gain.connect(audio.destination); osc.start();
+      this.classList.add('on'); readouts();
+    } catch (e) {}
+  };
+  (function tick() {
+    tau += 0.012;
+    const { A, L, F } = vals(), amp = A * 40, wl = L * PX;
+    let d = '';
+    for (let x = 20; x <= 580; x += 4) {
+      const y = 125 - amp * Math.sin(2 * Math.PI * ((x - 20) / wl - F * tau));
+      d += (x === 20 ? 'M' : 'L') + x + ' ' + y.toFixed(1);
+    }
+    wave.setAttribute('d', d);
+    dot.setAttribute('cx', 300); dot.setAttribute('cy', 125 - amp * Math.sin(2 * Math.PI * ((300 - 20) / wl - F * tau)));
+    // amplitude marker and wavelength bar (fixed on screen)
+    const am = document.getElementById('wm-amp');
+    am.setAttribute('x1', 560); am.setAttribute('x2', 560); am.setAttribute('y1', 125); am.setAttribute('y2', 125 - amp);
+    const at = document.getElementById('wm-amp-t'); at.setAttribute('x', 504); at.setAttribute('y', 125 - amp / 2 + 4); at.textContent = 'amplitude';
+    const w = document.getElementById('wm-wl'); w.setAttribute('x1', 40); w.setAttribute('x2', 40 + wl); w.setAttribute('y1', 30); w.setAttribute('y2', 30);
+    const wt = document.getElementById('wm-wl-t'); wt.setAttribute('x', 40 + wl / 2); wt.setAttribute('y', 22); wt.textContent = 'one wavelength';
+    requestAnimationFrame(tick);
+  })();
+})();
+
+// ── Explorer 3: Interference ────────────────────────────────
+(function () {
+  const p = document.getElementById('in-p'), a = document.getElementById('in-a');
+  const w1 = document.getElementById('in-w1'), w2 = document.getElementById('in-w2'), ws = document.getElementById('in-ws');
+  let tau = 0;
+  function label() {
+    const ph = +p.value * Math.PI / 180, A2 = +a.value, A1 = 1;
+    const R = Math.sqrt(A1 * A1 + A2 * A2 + 2 * A1 * A2 * Math.cos(ph));
+    const c = Math.cos(ph);
+    const kind = c > 0.95 ? '<b>constructive</b> &mdash; crest meets crest, so the amplitudes add' : c < -0.95 ? (Math.abs(A1 - A2) < 0.01 ? '<b>destructive</b> &mdash; crest meets trough and they cancel completely' : '<b>destructive</b> &mdash; crest meets trough, so the amplitudes subtract') : 'in between &mdash; partly reinforcing, partly cancelling';
+    document.getElementById('in-p-o').textContent = p.value + '°';
+    document.getElementById('in-a-o').textContent = A2.toFixed(1);
+    document.getElementById('in-out').innerHTML = `wave 1 amplitude 1.0 + wave 2 amplitude ${A2.toFixed(1)} &rarr; combined amplitude <b>${R.toFixed(1)}</b> &middot; ${kind}`;
+  }
+  p.oninput = label; a.oninput = label;
+  document.getElementById('in-c').onclick = () => { p.value = 0; label(); };
+  document.getElementById('in-d').onclick = () => { p.value = 180; label(); };
+  label();
+  (function tick() {
+    tau += 0.012;
+    const ph = +p.value * Math.PI / 180, A2 = +a.value, S = 26, wl = 140;
+    let d1 = '', d2 = '', ds = '';
+    for (let x = 20; x <= 580; x += 4) {
+      const th = 2 * Math.PI * ((x - 20) / wl - tau);
+      const y1 = Math.sin(th), y2 = A2 * Math.sin(th + ph);
+      const c = x === 20 ? 'M' : 'L';
+      d1 += c + x + ' ' + (60 - S * y1).toFixed(1); d2 += c + x + ' ' + (150 - S * y2).toFixed(1); ds += c + x + ' ' + (245 - S * (y1 + y2)).toFixed(1);
+    }
+    w1.setAttribute('d', d1); w2.setAttribute('d', d2); ws.setAttribute('d', ds);
+    requestAnimationFrame(tick);
+  })();
+})();
+
+// ── Explorer 4: same temperature, different heat ────────────
+(function () {
+  const g = document.getElementById('hv-g');
+  const ids = ['lv', 'lt-i', 'rv', 'rt-i'].map(i => document.getElementById('hv-' + i));
+  const outs = { 'lv': 'hv-lv-o', 'lt-i': 'hv-lt-o', 'rv': 'hv-rv-o', 'rt-i': 'hv-rt-o' };
+  const beakers = [{ x: 60, w: 200 }, { x: 340, w: 200 }];
+  const B = beakers.map(bk => {
+    const body = svgEl('path', { fill: 'none', stroke: '#e8eaf0', 'stroke-width': 3, 'stroke-linejoin': 'round' });
+    const liq = svgEl('rect', { x: bk.x, width: bk.w, opacity: 0.35 });
+    g.appendChild(liq); g.appendChild(body);
+    const P = [];
+    for (let i = 0; i < 50; i++) {
+      const c = svgEl('circle', { r: 4.5, stroke: '#fff', 'stroke-width': 0.5 });
+      g.appendChild(c);
+      const a = i * 2.399;
+      P.push({ c, x: bk.x + 10 + (i * 37) % 180, y: 0, ry: (i * 53) % 100 / 100, vx: Math.cos(a), vy: Math.sin(a) });
+    }
+    return { bk, body, liq, P };
+  });
+  const colour = t => `hsl(${210 - (t - 20) / 80 * 210}, 85%, 58%)`;
+  let V = [250, 500], T = [90, 90];
+  function read() {
+    V = [+ids[0].value, +ids[2].value]; T = [+ids[1].value, +ids[3].value];
+    ids.forEach((el, i) => document.getElementById(outs[['lv', 'lt-i', 'rv', 'rt-i'][i]]).textContent = el.value + (i % 2 ? '°C' : ' mL'));
+    B.forEach((b, n) => {
+      const h = V[n] * 0.4, y0 = 240 - h;
+      b.liq.setAttribute('y', y0); b.liq.setAttribute('height', h); b.liq.setAttribute('fill', colour(T[n]));
+      b.body.setAttribute('d', `M${b.bk.x} 30 V240 H${b.bk.x + b.bk.w} V30`);
+      const count = Math.round(V[n] / 10);
+      b.P.forEach((p, i) => { p.c.setAttribute('display', i < count ? 'inline' : 'none'); p.c.setAttribute('fill', colour(T[n])); p.y = y0 + 8 + p.ry * (h - 16); });
+      b.y0 = y0; b.h = h; b.n = count;
+    });
+    const H = V.map((v, i) => v * T[i] / 100);
+    document.getElementById('hv-lt').textContent = `${V[0]} mL · ${T[0]}°C`;
+    document.getElementById('hv-rt').textContent = `${V[1]} mL · ${T[1]}°C`;
+    const cmp = Math.abs(H[0] - H[1]) < 0.01 ? 'the same total heat' : (H[0] > H[1] ? 'the <b>left</b> beaker holds more heat' : 'the <b>right</b> beaker holds more heat');
+    document.getElementById('hv-out').innerHTML = `temperature: ${T[0]}°C vs ${T[1]}°C &middot; particles: ${B[0].n} vs ${B[1].n} &middot; relative heat (particles &times; temperature): <b>${H[0].toFixed(0)}</b> vs <b>${H[1].toFixed(0)}</b> &mdash; ${cmp}`;
+  }
+  ids.forEach(i => i.oninput = read);
+  document.getElementById('hv-pre').onclick = () => { ids[0].value = 250; ids[1].value = 90; ids[2].value = 500; ids[3].value = 90; read(); };
+  read();
+  (function tick() {
+    B.forEach((b, n) => {
+      const sp = 0.3 + (T[n] - 20) / 80 * 2.2;
+      b.P.forEach(p => {
+        p.x += p.vx * sp; p.y += p.vy * sp;
+        const x0 = b.bk.x + 6, x1 = b.bk.x + b.bk.w - 6, y0 = b.y0 + 6, y1 = 236;
+        if (p.x < x0) { p.x = x0; p.vx = Math.abs(p.vx); } if (p.x > x1) { p.x = x1; p.vx = -Math.abs(p.vx); }
+        if (p.y < y0) { p.y = y0; p.vy = Math.abs(p.vy); } if (p.y > y1) { p.y = y1; p.vy = -Math.abs(p.vy); }
+        p.c.setAttribute('cx', p.x); p.c.setAttribute('cy', p.y);
+      });
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+
+// ── Explorer 5: conduction / convection / radiation ─────────
+(function () {
+  const g = document.getElementById('tr-g'), title = document.getElementById('tr-t'), out = document.getElementById('tr-out');
+  let mode = 'cond', k = 0, items = [];
+  const txt = {
+    cond: ['Conduction', 'Heat passes along the metal from particle to particle as the hot end vibrates faster. The particles stay where they are.'],
+    conv: ['Convection', 'Warm, less dense fluid rises; cooler, denser fluid sinks. The moving fluid carries the heat in a convection current.'],
+    rad: ['Radiation', 'Infrared waves carry heat across empty space &mdash; no particles needed. This is how the Sun warms the Earth.']
+  };
+  const colour = h => `hsl(${210 - h * 210}, 85%, 58%)`;
+  function build(m) {
+    mode = m; g.innerHTML = ''; items = [];
+    document.querySelectorAll('[data-tr]').forEach(b => b.classList.toggle('on', b.dataset.tr === m));
+    title.textContent = txt[m][0]; out.innerHTML = txt[m][1];
+    if (m === 'cond') {
+      g.appendChild(svgEl('rect', { x: 70, y: 90, width: 470, height: 80, rx: 8, fill: 'rgba(122,132,160,0.12)', stroke: '#7a84a0' }));
+      g.appendChild(svgEl('text', { x: 30, y: 60, fill: '#f5a623', 'font-family': 'DM Mono, monospace', 'font-size': 13 })).textContent = 'hot end (flame)';
+      g.appendChild(svgEl('text', { x: 440, y: 60, fill: '#4f8ef7', 'font-family': 'DM Mono, monospace', 'font-size': 13 })).textContent = 'cool end';
+      g.appendChild(svgEl('path', { d: 'M20 150 q10 -30 0 -50 q25 15 15 50 q-5 20 -15 0z', fill: '#f5a623' }));
+      for (let r = 0; r < 2; r++) for (let c = 0; c < 14; c++) {
+        const el = svgEl('circle', { r: 8, stroke: '#fff', 'stroke-width': 0.6 });
+        g.appendChild(el); items.push({ el, bx: 90 + c * 33, by: 112 + r * 40, c });
+      }
+    } else if (m === 'conv') {
+      g.appendChild(svgEl('path', { d: 'M160 40 V200 H440 V40', fill: 'rgba(79,142,247,0.12)', stroke: '#e8eaf0', 'stroke-width': 3 }));
+      g.appendChild(svgEl('path', { d: 'M395 225 q10 -22 0 -36 q22 12 12 36 q-4 14 -12 0z M425 225 q10 -22 0 -36 q22 12 12 36 q-4 14 -12 0z', fill: '#f5a623' }));
+      for (let i = 0; i < 18; i++) { const el = svgEl('circle', { r: 7, stroke: '#fff', 'stroke-width': 0.6 }); g.appendChild(el); items.push({ el, s: i / 18 }); }
+      g.appendChild(svgEl('text', { x: 470, y: 120, fill: '#f5a623', 'font-family': 'DM Mono, monospace', 'font-size': 12 })).textContent = 'hot water rises';
+      g.appendChild(svgEl('text', { x: 20, y: 120, fill: '#4f8ef7', 'font-family': 'DM Mono, monospace', 'font-size': 12 })).textContent = 'cool water sinks';
+    } else {
+      g.appendChild(svgEl('circle', { cx: 60, cy: 120, r: 42, fill: '#f5c542' }));
+      g.appendChild(svgEl('circle', { cx: 545, cy: 120, r: 30, fill: '#4f8ef7' }));
+      g.appendChild(svgEl('rect', { x: 150, y: 70, width: 300, height: 100, fill: 'none', stroke: '#4a5270', 'stroke-dasharray': '5 5' }));
+      g.appendChild(svgEl('text', { x: 300, y: 62, 'text-anchor': 'middle', fill: '#7a84a0', 'font-family': 'DM Mono, monospace', 'font-size': 12 })).textContent = 'empty space (vacuum): no particles';
+      g.appendChild(svgEl('text', { x: 60, y: 185, 'text-anchor': 'middle', fill: '#f5c542', 'font-family': 'DM Mono, monospace', 'font-size': 12 })).textContent = 'Sun';
+      g.appendChild(svgEl('text', { x: 545, y: 170, 'text-anchor': 'middle', fill: '#4f8ef7', 'font-family': 'DM Mono, monospace', 'font-size': 12 })).textContent = 'Earth';
+      for (let i = 0; i < 5; i++) { const el = svgEl('path', { fill: 'none', stroke: '#e05252', 'stroke-width': 2.5 }); g.appendChild(el); items.push({ el, row: i }); }
+    }
+  }
+  document.querySelectorAll('[data-tr]').forEach(b => b.onclick = () => build(b.dataset.tr));
+  build('cond');
+  const loop = [[420, 200], [420, 60], [180, 60], [180, 200]];
+  function loopPos(s) {
+    const L = [140, 240, 140, 240], tot = 760; let d = s * tot;
+    for (let i = 0; i < 4; i++) {
+      if (d <= L[i]) { const a = loop[i], b = loop[(i + 1) % 4], f = d / L[i]; return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, i]; }
+      d -= L[i];
+    }
+    return [420, 200, 0];
+  }
+  (function tick() {
+    k += 0.02;
+    if (mode === 'cond') {
+      const front = (k * 3.2) % 20;
+      items.forEach(it => {
+        const h = clamp((front - it.c * 0.9) / 3, 0, 1) * (front < 17 ? 1 : 0.6);
+        const amp = 1 + h * 5, ph = k * 14 + it.c;
+        it.el.setAttribute('cx', it.bx + Math.sin(ph) * amp); it.el.setAttribute('cy', it.by + Math.cos(ph * 1.3) * amp);
+        it.el.setAttribute('fill', colour(h));
+      });
+    } else if (mode === 'conv') {
+      items.forEach(it => {
+        const s = (it.s + k * 0.08) % 1, [x, y, seg] = loopPos(s);
+        it.el.setAttribute('cx', x); it.el.setAttribute('cy', y);
+        const h = seg === 0 ? 1 : seg === 1 ? 0.65 : seg === 2 ? 0.1 : 0.3;
+        it.el.setAttribute('fill', colour(h));
+      });
+    } else {
+      items.forEach(it => {
+        const y0 = 86 + it.row * 22;
+        let d = '';
+        const off = (k * 140) % 56;
+        for (let x = 150; x <= 450; x += 3) {
+          const vis = ((x - 150 - off + 560) % 56) < 28;
+          d += (vis ? 'L' : 'M') + x + ' ' + (y0 + Math.sin((x - 150) * 0.22) * 5).toFixed(1);
+        }
+        it.el.setAttribute('d', d.replace(/^L/, 'M'));
+      });
+    }
+    requestAnimationFrame(tick);
+  })();
+})();
+
+</script>
+
+</body>
+</html>
