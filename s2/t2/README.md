@@ -58,6 +58,32 @@ The extracts are original, written for this sheet, so they do not reproduce any 
 
 Source material: the Secondary 2 English Google Classroom (*Features of Persuasive Text* and *Grammar* posts) and the Week 3 weekly update; the `material/` folder is not tracked in git.
 
+## Week 4 (26–30 October)
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Density** — Solids, Liquids & Gases | 41 | 46 | [.md](./w4/term2-week4-science-unit3-density.md) | [.html](./w4/term2-week4-science-unit3-density.html) |
+| **Sound Waves & Thermal Energy** — Unit 3 | 46 | 46 | [.md](./w4/term2-week4-science-unit3-sound-thermal-energy.md) | [.html](./w4/term2-week4-science-unit3-sound-thermal-energy.html) |
+| **Electricity** — Circuits, V = IR, Series & Parallel | 43 | 45 | [.md](./w4/term2-week4-science-unit3-electricity.md) | [.html](./w4/term2-week4-science-unit3-electricity.html) |
+
+### Science Unit 3: Density
+
+The **Density** sheet follows the Canva slides *Density Differences of Solids, Liquids and Gases*. Section A introduces ρ = m ÷ V and the particle picture (a **Density Lab** explorer packs dots into a box as you change mass and volume); Section B calculates density, mass and volume (cuboids, displacement, hydrogen gas, volume-unit conversions, a kg/m³ stretch); Section C covers heating, cooling and state changes (a **Heat It, Cool It** explorer, gold solid vs molten, wood less dense than water); Section D is float or sink (a **Float or Sink?** tank with eight objects and four liquids); Section E is water's anomaly (a **Water in Three States** explorer with hydrogen bonds, ice 0.9168, water 0.9971, vapour 0.000588 g/cm³, and why lakes freeze from the top). 12 of the 41 questions are multiple choice (the correct letter is spread across A–D); the other 29 are short typed numbers or single words, and every question on the interactive sheet is auto-marked. The printable `.md` has the same Q1–Q41 plus nine written questions (Q42–Q50, 27 marks, answered on paper and marked by the teacher): particle diagrams, measuring the density of a stone, a heated balloon, ice and hydrogen bonds, a frozen lake, a "gold" bar problem and more. The values for oil, mercury, cork, steel and similar objects in the Float or Sink explorer are standard textbook figures, not from the slides.
+
+### Science Unit 3: Sound Waves & Thermal Energy
+
+The **Sound Waves & Thermal Energy** sheet follows the Term 2 Week 4 class slides. Section A covers longitudinal and transverse waves (a **Two Kinds of Wave** explorer); Section B amplitude, wavelength, frequency and period with T = 1 ÷ f (a **Wave Maker** with sliders and an optional tone); Section C loudness, pitch and superposition (an **Interference Explorer** showing crest-meets-crest and crest-meets-trough); Section D heat vs temperature, using the 250 mL and 500 mL cups at 90 °C from the slides (a **Same Temperature, Different Heat** explorer); Section E conduction, convection, radiation, insulation and double glazing (a **Three Ways Heat Travels** animation); Section F evaporation vs boiling and why evaporation cools. 11 of the 46 questions are multiple choice (the correct letter is spread across A–D); the other 35 are short typed numbers or single words (including true/false), and every question on the interactive sheet is auto-marked. The printable `.md` has the same Q1–Q46 plus eleven written questions (Q47–Q57, 35 marks, answered on paper and marked by the teacher): labelled wave diagrams, interference drawings, heat vs temperature, the three transfer methods, insulation, evaporative cooling and a fair-test plan.
+
+Two notes on the source slides. The slide *How is the move of Longitudinal wave?* says "side to side or upward-downward", which describes a transverse wave; the sheet uses the correct description (particles move to and fro, parallel to the wave) as the later slides do. The 3.6 *Cooling by Evaporation* slides contain only a title and a starter-activity reference, so Section F uses the standard ideas for the topic. The same slide deck's Electricity section has its own sheet (below).
+
+### Science Unit 3: Electricity
+
+The **Electricity** sheet follows the Electricity section of the same slide deck. Section A covers circuit diagrams and symbols (a **Circuit Symbol Gallery** where you name each symbol, then click to check); Section B voltage, current and resistance, their units and how ammeters (series) and voltmeters (parallel) are connected; Section C Ohm's law, V = I × R, with the slide examples (a 12 V bulb at 3 A, a 10 Ω resistor on 240 V, and adding a second 10 Ω resistor) plus new numbers (an **Ohm's Law Circuit** with a switch, a voltage slider and a variable resistor, with moving charges and a lamp that dims and brightens); Section D variable resistors and the slide's five-row resistance data table (R = V ÷ I); Section E series versus parallel (a **Series or Parallel?** circuit where you can remove a lamp and see what happens). 11 of the 43 questions are multiple choice (the correct letter is spread across A–D); the other 32 are short typed numbers or single words (including true/false), and every question on the interactive sheet is auto-marked. The printable `.md` has the same Q1–Q43 plus ten written and drawing questions (Q44–Q53, 38 marks, done on paper with a ruler and marked by the teacher): the class challenge of three circuit diagrams, a circuit with a voltmeter across the lamp, formula-triangle calculations, the resistance table and its comment, the variable resistor discussion, series and parallel diagrams, and fault-finding.
+
+Source material: `material/science/s2/t2/w4/` (the slide PDF and the density slide screenshots; the `material/` folder is not tracked in git).
+
 ## Writing project
 
 ### English: UN Day Writing Project
@@ -76,9 +102,16 @@ s2/t2/
 ├── w2/
 │   ├── term2-week2-maths-unit5-calculating-angles.html  ← Interactive (Unit 5.1–5.2)
 │   └── term2-week2-maths-unit5-calculating-angles.md    ← Printable (Q35–Q38 written in full)
-└── w3/
+├── w3/
     ├── term2-week3-maths-unit-test1-inequalities-angles.html ← Interactive (Unit Test 1 practice)
     ├── term2-week3-maths-unit-test1-inequalities-angles.md   ← Printable (+5 written q)
     ├── term2-week3-english-unit-test1-persuasive-emotive-language.html ← Interactive (English Unit Test 1)
     └── term2-week3-english-unit-test1-persuasive-emotive-language.md   ← Printable (+6 extended-answer q)
+└── w4/
+    ├── term2-week4-science-unit3-density.html ← Interactive (Density)
+    ├── term2-week4-science-unit3-density.md   ← Printable (+9 written q)
+    ├── term2-week4-science-unit3-sound-thermal-energy.html ← Interactive (Sound Waves & Thermal Energy)
+    ├── term2-week4-science-unit3-sound-thermal-energy.md   ← Printable (+11 written q)
+    ├── term2-week4-science-unit3-electricity.html ← Interactive (Electricity)
+    └── term2-week4-science-unit3-electricity.md   ← Printable (+10 written and drawing q)
 ```

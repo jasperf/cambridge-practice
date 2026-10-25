@@ -79,9 +79,13 @@ cambridge-practice/
 │       │   └── term2-week1-maths-unit4-linear-inequalities.* ← Unit 4.3: Linear Inequalities (36 q, 46 marks + 4 written q, 15 marks)
 │       ├── w2/                      ← Week 2 (.html interactive + .md printable)
 │       │   └── term2-week2-maths-unit5-calculating-angles.* ← Unit 5.1–5.2: Calculating Angles (38 q, 51 marks; printable writes out Q35–Q38 in full, 14 marks)
-│       └── w3/                      ← Week 3 (.html interactive + .md printable)
-│           ├── term2-week3-maths-unit-test1-inequalities-angles.* ← Unit Test 1 practice: Linear Inequalities & Angles (30 q, 46 marks + 5 written q, 16 marks)
-│           └── term2-week3-english-unit-test1-persuasive-emotive-language.* ← English Unit Test 1: Persuasive & Emotive Language (57 q, 71 marks + 6 extended-answer q, 27 marks)
+│       ├── w3/                      ← Week 3 (.html interactive + .md printable)
+│       │   ├── term2-week3-maths-unit-test1-inequalities-angles.* ← Unit Test 1 practice: Linear Inequalities & Angles (30 q, 46 marks + 5 written q, 16 marks)
+│       │   └── term2-week3-english-unit-test1-persuasive-emotive-language.* ← English Unit Test 1: Persuasive & Emotive Language (57 q, 71 marks + 6 extended-answer q, 27 marks)
+│       └── w4/                      ← Week 4 (.html interactive + .md printable)
+│           ├── term2-week4-science-unit3-density.* ← Unit 3: Density of Solids, Liquids & Gases (41 q, 46 marks + 9 written q, 27 marks)
+│           ├── term2-week4-science-unit3-sound-thermal-energy.* ← Unit 3: Sound Waves & Thermal Energy (46 q, 46 marks + 11 written q, 35 marks)
+│           └── term2-week4-science-unit3-electricity.* ← Unit 3: Electricity — circuits, V = IR, series & parallel (43 q, 45 marks + 10 written q, 38 marks)
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
 ├── igcse/                           ← IGCSE (planned)
@@ -183,6 +187,9 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Mathematics Unit 5.1–5.2 (Calculating Angles) | Secondary 2 | ✅ Term 2 Week 2 · 12–16 October |
 | Mathematics Unit Test 1 Practice (Linear Inequalities & Angles) | Secondary 2 | ✅ Term 2 Week 3 · Unit Test 1, 20 Oct 2026 |
 | English Unit Test 1 (Persuasive & Emotive Language, Grammar, Reading, Short Story, Spelling) | Secondary 2 | ✅ Term 2 Week 3 · Unit Test 1, 21 Oct 2026 |
+| Science Unit 3: Density (Solids, Liquids & Gases) | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
+| Science Unit 3: Sound Waves & Thermal Energy | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
+| Science Unit 3: Electricity (Circuits, V = IR, Series & Parallel) | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
 | English UN Day Writing Project (Zimbabwe/Sweden coaching guide) | Secondary 2 | ✅ Term 2 · Draft due 23 Oct, final due 20 Nov |
 
 ### IGCSE
