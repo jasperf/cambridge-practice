@@ -153,6 +153,10 @@ Combined documents drawing on more than one weekly sheet, for test preparation.
 | **English Unit Test 1 Revision** | Sentence Types (simple, FANBOYS, MOTH & semicolons, complex/compound-complex) + Reading Comprehension with P.E.E.E. Plus 4 open-ended extended writing tasks (printable only, not auto-marked). | 42 (+4 extended writing) | 50 | [.md](./term1-english-unit1-revision.md) | [.html](./term1-english-unit1-revision.html) |
 | **Science Unit Test 1 Revision** | Atomic Structure & Periodic Table + Why Elements React & Ionic Bonding + Covalent & Metallic Bonding (all three Week 2–4 science sheets, merged and renumbered Q1–Q54). Plus 8 open-ended extended-answer questions (printable only, not auto-marked). Answers live in a **separate** [answer sheet](./term1-science-unit1-revision-answers.md) so the questions can be handed out on their own. | 54 (+8 extended answer) | 66 (+22) | [.md](./term1-science-unit1-revision.md) | — (self-check against the weekly sheets above) |
 
+## Science Formula Sheets
+
+One-page formula and key-fact sheets (SVG with captions) for Atomic Structure & Periodic Table, Ions & Ionic Formulae and Photosynthesis live in [`../science-formula-sheets/`](../science-formula-sheets/README.md), together with the Term 2 Density, Waves and Electricity sheets.
+
 ## Usage
 
 ### For Teachers
