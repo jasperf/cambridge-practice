@@ -1,0 +1,2 @@
+DIAGRAM – Formula Triangles
+Formula triangles. Cover the quantity you want and read off what is left. Density: m on top, ρ and V below, so ρ = m ÷ V, m = ρ × V, V = m ÷ ρ. Ohm's law: V on top, I and R below, so V = I × R, I = V ÷ R, R = V ÷ I. For waves, period and frequency are inverses: T = 1 ÷ f and f = 1 ÷ T.

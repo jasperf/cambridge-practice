@@ -1,0 +1,23 @@
+SHEET 1 – Atomic Structure & Periodic Table
+Atomic number = protons = electrons (in a neutral atom). Mass number = protons + neutrons, so neutrons = mass number − atomic number. Electrons fill shells 2, 8, 8 (sodium = 2,8,1; chlorine = 2,8,7). Groups are columns (outer electrons), periods are rows (number of shells).
+
+SHEET 2 – Ions & Ionic Formulae
+Groups 1–3 lose electrons and become positive ions; groups 6–7 gain electrons (8 minus the group number) and become negative ions. To write a formula, balance the charges so total positive = total negative: Mg²⁺ + 2Cl⁻ gives MgCl₂, and 2Al³⁺ + 3O²⁻ gives Al₂O₃. Ionic = transfer, covalent = sharing, metallic = sea of electrons.
+
+SHEET 3 – Photosynthesis
+Carbon dioxide + water → glucose + oxygen, with light energy above the arrow (chlorophyll in the chloroplasts absorbs it). CO₂ comes from the air, water from the roots. The plant uses glucose for respiration, cellulose, starch, proteins and fats. Test: iodine turns blue-black when starch is present.
+
+SHEET 4 – Density
+ρ = m ÷ V. Rearranged: m = ρ × V and V = m ÷ ρ (g and cm³ give g/cm³). Irregular solid: volume = water level rise. 1 mL = 1 cm³, 1 dm³ = 1000 cm³, 1 g/cm³ = 1000 kg/m³. Less dense than the liquid floats, denser sinks. Heating lowers density, cooling raises it. Ice floats because it is less dense than liquid water.
+
+SHEET 5 – Waves, Sound & Thermal Energy
+T = 1 ÷ f (period in seconds, frequency in hertz). Bigger amplitude = louder; higher frequency = higher pitch. Constructive interference adds amplitudes, destructive cancels them. Heat (joules) flows from hot to cold by conduction (contact), convection (moving fluids) or radiation (infrared, works in a vacuum).
+
+SHEET 6 – Electricity
+V = I × R, so I = V ÷ R and R = V ÷ I (volts, amperes, ohms). Ammeter in series, voltmeter in parallel. Series: same current, voltage divides, resistances add up. Parallel: same voltage on every branch, current divides. Check: 12 V and 3 A gives 4 Ω.
+
+DIAGRAM – Anatomy of a Wave
+Anatomy of a wave. The crest is the highest point and the trough the lowest. Amplitude is the height from the rest line to a crest (bigger = louder). Wavelength is the distance from crest to crest. Period T is the time for one whole wave to pass, frequency f is how many pass each second (higher = higher pitch), and T = 1 ÷ f, f = 1 ÷ T. Example: T = 0.25 s gives f = 4 Hz. Sound is longitudinal: particles bunch into compressions and spread into rarefactions.
+
+DIAGRAM – Formula Triangles
+Formula triangles. Cover the quantity you want and read off what is left. Density: m on top, ρ and V below, so ρ = m ÷ V, m = ρ × V, V = m ÷ ρ. Ohm's law: V on top, I and R below, so V = I × R, I = V ÷ R, R = V ÷ I. For waves, period and frequency are inverses: T = 1 ÷ f and f = 1 ÷ T.

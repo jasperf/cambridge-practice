@@ -1,0 +1,2 @@
+DIAGRAM – Anatomy of a Wave
+Anatomy of a wave. The crest is the highest point and the trough the lowest. Amplitude is the height from the rest line to a crest (bigger = louder). Wavelength is the distance from crest to crest. Period T is the time for one whole wave to pass, frequency f is how many pass each second (higher = higher pitch), and T = 1 ÷ f, f = 1 ÷ T. Example: T = 0.25 s gives f = 4 Hz. Sound is longitudinal: particles bunch into compressions and spread into rarefactions.
