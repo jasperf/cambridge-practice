@@ -50,6 +50,7 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 
 ## Other files
 
+- [index.html](index.html) — browser gallery of every sheet and diagram with captions (the home-page card links here).
 - [formula-reference.md](formula-reference.md) — all six sheets as one text document (tables, copy-friendly).
 - [whatsapp/captions-whatsapp.txt](whatsapp/captions-whatsapp.txt) — all captions in one file, ready to paste. The matching JPGs live in `whatsapp/` locally but are git-ignored.
 
@@ -57,6 +58,7 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 
 ```
 science-formula-sheets/
+├── index.html                ← Browser gallery of all sheets (linked from the home page)
 ├── README.md                 ← This file
 ├── formula-reference.md      ← Text version of all six sheets
 ├── science-sheet-N-*.md      ← One page per sheet: image + caption + source worksheets
