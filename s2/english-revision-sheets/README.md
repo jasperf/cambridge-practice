@@ -11,3 +11,8 @@ One-page revision sheets for English topics, in the same style as the [science f
 
 [![Semicolon Usage](svg/english-sheet-2-semicolon-usage.svg)](english-sheet-2-semicolon-usage.md)
 
+## Practice tests
+
+| Test | Questions | Page |
+|------|-----------|------|
+| **Semicolon Practice Test** — semicolons, commas and neither (15 MCQ, answer key included) | 15 | [english-test-semicolon-practice.md](english-test-semicolon-practice.md) |

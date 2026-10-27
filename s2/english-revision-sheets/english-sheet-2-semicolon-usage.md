@@ -8,4 +8,6 @@ One-page summary of semicolon usage. Two independent clauses can be joined three
 
 **Image:** [SVG](svg/english-sheet-2-semicolon-usage.svg)
 
+**Practise:** [Semicolon Practice Test](english-test-semicolon-practice.md)
+
 [← All English revision sheets](README.md)
