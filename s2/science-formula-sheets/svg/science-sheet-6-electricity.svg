@@ -1,55 +1,117 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1200" viewBox="0 0 1080 1200" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpkMmFmM2MxOC1mZDgzLTRjNWItOWNhNC04NTk0NWE2NjkyZTQAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaBaBhHPYU5woJydtcIfJu4cAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDoxNDk4ZTJhMy1iMTlhLTRjNDQtODM2Ny1kMzY0MjNkZDRmYzdscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoSZJxJeYZTfa1FtwPEMRW2AAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggGzL9jKrKBF0mxiHQUd/K6hZusH+PQnJKq1RFx8Gd7uGkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaAHvuXGWJ6lVW6cC/M/na8gAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAXVawFdl6i1qCCJLF97nhjy3cq/R39bHQCPnFXvqtPAmRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBjaZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmQyYWYzYzE4LWZkODMtNGM1Yi05Y2E0LTg1OTQ1YTY2OTJlNC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmYwN2M1ZGNiLTdmNTMtNDE0ZC04NDIzLTAyZGQ3MzhiN2NlZHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAbMv2MqsoEXSbGIdBR38rqFm6wf49CckqrVEXHwZ3u4aJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggBNxapLlUpL/XDFVQdT5Kw/6Bv0iHMBdCCTZny0Q/9COiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg2uFGOy4oyfnNVHBNF4P+Zby0Z/HP3NLFVUNpg5PTEW50Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQA/KvgJ8n3FbiE/S6gI+1z0MSiYlcAobH8ZArE/WiOneeQD0AgvOZnde5BY7OK9Izd3rmKOtEiIOCkoSgTk/Ra4=</c2pa:manifest></metadata>
-<rect width="1080" height="1200" fill="#FBF5E9"/>
-<rect x="0" y="0" width="14" height="1200" fill="#E8590C"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1610" viewBox="0 0 1080 1610" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1C6DD0"/></marker></defs>
+<rect width="1080" height="1610" fill="#FBF5E9"/><rect width="14" height="1610" fill="#E8590C"/>
 <text x="56" y="62" font-size="20" font-weight="700" fill="#E8590C" letter-spacing="2">SECONDARY 2 SCIENCE · SHEET 6 OF 6</text>
-<text x="56" y="108" font-size="40" font-weight="800" fill="#14213D">Electricity</text>
-<text x="56" y="136" font-size="20" fill="#5B6478">Term 2 · Unit 3</text>
-<text x="56" y="172" font-size="24" font-weight="800" fill="#E8590C">Ohm&#x27;s law (V on top; I and R below)</text>
-<rect x="56" y="176" width="968" height="0" />
-<rect x="56" y="190" width="968" height="162" rx="16" fill="#fff" stroke="#EADFCB"/>
-<text x="80" y="230" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Voltage</tspan></text>
-<text x="410" y="230" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">V = I × R   (volts)</tspan></text>
-<line x1="80" x2="1000" y1="246" y2="246" stroke="#EADFCB"/>
-<text x="80" y="276" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Current</tspan></text>
-<text x="410" y="276" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">I = V ÷ R   (amperes)</tspan></text>
-<line x1="80" x2="1000" y1="292" y2="292" stroke="#EADFCB"/>
-<text x="80" y="322" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Resistance</tspan></text>
-<text x="410" y="322" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">R = V ÷ I   (ohms)</tspan></text>
-<text x="56" y="408" font-size="24" font-weight="800" fill="#E8590C">Meters</text>
-<rect x="56" y="412" width="968" height="0" />
-<rect x="56" y="426" width="968" height="116" rx="16" fill="#fff" stroke="#EADFCB"/>
-<text x="80" y="466" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Ammeter</tspan></text>
-<text x="410" y="466" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">measures current, connected in series</tspan></text>
-<line x1="80" x2="1000" y1="482" y2="482" stroke="#EADFCB"/>
-<text x="80" y="512" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Voltmeter</tspan></text>
-<text x="410" y="512" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">measures voltage, connected in parallel</tspan></text>
-<text x="56" y="598" font-size="24" font-weight="800" fill="#E8590C">Series vs parallel</text>
-<rect x="56" y="602" width="968" height="0" />
-<rect x="56" y="616" width="968" height="254" rx="16" fill="#fff" stroke="#EADFCB"/>
-<text x="80" y="656" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Series current</tspan></text>
-<text x="410" y="656" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">same everywhere</tspan></text>
-<line x1="80" x2="1000" y1="672" y2="672" stroke="#EADFCB"/>
-<text x="80" y="702" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Series voltage</tspan></text>
-<text x="410" y="702" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">divides between components</tspan></text>
-<line x1="80" x2="1000" y1="718" y2="718" stroke="#EADFCB"/>
-<text x="80" y="748" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Series resistance</tspan></text>
-<text x="410" y="748" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">R total = R₁ + R₂ + …</tspan></text>
-<line x1="80" x2="1000" y1="764" y2="764" stroke="#EADFCB"/>
-<text x="80" y="794" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Parallel voltage</tspan></text>
-<text x="410" y="794" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">same across each branch</tspan></text>
-<line x1="80" x2="1000" y1="810" y2="810" stroke="#EADFCB"/>
-<text x="80" y="840" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">Parallel current</tspan></text>
-<text x="410" y="840" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">divides between branches</tspan></text>
-<text x="56" y="926" font-size="24" font-weight="800" fill="#E8590C">Quick checks</text>
-<rect x="56" y="930" width="968" height="0" />
-<rect x="56" y="944" width="968" height="162" rx="16" fill="#fff" stroke="#EADFCB"/>
-<text x="80" y="984" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">12 V, 3 A</tspan></text>
-<text x="410" y="984" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">R = 4 Ω</tspan></text>
-<line x1="80" x2="1000" y1="1000" y2="1000" stroke="#EADFCB"/>
-<text x="80" y="1030" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">240 V, 10 Ω</tspan></text>
-<text x="410" y="1030" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">I = 24 A</tspan></text>
-<line x1="80" x2="1000" y1="1046" y2="1046" stroke="#EADFCB"/>
-<text x="80" y="1076" font-size="21" font-weight="700" fill="#14213D"><tspan x="80" dy="0">0.5 A, 16 Ω</tspan></text>
-<text x="410" y="1076" font-size="21" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"><tspan x="410" dy="0">V = 8 V</tspan></text>
-<text x="56" y="1174" font-size="18" fill="#5B6478">Formula sheets · Jasper</text>
+<text x="56" y="108" font-size="40" font-weight="800" fill="#14213D" >Electricity</text>
+<text x="56" y="136" font-size="20" font-weight="400" fill="#5B6478" >Term 2 · Unit 3 · volts, amps and Ohm&#x27;s law</text>
+<text x="56" y="184" font-size="24" font-weight="800" fill="#E8590C" >Volts vs amps: the water-pipe picture</text>
+<rect x="56" y="198" width="968" height="214" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="130" y="236" width="820" height="136" fill="none" stroke="#9CC3F0" stroke-width="26" rx="10"/>
+<rect x="130" y="236" width="820" height="136" fill="none" stroke="#EAF3FD" stroke-width="16" rx="10"/>
+<circle cx="230" cy="236" r="6" fill="#1C6DD0"/>
+<circle cx="330" cy="236" r="6" fill="#1C6DD0"/>
+<circle cx="430" cy="236" r="6" fill="#1C6DD0"/>
+<circle cx="530" cy="236" r="6" fill="#1C6DD0"/>
+<circle cx="630" cy="236" r="6" fill="#1C6DD0"/>
+<circle cx="720" cy="236" r="6" fill="#1C6DD0"/>
+<circle cx="950" cy="290" r="6" fill="#1C6DD0"/>
+<circle cx="950" cy="330" r="6" fill="#1C6DD0"/>
+<circle cx="800" cy="372" r="6" fill="#1C6DD0"/>
+<circle cx="700" cy="372" r="6" fill="#1C6DD0"/>
+<circle cx="560" cy="372" r="6" fill="#1C6DD0"/>
+<circle cx="430" cy="372" r="6" fill="#1C6DD0"/>
+<circle cx="300" cy="372" r="6" fill="#1C6DD0"/>
+<circle cx="200" cy="372" r="6" fill="#1C6DD0"/>
+<line x1="452" y1="236" x2="492" y2="236" stroke="#1C6DD0" stroke-width="3" marker-end="url(#ar)"/>
+<line x1="652" y1="236" x2="692" y2="236" stroke="#1C6DD0" stroke-width="3" marker-end="url(#ar)"/>
+<circle cx="130" cy="304" r="30" fill="#E8590C" stroke="#fff" stroke-width="4"/>
+<text x="130" y="311" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">cell</text>
+<rect x="926" y="262" width="48" height="84" rx="8" fill="#F5A623" stroke="#fff" stroke-width="4"/>
+<text x="950" y="310" font-size="22" font-weight="800" fill="#14213D" text-anchor="middle">R</text>
+<text x="540" y="296" font-size="21" font-weight="700" fill="#E8590C" text-anchor="middle">Voltage = the push from the pump (the cell)</text>
+<text x="540" y="326" font-size="21" font-weight="700" fill="#1C6DD0" text-anchor="middle">Current = the flow of charge round the pipe</text>
+<text x="540" y="352" font-size="17" font-weight="400" fill="#5B6478" text-anchor="middle">Resistor R = a narrow section that slows the flow</text>
+<rect x="56" y="436" width="468" height="236" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="56" y="436" width="468" height="8" rx="4" fill="#E8590C"/>
+<text x="80" y="484" font-size="28" font-weight="800" fill="#E8590C" >Voltage</text>
+<text x="500" y="484" font-size="20" font-weight="700" fill="#14213D" text-anchor="end" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">V · volt (V)</text>
+<text x="80" y="526" font-size="19" font-weight="400" fill="#14213D" >The push: energy given to each charge</text>
+<line x1="80" x2="500" y1="538" y2="538" stroke="#EADFCB"/>
+<text x="80" y="564" font-size="19" font-weight="400" fill="#14213D" >Pipe: the pump&#x27;s pressure</text>
+<line x1="80" x2="500" y1="576" y2="576" stroke="#EADFCB"/>
+<text x="80" y="602" font-size="19" font-weight="400" fill="#14213D" >Voltmeter, connected in parallel</text>
+<line x1="80" x2="500" y1="614" y2="614" stroke="#EADFCB"/>
+<text x="80" y="640" font-size="19" font-weight="400" fill="#14213D" >Switch open: cell still has it</text>
+<rect x="556" y="436" width="468" height="236" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="556" y="436" width="468" height="8" rx="4" fill="#1C6DD0"/>
+<text x="580" y="484" font-size="28" font-weight="800" fill="#1C6DD0" >Current</text>
+<text x="1000" y="484" font-size="20" font-weight="700" fill="#14213D" text-anchor="end" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">I · ampere (A)</text>
+<text x="580" y="526" font-size="19" font-weight="400" fill="#14213D" >The flow: charge passing each second</text>
+<line x1="580" x2="1000" y1="538" y2="538" stroke="#EADFCB"/>
+<text x="580" y="564" font-size="19" font-weight="400" fill="#14213D" >Pipe: litres of water per second</text>
+<line x1="580" x2="1000" y1="576" y2="576" stroke="#EADFCB"/>
+<text x="580" y="602" font-size="19" font-weight="400" fill="#14213D" >Ammeter, connected in series</text>
+<line x1="580" x2="1000" y1="614" y2="614" stroke="#EADFCB"/>
+<text x="580" y="640" font-size="19" font-weight="400" fill="#14213D" >Switch open: current is zero</text>
+<rect x="56" y="692" width="968" height="44" rx="22" fill="#fff" stroke="#EADFCB"/>
+<text x="540" y="721" font-size="20" font-weight="700" fill="#14213D" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">Small units:  1000 mA = 1 A   ·   1000 mV = 1 V</text>
+<text x="56" y="790" font-size="24" font-weight="800" fill="#E8590C" >Ohm&#x27;s law (V on top; I and R below)</text>
+<rect x="56" y="804" width="968" height="236" rx="16" fill="#fff" stroke="#EADFCB"/>
+<polygon points="206,836 81,996 331,996" fill="#FBF5E9" stroke="#14213D" stroke-width="4" stroke-linejoin="round"/>
+<line x1="143.5" x2="268.5" y1="916" y2="916" stroke="#14213D" stroke-width="4"/><line x1="206" x2="206" y1="916" y2="996" stroke="#14213D" stroke-width="4"/>
+<text x="206" y="902" font-size="40" font-weight="800" fill="#1C6DD0" text-anchor="middle">V</text>
+<text x="156" y="970" font-size="40" font-weight="800" fill="#1C6DD0" text-anchor="middle">I</text>
+<text x="256" y="970" font-size="40" font-weight="800" fill="#1C6DD0" text-anchor="middle">R</text>
+<text x="420" y="868" font-size="28" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">V = I × R</text>
+<text x="660" y="868" font-size="18" font-weight="400" fill="#5B6478" >volts = amps × ohms</text>
+<text x="420" y="914" font-size="28" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">I = V ÷ R</text>
+<text x="660" y="914" font-size="18" font-weight="400" fill="#5B6478" >amps = volts ÷ ohms</text>
+<text x="420" y="960" font-size="28" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">R = V ÷ I</text>
+<text x="660" y="960" font-size="18" font-weight="400" fill="#5B6478" >ohms = volts ÷ amps</text>
+<line x1="420" x2="1000" y1="1000" y2="1000" stroke="#EADFCB"/>
+<text x="420" y="1026" font-size="18" font-weight="700" fill="#E8590C" >More resistance means less current for the same voltage.</text>
+<text x="56" y="1092" font-size="24" font-weight="800" fill="#E8590C" >Series vs parallel</text>
+<rect x="56" y="1108" width="468" height="310" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="80" y="1146" font-size="22" font-weight="800" fill="#E8590C" >Series: one path</text>
+<path d="M116 1262V1182H464V1262Z" fill="none" stroke="#14213D" stroke-width="3"/>
+<circle cx="246" cy="1182" r="15" fill="#FFF3C4" stroke="#14213D" stroke-width="3"/><path d="M237 1173L255 1191M255 1173L237 1191" stroke="#14213D" stroke-width="2.5"/>
+<circle cx="356" cy="1182" r="15" fill="#FFF3C4" stroke="#14213D" stroke-width="3"/><path d="M347 1173L365 1191M365 1173L347 1191" stroke="#14213D" stroke-width="2.5"/>
+<rect x="102" y="1206" width="28" height="32" fill="#fff"/><line x1="102" x2="130" y1="1210" y2="1210" stroke="#14213D" stroke-width="3"/><line x1="109" x2="123" y1="1232" y2="1232" stroke="#14213D" stroke-width="6"/>
+<line x1="80" x2="500" y1="1286" y2="1286" stroke="#EADFCB"/>
+<text x="80" y="1312" font-size="19" font-weight="700" fill="#14213D" >Current</text>
+<text x="236" y="1312" font-size="19" font-weight="400" fill="#14213D" >same everywhere</text>
+<line x1="80" x2="500" y1="1324" y2="1324" stroke="#EADFCB"/>
+<text x="80" y="1350" font-size="19" font-weight="700" fill="#14213D" >Voltage</text>
+<text x="236" y="1350" font-size="19" font-weight="400" fill="#14213D" >shared out between parts</text>
+<line x1="80" x2="500" y1="1362" y2="1362" stroke="#EADFCB"/>
+<text x="80" y="1388" font-size="19" font-weight="700" fill="#14213D" >Resistance</text>
+<text x="236" y="1388" font-size="19" font-weight="400" fill="#14213D" >R₁ + R₂ + …</text>
+<rect x="556" y="1108" width="468" height="310" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="580" y="1146" font-size="22" font-weight="800" fill="#E8590C" >Parallel: branches</text>
+<path d="M616 1262V1182H964V1262Z" fill="none" stroke="#14213D" stroke-width="3"/>
+<line x1="806" x2="806" y1="1182" y2="1262" stroke="#14213D" stroke-width="3"/>
+<circle cx="806" cy="1222" r="15" fill="#FFF3C4" stroke="#14213D" stroke-width="3"/><path d="M797 1213L815 1231M815 1213L797 1231" stroke="#14213D" stroke-width="2.5"/>
+<line x1="896" x2="896" y1="1182" y2="1262" stroke="#14213D" stroke-width="3"/>
+<circle cx="896" cy="1222" r="15" fill="#FFF3C4" stroke="#14213D" stroke-width="3"/><path d="M887 1213L905 1231M905 1213L887 1231" stroke="#14213D" stroke-width="2.5"/>
+<rect x="602" y="1206" width="28" height="32" fill="#fff"/><line x1="602" x2="630" y1="1210" y2="1210" stroke="#14213D" stroke-width="3"/><line x1="609" x2="623" y1="1232" y2="1232" stroke="#14213D" stroke-width="6"/>
+<line x1="580" x2="1000" y1="1286" y2="1286" stroke="#EADFCB"/>
+<text x="580" y="1312" font-size="19" font-weight="700" fill="#14213D" >Voltage</text>
+<text x="736" y="1312" font-size="19" font-weight="400" fill="#14213D" >same on every branch</text>
+<line x1="580" x2="1000" y1="1324" y2="1324" stroke="#EADFCB"/>
+<text x="580" y="1350" font-size="19" font-weight="700" fill="#14213D" >Current</text>
+<text x="736" y="1350" font-size="19" font-weight="400" fill="#14213D" >splits between branches</text>
+<line x1="580" x2="1000" y1="1362" y2="1362" stroke="#EADFCB"/>
+<text x="580" y="1388" font-size="19" font-weight="700" fill="#14213D" >If one fails</text>
+<text x="736" y="1388" font-size="19" font-weight="400" fill="#14213D" >the others stay on</text>
+<text x="56" y="1466" font-size="24" font-weight="800" fill="#E8590C" >Quick checks</text>
+<rect x="56" y="1480" width="968" height="92" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="80" y="1520" font-size="21" font-weight="700" fill="#14213D" >12 V, 3 A</text>
+<text x="80" y="1554" font-size="21" font-weight="400" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">R = 4 Ω</text>
+<text x="400" y="1520" font-size="21" font-weight="700" fill="#14213D" >240 V, 10 Ω</text>
+<text x="400" y="1554" font-size="21" font-weight="400" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">I = 24 A</text>
+<line x1="376" x2="376" y1="1498" y2="1556" stroke="#EADFCB"/>
+<text x="720" y="1520" font-size="21" font-weight="700" fill="#14213D" >0.5 A, 16 Ω</text>
+<text x="720" y="1554" font-size="21" font-weight="400" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">V = 8 V</text>
+<line x1="696" x2="696" y1="1498" y2="1556" stroke="#EADFCB"/>
+<text x="56" y="1596" font-size="18" font-weight="400" fill="#5B6478" >Formula sheets · Jasper</text>
 </svg>

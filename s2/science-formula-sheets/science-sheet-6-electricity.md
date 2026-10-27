@@ -2,7 +2,7 @@
 
 ![Electricity formula sheet](svg/science-sheet-6-electricity.svg)
 
-V = I × R, so I = V ÷ R and R = V ÷ I (volts, amperes, ohms). Ammeter in series, voltmeter in parallel. Series: same current, voltage divides, resistances add up. Parallel: same voltage on every branch, current divides. Check: 12 V and 3 A gives 4 Ω.
+Voltage is the push the cell gives the charge (volts, voltmeter in parallel); current is the flow of charge (amperes, ammeter in series). V = I × R, so I = V ÷ R and R = V ÷ I (volts, amperes, ohms). Series: same current, voltage divides, resistances add up. Parallel: same voltage on every branch, current divides. Check: 12 V and 3 A gives 4 Ω.
 
 **Diagram:** [Formula triangles](science-diagram-formula-triangles.md)
 

@@ -14,7 +14,7 @@ SHEET 5 – Waves, Sound & Thermal Energy
 T = 1 ÷ f (period in seconds, frequency in hertz). Bigger amplitude = louder; higher frequency = higher pitch. Constructive interference adds amplitudes, destructive cancels them. Heat (joules) flows from hot to cold by conduction (contact), convection (moving fluids) or radiation (infrared, works in a vacuum).
 
 SHEET 6 – Electricity
-V = I × R, so I = V ÷ R and R = V ÷ I (volts, amperes, ohms). Ammeter in series, voltmeter in parallel. Series: same current, voltage divides, resistances add up. Parallel: same voltage on every branch, current divides. Check: 12 V and 3 A gives 4 Ω.
+Voltage is the push the cell gives the charge (volts, voltmeter in parallel); current is the flow of charge (amperes, ammeter in series). V = I × R, so I = V ÷ R and R = V ÷ I (volts, amperes, ohms). Series: same current, voltage divides, resistances add up. Parallel: same voltage on every branch, current divides. Check: 12 V and 3 A gives 4 Ω.
 
 DIAGRAM – Anatomy of a Wave
 Anatomy of a wave. The crest is the highest point and the trough the lowest. Amplitude is the height from the rest line to a crest (bigger = louder). Wavelength is the distance from crest to crest. Period T is the time for one whole wave to pass, frequency f is how many pass each second (higher = higher pitch), and T = 1 ÷ f, f = 1 ÷ T. Example: T = 0.25 s gives f = 4 Hz. Sound is longitudinal: particles bunch into compressions and spread into rarefactions.
