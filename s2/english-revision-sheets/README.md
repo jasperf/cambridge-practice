@@ -11,6 +11,10 @@ One-page revision sheets for English topics, in the same style as the [science f
 
 [![Semicolon Usage](svg/english-sheet-2-semicolon-usage.svg)](english-sheet-2-semicolon-usage.md)
 
+## Other files
+
+- [index.html](index.html) — browser gallery of the sheets and the practice test (the home-page card links here).
+
 ## Practice tests
 
 | Test | Questions | Page |
