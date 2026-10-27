@@ -319,7 +319,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-body);
 <!-- ═══════════════ SECTION B: VOLTAGE, CURRENT &AMP; RESISTANCE ═══════════════ -->
 <div id="voltage-current">
   <div class="section-header"><div class="section-icon">&#128268;</div><div><div class="sub-label">Section B</div><h2>Voltage, Current and Resistance</h2></div></div>
-  <div class="info-box"><strong>Voltage</strong> is linked to the electrical energy in a circuit and is measured in <strong>volts (V)</strong>. <strong>Current</strong> is measured in <strong>amperes (A)</strong> using an ammeter connected <strong>in series</strong>. A <strong>resistor</strong> limits (resists) the current flow and is measured in <strong>ohms (&Omega;)</strong>. A voltmeter is connected <strong>in parallel</strong> across the component it measures.</div>
+  <div class="info-box"><strong>Voltage</strong> is linked to the electrical energy in a circuit and is measured in <strong>volts (V)</strong>. <strong>Current</strong> is measured in <strong>amperes (A)</strong> using an ammeter connected <strong>in series</strong>. A <strong>resistor</strong> limits (resists) the current flow and is measured in <strong>ohms (&Omega;)</strong>. A voltmeter is connected <strong>in parallel</strong> across the component it measures.<br><br><strong>Volts vs amps:</strong> think of a water pipe. <strong>Voltage</strong> is like the pressure from a pump &mdash; the <em>push</em> the cell gives to the charge. <strong>Current</strong> is like how much water passes a point each second &mdash; the <em>flow</em> of charge. Small currents are often given in milliamperes: 1000 mA = 1 A.</div>
 
   <!-- Q9 -->
   <div class="q-card" id="qcard-s9">
@@ -427,11 +427,81 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-body);
       <div class="feedback" id="s16-fb"></div>
     </div>
   </div>
+  <!-- Q16a -->
+  <div class="q-card" id="qcard-s44">
+    <div class="q-header"><div class="q-num">Q16a</div><div class="q-text">A cell is connected to a lamp, but the switch is open. Which statement is true?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s44-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s44', this, 'a')"><div class="opt-indicator"></div><span>There is no voltage and no current anywhere</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s44', this, 'b')"><div class="opt-indicator"></div><span>Current flows but there is no voltage</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s44', this, 'c')"><div class="opt-indicator"></div><span>The cell still has a voltage, but there is no current</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s44', this, 'd')"><div class="opt-indicator"></div><span>The voltage and current are both the same as when the switch is closed</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s44','c','Q16a')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s44','C &mdash; The cell still gives a &ldquo;push&rdquo; (voltage), but with a gap in the circuit the charge cannot flow, so the current is zero.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s44-fb"></div>
+    </div>
+  </div>
+  <!-- Q16b -->
+  <div class="q-card" id="qcard-s45">
+    <div class="q-header"><div class="q-num">Q16b</div><div class="q-text">A student says &ldquo;the voltage flows round the circuit&rdquo;. What is wrong with this?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s45-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'a')"><div class="opt-indicator"></div><span>Nothing, voltage and current are two names for the same thing</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'b')"><div class="opt-indicator"></div><span>Voltage is the push that makes charge move; the charge flowing is the current</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'c')"><div class="opt-indicator"></div><span>Voltage only exists in parallel circuits</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'd')"><div class="opt-indicator"></div><span>Voltage is the amount of charge flowing and current is the push</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s45','b','Q16b')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s45','B &mdash; Voltage is the push (energy given to the charge). What flows is the charge, and the rate at which it flows is the current.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s45-fb"></div>
+    </div>
+  </div>
+  <!-- Q16c -->
+  <div class="q-card" id="qcard-s46">
+    <div class="q-header"><div class="q-num">Q16c</div><div class="q-text">A current of 250 mA flows through a lamp. Write this in amperes (A). (1000 mA = 1 A)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s46-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s46',0.25,'Q16c',0.0001)">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s46','0.25 A &mdash; 250 &divide; 1000 = 0.25.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s46-fb"></div>
+    </div>
+  </div>
+  <!-- Q16d -->
+  <div class="q-card" id="qcard-s47">
+    <div class="q-header"><div class="q-num">Q16d</div><div class="q-text">True or false: in a series circuit an ammeter reads the same current wherever it is placed in the loop. (type <em>true</em> or <em>false</em>)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s47-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s47',['true','t'],'Q16d')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s47','True &mdash; the same charge flows past every point in a series loop, so the current is the same everywhere.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s47-fb"></div>
+    </div>
+  </div>
+  <!-- Q16e -->
+  <div class="q-card" id="qcard-s48">
+    <div class="q-header"><div class="q-num">Q16e</div><div class="q-text">In a series circuit, which quantity is shared out between the components: voltage or current? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="text" class="num-input wide" id="s48-ans" placeholder="Type your answer..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s48',['voltage','the voltage','volts'],'Q16e')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s48','Voltage &mdash; the current is the same everywhere, but the voltage is divided between the components.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s48-fb"></div>
+    </div>
+  </div>
 
   <div class="section-score">
     <div class="section-score-label">VOLTAGE, CURRENT &AMP; RESISTANCE &mdash; SECTION SCORE</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-vc-fill"></div></div>
-    <div class="section-score-val" id="sec-vc-val">0/8</div>
+    <div class="section-score-val" id="sec-vc-val">0/13</div>
   </div>
 </div>
 
@@ -872,11 +942,11 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-body);
 const SHEET_ID = 'term2-week4-science-unit3-electricity';
 const state = { answers: {}, correct: {}, startTime: Date.now() };
 
-const marks = {s1: 1, s2: 1, s3: 1, s4: 1, s5: 1, s6: 1, s7: 1, s8: 1, s9: 1, s10: 1, s11: 1, s12: 1, s13: 1, s14: 1, s15: 1, s16: 1, s17: 1, s18: 1, s19: 2, s20: 1, s21: 1, s22: 1, s23: 1, s24: 1, s25: 1, s26: 1, s27: 1, s28: 1, s29: 1, s30: 1, s31: 1, s32: 1, s33: 2, s34: 1, s35: 1, s36: 1, s37: 1, s38: 1, s39: 1, s40: 1, s41: 1, s42: 1, s43: 1};
+const marks = {s1: 1, s2: 1, s3: 1, s4: 1, s5: 1, s6: 1, s7: 1, s8: 1, s9: 1, s10: 1, s11: 1, s12: 1, s13: 1, s14: 1, s15: 1, s16: 1, s17: 1, s18: 1, s19: 2, s20: 1, s21: 1, s22: 1, s23: 1, s24: 1, s25: 1, s26: 1, s27: 1, s28: 1, s29: 1, s30: 1, s31: 1, s32: 1, s33: 2, s34: 1, s35: 1, s36: 1, s37: 1, s38: 1, s39: 1, s40: 1, s41: 1, s42: 1, s43: 1, s44: 1, s45: 1, s46: 1, s47: 1, s48: 1};
 
 const sections = {
   cs: { label: 'Circuit Symbols', qs: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'] },
-  vc: { label: 'Voltage, Current &amp; Resistance', qs: ['s9', 's10', 's11', 's12', 's13', 's14', 's15', 's16'] },
+  vc: { label: 'Voltage, Current &amp; Resistance', qs: ['s9', 's10', 's11', 's12', 's13', 's14', 's15', 's16', 's44', 's45', 's46', 's47', 's48'] },
   ol: { label: 'Ohm\'s Law', qs: ['s17', 's18', 's19', 's20', 's21', 's22', 's23', 's24', 's25', 's26'] },
   vr: { label: 'Resistor Data', qs: ['s27', 's28', 's29', 's30', 's31', 's32', 's33'] },
   sp: { label: 'Series &amp; Parallel', qs: ['s34', 's35', 's36', 's37', 's38', 's39', 's40', 's41', 's42', 's43'] }

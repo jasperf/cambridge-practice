@@ -65,6 +65,8 @@ Answer: _______________________________________
 
 **Key ideas:** **Voltage** is linked to the electrical energy in a circuit and is measured in **volts (V)**. **Current** is measured in **amperes (A)** using an ammeter connected **in series**. A **resistor** limits (resists) the current flow and is measured in **ohms (Ω)**. A voltmeter is connected **in parallel** across the component it measures.
 
+**Volts vs amps:** think of a water pipe. **Voltage** is like the pressure from a pump: the *push* the cell gives to the charge. **Current** is like how much water passes a point each second: the *flow* of charge. Small currents are often given in milliamperes: 1000 mA = 1 A.
+
 ### Questions
 
 **Q9** (1 mark)
@@ -108,6 +110,35 @@ Answer: _______________________________________
 
 **Q16** (1 mark)
 True or false: an ammeter is connected in parallel with the lamp it measures. (type *true* or *false*)
+
+Answer: _______________________________________
+
+**Q16a** (1 mark)
+A cell is connected to a lamp, but the switch is open. Which statement is true?
+- A) There is no voltage and no current anywhere
+- B) Current flows but there is no voltage
+- C) The cell still has a voltage, but there is no current
+- D) The voltage and current are both the same as when the switch is closed
+
+**Q16b** (1 mark)
+A student says "the voltage flows round the circuit". What is wrong with this?
+- A) Nothing, voltage and current are two names for the same thing
+- B) Voltage is the push that makes charge move; the charge flowing is the current
+- C) Voltage only exists in parallel circuits
+- D) Voltage is the amount of charge flowing and current is the push
+
+**Q16c** (1 mark)
+A current of 250 mA flows through a lamp. Write this in amperes (A). (1000 mA = 1 A)
+
+Answer: _______________________________________
+
+**Q16d** (1 mark)
+True or false: in a series circuit an ammeter reads the same current wherever it is placed in the loop. (type *true* or *false*)
+
+Answer: _______________________________________
+
+**Q16e** (1 mark)
+In a series circuit, which quantity is shared out between the components: voltage or current? (one word)
 
 Answer: _______________________________________
 
