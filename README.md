@@ -187,7 +187,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Mathematics Unit 4.3 (Linear Inequalities) | Secondary 2 | ✅ Term 2 Week 1 · 5–9 October |
 | Mathematics Unit 5.1–5.2 (Calculating Angles) | Secondary 2 | ✅ Term 2 Week 2 · 12–16 October |
 | Mathematics Unit Test 1 Practice (Linear Inequalities & Angles) | Secondary 2 | ✅ Term 2 Week 3 · Unit Test 1, 20 Oct 2026 |
-| English Unit Test 1 (Persuasive & Emotive Language, Grammar, Reading, Short Story, Spelling) | Secondary 2 | ✅ Term 2 Week 3 · Unit Test 1, 21 Oct 2026 |
+| English Unit Test 1 (Persuasive & Emotive Language, Grammar, Reading, Short Story, Spelling) | Secondary 2 | ✅ Term 2 Week 3 · Unit Test 1, 28 Oct 2026 |
 | Science Unit 3: Density (Solids, Liquids & Gases) | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
 | Science Unit 3: Sound Waves & Thermal Energy | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
 | Science Unit 3: Electricity (Circuits, V = IR, Series & Parallel) | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |

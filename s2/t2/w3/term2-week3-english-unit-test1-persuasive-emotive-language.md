@@ -1,6 +1,6 @@
 # Secondary 2 · Term 2 · English — Unit Test 1: Persuasive & Emotive Language
 
-**Unit Test 1 · Wednesday 21 October 2026**
+**Unit Test 1 · Wednesday 28 October 2026**
 **57 questions · 71 marks** (plus 6 extended-answer questions for written practice, 27 marks)
 
 This document contains all questions from the interactive sheet in a printable format, plus extended-answer questions that are not auto-marked. Students write their answers directly in their notebooks.
