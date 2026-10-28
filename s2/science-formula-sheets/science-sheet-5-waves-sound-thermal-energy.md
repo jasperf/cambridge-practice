@@ -4,9 +4,11 @@
 
 T = 1 ÷ f (period in seconds, frequency in hertz). Bigger amplitude = louder; higher frequency = higher pitch. Constructive interference adds amplitudes, destructive cancels them. Heat (joules) flows from hot to cold by conduction (contact), convection (moving fluids) or radiation (infrared, works in a vacuum).
 
-**Diagram:** [Anatomy of a wave](science-diagram-waves.md)
+**Diagrams:** [Anatomy of a wave](science-diagram-waves.md) · [How heat travels](science-diagram-heat-transfer.md)
 
 ![Anatomy of a wave](svg/science-diagram-waves.svg)
+
+![How heat travels](svg/science-diagram-heat-transfer.svg)
 
 
 **Built from:** [Week 4 · Sound Waves & Thermal Energy](../t2/w4/term2-week4-science-unit3-sound-thermal-energy.md)

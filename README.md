@@ -86,7 +86,7 @@ cambridge-practice/
 │           ├── term2-week4-science-unit3-density.* ← Unit 3: Density of Solids, Liquids & Gases (41 q, 46 marks + 9 written q, 27 marks)
 │           ├── term2-week4-science-unit3-sound-thermal-energy.* ← Unit 3: Sound Waves & Thermal Energy (46 q, 46 marks + 11 written q, 35 marks)
 │           └── term2-week4-science-unit3-electricity.* ← Unit 3: Electricity — circuits, V = IR, series & parallel (43 q, 45 marks + 10 written q, 38 marks)
-│   ├── science-formula-sheets/      ← index.html gallery + one-page SVG formula & key-fact sheets for Term 1–2 science (6 sheets + 2 diagrams, captions, text reference)
+│   ├── science-formula-sheets/      ← index.html gallery + one-page SVG formula & key-fact sheets for Term 1–2 science (6 sheets + 3 diagrams, captions, text reference)
 │   └── english-revision-sheets/     ← index.html gallery + one-page SVG revision sheets for English (Persuasive & Emotive Language, Semicolon Usage), with caption pages
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
 │   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)

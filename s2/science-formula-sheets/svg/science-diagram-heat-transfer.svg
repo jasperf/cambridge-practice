@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1016" viewBox="0 0 1080 1016" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<defs><marker id="mr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D9381E"/></marker><marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1C6DD0"/></marker><marker id="mo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" fill="#E8590C"/></marker></defs>
+<rect width="1080" height="1016" fill="#FBF5E9"/><rect width="14" height="1016" fill="#E8590C"/>
+<text x="56" y="62" font-size="20" font-weight="700" fill="#E8590C" letter-spacing="2">SECONDARY 2 SCIENCE · DIAGRAM</text>
+<text x="56" y="108" font-size="40" font-weight="800" fill="#14213D">How Heat Travels</text>
+<text x="56" y="136" font-size="20" fill="#5B6478">Term 2 · Unit 3 · Conduction, convection, radiation and insulation</text>
+<rect x="56" y="160" width="304" height="400" rx="16" fill="#fff" stroke="#EADFCB"/>
+<circle cx="86" cy="196" r="14" fill="#E8590C"/>
+<text x="86" y="202" font-size="16" font-weight="800" fill="#fff" text-anchor="middle" >1</text>
+<text x="110" y="202" font-size="22" font-weight="800" fill="#14213D" text-anchor="start" >CONDUCTION</text>
+<text x="76" y="226" font-size="14" font-weight="400" fill="#5B6478" text-anchor="start" >through direct contact</text>
+<line x1="76" x2="340" y1="398" y2="398" stroke="#EADFCB"/>
+<rect x="388" y="160" width="304" height="400" rx="16" fill="#fff" stroke="#EADFCB"/>
+<circle cx="418" cy="196" r="14" fill="#E8590C"/>
+<text x="418" y="202" font-size="16" font-weight="800" fill="#fff" text-anchor="middle" >2</text>
+<text x="442" y="202" font-size="22" font-weight="800" fill="#14213D" text-anchor="start" >CONVECTION</text>
+<text x="408" y="226" font-size="14" font-weight="400" fill="#5B6478" text-anchor="start" >in moving liquids and gases</text>
+<line x1="408" x2="672" y1="398" y2="398" stroke="#EADFCB"/>
+<rect x="720" y="160" width="304" height="400" rx="16" fill="#fff" stroke="#EADFCB"/>
+<circle cx="750" cy="196" r="14" fill="#E8590C"/>
+<text x="750" y="202" font-size="16" font-weight="800" fill="#fff" text-anchor="middle" >3</text>
+<text x="774" y="202" font-size="22" font-weight="800" fill="#14213D" text-anchor="start" >RADIATION</text>
+<text x="740" y="226" font-size="14" font-weight="400" fill="#5B6478" text-anchor="start" >as infrared waves</text>
+<line x1="740" x2="1004" y1="398" y2="398" stroke="#EADFCB"/>
+<rect x="76" y="250" width="264" height="60" rx="10" fill="#EEF0F4" stroke="#14213D" stroke-width="2"/>
+<circle cx="98" cy="266" r="6.5" fill="#d9381e"/>
+<circle cx="130" cy="266" r="6.5" fill="#be4037"/>
+<circle cx="162" cy="266" r="6.5" fill="#a34751"/>
+<circle cx="194" cy="266" r="6.5" fill="#884f6a"/>
+<circle cx="226" cy="266" r="6.5" fill="#6d5684"/>
+<circle cx="258" cy="266" r="6.5" fill="#525e9d"/>
+<circle cx="290" cy="266" r="6.5" fill="#3765b7"/>
+<circle cx="322" cy="266" r="6.5" fill="#1c6dd0"/>
+<circle cx="98" cy="284" r="6.5" fill="#d9381e"/>
+<circle cx="130" cy="284" r="6.5" fill="#be4037"/>
+<circle cx="162" cy="284" r="6.5" fill="#a34751"/>
+<circle cx="194" cy="284" r="6.5" fill="#884f6a"/>
+<circle cx="226" cy="284" r="6.5" fill="#6d5684"/>
+<circle cx="258" cy="284" r="6.5" fill="#525e9d"/>
+<circle cx="290" cy="284" r="6.5" fill="#3765b7"/>
+<circle cx="322" cy="284" r="6.5" fill="#1c6dd0"/>
+<circle cx="98" cy="302" r="6.5" fill="#d9381e"/>
+<circle cx="130" cy="302" r="6.5" fill="#be4037"/>
+<circle cx="162" cy="302" r="6.5" fill="#a34751"/>
+<circle cx="194" cy="302" r="6.5" fill="#884f6a"/>
+<circle cx="226" cy="302" r="6.5" fill="#6d5684"/>
+<circle cx="258" cy="302" r="6.5" fill="#525e9d"/>
+<circle cx="290" cy="302" r="6.5" fill="#3765b7"/>
+<circle cx="322" cy="302" r="6.5" fill="#1c6dd0"/>
+<path d="M98 354 C84 340 90 326 98 316 C100 328 112 330 108 316 C124 330 126 346 112 354 Z" fill="#F5A623" stroke="#E8590C" stroke-width="2"/>
+<line x1="140" x2="322" y1="346" y2="346" stroke="#E8590C" stroke-width="3" marker-end="url(#mo)"/>
+<text x="231" y="372" font-size="14" font-weight="600" fill="#5B6478" text-anchor="middle" >heat flows hot → cold</text>
+<text x="76" y="424" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >Particles vibrate and pass</text>
+<text x="76" y="446" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >energy on by direct contact.</text>
+<text x="76" y="468" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >Mainly solids; metals best.</text>
+<text x="76" y="490" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >Needs particles touching.</text>
+<text x="76" y="528" font-size="15" font-weight="700" fill="#E8590C" text-anchor="start" >e.g. spoon in hot soup</text>
+<rect x="430" y="256" width="216" height="98" rx="16" fill="#DCEBFA" stroke="#14213D" stroke-width="3"/>
+<path d="M538 358 C522 344 528 330 538 320 C540 332 552 334 548 320 C564 334 566 350 550 358 Z" fill="#F5A623" stroke="#E8590C" stroke-width="2"/>
+<path d="M538 318 V280 Q538 260 558 260 H592" fill="none" stroke="#D9381E" stroke-width="4" stroke-linecap="round"/>
+<path d="M538 318 V280 Q538 260 518 260 H484" fill="none" stroke="#D9381E" stroke-width="4" stroke-linecap="round"/>
+<path d="M604 262 Q616 262 616 276 V304 Q616 320 598 320 H562" fill="none" stroke="#1C6DD0" stroke-width="4" marker-end="url(#mb)"/>
+<path d="M472 262 Q460 262 460 276 V304 Q460 320 478 320 H514" fill="none" stroke="#1C6DD0" stroke-width="4" marker-end="url(#mb)"/>
+<text x="538" y="246" font-size="13" font-weight="700" fill="#D9381E" text-anchor="middle" >warm rises</text>
+<text x="448" y="372" font-size="13" font-weight="700" fill="#1C6DD0" text-anchor="middle" >cool sinks</text>
+<text x="628" y="372" font-size="13" font-weight="700" fill="#1C6DD0" text-anchor="middle" >cool sinks</text>
+<text x="408" y="424" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >Warm fluid is less dense,</text>
+<text x="408" y="446" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >so it rises; cool, denser</text>
+<text x="408" y="468" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >fluid sinks. A loop forms.</text>
+<text x="408" y="490" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >Liquids and gases only.</text>
+<text x="408" y="528" font-size="15" font-weight="700" fill="#E8590C" text-anchor="start" >e.g. water heating in a pot</text>
+<line x1="800.0" y1="300.0" x2="811.0" y2="300.0" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+<line x1="790.6" y1="322.6" x2="798.4" y2="330.4" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+<line x1="768.0" y1="332.0" x2="768.0" y2="343.0" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+<line x1="745.4" y1="322.6" x2="737.6" y2="330.4" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+<line x1="736.0" y1="300.0" x2="725.0" y2="300.0" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+<line x1="745.4" y1="277.4" x2="737.6" y2="269.6" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+<line x1="768.0" y1="268.0" x2="768.0" y2="257.0" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+<line x1="790.6" y1="277.4" x2="798.4" y2="269.6" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+<circle cx="768" cy="300" r="24" fill="#F5A623" stroke="#E8590C" stroke-width="2"/>
+<polyline points="820.0,278.0 822.0,280.2 824.0,281.9 826.0,282.9 828.0,282.9 830.0,281.9 832.0,280.2 834.0,278.0 836.0,275.8 838.0,274.1 840.0,273.1 842.0,273.1 844.0,274.1 846.0,275.8 848.0,278.0 850.0,280.2 852.0,281.9 854.0,282.9 856.0,282.9 858.0,281.9 860.0,280.2 862.0,278.0 864.0,275.8 866.0,274.1 868.0,273.1 870.0,273.1 872.0,274.1 874.0,275.8 876.0,278.0 878.0,280.2 880.0,281.9 882.0,282.9 884.0,282.9 886.0,281.9 888.0,280.2 890.0,278.0 892.0,275.8 894.0,274.1 896.0,273.1 898.0,273.1 900.0,274.1 902.0,275.8 904.0,278.0 906.0,280.2 908.0,281.9 910.0,282.9 912.0,282.9 914.0,281.9 916.0,280.2 918.0,278.0 920.0,275.8 922.0,274.1 924.0,273.1 926.0,273.1 928.0,274.1 930.0,275.8 932.0,278.0 934.0,280.2 936.0,281.9 938.0,282.9 940.0,282.9 942.0,281.9 944.0,280.2 946.0,278.0 948.0,275.8 950.0,274.1" fill="none" stroke="#D9381E" stroke-width="3" stroke-linecap="round" marker-end="url(#mr)"/>
+<polyline points="820.0,300.0 822.0,302.2 824.0,303.9 826.0,304.9 828.0,304.9 830.0,303.9 832.0,302.2 834.0,300.0 836.0,297.8 838.0,296.1 840.0,295.1 842.0,295.1 844.0,296.1 846.0,297.8 848.0,300.0 850.0,302.2 852.0,303.9 854.0,304.9 856.0,304.9 858.0,303.9 860.0,302.2 862.0,300.0 864.0,297.8 866.0,296.1 868.0,295.1 870.0,295.1 872.0,296.1 874.0,297.8 876.0,300.0 878.0,302.2 880.0,303.9 882.0,304.9 884.0,304.9 886.0,303.9 888.0,302.2 890.0,300.0 892.0,297.8 894.0,296.1 896.0,295.1 898.0,295.1 900.0,296.1 902.0,297.8 904.0,300.0 906.0,302.2 908.0,303.9 910.0,304.9 912.0,304.9 914.0,303.9 916.0,302.2 918.0,300.0 920.0,297.8 922.0,296.1 924.0,295.1 926.0,295.1 928.0,296.1 930.0,297.8 932.0,300.0 934.0,302.2 936.0,303.9 938.0,304.9 940.0,304.9 942.0,303.9 944.0,302.2 946.0,300.0 948.0,297.8 950.0,296.1" fill="none" stroke="#D9381E" stroke-width="3" stroke-linecap="round" marker-end="url(#mr)"/>
+<polyline points="820.0,322.0 822.0,324.2 824.0,325.9 826.0,326.9 828.0,326.9 830.0,325.9 832.0,324.2 834.0,322.0 836.0,319.8 838.0,318.1 840.0,317.1 842.0,317.1 844.0,318.1 846.0,319.8 848.0,322.0 850.0,324.2 852.0,325.9 854.0,326.9 856.0,326.9 858.0,325.9 860.0,324.2 862.0,322.0 864.0,319.8 866.0,318.1 868.0,317.1 870.0,317.1 872.0,318.1 874.0,319.8 876.0,322.0 878.0,324.2 880.0,325.9 882.0,326.9 884.0,326.9 886.0,325.9 888.0,324.2 890.0,322.0 892.0,319.8 894.0,318.1 896.0,317.1 898.0,317.1 900.0,318.1 902.0,319.8 904.0,322.0 906.0,324.2 908.0,325.9 910.0,326.9 912.0,326.9 914.0,325.9 916.0,324.2 918.0,322.0 920.0,319.8 922.0,318.1 924.0,317.1 926.0,317.1 928.0,318.1 930.0,319.8 932.0,322.0 934.0,324.2 936.0,325.9 938.0,326.9 940.0,326.9 942.0,325.9 944.0,324.2 946.0,322.0 948.0,319.8 950.0,318.1" fill="none" stroke="#D9381E" stroke-width="3" stroke-linecap="round" marker-end="url(#mr)"/>
+<circle cx="988" cy="284" r="10" fill="#14213D"/><rect x="974" y="298" width="28" height="42" rx="9" fill="#14213D"/>
+<text x="890" y="360" font-size="13" font-weight="600" fill="#5B6478" text-anchor="middle" font-style="italic">vacuum (no particles)</text>
+<text x="740" y="424" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >Infrared waves carry heat.</text>
+<text x="740" y="446" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >No particles needed, so it</text>
+<text x="740" y="468" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >works through a vacuum.</text>
+<text x="740" y="490" font-size="15" font-weight="400" fill="#14213D" text-anchor="start" >How the Sun warms Earth.</text>
+<text x="740" y="528" font-size="15" font-weight="700" fill="#E8590C" text-anchor="start" >e.g. campfire on your face</text>
+<rect x="56" y="584" width="968" height="208" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="76" y="624" width="130" height="144" fill="#FDE8E0"/><rect x="256" y="624" width="130" height="144" fill="#DCEBFA"/>
+<rect x="206" y="624" width="10" height="144" fill="#9CC3EA" stroke="#14213D"/><rect x="246" y="624" width="10" height="144" fill="#9CC3EA" stroke="#14213D"/>
+<circle cx="225" cy="636" r="2.5" fill="#5B6478"/>
+<circle cx="237" cy="636" r="2.5" fill="#5B6478"/>
+<circle cx="225" cy="656" r="2.5" fill="#5B6478"/>
+<circle cx="237" cy="656" r="2.5" fill="#5B6478"/>
+<circle cx="225" cy="676" r="2.5" fill="#5B6478"/>
+<circle cx="237" cy="676" r="2.5" fill="#5B6478"/>
+<circle cx="225" cy="696" r="2.5" fill="#5B6478"/>
+<circle cx="237" cy="696" r="2.5" fill="#5B6478"/>
+<circle cx="225" cy="716" r="2.5" fill="#5B6478"/>
+<circle cx="237" cy="716" r="2.5" fill="#5B6478"/>
+<circle cx="225" cy="736" r="2.5" fill="#5B6478"/>
+<circle cx="237" cy="736" r="2.5" fill="#5B6478"/>
+<circle cx="225" cy="756" r="2.5" fill="#5B6478"/>
+<circle cx="237" cy="756" r="2.5" fill="#5B6478"/>
+<text x="141" y="648" font-size="14" font-weight="700" fill="#D9381E" text-anchor="middle" >warm room</text>
+<text x="321" y="648" font-size="14" font-weight="700" fill="#1C6DD0" text-anchor="middle" >cold outside</text>
+<text x="231" y="614" font-size="14" font-weight="700" fill="#5B6478" text-anchor="middle" >trapped air</text>
+<line x1="90" x2="198" y1="700" y2="700" stroke="#E8590C" stroke-width="7" marker-end="url(#mo)"/>
+<line x1="222" x2="244" y1="700" y2="700" stroke="#E8590C" stroke-width="3" marker-end="url(#mo)"/>
+<line x1="264" x2="300" y1="700" y2="700" stroke="#E8590C" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#mo)"/>
+<text x="231" y="786" font-size="13" font-weight="600" fill="#5B6478" text-anchor="middle" >double-glazed window</text>
+<text x="430" y="624" font-size="20" font-weight="800" fill="#E8590C" text-anchor="start" letter-spacing="1">CONSERVING HEAT</text>
+<text x="430" y="658" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Insulation (loft, wall filling, layers of</text>
+<text x="430" y="684" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >clothing) traps air, a poor conductor.</text>
+<text x="430" y="710" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Double glazing: air or gas between two</text>
+<text x="430" y="736" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >panes, so less heat escapes.</text>
+<text x="430" y="764" font-size="16" font-weight="700" fill="#14213D" text-anchor="start" >Result: saves energy, cuts costs, fewer emissions.</text>
+<rect x="56" y="816" width="472" height="176" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="78" y="852" font-size="20" font-weight="800" fill="#E8590C" text-anchor="start" letter-spacing="1">HEAT vs TEMPERATURE</text>
+<text x="78" y="886" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Heat: energy transferred, in joules (J)</text>
+<text x="78" y="914" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Temperature: average particle energy, °C</text>
+<text x="78" y="942" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Heat always flows from hot to cold</text>
+<text x="78" y="970" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Bigger cup, same °C = more heat</text>
+<rect x="552" y="816" width="472" height="176" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="574" y="852" font-size="20" font-weight="800" fill="#E8590C" text-anchor="start" letter-spacing="1">SPOT THE METHOD</text>
+<text x="574" y="886" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Spoon warms in hot soup → conduction</text>
+<text x="574" y="914" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Rising warm water, sinking cool → convection</text>
+<text x="574" y="942" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Campfire warms your face → radiation</text>
+<text x="574" y="970" font-size="16" font-weight="400" fill="#14213D" text-anchor="start" >Heat through empty space → radiation</text>
+</svg>

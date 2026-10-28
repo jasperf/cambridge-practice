@@ -1,6 +1,6 @@
 # Secondary 2 · Science Formula Sheets
 
-One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Two extra diagrams cover the anatomy of a wave and the formula triangles.
+One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Three extra diagrams cover the anatomy of a wave, the formula triangles and how heat travels.
 
 | # | Sheet | Term | Page | Image |
 |---|-------|------|------|-------|
@@ -43,10 +43,13 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 |---------|------|-------|
 | **Anatomy of a Wave** — amplitude, wavelength, crest, trough, period, frequency, compressions | [science-diagram-waves.md](science-diagram-waves.md) | [.svg](svg/science-diagram-waves.svg) |
 | **Formula Triangles** — density, Ohm's law, period and frequency | [science-diagram-formula-triangles.md](science-diagram-formula-triangles.md) | [.svg](svg/science-diagram-formula-triangles.svg) |
+| **How Heat Travels** — conduction, convection, radiation, insulation, heat vs temperature | [science-diagram-heat-transfer.md](science-diagram-heat-transfer.md) | [.svg](svg/science-diagram-heat-transfer.svg) |
 
 [![Anatomy of a wave](svg/science-diagram-waves.svg)](science-diagram-waves.md)
 
 [![Formula triangles](svg/science-diagram-formula-triangles.svg)](science-diagram-formula-triangles.md)
+
+[![How heat travels](svg/science-diagram-heat-transfer.svg)](science-diagram-heat-transfer.md)
 
 ## Other files
 
@@ -62,7 +65,7 @@ science-formula-sheets/
 ├── README.md                 ← This file
 ├── formula-reference.md      ← Text version of all six sheets
 ├── science-sheet-N-*.md      ← One page per sheet: image + caption + source worksheets
-├── science-diagram-*.md      ← Wave anatomy and formula-triangle diagrams
+├── science-diagram-*.md      ← Wave anatomy, formula-triangle and heat-transfer diagrams
 ├── svg/                      ← Sheet images (SVG)
 └── whatsapp/                 ← captions-whatsapp.txt (JPGs here are git-ignored)
 ```
