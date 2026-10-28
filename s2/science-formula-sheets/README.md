@@ -42,7 +42,7 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 | Diagram | Page | Image |
 |---------|------|-------|
 | **Anatomy of a Wave** — amplitude, wavelength, crest, trough, period, frequency, compressions | [science-diagram-waves.md](science-diagram-waves.md) | [.svg](svg/science-diagram-waves.svg) |
-| **Formula Triangles** — density, Ohm's law, period and frequency | [science-diagram-formula-triangles.md](science-diagram-formula-triangles.md) | [.svg](svg/science-diagram-formula-triangles.svg) |
+| **Formula Triangles** — density, Ohm's law, period and frequency, with worked examples | [science-diagram-formula-triangles.md](science-diagram-formula-triangles.md) | [.svg](svg/science-diagram-formula-triangles.svg) |
 | **How Heat Travels** — conduction, convection, radiation, insulation, heat vs temperature | [science-diagram-heat-transfer.md](science-diagram-heat-transfer.md) | [.svg](svg/science-diagram-heat-transfer.svg) |
 
 [![Anatomy of a wave](svg/science-diagram-waves.svg)](science-diagram-waves.md)
