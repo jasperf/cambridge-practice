@@ -13,7 +13,7 @@ A 10-minute follow-up to the Thermal Energy Quick Test. Write your answers in yo
 **Q2** | Which pair of units can be used to measure heat and temperature?
 - A) Heat in °C, temperature in joules
 - B) Heat in kelvin, temperature in calories
-- C) Heat in joules or calories, temperature in °C, °F or kelvin
+- C) Heat in joules, calories or kilocalories (kcal), temperature in °C, °F or kelvin
 - D) Heat and temperature are both measured in joules
 
 ---

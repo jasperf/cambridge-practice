@@ -2,7 +2,7 @@
 
 **Q1** | Any three: it saves energy (energy efficiency), it lowers heating bills (less work for the heating system), and it protects the environment (less energy used means fewer greenhouse-gas emissions).
 
-**Q2** | **C** — heat is measured in joules (J) or calories (cal); temperature in °C, °F or kelvin (K).
+**Q2** | **C** — heat is measured in joules (J), calories (cal) or kilocalories (kcal, the "Calories" on food labels; 1 kcal ≈ 4.18 kJ); temperature in °C, °F or kelvin (K).
 
 **Q3** | Wool traps air between its fibres. Trapped air is a poor conductor, so wool is an **insulator**. It slows the **heat loss** from your body to the cooler air, so you stay warm.
 
