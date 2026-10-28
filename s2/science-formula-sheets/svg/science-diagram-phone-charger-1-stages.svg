@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="480" viewBox="0 0 1080 480" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="480" fill="#FBF5E9"/><rect width="14" height="480" fill="#E8590C"/>
+<text x="56" y="62" font-size="20" font-weight="700" fill="#E8590C" letter-spacing="2">STEP 1 OF 2 · THE FIVE STAGES</text>
+<text x="56" y="108" font-size="40" font-weight="800" fill="#14213D">Inside a Phone Charger</text>
+<text x="56" y="136" font-size="20" fill="#5B6478">How 220 V from the wall becomes the 5 V a phone can handle</text>
+<rect x="56" y="170" width="176" height="236" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="80" cy="196" r="13" fill="#E8590C"/><text x="80" y="202" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">1</text>
+<text x="102" y="202" font-size="18" font-weight="800" fill="#14213D">Wall socket</text>
+<text x="144" y="236" font-size="22" font-weight="800" fill="#1C6DD0" text-anchor="middle">220 V AC</text>
+<line x1="74" x2="214" y1="332" y2="332" stroke="#EADFCB" stroke-width="2"/>
+<polyline points="74.0,294.0 76.3,286.5 78.7,279.4 81.0,272.8 83.3,267.2 85.7,262.8 88.0,259.8 90.3,258.2 92.7,258.2 95.0,259.8 97.3,262.8 99.7,267.2 102.0,272.8 104.3,279.4 106.7,286.5 109.0,294.0 111.3,301.5 113.7,308.6 116.0,315.2 118.3,320.8 120.7,325.2 123.0,328.2 125.3,329.8 127.7,329.8 130.0,328.2 132.3,325.2 134.7,320.8 137.0,315.2 139.3,308.6 141.7,301.5 144.0,294.0 146.3,286.5 148.7,279.4 151.0,272.8 153.3,267.2 155.7,262.8 158.0,259.8 160.3,258.2 162.7,258.2 165.0,259.8 167.3,262.8 169.7,267.2 172.0,272.8 174.3,279.4 176.7,286.5 179.0,294.0 181.3,301.5 183.7,308.6 186.0,315.2 188.3,320.8 190.7,325.2 193.0,328.2 195.3,329.8 197.7,329.8 200.0,328.2 202.3,325.2 204.7,320.8 207.0,315.2 209.3,308.6 211.7,301.5 214.0,294.0" fill="none" stroke="#1C6DD0" stroke-width="3" stroke-linejoin="round"/>
+<text x="144" y="366" font-size="13" fill="#5B6478" text-anchor="middle">Voltage swings + and −</text>
+<text x="144" y="384" font-size="13" fill="#5B6478" text-anchor="middle">50 times a second</text>
+<polygon points="237,288 251,297 237,306" fill="#E8590C"/>
+<rect x="256" y="170" width="176" height="236" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="280" cy="196" r="13" fill="#E8590C"/><text x="280" y="202" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">2</text>
+<text x="302" y="202" font-size="18" font-weight="800" fill="#14213D">Rectifier</text>
+<text x="344" y="236" font-size="22" font-weight="800" fill="#1C6DD0" text-anchor="middle">≈ 310 V DC</text>
+<line x1="274" x2="414" y1="332" y2="332" stroke="#EADFCB" stroke-width="2"/>
+<polyline points="274.0,332.0 276.3,324.5 278.7,317.4 281.0,310.8 283.3,305.2 285.7,300.8 288.0,297.8 290.3,296.2 292.7,296.2 295.0,297.8 297.3,300.8 299.7,305.2 302.0,310.8 304.3,317.4 306.7,324.5 309.0,332.0 311.3,324.5 313.7,317.4 316.0,310.8 318.3,305.2 320.7,300.8 323.0,297.8 325.3,296.2 327.7,296.2 330.0,297.8 332.3,300.8 334.7,305.2 337.0,310.8 339.3,317.4 341.7,324.5 344.0,332.0 346.3,324.5 348.7,317.4 351.0,310.8 353.3,305.2 355.7,300.8 358.0,297.8 360.3,296.2 362.7,296.2 365.0,297.8 367.3,300.8 369.7,305.2 372.0,310.8 374.3,317.4 376.7,324.5 379.0,332.0 381.3,324.5 383.7,317.4 386.0,310.8 388.3,305.2 390.7,300.8 393.0,297.8 395.3,296.2 397.7,296.2 400.0,297.8 402.3,300.8 404.7,305.2 407.0,310.8 409.3,317.4 411.7,324.5 414.0,332.0" fill="none" stroke="#C9C2B2" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="274.0,299.0 414.0,299.0" fill="none" stroke="#E8590C" stroke-width="4" stroke-linejoin="round"/>
+<text x="344" y="366" font-size="13" fill="#5B6478" text-anchor="middle">Diodes flip the − half</text>
+<text x="344" y="384" font-size="13" fill="#5B6478" text-anchor="middle">up; a capacitor smooths</text>
+<polygon points="437,288 451,297 437,306" fill="#E8590C"/>
+<rect x="456" y="170" width="176" height="236" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="480" cy="196" r="13" fill="#E8590C"/><text x="480" y="202" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">3</text>
+<text x="502" y="202" font-size="18" font-weight="800" fill="#14213D">Fast switch</text>
+<text x="544" y="236" font-size="22" font-weight="800" fill="#1C6DD0" text-anchor="middle">310 V pulses</text>
+<line x1="474" x2="614" y1="332" y2="332" stroke="#EADFCB" stroke-width="2"/>
+<polyline points="474.0,332.0 474.0,296.0 481.0,296.0 481.0,332.0 488.0,332.0 488.0,296.0 495.0,296.0 495.0,332.0 502.0,332.0 502.0,296.0 509.0,296.0 509.0,332.0 516.0,332.0 516.0,296.0 523.0,296.0 523.0,332.0 530.0,332.0 530.0,296.0 537.0,296.0 537.0,332.0 544.0,332.0 544.0,296.0 551.0,296.0 551.0,332.0 558.0,332.0 558.0,296.0 565.0,296.0 565.0,332.0 572.0,332.0 572.0,296.0 579.0,296.0 579.0,332.0 586.0,332.0 586.0,296.0 593.0,296.0 593.0,332.0 600.0,332.0 600.0,296.0 607.0,296.0 607.0,332.0 614.0,332.0" fill="none" stroke="#1C6DD0" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="544" y="366" font-size="13" fill="#5B6478" text-anchor="middle">A transistor switches it</text>
+<text x="544" y="384" font-size="13" fill="#5B6478" text-anchor="middle">on/off ~100,000× a second</text>
+<polygon points="637,288 651,297 637,306" fill="#E8590C"/>
+<rect x="656" y="170" width="176" height="236" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="680" cy="196" r="13" fill="#E8590C"/><text x="680" y="202" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">4</text>
+<text x="702" y="202" font-size="18" font-weight="800" fill="#14213D">Transformer</text>
+<text x="744" y="236" font-size="22" font-weight="800" fill="#1C6DD0" text-anchor="middle">≈ 5 V pulses</text>
+<line x1="674" x2="814" y1="332" y2="332" stroke="#EADFCB" stroke-width="2"/>
+<polyline points="674.0,332.0 674.0,324.0 681.0,324.0 681.0,332.0 688.0,332.0 688.0,324.0 695.0,324.0 695.0,332.0 702.0,332.0 702.0,324.0 709.0,324.0 709.0,332.0 716.0,332.0 716.0,324.0 723.0,324.0 723.0,332.0 730.0,332.0 730.0,324.0 737.0,324.0 737.0,332.0 744.0,332.0 744.0,324.0 751.0,324.0 751.0,332.0 758.0,332.0 758.0,324.0 765.0,324.0 765.0,332.0 772.0,332.0 772.0,324.0 779.0,324.0 779.0,332.0 786.0,332.0 786.0,324.0 793.0,324.0 793.0,332.0 800.0,332.0 800.0,324.0 807.0,324.0 807.0,332.0 814.0,332.0" fill="none" stroke="#2F9E6E" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="744" y="366" font-size="13" fill="#5B6478" text-anchor="middle">Two coils step the</text>
+<text x="744" y="384" font-size="13" fill="#5B6478" text-anchor="middle">voltage down (next image)</text>
+<polygon points="837,288 851,297 837,306" fill="#E8590C"/>
+<rect x="856" y="170" width="176" height="236" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="880" cy="196" r="13" fill="#E8590C"/><text x="880" y="202" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">5</text>
+<text x="902" y="202" font-size="18" font-weight="800" fill="#14213D">Smoothing</text>
+<text x="944" y="236" font-size="22" font-weight="800" fill="#1C6DD0" text-anchor="middle">5 V DC</text>
+<line x1="874" x2="1014" y1="332" y2="332" stroke="#EADFCB" stroke-width="2"/>
+<polyline points="874.0,324.0 1014.0,324.0" fill="none" stroke="#2F9E6E" stroke-width="4" stroke-linejoin="round"/>
+<text x="944" y="366" font-size="13" fill="#5B6478" text-anchor="middle">Diode + capacitor make</text>
+<text x="944" y="384" font-size="13" fill="#5B6478" text-anchor="middle">steady DC for the phone</text>
+<text x="56" y="436" font-size="16" fill="#5B6478">Stage 4 is the clever bit: the next image shows the two coils inside the transformer.</text>
+<text x="1024" y="464" font-size="13" fill="#8A8574" text-anchor="end">Waveforms are sketches, not to scale</text>
+</svg>

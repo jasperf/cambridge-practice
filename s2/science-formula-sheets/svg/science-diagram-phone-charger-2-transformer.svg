@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="540" viewBox="0 0 1080 540" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="540" fill="#FBF5E9"/><rect width="14" height="540" fill="#E8590C"/>
+<text x="56" y="62" font-size="20" font-weight="700" fill="#E8590C" letter-spacing="2">STEP 2 OF 2 · THE COILS</text>
+<text x="56" y="108" font-size="40" font-weight="800" fill="#14213D">The Transformer</text>
+<text x="56" y="136" font-size="20" fill="#5B6478">Stage 4 up close: how two coils step the voltage down</text>
+<g transform="translate(0,-262)">
+<rect x="56" y="442" width="968" height="304" rx="16" fill="#14213D"/>
+<rect x="360" y="502" width="360" height="220" rx="8" fill="#6B7590"/>
+<rect x="430" y="538" width="220" height="148" rx="4" fill="#14213D"/>
+<rect x="395" y="520" width="290" height="184" rx="4" fill="none" stroke="#FFB27A" stroke-width="2.5" stroke-dasharray="7 6"/>
+<polygon points="534.0,513 546.0,520 534.0,527" fill="#FFB27A"/>
+<text x="540" y="592" font-size="14" fill="#EADFCB" text-anchor="middle">changing magnetic field</text>
+<text x="540" y="613" font-size="14" fill="#EADFCB" text-anchor="middle">flows round the core</text>
+<text x="540" y="634" font-size="14" fill="#EADFCB" text-anchor="middle">and drives current</text>
+<text x="540" y="655" font-size="14" fill="#EADFCB" text-anchor="middle">in coil 2</text>
+<ellipse cx="395.0" cy="532" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="545" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="558" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="571" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="584" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="597" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="610" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="623" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="636" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="649" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="662" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="395.0" cy="675" rx="48" ry="8" fill="none" stroke="#5B9BF0" stroke-width="4"/>
+<ellipse cx="685.0" cy="577" rx="48" ry="8" fill="none" stroke="#52D6A0" stroke-width="4"/>
+<ellipse cx="685.0" cy="607" rx="48" ry="8" fill="none" stroke="#52D6A0" stroke-width="4"/>
+<ellipse cx="685.0" cy="637" rx="48" ry="8" fill="none" stroke="#52D6A0" stroke-width="4"/>
+<line x1="347.0" y1="532" x2="320" y2="532" stroke="#5B9BF0" stroke-width="4"/><line x1="347.0" y1="675" x2="320" y2="675" stroke="#5B9BF0" stroke-width="4"/>
+<line x1="733.0" y1="577" x2="760" y2="577" stroke="#52D6A0" stroke-width="4"/><line x1="733.0" y1="637" x2="760" y2="637" stroke="#52D6A0" stroke-width="4"/>
+<text x="80" y="526" font-size="18" font-weight="800" fill="#5B9BF0">Coil 1 (primary)</text>
+<text x="80" y="550" font-size="16" fill="#fff">MANY turns of thin wire</text>
+<text x="80" y="574" font-size="16" fill="#fff">e.g. 44 turns</text>
+<text x="80" y="602" font-size="16" fill="#EADFCB">in: ≈ 310 V pulses</text>
+<text x="1000" y="526" font-size="18" font-weight="800" fill="#52D6A0" text-anchor="end">Coil 2 (secondary)</text>
+<text x="1000" y="550" font-size="16" fill="#fff" text-anchor="end">FEW turns of thicker wire</text>
+<text x="1000" y="574" font-size="16" fill="#fff" text-anchor="end">e.g. 1 turn</text>
+<text x="1000" y="602" font-size="16" fill="#EADFCB" text-anchor="end">out: ≈ 5 V pulses</text>
+<rect x="80" y="648" width="240" height="74" rx="10" fill="#1F3159"/>
+<text x="200" y="674" font-size="20" font-weight="700" fill="#fff" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">Vp ÷ Vs = Np ÷ Ns</text>
+<text x="200" y="700" font-size="14" fill="#EADFCB" text-anchor="middle">volts ratio = turns ratio</text>
+<rect x="760" y="648" width="240" height="74" rx="10" fill="#1F3159"/>
+<text x="880" y="674" font-size="14" fill="#EADFCB" text-anchor="middle">Fewer turns on coil 2</text>
+<text x="880" y="700" font-size="14" fill="#EADFCB" text-anchor="middle">= lower voltage (step-down)</text>
+</g>
+<text x="56" y="508" font-size="15" fill="#5B6478">Old chargers: a big heavy transformer at 50 Hz. Modern ones switch very fast, so a tiny core does the same job.</text>
+</svg>
