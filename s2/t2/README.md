@@ -68,6 +68,10 @@ Source material: the Secondary 2 English Google Classroom (*Features of Persuasi
 | **Sound Waves & Thermal Energy** — Unit 3 | 46 | 46 | [.md](./w4/term2-week4-science-unit3-sound-thermal-energy.md) | [.html](./w4/term2-week4-science-unit3-sound-thermal-energy.html) |
 | **Electricity** — Circuits, V = IR, Series & Parallel | 43 | 45 | [.md](./w4/term2-week4-science-unit3-electricity.md) | [.html](./w4/term2-week4-science-unit3-electricity.html) |
 
+### Science Unit 3: Thermal Energy Quick Test
+
+A **10-question, 15-minute recall test** on the Sound Waves & Thermal Energy sheet's thermal half: heat vs temperature (Q1–Q3), how heat travels (Q4–Q6), conserving heat (Q7–Q9) and a closing misconception to correct (Q10). Q3, Q6 and Q9 are multiple choice; the rest are written answers in a notebook. It is printable only (no interactive `.html`). It comes with a separate [answers file](./w4/term2-week4-science-unit3-thermal-energy-quick-test-answers.md) for the teacher and a [WhatsApp-ready `.txt`](./w4/term2-week4-science-unit3-thermal-energy-quick-test-whatsapp.txt) of the same questions to paste into a chat.
+
 **Formula sheets:** one-page SVG/JPG summaries of the formulas and key facts for Density, Sound Waves & Thermal Energy and Electricity (plus Term 1 science) are in [`../science-formula-sheets/`](../science-formula-sheets/README.md).
 
 **English revision sheets:** one-page image summaries of persuasive techniques and emotive language (Level 2/3 Unit Test) and of semicolon usage are in [`../english-revision-sheets/`](../english-revision-sheets/README.md).
@@ -117,5 +121,8 @@ s2/t2/
     ├── term2-week4-science-unit3-sound-thermal-energy.html ← Interactive (Sound Waves & Thermal Energy)
     ├── term2-week4-science-unit3-sound-thermal-energy.md   ← Printable (+11 written q)
     ├── term2-week4-science-unit3-electricity.html ← Interactive (Electricity)
-    └── term2-week4-science-unit3-electricity.md   ← Printable (+10 written and drawing q)
+    ├── term2-week4-science-unit3-electricity.md   ← Printable (+10 written and drawing q)
+    ├── term2-week4-science-unit3-thermal-energy-quick-test.md ← Printable quick test (10 q, no .html)
+    ├── term2-week4-science-unit3-thermal-energy-quick-test-answers.md ← Answers
+    └── term2-week4-science-unit3-thermal-energy-quick-test-whatsapp.txt ← Paste-ready for WhatsApp
 ```
