@@ -70,7 +70,7 @@ Source material: the Secondary 2 English Google Classroom (*Features of Persuasi
 
 ### Science Unit 3: Thermal Energy Quick Test
 
-A **10-question, 15-minute recall test** on the Sound Waves & Thermal Energy sheet's thermal half: heat vs temperature (Q1–Q3), how heat travels (Q4–Q6), conserving heat (Q7–Q9) and a closing misconception to correct (Q10). Q3, Q6 and Q9 are multiple choice; the rest are written answers in a notebook. It is printable only (no interactive `.html`). It comes with a separate [answers file](./w4/term2-week4-science-unit3-thermal-energy-quick-test-answers.md) for the teacher and a [WhatsApp-ready `.txt`](./w4/term2-week4-science-unit3-thermal-energy-quick-test-whatsapp.txt) of the same questions to paste into a chat.
+A **10-question, 15-minute recall test** on the Sound Waves & Thermal Energy sheet's thermal half: heat vs temperature (Q1–Q3), how heat travels (Q4–Q6), conserving heat (Q7–Q9) and a closing misconception to correct (Q10). Q3, Q6 and Q9 are multiple choice; the rest are written answers in a notebook. It is printable only (no interactive `.html`). It comes with a separate [answers file](./w4/term2-week4-science-unit3-thermal-energy-quick-test-answers.md) for the teacher and a [WhatsApp-ready `.txt`](./w4/term2-week4-science-unit3-thermal-energy-quick-test-whatsapp.txt) of the same questions to paste into a chat. A second, shorter set of six [extra questions](./w4/term2-week4-science-unit3-thermal-energy-extra-questions.md) (with [answers](./w4/term2-week4-science-unit3-thermal-energy-extra-questions-answers.md) and a [WhatsApp version](./w4/term2-week4-science-unit3-thermal-energy-extra-questions-whatsapp.txt)) covers what the quick test skips from the slides: why conserving heat matters, the other units for heat and temperature (calories, °F, kelvin) and insulation examples. Q2 and Q5 are multiple choice.
 
 **Formula sheets:** one-page SVG/JPG summaries of the formulas and key facts for Density, Sound Waves & Thermal Energy and Electricity (plus Term 1 science) are in [`../science-formula-sheets/`](../science-formula-sheets/README.md).
 
@@ -124,5 +124,8 @@ s2/t2/
     ├── term2-week4-science-unit3-electricity.md   ← Printable (+10 written and drawing q)
     ├── term2-week4-science-unit3-thermal-energy-quick-test.md ← Printable quick test (10 q, no .html)
     ├── term2-week4-science-unit3-thermal-energy-quick-test-answers.md ← Answers
-    └── term2-week4-science-unit3-thermal-energy-quick-test-whatsapp.txt ← Paste-ready for WhatsApp
+    ├── term2-week4-science-unit3-thermal-energy-quick-test-whatsapp.txt ← Paste-ready for WhatsApp
+    ├── term2-week4-science-unit3-thermal-energy-extra-questions.md ← Printable extra questions (6 q, no .html)
+    ├── term2-week4-science-unit3-thermal-energy-extra-questions-whatsapp.txt ← 6 extra q, paste-ready
+    └── term2-week4-science-unit3-thermal-energy-extra-questions-answers.md ← Answers
 ```
