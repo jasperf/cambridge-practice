@@ -82,10 +82,12 @@ cambridge-practice/
 │       ├── w3/                      ← Week 3 (.html interactive + .md printable)
 │       │   ├── term2-week3-maths-unit-test1-inequalities-angles.* ← Unit Test 1 practice: Linear Inequalities & Angles (30 q, 46 marks + 5 written q, 16 marks)
 │       │   └── term2-week3-english-unit-test1-persuasive-emotive-language.* ← English Unit Test 1: Persuasive & Emotive Language (57 q, 71 marks + 6 extended-answer q, 27 marks)
-│       └── w4/                      ← Week 4 (.html interactive + .md printable)
+│       ├── w4/                      ← Week 4 (.html interactive + .md printable)
 │           ├── term2-week4-science-unit3-density.* ← Unit 3: Density of Solids, Liquids & Gases (41 q, 46 marks + 9 written q, 27 marks)
 │           ├── term2-week4-science-unit3-sound-thermal-energy.* ← Unit 3: Sound Waves & Thermal Energy (46 q, 46 marks + 11 written q, 35 marks)
 │           └── term2-week4-science-unit3-electricity.* ← Unit 3: Electricity — circuits, V = IR, series & parallel (43 q, 45 marks + 10 written q, 38 marks)
+│       └── w5/                      ← Week 5 (.html interactive + .md printable)
+│           └── term2-week5-maths-unit-test2-angles-shapes-measurements.* ← Unit Test 2 practice: Angles, Shapes & Measurements (74 q, 123 marks + 13 written q, 44 marks)
 │   ├── science-formula-sheets/      ← index.html gallery + one-page SVG formula & key-fact sheets for Term 1–2 science (6 sheets + 5 diagrams, captions, text reference)
 │   └── english-revision-sheets/     ← index.html gallery + one-page SVG revision sheets for English (Persuasive & Emotive Language, Semicolon Usage), with caption pages
 ├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
@@ -189,6 +191,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Mathematics Unit 5.1–5.2 (Calculating Angles) | Secondary 2 | ✅ Term 2 Week 2 · 12–16 October |
 | Mathematics Unit Test 1 Practice (Linear Inequalities & Angles) | Secondary 2 | ✅ Term 2 Week 3 · Unit Test 1, 20 Oct 2026 |
 | English Unit Test 1 (Persuasive & Emotive Language, Grammar, Reading, Short Story, Spelling) | Secondary 2 | ✅ Term 2 Week 3 · Unit Test 1, 28 Oct 2026 |
+| Mathematics Unit Test 2 Practice (Angles, Shapes & Measurements) | Secondary 2 | ✅ Term 2 Week 5 · Unit Test 2, 3 Nov 2026 |
 | Science Unit 3: Density (Solids, Liquids & Gases) | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
 | Science Unit 3: Sound Waves & Thermal Energy | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
 | Science Unit 3: Electricity (Circuits, V = IR, Series & Parallel) | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |

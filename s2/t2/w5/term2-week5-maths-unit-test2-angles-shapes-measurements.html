@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angles, Shapes &amp; Measurements &middot; Unit Test 2 Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(79,142,247,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.text-input { width: 100%; max-width: 380px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; padding: 10px 14px; transition: border-color 0.2s; outline: none; display: block; }
+.text-input:focus { border-color: var(--accent-math); }
+.text-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.06); }
+.text-input.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.06); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.math-expr { font-family: var(--font-mono); font-size: 1.15rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; display: inline-block; margin: 4px 0; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .watch-links { justify-content: center; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Unit Test 2 Practice</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 123</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Term 2 Week 5</div>
+  <h1>Maths Unit Test 2<br><em>Angles, Shapes &amp; Measurements</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Unit 5.2&ndash;5.5 Angles &middot; Unit 7.1&ndash;7.2 Circles &amp; Compound Shapes</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>74 questions &middot; self-marked &middot; 123 marks</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--accent-warn)"></div>Test day: Tuesday 3 November &mdash; bring a calculator, ruler and compasses</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Watch &amp; Learn first</h3>
+  <p>Need a refresher on polygon angles before you start? (Unit 7 circles and compound shapes have no explorer sheet yet.) The Week 2 sheet has the Polygon Explorer. Unit Test 1 practice covers the earlier angle rules (straight lines, triangles, parallel lines).</p>
+  <div class="watch-links">
+    <a class="watch-link" href="../w2/term2-week2-maths-unit5-calculating-angles.html" target="_blank" rel="noopener">Week 2: Calculating Angles &rarr;</a>
+    <a class="watch-link" href="../w3/term2-week3-maths-unit-test1-inequalities-angles.html" target="_blank" rel="noopener">Unit Test 1 practice &rarr;</a>
+    <a class="watch-link" href="../../../resources.html" target="_blank" rel="noopener">More resources &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#pg" class="sub-tab">Polygon Angles</a>
+  <a href="#co" class="sub-tab">Constructions</a>
+  <a href="#py" class="sub-tab">Pythagoras’ Theorem</a>
+  <a href="#ci" class="sub-tab">Circles</a>
+  <a href="#cs" class="sub-tab">Compound Shapes</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: POLYGON ANGLES ═══════════════ -->
+<div id="pg">
+  <div class="section-header"><div class="section-icon">∠</div><div><div class="sub-label">Section A</div><h2>Polygon Angles</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> Write down the rule you are using before you calculate: interior angles of an <em>n</em>-sided polygon add up to (n − 2) × 180°; exterior angles of any polygon add up to 360°; at each corner an interior and an exterior angle make 180°. The diagrams are not drawn accurately, so work from the numbers.</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-pg1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">What is the sum of the interior angles of a decagon (a 10-sided polygon)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="pg1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg1', this, 'a')"><div class="opt-indicator"></div><span>1800°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg1', this, 'b')"><div class="opt-indicator"></div><span>1620°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg1', this, 'c')"><div class="opt-indicator"></div><span>1440°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg1', this, 'd')"><div class="opt-indicator"></div><span>1260°</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg1','c','Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg1','Use (n − 2) × 180° with n = 10')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg1','C — 1440° ((10 − 2) × 180 = 8 × 180 = 1440)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-pg2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">The five angles of a pentagon are <span class="math-expr">x</span>, <span class="math-expr">(x + 20)°</span>, <span class="math-expr">(x + 40)°</span>, <span class="math-expr">(x + 60)°</span> and <span class="math-expr">(x + 80)°</span>. Work out the size of the <em>largest</em> angle.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg2-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg2',148,'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg2','A pentagon’s angles add up to 540°. Write 5x + 200 = 540 and solve it first')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg2','148° (5x + 200 = 540, so x = 68; the largest angle is 68 + 80 = 148)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-pg3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Four of the angles of a hexagon are 130° each. The other two angles are equal. Work out the size of <em>one</em> of them.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg3-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg3',100,'Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg3','A hexagon’s angles add up to 720°. Take away the four 130° angles, then share what is left between two angles')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg3','100° (720 − 4 × 130 = 200, and 200 ÷ 2 = 100)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-pg4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Work out the size of one <em>exterior</em> angle of a regular polygon with 18 sides.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="pg4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg4', this, 'a')"><div class="opt-indicator"></div><span>20°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg4', this, 'b')"><div class="opt-indicator"></div><span>18°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg4', this, 'c')"><div class="opt-indicator"></div><span>160°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg4', this, 'd')"><div class="opt-indicator"></div><span>10°</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg4','a','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg4','The exterior angles of any polygon add up to 360°. Share 360° between 18 equal angles')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg4','A — 20° (360 ÷ 18 = 20)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-pg5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Work out the size of one <em>interior</em> angle of a regular polygon with 20 sides.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg5-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg5',162,'Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg5','Find one exterior angle first (360 ÷ 20). The interior and exterior angles at a corner make a straight line')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg5','162° (exterior angle = 360 ÷ 20 = 18°, so interior angle = 180 − 18 = 162°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-pg6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Each interior angle of a regular polygon is 156°. How many sides does it have?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg6-ans" placeholder="Enter answer..."><span class="num-unit">sides</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg6',15,'Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg6','Work out the exterior angle (180 − 156), then divide 360 by it')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg6','15 (exterior angle = 180 − 156 = 24°, and 360 ÷ 24 = 15)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-pg7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Regular pentagons are cut out of card. Why will they <em>not</em> fit together around a point with no gaps and no overlaps?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="pg7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg7', this, 'a')"><div class="opt-indicator"></div><span>A pentagon has more than 4 sides, so its corners are too sharp to meet</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg7', this, 'b')"><div class="opt-indicator"></div><span>The exterior angle of a pentagon is more than 90°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg7', this, 'c')"><div class="opt-indicator"></div><span>The angles of a pentagon add up to 360°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg7', this, 'd')"><div class="opt-indicator"></div><span>Its interior angle, 108°, does not divide 360° exactly, so a gap or an overlap is left</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg7','d','Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg7','Each interior angle of a regular pentagon is 108°. Try fitting 3 of them, then 4, around a full turn of 360°')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg7','D — 108° does not divide into 360° exactly (3 × 108 = 324° leaves a gap, and 4 × 108 = 432° overlaps)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-pg8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A square, a regular hexagon and a regular polygon with <span class="math-expr">n</span> sides fit together exactly around one point. Work out <span class="math-expr">n</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg8-ans" placeholder="Enter answer..."><span class="num-unit">sides</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg8',12,'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg8','Angles at a point add up to 360°. Take away the square’s 90° and the hexagon’s 120°, then use the exterior angle of the third shape')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg8','12 (360 − 90 − 120 = 150°, so the exterior angle is 180 − 150 = 30° and n = 360 ÷ 30 = 12)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-pg9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">The angles of a quadrilateral are <span class="math-expr">x</span>, <span class="math-expr">2x</span>, <span class="math-expr">3x</span> and <span class="math-expr">4x</span>. Work out the size of the <em>largest</em> angle.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg9-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg9',144,'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg9','A quadrilateral’s angles add up to 360°, so x + 2x + 3x + 4x = 360')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg9','144° (10x = 360, so x = 36; the angles are 36°, 72°, 108° and 144°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-pg10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Tomás says he has drawn a polygon whose interior angles add up to 1000°. Why is this impossible?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="pg10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg10', this, 'a')"><div class="opt-indicator"></div><span>1000 is not a multiple of 180, and the angle sum is always (n − 2) × 180</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg10', this, 'b')"><div class="opt-indicator"></div><span>1000° is too small to be the sum for any polygon</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg10', this, 'c')"><div class="opt-indicator"></div><span>The angles of a polygon must always add up to a multiple of 360</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg10', this, 'd')"><div class="opt-indicator"></div><span>The interior angles of a polygon always add up to exactly 720</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg10','a','Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg10','The sum of the interior angles of an n-sided polygon is (n − 2) × 180. Try 1000 ÷ 180')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg10','A — 1000 ÷ 180 = 5.55…, so 1000° is not a multiple of 180° (a 7-sided polygon has 900° and an 8-sided one has 1080°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-pg11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Which of these could be the four interior angles of a quadrilateral?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="pg11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg11', this, 'a')"><div class="opt-indicator"></div><span>65°, 85°, 90°, 100°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg11', this, 'b')"><div class="opt-indicator"></div><span>55°, 80°, 105°, 120°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg11', this, 'c')"><div class="opt-indicator"></div><span>60°, 85°, 95°, 130°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg11', this, 'd')"><div class="opt-indicator"></div><span>90°, 90°, 90°, 80°</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg11','b','Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg11','The angles of a quadrilateral add up to 360°. Add each set')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg11','B — 55° + 80° + 105° + 120° = 360° (the other sets add up to 340°, 370° and 350°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-pg12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">The interior angles of a polygon add up to 1620°. How many sides does the polygon have?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg12-ans" placeholder="Enter answer..."><span class="num-unit">sides</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg12',11,'Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg12','Solve (n − 2) × 180 = 1620')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg12','11 (1620 ÷ 180 = 9, so n − 2 = 9 and n = 11)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-pg13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">An L-shaped hexagon has five interior angles of 90° and one reflex interior angle. Work out the size of the reflex angle.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg13-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg13',270,'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg13','The interior angles of a hexagon add up to 720°. Take away the five right angles')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg13','270° (720 − 5 × 90 = 720 − 450 = 270; the sixth corner points into the shape, so it is reflex)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-pg14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">In triangle ABC the base is extended in both directions. The exterior angle at B is 128° and the exterior angle at C is 111°. Work out the interior angle at A.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg14-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg14',59,'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg14','Each interior angle and its exterior angle make 180°. Find the interior angles at B and C first, then use the triangle angle sum')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg14','59° (interior B = 180 − 128 = 52°; interior C = 180 − 111 = 69°; A = 180 − 52 − 69 = 59°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg14-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">POLYGON ANGLES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pg-fill"></div></div>
+    <div class="section-score-val" id="sec-pg-val">0/23</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: CONSTRUCTIONS ═══════════════ -->
+<div id="co">
+  <div class="section-header"><div class="section-icon">◯</div><div><div class="sub-label">Section B</div><h2>Constructions</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> These questions test the ideas behind ruler-and-compass constructions. The drawing itself is practised on paper, so the printable version at the end has the construction tasks. Remember that <em>bisect</em> means cut exactly in half.</div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-co1">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Mia wants to construct a 30° angle using only a ruler and compasses. Which method works?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="co1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('co1', this, 'a')"><div class="opt-indicator"></div><span>Construct a 90° angle and bisect it twice</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('co1', this, 'b')"><div class="opt-indicator"></div><span>Construct a 60° angle and bisect it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('co1', this, 'c')"><div class="opt-indicator"></div><span>Construct a 60° angle and double it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('co1', this, 'd')"><div class="opt-indicator"></div><span>Construct a 120° angle and bisect it</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('co1','b','Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co1','You can construct 60° and 90° directly. Which one can you halve to get 30°?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co1','B — construct 60° and bisect it (60° ÷ 2 = 30°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-co2">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">You bisect a right angle with a ruler and compasses. How big is each of the two new angles?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="co2-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('co2',45,'Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co2','To bisect means to cut exactly in half')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co2','45° (90° ÷ 2 = 45°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-co3">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">You construct a 60° angle, bisect it, then bisect one of the new angles again. How big is that last angle?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="co3-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('co3',15,'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co3','Halve 60°, then halve the answer')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co3','15° (60° ÷ 2 = 30°, and 30° ÷ 2 = 15°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-co4">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">A regular hexagon is inscribed in a circle of radius 7 cm by stepping the compasses, set to the radius, round the circle. How long is each side of the hexagon?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="co4-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('co4',7,'Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co4','The compass width stays at the radius, and each step makes one side')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co4','7 cm (the compasses stay set to the radius, so every side equals the radius)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-co5">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A square is inscribed in a circle of radius 5 cm using two perpendicular diameters. Work out the side length <span class="math-expr">s</span> of the square. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 230" role="img" aria-label="A circle of radius 5 cm with a square inscribed using two perpendicular diameters"><circle cx="180" cy="115" r="90" fill="none" stroke="#7a84a0" stroke-width="2"/><path d="M180.0 25.0 L180.0 205.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M90.0 115.0 L270.0 115.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M180 25 L270 115 L180 205 L90 115 L180 25" stroke="#4f8ef7" stroke-width="2.5" fill="none"/><text x="225.0" y="103.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">5 cm</text><text x="247.0" y="56.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4f8ef7" font-family="DM Mono, monospace">s</text><circle cx="180" cy="115" r="2.5" fill="#e8eaf0"/></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="co5-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('co5',7.1,'Q19',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co5','The diameters are the diagonals: 10 cm each. Each side is the hypotenuse of a right-angled triangle with two sides of 5 cm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co5','7.1 cm (s² = 5² + 5² = 50, and √50 = 7.07… = 7.1 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-co6">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">A regular dodecagon (12 sides) is inscribed in a circle. Work out the angle at the centre between two neighbouring corners.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="co6-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('co6',30,'Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co6','The angles round the centre make a full turn, shared equally by 12 corners')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co6','30° (360° ÷ 12 = 30°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-co7">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">A triangle has angles 30°, 60° and 90°. Its shortest side is 3.5 cm. The longest side is double the shortest. How long is the longest side?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="co7-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('co7',7,'Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co7','Double 3.5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co7','7 cm (2 × 3.5 = 7)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-co8">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">You have inscribed a hexagon in a circle. Which check shows that it is regular?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="co8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('co8', this, 'a')"><div class="opt-indicator"></div><span>Every side is the same length as the radius and every angle is 120°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('co8', this, 'b')"><div class="opt-indicator"></div><span>Every side is the same length as the diameter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('co8', this, 'c')"><div class="opt-indicator"></div><span>Every angle is 108°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('co8', this, 'd')"><div class="opt-indicator"></div><span>Opposite sides are parallel</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('co8','a','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co8','A regular polygon has equal sides *and* equal angles')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co8','A — every side equals the radius of the circle and every angle is 120°')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-co9">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Two equilateral triangles are joined along a side to make a rhombus. Work out the size of the <em>larger</em> angle of the rhombus.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="co9-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('co9',120,'Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co9','The larger angles each contain two corners of the triangles')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co9','120° (each triangle has 60° corners, and 2 × 60° = 120°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-co10">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">A pattern has rotational symmetry of order 8. Which angle at the centre do you use to copy it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="co10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('co10', this, 'a')"><div class="opt-indicator"></div><span>60°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('co10', this, 'b')"><div class="opt-indicator"></div><span>135°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('co10', this, 'c')"><div class="opt-indicator"></div><span>40°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('co10', this, 'd')"><div class="opt-indicator"></div><span>45°</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('co10','d','Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('co10','Order 8 means the pattern fits onto itself 8 times in one full turn')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('co10','D — 45° (360° ÷ 8 = 45°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="co10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">CONSTRUCTIONS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-co-fill"></div></div>
+    <div class="section-score-val" id="sec-co-val">0/11</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: PYTHAGORAS’ THEOREM ═══════════════ -->
+<div id="py">
+  <div class="section-header"><div class="section-icon">△</div><div><div class="sub-label">Section C</div><h2>Pythagoras’ Theorem</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> Write down which side is the hypotenuse first, then decide whether to add or to subtract the squares. Keep the full calculator value until the end, then round as the question says. Units matter: check what the answer is asked in.</div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-py1">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Which side of this right-angled triangle is the hypotenuse?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A right-angled triangle with sides p and q at the right angle and r opposite it"><path d="M73.3 212.0 L286.7 212.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M73.3 212.0 L73.3 52.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M286.7 212.0 L73.3 52.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M86.3 212.0 L86.3 199.0 L73.3 199.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="180.0" y="230.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">p</text><text x="65.3" y="132.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">q</text><text x="200.8" y="116.4" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">r</text></svg>
+      <div class="mcq-options" id="py1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('py1', this, 'a')"><div class="opt-indicator"></div><span>p</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py1', this, 'b')"><div class="opt-indicator"></div><span>r</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py1', this, 'c')"><div class="opt-indicator"></div><span>q</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py1', this, 'd')"><div class="opt-indicator"></div><span>p and q</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('py1','b','Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py1','The hypotenuse is opposite the right angle')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py1','B — r (it is opposite the right angle and is the longest side)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-py2">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Work out the length of the hypotenuse of this triangle.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A right-angled triangle with shorter sides 9 cm and 12 cm"><path d="M73.3 212.0 L286.7 212.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M73.3 212.0 L73.3 52.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M286.7 212.0 L73.3 52.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M86.3 212.0 L86.3 199.0 L73.3 199.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="180.0" y="230.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">12 cm</text><text x="65.3" y="132.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">9 cm</text><text x="200.8" y="116.4" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">c</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py2-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py2',15,'Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py2','Add the squares of the two shorter sides, then take the square root')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py2','15 cm (9² + 12² = 81 + 144 = 225, and √225 = 15)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-py3">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Work out the length of the hypotenuse of this triangle.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A right-angled triangle with shorter sides 7 cm and 24 cm"><path d="M70.0 212.0 L290.0 212.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M70.0 212.0 L70.0 147.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M290.0 212.0 L70.0 147.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M83.0 212.0 L83.0 199.0 L70.0 199.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="180.0" y="230.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">24 cm</text><text x="62.0" y="179.9" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">7 cm</text><text x="205.0" y="172.6" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">c</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py3-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py3',25,'Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py3','c² = 7² + 24²')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py3','25 cm (49 + 576 = 625, and √625 = 25)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-py4">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Work out the length of the hypotenuse. Round your answer to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A right-angled triangle with shorter sides 3.6 cm and 6.4 cm"><path d="M70.0 212.0 L290.0 212.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M70.0 212.0 L70.0 88.2" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M290.0 212.0 L70.0 88.2" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M83.0 212.0 L83.0 199.0 L70.0 199.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="180.0" y="230.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">6.4 cm</text><text x="62.0" y="150.1" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">3.6 cm</text><text x="202.7" y="137.4" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">c</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py4-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py4',7.3,'Q28',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py4','c² = 3.6² + 6.4². Use a calculator for the square root')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py4','7.3 cm (12.96 + 40.96 = 53.92, and √53.92 = 7.34… = 7.3 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-py5">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Work out the length of the missing side.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A right-angled triangle with hypotenuse 6.5 cm and one shorter side 2.5 cm"><path d="M70.0 212.0 L290.0 212.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M70.0 212.0 L70.0 120.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M290.0 212.0 L70.0 120.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M83.0 212.0 L83.0 199.0 L70.0 199.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="180.0" y="230.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">a</text><text x="62.0" y="166.2" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">2.5 cm</text><text x="190.0" y="142.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">6.5 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py5-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py5',6,'Q29',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py5','The 6.5 cm side is the hypotenuse, so subtract: 6.5² − 2.5²')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py5','6 cm (42.25 − 6.25 = 36, and √36 = 6)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-py6">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Work out the length of the missing side. Round your answer to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A right-angled triangle with hypotenuse 9.4 cm and one shorter side 5.2 cm"><path d="M70.0 212.0 L290.0 212.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M70.0 212.0 L70.0 69.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M290.0 212.0 L70.0 69.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M83.0 212.0 L83.0 199.0 L70.0 199.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="180.0" y="230.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">b</text><text x="62.0" y="140.5" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">5.2 cm</text><text x="201.8" y="126.3" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">9.4 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py6-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py6',7.8,'Q30',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py6','The longest side, 9.4 cm, is the hypotenuse. Subtract the squares, then take the square root')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py6','7.8 cm (88.36 − 27.04 = 61.32, and √61.32 = 7.83… = 7.8 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-py7">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">Zoe has a right-angled triangle. Its hypotenuse is 10 cm and one other side is 6 cm. She finds the third side by working out √(10² + 6²). What mistake has she made?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="py7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('py7', this, 'a')"><div class="opt-indicator"></div><span>She should have added 10 and 6 before squaring</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py7', this, 'b')"><div class="opt-indicator"></div><span>She should have used 10 cm as one of the shorter sides</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py7', this, 'c')"><div class="opt-indicator"></div><span>The hypotenuse is a shorter side, so she should subtract the squares: 10² − 6²</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py7', this, 'd')"><div class="opt-indicator"></div><span>She should not have squared the lengths at all</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('py7','c','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py7','Is the third side the hypotenuse, or one of the shorter sides?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py7','C — 10 cm is the hypotenuse, so she should subtract: √(10² − 6²) = √64 = 8 cm')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-py8">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">A 4.5 m ladder leans against a wall. The foot of the ladder is 1.2 m from the wall. How far up the wall does the ladder reach? Give your answer in centimetres, to the nearest centimetre.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A ladder against a wall: ladder 4.5 m, foot 1.2 m from the wall, height h"><path d="M152.3 212.0 L207.7 212.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M152.3 212.0 L152.3 52.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M207.7 212.0 L152.3 52.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M165.3 212.0 L165.3 199.0 L152.3 199.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="180.0" y="230.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">1.2 m</text><text x="144.3" y="132.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">h</text><text x="188.5" y="107.4" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">4.5 m</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py8-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py8',434,'Q32',0.5)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py8','The ladder is the hypotenuse. Work out 4.5² − 1.2² in metres, take the square root, then change to cm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py8','434 cm (20.25 − 1.44 = 18.81, √18.81 = 4.337 m, which is 433.7 cm = 434 cm)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-py9">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">Computer monitors are sold by the distance from one corner of the screen to the opposite corner. A monitor screen is 60 cm wide and 34 cm high. Work out that corner-to-corner distance, to the nearest centimetre.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 194" role="img" aria-label="A rectangle 60 cm wide and 34 cm high with its diagonal drawn"><rect x="85.0" y="40.0" width="230.0" height="130.3" fill="none" stroke="#7a84a0" stroke-width="2"/><path d="M85.0 40.0 L315.0 170.3" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/><text x="200.0" y="26.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">60 cm</text><text x="75.0" y="105.2" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">34 cm</text><text x="224.0" y="87.2" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">d</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py9-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py9',69,'Q33',0.5)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py9','The diagonal is the hypotenuse of a right-angled triangle with sides 60 and 34')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py9','69 cm (3600 + 1156 = 4756, and √4756 = 68.96… = 69 to the nearest cm)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-py10">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">The side of a square is 12 cm. Work out the length of its diagonal. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 214" role="img" aria-label="A square with sides 12 cm and its diagonal drawn"><rect x="125.0" y="40.0" width="150.0" height="150.0" fill="none" stroke="#7a84a0" stroke-width="2"/><path d="M125.0 40.0 L275.0 190.0" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/><text x="200.0" y="26.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">12 cm</text><text x="115.0" y="115.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">12 cm</text><text x="224.0" y="97.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#4f8ef7" font-family="DM Mono, monospace">d</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py10-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py10',17,'Q34',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py10','The diagonal is the hypotenuse of a right-angled triangle with two sides of 12 cm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py10','17.0 cm (12² + 12² = 288, and √288 = 16.97… = 17.0 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-py11">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Which set of three lengths makes a right-angled triangle?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="py11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('py11', this, 'a')"><div class="opt-indicator"></div><span>4 cm, 5 cm, 6 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py11', this, 'b')"><div class="opt-indicator"></div><span>6 cm, 8 cm, 12 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py11', this, 'c')"><div class="opt-indicator"></div><span>7 cm, 10 cm, 12 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py11', this, 'd')"><div class="opt-indicator"></div><span>5 cm, 12 cm, 13 cm</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('py11','d','Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py11','Check a² + b² = c² with the longest length as c')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py11','D — 5, 12, 13 (5² + 12² = 25 + 144 = 169 = 13²)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-py12">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">This triangle is isosceles with base 16 cm and equal sides 17 cm. Work out its perpendicular height <span class="math-expr">h</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="An isosceles triangle with base 16 cm, equal sides 17 cm and a dashed height h"><path d="M110.0 212.0 L250.0 212.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M110.0 212.0 L180.0 44.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M250.0 212.0 L180.0 44.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M180.0 44.0 L180.0 212.0" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/><path d="M167.0 212.0 L167.0 199.0 L180.0 199.0" stroke="#f5a623" stroke-width="2" fill="none"/><path d="M138.0 125.0 L148.0 135.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M222.0 125.0 L212.0 135.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><text x="180.0" y="230.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">16 cm</text><text x="115.0" y="122.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">17 cm</text><text x="247.0" y="122.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">17 cm</text><text x="196.0" y="138.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4f8ef7" font-family="DM Mono, monospace">h</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py12-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py12',15,'Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py12','The height cuts the base in half. Use the right-angled triangle with sides 8, h and 17')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py12','15 cm (17² − 8² = 289 − 64 = 225, and √225 = 15)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-py13">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">A rectangle is 8 cm long and 5 cm wide. The length of its diagonal is <span class="math-expr">d</span>. Work out <span class="math-expr">d²</span>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py13-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py13',89,'Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py13','d² = 8² + 5². You do not need the square root')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py13','89 (d² = 64 + 25 = 89, so the diagonal is √89 cm)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-py14">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">The squares drawn on the two shorter sides of a right-angled triangle have areas 25 cm² and 144 cm². What is the area of the square drawn on the hypotenuse?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="py14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('py14', this, 'a')"><div class="opt-indicator"></div><span>119 cm²</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py14', this, 'b')"><div class="opt-indicator"></div><span>13 cm²</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py14', this, 'c')"><div class="opt-indicator"></div><span>169 cm²</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py14', this, 'd')"><div class="opt-indicator"></div><span>289 cm²</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('py14','c','Q38')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py14','The area of a square is (side)². Think about what a² + b² = c² says about areas')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py14','C — 169 cm² (25 + 144 = 169; the hypotenuse itself is 13 cm)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-py15">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">ABC is an equilateral triangle. Each side is 14 cm. The height AD splits the base BC into two halves. Work out the height AD. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py15-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py15',12.1,'Q39',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py15','D is the middle of BC, so BD = 7 cm. Triangle ABD is right-angled with hypotenuse AB = 14 cm. Subtract the squares')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py15','12.1 cm (14² − 7² = 196 − 49 = 147, and √147 = 12.12… = 12.1 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-py16">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">A parallelogram has slanted sides of 15 cm. The perpendicular height from the top corner meets the base 9 cm from the bottom corner, as in a right-angled triangle. Work out the perpendicular height.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py16-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py16',12,'Q40')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py16','The slanted side is the hypotenuse of a right-angled triangle with a base of 9 cm. Subtract the squares')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py16','12 cm (15² − 9² = 225 − 81 = 144, and √144 = 12)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py16-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-py17">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">A rectangular photo frame is 18.0 cm by 25.5 cm. A thin wire is stretched tight from one corner of the frame to the opposite corner. How long is the wire? Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py17-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py17',31.2,'Q41',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py17','The wire is the diagonal, the hypotenuse of a right-angled triangle with sides 18 and 25.5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py17','31.2 cm (18² + 25.5² = 324 + 650.25 = 974.25, and √974.25 = 31.21… = 31.2 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py17-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="q-card" id="qcard-py18">
+    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">Triangle KLN has its base LN. The height KM is drawn from K down to the base, meeting LN at M at a right angle. KL = 10 cm, LM = 6 cm and MN = 15 cm. Work out the length of KN.</div><div class="q-marks">3 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py18-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py18',17,'Q42')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py18','Step 1: use triangle KLM to find KM (10² − 6²). Step 2: use triangle KMN with KM and MN to find KN')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py18','17 cm (KM² = 100 − 36 = 64, so KM = 8; then KN² = 8² + 15² = 64 + 225 = 289, so KN = 17)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py18-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">PYTHAGORAS&rsquo; THEOREM &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-py-fill"></div></div>
+    <div class="section-score-val" id="sec-py-val">0/30</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: CIRCLES ═══════════════ -->
+<div id="ci">
+  <div class="section-header"><div class="section-icon">○</div><div><div class="sub-label">Section D</div><h2>Circles</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> The circumference formula uses the <em>diameter</em> and the area formula uses the <em>radius</em>. Use the π button on your calculator, keep the full value until the end, then round as the question says (decimal places or significant figures) and write the units: cm for lengths, cm² for areas.</div>
+
+  <!-- Q43 -->
+  <div class="q-card" id="qcard-ci1">
+    <div class="q-header"><div class="q-num">Q43</div><div class="q-text">Work out the circumference of a circle with diameter 18.5 cm. Use the π button on your calculator. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci1-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci1',58.1,'Q43',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci1','Circumference uses the diameter: C = π × d')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci1','58.1 cm (π × 18.5 = 58.119… = 58.1 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q44 -->
+  <div class="q-card" id="qcard-ci2">
+    <div class="q-header"><div class="q-num">Q44</div><div class="q-text">Work out the area of a circle with radius 6.5 cm. Use the π button on your calculator. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci2-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci2',132.7,'Q44',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci2','Area uses the radius: A = π × r². Square the radius first')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci2','132.7 cm² (π × 6.5² = π × 42.25 = 132.73… = 132.7 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q45 -->
+  <div class="q-card" id="qcard-ci3">
+    <div class="q-header"><div class="q-num">Q45</div><div class="q-text">Work out the area of a circle with <em>diameter</em> 8.6 m. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci3-ans" placeholder="Enter answer..."><span class="num-unit">m²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci3',58.1,'Q45',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci3','Halve the diameter to get the radius before you use A = π × r²')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci3','58.1 m² (r = 8.6 ÷ 2 = 4.3, and π × 4.3² = π × 18.49 = 58.08… = 58.1 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q46 -->
+  <div class="q-card" id="qcard-ci4">
+    <div class="q-header"><div class="q-num">Q46</div><div class="q-text">Work out the area of a circle with radius 9 cm. Round to 3 significant figures.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci4-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci4',254,'Q46',0.5)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci4','π × 9² = π × 81. Count 3 significant figures from the first non-zero digit')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci4','254 cm² (π × 81 = 254.46… = 254 to 3 s.f.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q47 -->
+  <div class="q-card" id="qcard-ci5">
+    <div class="q-header"><div class="q-num">Q47</div><div class="q-text">Sam works out the area of a circle with radius 3 cm as (π × 3)². What mistake has he made?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="ci5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('ci5', this, 'a')"><div class="opt-indicator"></div><span>He squared π × 3, when only the radius 3 should be squared</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci5', this, 'b')"><div class="opt-indicator"></div><span>He used the diameter instead of the radius</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci5', this, 'c')"><div class="opt-indicator"></div><span>He should have multiplied by 2 instead of squaring</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci5', this, 'd')"><div class="opt-indicator"></div><span>He should have used π × 3 without squaring anything</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('ci5','a','Q47')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci5','In A = π × r², which part is squared?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci5','A — only the radius should be squared: π × 3² = π × 9 = 28.3 cm², but Sam squared π × 3 as well')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q48 -->
+  <div class="q-card" id="qcard-ci6">
+    <div class="q-header"><div class="q-num">Q48</div><div class="q-text">The circumference of a circle is 28 cm. Work out its diameter. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci6-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci6',8.9,'Q48',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci6','C = π × d, so d = C ÷ π')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci6','8.9 cm (28 ÷ π = 8.91… = 8.9 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q49 -->
+  <div class="q-card" id="qcard-ci7">
+    <div class="q-header"><div class="q-num">Q49</div><div class="q-text">A circle has an area of 95 cm². Work out its radius. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci7-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci7',5.5,'Q49',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci7','A = π × r², so r² = A ÷ π. Then take the square root')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci7','5.5 cm (95 ÷ π = 30.24…, and √30.24… = 5.49… = 5.5 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q50 -->
+  <div class="q-card" id="qcard-ci8">
+    <div class="q-header"><div class="q-num">Q50</div><div class="q-text">A circular lawn has an area of 50 m². Work out its circumference. Round to 2 decimal places.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci8-ans" placeholder="Enter answer..."><span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci8',25.07,'Q50',0.005)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci8','Find the radius from the area first (r² = 50 ÷ π), then use C = 2 × π × r')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci8','25.07 m (r² = 50 ÷ π = 15.915…, r = 3.989…, and C = 2 × π × 3.989… = 25.066… = 25.07 to 2 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q51 -->
+  <div class="q-card" id="qcard-ci9">
+    <div class="q-header"><div class="q-num">Q51</div><div class="q-text">Work out the area of this semicircle. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 190" role="img" aria-label="A semicircle with diameter 14 cm"><path d="M80 150 A100 100 0 0 1 280 150 Z" fill="rgba(245,166,35,0.25)" stroke="#7a84a0" stroke-width="2"/><text x="180.0" y="170.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">14 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci9-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci9',77,'Q51',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci9','The area of a semicircle is half the area of a circle. The diameter is 14 cm, so the radius is 7 cm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci9','77.0 cm² (½ × π × 7² = ½ × π × 49 = 76.97… = 77.0 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q52 -->
+  <div class="q-card" id="qcard-ci10">
+    <div class="q-header"><div class="q-num">Q52</div><div class="q-text">Work out the perimeter of the semicircle with diameter 14 cm. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci10-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci10',36,'Q52',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci10','Perimeter = half the circumference + the straight edge (the diameter)')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci10','36.0 cm (½ × π × 14 = 21.99…, and 21.99… + 14 = 35.99… = 36.0 to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q53 -->
+  <div class="q-card" id="qcard-ci11">
+    <div class="q-header"><div class="q-num">Q53</div><div class="q-text">A circle has diameter 16 cm. Its area is <span class="math-expr">kπ</span> cm², written in terms of π. Work out <span class="math-expr">k</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci11-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci11',64,'Q53')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci11','Halve the diameter to get r = 8, then A = π × 8². Do not multiply by π: leave it as a symbol')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci11','64 (r = 8, so A = π × 8² = 64π cm²)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q54 -->
+  <div class="q-card" id="qcard-ci12">
+    <div class="q-header"><div class="q-num">Q54</div><div class="q-text">Which approximate value of π is closest to the π button on a calculator, 3.14159…?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="ci12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('ci12', this, 'a')"><div class="opt-indicator"></div><span>3.14</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci12', this, 'b')"><div class="opt-indicator"></div><span>3.142</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci12', this, 'c')"><div class="opt-indicator"></div><span>3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci12', this, 'd')"><div class="opt-indicator"></div><span>22 ÷ 7</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('ci12','b','Q54')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci12','Compare how far each value is from 3.14159…')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci12','B — 3.142 (it is 0.0004 away, compared with 0.0016 for 3.14 and 0.0013 for 22 ÷ 7)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q55 -->
+  <div class="q-card" id="qcard-ci13">
+    <div class="q-header"><div class="q-num">Q55</div><div class="q-text">A bicycle wheel has a diameter of 66 cm. How far does the bicycle travel when the wheel makes 10 complete turns? Give your answer in metres, to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci13-ans" placeholder="Enter answer..."><span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci13',20.7,'Q55',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci13','One turn covers the circumference of the wheel: C = π × d. Multiply by 10, then change cm to m')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci13','20.7 m (C = π × 66 = 207.3… cm; 10 turns = 2073.4… cm = 20.73… m = 20.7 m to 1 d.p.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q56 -->
+  <div class="q-card" id="qcard-ci14">
+    <div class="q-header"><div class="q-num">Q56</div><div class="q-text">A piece of string fits exactly once around the rim of a round bottle cap. The string is 7.5 cm long. Work out the radius of the bottle cap in millimetres, to the nearest millimetre.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci14-ans" placeholder="Enter answer..."><span class="num-unit">mm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci14',12,'Q56',0.5)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci14','C = 2 × π × r, so r = C ÷ (2π). The answer comes out in cm, then change it to mm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci14','12 mm (r = 7.5 ÷ (2π) = 1.193… cm = 11.9… mm = 12 mm to the nearest mm)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q57 -->
+  <div class="q-card" id="qcard-ci15">
+    <div class="q-header"><div class="q-num">Q57</div><div class="q-text">The radii of two circles are in the ratio 2 : 5. What is the ratio of their areas?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="ci15-opts">
+        <div class="mcq-opt" onclick="selectMCQ('ci15', this, 'a')"><div class="opt-indicator"></div><span>2 : 5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci15', this, 'b')"><div class="opt-indicator"></div><span>4 : 10</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci15', this, 'c')"><div class="opt-indicator"></div><span>2 : 25</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci15', this, 'd')"><div class="opt-indicator"></div><span>4 : 25</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('ci15','d','Q57')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci15','Try radii of 2 and 5: the areas are π × 2² and π × 5²')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci15','D — 4 : 25 (area depends on the radius squared, so the ratio is 2² : 5² = 4 : 25; the circumferences would be in the ratio 2 : 5)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci15-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">CIRCLES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ci-fill"></div></div>
+    <div class="section-score-val" id="sec-ci-val">0/27</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: COMPOUND SHAPES ═══════════════ -->
+<div id="cs">
+  <div class="section-header"><div class="section-icon">▱</div><div><div class="sub-label">Section E</div><h2>Compound Shapes</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> Split the shape into simple shapes (rectangles, triangles, semicircles, circles), find each area, then add or subtract. To <em>estimate</em>, round every number to 1 significant figure and use π ≈ 3. Check that your answer makes sense for the size of the shape.</div>
+
+  <!-- Q58 -->
+  <div class="q-card" id="qcard-cs1">
+    <div class="q-header"><div class="q-num">Q58</div><div class="q-text">Work out the area of this compound shape. All the corners are right angles.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="An L-shaped compound shape: a 12 cm by 4 cm bar with a 4 cm wide block rising 6 cm above its left end"><path d="M80.0 210.0 L272.0 210.0 L272.0 146.0 L144.0 146.0 L144.0 50.0 L80.0 50.0 Z" fill="rgba(245,166,35,0.25)" stroke="#7a84a0" stroke-width="2"/><text x="176.0" y="228.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">12 cm</text><text x="280.0" y="178.0" text-anchor="start" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">4 cm</text><text x="112.0" y="38.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">4 cm</text><text x="72.0" y="98.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">6 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs1-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs1',72,'Q58')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs1','Split it into two rectangles: a bar 12 cm by 4 cm, and a block 4 cm wide sticking up 6 cm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs1','72 cm² (12 × 4 = 48 and 4 × 6 = 24, so 48 + 24 = 72)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q59 -->
+  <div class="q-card" id="qcard-cs2">
+    <div class="q-header"><div class="q-num">Q59</div><div class="q-text">This shape is a rectangle with a semicircle on top. Work out its area. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 256" role="img" aria-label="A rectangle 8 cm wide and 5 cm high with a semicircle on top"><path d="M92 232 L268 232 L268 122 A88 88 0 0 0 92 122 Z" fill="rgba(245,166,35,0.25)" stroke="#7a84a0" stroke-width="2"/><path d="M92.0 122.0 L268.0 122.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/><text x="180.0" y="246.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">8 cm</text><text x="276.0" y="177.0" text-anchor="start" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">5 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs2-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs2',65.1,'Q59',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs2','The semicircle’s diameter is the rectangle’s top edge, 8 cm, so its radius is 4 cm. Add the two areas')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs2','65.1 cm² (rectangle 8 × 5 = 40; semicircle ½ × π × 4² = 25.13…; total 65.13… = 65.1)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q60 -->
+  <div class="q-card" id="qcard-cs3">
+    <div class="q-header"><div class="q-num">Q60</div><div class="q-text">This shape is a rectangle with a triangle on top. Work out its area.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A pentagon made of a rectangle 10 cm by 4 cm with a triangle of height 3 cm on top"><path d="M70.0 215.0 L290.0 215.0 L290.0 127.0 L180.0 61.0 L70.0 127.0 Z" fill="rgba(245,166,35,0.25)" stroke="#7a84a0" stroke-width="2"/><path d="M70.0 127.0 L290.0 127.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/><path d="M180.0 61.0 L180.0 127.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/><text x="180.0" y="233.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">10 cm</text><text x="298.0" y="171.0" text-anchor="start" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">4 cm</text><text x="196.0" y="94.0" text-anchor="start" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">3 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs3-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs3',55,'Q60')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs3','Rectangle: length × width. Triangle: ½ × base × height, where the base is 10 cm and the height is 3 cm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs3','55 cm² (rectangle 10 × 4 = 40; triangle ½ × 10 × 3 = 15; total 55)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q61 -->
+  <div class="q-card" id="qcard-cs4">
+    <div class="q-header"><div class="q-num">Q61</div><div class="q-text">A circle of radius 6 cm has a 4 cm by 3 cm rectangle cut out of it. Work out the shaded area. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 224" role="img" aria-label="A circle of radius 6 cm with a 4 cm by 3 cm rectangular hole in it"><circle cx="180" cy="112" r="90" fill="rgba(245,166,35,0.25)" stroke="#7a84a0" stroke-width="2"/><rect x="150" y="89.5" width="60" height="45" fill="#1e2336" stroke="#7a84a0" stroke-width="2"/><path d="M180.0 112.0 L270.0 112.0" stroke="#4f8ef7" stroke-width="1.5" fill="none" stroke-linecap="round"/><text x="240.0" y="100.0" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#f5a623" font-family="DM Mono, monospace">r = 6 cm</text><text x="180.0" y="76.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">4 cm</text><text x="144.0" y="112.0" text-anchor="end" dominant-baseline="central" font-size="12" fill="#f5a623" font-family="DM Mono, monospace">3 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs4-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs4',101.1,'Q61',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs4','Shaded area = area of the circle minus area of the rectangle')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs4','101.1 cm² (π × 6² = 113.09…, and 113.09… − 12 = 101.09… = 101.1)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q62 -->
+  <div class="q-card" id="qcard-cs5">
+    <div class="q-header"><div class="q-num">Q62</div><div class="q-text">A 14 cm by 9 cm rectangle has a circular hole of diameter 6 cm cut out of it. Work out the shaded area. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 190" role="img" aria-label="A 14 cm by 9 cm rectangle with a circular hole of diameter 6 cm"><rect x="75" y="34" width="210" height="135" fill="rgba(245,166,35,0.25)" stroke="#7a84a0" stroke-width="2"/><circle cx="180.0" cy="101.5" r="45" fill="#1e2336" stroke="#7a84a0" stroke-width="2"/><path d="M135.0 101.5 L225.0 101.5" stroke="#4f8ef7" stroke-width="1.5" fill="none" stroke-linecap="round"/><text x="180.0" y="87.5" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#f5a623" font-family="DM Mono, monospace">6 cm</text><text x="180.0" y="20.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">14 cm</text><text x="67.0" y="101.5" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">9 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs5-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs5',97.7,'Q62',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs5','The hole has radius 3 cm. Subtract its area from the area of the rectangle')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs5','97.7 cm² (14 × 9 = 126; π × 3² = 28.27…; 126 − 28.27… = 97.72… = 97.7)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q63 -->
+  <div class="q-card" id="qcard-cs6">
+    <div class="q-header"><div class="q-num">Q63</div><div class="q-text">Estimate the area of a circle with radius 4.8 cm. Round the radius to 1 significant figure and use π ≈ 3.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs6-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs6',75,'Q63')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs6','Round 4.8 to 5, then work out 3 × 5²')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs6','75 cm² (r ≈ 5, so A ≈ 3 × 5² = 3 × 25 = 75)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q64 -->
+  <div class="q-card" id="qcard-cs7">
+    <div class="q-header"><div class="q-num">Q64</div><div class="q-text">A running-track shape is made of a rectangle 15 cm by 8 cm with a semicircle on each of the two 8 cm sides. What is the quickest way to find the area of the two semicircles?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="cs7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('cs7', this, 'a')"><div class="opt-indicator"></div><span>Put them together to make one circle of radius 4 cm and use π × 4²</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cs7', this, 'b')"><div class="opt-indicator"></div><span>Work out ½ × π × 8² and double it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cs7', this, 'c')"><div class="opt-indicator"></div><span>Use the area of the rectangle and add 8 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cs7', this, 'd')"><div class="opt-indicator"></div><span>Work out π × 8² and halve it</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('cs7','a','Q64')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs7','Two halves of the same circle make a whole one')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs7','A — put the two semicircles together to make one circle of radius 4 cm, and find π × 4²')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q65 -->
+  <div class="q-card" id="qcard-cs8">
+    <div class="q-header"><div class="q-num">Q65</div><div class="q-text">A rectangle 15 cm by 8 cm has a semicircle on each of its two 8 cm sides (the diameters are those sides). Work out the total area. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs8-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs8',170.3,'Q65',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs8','Rectangle: 15 × 8. Two semicircles of radius 4 cm make one whole circle of radius 4 cm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs8','170.3 cm² (rectangle 120; circle π × 4² = 50.26…; total 170.26… = 170.3)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q66 -->
+  <div class="q-card" id="qcard-cs9">
+    <div class="q-header"><div class="q-num">Q66</div><div class="q-text">A circle fits exactly inside a square of side 12 cm, touching all four sides. Work out the shaded area (the corners left over). Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 222" role="img" aria-label="A square of side 12 cm with a circle touching all four sides"><rect x="90" y="18" width="180" height="180" fill="rgba(245,166,35,0.25)" stroke="#7a84a0" stroke-width="2"/><circle cx="180.0" cy="108.0" r="90.0" fill="#1e2336" stroke="#7a84a0" stroke-width="2"/><text x="180.0" y="214.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">12 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs9-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs9',30.9,'Q66',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs9','The circle’s diameter is 12 cm, so its radius is 6 cm. Subtract the circle from the square')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs9','30.9 cm² (12 × 12 = 144; π × 6² = 113.09…; 144 − 113.09… = 30.90… = 30.9)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q67 -->
+  <div class="q-card" id="qcard-cs10">
+    <div class="q-header"><div class="q-num">Q67</div><div class="q-text">A quarter circle has radius 12 cm. A straight line joins the two ends of its curved edge, making a right-angled triangle with the two radii. Work out the shaded area between the line and the curved edge. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs10-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs10',41.1,'Q67',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs10','Quarter circle: ¼ × π × 12². Triangle: ½ × 12 × 12. Subtract')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs10','41.1 cm² (¼ × π × 144 = 113.09…; triangle ½ × 12 × 12 = 72; 113.09… − 72 = 41.09… = 41.1)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q68 -->
+  <div class="q-card" id="qcard-cs11">
+    <div class="q-header"><div class="q-num">Q68</div><div class="q-text">A circular pond has radius 3 m. A path 1 m wide goes all the way round it. Which calculation gives the area of the path?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="cs11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('cs11', this, 'a')"><div class="opt-indicator"></div><span>π × 1²</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cs11', this, 'b')"><div class="opt-indicator"></div><span>π × 4² − π × 3²</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cs11', this, 'c')"><div class="opt-indicator"></div><span>π × 4² + π × 3²</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cs11', this, 'd')"><div class="opt-indicator"></div><span>π × (3 + 4)²</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('cs11','b','Q68')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs11','The path is the big circle (pond + path) with the pond taken away')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs11','B — π × 4² − π × 3² (the outer circle has radius 3 + 1 = 4 m)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q69 -->
+  <div class="q-card" id="qcard-cs12">
+    <div class="q-header"><div class="q-num">Q69</div><div class="q-text">A ring has outer radius 9 cm and inner radius 5 cm. Work out its area. Round to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs12-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs12',175.9,'Q69',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs12','Area of the outer circle minus area of the inner circle')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs12','175.9 cm² (π × 9² = 254.46…; π × 5² = 78.53…; the difference is 175.92… = 175.9)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q70 -->
+  <div class="q-card" id="qcard-cs13">
+    <div class="q-header"><div class="q-num">Q70</div><div class="q-text">Work out the area of this trapezium. The parallel sides are 6 cm and 10 cm, and the perpendicular height is 4 cm.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 220" role="img" aria-label="A trapezium with parallel sides 6 cm and 10 cm and perpendicular height 4 cm"><path d="M60.0 190.0 L300.0 190.0 L250.0 90.0 L120.0 90.0 Z" fill="rgba(245,166,35,0.25)" stroke="#7a84a0" stroke-width="2"/><path d="M120.0 90.0 L120.0 190.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/><path d="M131.0 190.0 L131.0 179.0 L120.0 179.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="185.0" y="74.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">6 cm</text><text x="180.0" y="208.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">10 cm</text><text x="130.0" y="140.0" text-anchor="start" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">4 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs13-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs13',32,'Q70')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs13','Area of a trapezium = ½ × (a + b) × h, where a and b are the parallel sides')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs13','32 cm² (½ × (6 + 10) × 4 = ½ × 16 × 4 = 32)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q71 -->
+  <div class="q-card" id="qcard-cs14">
+    <div class="q-header"><div class="q-num">Q71</div><div class="q-text">This compound shape is made of two rectangles. The bottom bar is 14 cm long and 4 cm high. The whole shape is 10 cm high on the left, and the top block is 5 cm wide. Work out the area of the shape.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 250" role="img" aria-label="An L-shape: bottom bar 14 cm long and 4 cm high, top block 5 cm wide, whole shape 10 cm high on the left"><path d="M70.0 220.0 L294.0 220.0 L294.0 156.0 L150.0 156.0 L150.0 60.0 L70.0 60.0 Z" fill="rgba(245,166,35,0.25)" stroke="#7a84a0" stroke-width="2"/><text x="182.0" y="238.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">14 cm</text><text x="302.0" y="188.0" text-anchor="start" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">4 cm</text><text x="110.0" y="48.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">5 cm</text><text x="62.0" y="140.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">10 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs14-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs14',86,'Q71')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs14','First find the height of the top block (10 − 4). Then add the area of the bar and the area of the block')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs14','86 cm² (top block height = 10 − 4 = 6, so the areas are 14 × 4 = 56 and 5 × 6 = 30; total 86)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q72 -->
+  <div class="q-card" id="qcard-cs15">
+    <div class="q-header"><div class="q-num">Q72</div><div class="q-text">A rectangular piece of card is 30 cm by 18 cm. Six circular holes, each with diameter 6 cm, are cut out of it. What is the area of card that is left? Round to 3 significant figures.</div><div class="q-marks">3 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs15-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs15',370,'Q72',0.5)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs15','Area of the rectangle minus 6 times the area of one hole. The radius of each hole is 3 cm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs15','370 cm² (30 × 18 = 540; 6 × π × 3² = 169.64…; 540 − 169.64… = 370.35… = 370 to 3 s.f.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q73 -->
+  <div class="q-card" id="qcard-cs16">
+    <div class="q-header"><div class="q-num">Q73</div><div class="q-text">A square tile of side 10 cm has a circular hole of radius 3 cm cut out of the middle. Priya finds the area of tile that is left as 10 × 10 + π × 3². What mistake has she made?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="cs16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('cs16', this, 'a')"><div class="opt-indicator"></div><span>She should have used the diameter of the hole instead of its radius</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cs16', this, 'b')"><div class="opt-indicator"></div><span>She should have used π × 3 instead of π × 3²</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cs16', this, 'c')"><div class="opt-indicator"></div><span>She added the area of the hole, when she should have subtracted it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cs16', this, 'd')"><div class="opt-indicator"></div><span>She should have worked out 10 × 10 × π</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('cs16','c','Q73')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs16','Is the hole part of the tile, or has it been removed?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs16','C — she added the area of the hole, when she should have subtracted it: 100 − π × 3² = 71.7 cm²')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs16-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q74 -->
+  <div class="q-card" id="qcard-cs17">
+    <div class="q-header"><div class="q-num">Q74</div><div class="q-text">A running track has two straight sections of 60 m, joined by a semicircle of radius 32 m at each end. Work out the length of the inner edge of the track (one full lap), to the nearest metre.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cs17-ans" placeholder="Enter answer..."><span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cs17',321,'Q74',0.5)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cs17','The two semicircles together make one whole circle of radius 32 m. Add its circumference to the two straight sections')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cs17','321 m (circle: 2 × π × 32 = 201.06…; straights: 2 × 60 = 120; total 321.06…)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cs17-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">COMPOUND SHAPES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-cs-fill"></div></div>
+    <div class="section-score-val" id="sec-cs-val">0/32</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { pg1:1, pg2:2, pg3:2, pg4:1, pg5:2, pg6:2, pg7:1, pg8:2, pg9:2, co1:1, co2:1, co3:1, co4:1, co5:2, co6:1, co7:1, co8:1, co9:1, co10:1, py1:1, py2:1, py3:1, py4:2, py5:2, py6:2, py7:1, py8:2, py9:2, py10:2, py11:1, py12:2, py13:1, py14:1, ci1:2, ci2:2, ci3:2, ci4:2, ci5:1, ci6:2, ci7:2, ci8:2, ci9:2, ci10:2, ci11:2, ci12:1, ci13:2, cs1:2, cs2:2, cs3:2, cs4:2, cs5:2, cs6:2, cs7:1, cs8:2, cs9:2, cs10:2, cs11:1, cs12:2, py15:2, py16:2, py17:2, py18:3, ci14:2, ci15:1, cs13:2, cs14:2, cs15:3, cs16:1, cs17:2, pg10:1, pg11:1, pg12:2, pg13:2, pg14:2 };
+
+const sections = {
+  pg: { label: 'Polygon Angles', qs: ['pg1', 'pg2', 'pg3', 'pg4', 'pg5', 'pg6', 'pg7', 'pg8', 'pg9', 'pg10', 'pg11', 'pg12', 'pg13', 'pg14'] },
+  co: { label: 'Constructions', qs: ['co1', 'co2', 'co3', 'co4', 'co5', 'co6', 'co7', 'co8', 'co9', 'co10'] },
+  py: { label: 'Pythagoras\' Theorem', qs: ['py1', 'py2', 'py3', 'py4', 'py5', 'py6', 'py7', 'py8', 'py9', 'py10', 'py11', 'py12', 'py13', 'py14', 'py15', 'py16', 'py17', 'py18'] },
+  ci: { label: 'Circles', qs: ['ci1', 'ci2', 'ci3', 'ci4', 'ci5', 'ci6', 'ci7', 'ci8', 'ci9', 'ci10', 'ci11', 'ci12', 'ci13', 'ci14', 'ci15'] },
+  cs: { label: 'Compound Shapes', qs: ['cs1', 'cs2', 'cs3', 'cs4', 'cs5', 'cs6', 'cs7', 'cs8', 'cs9', 'cs10', 'cs11', 'cs12', 'cs13', 'cs14', 'cs15', 'cs16', 'cs17'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`term2-week5-unit-test2-angles-shapes-measurements_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && (active.classList.contains('num-input') || active.classList.contains('text-input'))) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>

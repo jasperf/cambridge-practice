@@ -92,6 +92,20 @@ The **Electricity** sheet follows the Electricity section of the same slide deck
 
 Source material: `material/science/s2/t2/w4/` (the slide PDF and the density slide screenshots; the `material/` folder is not tracked in git).
 
+## Week 5 (2–6 November)
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 2 practice** — Unit 5.2–5.5 + Unit 7.1–7.2 | 74 | 123 | [.md](./w5/term2-week5-maths-unit-test2-angles-shapes-measurements.md) | [.html](./w5/term2-week5-maths-unit-test2-angles-shapes-measurements.html) |
+
+### Maths Unit Test 2 practice: Angles, Shapes & Measurements
+
+A practice paper for the Maths Unit Test 2 on **Tuesday 3 November** (the class announcement calls it “Angles/Shapes & Measurement”; bring a calculator, ruler and compasses). It covers the second half of Unit 5, Angles, and Unit 7.1–7.2, Shapes and measurements, with new numbers; the earlier angle rules (lines, triangles, parallel lines) were Unit Test 1. Section A (14 questions, 23 marks) covers polygon angles: interior angle sums, exterior angles, regular polygons, shapes fitting round a point, angles with algebra, why an angle sum is impossible, a reflex angle in an L-shaped hexagon and angles found from exterior angles. Section B (10 questions, 11 marks) tests the ideas behind ruler-and-compass constructions: bisecting to get 45°, 30° and 15°, an inscribed hexagon and square, a dodecagon, a rhombus and rotational symmetry. Section C (18 questions, 30 marks) covers Pythagoras’ theorem: hypotenuse and shorter side, rounding, a ladder, a monitor screen, diagonals, an isosceles height, an equilateral triangle’s height, a parallelogram’s height, a wire across a photo frame, a two-step problem and which sides make a right angle. Section D (15 questions, 27 marks) covers Unit 7.1, circumference and area of a circle: the π button, 1 d.p. and 3 s.f. rounding, diameter versus radius, working back from a circumference or area, semicircles, answers in terms of π, which approximate value of π is closest, a bottle cap’s radius from the string round its rim and the ratio of areas of two circles. Section E (17 questions, 32 marks) covers Unit 7.2, areas of compound shapes: rectangles with triangles or semicircles, trapezium area, an L-shape with a missing length, shapes with holes (including a card sheet with six circular holes), a running track, a square with a circle inside, a semicircle with a triangle in it, a ring, an estimate with π ≈ 3 and a path round a pond. 18 of the 74 questions are multiple choice (the correct letter is spread evenly across A–D); the other 56 are typed-number answers, and every question on the interactive sheet is auto-marked. Diagrams are drawn on the sheet and described in words in the printable `.md`. The printable also has thirteen written questions (Q75–Q87, 44 marks, marked by the teacher): two real ruler-and-compass constructions, a regular polygon from its interior angle, why an angle sum could be 1440° but not 1500°, tessellation, a Pythagoras mistake and a ladder safety check, then a circle-area mistake to explain, the fraction of a square covered by a circle, a formula in terms of the diameter, semicircle against quarter circle, a playing field area and perimeter, and why doubling the radius quadruples the area. The interactive sheet has no explorers; it links to the Week 2 Polygon Explorer.
+
+Source material: the Unit 5 and Unit 7 textbook pages in `material/math/s2/t2/w5/unit5/` and `unit7/` (sections 5.1–5.5, 7.1 and 7.2) and the practice-book pages in `unit5+7-practise/`, used only to see which topics and skills are covered (the `material/` folder is not tracked in git). Every question, number, scenario and diagram is original, written for this sheet; none is copied from the books.
+
 ## Writing project
 
 ### English: UN Day Writing Project
@@ -115,7 +129,7 @@ s2/t2/
     ├── term2-week3-maths-unit-test1-inequalities-angles.md   ← Printable (+5 written q)
     ├── term2-week3-english-unit-test1-persuasive-emotive-language.html ← Interactive (English Unit Test 1)
     └── term2-week3-english-unit-test1-persuasive-emotive-language.md   ← Printable (+6 extended-answer q)
-└── w4/
+├── w4/
     ├── term2-week4-science-unit3-density.html ← Interactive (Density)
     ├── term2-week4-science-unit3-density.md   ← Printable (+9 written q)
     ├── term2-week4-science-unit3-sound-thermal-energy.html ← Interactive (Sound Waves & Thermal Energy)
@@ -127,5 +141,8 @@ s2/t2/
     ├── term2-week4-science-unit3-thermal-energy-quick-test-whatsapp.txt ← Paste-ready for WhatsApp
     ├── term2-week4-science-unit3-thermal-energy-extra-questions.md ← Printable extra questions (6 q, no .html)
     ├── term2-week4-science-unit3-thermal-energy-extra-questions-whatsapp.txt ← 6 extra q, paste-ready
-    └── term2-week4-science-unit3-thermal-energy-extra-questions-answers.md ← Answers
+    ├── term2-week4-science-unit3-thermal-energy-extra-questions-answers.md ← Answers
+└── w5/
+    ├── term2-week5-maths-unit-test2-angles-shapes-measurements.html ← Interactive (Unit Test 2 practice)
+    └── term2-week5-maths-unit-test2-angles-shapes-measurements.md   ← Printable (+13 written q)
 ```
