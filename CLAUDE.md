@@ -7,21 +7,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Static site of self-marking exercise sheets. No build step, no npm, no server. Every file is a single self-contained HTML file that works by opening it directly in a browser.
 
 Content:
-- **Cambridge curriculum sheets** (`s1/`) — maths, science, English practice for Stage 1.
+- **Cambridge Secondary sheets** (`s1/`, `s2/`) — maths, science, English practice.
+- **IGCSE** (`igcse-add-maths/`) — Additional Maths topic drills.
 
 Live at: https://jasperf.github.io/cambridge-practice (deployed automatically from `main` via GitHub Pages).
 
 ## Directory Structure
 
 ```
-s1/                          # Cambridge Stage 1
+s1/                          # Secondary 1
 ├── t4/w{N}/                 # Term 4, weekly sheets
-├── sa2/                     # Summative assessment 2
+├── sa2/                     # Summative assessment 2 (+ focus/ topic drills)
 └── science/                 # Topic-based science sheets
-
+s2/                          # Secondary 2
+├── t{N}/                    # Term index README + term-level revision handouts
+│   └── w{N}/                # Weekly sheets: .html interactive + .md printable
+├── science-formula-sheets/  # SVG formula sheets, index.html gallery, README
+└── english-revision-sheets/ # SVG English revision sheets, index.html gallery, README
+igcse-add-maths/             # IGCSE Additional Maths (0606)
+scripts/                     # MCQ audit / shuffle / sync tools
 docs/                        # Course planning / design docs
-material/                    # Source material (English, math, science)
+material/                    # Source material, photos of books (gitignored, never commit)
 ```
+
+Weekly sheets are named `term{N}-week{N}-{subject}-{topic}.html` with a same-basename `.md` printable beside them (e.g. `s2/t2/w5/term2-week5-maths-unit-test2-angles-shapes-measurements.{html,md}`). The file-by-file list lives in each term README, not in the root README.
 
 ## Development
 
@@ -71,8 +80,8 @@ This is an on-demand, local step — no PDF output is committed or wired into an
 
 New sheets/handouts are referenced in more than one README — check all that apply:
 
-- **Root `README.md`** — the `Structure` tree, and the relevant `Subjects Covered` table (Secondary 1 / Secondary 2 / IGCSE).
-- **`s2/t1/README.md`** (or an equivalent term-level index, if one exists for the term/stage you're adding to) — its worksheet table (or revision-handouts table) and its own structure diagram.
+- **Root `README.md`** — the relevant `Subjects Covered` table (Secondary 1 / Secondary 2 / IGCSE). Its `Structure` section is folder-level only; touch it only when adding a new top-level or term folder.
+- **The term README** (`s2/t1/README.md`, `s2/t2/README.md`, or the equivalent for the term/stage you're adding to) — its worksheet table (or revision-handouts table) and its own structure diagram, which is the file-by-file list.
 - **`index.html`** — a card in the matching subject grid (already covered above, but easy to forget when a change is "just docs").
 
 A new revision handout that mixes an auto-marked `.html` with extra open-ended/printable-only content (e.g. extended writing tasks) should say so explicitly in these READMEs — don't let a "printable has the exact same questions as interactive" claim go stale.

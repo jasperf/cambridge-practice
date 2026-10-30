@@ -19,86 +19,20 @@ Each exercise sheet is a single self-contained HTML file with:
 
 ```
 cambridge-practice/
-├── index.html                        ← Home page / subject index
-├── resources.html                    ← Curated external resources (YouTube, BBC Bitesize)
-├── s1/                              ← Secondary 1
-│   ├── t4/                          ← Term 4
-│   │   ├── w1/                      ← Week 1
-│   │   │   └── term4-week1-maths-science.html
-│   │   └── w6/                      ← Week 6
-│   │       ├── term4-week6-science.html
-│   │       └── term4-week6-english.html
-│   ├── sa2/                         ← SA2 revision
-│   │   ├── focus/                   ← Topic focus drills (one topic at a time)
-│   │   │   ├── term4-sa2-science-respiration.html    ← Respiration & Blood (15 Q)
-│   │   │   ├── term4-sa2-science-atomic.html         ← Atoms & Chemical Reactions (15 Q)
-│   │   │   ├── term4-sa2-science-forces.html        ← Health, Speed & Forces (15 Q)
-│   │   │   ├── term4-sa2-science-earth-space.html   ← Earth, Ecosystems & Space (15 Q)
-│   │   │   ├── term4-sa2-science-gases.html         ← Gases, Liquids & Chromatography (15 Q)
-│   │   │   └── term4-sa2-science-light.html         ← Light, Reflection & Colour (13 Q)
-│   │   ├── term4-sa2-maths.html          ← SA2 revision (all units, 42 q, 60 marks)
-│   │   ├── term4-sa2-english.html        ← SA2 revision (parts of speech & clauses, 40 q, 40 marks)
-│   │   └── term4-sa2-science.html        ← SA2 revision (all topics, 42 q, 50 marks)
-│   ├── science/                     ← Topic-specific drills
-│   │   ├── circuits.html                 ← Electric Circuits (16 q, 26 marks, interactive SVG)
-│   │   ├── chemical-reactions.html       ← Chemical Reactions & Particle Model (17 q, 25 marks)
-│   │   └── forces-speed-pressure.html    ← Forces, Speed & Pressure (17 q, 25 marks)
-├── s2/                              ← Secondary 2
-│   └── t1/                          ← Term 1
-│       ├── README.md                     ← Worksheet index (interactive + printable)
-│       ├── term1-maths-unit1-revision.md   ← Revision handout, spans Ch 1.1–1.3 (53 q, 69 marks)
-│       ├── term1-maths-unit2-practice-test.md ← Unit Test 2 Practice Test: Expressions & Formulae, Ch 2.1–2.6 (20 q, 32 marks; 12 open + 8 MCQ, answer key included)
-│       ├── term1-english-unit1-revision.*  ← Revision handout: Sentence Types + Reading Comprehension (42 q, 50 marks; .md also has 4 extended writing tasks)
-│       ├── term1-english-unit1-summary.md  ← Summary of key concepts from the English revision handout
-│       ├── term1-english-unit1-quick-test.md  ← 15 open-ended questions for rapid review
-│       ├── term1-science-unit1-revision.md ← Revision handout: Unit Test 1, Weeks 2–4 science (54 q, 66 marks + 8 extended-answer q, 22 marks)
-│       ├── term1-science-unit1-revision-answers.md ← Answer sheet for the above (separate file, keep back from students)
-│       ├── w2/                      ← Week 2 (.html interactive + .md printable)
-│       │   ├── term1-week2-atomic-structure-periodic.html  ← Atomic Structure & Periodic Table (18 q, 22 marks)
-│       │   ├── term1-week2-maths-rational-irrational.*     ← Rational & Irrational Numbers (16 q, 20 marks)
-│       │   └── term1-week2-maths-indices-standard-form.*   ← Indices & Standard Form (37 q, 49 marks)
-│       ├── w3/                      ← Week 3 (.html interactive + .md printable)
-│       │   └── term1-week3-science-ionic-bonding.*         ← Why Elements React & Ionic Bonding (23 q, 27 marks)
-│       ├── w4/                      ← Week 4 (.html interactive + .md printable)
-│       │   └── term1-week4-science-covalent-metallic-bonding.* ← Why Atoms Bond, Covalent & Metallic Bonding (12 q, 13 marks)
-│       ├── w5/                      ← Week 5 (.html interactive + .md printable)
-│       │   └── term1-week5-maths-expressions-formulae.*    ← Expressions & Formulae (26 q, 34 marks)
-│       ├── w7/                      ← Week 7 (.html interactive + .md printable)
-│       │   ├── term1-week7-science-unit-test2-plant-biology.* ← Unit Test 2: Plant Biology (38 q, 49 marks + 6 extended-answer q, 22 marks)
-│       │   └── term1-week7-english-unit-test2-viewpoints-arguments.* ← Unit Test 2: Viewpoints & Arguments (45 q, 59 marks + 6 extended-answer q)
-│       └── w8/                      ← Week 8 (.html interactive + .md printable)
-│           ├── term1-week8-maths-unit-test3-decimals-percentages-rounding.* ← Unit Test 3: Decimals, Percentages & Rounding (29 q, 40 marks + 5 extended-answer q, 18 marks)
-│           ├── term1-week8-maths-unit3-bounds-powers-practice.* ← Unit 3 Follow-up: Bounds & Powers (31 q, 40 marks + 5 written q, 16 marks)
-│           ├── term1-week8-maths-unit3-bounds-sigfigs-retest.* ← Unit 3 Retest: Bounds & Significant Figures (34 q, 40 marks + 4 written q, 12 marks)
-│           ├── term1-week8-maths-unit3-open-questions.* ← Unit 3 Practice Test: 20 Open Questions (20 q, 25 marks)
-│           ├── term1-week8-maths-unit4-simultaneous-equations.* ← Unit 4.2: Simultaneous Equations (33 q, 45 marks + 4 written q, 14 marks)
-│   └── t2/                          ← Term 2
-│       ├── README.md                ← Term 2 worksheet index
-│       ├── term2-english-un-day-writing-project.md ← UN Day Writing Project coaching guide (Zimbabwe/Sweden, 50 marks)
-│       ├── w1/                      ← Week 1 (.html interactive + .md printable)
-│       │   └── term2-week1-maths-unit4-linear-inequalities.* ← Unit 4.3: Linear Inequalities (36 q, 46 marks + 4 written q, 15 marks)
-│       ├── w2/                      ← Week 2 (.html interactive + .md printable)
-│       │   └── term2-week2-maths-unit5-calculating-angles.* ← Unit 5.1–5.2: Calculating Angles (38 q, 51 marks; printable writes out Q35–Q38 in full, 14 marks)
-│       ├── w3/                      ← Week 3 (.html interactive + .md printable)
-│       │   ├── term2-week3-maths-unit-test1-inequalities-angles.* ← Unit Test 1 practice: Linear Inequalities & Angles (30 q, 46 marks + 5 written q, 16 marks)
-│       │   └── term2-week3-english-unit-test1-persuasive-emotive-language.* ← English Unit Test 1: Persuasive & Emotive Language (57 q, 71 marks + 6 extended-answer q, 27 marks)
-│       ├── w4/                      ← Week 4 (.html interactive + .md printable)
-│           ├── term2-week4-science-unit3-density.* ← Unit 3: Density of Solids, Liquids & Gases (41 q, 46 marks + 9 written q, 27 marks)
-│           ├── term2-week4-science-unit3-sound-thermal-energy.* ← Unit 3: Sound Waves & Thermal Energy (46 q, 46 marks + 11 written q, 35 marks)
-│           └── term2-week4-science-unit3-electricity.* ← Unit 3: Electricity — circuits, V = IR, series & parallel (43 q, 45 marks + 10 written q, 38 marks)
-│       └── w5/                      ← Week 5 (.html interactive + .md printable)
-│           └── term2-week5-maths-unit-test2-angles-shapes-measurements.* ← Unit Test 2 practice: Angles, Shapes & Measurements (74 q, 123 marks + 13 written q, 44 marks)
-│   ├── science-formula-sheets/      ← index.html gallery + one-page SVG formula & key-fact sheets for Term 1–2 science (6 sheets + 5 diagrams, captions, text reference)
-│   └── english-revision-sheets/     ← index.html gallery + one-page SVG revision sheets for English (Persuasive & Emotive Language, Semicolon Usage), with caption pages
-├── igcse-add-maths/                 ← IGCSE Additional Maths (0606)
-│   └── circular-measure.html        ← Circular Measure: Radians & Degrees (16 q, 23 marks, interactive)
-├── igcse/                           ← IGCSE (planned)
-│   └── ...
-├── docs/
-│   ├── README.md                     ← Documentation index
-│   └── state-management.md          ← State object and score tracking explained
-└── README.md
+├── index.html                  ← Home page: a card for every sheet
+├── resources.html              ← Curated external resources (YouTube, BBC Bitesize)
+├── s1/                         ← Secondary 1: t4/ weekly sheets, sa2/ revision (+ focus/ drills), science/ topic drills
+├── s2/                         ← Secondary 2
+│   ├── t1/                     ← Term 1: w{N}/ weekly sheets + term-level revision handouts
+│   ├── t2/                     ← Term 2: w{N}/ weekly sheets
+│   ├── science-formula-sheets/ ← One-page SVG formula & key-fact sheets (index.html gallery)
+│   └── english-revision-sheets/← One-page SVG English revision sheets (index.html gallery)
+├── igcse-add-maths/            ← IGCSE Additional Maths (0606)
+├── scripts/                    ← MCQ audit, shuffle and sync tools
+└── docs/                       ← Documentation (state management, etc.)
 ```
+
+Weekly sheets are named `term{N}-week{N}-{subject}-{topic}.html`, with a matching `.md` printable beside them. For the file-by-file list of a term, see its README: [s2/t1](./s2/t1/README.md) · [s2/t2](./s2/t2/README.md) · [science formula sheets](./s2/science-formula-sheets/README.md) · [English revision sheets](./s2/english-revision-sheets/README.md).
 
 ## Printable Worksheets (Parallel Path)
 
@@ -108,7 +42,7 @@ Use the printable versions for **written practice/exams** and the interactive ve
 
 Revision handouts that combine several weekly sheets live one level up, in the term folder (e.g. `s2/t1/term1-maths-unit1-revision.md`).
 
-See [s2/t1/README.md](./s2/t1/README.md) for the full index.
+See the term READMEs ([s2/t1](./s2/t1/README.md), [s2/t2](./s2/t2/README.md)) for the full index.
 
 ## Adding a New Sheet
 
