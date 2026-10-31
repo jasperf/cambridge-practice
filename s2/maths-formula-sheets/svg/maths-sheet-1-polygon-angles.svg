@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1300" viewBox="0 0 1080 1300" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="1300" fill="#FBF5E9"/><rect width="14" height="1300" fill="#1C6DD0"/>
+<text xml:space="preserve" x="56.0" y="62.0" font-size="20" font-weight="700" fill="#1C6DD0" letter-spacing="2">SECONDARY 2 MATHS · SHEET 1 OF 5</text>
+<text xml:space="preserve" x="56.0" y="108.0" font-size="40" font-weight="800" fill="#14213D">Polygon Angles</text>
+<text xml:space="preserve" x="56.0" y="136.0" font-size="20" font-weight="400" fill="#5B6478">Term 2 · Unit 5 Angles · Unit Test 2</text>
+<text xml:space="preserve" x="56.0" y="180.0" font-size="24" font-weight="800" fill="#E8590C">Interior angles: split it into triangles</text>
+<rect x="56" y="196" width="968" height="330" rx="16" fill="#fff" stroke="#EADFCB"/>
+<polygon points="240.0,236.0 131.7,298.5 131.7,423.5" fill="#DCE9FA" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<text xml:space="preserve" x="167.8" y="328.3" font-size="26" font-weight="800" fill="#1C6DD0" text-anchor="middle">1</text>
+<polygon points="240.0,236.0 131.7,423.5 240.0,486.0" fill="#FDE1CF" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<text xml:space="preserve" x="203.9" y="390.8" font-size="26" font-weight="800" fill="#E8590C" text-anchor="middle">2</text>
+<polygon points="240.0,236.0 240.0,486.0 348.3,423.5" fill="#DCE9FA" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<text xml:space="preserve" x="276.1" y="390.8" font-size="26" font-weight="800" fill="#1C6DD0" text-anchor="middle">3</text>
+<polygon points="240.0,236.0 348.3,423.5 348.3,298.5" fill="#FDE1CF" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<text xml:space="preserve" x="312.2" y="328.3" font-size="26" font-weight="800" fill="#E8590C" text-anchor="middle">4</text>
+<line x1="240.0" y1="236.0" x2="131.7" y2="423.5" stroke="#14213D" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<line x1="240.0" y1="236.0" x2="240.0" y2="486.0" stroke="#14213D" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<line x1="240.0" y1="236.0" x2="348.3" y2="423.5" stroke="#14213D" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<polygon points="240.0,236.0 131.7,298.5 131.7,423.5 240.0,486.0 348.3,423.5 348.3,298.5" fill="none" stroke="#14213D" stroke-width="4" stroke-linejoin="round"/>
+<text xml:space="preserve" x="440.0" y="246.0" font-size="21" font-weight="400" fill="#14213D">A polygon with n sides splits into</text>
+<text xml:space="preserve" x="440.0" y="276.0" font-size="21" font-weight="400" fill="#14213D">(n − 2) triangles from one corner.</text>
+<text xml:space="preserve" x="440.0" y="326.0" font-size="32" font-weight="800" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">Sum = (n − 2) × 180°</text>
+<text xml:space="preserve" x="440.0" y="370.0" font-size="21" font-weight="700" fill="#14213D">Hexagon: 4 triangles × 180° = 720°</text>
+<rect x="440" y="396" width="80" height="104" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="480.0" y="434.0" font-size="20" font-weight="400" fill="#5B6478" text-anchor="middle">sides</text>
+<text xml:space="preserve" x="480.0" y="482.0" font-size="19" font-weight="400" fill="#5B6478" text-anchor="middle">sum</text>
+<rect x="520" y="396" width="80" height="104" fill="#FBF5E9" stroke="#EADFCB"/>
+<text xml:space="preserve" x="560.0" y="434.0" font-size="20" font-weight="700" fill="#1C6DD0" text-anchor="middle">3</text>
+<text xml:space="preserve" x="560.0" y="482.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">180°</text>
+<rect x="600" y="396" width="80" height="104" fill="#FBF5E9" stroke="#EADFCB"/>
+<text xml:space="preserve" x="640.0" y="434.0" font-size="20" font-weight="700" fill="#1C6DD0" text-anchor="middle">4</text>
+<text xml:space="preserve" x="640.0" y="482.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">360°</text>
+<rect x="680" y="396" width="80" height="104" fill="#FBF5E9" stroke="#EADFCB"/>
+<text xml:space="preserve" x="720.0" y="434.0" font-size="20" font-weight="700" fill="#1C6DD0" text-anchor="middle">5</text>
+<text xml:space="preserve" x="720.0" y="482.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">540°</text>
+<rect x="760" y="396" width="80" height="104" fill="#FBF5E9" stroke="#EADFCB"/>
+<text xml:space="preserve" x="800.0" y="434.0" font-size="20" font-weight="700" fill="#1C6DD0" text-anchor="middle">6</text>
+<text xml:space="preserve" x="800.0" y="482.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">720°</text>
+<rect x="840" y="396" width="80" height="104" fill="#FBF5E9" stroke="#EADFCB"/>
+<text xml:space="preserve" x="880.0" y="434.0" font-size="20" font-weight="700" fill="#1C6DD0" text-anchor="middle">7</text>
+<text xml:space="preserve" x="880.0" y="482.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">900°</text>
+<rect x="920" y="396" width="80" height="104" fill="#FBF5E9" stroke="#EADFCB"/>
+<text xml:space="preserve" x="960.0" y="434.0" font-size="20" font-weight="700" fill="#1C6DD0" text-anchor="middle">8</text>
+<text xml:space="preserve" x="960.0" y="482.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">1080°</text>
+<text xml:space="preserve" x="56.0" y="566.0" font-size="24" font-weight="800" fill="#E8590C">Exterior angles add up to 360°</text>
+<rect x="56" y="582" width="968" height="330" rx="16" fill="#fff" stroke="#EADFCB"/>
+<path d="M240.0,652.0 L214.1,633.2 A32,32 0 0 0 214.1,670.8 Z" fill="#FDE1CF" stroke="none"/>
+<path d="M214.1,633.2 A32,32 0 0 0 214.1,670.8" fill="none" stroke="#E8590C" stroke-width="3" stroke-linecap="round"/>
+<line x1="240.0" y1="652.0" x2="199.5" y2="622.6" stroke="#E8590C" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<path d="M144.9,721.1 L119.0,739.9 A32,32 0 0 0 154.8,751.5 Z" fill="#FDE1CF" stroke="none"/>
+<path d="M119.0,739.9 A32,32 0 0 0 154.8,751.5" fill="none" stroke="#E8590C" stroke-width="3" stroke-linecap="round"/>
+<line x1="144.9" y1="721.1" x2="104.4" y2="750.5" stroke="#E8590C" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<path d="M181.2,832.9 L191.1,863.3 A32,32 0 0 0 213.2,832.9 Z" fill="#FDE1CF" stroke="none"/>
+<path d="M191.1,863.3 A32,32 0 0 0 213.2,832.9" fill="none" stroke="#E8590C" stroke-width="3" stroke-linecap="round"/>
+<line x1="181.2" y1="832.9" x2="196.7" y2="880.5" stroke="#E8590C" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<path d="M298.8,832.9 L330.8,832.9 A32,32 0 0 0 308.7,802.5 Z" fill="#FDE1CF" stroke="none"/>
+<path d="M330.8,832.9 A32,32 0 0 0 308.7,802.5" fill="none" stroke="#E8590C" stroke-width="3" stroke-linecap="round"/>
+<line x1="298.8" y1="832.9" x2="348.8" y2="832.9" stroke="#E8590C" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<path d="M335.1,721.1 L345.0,690.7 A32,32 0 0 0 309.2,702.3 Z" fill="#FDE1CF" stroke="none"/>
+<path d="M345.0,690.7 A32,32 0 0 0 309.2,702.3" fill="none" stroke="#E8590C" stroke-width="3" stroke-linecap="round"/>
+<line x1="335.1" y1="721.1" x2="350.6" y2="673.5" stroke="#E8590C" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<polygon points="240.0,652.0 144.9,721.1 181.2,832.9 298.8,832.9 335.1,721.1" fill="#DCE9FA" stroke="#14213D" stroke-width="4" stroke-linejoin="round"/>
+<text xml:space="preserve" x="240.0" y="760.0" font-size="20" font-weight="700" fill="#1C6DD0" text-anchor="middle">72° × 5</text>
+<text xml:space="preserve" x="240.0" y="786.0" font-size="20" font-weight="700" fill="#1C6DD0" text-anchor="middle">= 360°</text>
+<text xml:space="preserve" x="440.0" y="632.0" font-size="21" font-weight="700" fill="#14213D">Interior + exterior = 180° (a straight line)</text>
+<text xml:space="preserve" x="440.0" y="662.0" font-size="21" font-weight="700" fill="#14213D">Exterior angles of ANY polygon add to 360°</text>
+<text xml:space="preserve" x="440.0" y="712.0" font-size="21" font-weight="400" fill="#5B6478">Regular polygon with n sides:</text>
+<text xml:space="preserve" x="440.0" y="752.0" font-size="23" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">exterior = 360° ÷ n</text>
+<text xml:space="preserve" x="440.0" y="788.0" font-size="23" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">interior = 180° − exterior</text>
+<text xml:space="preserve" x="440.0" y="824.0" font-size="23" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">n       = 360° ÷ exterior</text>
+<rect x="440" y="842" width="560" height="52" rx="10" fill="#FBF5E9"/>
+<text xml:space="preserve" x="458.0" y="876.0" font-size="19" font-weight="700" fill="#14213D">Interior 150° → exterior 30° → n = 360 ÷ 30 = 12</text>
+<text xml:space="preserve" x="56.0" y="952.0" font-size="24" font-weight="800" fill="#E8590C">Fitting round a point · angles with algebra</text>
+<rect x="56" y="968" width="474" height="250" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="550" y="968" width="474" height="250" rx="16" fill="#fff" stroke="#EADFCB"/>
+<polygon points="170.0,1110.0 147.0,1070.2 101.0,1070.2 78.0,1110.0 101.0,1149.8 147.0,1149.8" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="239.0,1149.8 216.0,1110.0 170.0,1110.0 147.0,1149.8 170.0,1189.7 216.0,1189.7" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="239.0,1070.2 216.0,1030.3 170.0,1030.3 147.0,1070.2 170.0,1110.0 216.0,1110.0" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="170.0" cy="1110.0" r="5.0" fill="#14213D" stroke="none" stroke-width="0"/>
+<text xml:space="preserve" x="80.0" y="1004.0" font-size="22" font-weight="800" fill="#1C6DD0">Angles at a point = 360°</text>
+<text xml:space="preserve" x="262.0" y="1068.0" font-size="19" font-weight="700" fill="#14213D">Hexagons: 3 × 120°</text>
+<text xml:space="preserve" x="262.0" y="1096.0" font-size="19" font-weight="700" fill="#14213D">= 360° ✓ no gaps</text>
+<text xml:space="preserve" x="262.0" y="1140.0" font-size="19" font-weight="700" fill="#E8590C">Pentagons: 360 ÷ 108</text>
+<text xml:space="preserve" x="262.0" y="1168.0" font-size="19" font-weight="700" fill="#E8590C">= 3.33… ✗ gap left</text>
+<text xml:space="preserve" x="574.0" y="1004.0" font-size="22" font-weight="800" fill="#1C6DD0">Set the angles equal to the sum</text>
+<text xml:space="preserve" x="574.0" y="1050.0" font-size="20" font-weight="400" fill="#14213D">Quadrilateral:</text>
+<text xml:space="preserve" x="574.0" y="1080.0" font-size="20" font-weight="400" fill="#14213D">x, x + 30, 2x, 2x − 30</text>
+<text xml:space="preserve" x="574.0" y="1124.0" font-size="21" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">6x = 360  →  x = 60</text>
+<text xml:space="preserve" x="574.0" y="1158.0" font-size="21" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">60°, 90°, 120°, 90° ✓</text>
+<text xml:space="preserve" x="56.0" y="1274.0" font-size="18" font-weight="400" fill="#5B6478">Formula sheets · Jasper</text>
+</svg>

@@ -1,0 +1,20 @@
+SHEET 1 – Polygon Angles
+Interior angles: a polygon with n sides splits into (n − 2) triangles, so the angles add up to (n − 2) × 180° (hexagon: 4 × 180° = 720°). Exterior angles of any polygon add up to 360°, and interior + exterior = 180°. For a regular polygon: exterior = 360° ÷ n, interior = 180° − exterior, n = 360° ÷ exterior (interior 150° → exterior 30° → 12 sides). Shapes fit round a point when their angles make 360°: three hexagons (3 × 120°) do, pentagons (108°) leave a gap. With algebra, set the angles equal to the sum: x, x + 30, 2x, 2x − 30 gives 6x = 360, x = 60.
+
+SHEET 2 – Constructions
+Ruler and compasses only. To bisect an angle: compasses on the corner O, draw an arc crossing both arms at A and B; draw equal arcs from A and from B to cross at P; the line OP cuts the angle exactly in half. Arcs from both ends of a line, set to its length, make an equilateral triangle, so 60°. Bisect 60° for 30°, then 15°; bisect 90° for 45°, then 22.5°. A regular hexagon fits in a circle by stepping the radius 6 times round (side = radius); a square comes from two diameters at right angles (s² = r² + r²). Angle at the centre = 360° ÷ n.
+
+SHEET 3 – Pythagoras’ Theorem
+In a right-angled triangle a² + b² = c², where c is the hypotenuse: the longest side, opposite the right angle (3² + 4² = 5², 9 + 16 = 25). To find the hypotenuse, add the squares: √(20² + 21²) = √841 = 29 cm. To find a shorter side, subtract: √(26² − 10²) = √576 = 24 cm. Look for the hidden right-angled triangle in a rectangle’s diagonal, an isosceles triangle’s height (use half the base) and a ladder against a wall. Triples to know: 3-4-5, 6-8-10, 5-12-13, 8-15-17, 7-24-25.
+
+SHEET 4 – Circles
+d = 2 × r and r = d ÷ 2. Circumference C = π × d (or 2 × π × r); area A = π × r². Circumference uses the diameter, area uses the radius, and only the radius is squared. Working backwards: d = C ÷ π (C = 40 cm gives d = 12.7 cm) and r = √(A ÷ π) (A = 60 cm² gives r = 4.4 cm). Semicircle with d = 10 cm: area ½ × π × 5² = 39.3 cm², perimeter ½ × π × 10 + 10 = 25.7 cm. Quarter circle with r = 4 cm: area 12.6 cm², perimeter 14.3 cm. Use the π button and round at the end: π × 7² = 153.9 to 1 d.p. or 154 to 3 s.f., or 49π cm² in terms of π.
+
+SHEET 5 – Compound Shapes
+Split a compound shape into simple shapes, then add or subtract. L-shape: 10 × 3 + 4 × 5 = 50 cm². Rectangle with a semicircle: 10 × 6 + ½ × π × 5² = 99.3 cm². Rectangle with a hole: 12 × 8 − π × 2² = 83.4 cm². Ring: π × 5² − π × 3² = 16π = 50.3 cm². Running-track shape: the two semicircles make one circle, 12 × 6 + π × 3² = 100.3 cm². Building blocks: rectangle l × w, triangle ½ × b × h, parallelogram b × h, trapezium ½ × (a + b) × h, circle π × r². To estimate, round to 1 s.f. and use π ≈ 3: r = 6.2 cm gives 3 × 6² = 108 cm².
+
+DIAGRAM – Circle Formula Triangles
+Circle formula triangles. Cover the quantity you want and read off what is left. Circumference: C on top, π and d below, so C = π × d, d = C ÷ π. Area: A on top, π and r² below, so A = π × r², r² = A ÷ π and r = √(A ÷ π). Radius and diameter: d = 2 × r, r = d ÷ 2, so double or halve first. Worked examples: d = 12 cm gives C = 37.7 cm; d = 18 cm gives r = 9 cm; A = 80 cm² gives r = 5.0 cm.
+
+DIAGRAM – Regular Polygons
+Regular polygons. Triangle: sum 180°, interior 60°, exterior 120°. Square: 360°, 90°, 90°. Pentagon: 540°, 108°, 72°. Hexagon: 720°, 120°, 60°. Octagon: 1080°, 135°, 45°. Decagon: 1440°, 144°, 36°. Dodecagon: 1800°, 150°, 30°. For n sides: sum = (n − 2) × 180°, exterior = 360° ÷ n, interior = 180° − exterior. Only triangles, squares and hexagons tessellate on their own, because 60°, 90° and 120° divide 360° exactly.

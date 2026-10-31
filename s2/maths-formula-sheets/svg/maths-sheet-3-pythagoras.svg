@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1340" viewBox="0 0 1080 1340" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="1340" fill="#FBF5E9"/><rect width="14" height="1340" fill="#1C6DD0"/>
+<text xml:space="preserve" x="56.0" y="62.0" font-size="20" font-weight="700" fill="#1C6DD0" letter-spacing="2">SECONDARY 2 MATHS · SHEET 3 OF 5</text>
+<text xml:space="preserve" x="56.0" y="108.0" font-size="40" font-weight="800" fill="#14213D">Pythagoras’ Theorem</text>
+<text xml:space="preserve" x="56.0" y="136.0" font-size="20" font-weight="400" fill="#5B6478">Term 2 · Unit 5 Angles · right-angled triangles only</text>
+<text xml:space="preserve" x="56.0" y="180.0" font-size="24" font-weight="800" fill="#E8590C">The squares on the two short sides fill the big one</text>
+<rect x="56" y="196" width="968" height="404" rx="16" fill="#fff" stroke="#EADFCB"/>
+<polygon points="230.0,440.0 358.0,440.0 358.0,568.0 230.0,568.0" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="230.0,344.0 230.0,440.0 134.0,440.0 134.0,344.0" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="230.0,344.0 358.0,440.0 454.0,312.0 326.0,216.0" fill="#FDE1CF" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="230.0,440.0 358.0,440.0 230.0,344.0" fill="#fff" stroke="#14213D" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="246.0,440.0 246.0,424.0 230.0,424.0" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<text xml:space="preserve" x="182.0" y="400.0" font-size="18" font-weight="800" fill="#1C6DD0" text-anchor="middle">a² = 9</text>
+<text xml:space="preserve" x="294.0" y="512.0" font-size="22" font-weight="800" fill="#1C6DD0" text-anchor="middle">b² = 16</text>
+<text xml:space="preserve" x="342.0" y="338.0" font-size="26" font-weight="800" fill="#E8590C" text-anchor="middle">c² = 25</text>
+<text xml:space="preserve" x="242.0" y="400.0" font-size="20" font-weight="800" fill="#14213D">a</text>
+<text xml:space="preserve" x="281.2" y="430.0" font-size="20" font-weight="800" fill="#14213D" text-anchor="middle">b</text>
+<text xml:space="preserve" x="316.0" y="380.0" font-size="22" font-weight="800" fill="#E8590C" text-anchor="middle">c</text>
+<text xml:space="preserve" x="540.0" y="250.0" font-size="21" font-weight="700" fill="#14213D">c is the hypotenuse: the longest side,</text>
+<text xml:space="preserve" x="540.0" y="280.0" font-size="21" font-weight="700" fill="#14213D">opposite the right angle.</text>
+<text xml:space="preserve" x="540.0" y="360.0" font-size="48" font-weight="800" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">a² + b² = c²</text>
+<text xml:space="preserve" x="540.0" y="420.0" font-size="22" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">3² + 4² = 5²  →  9 + 16 = 25</text>
+<text xml:space="preserve" x="540.0" y="478.0" font-size="19" font-weight="400" fill="#5B6478">Find the hypotenuse first, then decide:</text>
+<text xml:space="preserve" x="540.0" y="506.0" font-size="19" font-weight="400" fill="#5B6478">add the squares or subtract them?</text>
+<text xml:space="preserve" x="540.0" y="534.0" font-size="19" font-weight="400" fill="#5B6478">Keep the full calculator value, round last.</text>
+<text xml:space="preserve" x="56.0" y="640.0" font-size="24" font-weight="800" fill="#E8590C">Two jobs, two methods</text>
+<rect x="56" y="656" width="474" height="250" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="80.0" y="696.0" font-size="22" font-weight="800" fill="#1C6DD0">Find the hypotenuse → ADD</text>
+<text xml:space="preserve" x="80.0" y="746.0" font-size="22" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">c² = a² + b²</text>
+<text xml:space="preserve" x="80.0" y="786.0" font-size="22" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">c  = √(20² + 21²)</text>
+<text xml:space="preserve" x="80.0" y="826.0" font-size="22" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">c  = √(400 + 441)</text>
+<text xml:space="preserve" x="80.0" y="866.0" font-size="22" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">c  = √841 = 29 cm</text>
+<rect x="550" y="656" width="474" height="250" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="574.0" y="696.0" font-size="22" font-weight="800" fill="#E8590C">Find a shorter side → SUBTRACT</text>
+<text xml:space="preserve" x="574.0" y="746.0" font-size="22" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">a² = c² − b²</text>
+<text xml:space="preserve" x="574.0" y="786.0" font-size="22" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">a  = √(26² − 10²)</text>
+<text xml:space="preserve" x="574.0" y="826.0" font-size="22" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">a  = √(676 − 100)</text>
+<text xml:space="preserve" x="574.0" y="866.0" font-size="22" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">a  = √576 = 24 cm</text>
+<text xml:space="preserve" x="56.0" y="946.0" font-size="24" font-weight="800" fill="#E8590C">Spot the hidden right-angled triangle</text>
+<rect x="56" y="962" width="968" height="270" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="90" y="1002" width="220" height="120" fill="#DCE9FA" stroke="#14213D" stroke-width="3"/>
+<line x1="90.0" y1="1122.0" x2="310.0" y2="1002.0" stroke="#E8590C" stroke-width="3.5" stroke-linecap="round"/>
+<text xml:space="preserve" x="214.0" y="1056.0" font-size="22" font-weight="800" fill="#E8590C" text-anchor="middle">d</text>
+<text xml:space="preserve" x="90.0" y="1166.0" font-size="18" font-weight="700" fill="#14213D">Rectangle diagonal</text>
+<text xml:space="preserve" x="90.0" y="1192.0" font-size="18" font-weight="700" fill="#14213D">d² = length² + width²</text>
+<polygon points="400.0,1122.0 640.0,1122.0 520.0,1002.0" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<line x1="520.0" y1="1002.0" x2="520.0" y2="1122.0" stroke="#E8590C" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 6"/>
+<polyline points="532.0,1122.0 532.0,1110.0 520.0,1110.0" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<text xml:space="preserve" x="530.0" y="1074.0" font-size="22" font-weight="800" fill="#E8590C">h</text>
+<text xml:space="preserve" x="580.0" y="1114.0" font-size="15" font-weight="700" fill="#5B6478" text-anchor="middle">half</text>
+<text xml:space="preserve" x="400.0" y="1166.0" font-size="18" font-weight="700" fill="#14213D">Isosceles height</text>
+<text xml:space="preserve" x="400.0" y="1192.0" font-size="18" font-weight="700" fill="#14213D">h² = side² − (½ base)²</text>
+<line x1="960.0" y1="990.0" x2="960.0" y2="1122.0" stroke="#14213D" stroke-width="5" stroke-linecap="round"/>
+<line x1="760.0" y1="1122.0" x2="990.0" y2="1122.0" stroke="#14213D" stroke-width="3" stroke-linecap="round"/>
+<line x1="820.0" y1="1122.0" x2="960.0" y2="1004.0" stroke="#E8590C" stroke-width="5" stroke-linecap="round"/>
+<polyline points="948.0,1122.0 948.0,1110.0 960.0,1110.0" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<text xml:space="preserve" x="870.0" y="1052.0" font-size="17" font-weight="700" fill="#E8590C" text-anchor="end">ladder</text>
+<text xml:space="preserve" x="730.0" y="1166.0" font-size="18" font-weight="700" fill="#14213D">Ladder and wall</text>
+<text xml:space="preserve" x="730.0" y="1192.0" font-size="18" font-weight="700" fill="#14213D">ladder = hypotenuse</text>
+<text xml:space="preserve" x="56.0" y="1268.0" font-size="17" font-weight="700" fill="#14213D">Triples to know: 3-4-5 · 6-8-10 · 5-12-13 · 8-15-17 · 7-24-25. Right-angled only if a² + b² = c².</text>
+<text xml:space="preserve" x="56.0" y="1314.0" font-size="18" font-weight="400" fill="#5B6478">Formula sheets · Jasper</text>
+</svg>

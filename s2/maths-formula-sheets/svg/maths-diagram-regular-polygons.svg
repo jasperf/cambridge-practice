@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="880" viewBox="0 0 1080 880" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="880" fill="#FBF5E9"/><rect width="14" height="880" fill="#1C6DD0"/>
+<text xml:space="preserve" x="56.0" y="62.0" font-size="20" font-weight="700" fill="#1C6DD0" letter-spacing="2">SECONDARY 2 MATHS · TEST DAY</text>
+<text xml:space="preserve" x="56.0" y="108.0" font-size="40" font-weight="800" fill="#14213D">Regular Polygons</text>
+<text xml:space="preserve" x="56.0" y="136.0" font-size="20" font-weight="400" fill="#5B6478">Angle sum, interior and exterior angle for the shapes that come up most</text>
+<rect x="56" y="170" width="230" height="304" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="171.0" y="206.0" font-size="21" font-weight="800" fill="#14213D" text-anchor="middle">Triangle · 3</text>
+<polygon points="171.0,224.0 113.8,323.0 228.2,323.0" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<text xml:space="preserve" x="171.0" y="398.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">Sum 180°</text>
+<text xml:space="preserve" x="171.0" y="426.0" font-size="19" font-weight="800" fill="#1C6DD0" text-anchor="middle">Interior 60°</text>
+<text xml:space="preserve" x="171.0" y="454.0" font-size="19" font-weight="800" fill="#E8590C" text-anchor="middle">Exterior 120°</text>
+<rect x="302" y="170" width="230" height="304" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="417.0" y="206.0" font-size="21" font-weight="800" fill="#14213D" text-anchor="middle">Square · 4</text>
+<polygon points="370.3,243.3 370.3,336.7 463.7,336.7 463.7,243.3" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<text xml:space="preserve" x="417.0" y="398.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">Sum 360°</text>
+<text xml:space="preserve" x="417.0" y="426.0" font-size="19" font-weight="800" fill="#1C6DD0" text-anchor="middle">Interior 90°</text>
+<text xml:space="preserve" x="417.0" y="454.0" font-size="19" font-weight="800" fill="#E8590C" text-anchor="middle">Exterior 90°</text>
+<rect x="548" y="170" width="230" height="304" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="663.0" y="206.0" font-size="21" font-weight="800" fill="#14213D" text-anchor="middle">Pentagon · 5</text>
+<polygon points="663.0,224.0 600.2,269.6 624.2,343.4 701.8,343.4 725.8,269.6" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<text xml:space="preserve" x="663.0" y="398.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">Sum 540°</text>
+<text xml:space="preserve" x="663.0" y="426.0" font-size="19" font-weight="800" fill="#1C6DD0" text-anchor="middle">Interior 108°</text>
+<text xml:space="preserve" x="663.0" y="454.0" font-size="19" font-weight="800" fill="#E8590C" text-anchor="middle">Exterior 72°</text>
+<rect x="794" y="170" width="230" height="304" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="909.0" y="206.0" font-size="21" font-weight="800" fill="#14213D" text-anchor="middle">Hexagon · 6</text>
+<polygon points="876.0,232.8 843.0,290.0 876.0,347.2 942.0,347.2 975.0,290.0 942.0,232.8" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<text xml:space="preserve" x="909.0" y="398.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">Sum 720°</text>
+<text xml:space="preserve" x="909.0" y="426.0" font-size="19" font-weight="800" fill="#1C6DD0" text-anchor="middle">Interior 120°</text>
+<text xml:space="preserve" x="909.0" y="454.0" font-size="19" font-weight="800" fill="#E8590C" text-anchor="middle">Exterior 60°</text>
+<rect x="56" y="490" width="230" height="304" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="171.0" y="526.0" font-size="21" font-weight="800" fill="#14213D" text-anchor="middle">Octagon · 8</text>
+<polygon points="145.7,549.0 110.0,584.7 110.0,635.3 145.7,671.0 196.3,671.0 232.0,635.3 232.0,584.7 196.3,549.0" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<text xml:space="preserve" x="171.0" y="718.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">Sum 1080°</text>
+<text xml:space="preserve" x="171.0" y="746.0" font-size="19" font-weight="800" fill="#1C6DD0" text-anchor="middle">Interior 135°</text>
+<text xml:space="preserve" x="171.0" y="774.0" font-size="19" font-weight="800" fill="#E8590C" text-anchor="middle">Exterior 45°</text>
+<rect x="302" y="490" width="230" height="304" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="417.0" y="526.0" font-size="21" font-weight="800" fill="#14213D" text-anchor="middle">Decagon · 10</text>
+<polygon points="396.6,547.2 363.6,571.2 351.0,610.0 363.6,648.8 396.6,672.8 437.4,672.8 470.4,648.8 483.0,610.0 470.4,571.2 437.4,547.2" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<text xml:space="preserve" x="417.0" y="718.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">Sum 1440°</text>
+<text xml:space="preserve" x="417.0" y="746.0" font-size="19" font-weight="800" fill="#1C6DD0" text-anchor="middle">Interior 144°</text>
+<text xml:space="preserve" x="417.0" y="774.0" font-size="19" font-weight="800" fill="#E8590C" text-anchor="middle">Exterior 36°</text>
+<rect x="548" y="490" width="230" height="304" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="663.0" y="526.0" font-size="21" font-weight="800" fill="#14213D" text-anchor="middle">Dodecagon · 12</text>
+<polygon points="645.9,546.2 616.3,563.3 599.2,592.9 599.2,627.1 616.3,656.7 645.9,673.8 680.1,673.8 709.7,656.7 726.8,627.1 726.8,592.9 709.7,563.3 680.1,546.2" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<text xml:space="preserve" x="663.0" y="718.0" font-size="19" font-weight="700" fill="#14213D" text-anchor="middle">Sum 1800°</text>
+<text xml:space="preserve" x="663.0" y="746.0" font-size="19" font-weight="800" fill="#1C6DD0" text-anchor="middle">Interior 150°</text>
+<text xml:space="preserve" x="663.0" y="774.0" font-size="19" font-weight="800" fill="#E8590C" text-anchor="middle">Exterior 30°</text>
+<rect x="794" y="490" width="230" height="304" rx="16" fill="#14213D"/>
+<text xml:space="preserve" x="909.0" y="526.0" font-size="21" font-weight="800" fill="#FFB27A" text-anchor="middle">For n sides</text>
+<text xml:space="preserve" x="814.0" y="580.0" font-size="19" font-weight="700" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">Sum =</text>
+<text xml:space="preserve" x="814.0" y="606.0" font-size="19" font-weight="700" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">(n − 2) × 180°</text>
+<text xml:space="preserve" x="814.0" y="632.0" font-size="19" font-weight="700" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"></text>
+<text xml:space="preserve" x="814.0" y="658.0" font-size="19" font-weight="700" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">Exterior =</text>
+<text xml:space="preserve" x="814.0" y="684.0" font-size="19" font-weight="700" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">360° ÷ n</text>
+<text xml:space="preserve" x="814.0" y="710.0" font-size="19" font-weight="700" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace"></text>
+<text xml:space="preserve" x="814.0" y="736.0" font-size="19" font-weight="700" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">Interior =</text>
+<text xml:space="preserve" x="814.0" y="762.0" font-size="19" font-weight="700" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">180° − ext</text>
+<text xml:space="preserve" x="56.0" y="852.0" font-size="17" font-weight="400" fill="#5B6478">Only triangles, squares and hexagons tessellate alone: 60°, 90° and 120° divide 360° exactly.</text>
+</svg>

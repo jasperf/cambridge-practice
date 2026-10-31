@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1400" viewBox="0 0 1080 1400" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="1400" fill="#FBF5E9"/><rect width="14" height="1400" fill="#1C6DD0"/>
+<text xml:space="preserve" x="56.0" y="62.0" font-size="20" font-weight="700" fill="#1C6DD0" letter-spacing="2">SECONDARY 2 MATHS · SHEET 5 OF 5</text>
+<text xml:space="preserve" x="56.0" y="108.0" font-size="40" font-weight="800" fill="#14213D">Compound Shapes</text>
+<text xml:space="preserve" x="56.0" y="136.0" font-size="20" font-weight="400" fill="#5B6478">Term 2 · Unit 7.2 · split, then add or subtract</text>
+<rect x="56" y="170" width="474" height="320" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="550" y="170" width="474" height="320" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="56" y="510" width="474" height="320" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="550" y="510" width="474" height="320" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="56" y="850" width="474" height="320" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="550" y="850" width="474" height="320" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="80.0" y="210.0" font-size="22" font-weight="800" fill="#14213D">L-shape</text>
+<text xml:space="preserve" x="506.0" y="210.0" font-size="18" font-weight="800" fill="#1C6DD0" text-anchor="end">ADD</text>
+<polygon points="206.0,370.0 366.0,370.0 366.0,322.0 270.0,322.0 270.0,242.0 206.0,242.0" fill="#DCE9FA" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<line x1="206.0" y1="322.0" x2="270.0" y2="322.0" stroke="#E8590C" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<text xml:space="preserve" x="286.0" y="392.0" font-size="16" font-weight="700" fill="#5B6478" text-anchor="middle">10 cm</text>
+<text xml:space="preserve" x="374.0" y="352.0" font-size="16" font-weight="700" fill="#5B6478">3 cm</text>
+<text xml:space="preserve" x="238.0" y="234.0" font-size="16" font-weight="700" fill="#5B6478" text-anchor="middle">4 cm</text>
+<text xml:space="preserve" x="198.0" y="288.0" font-size="16" font-weight="700" fill="#5B6478" text-anchor="end">5 cm</text>
+<text xml:space="preserve" x="80.0" y="420.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">10 × 3 + 4 × 5</text>
+<text xml:space="preserve" x="80.0" y="448.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 30 + 20</text>
+<text xml:space="preserve" x="80.0" y="476.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 50 cm²</text>
+<text xml:space="preserve" x="574.0" y="210.0" font-size="22" font-weight="800" fill="#14213D">Rectangle + semicircle</text>
+<text xml:space="preserve" x="1000.0" y="210.0" font-size="18" font-weight="800" fill="#1C6DD0" text-anchor="end">ADD</text>
+<path d="M727.0,368 L847.0,368 L847.0,296 A60,60 0 0 0 727.0,296 Z" fill="#DCE9FA" stroke="#14213D" stroke-width="3"/>
+<line x1="727.0" y1="296.0" x2="847.0" y2="296.0" stroke="#E8590C" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<text xml:space="preserve" x="787.0" y="390.0" font-size="16" font-weight="700" fill="#5B6478" text-anchor="middle">10 cm</text>
+<text xml:space="preserve" x="855.0" y="338.0" font-size="16" font-weight="700" fill="#5B6478">6 cm</text>
+<text xml:space="preserve" x="574.0" y="420.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">10 × 6 + ½ × π × 5²</text>
+<text xml:space="preserve" x="574.0" y="448.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 60 + 39.27…</text>
+<text xml:space="preserve" x="574.0" y="476.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 99.3 cm²</text>
+<text xml:space="preserve" x="80.0" y="550.0" font-size="22" font-weight="800" fill="#14213D">Rectangle with a hole</text>
+<text xml:space="preserve" x="506.0" y="550.0" font-size="18" font-weight="800" fill="#E8590C" text-anchor="end">SUBTRACT</text>
+<path d="M215.0,598 h156 v104 h-156 Z M319.0,650 A26,26 0 1 0 267.0,650 A26,26 0 1 0 319.0,650 Z" fill="#FDE1CF" fill-rule="evenodd" stroke="#14213D" stroke-width="3"/>
+<text xml:space="preserve" x="293.0" y="724.0" font-size="16" font-weight="700" fill="#5B6478" text-anchor="middle">12 cm</text>
+<text xml:space="preserve" x="379.0" y="656.0" font-size="16" font-weight="700" fill="#5B6478">8 cm</text>
+<text xml:space="preserve" x="293.0" y="656.0" font-size="15" font-weight="700" fill="#5B6478" text-anchor="middle">d 4</text>
+<text xml:space="preserve" x="80.0" y="760.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">12 × 8 − π × 2²</text>
+<text xml:space="preserve" x="80.0" y="788.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 96 − 12.56…</text>
+<text xml:space="preserve" x="80.0" y="816.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 83.4 cm²</text>
+<text xml:space="preserve" x="574.0" y="550.0" font-size="22" font-weight="800" fill="#14213D">Ring</text>
+<text xml:space="preserve" x="1000.0" y="550.0" font-size="18" font-weight="800" fill="#E8590C" text-anchor="end">SUBTRACT</text>
+<path d="M865.0,650 A78,78 0 1 0 709.0,650 A78,78 0 1 0 865.0,650 Z M833.0,650 A46,46 0 1 0 741.0,650 A46,46 0 1 0 833.0,650 Z" fill="#FDE1CF" fill-rule="evenodd" stroke="#14213D" stroke-width="3"/>
+<line x1="787.0" y1="650.0" x2="865.0" y2="650.0" stroke="#1C6DD0" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="787.0" y1="650.0" x2="741.0" y2="650.0" stroke="#14213D" stroke-width="2.5" stroke-linecap="round"/>
+<text xml:space="preserve" x="873.0" y="656.0" font-size="16" font-weight="700" fill="#1C6DD0">5 cm</text>
+<text xml:space="preserve" x="764.0" y="642.0" font-size="14" font-weight="700" fill="#14213D" text-anchor="middle">3 cm</text>
+<text xml:space="preserve" x="574.0" y="760.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">π × 5² − π × 3²</text>
+<text xml:space="preserve" x="574.0" y="788.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 25π − 9π = 16π</text>
+<text xml:space="preserve" x="574.0" y="816.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 50.3 cm²</text>
+<text xml:space="preserve" x="80.0" y="890.0" font-size="22" font-weight="800" fill="#14213D">Running-track shape</text>
+<text xml:space="preserve" x="506.0" y="890.0" font-size="18" font-weight="800" fill="#1C6DD0" text-anchor="end">ADD</text>
+<path d="M221.0,954 h144 A36,36 0 0 1 365.0,1026 h-144 A36,36 0 0 1 221.0,954 Z" fill="#DCE9FA" stroke="#14213D" stroke-width="3"/>
+<line x1="221.0" y1="954.0" x2="221.0" y2="1026.0" stroke="#E8590C" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<line x1="365.0" y1="954.0" x2="365.0" y2="1026.0" stroke="#E8590C" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 6"/>
+<text xml:space="preserve" x="293.0" y="1048.0" font-size="16" font-weight="700" fill="#5B6478" text-anchor="middle">12 cm</text>
+<text xml:space="preserve" x="409.0" y="996.0" font-size="16" font-weight="700" fill="#5B6478">6 cm</text>
+<text xml:space="preserve" x="80.0" y="1100.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">2 semicircles = 1 circle (r = 3)</text>
+<text xml:space="preserve" x="80.0" y="1128.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">12 × 6 + π × 3²</text>
+<text xml:space="preserve" x="80.0" y="1156.0" font-size="19" font-weight="700" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 72 + 28.27… = 100.3 cm²</text>
+<text xml:space="preserve" x="574.0" y="890.0" font-size="22" font-weight="800" fill="#14213D">The building blocks</text>
+<text xml:space="preserve" x="574.0" y="940.0" font-size="19" font-weight="700" fill="#14213D">Rectangle</text>
+<text xml:space="preserve" x="750.0" y="940.0" font-size="19" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">l × w</text>
+<line x1="574.0" y1="954.0" x2="1000.0" y2="954.0" stroke="#EADFCB" stroke-width="1.5" stroke-linecap="round"/>
+<text xml:space="preserve" x="574.0" y="980.0" font-size="19" font-weight="700" fill="#14213D">Triangle</text>
+<text xml:space="preserve" x="750.0" y="980.0" font-size="19" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">½ × b × h</text>
+<line x1="574.0" y1="994.0" x2="1000.0" y2="994.0" stroke="#EADFCB" stroke-width="1.5" stroke-linecap="round"/>
+<text xml:space="preserve" x="574.0" y="1020.0" font-size="19" font-weight="700" fill="#14213D">Parallelogram</text>
+<text xml:space="preserve" x="750.0" y="1020.0" font-size="19" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">b × h</text>
+<line x1="574.0" y1="1034.0" x2="1000.0" y2="1034.0" stroke="#EADFCB" stroke-width="1.5" stroke-linecap="round"/>
+<text xml:space="preserve" x="574.0" y="1060.0" font-size="19" font-weight="700" fill="#14213D">Trapezium</text>
+<text xml:space="preserve" x="750.0" y="1060.0" font-size="19" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">½ × (a + b) × h</text>
+<line x1="574.0" y1="1074.0" x2="1000.0" y2="1074.0" stroke="#EADFCB" stroke-width="1.5" stroke-linecap="round"/>
+<text xml:space="preserve" x="574.0" y="1100.0" font-size="19" font-weight="700" fill="#14213D">Circle</text>
+<text xml:space="preserve" x="750.0" y="1100.0" font-size="19" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">π × r²</text>
+<text xml:space="preserve" x="574.0" y="1150.0" font-size="19" font-weight="700" fill="#E8590C" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">½ × (5 + 9) × 4 = 28 cm²</text>
+<text xml:space="preserve" x="56.0" y="1210.0" font-size="24" font-weight="800" fill="#E8590C">Estimating</text>
+<rect x="56" y="1226" width="968" height="120" rx="16" fill="#14213D"/>
+<text xml:space="preserve" x="80.0" y="1268.0" font-size="21" font-weight="700" fill="#fff">Round every number to 1 s.f. and use π ≈ 3.</text>
+<text xml:space="preserve" x="80.0" y="1312.0" font-size="21" font-weight="700" fill="#FFB27A" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">r = 6.2 cm  →  3 × 6² = 108 cm²   (exact: 120.8 cm²)</text>
+<text xml:space="preserve" x="56.0" y="1374.0" font-size="18" font-weight="400" fill="#5B6478">Formula sheets · Jasper</text>
+</svg>

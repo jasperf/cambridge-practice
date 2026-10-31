@@ -1,0 +1,2 @@
+DIAGRAM – Circle Formula Triangles
+Circle formula triangles. Cover the quantity you want and read off what is left. Circumference: C on top, π and d below, so C = π × d, d = C ÷ π. Area: A on top, π and r² below, so A = π × r², r² = A ÷ π and r = √(A ÷ π). Radius and diameter: d = 2 × r, r = d ÷ 2, so double or halve first. Worked examples: d = 12 cm gives C = 37.7 cm; d = 18 cm gives r = 9 cm; A = 80 cm² gives r = 5.0 cm.
