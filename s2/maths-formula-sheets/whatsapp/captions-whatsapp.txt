@@ -13,6 +13,9 @@ d = 2 × r and r = d ÷ 2. Circumference C = π × d (or 2 × π × r); area A =
 SHEET 5 – Compound Shapes
 Split a compound shape into simple shapes, then add or subtract. L-shape: 10 × 3 + 4 × 5 = 50 cm². Rectangle with a semicircle: 10 × 6 + ½ × π × 5² = 99.3 cm². Rectangle with a hole: 12 × 8 − π × 2² = 83.4 cm². Ring: π × 5² − π × 3² = 16π = 50.3 cm². Running-track shape: the two semicircles make one circle, 12 × 6 + π × 3² = 100.3 cm². Building blocks: rectangle l × w, triangle ½ × b × h, parallelogram b × h, trapezium ½ × (a + b) × h, circle π × r². To estimate, round to 1 s.f. and use π ≈ 3: r = 6.2 cm gives 3 × 6² = 108 cm².
 
+SHEET 6 – Angle Facts
+Angle facts (Unit 5.1). On a straight line the angles add up to 180° (50° → a = 130°); round a point they add up to 360° (110° + 120° → x = 130°); vertically opposite angles are equal. A triangle’s angles add up to 180° (48° + 75° → c = 57°), and an exterior angle equals the two opposite inside angles (55° + 70° = 125°). With parallel lines (marked with arrows), corresponding (F) and alternate (Z) angles are equal, and co-interior (C) angles add up to 180°. In multi-step questions give a reason for every angle: right angle and 52° → third angle 38° (triangle) → y = 38° (vertically opposite) → z = 142° (straight line). To test whether lines are parallel, check the angles: alternate angles 64° and 68° are not equal, so the lines are NOT parallel; co-interior 104° + 76° = 180°, so they are.
+
 DIAGRAM – Circle Formula Triangles
 Circle formula triangles. Cover the quantity you want and read off what is left. Circumference: C on top, π and d below, so C = π × d, d = C ÷ π. Area: A on top, π and r² below, so A = π × r², r² = A ÷ π and r = √(A ÷ π). Radius and diameter: d = 2 × r, r = d ÷ 2, so double or halve first. Worked examples: d = 12 cm gives C = 37.7 cm; d = 18 cm gives r = 9 cm; A = 80 cm² gives r = 5.0 cm.
 

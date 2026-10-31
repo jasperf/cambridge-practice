@@ -1,6 +1,6 @@
 # Secondary 2 · Maths Formula Sheets
 
-One-page formula and key-fact sheets for the Term 2 **Maths Unit Test 2** (Angles, Shapes & Measurements: Stage 9 Unit 5 and Unit 7.1–7.2). Each sheet is an SVG for GitHub and print, with a short caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Two extra diagrams cover the circle formula triangles and the angles of the common regular polygons. The worked examples use different numbers from the practice sheet, so they don't give its answers away.
+One-page formula and key-fact sheets for the Term 2 **Maths Unit Test 2** (Angles, Shapes & Measurements: Stage 9 Unit 5 and Unit 7.1–7.2). Sheet 6 goes back to Unit 5.1 angle facts for revision. Each sheet is an SVG for GitHub and print, with a short caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Two extra diagrams cover the circle formula triangles and the angles of the common regular polygons. The worked examples use different numbers from the practice sheet, so they don't give its answers away.
 
 | # | Sheet | Unit | Page | Image |
 |---|-------|------|------|-------|
@@ -9,6 +9,7 @@ One-page formula and key-fact sheets for the Term 2 **Maths Unit Test 2** (Angle
 | 3 | **Pythagoras’ Theorem** | 5 · Angles | [maths-sheet-3-pythagoras.md](maths-sheet-3-pythagoras.md) | [.svg](svg/maths-sheet-3-pythagoras.svg) |
 | 4 | **Circles** | 7.1 · Shapes & measurements | [maths-sheet-4-circles.md](maths-sheet-4-circles.md) | [.svg](svg/maths-sheet-4-circles.svg) |
 | 5 | **Compound Shapes** | 7.2 · Shapes & measurements | [maths-sheet-5-compound-shapes.md](maths-sheet-5-compound-shapes.md) | [.svg](svg/maths-sheet-5-compound-shapes.svg) |
+| 6 | **Angle Facts** | 5.1 · Angles (revision) | [maths-sheet-6-angle-facts.md](maths-sheet-6-angle-facts.md) | [.svg](svg/maths-sheet-6-angle-facts.svg) |
 
 ## Previews
 
@@ -31,6 +32,10 @@ One-page formula and key-fact sheets for the Term 2 **Maths Unit Test 2** (Angle
 ### 5. Compound Shapes
 
 [![Compound Shapes](svg/maths-sheet-5-compound-shapes.svg)](maths-sheet-5-compound-shapes.md)
+
+### 6. Angle Facts
+
+[![Angle Facts](svg/maths-sheet-6-angle-facts.svg)](maths-sheet-6-angle-facts.md)
 
 ## Diagrams
 
