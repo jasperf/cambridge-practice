@@ -1,9 +1,9 @@
 # Secondary 2 · Term 2 · Mathematics — Unit Test 2 Practice: Angles, Shapes & Measurements
 
-**Stage 9 · Units 5.2–5.5 and 7.1–7.2 (Term 2, Week 5: 2–6 November)**\
-**74 questions · 123 marks** (+ 13 written questions, 44 marks)
+**Stage 9 · Units 5.1–5.5 and 7.1–7.2 (Term 2, Week 5: 2–6 November)**\
+**81 questions · 132 marks** (+ 16 written questions, 53 marks)
 
-Practice for the Maths Unit Test 2 on **Tuesday 3 November** (Angles/Shapes & Measurement; bring a calculator, a ruler and compasses). Sections A–C cover the second half of Unit 5, Angles: polygon angles (interior angle sums, exterior angles, regular polygons, angles with algebra), the ideas behind ruler-and-compass constructions, and Pythagoras’ theorem. Sections D and E cover Unit 7, Shapes and measurements: the circumference and area of a circle (using the π button, rounding to decimal places and significant figures, working backwards from an area or circumference, semicircles, answers in terms of π) and the areas of compound shapes (adding and subtracting rectangles, triangles, semicircles and circles, and estimating). 18 of the 74 auto-marked questions are multiple choice. This document contains all questions from the interactive sheet in a printable format, plus 13 written questions at the end (including the actual construction tasks). Students write their answers directly in their notebooks. All diagrams are described in words and are not drawn accurately.
+Practice for the Maths Unit Test 2 on **Tuesday 3 November** (Angles/Shapes & Measurement; bring a calculator, a ruler and compasses). Sections A–C cover the second half of Unit 5, Angles: polygon angles (interior angle sums, exterior angles, regular polygons, angles with algebra), the ideas behind ruler-and-compass constructions, and Pythagoras’ theorem. Sections D and E cover Unit 7, Shapes and measurements: the circumference and area of a circle (using the π button, rounding to decimal places and significant figures, working backwards from an area or circumference, semicircles, answers in terms of π) and the areas of compound shapes (adding and subtracting rectangles, triangles, semicircles and circles, and estimating). Section F goes back to Unit 5.1 for revision: multi-step angle diagrams like Exercise 5.1 in the book (vertically opposite angles, a triangle’s exterior angle, and showing that two lines are *not* parallel). 20 of the 81 auto-marked questions are multiple choice. This document contains all questions from the interactive sheet in a printable format, plus 16 written questions at the end (including the actual construction tasks). Students write their answers directly in their notebooks. All diagrams are described in words and are not drawn accurately.
 
 ---
 
@@ -543,48 +543,118 @@ Answer: ______m
 
 ---
 
-## Section F: Written Questions
+## Section F: Angle Facts (Unit 5.1 revision)
+
+**Method:** These diagrams need two or three angle rules in a row, like Exercise 5.1 in the book. Write each angle you find on the diagram, with its reason: angles on a straight line add up to 180°, vertically opposite angles are equal, angles in a triangle add up to 180°, an exterior angle equals the two opposite interior angles. Two lines are only parallel if their alternate angles are equal (or co-interior angles add up to 180°). The diagrams are not drawn accurately.
+
+### Questions
+
+**Q75** (2 marks)\
+Work out the value of *y*. The upright and horizontal lines meet at a right angle.
+
+**Diagram:** A horizontal line and an upright line meet at a right angle. A sloping line crosses the horizontal line, making 58° with it inside the triangle, then crosses the upright line higher up and carries on. *y* is the angle above that crossing, between the upright line and the sloping line. *z* is the angle to the right of that crossing, between the sloping line going up and the upright line going down.
+
+
+Answer: ______°
+
+**Q76** (1 mark)\
+Use the same diagram as Q75. Work out the value of *z*.
+
+
+Answer: ______°
+
+**Q77** (2 marks)\
+Work out the value of *a*.
+
+**Diagram:** A triangle with angle *a* at the top. The base is extended to the right, making an exterior angle of 121° at the bottom-right corner. At the bottom-left corner both sides are extended past the corner, and the angle between the two extensions (opposite the inside angle) is 58°.
+
+
+Answer: ______°
+
+**Q78** (1 mark)\
+Are the two nearly horizontal lines parallel?
+
+**Diagram:** Two nearly horizontal lines cut by a sloping line. Between the two lines, on the right of the sloping line, the angle at the top crossing is 106° and the angle at the bottom crossing is 72°.
+
+- A) They are parallel, because 106° and 72° are both less than 180°
+- B) They are parallel, because 106° + 72° is close enough to 180°
+- C) They are not parallel, because co-interior angles between parallel lines add up to 180°, and 106° + 72° = 178°
+- D) You cannot tell without measuring the lines with a ruler
+
+**Q79** (1 mark)\
+Lines AE and BD are straight and cross at C. Work out angle BAC.
+
+**Diagram:** Two straight lines AE and BD cross at C, making a “bow tie” of two triangles: ABC on the left and CDE on the right. Angle ABC = 57°, angle ACD (above C, between CA and CD) = 124°, and angle CDE = 67°.
+
+
+Answer: ______°
+
+**Q80** (1 mark)\
+Use the same diagram as Q79. Work out angle CED.
+
+
+Answer: ______°
+
+**Q81** (1 mark)\
+Use the same diagram as Q79. Which reason shows that AB and DE are *not* parallel?
+- A) Angles ABC and CDE are alternate angles, but 57° ≠ 67°, so AB and DE are not parallel
+- B) Angles ACB and DCE are vertically opposite, so they are equal
+- C) Angles ABC and BAC add up to 124°
+- D) AB is shorter than DE in the diagram
+
+---
+
+## Section G: Written Questions
 
 *These questions are not on the interactive sheet and are not auto-marked. Show all working in your notebook and check your answers with your teacher. For the constructions, use plain paper and only a ruler and compasses (a protractor is for checking only).*
 
-**Q75** (4 marks)\
+**Q82** (4 marks)\
 Construct an equilateral triangle with each side 7 cm long, using only a ruler and compasses. Leave your construction arcs showing. Then bisect one of its angles, and use a protractor to check that the two new angles are each 30°.
 
-**Q76** (4 marks)\
+**Q83** (4 marks)\
 Draw a circle with radius 5 cm. Use your compasses, set to 5 cm, to step six points round the circumference, and join them to make a regular hexagon. Check by measuring that every side is 5 cm. Write down the interior angle of your hexagon and show how you know.
 
-**Q77** (3 marks)\
+**Q84** (3 marks)\
 A regular polygon has interior angles of 144° each. Work out the exterior angle first, then show how many sides the polygon has.
 
-**Q78** (3 marks)\
+**Q85** (3 marks)\
 Show that regular hexagons tessellate (fit together with no gaps), but regular octagons do not. Use the angles at a point in your answer.
 
-**Q79** (3 marks)\
+**Q86** (3 marks)\
 Ravi says the hypotenuse of a right-angled triangle with shorter sides 5 cm and 12 cm is 5 + 12 = 17 cm. Explain his mistake and work out the correct length.
 
-**Q80** (3 marks)\
+**Q87** (3 marks)\
 Ana works out the area of a circle with radius 2.3 m, using the π button, like this: π × 2.3 = 7.22…, then 7.22…² = 52.2 m². Explain her mistake and work out the correct area to 1 decimal place.
 
-**Q81** (3 marks)\
+**Q88** (3 marks)\
 A circle has diameter d. Show that its area can be written as A = πd² ÷ 4. Then use this formula to find the area of a circle with diameter 10 cm, in terms of π.
 
-**Q82** (3 marks)\
+**Q89** (3 marks)\
 A semicircle has diameter 8 cm. A quarter of a circle has radius 5 cm. Work out both areas (1 d.p.) and say which is larger.
 
-**Q83** (4 marks)\
+**Q90** (4 marks)\
 A playing field is a 60 m by 40 m rectangle with a semicircle of diameter 40 m on each of its two short ends. Work out the area of the field and the distance round its edge. Round to 1 decimal place.
 
-**Q84** (4 marks)\
+**Q91** (4 marks)\
 A circle of radius r fits exactly inside a square, touching all four sides. Show that the circle covers π ÷ 4 of the area of the square. Then work out the percentage of the square that is not covered, to the nearest whole number.
 
-**Q85** (3 marks)\
+**Q92** (3 marks)\
 Explain why a polygon can have interior angles that total 1440°, but no polygon can have interior angles that total 1500°. How many sides does the 1440° polygon have?
 
-**Q86** (3 marks)\
+**Q93** (3 marks)\
 Show, using a circle of radius 3 cm and one of radius 6 cm, that doubling the radius of a circle makes its area 4 times as large. Leave your answers in terms of π.
 
-**Q87** (4 marks)\
+**Q94** (4 marks)\
 A 5 m ladder must reach 4.6 m up a wall. How far from the wall should the foot of the ladder be? The safety rule says the foot must be at least 1.5 m from the wall. Does the ladder meet the rule?
+
+**Q95** (3 marks)\
+Look at the diagram for Q77. Work out the value of *a* and explain your method, giving a reason for each angle you find.
+
+**Q96** (3 marks)\
+Look at the diagram for Q79. Show that AB and DE are not parallel.
+
+**Q97** (3 marks)\
+Look at the diagram for Q79. Show that triangles ABC and CDE have angles of the same size.
 
 ---
 
@@ -597,11 +667,12 @@ A 5 m ladder must reach 4.6 m up a wall. How far from the wall should the foot o
 | C | Pythagoras’ Theorem | Q25–Q42 | 30 |
 | D | Circles | Q43–Q57 | 27 |
 | E | Compound Shapes | Q58–Q74 | 32 |
-| **Interactive total** | | **74** | **123** |
-| F | Written (printable only) | Q75–Q87 | 44 |
+| F | Angle Facts (Unit 5.1 revision) | Q75–Q81 | 9 |
+| **Interactive total** | | **81** | **132** |
+| G | Written (printable only) | Q82–Q97 | 53 |
 
 ---
 
-*Note: Q1–Q74 match the interactive sheet’s questions exactly, so they can be self-checked there. Q75–Q87 are written and drawing questions for the notebook and are not auto-marked.*
+*Note: Q1–Q81 match the interactive sheet’s questions exactly, so they can be self-checked there. Q82–Q97 are written and drawing questions for the notebook and are not auto-marked.*
 
 *Source: Interactive version at `s2/t2/w5/term2-week5-maths-unit-test2-angles-shapes-measurements.html`*

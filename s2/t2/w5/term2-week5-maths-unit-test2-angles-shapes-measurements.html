@@ -148,7 +148,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="../../../index.html" class="back-link">&larr; All sheets</a>
     <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
-    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 123</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 132</div></div>
   </div>
 </div>
 <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
@@ -157,8 +157,8 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Term 2 Week 5</div>
   <h1>Maths Unit Test 2<br><em>Angles, Shapes &amp; Measurements</em></h1>
   <div class="hero-meta">
-    <div class="hero-chip"><div class="dot dot-math"></div>Unit 5.2&ndash;5.5 Angles &middot; Unit 7.1&ndash;7.2 Circles &amp; Compound Shapes</div>
-    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>74 questions &middot; self-marked &middot; 123 marks</div>
+    <div class="hero-chip"><div class="dot dot-math"></div>Unit 5.1&ndash;5.5 Angles &middot; Unit 7.1&ndash;7.2 Circles &amp; Compound Shapes</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>81 questions &middot; self-marked &middot; 132 marks</div>
     <div class="hero-chip"><div class="dot dot-math" style="background:var(--accent-warn)"></div>Test day: Tuesday 3 November &mdash; bring a calculator, ruler and compasses</div>
   </div>
 </div>
@@ -179,6 +179,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <a href="#py" class="sub-tab">Pythagoras’ Theorem</a>
   <a href="#ci" class="sub-tab">Circles</a>
   <a href="#cs" class="sub-tab">Compound Shapes</a>
+  <a href="#af" class="sub-tab">Angle Facts</a>
 </div>
 
 <div class="main">
@@ -1397,6 +1398,132 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   </div>
 </div>
 
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: ANGLE FACTS (REVISION) ═══════════════ -->
+<div id="af">
+  <div class="section-header"><div class="section-icon">✕</div><div><div class="sub-label">Section F</div><h2>Angle Facts (Unit 5.1 revision)</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> These diagrams need two or three angle rules in a row, like Exercise 5.1 in the book. Write each angle you find on the diagram, with its reason: angles on a straight line add up to 180°, vertically opposite angles are equal, angles in a triangle add up to 180°, an exterior angle equals the two opposite interior angles. Two lines are only parallel if their alternate angles are equal (or co-interior angles add up to 180°). The diagrams are not drawn accurately.</div>
+
+  <!-- Q75 -->
+  <div class="q-card" id="qcard-af1">
+    <div class="q-header"><div class="q-num">Q75</div><div class="q-text">Work out the value of <span class="math-expr">y</span>. The two upright and horizontal lines meet at a right angle.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A horizontal line and an upright line meeting at a right angle. A sloping line makes 58 degrees with the horizontal line and crosses the upright line. Angle y is above the crossing, between the two lines; angle z is to the right of the crossing"><path d="M20.0 200.0 L340.0 200.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M230.0 222.0 L230.0 18.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M128.4 222.5 L255.0 20.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M219.0 200.0 L219.0 189.0 L230.0 189.0" stroke="#f5a623" stroke-width="2" fill="none"/><text x="176.0" y="188.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">58°</text><text x="240.0" y="28.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace" font-style="italic">y</text><text x="262.0" y="96.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace" font-style="italic">z</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="af1-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('af1',32,'Q75')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af1','First find the third angle of the triangle (angles in a triangle add up to 180°). Then look at which angle is vertically opposite it')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af1','32° (third angle of the triangle = 180 − 90 − 58 = 32°; y is vertically opposite it, so y = 32°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q76 -->
+  <div class="q-card" id="qcard-af2">
+    <div class="q-header"><div class="q-num">Q76</div><div class="q-text">Use the same diagram as Q75. Work out the value of <span class="math-expr">z</span>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="af2-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('af2',148,'Q76')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af2','y and z sit next to each other on the straight upright line')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af2','148° (y and z are angles on a straight line, so z = 180 − 32 = 148°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q77 -->
+  <div class="q-card" id="qcard-af3">
+    <div class="q-header"><div class="q-num">Q77</div><div class="q-text">Work out the value of <span class="math-expr">a</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="A triangle with angle a at the top. The base is extended to the right, making an exterior angle of 121 degrees. At the bottom-left corner both sides are extended past the corner, and the angle between the two extensions, opposite the inside angle, is 58 degrees"><path d="M30.0 180.0 L340.0 180.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M150.0 40.0 L90.0 180.0 L72.0 222.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M150.0 40.0 L270.0 180.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><text x="152.0" y="74.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace" font-style="italic">a</text><text x="306.0" y="164.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">121°</text><text x="60.0" y="198.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">58°</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="af3-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('af3',63,'Q77')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af3','The 58° angle is vertically opposite the inside angle at that corner. Then use the exterior angle of 121°')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af3','63° (the inside angle at the bottom-left corner is 58°, vertically opposite; the exterior angle equals the two opposite interior angles, so a = 121 − 58 = 63°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q78 -->
+  <div class="q-card" id="qcard-af4">
+    <div class="q-header"><div class="q-num">Q78</div><div class="q-text">Are the two nearly horizontal lines parallel?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="Two nearly horizontal lines cut by a sloping line. Between the two lines, on the right of the sloping line, the angle at the top crossing is 106 degrees and the angle at the bottom crossing is 72 degrees"><path d="M30.0 70.0 L330.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M30.0 180.0 L330.0 200.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M120.0 230.0 L240.0 20.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><text x="240.0" y="84.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">106°</text><text x="172.0" y="172.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">72°</text></svg>
+      <div class="mcq-options" id="af4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('af4', this, 'a')"><div class="opt-indicator"></div><span>They are parallel, because 106° and 72° are both less than 180°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af4', this, 'b')"><div class="opt-indicator"></div><span>They are parallel, because 106° + 72° is close enough to 180°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af4', this, 'c')"><div class="opt-indicator"></div><span>They are not parallel, because co-interior angles between parallel lines add up to 180°, and 106° + 72° = 178°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af4', this, 'd')"><div class="opt-indicator"></div><span>You cannot tell without measuring the lines with a ruler</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('af4','c','Q78')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af4','Between two parallel lines, the two angles on the same side of the sloping line (co-interior angles) add up to 180°')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af4','C &mdash; 106° + 72° = 178°, not 180°, so the lines are not parallel (they would meet far away on the right)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q79 -->
+  <div class="q-card" id="qcard-af5">
+    <div class="q-header"><div class="q-num">Q79</div><div class="q-text">Lines AE and BD are straight and cross at C. Work out angle BAC.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 240" role="img" aria-label="Two straight lines AE and BD cross at C, making triangles ABC on the left and CDE on the right. Angle ABC is 57 degrees, angle ACD at the top of C is 124 degrees, and angle CDE is 67 degrees"><path d="M70.0 40.0 L298.0 192.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M60.0 190.0 L307.0 57.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M70.0 40.0 L60.0 190.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M307.0 57.0 L298.0 192.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round"/><text x="62.0" y="28.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#7a84a0" font-family="DM Mono, monospace">A</text><text x="50.0" y="202.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#7a84a0" font-family="DM Mono, monospace">B</text><text x="190.0" y="144.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#7a84a0" font-family="DM Mono, monospace">C</text><text x="318.0" y="46.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#7a84a0" font-family="DM Mono, monospace">D</text><text x="310.0" y="204.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#7a84a0" font-family="DM Mono, monospace">E</text><text x="86.0" y="160.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">57°</text><text x="190.0" y="96.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">124°</text><text x="284.0" y="84.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#f5a623" font-family="DM Mono, monospace">67°</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="af5-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('af5',67,'Q79')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af5','Angles ACD and ACB lie on the straight line BD. Then use the angle sum of triangle ABC')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af5','67° (ACB = 180 − 124 = 56°, angles on a straight line; BAC = 180 − 57 − 56 = 67°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q80 -->
+  <div class="q-card" id="qcard-af6">
+    <div class="q-header"><div class="q-num">Q80</div><div class="q-text">Use the same diagram as Q79. Work out angle CED.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="af6-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('af6',57,'Q80')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af6','Angle DCE is vertically opposite angle ACB')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af6','57° (DCE = ACB = 56°, vertically opposite; CED = 180 − 67 − 56 = 57°)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q81 -->
+  <div class="q-card" id="qcard-af7">
+    <div class="q-header"><div class="q-num">Q81</div><div class="q-text">Use the same diagram as Q79. Which reason shows that AB and DE are <em>not</em> parallel?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="af7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('af7', this, 'a')"><div class="opt-indicator"></div><span>Angles ABC and CDE are alternate angles, but 57° ≠ 67°, so AB and DE are not parallel</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af7', this, 'b')"><div class="opt-indicator"></div><span>Angles ACB and DCE are vertically opposite, so they are equal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af7', this, 'c')"><div class="opt-indicator"></div><span>Angles ABC and BAC add up to 124°</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('af7', this, 'd')"><div class="opt-indicator"></div><span>AB is shorter than DE in the diagram</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('af7','a','Q81')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('af7','Look at the line BD. If AB and DE were parallel, the Z-shaped angles at B and D would be equal')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('af7','A &mdash; ABC and CDE are alternate angles on the line BD. Alternate angles between parallel lines are equal, but 57° ≠ 67°, so AB and DE are not parallel')">Show Answer</button>
+      </div>
+      <div class="feedback" id="af7-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">ANGLE FACTS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-af-fill"></div></div>
+    <div class="section-score-val" id="sec-af-val">0/9</div>
+  </div>
+</div>
+
 <!-- Results Panel -->
 <div class="results-panel" id="results-panel">
   <div class="results-grade" id="results-grade">0%</div>
@@ -1409,14 +1536,15 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <script>
 const state = { answers: {}, correct: {}, startTime: Date.now() };
 
-const marks = { pg1:1, pg2:2, pg3:2, pg4:1, pg5:2, pg6:2, pg7:1, pg8:2, pg9:2, co1:1, co2:1, co3:1, co4:1, co5:2, co6:1, co7:1, co8:1, co9:1, co10:1, py1:1, py2:1, py3:1, py4:2, py5:2, py6:2, py7:1, py8:2, py9:2, py10:2, py11:1, py12:2, py13:1, py14:1, ci1:2, ci2:2, ci3:2, ci4:2, ci5:1, ci6:2, ci7:2, ci8:2, ci9:2, ci10:2, ci11:2, ci12:1, ci13:2, cs1:2, cs2:2, cs3:2, cs4:2, cs5:2, cs6:2, cs7:1, cs8:2, cs9:2, cs10:2, cs11:1, cs12:2, py15:2, py16:2, py17:2, py18:3, ci14:2, ci15:1, cs13:2, cs14:2, cs15:3, cs16:1, cs17:2, pg10:1, pg11:1, pg12:2, pg13:2, pg14:2 };
+const marks = { pg1:1, pg2:2, pg3:2, pg4:1, pg5:2, pg6:2, pg7:1, pg8:2, pg9:2, co1:1, co2:1, co3:1, co4:1, co5:2, co6:1, co7:1, co8:1, co9:1, co10:1, py1:1, py2:1, py3:1, py4:2, py5:2, py6:2, py7:1, py8:2, py9:2, py10:2, py11:1, py12:2, py13:1, py14:1, ci1:2, ci2:2, ci3:2, ci4:2, ci5:1, ci6:2, ci7:2, ci8:2, ci9:2, ci10:2, ci11:2, ci12:1, ci13:2, cs1:2, cs2:2, cs3:2, cs4:2, cs5:2, cs6:2, cs7:1, cs8:2, cs9:2, cs10:2, cs11:1, cs12:2, py15:2, py16:2, py17:2, py18:3, ci14:2, ci15:1, cs13:2, cs14:2, cs15:3, cs16:1, cs17:2, pg10:1, pg11:1, pg12:2, pg13:2, pg14:2, af1:2, af2:1, af3:2, af4:1, af5:1, af6:1, af7:1 };
 
 const sections = {
   pg: { label: 'Polygon Angles', qs: ['pg1', 'pg2', 'pg3', 'pg4', 'pg5', 'pg6', 'pg7', 'pg8', 'pg9', 'pg10', 'pg11', 'pg12', 'pg13', 'pg14'] },
   co: { label: 'Constructions', qs: ['co1', 'co2', 'co3', 'co4', 'co5', 'co6', 'co7', 'co8', 'co9', 'co10'] },
   py: { label: 'Pythagoras\' Theorem', qs: ['py1', 'py2', 'py3', 'py4', 'py5', 'py6', 'py7', 'py8', 'py9', 'py10', 'py11', 'py12', 'py13', 'py14', 'py15', 'py16', 'py17', 'py18'] },
   ci: { label: 'Circles', qs: ['ci1', 'ci2', 'ci3', 'ci4', 'ci5', 'ci6', 'ci7', 'ci8', 'ci9', 'ci10', 'ci11', 'ci12', 'ci13', 'ci14', 'ci15'] },
-  cs: { label: 'Compound Shapes', qs: ['cs1', 'cs2', 'cs3', 'cs4', 'cs5', 'cs6', 'cs7', 'cs8', 'cs9', 'cs10', 'cs11', 'cs12', 'cs13', 'cs14', 'cs15', 'cs16', 'cs17'] }
+  cs: { label: 'Compound Shapes', qs: ['cs1', 'cs2', 'cs3', 'cs4', 'cs5', 'cs6', 'cs7', 'cs8', 'cs9', 'cs10', 'cs11', 'cs12', 'cs13', 'cs14', 'cs15', 'cs16', 'cs17'] },
+  af: { label: 'Angle Facts', qs: ['af1', 'af2', 'af3', 'af4', 'af5', 'af6', 'af7'] }
 };
 
 const allQs = Object.values(sections).flatMap(s => s.qs);
