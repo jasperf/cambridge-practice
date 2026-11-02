@@ -130,6 +130,7 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Mathematics Unit Test 2 Geometry Mock Test 5 (Polygon Angles, Circle Areas, Compound Areas) | Secondary 2 | ✅ Term 2 Week 5 · Unit Test 2, 3 Nov 2026 |
 | Mathematics Unit Test 2 Combined Angles & Geometry Test 1 (Angle Rules + Mock Test 5) | Secondary 2 | ✅ Term 2 Week 5 · Unit Test 2, 3 Nov 2026 |
 | Mathematics Unit Test 2 Combined Angles & Geometry Test 2 (10 new questions) | Secondary 2 | ✅ Term 2 Week 5 · Unit Test 2, 3 Nov 2026 |
+| Mathematics Unit Test 2 Combined Angles & Geometry Test 3 (20 new questions) | Secondary 2 | ✅ Term 2 Week 5 · Unit Test 2, 3 Nov 2026 |
 | Mathematics Formula Sheets (Polygon Angles, Constructions, Pythagoras, Circles, Compound Shapes, Angle Facts) | Secondary 2 | ✅ Term 2 Week 5 · Unit Test 2, 3 Nov 2026 |
 | Science Unit 3: Density (Solids, Liquids & Gases) | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
 | Science Unit 3: Sound Waves & Thermal Energy | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
