@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combined Angles &amp; Geometry Test 3 &middot; Unit Test 2 Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(79,142,247,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box em { font-style: italic; color: var(--accent); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .hero, .section-tabs, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: drawIn 1.1s ease forwards, fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Unit Test 2 &middot; Combined Test 3</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 37</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Term 2 Week 5</div>
+  <h1>Combined Angles &amp; Geometry<br><em>Test 3 &mdash; 20 Questions</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>20 questions &middot; self-marked &middot; 37 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>Aim for about 35 minutes &mdash; with your working on paper</div>
+  </div>
+  <p class="credit">Twenty new questions in the style of the 20-question geometry worksheet: angle rules with algebra, triangle and polygon interior and exterior angles, and circle and compound areas. Diagrams are not drawn accurately &mdash; use the numbers given.</p>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Need a refresher first?</h3>
+  <p>The full Unit Test 2 practice sheet has more questions on every topic here, and the formula sheets put the rules on one page each.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="term2-week5-maths-unit-test2-mock-test5.html" target="_blank" rel="noopener">Mock Test 5 on its own &rarr;</a>
+    <a class="watch-link" href="term2-week5-maths-unit-test2-combined-test1.html" target="_blank" rel="noopener">Combined Test 1 &rarr;</a>
+    <a class="watch-link" href="term2-week5-maths-unit-test2-combined-test2.html" target="_blank" rel="noopener">Combined Test 2 &rarr;</a>
+    <a class="watch-link" href="term2-week5-maths-unit-test2-angles-shapes-measurements.html" target="_blank" rel="noopener">Unit Test 2 full practice &rarr;</a>
+    <a class="watch-link" href="../w2/term2-week2-maths-unit5-calculating-angles.html" target="_blank" rel="noopener">Week 2: Polygon Explorer &rarr;</a>
+    <a class="watch-link" href="../../maths-formula-sheets/index.html" target="_blank" rel="noopener">Formula sheets &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#an" class="sub-tab">Angle Rules</a>
+  <a href="#tr" class="sub-tab">Triangles &amp; Polygons</a>
+  <a href="#cc" class="sub-tab">Circles &amp; Compound Areas</a>
+</div>
+
+<div class="main">
+
+<div id="an">
+  <div class="section-header"><div class="section-icon">📐</div><div><div class="sub-label">Section A &middot; Q1&ndash;Q8</div><h2>Angle Rules</h2></div></div>
+  <div class="info-box"><strong>Rules to use:</strong> Vertically opposite angles are equal. Angles on a straight line add to 180&deg;; angles around a point add to 360&deg;. Alternate, corresponding and co-interior (allied) angles between parallel lines. Complementary angles add to 90&deg;.</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-an1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Two straight lines cross. A pair of vertically opposite angles are (4x + 18)&deg; and 146&deg;. Find <em>x</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 200" role="img" aria-label="Two straight lines crossing; vertically opposite angles 4x plus 18 and 146 degrees"><path class="draw" d="M180.0 100.0 L290.6 -1.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M180.0 100.0 L69.4 201.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M180.0 100.0 L69.4 -1.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M180.0 100.0 L290.6 201.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><circle cx="180.0" cy="100.0" r="2.5" fill="#e8eaf0"/><path class="draw" d="M200.6 118.9 A28 28 0 0 0 200.6 81.1" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="238.0" y="100.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">146&deg;</text><path class="draw" d="M159.4 81.1 A28 28 0 0 0 159.4 118.9" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="104.0" y="100.0" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4x+18&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="an1-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('an1',32,'Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('an1','Vertically opposite angles are equal, so 4x + 18 = 146')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('an1','x = 32 (4x + 18 = 146, so 4x = 128)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="an1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-an2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Two angles on a straight line are <em>x</em>&deg; and 132&deg;. Find <em>x</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 150" role="img" aria-label="A straight line with a ray meeting it; the two adjacent angles are x and 132 degrees"><path class="draw" d="M40.0 110.0 L320.0 110.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M180.0 110.0 L250.0 40.0" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><circle cx="180.0" cy="110.0" r="2.5" fill="#e8eaf0"/><path class="draw" d="M155.0 110.0 A25 25 0 0 1 197.7 92.3" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="148.0" y="86.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">132&deg;</text><path class="draw" d="M205.0 110.0 A25 25 0 0 0 197.7 92.3" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="224.0" y="97.0" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">x&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="an2-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('an2',48,'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('an2','Angles on a straight line add up to 180&deg;: x + 132 = 180')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('an2','x = 48 (180 &minus; 132 = 48)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="an2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-an3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Three angles meet around a point: 90&deg;, 122&deg; and <em>x</em>&deg;. Find <em>x</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 210" role="img" aria-label="Three rays from a point making angles of 90 degrees, 122 degrees and x"><path class="draw" d="M180.0 108.0 L272.0 108.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M180.0 108.0 L180.0 16.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M180.0 108.0 L102.0 156.8" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><circle cx="180" cy="108" r="2.5" fill="#e8eaf0"/><path d="M194 108 L194 94 L180 94" stroke="#7a84a0" stroke-width="1.5" fill="none"/><text x="208.3" y="79.7" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">90&deg;</text><path class="draw" d="M180.0 78.0 A30 30 0 0 0 154.6 123.9" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="132.8" y="81.8" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">122&deg;</text><path class="draw" d="M159.6 120.7 A24 24 0 0 0 204.0 108.0" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="192.1" y="150.3" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">x&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="an3-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('an3',148,'Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('an3','Angles around a point add up to 360&deg;: 90 + 122 + x = 360')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('an3','x = 148 (90 + 122 = 212; 360 &minus; 212 = 148)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="an3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-an4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Two parallel lines are cut by a transversal. A pair of corresponding angles are (5x + 15)&deg; and 130&deg;. Find <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 200" role="img" aria-label="Two parallel lines cut by a transversal; corresponding angles 5x plus 15 and 130 degrees"><path class="draw" d="M40.0 60.0 L320.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M40.0 150.0 L320.0 150.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path d="M285.0 55.0 L292.0 60.0 L285.0 65.0" stroke="#7a84a0" stroke-width="2" fill="none"/><path d="M285.0 145.0 L292.0 150.0 L285.0 155.0" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="draw" d="M125.9 181.9 L241.9 28.1" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M231.0 42.4 A22 22 0 0 0 195.8 60.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="190.0" y="36.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">130&deg;</text><path class="draw" d="M163.2 132.4 A22 22 0 0 0 128.0 150.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="114.0" y="128.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">5x+15&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="an4-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('an4',23,'Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('an4','Corresponding angles are equal, so 5x + 15 = 130')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('an4','x = 23 (5x + 15 = 130, so 5x = 115). Both angles are 130&deg;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="an4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-an5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Two parallel lines are cut by a transversal. A pair of alternate angles are (6x &minus; 20)&deg; and (2x + 36)&deg;. Find <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 200" role="img" aria-label="Two parallel lines cut by a transversal; alternate angles 6x minus 20 and 2x plus 36"><path class="draw" d="M40.0 60.0 L320.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M40.0 150.0 L320.0 150.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path d="M285.0 55.0 L292.0 60.0 L285.0 65.0" stroke="#7a84a0" stroke-width="2" fill="none"/><path d="M285.0 145.0 L292.0 150.0 L285.0 155.0" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="draw" d="M125.9 181.9 L241.9 28.1" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M195.8 60.0 A22 22 0 0 0 204.6 77.6" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="160.0" y="82.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">6x&minus;20&deg;</text><path class="draw" d="M172.0 150.0 A22 22 0 0 0 163.2 132.4" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="204.0" y="134.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">2x+36&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="an5-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('an5',14,'Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('an5','Alternate angles are equal, so 6x &minus; 20 = 2x + 36. Collect the x terms on one side.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('an5','x = 14 (56 = 4x). Both angles are 64&deg;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="an5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-an6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Two co-interior (allied) angles between parallel lines are 4x&deg; and (2x + 12)&deg;. Find the <em>larger</em> angle.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 200" role="img" aria-label="Two parallel lines cut by a transversal; co-interior angles 4x and 2x plus 12 on the same side of the transversal"><path class="draw" d="M40.0 60.0 L320.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M40.0 150.0 L320.0 150.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path d="M285.0 55.0 L292.0 60.0 L285.0 65.0" stroke="#7a84a0" stroke-width="2" fill="none"/><path d="M285.0 145.0 L292.0 150.0 L285.0 155.0" stroke="#7a84a0" stroke-width="2" fill="none"/><path class="draw" d="M125.9 181.9 L241.9 28.1" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M239.9 60.0 A22 22 0 0 1 204.6 77.6" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="242.0" y="96.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4x&deg;</text><path class="draw" d="M172.0 150.0 A22 22 0 0 0 166.6 128.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="212.0" y="134.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(2x+12)&deg;</text></svg>
+      <div class="mcq-options" id="an6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('an6', this, 'a')"><div class="opt-indicator"></div><span>68&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('an6', this, 'b')"><div class="opt-indicator"></div><span>120&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('an6', this, 'c')"><div class="opt-indicator"></div><span>112&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('an6', this, 'd')"><div class="opt-indicator"></div><span>180&deg;</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('an6','c','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('an6','Co-interior angles add up to 180&deg;, so 4x + 2x + 12 = 180. Solve for x first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('an6','C &mdash; 112&deg; (6x = 168, so x = 28; 4x = 112 and 2x + 12 = 68). 68&deg; is the smaller angle.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="an6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-an7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">One angle is 41&deg;. Find its complementary angle.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 160" role="img" aria-label="A right angle of 90 degrees split by a ray into 41 degrees and x degrees"><path class="draw" d="M100.0 130.0 L260.0 130.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M100.0 130.0 L100.0 20.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M100.0 130.0 L180.0 55.0" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path d="M100.0 116.0 L114.0 116.0 L114.0 130.0" stroke="#7a84a0" stroke-width="1.5" fill="none"/><path class="draw" d="M130.0 130.0 A30 30 0 0 0 121.9 109.5" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="146.0" y="116.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">41&deg;</text><path class="draw" d="M121.9 109.5 A30 30 0 0 0 100.0 100.0" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="116.0" y="78.0" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">x&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="an7-ans" placeholder="Enter answer..."><span class="num-unit">degrees</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('an7',49,'Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('an7','Complementary angles add up to 90&deg; (not 180&deg;).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('an7','49&deg; (90 &minus; 41 = 49). If you used 180 you would get the supplementary angle instead.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="an7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-an8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Two angles on a straight line are (5x &minus; 12)&deg; and (3x + 16)&deg;. Find <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 150" role="img" aria-label="A straight line with a ray meeting it; the two adjacent angles are 5x minus 12 and 3x plus 16"><path class="draw" d="M40.0 110.0 L320.0 110.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M180.0 110.0 L250.0 40.0" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><circle cx="180.0" cy="110.0" r="2.5" fill="#e8eaf0"/><path class="draw" d="M155.0 110.0 A25 25 0 0 1 197.7 92.3" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="122.0" y="86.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(5x&minus;12)&deg;</text><path class="draw" d="M205.0 110.0 A25 25 0 0 0 197.7 92.3" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="258.0" y="97.0" font-size="13" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(3x+16)&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="an8-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('an8',22,'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('an8','They add to 180&deg;: 5x &minus; 12 + 3x + 16 = 180. Simplify first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('an8','x = 22 (8x + 4 = 180, so 8x = 176). The two angles are 98&deg; and 82&deg;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="an8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-an-fill"></div></div>
+    <div class="section-score-val" id="sec-an-val">0/12</div>
+  </div>
+</div>
+
+<div id="tr">
+  <div class="section-header"><div class="section-icon">⬡</div><div><div class="sub-label">Section B &middot; Q9&ndash;Q16</div><h2>Triangles &amp; Polygon Angles</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> Triangle angles add to 180&deg;; base angles of an isosceles triangle are equal; an exterior angle equals the sum of the two opposite interior angles. Quadrilateral angles add to 360&deg;. Polygon interior sum: (n &minus; 2) &times; 180&deg;. Exterior angles of any polygon add to 360&deg;, and interior + exterior = 180&deg;.</div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-pg1">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">The angles of a triangle are <em>x</em>&deg;, 4x&deg; and 5x&deg;. Find <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 210" role="img" aria-label="A triangle with angles x, 4x and 5x"><path class="draw fill" d="M70.0 170.0 L230.0 170.0 L150.0 45.0 Z" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><path class="draw" d="M96.0 170.0 A26 26 0 0 0 84.0 148.1" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="112.0" y="147.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">x&deg;</text><path class="draw" d="M204.0 170.0 A26 26 0 0 1 216.0 148.1" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="240.0" y="147.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4x&deg;</text><path class="draw" d="M138.1 63.5 A22 22 0 0 0 161.9 63.5" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="150.0" y="92.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">5x&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg1-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg1',18,'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg1','x + 4x + 5x = 180. Add the x terms first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg1','x = 18 (10x = 180). The three angles are 18&deg;, 72&deg; and 90&deg; &mdash; a right-angled triangle.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-pg2">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">The angles of a triangle are (x + 30)&deg;, (2x &minus; 15)&deg; and (2x + 45)&deg;. Find <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 210" role="img" aria-label="A triangle with angles x plus 30, 2x minus 15 and 2x plus 45"><path class="draw fill" d="M70.0 170.0 L230.0 170.0 L150.0 45.0 Z" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><path class="draw" d="M96.0 170.0 A26 26 0 0 0 84.0 148.1" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="118.0" y="156.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(x+30)&deg;</text><path class="draw" d="M204.0 170.0 A26 26 0 0 1 216.0 148.1" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="186.0" y="156.0" font-size="13" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(2x&minus;15)&deg;</text><path class="draw" d="M138.1 63.5 A22 22 0 0 0 161.9 63.5" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="150.0" y="112.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(2x+45)&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg2-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg2',24,'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg2','Add everything: x + 30 + 2x &minus; 15 + 2x + 45 = 180.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg2','x = 24 (5x + 60 = 180, so 5x = 120). The three angles are 54&deg;, 33&deg; and 93&deg;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-pg3">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">An isosceles triangle has a 64&deg; angle between its two equal sides. Find one base angle, <em>b</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 210" role="img" aria-label="An isosceles triangle with two equal sides marked; the top angle is 64 degrees and one base angle is marked b"><path class="draw fill" d="M180.0 25.0 L95.0 185.0 L265.0 185.0 Z" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><path class="draw" d="M131.3 101.7 L143.7 108.3" stroke="#e8eaf0" stroke-width="1.5" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M216.3 108.3 L228.7 101.7" stroke="#e8eaf0" stroke-width="1.5" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M168.7 46.2 A24 24 0 0 0 191.3 46.2" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="180.0" y="75.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">64&deg;</text><path class="draw" d="M121.0 185.0 A26 26 0 0 0 107.2 162.0" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="134.4" y="161.3" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">b</text></svg>
+      <div class="mcq-options" id="pg3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg3', this, 'a')"><div class="opt-indicator"></div><span>58&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg3', this, 'b')"><div class="opt-indicator"></div><span>26&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg3', this, 'c')"><div class="opt-indicator"></div><span>116&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg3', this, 'd')"><div class="opt-indicator"></div><span>64&deg;</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg3','a','Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg3','Take 64&deg; from 180&deg;, then share what is left between the two equal base angles.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg3','A &mdash; 58&deg; (180 &minus; 64 = 116; 116 &divide; 2 = 58). 116&deg; forgets to halve.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-pg4">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">The exterior angle of a triangle is 131&deg;. One opposite interior angle is 77&deg;. Find the other opposite interior angle, <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 200" role="img" aria-label="A triangle with its base extended to the right; the exterior angle is 131 degrees, and the opposite interior angles are 77 degrees at the bottom left and x at the top"><path class="draw fill" d="M70.0 170.0 L230.0 170.0 L150.0 45.0 Z" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><path d="M230 170 L330 170" stroke="#7a84a0" stroke-width="2" stroke-dasharray="6 5" stroke-linecap="round"/><path class="draw" d="M254.0 170.0 A24 24 0 0 0 217.1 149.8" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="252.1" y="129.6" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">131&deg;</text><path class="draw" d="M96.0 170.0 A26 26 0 0 0 84.0 148.1" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="112.1" y="147.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">77&deg;</text><path class="draw" d="M138.1 63.5 A22 22 0 0 0 161.9 63.5" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="150.0" y="95.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">x&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg4-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg4',54,'Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg4','Exterior angle = sum of the two opposite interior angles, so 131 = 77 + x')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg4','x = 54 (131 &minus; 77 = 54). Check: 77 + 54 = 131.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-pg5">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">The interior angles of a quadrilateral are 98&deg;, 76&deg;, 113&deg; and <em>x</em>&deg;. Find <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 220" role="img" aria-label="A quadrilateral with angles 98, 76, 113 and x"><path class="draw fill" d="M80.0 40.0 L280.0 30.0 L310.0 170.0 L60.0 180.0 Z" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><text x="102.0" y="52.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">98&deg;</text><text x="272.0" y="50.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">76&deg;</text><text x="284.0" y="160.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">113&deg;</text><text x="92.0" y="160.0" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">x&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg5-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg5',73,'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg5','A quadrilateral&rsquo;s angles add up to 360&deg;: 98 + 76 + 113 + x = 360.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg5','x = 73 (98 + 76 + 113 = 287; 360 &minus; 287 = 73).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-pg6">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">The interior angles of a regular decagon add up to 1440&deg;. Find the size of <em>each interior angle</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 220" role="img" aria-label="A regular decagon: ten equal sides and ten equal angles"><path class="draw fill" d="M151.6 22.5 L105.6 55.9 L88.0 110.0 L105.6 164.1 L151.6 197.5 L208.4 197.5 L254.4 164.1 L272.0 110.0 L254.4 55.9 L208.4 22.5 Z" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><text x="180.0" y="110.0" font-size="13" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">regular</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg6-ans" placeholder="Enter answer..."><span class="num-unit">degrees</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg6',144,'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg6','All ten angles are equal, so divide the 1440&deg; sum by 10.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg6','144&deg; (1440 &divide; 10 = 144). Each exterior angle is 180 &minus; 144 = 36&deg;, and 360 &divide; 36 = 10 sides &mdash; it checks out.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-pg7">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Each interior angle of a regular polygon is 160&deg;. How many sides does it have?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 170" role="img" aria-label="Part of a regular polygon with one interior angle marked 160 degrees; the number of sides is unknown"><path class="draw" d="M309.9 140.0 L231.3 74.0 L128.7 74.0 L50.1 140.0" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><path d="M309.9 140.0 L317.7 184.3" stroke="#7a84a0" stroke-width="2" stroke-dasharray="5 5"/><path d="M50.1 140.0 L42.3 184.3" stroke="#7a84a0" stroke-width="2" stroke-dasharray="5 5"/><path class="draw" d="M209.3 74.0 A22 22 0 0 0 248.2 88.2" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="215.6" y="117.3" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">160&deg;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg7-ans" placeholder="Enter answer..."><span class="num-unit">sides</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg7',18,'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg7','Exterior angle = 180 &minus; 160, then divide 360 by it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg7','18 sides (exterior angle = 20&deg;; 360 &divide; 20 = 18)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-pg8">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">The exterior angle of a regular polygon is 10&deg;. How many sides does it have, and what is each interior angle?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 200" role="img" aria-label="Part of a polygon with one side extended, so the exterior angle of 10 degrees is marked outside one corner"><path class="draw" d="M285.0 60.0 L210.0 60.0 L130.0 130.0 L60.0 130.0" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><path class="draw" d="M285.0 60.0 L340.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-dasharray="6 5" pathLength="1"/><path class="draw" d="M285.0 60.0 L320.0 110.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M303.0 60.0 A18 18 0 0 1 295.3 74.7" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="322.0" y="76.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">10&deg;</text></svg>
+      <div class="mcq-options" id="pg8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg8', this, 'a')"><div class="opt-indicator"></div><span>10 sides, interior 170&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg8', this, 'b')"><div class="opt-indicator"></div><span>36 sides, interior 350&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg8', this, 'c')"><div class="opt-indicator"></div><span>26 sides, interior 170&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg8', this, 'd')"><div class="opt-indicator"></div><span>36 sides, interior 170&deg;</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg8','d','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg8','Divide 360 by the exterior angle for the sides, then interior = 180 &minus; 10.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg8','D &mdash; 36 sides, interior 170&deg; (360 &divide; 10 = 36; 180 &minus; 10 = 170). 350&deg; adds instead of subtracting; 10 sides mistakes the angle for the count.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION B &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pg-fill"></div></div>
+    <div class="section-score-val" id="sec-pg-val">0/16</div>
+  </div>
+</div>
+
+<div id="cc">
+  <div class="section-header"><div class="section-icon">◯</div><div><div class="sub-label">Section C &middot; Q17&ndash;Q20</div><h2>Circles &amp; Compound Areas</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> Area of a circle A = &pi;r&sup2;. Halve a diameter before you square it. For a compound shape, add the pieces joined on and subtract the holes. Use the &pi; button and round only at the end.</div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-cc1">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Find the area of a semicircle with radius 9 cm. Give your answer to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 195" role="img" aria-label="A semicircle with radius 9 cm; the radius is drawn from the centre of the straight edge"><path class="draw fill" d="M55 165 A125 125 0 0 1 305 165 Z" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><circle cx="180.0" cy="165.0" r="2.5" fill="#e8eaf0"/><path class="draw" d="M180.0 165.0 L260.3 69.2" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><text x="192.9" y="104.4" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">9 cm</text></svg>
+      <div class="mcq-options" id="cc1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('cc1', this, 'a')"><div class="opt-indicator"></div><span>254.5 cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cc1', this, 'b')"><div class="opt-indicator"></div><span>127.2 cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cc1', this, 'c')"><div class="opt-indicator"></div><span>63.6 cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cc1', this, 'd')"><div class="opt-indicator"></div><span>31.8 cm&sup2;</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('cc1','b','Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cc1','Work out the full circle &pi; &times; 9&sup2; first, then halve it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cc1','B &mdash; 127.2 cm&sup2; (&pi; &times; 81 = 254.47&hellip;; &divide; 2 = 127.23&hellip;). 254.5 cm&sup2; forgets to halve.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cc1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-cc2">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">A circle has an area of 600 cm&sup2;. Find its <em>diameter</em> to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 210" role="img" aria-label="A circle with area 600 square centimetres; its diameter d is drawn across the middle"><circle class="draw fill" cx="180" cy="105" r="85" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><path class="draw" d="M95.0 105.0 L265.0 105.0" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><text x="180.0" y="89.0" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">d = ?</text><text x="180.0" y="139.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Area = 600 cm&sup2;</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cc2-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cc2',27.6,'Q18',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cc2','Undo the formula: r&sup2; = 600 &divide; &pi;, then square-root to get r. Then double it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cc2','27.6 cm (r&sup2; = 190.99&hellip;, r = 13.82&hellip;; d = 2r = 27.63&hellip;)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cc2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-cc3">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A rectangle is 20 cm long and 10 cm wide. A semicircle is cut out of one short side; its diameter is the whole 10 cm side. Find the shaded area that is left, to 1 decimal place.</div><div class="q-marks">3 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 215" role="img" aria-label="A 20 cm by 10 cm rectangle with a semicircle cut out of its right-hand short side; the diameter of the semicircle is the full 10 cm side"><path class="draw fill" d="M60 25 L250 25 A80 80 0 0 0 250 185 L60 185 Z" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><path d="M250 25 L250 185" stroke="#7a84a0" stroke-width="1.5" stroke-dasharray="5 5"/><text x="150.0" y="15.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">20 cm</text><text x="36.0" y="105.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">10 cm</text><text x="292.0" y="105.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">10 cm</text><text x="120.0" y="112.0" font-size="12" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">shaded</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cc3-ans" placeholder="Enter answer..."><span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cc3',160.7,'Q19',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cc3','Rectangle 20 &times; 10, minus half of a circle with radius 5 cm.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cc3','160.7 cm&sup2; (200 &minus; &pi; &times; 5&sup2; &divide; 2 = 200 &minus; 39.27&hellip; = 160.73&hellip;)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cc3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-cc4">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">A square has sides of 14 cm. A circle is drawn inside it, touching all four sides (diameter 14 cm). Find the area of the shaded part <em>between</em> the square and the circle, to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 260" role="img" aria-label="A 14 cm square with a circle of diameter 14 cm drawn inside it, touching all four sides; the corners between the square and the circle are shaded"><path class="draw fill" d="M90 40 L270 40 L270 220 L90 220 Z" fill="rgba(79,142,247,0.12)" stroke="#7a84a0" stroke-width="2" pathLength="1"/><circle class="draw fill" cx="180" cy="130" r="90" fill="rgba(15,17,23,0.55)" stroke="#4f8ef7" stroke-width="2" pathLength="1"/><text x="180.0" y="26.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">14 cm</text><text x="180.0" y="242.0" font-size="12" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">the four corners are shaded</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cc4-ans" placeholder="Enter answer..."><span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cc4',42.1,'Q20',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cc4','Square 14 &times; 14, minus a full circle with radius 7 cm.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cc4','42.1 cm&sup2; (196 &minus; &pi; &times; 7&sup2; = 196 &minus; 153.94&hellip; = 42.06&hellip;)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cc4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION C &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-cc-fill"></div></div>
+    <div class="section-score-val" id="sec-cc-val">0/9</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { an1:1, an2:1, an3:1, an4:2, an5:2, an6:2, an7:1, an8:2, pg1:2, pg2:2, pg3:2, pg4:2, pg5:2, pg6:2, pg7:2, pg8:2, cc1:2, cc2:2, cc3:3, cc4:2 };
+
+const sections = {
+  an: { label: 'Angle Rules', qs: ['an1','an2','an3','an4','an5','an6','an7','an8'] },
+  pg: { label: 'Triangles & Polygons', qs: ['pg1','pg2','pg3','pg4','pg5','pg6','pg7','pg8'] },
+  cc: { label: 'Circles & Compound Areas', qs: ['cc1','cc2','cc3','cc4'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+
+// Diagrams draw themselves in as they scroll into view
+(function() {
+  const figs = document.querySelectorAll('.q-fig');
+  if (!('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('drawn')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  figs.forEach(f => io.observe(f));
+})();
+</script>
+</body>
+</html>
