@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maths Paper 2 &middot; Semester 1 Mock</title>
+<title>Maths Paper 2 &middot; Semester 1 Mock (Calculator)</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>:root {
   --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
@@ -154,6 +154,8 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 .text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
 .text-input:focus { border-color: var(--accent); }
 .text-input:disabled { opacity: 0.75; }
+.multi-opt .opt-indicator { border-radius: 5px; }
+.multi-note { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-warn); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
 .paper-note { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.5px; text-transform: uppercase; margin: 8px 0 0; }
 .ftable { border-collapse: collapse; margin: 10px 0 16px; font-size: 0.88rem; }
 .ftable th, .ftable td { border: 1px solid var(--border); padding: 6px 12px; text-align: center; }
@@ -170,111 +172,238 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="../../index.html" class="back-link">&larr; All sheets</a>
     <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
-    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 49</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 50</div></div>
   </div>
 </div>
 <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
 <div class="hero">
   <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Semester 1 Assessment &middot; Paper 2</div>
-  <h1>Semester 1 Maths<br><em>Paper 2: Equations &amp; Geometry</em></h1>
+  <h1>Semester 1 Maths<br><em>Paper 2: Calculator</em></h1>
   <div class="hero-meta">
-    <div class="hero-chip"><div class="dot"></div>31 questions &middot; self-marked &middot; 49 marks</div>
-    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>Aim for about 60 minutes. Bring a calculator</div>
+    <div class="hero-chip"><div class="dot"></div>29 questions &middot; self-marked &middot; 50 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>1 hour &middot; calculator allowed &middot; working on paper</div>
   </div>
-  <p class="credit">The second of two mock papers for the Semester 1 maths assessment. It covers Unit 4 (simultaneous equations and linear inequalities), Unit 5 (angles, polygons, constructions and Pythagoras’ theorem) and Unit 7.1&ndash;7.2 (circles and compound shapes). Every question is new. Diagrams are not drawn accurately; use the numbers given.</p>
+  <p class="credit">The second of two mock papers in the Checkpoint format. This paper allows a calculator. It is 1 hour long, worth 50 marks, and mixes every topic from Semester 1. All questions are new. Diagrams are not drawn accurately.</p>
 </div>
-<div class="exam-banner"><div class="exam-inner"><strong>SEMESTER 1 ASSESSMENT &middot; THURSDAY 26 NOVEMBER &middot; MATHEMATICS (TWO PAPERS)</strong><br>This is Paper 2 (Units 4, 5 and 7). <a href="sem1-maths-paper1-number-algebra.html" style="color:var(--accent)">Paper 1</a> covers Units 1&ndash;3. Do the written questions (Q32&ndash;Q36) in the printable version.</div></div>
+<div class="exam-banner"><div class="exam-inner"><strong>SEMESTER 1 ASSESSMENT &middot; THURSDAY 26 NOVEMBER &middot; MATHEMATICS (TWO STANDARDISED PAPERS)</strong><br>This is Paper 2: <strong style="color:var(--text)">calculator allowed</strong>. <a href="sem1-maths-paper1-non-calculator.html" style="color:var(--accent)">Paper 1</a> is non-calculator. Use the π button and round only at the end. The written questions (Q30&ndash;Q34) are in the printable version.</div></div>
 
 <div class="watch-box"><div class="watch-inner">
   <h3>&#128218; Revise a topic first</h3>
   <p>Each topic on this paper has its own longer practice sheet.</p>
   <div class="watch-links">
+    <a class="watch-link" href="../t1/w2/term1-week2-maths-rational-irrational.html" target="_blank" rel="noopener">Rational &amp; irrational &rarr;</a>
+    <a class="watch-link" href="../t1/w2/term1-week2-maths-indices-standard-form.html" target="_blank" rel="noopener">Indices &amp; standard form &rarr;</a>
+    <a class="watch-link" href="../t1/w5/term1-week5-maths-expressions-formulae.html" target="_blank" rel="noopener">Expressions &amp; formulae &rarr;</a>
+    <a class="watch-link" href="../t1/w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.html" target="_blank" rel="noopener">Decimals, percentages &amp; rounding &rarr;</a>
     <a class="watch-link" href="../t1/w8/term1-week8-maths-unit4-simultaneous-equations.html" target="_blank" rel="noopener">Simultaneous equations &rarr;</a>
     <a class="watch-link" href="../t2/w1/term2-week1-maths-unit4-linear-inequalities.html" target="_blank" rel="noopener">Linear inequalities &rarr;</a>
-    <a class="watch-link" href="../t2/w2/term2-week2-maths-unit5-calculating-angles.html" target="_blank" rel="noopener">Calculating angles &rarr;</a>
     <a class="watch-link" href="../t2/w5/term2-week5-maths-unit-test2-angles-shapes-measurements.html" target="_blank" rel="noopener">Angles, shapes &amp; measurements &rarr;</a>
     <a class="watch-link" href="../maths-formula-sheets/index.html" target="_blank" rel="noopener">Formula sheets &rarr;</a>
   </div>
 </div></div>
 <div class="section-tabs">
-  <a href="#eq" class="sub-tab">&#9878; A &middot; Equations &amp; Inequalities</a>
-  <a href="#an" class="sub-tab">&#128208; B &middot; Angles, Polygons &amp; Pythagoras</a>
-  <a href="#ci" class="sub-tab">&#9711; C &middot; Circles &amp; Compound Shapes</a>
+  <a href="#np" class="sub-tab">&#128176; A &middot; Number, Percentages &amp; Bounds</a>
+  <a href="#ae" class="sub-tab">&#9878; B &middot; Algebra &amp; Equations</a>
+  <a href="#py" class="sub-tab">&#128208; C &middot; Polygons &amp; Pythagoras</a>
+  <a href="#ci" class="sub-tab">&#9711; D &middot; Circles &amp; Compound Shapes</a>
 </div>
 <div class="main">
 
-<div id="eq">
-  <div class="section-header"><div class="section-icon">&#9878;</div><div><div class="sub-label">Section A &middot; Q1&ndash;Q10 &middot; Unit 4</div><h2>Equations &amp; Inequalities</h2></div></div>
-<div class="info-box">Solve each one on paper first. For an inequality, type only the number after the sign shown.</div>
+<div id="np">
+  <div class="section-header"><div class="section-icon">&#128176;</div><div><div class="sub-label">Section A &middot; Q1&ndash;Q8</div><h2>Number, Percentages &amp; Bounds</h2></div></div>
+<div class="info-box">Use multipliers for percentage changes. For bounds, decide which bound gives the safe answer.</div>
   <!-- Q1 -->
-  <div class="q-card" id="qcard-q1">
-    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Solve 5<em>x</em> − 7 &gt; 2<em>x</em> + 11.</div><div class="q-marks">1 mark</div></div>
+  <div class="q-card" id="qcard-c1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Work out (6.4 × 10<sup>5</sup>) × (3.5 × 10<sup>−2</sup>). Give your answer as an ordinary number.</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
-      <div class="num-row"><span class="num-unit">x &gt;</span><input type="number" step="any" class="num-input" id="q1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="c1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q1',6,'Q1',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q1','Collect the <em>x</em> terms on one side, like an equation.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q1','3x > 18, so x > 6')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('c1',22400,'Q1',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c1','Use the ×10<sup><em>x</em></sup> (EXP) key, or multiply 6.4 × 3.5 and add the powers.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c1','22.4 × 10³ = 22 400')">Show Answer</button>
       </div>
-      <div class="feedback" id="q1-fb"></div>
+      <div class="feedback" id="c1-fb"></div>
     </div>
   </div>
 
   <!-- Q2 -->
-  <div class="q-card" id="qcard-q2">
-    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Solve −3<em>x</em> + 2 ≥ 17.</div><div class="q-marks">2 marks</div></div>
+  <div class="q-card" id="qcard-p25">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">A jacket costs $80. Its price goes up by 15%, then the new price goes down by 20%. What is the final price?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
-      <div class="num-row"><span class="num-unit">x ≤</span><input type="number" step="any" class="num-input" id="q2-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <svg class="q-fig" viewBox="0 0 380 200" role="img" aria-label="Bar chart: a price of 80 dollars goes up 15 percent, then down 20 percent; the new prices are question marks" style="max-width:380px"><path class="draw" d="M40.0 170.0 L340.0 170.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M70 70 H130 V170 H70 Z" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="100.0" y="186.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">start</text><text x="100.0" y="56.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">$80</text><path class="draw" d="M165 55 H225 V170 H165 Z" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="195.0" y="186.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+15%</text><text x="195.0" y="41.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">?</text><path class="draw" d="M260 78 H320 V170 H260 Z" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="186.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">−20%</text><text x="290.0" y="64.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">?</text><path class="draw" d="M132.0 90.0 L162.0 70.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M157.9 76.9 L162.0 70.0 L154.1 71.1" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M227.0 70.0 L257.0 90.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M249.1 88.9 L257.0 90.0 L252.9 83.1" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+      <div class="num-row"><span class="num-unit">$</span><input type="number" step="any" class="num-input" id="p25-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q2',-5,'Q2',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q2','When you divide by a negative number, the sign flips.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q2','−3x ≥ 15, so x ≤ −5 (the sign flips when you divide by −3)')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('p25',73.6,'Q2',0.001)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p25','Use multipliers: × 1.15, then × 0.80.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p25','80 × 1.15 × 0.8 = $73.60')">Show Answer</button>
       </div>
-      <div class="feedback" id="q2-fb"></div>
+      <div class="feedback" id="p25-fb"></div>
     </div>
   </div>
 
   <!-- Q3 -->
-  <div class="q-card" id="qcard-q3">
-    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Which inequality is shown on the number line?</div><div class="q-marks">1 mark</div></div>
+  <div class="q-card" id="qcard-c2">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">A $120 bike is reduced by 15%. A $90 scooter is increased by 20%. Which statements are true?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
-      <svg class="q-fig" viewBox="0 0 420 96" role="img" aria-label="Number line from −4 to 5 with a filled circle at −2, an open circle at 3 and the part between them shaded" style="max-width:420px"><path class="draw" d="M16.0 60.0 L406.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M398.8 63.5 L406.0 60.0 L398.8 56.5" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M404.0 60.0 L14.0 60.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M21.2 56.5 L14.0 60.0 L21.2 63.5" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M30.0 53.0 L30.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="30.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">−4</text><path class="draw" d="M70.0 53.0 L70.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="70.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">−3</text><path class="draw" d="M110.0 53.0 L110.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="110.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">−2</text><path class="draw" d="M150.0 53.0 L150.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="150.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">−1</text><path class="draw" d="M190.0 53.0 L190.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="190.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">0</text><path class="draw" d="M230.0 53.0 L230.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="230.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">1</text><path class="draw" d="M270.0 53.0 L270.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="270.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">2</text><path class="draw" d="M310.0 53.0 L310.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="310.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">3</text><path class="draw" d="M350.0 53.0 L350.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="350.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4</text><path class="draw" d="M390.0 53.0 L390.0 67.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="390.0" y="82.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">5</text><path class="draw" d="M110.0 44.0 L310.0 44.0" stroke="#4f8ef7" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M116.0 44.0 A6 6 0 1 1 104.0 44.0 A6 6 0 1 1 116.0 44.0" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="110.0" cy="44.0" r="6" fill="#f5a623"/><path class="draw" d="M316.0 44.0 A6 6 0 1 1 304.0 44.0 A6 6 0 1 1 316.0 44.0" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
-      <div class="mcq-options" id="q3-opts">
-        <div class="mcq-opt" onclick="selectMCQ('q3', this, 'a')"><div class="opt-indicator"></div><span>−2 &lt; <em>x</em> ≤ 3</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q3', this, 'b')"><div class="opt-indicator"></div><span>−2 ≤ <em>x</em> &lt; 3</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q3', this, 'c')"><div class="opt-indicator"></div><span>−2 ≤ <em>x</em> ≤ 3</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q3', this, 'd')"><div class="opt-indicator"></div><span>−2 &lt; <em>x</em> &lt; 3</span></div>
+      <div class="multi-note">Tick every true statement</div>
+      <div class="mcq-options" id="c2-opts">
+        <div class="mcq-opt multi-opt" data-val="a" onclick="toggleMulti('c2', this, 'a')"><div class="opt-indicator"></div><span>The bike now costs $102.</span></div>
+        <div class="mcq-opt multi-opt" data-val="b" onclick="toggleMulti('c2', this, 'b')"><div class="opt-indicator"></div><span>The scooter’s price went up by $20.</span></div>
+        <div class="mcq-opt multi-opt" data-val="c" onclick="toggleMulti('c2', this, 'c')"><div class="opt-indicator"></div><span>The bike is now cheaper than the scooter.</span></div>
+        <div class="mcq-opt multi-opt" data-val="d" onclick="toggleMulti('c2', this, 'd')"><div class="opt-indicator"></div><span>The scooter now costs $108.</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q3','b','Q3')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q3','A filled circle means the number is included.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q3','B &mdash; Filled circle at −2 (≤) and open circle at 3 (<): −2 ≤ x < 3')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMulti('c2',['a','c','d'],'Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c2','Use multipliers: × 0.85 for the bike and × 1.2 for the scooter.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c2','A, C and D are true. Bike: 120 × 0.85 = $102. Scooter: 90 × 1.2 = $108, an increase of $18, not $20.')">Show Answer</button>
       </div>
-      <div class="feedback" id="q3-fb"></div>
+      <div class="feedback" id="c2-fb"></div>
     </div>
   </div>
 
   <!-- Q4 -->
-  <div class="q-card" id="qcard-q4">
-    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">How many <strong>integers</strong> satisfy −2 ≤ <em>x</em> &lt; 3?</div><div class="q-marks">1 mark</div></div>
+  <div class="q-card" id="qcard-p26">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">A car loses 6% of its value every year. Which calculation gives its value after 3 years, starting from $<em>V</em>?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="q4-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q4',5,'Q4',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q4','List them. Is 3 included?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q4','−2, −1, 0, 1, 2: five integers')">Show Answer</button>
+      <div class="mcq-options" id="p26-opts">
+        <div class="mcq-opt" onclick="selectMCQ('p26', this, 'a')"><div class="opt-indicator"></div><span><em>V</em> × 0.94 × 3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('p26', this, 'b')"><div class="opt-indicator"></div><span><em>V</em> × 0.82</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('p26', this, 'c')"><div class="opt-indicator"></div><span><em>V</em> × 0.94<sup>3</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('p26', this, 'd')"><div class="opt-indicator"></div><span><em>V</em> × 1.06<sup>3</sup></span></div>
       </div>
-      <div class="feedback" id="q4-fb"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('p26','c','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p26','Each year the value is multiplied by the same amount.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p26','C &mdash; Losing 6% means multiplying by 0.94 each year, so after 3 years: V × 0.94³.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p26-fb"></div>
     </div>
   </div>
 
   <!-- Q5 -->
+  <div class="q-card" id="qcard-p27">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">$2500 is invested at 4% compound interest per year. Find the value after 3 years.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 210" role="img" aria-label="Savings bars for years 0 to 3, starting at 2500 dollars and multiplying by 1.04 each year; year 3 is a question mark" style="max-width:400px"><path class="draw" d="M40.0 180.0 L360.0 180.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M60 90 H110 V180 H60 Z" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="85.0" y="196.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">year 0</text><path class="draw" d="M135 86 H185 V180 H135 Z" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="160.0" y="196.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">year 1</text><path class="draw" d="M210 83 H260 V180 H210 Z" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="235.0" y="196.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">year 2</text><path class="draw" d="M285 79 H335 V180 H285 Z" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="310.0" y="196.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">year 3</text><text x="85.0" y="76.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">$2500</text><text x="310.0" y="65.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">?</text><text x="200.0" y="30.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">× 1.04 each year</text></svg>
+      <div class="num-row"><span class="num-unit">$</span><input type="number" step="any" class="num-input" id="p27-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p27',2812.16,'Q5',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p27','Multiplier 1.04, three times.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p27','2500 × 1.04³ = $2812.16')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p27-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-c4">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">$5000 is invested at 3% compound interest per year. Find its value after 5 years, to the nearest cent.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">$</span><input type="number" step="any" class="num-input" id="c4-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('c4',5796.37,'Q6',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c4','Multiplier 1.03, to the power 5.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c4','5000 × 1.03⁵ = $5796.37')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-p28">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Round 0.004 782 to 2 significant figures.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="p28-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p28',0.0048,'Q7',1e-06)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p28','The first significant figure is the 4.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p28','0.0048')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-p32">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A lift can carry 500 kg, correct to the nearest 10 kg. Each box weighs 40 kg, correct to the nearest kg. What is the greatest number of boxes that can <strong>always</strong> be carried safely?</div><div class="q-marks">3 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 390 236" role="img" aria-label="A goods lift being loaded with boxes; the limit is 500 kg to the nearest 10 kg and each box is 40 kg to the nearest kg" style="max-width:380px"><path class="draw" d="M100 20 H280 V220 H100 Z" stroke="#7a84a0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M190.0 20.0 L190.0 220.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M112 182 H146 V214 H112 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M152 182 H186 V214 H152 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M192 182 H226 V214 H192 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M232 182 H266 V214 H232 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M112 144 H146 V176 H112 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M152 144 H186 V176 H152 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M192 144 H226 V176 H192 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M232 144 H266 V176 H232 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M112 106 H146 V138 H112 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M152 106 H186 V138 H152 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M192 106 H226 V138 H192 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M232 106 H266 V138 H232 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="190.0" y="8.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">?</text><text x="330.0" y="70.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">limit</text><text x="330.0" y="88.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">500 kg</text><text x="330.0" y="106.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(nearest 10)</text><text x="50.0" y="120.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">box</text><text x="50.0" y="138.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">40 kg</text><text x="50.0" y="156.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(nearest kg)</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="p32-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p32',12,'Q8',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p32','Use the lowest possible limit and the heaviest possible box.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p32','Lower bound of the limit = 495 kg. Upper bound of a box = 40.5 kg. 495 ÷ 40.5 = 12.2…, so 12 boxes.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p32-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A &mdash; NUMBER, PERCENTAGES &AMP; BOUNDS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-np-fill"></div></div>
+    <div class="section-score-val" id="sec-np-val">0/15</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="ae">
+  <div class="section-header"><div class="section-icon">&#9878;</div><div><div class="sub-label">Section B &middot; Q9&ndash;Q15</div><h2>Algebra &amp; Equations</h2></div></div>
+<div class="info-box">Form the equation first, then solve it. Type only the final value.</div>
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-p11">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Use <em>v</em> = <em>u</em> + <em>at</em> to find <em>v</em> when <em>u</em> = 5, <em>a</em> = −2 and <em>t</em> = 6.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">v =</span><input type="number" step="any" class="num-input" id="p11-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p11',-7,'Q9',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p11','Work out <em>at</em> first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p11','v = 5 + (−2)(6) = 5 − 12 = −7')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-p13">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Simplify 6<em>x</em><sup>5</sup><em>y</em><sup>2</sup> ÷ 2<em>x</em><sup>2</sup><em>y</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="p13-opts">
+        <div class="mcq-opt" onclick="selectMCQ('p13', this, 'a')"><div class="opt-indicator"></div><span>3<em>x</em><sup>3</sup><em>y</em></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('p13', this, 'b')"><div class="opt-indicator"></div><span>4<em>x</em><sup>3</sup><em>y</em></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('p13', this, 'c')"><div class="opt-indicator"></div><span>3<em>x</em><sup>7</sup><em>y</em><sup>3</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('p13', this, 'd')"><div class="opt-indicator"></div><span>3<em>x</em><sup>2.5</sup><em>y</em><sup>2</sup></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('p13','a','Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p13','Divide the numbers, then subtract the powers of each letter.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p13','A &mdash; 6 ÷ 2 = 3, x<sup>5−2</sup> = x<sup>3</sup>, y<sup>2−1</sup> = y')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-p20">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">The perimeter of a rectangle is <em>P</em> = 2(<em>l</em> + <em>w</em>). If <em>P</em> = 46 cm and <em>w</em> = 8 cm, find <em>l</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 200" role="img" aria-label="A rectangle with width 8 cm, unknown length l and perimeter 46 cm" style="max-width:340px"><path class="draw" d="M60 50 H300 V160 H60 Z" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="180.0" y="34.0" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">l = ?</text><text x="326.0" y="105.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">8 cm</text><text x="180.0" y="105.0" font-size="14" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">P = 46 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="p20-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p20',15,'Q11',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p20','Halve 46 first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p20','46 = 2(l + 8), so 23 = l + 8 and l = 15 cm')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p20-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
   <div class="q-card" id="qcard-q5">
-    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">A taxi charges $3 plus $1.50 per km. Lena can spend at most $18. What is the greatest distance she can travel?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">A taxi charges $3 plus $1.50 per km. Lena can spend at most $18. What is the greatest distance she can travel?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <div class="num-row"><input type="number" step="any" class="num-input" id="q5-ans" placeholder="Enter answer..."><span class="num-unit">km</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q5',10,'Q5',0)">Check</button>
+        <button class="btn btn-check" onclick="checkNum('q5',10,'Q12',0)">Check</button>
         <button class="btn btn-hint" onclick="showHint('q5','Write 3 + 1.5<em>d</em> ≤ 18.')">Hint</button>
         <button class="btn btn-reveal" onclick="revealAnswer('q5','1.5d ≤ 15, so d ≤ 10 km')">Show Answer</button>
       </div>
@@ -282,42 +411,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     </div>
   </div>
 
-  <!-- Q6 -->
-  <div class="q-card" id="qcard-q6">
-    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Solve the simultaneous equations 3<em>x</em> + 2<em>y</em> = 16 and <em>x</em> − 2<em>y</em> = 0. Find <em>x</em>.</div><div class="q-marks">2 marks</div></div>
-    <div class="q-body">
-      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="q6-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q6',4,'Q6',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q6','The <em>y</em> terms have opposite signs, so add the equations.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q6','Adding: 4x = 16, so x = 4')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q6-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q7 -->
-  <div class="q-card" id="qcard-q7">
-    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">For the same pair of equations, find <em>y</em>.</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <div class="num-row"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="q7-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q7',2,'Q7',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q7','Substitute <em>x</em> = 4 into <em>x</em> − 2<em>y</em> = 0.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q7','4 − 2y = 0, so y = 2')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q7-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q8 -->
+  <!-- Q13 -->
   <div class="q-card" id="qcard-q8">
-    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">The graph shows <em>y</em> = 2<em>x</em> + 1 and <em>y</em> = 5<em>x</em> − 8. Solve the equations algebraically and find the <em>y</em>-value where they meet.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">The graph shows <em>y</em> = 2<em>x</em> + 1 and <em>y</em> = 5<em>x</em> − 8. Solve the equations algebraically and find the <em>y</em>-value where they meet.</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <svg class="q-fig" viewBox="0 0 400 270" role="img" aria-label="Graph of the lines y = 2x + 1 and y = 5x − 8 crossing at one circled point" style="max-width:400px"><path class="draw" d="M50.0 20.0 L50.0 250.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="50.0" y="198.3" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">0</text><path class="draw" d="M110.0 20.0 L110.0 250.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="110.0" y="198.3" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">1</text><path class="draw" d="M170.0 20.0 L170.0 250.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="170.0" y="198.3" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">2</text><path class="draw" d="M230.0 20.0 L230.0 250.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="230.0" y="198.3" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">3</text><path class="draw" d="M290.0 20.0 L290.0 250.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="198.3" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4</text><path class="draw" d="M350.0 20.0 L350.0 250.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="350.0" y="198.3" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">5</text><path class="draw" d="M50.0 250.0 L350.0 250.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="34.0" y="250.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">−8</text><path class="draw" d="M50.0 217.1 L350.0 217.1" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="34.0" y="217.1" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">−4</text><path class="draw" d="M50.0 184.3 L350.0 184.3" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="34.0" y="184.3" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">0</text><path class="draw" d="M50.0 151.4 L350.0 151.4" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="34.0" y="151.4" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4</text><path class="draw" d="M50.0 118.6 L350.0 118.6" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="34.0" y="118.6" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">8</text><path class="draw" d="M50.0 85.7 L350.0 85.7" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="34.0" y="85.7" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">12</text><path class="draw" d="M50.0 52.9 L350.0 52.9" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="34.0" y="52.9" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">16</text><path class="draw" d="M50.0 20.0 L350.0 20.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="34.0" y="20.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">20</text><path class="draw" d="M50.0 184.3 L350.0 184.3" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M50.0 20.0 L50.0 250.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M50.0 176.1 L350.0 93.9" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M50.0 250.0 L350.0 44.6" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="302.0" y="120.1" font-size="12" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">y = 2x + 1</text><text x="232.0" y="65.2" font-size="12" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">y = 5x − 8</text><path class="draw" d="M237.0 126.8 A7 7 0 1 1 223.0 126.8 A7 7 0 1 1 237.0 126.8" stroke="#e8eaf0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
       <div class="num-row"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="q8-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q8',7,'Q8',0)">Check</button>
+        <button class="btn btn-check" onclick="checkNum('q8',7,'Q13',0)">Check</button>
         <button class="btn btn-hint" onclick="showHint('q8','Set 2<em>x</em> + 1 = 5<em>x</em> − 8.')">Hint</button>
         <button class="btn btn-reveal" onclick="revealAnswer('q8','3x = 9, so x = 3 and y = 2(3) + 1 = 7. The lines cross at (3, 7).')">Show Answer</button>
       </div>
@@ -325,9 +426,9 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     </div>
   </div>
 
-  <!-- Q9 -->
+  <!-- Q14 -->
   <div class="q-card" id="qcard-q9">
-    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Two coffees and three cakes cost $13. One coffee and one cake cost $5. Using <em>c</em> for a coffee and <em>k</em> for a cake, which pair of equations is correct?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Two coffees and three cakes cost $13. One coffee and one cake cost $5. Using <em>c</em> for a coffee and <em>k</em> for a cake, which pair of equations is correct?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="mcq-options" id="q9-opts">
         <div class="mcq-opt" onclick="selectMCQ('q9', this, 'a')"><div class="opt-indicator"></div><span>2<em>c</em> + 3<em>k</em> = 5 and <em>c</em> + <em>k</em> = 13</span></div>
@@ -336,7 +437,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
         <div class="mcq-opt" onclick="selectMCQ('q9', this, 'd')"><div class="opt-indicator"></div><span>2<em>c</em> + 3<em>k</em> = 13 and <em>c</em> + <em>k</em> = 5</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q9','d','Q9')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('q9','d','Q14')">Check</button>
         <button class="btn btn-hint" onclick="showHint('q9','Match each number of items to the right letter.')">Hint</button>
         <button class="btn btn-reveal" onclick="revealAnswer('q9','D &mdash; 2c + 3k = 13 and c + k = 5')">Show Answer</button>
       </div>
@@ -344,13 +445,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     </div>
   </div>
 
-  <!-- Q10 -->
+  <!-- Q15 -->
   <div class="q-card" id="qcard-q10">
-    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Solve the equations in Q9. How much does one cake cost?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Solve the equations in the previous question. How much does one cake cost?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <div class="num-row"><span class="num-unit">$</span><input type="number" step="any" class="num-input" id="q10-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q10',3,'Q10',0)">Check</button>
+        <button class="btn btn-check" onclick="checkNum('q10',3,'Q15',0)">Check</button>
         <button class="btn btn-hint" onclick="showHint('q10','Double the second equation and subtract it from the first.')">Hint</button>
         <button class="btn btn-reveal" onclick="revealAnswer('q10','2c + 2k = 10; subtracting from 2c + 3k = 13 gives k = 3. A cake costs $3 (and a coffee $2).')">Show Answer</button>
       </div>
@@ -359,105 +460,27 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   </div>
 
   <div class="section-score">
-    <div class="section-score-label">SECTION A &mdash; EQUATIONS &AMP; INEQUALITIES</div>
-    <div class="section-score-bar"><div class="section-score-fill" id="sec-eq-fill"></div></div>
-    <div class="section-score-val" id="sec-eq-val">0/15</div>
+    <div class="section-score-label">SECTION B &mdash; ALGEBRA &AMP; EQUATIONS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ae-fill"></div></div>
+    <div class="section-score-val" id="sec-ae-val">0/11</div>
   </div>
 </div>
 <div class="divider"></div>
 
-<div id="an">
-  <div class="section-header"><div class="section-icon">&#128208;</div><div><div class="sub-label">Section B &middot; Q11&ndash;Q21 &middot; Unit 5</div><h2>Angles, Polygons &amp; Pythagoras</h2></div></div>
-<div class="info-box">Give angles in degrees and lengths in the units shown. Diagrams draw themselves in as you scroll.</div>
-  <!-- Q11 -->
-  <div class="q-card" id="qcard-q11">
-    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">In the diagram, the two lines are parallel. The co-interior angles are (3<em>x</em> + 10)° and (2<em>x</em> + 20)°. Find <em>x</em>.</div><div class="q-marks">2 marks</div></div>
-    <div class="q-body">
-      <svg class="q-fig" viewBox="0 0 400 240" role="img" aria-label="Two parallel lines cut by a transversal; co-interior angles (3x + 10) degrees and (2x + 20) degrees between the lines" style="max-width:400px"><path class="draw" d="M30.0 70.0 L370.0 70.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M30.0 170.0 L370.0 170.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M130.0 230.0 L270.0 10.0" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M160 70 l-6 -6 M160 70 l-6 6" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M160 170 l-6 -6 M160 170 l-6 6" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M209.8 70.0 A22 22 0 0 0 220.0 88.6" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="190.0" y="90.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(2x+20)°</text><path class="draw" d="M180.0 151.4 A22 22 0 0 0 146.2 170.0" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="120.0" y="150.0" font-size="13" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">(3x+10)°</text></svg>
-      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="q11-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q11',30,'Q11',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q11','Co-interior angles add up to 180°.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q11','5x + 30 = 180, so x = 30')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q11-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q12 -->
-  <div class="q-card" id="qcard-q12">
-    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">One side of a triangle is extended. The exterior angle is 128° and the opposite interior angle at the top is 57°. Find the other opposite interior angle <em>x</em>.</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <svg class="q-fig" viewBox="0 0 380 220" role="img" aria-label="A triangle with one side extended; the exterior angle is 128 degrees, the top interior angle is 57 degrees and the bottom-left angle is x" style="max-width:380px"><path class="draw" d="M60.0 190.0 L250.0 190.0 L150.0 40.0 Z" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M250.0 190.0 L350.0 190.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M276.0 190.0 A26 26 0 0 0 235.6 168.4" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="160.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">128°</text><path class="draw" d="M138.7 58.9 A22 22 0 0 0 162.2 58.3" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="150.0" y="80.0" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">57°</text><path class="draw" d="M88.0 190.0 A28 28 0 0 0 74.4 166.0" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="105.0" y="175.0" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">x</text></svg>
-      <div class="num-row"><input type="number" step="any" class="num-input" id="q12-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q12',71,'Q12',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q12','An exterior angle equals the sum of the two opposite interior angles.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q12','128 − 57 = 71°')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q12-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q13 -->
-  <div class="q-card" id="qcard-q13">
-    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Find the sum of the interior angles of a nonagon (9 sides).</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <svg class="q-fig" viewBox="0 0 260 240" role="img" aria-label="A nonagon split into 7 triangles from one corner" style="max-width:240px"><path class="draw" d="M130.0 30.0 L72.1 51.1 L41.4 104.4 L52.1 165.0 L99.2 204.6 L160.8 204.6 L207.9 165.0 L218.6 104.4 L187.9 51.1 Z" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M130.0 30.0 L41.4 104.4" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M130.0 30.0 L52.1 165.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M130.0 30.0 L99.2 204.6" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M130.0 30.0 L160.8 204.6" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M130.0 30.0 L207.9 165.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M130.0 30.0 L218.6 104.4" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
-      <div class="num-row"><input type="number" step="any" class="num-input" id="q13-ans" placeholder="Enter answer..."><span class="num-unit">°</span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q13',1260,'Q13',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q13','A polygon with <em>n</em> sides splits into <em>n</em> − 2 triangles.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q13','(9 − 2) × 180 = 1260°')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q13-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q14 -->
+<div id="py">
+  <div class="section-header"><div class="section-icon">&#128208;</div><div><div class="sub-label">Section C &middot; Q16&ndash;Q21</div><h2>Polygons &amp; Pythagoras</h2></div></div>
+<div class="info-box">Find the hypotenuse first, the side opposite the right angle. Round only at the end.</div>
+  <!-- Q16 -->
   <div class="q-card" id="qcard-q14">
-    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Each exterior angle of a regular polygon is 24°. How many sides does it have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Each exterior angle of a regular polygon is 24°. How many sides does it have?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
       <div class="num-row"><input type="number" step="any" class="num-input" id="q14-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q14',15,'Q14',0)">Check</button>
+        <button class="btn btn-check" onclick="checkNum('q14',15,'Q16',0)">Check</button>
         <button class="btn btn-hint" onclick="showHint('q14','The exterior angles add up to 360°.')">Hint</button>
         <button class="btn btn-reveal" onclick="revealAnswer('q14','360 ÷ 24 = 15 sides')">Show Answer</button>
       </div>
       <div class="feedback" id="q14-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q15 -->
-  <div class="q-card" id="qcard-q15">
-    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Each interior angle of a regular polygon is 144°. How many sides does it have?</div><div class="q-marks">2 marks</div></div>
-    <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="q15-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q15',10,'Q15',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q15','Find the exterior angle first.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q15','Exterior = 180 − 144 = 36°, and 360 ÷ 36 = 10 sides')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q15-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q16 -->
-  <div class="q-card" id="qcard-q16">
-    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">With a ruler and compasses you construct an equilateral triangle, bisect one of its angles, then bisect one of the halves. What size is the smallest angle you have made?</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <div class="mcq-options" id="q16-opts">
-        <div class="mcq-opt" onclick="selectMCQ('q16', this, 'a')"><div class="opt-indicator"></div><span>15°</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q16', this, 'b')"><div class="opt-indicator"></div><span>20°</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q16', this, 'c')"><div class="opt-indicator"></div><span>30°</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q16', this, 'd')"><div class="opt-indicator"></div><span>45°</span></div>
-      </div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q16','a','Q16')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q16','An equilateral triangle has 60° angles. Halve it twice.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q16','A &mdash; 60° → 30° → 15°')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q16-fb"></div>
     </div>
   </div>
 
@@ -540,16 +563,16 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   </div>
 
   <div class="section-score">
-    <div class="section-score-label">SECTION B &mdash; ANGLES, POLYGONS &AMP; PYTHAGORAS</div>
-    <div class="section-score-bar"><div class="section-score-fill" id="sec-an-fill"></div></div>
-    <div class="section-score-val" id="sec-an-val">0/17</div>
+    <div class="section-score-label">SECTION C &mdash; POLYGONS &AMP; PYTHAGORAS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-py-fill"></div></div>
+    <div class="section-score-val" id="sec-py-val">0/10</div>
   </div>
 </div>
 <div class="divider"></div>
 
 <div id="ci">
-  <div class="section-header"><div class="section-icon">&#9711;</div><div><div class="sub-label">Section C &middot; Q22&ndash;Q31 &middot; Unit 7</div><h2>Circles &amp; Compound Shapes</h2></div></div>
-<div class="info-box">Use the π button on your calculator, and round only at the end.</div>
+  <div class="section-header"><div class="section-icon">&#9711;</div><div><div class="sub-label">Section D &middot; Q22&ndash;Q29</div><h2>Circles &amp; Compound Shapes</h2></div></div>
+<div class="info-box">Use the π button on your calculator. Give answers to the accuracy asked for.</div>
   <!-- Q22 -->
   <div class="q-card" id="qcard-q22">
     <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Find the circumference of a circle with diameter 14 cm. Give your answer to 1 decimal place.</div><div class="q-marks">1 mark</div></div>
@@ -581,35 +604,30 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   </div>
 
   <!-- Q24 -->
-  <div class="q-card" id="qcard-q24">
-    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">What is the area of a circle with diameter 10 cm, in terms of π?</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <div class="mcq-options" id="q24-opts">
-        <div class="mcq-opt" onclick="selectMCQ('q24', this, 'a')"><div class="opt-indicator"></div><span>10π cm²</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q24', this, 'b')"><div class="opt-indicator"></div><span>100π cm²</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q24', this, 'c')"><div class="opt-indicator"></div><span>5π cm²</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('q24', this, 'd')"><div class="opt-indicator"></div><span>25π cm²</span></div>
-      </div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q24','d','Q24')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q24','Halve the diameter first.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q24','D &mdash; r = 5, so A = π × 5² = 25π cm²')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q24-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q25 -->
   <div class="q-card" id="qcard-q25">
-    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A circle has circumference 50 cm. Find its radius to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">A circle has circumference 50 cm. Find its radius to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <div class="num-row"><input type="number" step="any" class="num-input" id="q25-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q25',8.0,'Q25',0.05)">Check</button>
+        <button class="btn btn-check" onclick="checkNum('q25',8.0,'Q24',0.05)">Check</button>
         <button class="btn btn-hint" onclick="showHint('q25','C = 2π<em>r</em>, so <em>r</em> = C ÷ 2π.')">Hint</button>
         <button class="btn btn-reveal" onclick="revealAnswer('q25','50 ÷ (2π) = 7.957… ≈ 8.0 cm')">Show Answer</button>
       </div>
       <div class="feedback" id="q25-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-c3">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A circular pond has an area of 50 m². Find its radius, to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="c3-ans" placeholder="Enter answer..."><span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('c3',4.0,'Q25',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c3','Rearrange <em>A</em> = π<em>r</em>²: <em>r</em> = √(<em>A</em> ÷ π).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c3','√(50 ÷ π) = √15.92 = 3.99 ≈ 4.0 m')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c3-fb"></div>
     </div>
   </div>
 
@@ -644,28 +662,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   </div>
 
   <!-- Q28 -->
-  <div class="q-card" id="qcard-q28">
-    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Find the area of a trapezium with parallel sides 8 cm and 14 cm and height 5 cm.</div><div class="q-marks">2 marks</div></div>
-    <div class="q-body">
-      <svg class="q-fig" viewBox="0 0 360 214" role="img" aria-label="A trapezium with parallel sides 8 cm and 14 cm and height 5 cm" style="max-width:360px"><path class="draw" d="M40.0 180.0 L320.0 180.0 L240.0 60.0 L80.0 60.0 Z" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M110.0 60.0 L110.0 180.0" stroke="#f5a623" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path d="M120.0 180.0 L120.0 170.0 L110.0 170.0" stroke="#f5a623" stroke-width="1.5" fill="none"/><text x="160.0" y="44.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">8 cm</text><text x="180.0" y="198.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">14 cm</text><text x="128.0" y="120.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">5 cm</text></svg>
-      <div class="num-row"><input type="number" step="any" class="num-input" id="q28-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q28',55,'Q28',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q28','A = ½(<em>a</em> + <em>b</em>)<em>h</em>')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q28','½ × 22 × 5 = 55 cm²')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q28-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q29 -->
   <div class="q-card" id="qcard-q29">
-    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A ring lies between two circles with the same centre. The outer radius is 9 cm and the inner radius is 5 cm. Find the area of the ring to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">A ring lies between two circles with the same centre. The outer radius is 9 cm and the inner radius is 5 cm. Find the area of the ring to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <svg class="q-fig" viewBox="0 0 290 240" role="img" aria-label="A ring between two circles with the same centre; outer radius 9 cm, inner radius 5 cm" style="max-width:280px"><path class="draw" d="M235.0 120.0 A95 95 0 1 1 45.0 120.0 A95 95 0 1 1 235.0 120.0" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M192.0 120.0 A52 52 0 1 1 88.0 120.0 A52 52 0 1 1 192.0 120.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle cx="140.0" cy="120.0" r="2.5" fill="#e8eaf0"/><path class="draw" d="M140.0 120.0 L207.2 52.8" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M140.0 120.0 L88.0 120.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="208.0" y="80.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">9 cm</text><text x="112.0" y="108.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">5 cm</text></svg>
       <div class="num-row"><input type="number" step="any" class="num-input" id="q29-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q29',175.9,'Q29',0.05)">Check</button>
+        <button class="btn btn-check" onclick="checkNum('q29',175.9,'Q28',0.05)">Check</button>
         <button class="btn btn-hint" onclick="showHint('q29','Big circle minus small circle.')">Hint</button>
         <button class="btn btn-reveal" onclick="revealAnswer('q29','π(81 − 25) = 56π = 175.9 cm²')">Show Answer</button>
       </div>
@@ -673,24 +676,9 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     </div>
   </div>
 
-  <!-- Q30 -->
-  <div class="q-card" id="qcard-q30">
-    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">An L-shape is made by cutting a 5 cm by 4 cm rectangle from the corner of a 12 cm by 9 cm rectangle. Find its area.</div><div class="q-marks">2 marks</div></div>
-    <div class="q-body">
-      <svg class="q-fig" viewBox="0 0 350 240" role="img" aria-label="An L-shape: a 12 cm by 9 cm rectangle with a 5 cm by 4 cm rectangle cut from the top right corner" style="max-width:340px"><path class="draw" d="M40.0 30.0 L220.0 30.0 L220.0 90.0 L310.0 90.0 L310.0 210.0 L40.0 210.0 Z" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="175.0" y="228.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">12 cm</text><text x="20.0" y="120.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">9 cm</text><text x="290.0" y="78.0" font-size="13" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4 cm</text><text x="246.0" y="50.0" font-size="13" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">5 cm</text></svg>
-      <div class="num-row"><input type="number" step="any" class="num-input" id="q30-ans" placeholder="Enter answer..."><span class="num-unit">cm²</span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('q30',88,'Q30',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('q30','Whole rectangle minus the piece cut out.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q30','108 − 20 = 88 cm²')">Show Answer</button>
-      </div>
-      <div class="feedback" id="q30-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q31 -->
+  <!-- Q29 -->
   <div class="q-card" id="qcard-q31">
-    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">A circle fits exactly inside a square of side 10 cm. What is the total area of the four corner pieces outside the circle, to 1 d.p.?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A circle fits exactly inside a square of side 10 cm. What is the total area of the four corner pieces outside the circle, to 1 d.p.?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <svg class="q-fig" viewBox="0 0 320 250" role="img" aria-label="A square of side 10 cm with a circle inside touching all four sides; the four corner pieces are shaded" style="max-width:300px"><path class="draw" d="M60 20 H260 V220 H60 Z" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M260.0 120.0 A100 100 0 1 1 60.0 120.0 A100 100 0 1 1 260.0 120.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="160.0" y="236.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">10 cm</text><circle class="fill" cx="75.0" cy="35.0" r="6" fill="#f5a623"/><circle class="fill" cx="245.0" cy="35.0" r="6" fill="#f5a623"/><circle class="fill" cx="75.0" cy="205.0" r="6" fill="#f5a623"/><circle class="fill" cx="245.0" cy="205.0" r="6" fill="#f5a623"/></svg>
       <div class="mcq-options" id="q31-opts">
@@ -700,7 +688,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
         <div class="mcq-opt" onclick="selectMCQ('q31', this, 'd')"><div class="opt-indicator"></div><span>31.4 cm²</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('q31','b','Q31')">Check</button>
+        <button class="btn btn-check" onclick="checkMCQ('q31','b','Q29')">Check</button>
         <button class="btn btn-hint" onclick="showHint('q31','Square minus circle. What is the circle’s radius?')">Hint</button>
         <button class="btn btn-reveal" onclick="revealAnswer('q31','B &mdash; 100 − π × 5² = 100 − 78.54 = 21.5 cm²')">Show Answer</button>
       </div>
@@ -709,9 +697,9 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
   </div>
 
   <div class="section-score">
-    <div class="section-score-label">SECTION C &mdash; CIRCLES &AMP; COMPOUND SHAPES</div>
+    <div class="section-score-label">SECTION D &mdash; CIRCLES &AMP; COMPOUND SHAPES</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-ci-fill"></div></div>
-    <div class="section-score-val" id="sec-ci-val">0/17</div>
+    <div class="section-score-val" id="sec-ci-val">0/14</div>
   </div>
 </div>
 <div class="divider"></div>
@@ -727,12 +715,13 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <script>
 const state = { answers: {}, correct: {}, startTime: Date.now() };
 
-const marks = { q1:1, q2:2, q3:1, q4:1, q5:2, q6:2, q7:1, q8:2, q9:1, q10:2, q11:2, q12:1, q13:1, q14:1, q15:2, q16:1, q17:2, q18:2, q19:2, q20:2, q21:1, q22:1, q23:1, q24:1, q25:2, q26:2, q27:2, q28:2, q29:2, q30:2, q31:2 };
+const marks = { c1:2, p25:2, c2:2, p26:1, p27:2, c4:2, p28:1, p32:3, p11:1, p13:1, p20:2, q5:2, q8:2, q9:1, q10:2, q14:1, q17:2, q18:2, q19:2, q20:2, q21:1, q22:1, q23:1, q25:2, c3:2, q26:2, q27:2, q29:2, q31:2 };
 
 const sections = {
-  eq: { label: 'Equations & Inequalities', qs: ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'] },
-  an: { label: 'Angles, Polygons & Pythagoras', qs: ['q11','q12','q13','q14','q15','q16','q17','q18','q19','q20','q21'] },
-  ci: { label: 'Circles & Compound Shapes', qs: ['q22','q23','q24','q25','q26','q27','q28','q29','q30','q31'] }
+  np: { label: 'Number, Percentages & Bounds', qs: ['c1','p25','c2','p26','p27','c4','p28','p32'] },
+  ae: { label: 'Algebra & Equations', qs: ['p11','p13','p20','q5','q8','q9','q10'] },
+  py: { label: 'Polygons & Pythagoras', qs: ['q14','q17','q18','q19','q20','q21'] },
+  ci: { label: 'Circles & Compound Shapes', qs: ['q22','q23','q25','c3','q26','q27','q29','q31'] }
 };
 
 const allQs = Object.values(sections).flatMap(s => s.qs);
@@ -849,7 +838,7 @@ function showResults(total) {
   panel.classList.add('show');
   panel.scrollIntoView({ behavior:'smooth', block:'center' });
   if (pct >= 70) launchConfetti();
-  try { localStorage.setItem(`sem1-maths-paper2-equations-geometry_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+  try { localStorage.setItem(`sem1-maths-paper2-calculator_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
 }
 
 function launchConfetti() {
@@ -898,6 +887,27 @@ document.addEventListener('keydown', e => {
   figs.forEach(f => io.observe(f));
 })();
 
+function toggleMulti(qid, el, val) {
+  if (state.correct[qid] !== undefined) return;
+  const chosen = state.answers[qid] instanceof Set ? state.answers[qid] : new Set();
+  if (chosen.has(val)) { chosen.delete(val); el.classList.remove('selected'); el.querySelector('.opt-indicator').textContent = ''; }
+  else { chosen.add(val); el.classList.add('selected'); el.querySelector('.opt-indicator').textContent = '✓'; }
+  state.answers[qid] = chosen;
+}
+
+function checkMulti(qid, correctVals, label) {
+  const chosen = state.answers[qid];
+  if (!(chosen instanceof Set) || chosen.size === 0) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = chosen.size === correctVals.length && correctVals.every(v => chosen.has(v));
+  document.querySelectorAll(`#${qid}-opts .mcq-opt`).forEach(opt => {
+    opt.classList.add('disabled');
+    const v = opt.dataset.val;
+    if (correctVals.includes(v)) opt.classList.add('correct');
+    else if (opt.classList.contains('selected')) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
 function normalise(s) {
   return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/[’‘]/g, "'").replace(/[“”"]/g, '').replace(/\s+/g, ' ');
 }

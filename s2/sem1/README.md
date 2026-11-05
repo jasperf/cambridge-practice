@@ -23,8 +23,8 @@ Every paper comes in three files with the same basename:
 | Paper | Covers | Auto-marked | Written | Printable | Interactive | Answers |
 |-------|--------|-------------|---------|-----------|-------------|---------|
 | **English Level 2/3** | Sentence types & punctuation · Reading two texts with P.E.E.E. · Viewpoints & arguments · Persuasive & emotive language | 41 Qs · 48 marks (33 MCQ) | Q42–Q45 · 38 marks | [.md](./sem1-english-level23-mock.md) | [.html](./sem1-english-level23-mock.html) | [answers](./sem1-english-level23-mock-answers.md) |
-| **Maths Paper 1: Number & Algebra** | Unit 1 (rational & irrational, indices, standard form) · Unit 2 (expressions & formulae) · Unit 3 (decimals, percentages, rounding & bounds) | 32 Qs · 44 marks (10 MCQ) | Q33–Q37 · 20 marks | [.md](./sem1-maths-paper1-number-algebra.md) | [.html](./sem1-maths-paper1-number-algebra.html) | [answers](./sem1-maths-paper1-number-algebra-answers.md) |
-| **Maths Paper 2: Equations & Geometry** | Unit 4 (simultaneous equations, inequalities) · Unit 5 (angles, polygons, constructions, Pythagoras) · Unit 7.1–7.2 (circles, compound shapes) | 31 Qs · 49 marks (6 MCQ) | Q32–Q36 · 22 marks | [.md](./sem1-maths-paper2-equations-geometry.md) | [.html](./sem1-maths-paper2-equations-geometry.html) | [answers](./sem1-maths-paper2-equations-geometry-answers.md) |
+| **Maths Paper 1: Non-Calculator** | All units, no calculator: number, indices & standard form · algebra, equations & inequalities · decimals & rounding · angles, circles (π ≈ 3) & area | 36 Qs · 50 marks (11 MCQ, 1 tick-all-true) | Q37–Q41 · 19 marks | [.md](./sem1-maths-paper1-non-calculator.md) | [.html](./sem1-maths-paper1-non-calculator.html) | [answers](./sem1-maths-paper1-non-calculator-answers.md) |
+| **Maths Paper 2: Calculator** | All units, calculator: standard form, percentages, compound interest & bounds · forming and solving equations · polygons & Pythagoras · circles & compound shapes | 29 Qs · 50 marks (5 MCQ, 1 tick-all-true) | Q30–Q34 · 23 marks | [.md](./sem1-maths-paper2-calculator.md) | [.html](./sem1-maths-paper2-calculator.html) | [answers](./sem1-maths-paper2-calculator-answers.md) |
 | **Science** | Atoms & bonding · Plant biology · Density · Sound waves & thermal energy · Electricity | 39 Qs · 48 marks (17 MCQ) | Q40–Q45 · 24 marks | [.md](./sem1-science-mock.md) | [.html](./sem1-science-mock.html) | [answers](./sem1-science-mock-answers.md) |
 
 ### English Level 2/3
@@ -33,7 +33,7 @@ Section A covers the four sentence types, FANBOYS, MOTH, semicolons and comma ru
 
 ### Mathematics
 
-The two papers split the course by unit, so each can be timed as one sitting of about 60 minutes. Paper 1 uses no calculator for Section A and allows one for Q25–Q32. Paper 2 needs a calculator, a ruler and compasses (the construction question is in the printable only). Both papers draw their diagrams in as you scroll: number lines, an area model, a lift loaded with boxes, a pair of lines crossing on a graph, parallel lines, polygons, a ladder, circles and compound shapes. Diagrams are not to scale.
+The two papers follow the Cambridge Lower Secondary Checkpoint maths format (0862): **Paper 1 is non-calculator and Paper 2 allows a calculator. Each is 1 hour long, worth 50 marks, and mixes every unit.** So both papers test Unit 1 (rational and irrational numbers, indices, standard form), Unit 2 (expressions and formulae), Unit 3 (decimals, percentages, rounding and bounds), Unit 4 (simultaneous equations, inequalities), Unit 5 (angles, polygons, constructions, Pythagoras) and Unit 7.1–7.2 (circles, compound shapes). Questions that need a calculator, such as compound interest, Pythagoras with decimals and circle areas to 1 d.p., are in Paper 2. Paper 1 uses equivalent calculations, answers in terms of π and π ≈ 3. Each paper has a Checkpoint-style “tick every true statement” question, which scores only if every tick is right. Diagrams draw themselves in as you scroll: number lines, an area model, a lift loaded with boxes, a pair of lines crossing on a graph, parallel lines, polygons, a ladder, circles and compound shapes. They are not to scale. Paper 1’s written questions include a ruler-and-compass construction.
 
 ### Science
 
@@ -51,12 +51,12 @@ s2/sem1/
 ├── sem1-english-level23-mock.html                ← Interactive (English Level 2/3)
 ├── sem1-english-level23-mock.md                  ← Printable + Q42–Q45 written
 ├── sem1-english-level23-mock-answers.md          ← Answers + marking guide
-├── sem1-maths-paper1-number-algebra.html         ← Interactive (Maths Paper 1, Units 1–3)
-├── sem1-maths-paper1-number-algebra.md           ← Printable + Q33–Q37 written
-├── sem1-maths-paper1-number-algebra-answers.md   ← Answers + marking guide
-├── sem1-maths-paper2-equations-geometry.html     ← Interactive (Maths Paper 2, Units 4, 5, 7)
-├── sem1-maths-paper2-equations-geometry.md       ← Printable + Q32–Q36 written
-├── sem1-maths-paper2-equations-geometry-answers.md ← Answers + marking guide
+├── sem1-maths-paper1-non-calculator.html         ← Interactive (Maths Paper 1, no calculator)
+├── sem1-maths-paper1-non-calculator.md           ← Printable + Q37–Q41 written
+├── sem1-maths-paper1-non-calculator-answers.md   ← Answers + marking guide
+├── sem1-maths-paper2-calculator.html             ← Interactive (Maths Paper 2, calculator)
+├── sem1-maths-paper2-calculator.md               ← Printable + Q30–Q34 written
+├── sem1-maths-paper2-calculator-answers.md       ← Answers + marking guide
 ├── sem1-science-mock.html                        ← Interactive (Science)
 ├── sem1-science-mock.md                          ← Printable + Q40–Q45 written
 └── sem1-science-mock-answers.md                  ← Answers + marking guide
