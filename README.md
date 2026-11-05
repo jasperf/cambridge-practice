@@ -25,6 +25,7 @@ cambridge-practice/
 ├── s2/                         ← Secondary 2
 │   ├── t1/                     ← Term 1: w{N}/ weekly sheets + term-level revision handouts
 │   ├── t2/                     ← Term 2: w{N}/ weekly sheets
+│   ├── sem1/                   ← Semester 1 assessment mock papers (English, Maths ×2, Science)
 │   ├── science-formula-sheets/ ← One-page SVG formula & key-fact sheets (index.html gallery)
 │   ├── maths-formula-sheets/   ← One-page SVG maths formula sheets for Unit Test 2 (index.html gallery)
 │   └── english-revision-sheets/← One-page SVG English revision sheets (index.html gallery)
@@ -33,7 +34,7 @@ cambridge-practice/
 └── docs/                       ← Documentation (state management, etc.)
 ```
 
-Weekly sheets are named `term{N}-week{N}-{subject}-{topic}.html`, with a matching `.md` printable beside them. For the file-by-file list of a term, see its README: [s2/t1](./s2/t1/README.md) · [s2/t2](./s2/t2/README.md) · [science formula sheets](./s2/science-formula-sheets/README.md) · [maths formula sheets](./s2/maths-formula-sheets/README.md) · [English revision sheets](./s2/english-revision-sheets/README.md).
+Weekly sheets are named `term{N}-week{N}-{subject}-{topic}.html`, with a matching `.md` printable beside them. For the file-by-file list of a term, see its README: [s2/t1](./s2/t1/README.md) · [s2/t2](./s2/t2/README.md) · [s2/sem1](./s2/sem1/README.md) · [science formula sheets](./s2/science-formula-sheets/README.md) · [maths formula sheets](./s2/maths-formula-sheets/README.md) · [English revision sheets](./s2/english-revision-sheets/README.md).
 
 ## Printable Worksheets (Parallel Path)
 
@@ -136,6 +137,10 @@ pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pd
 | Science Unit 3: Sound Waves & Thermal Energy | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
 | Science Unit 3: Electricity (Circuits, V = IR, Series & Parallel) | Secondary 2 | ✅ Term 2 Week 4 · 26–30 October |
 | English UN Day Writing Project (Zimbabwe/Sweden coaching guide) | Secondary 2 | ✅ Term 2 · Draft due 23 Oct, final due 20 Nov |
+| Semester 1 Mock: English Level 2/3 (Sentences, P.E.E.E. Reading, Viewpoints, Persuasive Language) | Secondary 2 | ✅ Semester 1 Assessment, 25 Nov 2026 |
+| Semester 1 Mock: Mathematics Paper 1 (Number & Algebra, Units 1–3) | Secondary 2 | ✅ Semester 1 Assessment, 26 Nov 2026 |
+| Semester 1 Mock: Mathematics Paper 2 (Equations & Geometry, Units 4, 5 & 7) | Secondary 2 | ✅ Semester 1 Assessment, 26 Nov 2026 |
+| Semester 1 Mock: Science (Atoms & Bonding, Plants, Density, Sound & Thermal Energy, Electricity) | Secondary 2 | ✅ Semester 1 Assessment, 27 Nov 2026 |
 
 ### IGCSE
 
