@@ -80,7 +80,8 @@ This is an on-demand, local step — no PDF output is committed or wired into an
 
 New sheets/handouts are referenced in more than one README — check all that apply:
 
-- **Root `README.md`** — the relevant `Subjects Covered` table (Secondary 1 / Secondary 2 / IGCSE). Its `Structure` section is folder-level only; touch it only when adding a new top-level or term folder.
+- **Root `README.md`** — a short landing page for students and teachers, *not* a file index. Its `What's covered` table has one row per stage; touch it only when a new stage, subject or kind of material appears (e.g. the first IGCSE Physics sheet), never for an individual sheet. Keep it concise and free of exam dates.
+- **`CONTRIBUTING.md`** — its folder-level `Structure` tree; touch it only when adding a new top-level or term folder.
 - **The term README** (`s2/t1/README.md`, `s2/t2/README.md`, or the equivalent for the term/stage you're adding to) — its worksheet table (or revision-handouts table) and its own structure diagram, which is the file-by-file list.
 - **`index.html`** — a card in the matching subject grid (already covered above, but easy to forget when a change is "just docs").
 

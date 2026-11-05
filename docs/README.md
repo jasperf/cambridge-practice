@@ -48,6 +48,7 @@ When adding new documentation:
 
 ## See Also
 
-- [Main README](../README.md) - Project overview and setup instructions
+- [Main README](../README.md) - Project overview
+- [Contributing](../CONTRIBUTING.md) - Structure, local development, adding sheets, PDFs
 - [SETUP.md](../SETUP.md) - Detailed setup and development guide
 - [AGENTS.md](../AGENTS.md) - Agent instructions and workflows

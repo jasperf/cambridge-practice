@@ -14,7 +14,8 @@ Interactive self-marking exercise sheets for Cambridge Secondary 1, IGCSE, and A
 cambridge-practice/
 ├── index.html              ← home page / subject index (update when adding sheets)
 ├── resources.html          ← curated external resources (YouTube, BBC Bitesize)
-├── README.md               ← project overview
+├── README.md               ← project overview (students & teachers)
+├── CONTRIBUTING.md         ← structure, local dev, adding sheets, PDFs
 ├── AGENTS.md               ← this file
 ├── SETUP.md                ← setup and deployment guide
 ├── CLAUDE.md               ← legacy agent instructions
