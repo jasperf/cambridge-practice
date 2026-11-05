@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Mock Paper &middot; Semester 1 Level 2/3</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #f5a623; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(245,166,35,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box em { font-style: italic; color: var(--accent); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(245,166,35,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(245,166,35,0.4)} 70%{box-shadow:0 0 0 10px rgba(245,166,35,0)} 100%{box-shadow:0 0 0 0 rgba(245,166,35,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .hero, .section-tabs, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: drawIn 1.1s ease forwards, fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+
+.exam-banner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.exam-inner { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.28); border-radius: 12px; padding: 14px 18px; font-size: 0.88rem; color: var(--text-muted); }
+.exam-inner strong { color: var(--accent-warn); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.5px; }
+.extract { background: rgba(15,17,23,0.5); border: 1px dashed var(--border); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0 24px; font-size: 0.92rem; line-height: 1.8; color: var(--text); }
+.extract p + p { margin-top: 10px; }
+.extract .extract-label { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+.extract .pn { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-right: 6px; }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent); }
+.text-input:disabled { opacity: 0.75; }
+.paper-note { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.5px; text-transform: uppercase; margin: 8px 0 0; }
+.ftable { border-collapse: collapse; margin: 10px 0 16px; font-size: 0.88rem; }
+.ftable th, .ftable td { border: 1px solid var(--border); padding: 6px 12px; text-align: center; }
+.ftable th { background: var(--surface2); font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">English &middot; Semester 1 Mock</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 48</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; English Level 2/3 &middot; Semester 1 Assessment</div>
+  <h1>Semester 1 English<br><em>Level 2/3 Mock Paper</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>41 questions &middot; self-marked &middot; 48 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>Aim for about 60 minutes, then do the written tasks on paper</div>
+  </div>
+  <p class="credit">One paper covering every Level 2/3 English topic from Semester 1: sentence types and punctuation (Term 1 Unit 1), reading with P.E.E.E., viewpoints and arguments (Term 1 Unit Test 2) and persuasive and emotive language (Term 2 Unit Test 1). Both texts are original and written for this paper.</p>
+</div>
+<div class="exam-banner"><div class="exam-inner"><strong>SEMESTER 1 ASSESSMENT &middot; WEDNESDAY 25 NOVEMBER &middot; ENGLISH</strong><br>Levels 2 and 3 sit one standardised paper. Do Sections A&ndash;D here, then the written questions (Q42&ndash;Q45) in the printable version: a P.E.E.E. paragraph, a comparison, sentence rewriting and a persuasive writing task.</div></div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Revise a topic first</h3>
+  <p>Each topic on this paper has its own longer practice sheet.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="../t1/term1-english-unit1-revision.html" target="_blank" rel="noopener">Unit 1: Sentence types &amp; PEEE &rarr;</a>
+    <a class="watch-link" href="../t1/w7/term1-week7-english-unit-test2-viewpoints-arguments.html" target="_blank" rel="noopener">Unit Test 2: Viewpoints &amp; Arguments &rarr;</a>
+    <a class="watch-link" href="../t2/w3/term2-week3-english-unit-test1-persuasive-emotive-language.html" target="_blank" rel="noopener">Unit Test 1: Persuasive &amp; Emotive &rarr;</a>
+    <a class="watch-link" href="../english-revision-sheets/index.html" target="_blank" rel="noopener">English revision sheets &rarr;</a>
+  </div>
+</div></div>
+<div class="section-tabs">
+  <a href="#sp" class="sub-tab">&#128221; A &middot; Sentences &amp; Punctuation</a>
+  <a href="#t1" class="sub-tab">&#127793; B &middot; Reading: Text 1</a>
+  <a href="#t2" class="sub-tab">&#9993; C &middot; Reading: Text 2 &amp; Comparing</a>
+  <a href="#pl" class="sub-tab">&#128227; D &middot; Persuasive &amp; Emotive Language</a>
+</div>
+<div class="main">
+
+<div id="sp">
+  <div class="section-header"><div class="section-icon">&#128221;</div><div><div class="sub-label">Section A &middot; Q1&ndash;Q10</div><h2>Sentences &amp; Punctuation</h2></div></div>
+<div class="info-box">Simple, compound, complex and compound-complex sentences; FANBOYS and MOTH; semicolons and commas. Break each sentence into blocks like the one below before you decide.</div><svg class="q-fig" viewBox="0 0 777.1999999999999 116" role="img" aria-label="Sentence builder: a dependent clause, a comma, an independent clause, comma and, another independent clause" style="max-width:760px"><path class="draw" d="M23 26 H205.2 A8 8 0 0 1 213.2 34 V68 A8 8 0 0 1 205.2 76 H23 A8 8 0 0 1 15 68 V34 A8 8 0 0 1 23 26 Z" stroke="#b48cf7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="114.1" y="51.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">When the whistle blew</text><path class="draw" d="M242.2 34 H262.2 A17 17 0 0 1 279.2 51 V51 A17 17 0 0 1 262.2 68 H242.2 A17 17 0 0 1 225.2 51 V51 A17 17 0 0 1 242.2 34 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="252.2" y="51.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">,</text><path class="draw" d="M299.2 26 H456.79999999999995 A8 8 0 0 1 464.79999999999995 34 V68 A8 8 0 0 1 456.79999999999995 76 H299.2 A8 8 0 0 1 291.2 68 V34 A8 8 0 0 1 299.2 26 Z" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="378.0" y="51.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">the crowd stood up</text><path class="draw" d="M493.79999999999995 34 H526.8 A17 17 0 0 1 543.8 51 V51 A17 17 0 0 1 526.8 68 H493.79999999999995 A17 17 0 0 1 476.79999999999995 51 V51 A17 17 0 0 1 493.79999999999995 34 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="510.3" y="51.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">, and</text><path class="draw" d="M563.8 26 H754.1999999999999 A8 8 0 0 1 762.1999999999999 34 V68 A8 8 0 0 1 754.1999999999999 76 H563.8 A8 8 0 0 1 555.8 68 V34 A8 8 0 0 1 563.8 26 Z" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="659.0" y="51.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">the band began to play</text><text x="388.6" y="100.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace"><tspan fill="#4f8ef7">■ independent</tspan>  <tspan fill="#b48cf7">■ dependent</tspan>  <tspan fill="#f5a623">■ joiner</tspan></text></svg>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-e1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">What type of sentence is this? <em>“The bell rang, and the students rushed outside.”</em></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'a')"><div class="opt-indicator"></div><span>Simple</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'b')"><div class="opt-indicator"></div><span>Compound</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'c')"><div class="opt-indicator"></div><span>Complex</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e1', this, 'd')"><div class="opt-indicator"></div><span>Compound-complex</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e1','b','Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e1','Count the independent clauses. How are they joined?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e1','B &mdash; Compound: two independent clauses (<em>the bell rang</em> / <em>the students rushed outside</em>) joined by the FANBOYS conjunction <em>and</em>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-e2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">What type of sentence is this? <em>“Although the rain was heavy, the match continued.”</em></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'a')"><div class="opt-indicator"></div><span>Compound</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'b')"><div class="opt-indicator"></div><span>Simple</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'c')"><div class="opt-indicator"></div><span>Complex</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e2', this, 'd')"><div class="opt-indicator"></div><span>Compound-complex</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e2','c','Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e2','Can <em>Although the rain was heavy</em> stand on its own as a sentence?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e2','C &mdash; Complex: one dependent clause (<em>Although the rain was heavy</em>) plus one independent clause (<em>the match continued</em>).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-e3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">What type of sentence is this? <em>“My sister and her friend cooked and served dinner.”</em></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'a')"><div class="opt-indicator"></div><span>Simple</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'b')"><div class="opt-indicator"></div><span>Compound</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'c')"><div class="opt-indicator"></div><span>Complex</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e3', this, 'd')"><div class="opt-indicator"></div><span>Compound-complex</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e3','a','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e3','There are two people and two actions, but how many clauses?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e3','A &mdash; Simple: one clause with a compound subject (<em>my sister and her friend</em>) and a compound predicate (<em>cooked and served</em>).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-e4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">What type of sentence is this? <em>“Because the road was flooded, the bus was late, so we missed assembly.”</em></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'a')"><div class="opt-indicator"></div><span>Complex</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'b')"><div class="opt-indicator"></div><span>Compound</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'c')"><div class="opt-indicator"></div><span>Simple</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'd')"><div class="opt-indicator"></div><span>Compound-complex</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e4','d','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e4','Look for a dependent clause AND two independent clauses.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e4','D &mdash; Compound-complex: a dependent clause (<em>Because the road was flooded</em>) plus two independent clauses joined by <em>so</em>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-e5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Type the FANBOYS conjunction that best completes the sentence: <em>“I wanted to join the team, ___ I had not practised all summer.”</em></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e5-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e5',['but','yet'],'Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e5','The second clause goes against what you would expect from the first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e5','<em>but</em> (or <em>yet</em>): the second clause contrasts with the first.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-e6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Which sentence uses <em>however</em> correctly?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e6', this, 'a')"><div class="opt-indicator"></div><span>The test was hard, however everyone finished.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e6', this, 'b')"><div class="opt-indicator"></div><span>The test was hard however, everyone finished.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e6', this, 'c')"><div class="opt-indicator"></div><span>The test was hard; however, everyone finished.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e6', this, 'd')"><div class="opt-indicator"></div><span>The test was hard; however everyone, finished.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e6','c','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e6','MOTH rule: what goes before the conjunctive adverb, and what goes after it?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e6','C &mdash; A semicolon goes before the conjunctive adverb and a comma after it: <em>…hard; however, everyone…</em>')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-e7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which sentence uses a semicolon correctly?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'a')"><div class="opt-indicator"></div><span>The library was silent; not a single page turned.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'b')"><div class="opt-indicator"></div><span>The library was silent; and quiet.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'c')"><div class="opt-indicator"></div><span>Because the library was silent; we whispered.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e7', this, 'd')"><div class="opt-indicator"></div><span>The library; was silent.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e7','a','Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e7','A semicolon joins two complete sentences that are closely linked.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e7','A &mdash; Both sides of the semicolon are independent clauses, and the ideas are closely linked.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-e8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Type the MOTH conjunctive adverb that fits: <em>“Take an umbrella; ___, you will get soaked.”</em></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e8-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e8',['otherwise'],'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e8','Which word means “if you don’t”?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e8','<em>otherwise</em>: it means “if you don’t take one”.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-e9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Which complex sentence is punctuated correctly?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e9', this, 'a')"><div class="opt-indicator"></div><span>Because it was raining we stayed inside.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e9', this, 'b')"><div class="opt-indicator"></div><span>We stayed inside, because it was raining.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e9', this, 'c')"><div class="opt-indicator"></div><span>We stayed inside because it was raining.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e9', this, 'd')"><div class="opt-indicator"></div><span>Because, it was raining we stayed inside.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e9','c','Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e9','When the dependent clause comes second, do you need a comma?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e9','C &mdash; When the dependent clause comes after the independent clause, no comma is needed. (If it came first, you would put a comma after it.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-e10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Type the dependent marker (subordinating conjunction) in: <em>“Unless you water them, the seeds will not grow.”</em></div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e10-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e10',['unless'],'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e10','It is the word that makes the first clause unable to stand alone.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e10','<em>Unless</em>: it turns <em>you water them</em> into a dependent clause.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A &mdash; SENTENCES &AMP; PUNCTUATION</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sp-fill"></div></div>
+    <div class="section-score-val" id="sec-sp-val">0/10</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="t1">
+  <div class="section-header"><div class="section-icon">&#127793;</div><div><div class="sub-label">Section B &middot; Q11&ndash;Q23</div><h2>Reading: Text 1</h2></div></div>
+<div class="info-box">Read Text 1 carefully. Paragraph numbers are in brackets. Answer like a P.E.E.E. writer: <em>Point, Evidence, Explain, Explore</em>.</div><div class="extract"><span class="extract-label">Text 1 · Student magazine article</span>
+<p><strong>Dig In: Why Every School Needs a Garden</strong></p>
+<p><span class="pn">[1]</span>Picture this: a strip of bare, cracked concrete behind the sports hall, where crisp packets drift like tumbleweed. Now picture the same space bursting with tomatoes, beans and sunflowers taller than you. Which one would you rather learn beside?</p>
+<p><span class="pn">[2]</span>A school garden is not a luxury; it is a classroom without walls. In a recent survey of 1,200 secondary students, 68% said they understood science topics better after hands-on work outdoors. Dr Amara Osei, a child psychologist, explains that “time spent growing things lowers stress and sharpens concentration.” Gardens teach patience, teamwork and responsibility.</p>
+<p><span class="pn">[3]</span>Some people argue that gardens cost too much. It is true that tools, soil and seeds are not free. However, most of the cost is paid only once, and a well-run garden can sell what it grows; last year, a school near ours raised enough from chilli sales to buy a small greenhouse.</p>
+<p><span class="pn">[4]</span>Last spring, my class planted a single row of spinach. Most of us had never touched soil on purpose. By June, Rafi, who usually hid at the back of every lesson, was the one explaining to visitors how the watering system worked. The garden gave him something no textbook had: a reason to care.</p>
+<p><span class="pn">[5]</span>We spend our days staring at screens. We spend our breaks staring at screens. Isn’t it time we spent one hour a week staring at something that is actually alive? Talk to your student council. Sign the petition outside the library. Let’s dig in, together.</p>
+</div>
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-e11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Which sentence best sums up the writer’s <strong>viewpoint</strong> in Text 1?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e11', this, 'a')"><div class="opt-indicator"></div><span>Gardens are fun, but schools cannot afford them.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e11', this, 'b')"><div class="opt-indicator"></div><span>Students should grow vegetables to sell at the fair.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e11', this, 'c')"><div class="opt-indicator"></div><span>Screens should be banned at school.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e11', this, 'd')"><div class="opt-indicator"></div><span>Every school should have a garden because it helps students learn and grow.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e11','d','Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e11','Read the title and the last paragraph again.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e11','D &mdash; The title and every paragraph build towards one belief: every school should have a garden because of what it does for students.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-e12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Text 1 opens with <em>“Picture this:”</em>. What is the writer doing with these words?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e12', this, 'a')"><div class="opt-indicator"></div><span>Quoting an expert to sound reliable</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e12', this, 'b')"><div class="opt-indicator"></div><span>Using an imperative to pull the reader into the scene</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e12', this, 'c')"><div class="opt-indicator"></div><span>Admitting the other side has a point</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e12', this, 'd')"><div class="opt-indicator"></div><span>Giving a statistic</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e12','b','Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e12','Is <em>Picture</em> a command?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e12','B &mdash; <em>Picture</em> is an imperative verb aimed straight at the reader, so the reader is pulled into imagining the scene from the first word.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-e13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">What is the effect of the simile <em>“crisp packets drift like tumbleweed”</em> in paragraph 1?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 480 186" role="img" aria-label="Before and after: a strip of cracked concrete with a crisp packet, then the same strip full of sunflowers and tomato plants" style="max-width:520px"><path class="draw" d="M10.0 150.0 L470.0 150.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M20 120 H210 V150 H20 Z" stroke="#4a5270" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M60.0 120.0 L75.0 135.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M75.0 135.0 L70.0 150.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M140.0 120.0 L150.0 140.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="115.0" y="172.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">before</text><path class="draw" d="M95.0 108.0 L112.0 104.0 L108.0 116.0 Z" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M222.0 120.0 L258.0 120.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M250.8 123.5 L258.0 120.0 L250.8 116.5" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M290.0 150.0 L290.0 80.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M290 115.0 q 14 -8 18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M290 125.5 q -14 -8 -18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M301.0 68.0 A11 11 0 1 1 279.0 68.0 A11 11 0 1 1 301.0 68.0" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="290.0" cy="68.0" r="5" fill="#f5a623"/><path class="draw" d="M330.0 150.0 L330.0 58.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M330 104.0 q 14 -8 18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M330 117.80000000000001 q -14 -8 -18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="339.0" cy="94.8" r="5" fill="#e05252"/><circle class="fill" cx="321.0" cy="81.0" r="5" fill="#e05252"/><path class="draw" d="M370.0 150.0 L370.0 80.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M370 115.0 q 14 -8 18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M370 125.5 q -14 -8 -18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M381.0 68.0 A11 11 0 1 1 359.0 68.0 A11 11 0 1 1 381.0 68.0" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="370.0" cy="68.0" r="5" fill="#f5a623"/><path class="draw" d="M410.0 150.0 L410.0 58.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M410 104.0 q 14 -8 18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M410 117.80000000000001 q -14 -8 -18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="419.0" cy="94.8" r="5" fill="#e05252"/><circle class="fill" cx="401.0" cy="81.0" r="5" fill="#e05252"/><path class="draw" d="M450.0 150.0 L450.0 80.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M450 115.0 q 14 -8 18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M450 125.5 q -14 -8 -18 -20" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M461.0 68.0 A11 11 0 1 1 439.0 68.0 A11 11 0 1 1 461.0 68.0" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="450.0" cy="68.0" r="5" fill="#f5a623"/><text x="370.0" y="172.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">after</text></svg>
+      <div class="mcq-options" id="e13-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e13', this, 'a')"><div class="opt-indicator"></div><span>It makes the space feel empty and abandoned, like a deserted desert town.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e13', this, 'b')"><div class="opt-indicator"></div><span>It shows that students enjoy playing in this area.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e13', this, 'c')"><div class="opt-indicator"></div><span>It warns the reader that litter causes illness.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e13', this, 'd')"><div class="opt-indicator"></div><span>It proves that the school has a cleaner.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e13','a','Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e13','Where do you usually see tumbleweed blowing about?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e13','A &mdash; Tumbleweed belongs to empty, deserted places, so the simile makes the concrete strip feel lifeless and forgotten, which makes the garden picture that follows more attractive.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-e14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">In paragraph 1 the writer places two pictures of the same space side by side. Which technique is this?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'a')"><div class="opt-indicator"></div><span>Rule of three</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'b')"><div class="opt-indicator"></div><span>Anecdote</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'c')"><div class="opt-indicator"></div><span>Juxtaposition</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e14', this, 'd')"><div class="opt-indicator"></div><span>Expert opinion</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e14','c','Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e14','Two contrasting things placed next to each other.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e14','C &mdash; Juxtaposition: the grey concrete and the blooming garden are placed side by side, so the contrast makes the garden look far better.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-e15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Paragraph 2 gives a statistic. What percentage of students said they understood science better after outdoor work?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e15-ans" placeholder="Enter answer..."><span class="num-unit">%</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e15',68,'Q15',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e15','Look for a number with a % sign in paragraph 2.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e15','68%: a fact or statistic makes the claim sound checkable and convincing.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-e16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Why does the writer include the words of Dr Amara Osei?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'a')"><div class="opt-indicator"></div><span>To give an anecdote about her own school</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'b')"><div class="opt-indicator"></div><span>To show the reader that gardens are expensive</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'c')"><div class="opt-indicator"></div><span>To ask the reader a question</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e16', this, 'd')"><div class="opt-indicator"></div><span>Because the view of a qualified person makes the claim more believable</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e16','d','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e16','Who is she, and why would a reader trust her?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e16','D &mdash; Expert opinion: a child psychologist is qualified to talk about stress and concentration, so her words make the claim more trustworthy.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e16-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-e17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Paragraph 2 ends with a rule of three. Type the <strong>first</strong> of the three things gardens teach.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e17-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e17',['patience'],'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e17','Look at the last sentence of paragraph 2.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e17','<em>patience</em> (patience, teamwork and responsibility).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e17-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-e18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Paragraph 3 begins <em>“Some people argue that gardens cost too much. It is true that…”</em>. Which technique is the writer using?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e18', this, 'a')"><div class="opt-indicator"></div><span>Repetition</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e18', this, 'b')"><div class="opt-indicator"></div><span>Concession (a counter-argument, then a reply)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e18', this, 'c')"><div class="opt-indicator"></div><span>Direct address</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e18', this, 'd')"><div class="opt-indicator"></div><span>Inclusive language</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e18','b','Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e18','Is the writer admitting something the other side would say?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e18','B &mdash; Concession: the writer admits the cost point first, then answers it with <em>However…</em>. This makes the writer seem fair, and the reply seems stronger.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e18-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-e19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Type the conjunctive adverb in paragraph 3 that turns the writer back to their own side of the argument.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e19-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e19',['however'],'Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e19','It is one of the MOTH words.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e19','<em>However</em>: it signals the reply to the counter-argument.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e19-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-e20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">What is the main purpose of the story about Rafi in paragraph 4?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e20-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e20', this, 'a')"><div class="opt-indicator"></div><span>To give a relatable example of a garden changing a student’s attitude</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e20', this, 'b')"><div class="opt-indicator"></div><span>To prove that gardens are cheap to run</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e20', this, 'c')"><div class="opt-indicator"></div><span>To explain how a watering system works</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e20', this, 'd')"><div class="opt-indicator"></div><span>To show that Rafi was a bad student</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e20','a','Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e20','This is an anecdote. What does it show about gardens?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e20','A &mdash; Anecdote: one real-feeling case of a shy student who starts to care makes the benefit personal and easy for the reader to believe.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e20-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-e21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text"><em>“We spend our days staring at screens. We spend our breaks staring at screens.”</em> What is the effect of the repetition?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e21-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'a')"><div class="opt-indicator"></div><span>It shows the writer forgot what they had already written.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'b')"><div class="opt-indicator"></div><span>It gives the reader a fact they can check.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'c')"><div class="opt-indicator"></div><span>It stresses how much of students’ time screens take up, so it sounds excessive.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e21', this, 'd')"><div class="opt-indicator"></div><span>It makes the reader feel sorry for Rafi.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e21','c','Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e21','What does saying it twice make the reader notice?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e21','C &mdash; Repeating the same pattern hammers home how much time is spent on screens, so the change the writer wants seems more needed.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e21-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-e22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">A student is writing a PEEE answer about the phrase <em>“a classroom without walls”</em>. Which sentence is the best <strong>Explore</strong> step?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e22-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'a')"><div class="opt-indicator"></div><span>The writer says a garden is a classroom without walls.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'b')"><div class="opt-indicator"></div><span>This quotation comes from paragraph 2.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'c')"><div class="opt-indicator"></div><span>Gardens are good for students.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e22', this, 'd')"><div class="opt-indicator"></div><span>The metaphor “without walls” suggests freedom: learning is no longer boxed in, so a garden sounds bigger and more exciting than a normal classroom.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e22','d','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e22','Explore zooms in on a word or technique and its effect. Which option does more than repeat the quote?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e22','D &mdash; Explore zooms in on the metaphor and its effect on the reader. The other options only repeat the quote, give its location, or make a general comment.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e22-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-e23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Paragraph 5 has two sentences that start with an imperative verb. Type the imperative verb that starts the <strong>second</strong> of them.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e23-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e23',['sign'],'Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e23','Find <em>Talk to your student council.</em> The next sentence starts with another command.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e23','<em>Sign</em> (“Sign the petition outside the library.”). It is a call to action that tells the reader exactly what to do.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e23-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION B &mdash; READING: TEXT 1</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-t1-fill"></div></div>
+    <div class="section-score-val" id="sec-t1-val">0/16</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="t2">
+  <div class="section-header"><div class="section-icon">&#9993;</div><div><div class="sub-label">Section C &middot; Q24&ndash;Q31</div><h2>Reading: Text 2 &amp; Comparing</h2></div></div>
+<div class="info-box">Text 2 is a reply to Text 1. Questions 24&ndash;28 are about Text 2 on its own; 29&ndash;31 compare the two texts.</div><div class="extract"><span class="extract-label">Text 2 · Letter to the editor</span>
+<p><strong>Gardens Can Wait</strong></p>
+<p><span class="pn">[1]</span>I read last week’s article about school gardens with interest, and I agree that fresh air is good for young people. But I believe our school has more urgent needs.</p>
+<p><span class="pn">[2]</span>Firstly, our science laboratory still has only six working microscopes for a class of thirty. Students share textbooks with loose pages and missing covers. Before we spend money on soil and seeds, we should fix the tools that every student uses every day.</p>
+<p><span class="pn">[3]</span>Secondly, a garden needs care during the long holidays, when nobody is here to water it. Without a clear plan, the beautiful garden in the article would be a patch of dead stalks by the time term starts again.</p>
+<p><span class="pn">[4]</span>I am not against gardens. I am against doing things in the wrong order. Let us repair the classrooms first; the garden can come next year.</p>
+<p style="text-align:right;color:var(--text-muted)"><em>A parent</em></p>
+</div>
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-e24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">What is the viewpoint of the writer of Text 2?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 380 210" role="img" aria-label="An envelope with a stamp, labelled Letters to the Editor" style="max-width:360px"><path class="draw" d="M66 30 H314 A6 6 0 0 1 320 36 V174 A6 6 0 0 1 314 180 H66 A6 6 0 0 1 60 174 V36 A6 6 0 0 1 66 30 Z" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M60.0 36.0 L190.0 120.0 L320.0 36.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M110.0 140.0 L270.0 140.0" stroke="#4a5270" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M110.0 155.0 L270.0 155.0" stroke="#4a5270" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M268 44 H304 V72 H268 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="286.0" y="58.0" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">✉</text><text x="190.0" y="196.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Letters to the Editor</text></svg>
+      <div class="mcq-options" id="e24-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'a')"><div class="opt-indicator"></div><span>School gardens are a waste of time.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'b')"><div class="opt-indicator"></div><span>Gardens are a good idea, but repairs should come first.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'c')"><div class="opt-indicator"></div><span>Students should water the garden in the holidays.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e24', this, 'd')"><div class="opt-indicator"></div><span>Science lessons should take place outdoors.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e24','b','Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e24','Read paragraph 4: <em>“I am not against gardens…”</em>')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e24','B &mdash; The parent accepts that gardens have value but argues that the classrooms should be repaired first.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e24-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-e25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Paragraph 1 says <em>“I agree that fresh air is good for young people. But…”</em>. Why does the writer agree before disagreeing?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e25-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'a')"><div class="opt-indicator"></div><span>To sound fair and reasonable, so the reader is more willing to listen to the objection</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'b')"><div class="opt-indicator"></div><span>To change their mind and support the garden</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'c')"><div class="opt-indicator"></div><span>To give a statistic about fresh air</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e25', this, 'd')"><div class="opt-indicator"></div><span>To add a rhetorical question</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e25','a','Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e25','This is a concession. What does it make the writer seem like?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e25','A &mdash; Concession makes the writer seem balanced and reasonable, so the reader trusts the objection that follows.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e25-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-e26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text"><em>“Our science laboratory still has only six working microscopes for a class of thirty.”</em> Which part of an argument is this sentence?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e26-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e26', this, 'a')"><div class="opt-indicator"></div><span>Claim</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e26', this, 'b')"><div class="opt-indicator"></div><span>Counter-argument</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e26', this, 'c')"><div class="opt-indicator"></div><span>Evidence</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e26', this, 'd')"><div class="opt-indicator"></div><span>Conclusion</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e26','c','Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e26','Is it an opinion, or a specific detail that backs up an opinion?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e26','C &mdash; Evidence: a specific, checkable detail that supports the claim that money should go on equipment first.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e26-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-e27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Type the transition word that introduces the writer’s <strong>second</strong> reason (paragraph 3).</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="e27-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('e27',['secondly'],'Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e27','Paragraph 2 starts with <em>Firstly</em>…')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e27','<em>Secondly</em>: a transition word that signposts the next argument.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e27-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-e28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">In paragraph 3 the writer turns <em>“the beautiful garden in the article”</em> into <em>“a patch of dead stalks”</em>. What is the effect?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e28-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e28', this, 'a')"><div class="opt-indicator"></div><span>It praises the garden in the article.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e28', this, 'b')"><div class="opt-indicator"></div><span>It gives the reader an expert opinion.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e28', this, 'c')"><div class="opt-indicator"></div><span>It describes what the school looks like now.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e28', this, 'd')"><div class="opt-indicator"></div><span>The sudden contrast shows how quickly the dream could fail without a plan.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e28','d','Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e28','Two opposite images are placed side by side.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e28','D &mdash; The juxtaposition of <em>beautiful</em> and <em>dead stalks</em> makes the risk vivid: without a holiday plan, the money would be wasted.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-e29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Which statement best compares the viewpoints of Text 1 and Text 2?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e29-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'a')"><div class="opt-indicator"></div><span>Both writers think gardens are a bad idea.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'b')"><div class="opt-indicator"></div><span>Both see some value in gardens, but they disagree about whether one should come first.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'c')"><div class="opt-indicator"></div><span>Text 2 agrees with everything in Text 1.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e29', this, 'd')"><div class="opt-indicator"></div><span>Text 1 is against gardens and Text 2 is for them.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e29','b','Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e29','Does the parent dislike gardens, or the timing?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e29','B &mdash; Text 1 wants a garden now; Text 2 accepts the benefits but wants repairs first. They agree on value and disagree on priority.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e29-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-e30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">How are the two writers’ methods <strong>different</strong>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'a')"><div class="opt-indicator"></div><span>Text 1 appeals more to feelings (imagery, anecdote, rhetorical question); Text 2 relies more on practical facts and logical order.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'b')"><div class="opt-indicator"></div><span>Text 1 only uses statistics; Text 2 only uses emotive language.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'c')"><div class="opt-indicator"></div><span>Neither text uses any persuasive techniques.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e30', this, 'd')"><div class="opt-indicator"></div><span>Text 2 uses an anecdote about a student; Text 1 does not.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e30','a','Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e30','Think about Rafi and the sunflowers versus the microscopes and holiday watering.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e30','A &mdash; Text 1 paints pictures and tells a story to win the reader’s heart; Text 2 lists practical problems (Firstly… Secondly…) to win the reader’s head.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e30-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-e31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text"><em>“Let us repair the classrooms first; the garden can come next year.”</em> Why is the semicolon correct here?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e31-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e31', this, 'a')"><div class="opt-indicator"></div><span>It comes before a list.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e31', this, 'b')"><div class="opt-indicator"></div><span>It replaces the word <em>because</em>.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e31', this, 'c')"><div class="opt-indicator"></div><span>It joins two closely related independent clauses.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e31', this, 'd')"><div class="opt-indicator"></div><span>It always goes before the word <em>the</em>.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e31','c','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e31','Could each side be a sentence on its own?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e31','C &mdash; Both halves are independent clauses with closely linked ideas (what to do now and what to do later), so a semicolon can join them.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e31-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION C &mdash; READING: TEXT 2 &AMP; COMPARING</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-t2-fill"></div></div>
+    <div class="section-score-val" id="sec-t2-val">0/11</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="pl">
+  <div class="section-header"><div class="section-icon">&#128227;</div><div><div class="sub-label">Section D &middot; Q32&ndash;Q41</div><h2>Persuasive &amp; Emotive Language</h2></div></div>
+<div class="info-box">New sentences, not from the texts. Name the technique, then think about its effect on the reader.</div>
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-e32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text"><em>“Cheaper, cleaner, quicker: the bicycle wins every time.”</em> Which technique opens this sentence?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e32-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e32', this, 'a')"><div class="opt-indicator"></div><span>Rhetorical question</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e32', this, 'b')"><div class="opt-indicator"></div><span>Concession</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e32', this, 'c')"><div class="opt-indicator"></div><span>Expert opinion</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e32', this, 'd')"><div class="opt-indicator"></div><span>Rule of three</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e32','d','Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e32','Count the adjectives before the colon.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e32','D &mdash; Rule of three: three linked words in a row make the point sound complete and memorable.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e32-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-e33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text"><em>“According to the city council, 4,000 plastic bottles are thrown away near our beach every week.”</em> Which technique is this?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e33-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e33', this, 'a')"><div class="opt-indicator"></div><span>Anecdote</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e33', this, 'b')"><div class="opt-indicator"></div><span>Facts and statistics</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e33', this, 'c')"><div class="opt-indicator"></div><span>Imperative verb</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e33', this, 'd')"><div class="opt-indicator"></div><span>Juxtaposition</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e33','b','Q33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e33','Could you check this number?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e33','B &mdash; Facts and statistics: a precise, sourced number makes the problem sound real and serious.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e33-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-e34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text"><em>“You deserve a school day that doesn’t leave you exhausted.”</em> Which technique is this?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e34-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'a')"><div class="opt-indicator"></div><span>Direct address</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'b')"><div class="opt-indicator"></div><span>Inclusive language</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'c')"><div class="opt-indicator"></div><span>Repetition</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e34', this, 'd')"><div class="opt-indicator"></div><span>Expert opinion</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e34','a','Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e34','Who is the sentence speaking to?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e34','A &mdash; Direct address: speaking to the reader as <em>you</em> makes the issue feel personal.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e34-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-e35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Which version of the sentence is the most <strong>emotive</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 186" role="img" aria-label="An emotion meter from neutral to emotive with the needle pointing high" style="max-width:380px"><path class="draw" d="M310.0 150.0 A110 110 0 0 0 90.0 150.0" stroke="#4a5270" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M145.0 54.7 A110 110 0 0 0 90.0 150.0" stroke="#3ecf8e" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M255.0 54.7 A110 110 0 0 0 145.0 54.7" stroke="#f5a623" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M310.0 150.0 A110 110 0 0 0 255.0 54.7" stroke="#e05252" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M200.0 150.0 L275.1 110.1" stroke="#e8eaf0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M269.1 118.2 L275.1 110.1 L265.1 110.5" stroke="#e8eaf0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle cx="200.0" cy="150.0" r="6" fill="#e8eaf0"/><text x="80.0" y="172.0" font-size="12" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">neutral</text><text x="200.0" y="18.0" font-size="12" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">loaded</text><text x="320.0" y="172.0" font-size="12" fill="#e05252" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">emotive</text></svg>
+      <div class="mcq-options" id="e35-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e35', this, 'a')"><div class="opt-indicator"></div><span>The dog was left outside.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e35', this, 'b')"><div class="opt-indicator"></div><span>The dog stayed outside for some time.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e35', this, 'c')"><div class="opt-indicator"></div><span>The dog was outside during the night.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e35', this, 'd')"><div class="opt-indicator"></div><span>The frightened puppy was abandoned in the freezing dark.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e35','d','Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e35','Which words make you feel something?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e35','D &mdash; <em>frightened</em>, <em>puppy</em>, <em>abandoned</em> and <em>freezing</em> are all chosen to stir up pity and anger.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e35-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-e36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text"><em>“Hundreds of innocent animals are trapped in filthy cages.”</em> Which word makes the reader feel the animals are <strong>not to blame</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e36-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e36', this, 'a')"><div class="opt-indicator"></div><span>trapped</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e36', this, 'b')"><div class="opt-indicator"></div><span>filthy</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e36', this, 'c')"><div class="opt-indicator"></div><span>innocent</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e36', this, 'd')"><div class="opt-indicator"></div><span>hundreds</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e36','c','Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e36','Which word is about guilt?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e36','C &mdash; <em>innocent</em> means having done nothing wrong, so the reader feels the animals are suffering unfairly.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e36-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-e37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">A writer asks: <em>“Do we really want our children breathing poisoned air?”</em> Which sentence best explains the <strong>effect</strong> on the reader?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 612 116" role="img" aria-label="A chain of four boxes: Technique (name it), Evidence (quote it), Purpose (why use it), Effect (on the reader)" style="max-width:640px"><path class="draw" d="M20 30 H124 A8 8 0 0 1 132 38 V78 A8 8 0 0 1 124 86 H20 A8 8 0 0 1 12 78 V38 A8 8 0 0 1 20 30 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="72.0" y="51.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Technique</text><text x="72.0" y="69.0" font-size="11" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">name it</text><path class="draw" d="M136.0 58.0 L158.0 58.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M151.7 61.0 L158.0 58.0 L151.7 55.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M170 30 H274 A8 8 0 0 1 282 38 V78 A8 8 0 0 1 274 86 H170 A8 8 0 0 1 162 78 V38 A8 8 0 0 1 170 30 Z" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="222.0" y="51.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Evidence</text><text x="222.0" y="69.0" font-size="11" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">quote it</text><path class="draw" d="M286.0 58.0 L308.0 58.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M301.7 61.0 L308.0 58.0 L301.7 55.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M320 30 H424 A8 8 0 0 1 432 38 V78 A8 8 0 0 1 424 86 H320 A8 8 0 0 1 312 78 V38 A8 8 0 0 1 320 30 Z" stroke="#3ecf8e" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="372.0" y="51.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Purpose</text><text x="372.0" y="69.0" font-size="11" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">why use it?</text><path class="draw" d="M436.0 58.0 L458.0 58.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M451.7 61.0 L458.0 58.0 L451.7 55.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M470 30 H574 A8 8 0 0 1 582 38 V78 A8 8 0 0 1 574 86 H470 A8 8 0 0 1 462 78 V38 A8 8 0 0 1 470 30 Z" stroke="#b48cf7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="522.0" y="51.0" font-size="14" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Effect</text><text x="522.0" y="69.0" font-size="11" fill="#b48cf7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">on the reader</text></svg>
+      <div class="mcq-options" id="e37-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'a')"><div class="opt-indicator"></div><span>It is a question with a question mark.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'b')"><div class="opt-indicator"></div><span>It makes the reader answer “no” in their head and feel worried for children, so they are more likely to agree that action is needed.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'c')"><div class="opt-indicator"></div><span>It tells the reader how many children there are.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e37', this, 'd')"><div class="opt-indicator"></div><span>It is a rhetorical question because it asks something.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e37','b','Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e37','An effect explains what happens in the reader’s mind or feelings.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e37','B &mdash; A good effect sentence explains what the reader thinks or feels and how that pushes them towards the writer’s view. The other options only name or describe the technique.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e37-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-e38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">Which sentence is a <strong>sweeping generalisation</strong> that a careful persuasive writer should avoid?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e38-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'a')"><div class="opt-indicator"></div><span>Everybody knows homework is pointless.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'b')"><div class="opt-indicator"></div><span>In our class, 18 of 30 students said homework took over two hours a night.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'c')"><div class="opt-indicator"></div><span>Some students find long homework tiring.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e38', this, 'd')"><div class="opt-indicator"></div><span>A shorter homework load could give students more time to rest.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e38','a','Q38')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e38','Look for a claim about <em>everybody</em> that cannot be proved.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e38','A &mdash; <em>Everybody knows…</em> claims something about all people without evidence, so a reader can easily reject it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e38-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-e39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">In a persuasive essay, what is the job of the <strong>thesis statement</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e39-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'a')"><div class="opt-indicator"></div><span>To tell a funny story that grabs attention</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'b')"><div class="opt-indicator"></div><span>To list every source used</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'c')"><div class="opt-indicator"></div><span>To give the other side’s view</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e39', this, 'd')"><div class="opt-indicator"></div><span>To state the writer’s opinion and what should be done</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e39','d','Q39')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e39','It comes at the end of the introduction.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e39','D &mdash; The thesis states the writer’s position (and often what should happen), so the reader knows what the essay will argue.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e39-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-e40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">Which is the strongest <strong>hook</strong> to open a speech about plastic waste?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e40-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e40', this, 'a')"><div class="opt-indicator"></div><span>Today I am going to talk about plastic.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e40', this, 'b')"><div class="opt-indicator"></div><span>Plastic is a material.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e40', this, 'c')"><div class="opt-indicator"></div><span>By the time I finish this speech, another truckload of plastic will have entered the ocean.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e40', this, 'd')"><div class="opt-indicator"></div><span>In conclusion, plastic is bad.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e40','c','Q40')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e40','Which opening makes you want to keep listening?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e40','C &mdash; A surprising, vivid fact creates urgency at once. The other openings are flat, or belong at the end.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e40-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-e41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">Two writers describe the same council plan. Which word shows that the writer <strong>disapproves</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e41-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'a')"><div class="opt-indicator"></div><span>The council’s plan is <em>bold</em>.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'b')"><div class="opt-indicator"></div><span>The council’s plan is <em>reckless</em>.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'c')"><div class="opt-indicator"></div><span>The council’s plan is <em>ambitious</em>.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e41', this, 'd')"><div class="opt-indicator"></div><span>The council’s plan is <em>daring</em>.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e41','b','Q41')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e41','Which word has a negative connotation?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e41','B &mdash; <em>reckless</em> means acting without thinking about danger, which is negative. The other three words are positive or neutral.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e41-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION D &mdash; PERSUASIVE &AMP; EMOTIVE LANGUAGE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pl-fill"></div></div>
+    <div class="section-score-val" id="sec-pl-val">0/11</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { e1:1, e2:1, e3:1, e4:1, e5:1, e6:1, e7:1, e8:1, e9:1, e10:1, e11:1, e12:1, e13:2, e14:1, e15:1, e16:1, e17:1, e18:1, e19:1, e20:2, e21:1, e22:2, e23:1, e24:1, e25:1, e26:1, e27:1, e28:2, e29:2, e30:2, e31:1, e32:1, e33:1, e34:1, e35:1, e36:1, e37:2, e38:1, e39:1, e40:1, e41:1 };
+
+const sections = {
+  sp: { label: 'Sentences & Punctuation', qs: ['e1','e2','e3','e4','e5','e6','e7','e8','e9','e10'] },
+  t1: { label: 'Reading: Text 1', qs: ['e11','e12','e13','e14','e15','e16','e17','e18','e19','e20','e21','e22','e23'] },
+  t2: { label: 'Reading: Text 2 & Comparing', qs: ['e24','e25','e26','e27','e28','e29','e30','e31'] },
+  pl: { label: 'Persuasive & Emotive Language', qs: ['e32','e33','e34','e35','e36','e37','e38','e39','e40','e41'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sem1-english-level23-mock_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+
+// Diagrams draw themselves in as they scroll into view
+(function() {
+  const figs = document.querySelectorAll('.q-fig');
+  if (!('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('drawn')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  figs.forEach(f => io.observe(f));
+})();
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/[’‘]/g, "'").replace(/[“”"]/g, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('text-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
