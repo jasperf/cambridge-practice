@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Mock Paper &middot; Semester 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box em { font-style: italic; color: var(--accent); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .hero, .section-tabs, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: drawIn 1.1s ease forwards, fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+
+.exam-banner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.exam-inner { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.28); border-radius: 12px; padding: 14px 18px; font-size: 0.88rem; color: var(--text-muted); }
+.exam-inner strong { color: var(--accent-warn); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.5px; }
+.extract { background: rgba(15,17,23,0.5); border: 1px dashed var(--border); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0 24px; font-size: 0.92rem; line-height: 1.8; color: var(--text); }
+.extract p + p { margin-top: 10px; }
+.extract .extract-label { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+.extract .pn { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-right: 6px; }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent); }
+.text-input:disabled { opacity: 0.75; }
+.paper-note { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.5px; text-transform: uppercase; margin: 8px 0 0; }
+.ftable { border-collapse: collapse; margin: 10px 0 16px; font-size: 0.88rem; }
+.ftable th, .ftable td { border: 1px solid var(--border); padding: 6px 12px; text-align: center; }
+.ftable th { background: var(--surface2); font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Science &middot; Semester 1 Mock</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 48</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Semester 1 Assessment</div>
+  <h1>Semester 1 Science<br><em>Mock Paper</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>39 questions &middot; self-marked &middot; 48 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>Aim for about 60 minutes. A calculator helps</div>
+  </div>
+  <p class="credit">One paper covering every science topic from Semester 1: atomic structure and bonding (Unit 1), plant biology (Unit 2), and density, sound, thermal energy and electricity (Unit 3). Every question is new. Diagrams are not drawn to scale.</p>
+</div>
+<div class="exam-banner"><div class="exam-inner"><strong>SEMESTER 1 ASSESSMENT &middot; FRIDAY 27 NOVEMBER &middot; SCIENCE (ONE STANDARDISED PAPER)</strong><br>Sections A&ndash;E cover chemistry, biology and physics. Do the written questions (Q40&ndash;Q45) in the printable version.</div></div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Revise a topic first</h3>
+  <p>Each topic on this paper has its own longer practice sheet.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="../t1/w2/term1-week2-atomic-structure-periodic.html" target="_blank" rel="noopener">Atomic structure &rarr;</a>
+    <a class="watch-link" href="../t1/w3/term1-week3-science-ionic-bonding.html" target="_blank" rel="noopener">Ionic bonding &rarr;</a>
+    <a class="watch-link" href="../t1/w4/term1-week4-science-covalent-metallic-bonding.html" target="_blank" rel="noopener">Covalent &amp; metallic &rarr;</a>
+    <a class="watch-link" href="../t1/w7/term1-week7-science-unit-test2-plant-biology.html" target="_blank" rel="noopener">Plant biology &rarr;</a>
+    <a class="watch-link" href="../t2/w4/term2-week4-science-unit3-density.html" target="_blank" rel="noopener">Density &rarr;</a>
+    <a class="watch-link" href="../t2/w4/term2-week4-science-unit3-sound-thermal-energy.html" target="_blank" rel="noopener">Sound &amp; thermal energy &rarr;</a>
+    <a class="watch-link" href="../t2/w4/term2-week4-science-unit3-electricity.html" target="_blank" rel="noopener">Electricity &rarr;</a>
+    <a class="watch-link" href="../science-formula-sheets/index.html" target="_blank" rel="noopener">Formula sheets &rarr;</a>
+  </div>
+</div></div>
+<div class="section-tabs">
+  <a href="#ch" class="sub-tab">&#9883; A &middot; Atoms &amp; Bonding</a>
+  <a href="#bi" class="sub-tab">&#127807; B &middot; Plant Biology</a>
+  <a href="#de" class="sub-tab">&#129482; C &middot; Density</a>
+  <a href="#wt" class="sub-tab">&#127925; D &middot; Sound Waves &amp; Thermal Energy</a>
+  <a href="#el" class="sub-tab">&#9889; E &middot; Electricity</a>
+</div>
+<div class="main">
+
+<div id="ch">
+  <div class="section-header"><div class="section-icon">&#9883;</div><div><div class="sub-label">Section A &middot; Q1&ndash;Q10 &middot; Unit 1</div><h2>Atoms &amp; Bonding</h2></div></div>
+<div class="info-box">Atomic structure, the periodic table, and ionic, covalent and metallic bonding.</div>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">An aluminium atom has atomic number 13 and mass number 27. How many neutrons does it have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s1',14,'Q1',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s1','Mass number = protons + neutrons.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','27 − 13 = 14 neutrons')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Sulfur has atomic number 16. Write its electronic structure (for example 2,8,1).</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s2-ans" placeholder="e.g. 2,8,1" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s2',['2,8,6','2.8.6','2, 8, 6','2 8 6','2-8-6'],'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s2','Fill the shells 2, then 8, then the rest.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','2,8,6')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">The diagram shows the electrons in an atom. Where is this element in the periodic table?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 240 220" role="img" aria-label="An atom with 2 electrons in the first shell, 8 in the second and 2 in the third" style="max-width:220px"><circle class="fill" cx="120.0" cy="110.0" r="14" fill="#f5a623"/><text x="120.0" y="110.0" font-size="11" fill="#0f1117" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace" font-weight="600">?</text><path class="draw" d="M146.0 110.0 A26 26 0 1 1 94.0 110.0 A26 26 0 1 1 146.0 110.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="120.0" cy="84.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="120.0" cy="136.0" r="4.5" fill="#4f8ef7"/><path class="draw" d="M168.0 110.0 A48 48 0 1 1 72.0 110.0 A48 48 0 1 1 168.0 110.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="120.0" cy="62.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="86.1" cy="76.1" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="72.0" cy="110.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="86.1" cy="143.9" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="120.0" cy="158.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="153.9" cy="143.9" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="168.0" cy="110.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="153.9" cy="76.1" r="4.5" fill="#4f8ef7"/><path class="draw" d="M190.0 110.0 A70 70 0 1 1 50.0 110.0 A70 70 0 1 1 190.0 110.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="120.0" cy="40.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="120.0" cy="180.0" r="4.5" fill="#4f8ef7"/></svg>
+      <div class="mcq-options" id="s3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>Group 3, Period 2</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>Group 2, Period 3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'c')"><div class="opt-indicator"></div><span>Group 12, Period 3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'd')"><div class="opt-indicator"></div><span>Group 2, Period 2</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s3','b','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s3','Group = electrons in the outer shell. Period = number of shells.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','B &mdash; Two electrons in the outer shell gives Group 2. Three shells gives Period 3. It is magnesium.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Why does reactivity <strong>increase</strong> going down Group 1?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>The atoms have more electrons in their outer shell.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>The atoms get smaller.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>The nucleus gets weaker.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>The outer electron is further from the nucleus, so it is lost more easily.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s4','d','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s4','Group 1 atoms react by losing one electron.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','D &mdash; Each element down the group has one more shell, so the outer electron is further from the nucleus, is held less strongly and is lost more easily.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Oxygen is in Group 6. What is the charge on an oxide ion? (Type it like 3+ or 1−.)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s5-ans" placeholder="e.g. 3+" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s5',['2-','-2','2−','−2','o2-','2 -'],'Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s5','Does oxygen gain or lose electrons to get a full outer shell? How many?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','2−: oxygen gains 2 electrons to fill its outer shell.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">The diagram shows a sodium atom and a chlorine atom. What happens when they bond?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 210" role="img" aria-label="A sodium atom and a chlorine atom; an arrow shows the outer electron of sodium moving to the outer shell of chlorine" style="max-width:400px"><circle class="fill" cx="95.0" cy="110.0" r="14" fill="#f5a623"/><text x="95.0" y="110.0" font-size="11" fill="#0f1117" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace" font-weight="600">Na</text><path class="draw" d="M117.0 110.0 A22 22 0 1 1 73.0 110.0 A22 22 0 1 1 117.0 110.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="95.0" cy="88.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="95.0" cy="132.0" r="4.5" fill="#4f8ef7"/><path class="draw" d="M137.0 110.0 A42 42 0 1 1 53.0 110.0 A42 42 0 1 1 137.0 110.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="95.0" cy="68.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="65.3" cy="80.3" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="53.0" cy="110.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="65.3" cy="139.7" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="95.0" cy="152.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="124.7" cy="139.7" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="137.0" cy="110.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="124.7" cy="80.3" r="4.5" fill="#4f8ef7"/><path class="draw" d="M157.0 110.0 A62 62 0 1 1 33.0 110.0 A62 62 0 1 1 157.0 110.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="95.0" cy="48.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="305.0" cy="110.0" r="14" fill="#3ecf8e"/><text x="305.0" y="110.0" font-size="11" fill="#0f1117" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace" font-weight="600">Cl</text><path class="draw" d="M327.0 110.0 A22 22 0 1 1 283.0 110.0 A22 22 0 1 1 327.0 110.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="316.0" cy="90.9" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="294.0" cy="129.1" r="4.5" fill="#4f8ef7"/><path class="draw" d="M347.0 110.0 A42 42 0 1 1 263.0 110.0 A42 42 0 1 1 347.0 110.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="326.0" cy="73.6" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="294.1" cy="69.4" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="268.6" cy="89.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="264.4" cy="120.9" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="284.0" cy="146.4" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="315.9" cy="150.6" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="341.4" cy="131.0" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="345.6" cy="99.1" r="4.5" fill="#4f8ef7"/><path class="draw" d="M367.0 110.0 A62 62 0 1 1 243.0 110.0 A62 62 0 1 1 367.0 110.0" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle class="fill" cx="336.0" cy="56.3" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="282.3" cy="52.3" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="245.8" cy="91.7" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="253.8" cy="144.9" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="300.4" cy="171.8" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="350.4" cy="152.2" r="4.5" fill="#4f8ef7"/><circle class="fill" cx="366.3" cy="100.8" r="4.5" fill="#4f8ef7"/><path class="draw" d="M95.0 48.0 Q 200 -10 295.0 48.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="200.0" y="22.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">e⁻</text></svg>
+      <div class="mcq-options" id="s6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'a')"><div class="opt-indicator"></div><span>Sodium transfers one electron to chlorine, forming Na⁺ and Cl⁻ ions that attract each other.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'b')"><div class="opt-indicator"></div><span>They share a pair of electrons.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>Chlorine gives an electron to sodium.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>Both atoms lose an electron into a sea of electrons.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s6','a','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s6','Follow the arrow. Which atom loses an electron and which gains one?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','A &mdash; This is ionic bonding: sodium loses its outer electron to chlorine, and the oppositely charged ions attract.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Magnesium forms Mg<sup>2+</sup> ions and chlorine forms Cl<sup>−</sup> ions. Write the formula of magnesium chloride.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s7-ans" placeholder="e.g. NaCl" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s7',['MgCl2','MgCl₂','mgcl2'],'Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s7','The charges must cancel out.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','MgCl₂: one 2+ ion balances two 1− ions.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Methane, CH<sub>4</sub>, has four single covalent bonds. How many electrons are shared <strong>in total</strong>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s8-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s8',8,'Q8',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s8','Each single covalent bond is one shared pair.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','4 bonds × 2 electrons = 8 electrons')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Why can metals conduct electricity?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 210" role="img" aria-label="A metal: rows of positive ions with small electrons scattered between them" style="max-width:360px"><path class="draw" d="M70.0 45.0 A20 20 0 1 1 30.0 45.0 A20 20 0 1 1 70.0 45.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="50.0" y="45.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M132.0 45.0 A20 20 0 1 1 92.0 45.0 A20 20 0 1 1 132.0 45.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="112.0" y="45.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M194.0 45.0 A20 20 0 1 1 154.0 45.0 A20 20 0 1 1 194.0 45.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="174.0" y="45.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M256.0 45.0 A20 20 0 1 1 216.0 45.0 A20 20 0 1 1 256.0 45.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="236.0" y="45.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M318.0 45.0 A20 20 0 1 1 278.0 45.0 A20 20 0 1 1 318.0 45.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="298.0" y="45.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M70.0 103.0 A20 20 0 1 1 30.0 103.0 A20 20 0 1 1 70.0 103.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="50.0" y="103.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M132.0 103.0 A20 20 0 1 1 92.0 103.0 A20 20 0 1 1 132.0 103.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="112.0" y="103.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M194.0 103.0 A20 20 0 1 1 154.0 103.0 A20 20 0 1 1 194.0 103.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="174.0" y="103.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M256.0 103.0 A20 20 0 1 1 216.0 103.0 A20 20 0 1 1 256.0 103.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="236.0" y="103.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M318.0 103.0 A20 20 0 1 1 278.0 103.0 A20 20 0 1 1 318.0 103.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="298.0" y="103.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M70.0 161.0 A20 20 0 1 1 30.0 161.0 A20 20 0 1 1 70.0 161.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="50.0" y="161.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M132.0 161.0 A20 20 0 1 1 92.0 161.0 A20 20 0 1 1 132.0 161.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="112.0" y="161.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M194.0 161.0 A20 20 0 1 1 154.0 161.0 A20 20 0 1 1 194.0 161.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="174.0" y="161.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M256.0 161.0 A20 20 0 1 1 216.0 161.0 A20 20 0 1 1 256.0 161.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="236.0" y="161.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><path class="draw" d="M318.0 161.0 A20 20 0 1 1 278.0 161.0 A20 20 0 1 1 318.0 161.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="298.0" y="161.0" font-size="16" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="fill" cx="103.5" cy="41.5" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="149.9" cy="49.8" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="54.3" cy="89.3" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="301.2" cy="153.1" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="256.9" cy="60.5" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="190.6" cy="69.3" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="85.1" cy="42.0" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="97.2" cy="173.4" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="275.4" cy="154.1" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="267.1" cy="55.9" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="124.9" cy="125.3" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="247.2" cy="161.7" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="290.2" cy="38.9" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="210.7" cy="132.5" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="181.7" cy="53.4" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="172.3" cy="39.3" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="306.0" cy="163.5" r="3.5" fill="#4f8ef7"/><circle class="fill" cx="193.8" cy="73.0" r="3.5" fill="#4f8ef7"/></svg>
+      <div class="mcq-options" id="s9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'a')"><div class="opt-indicator"></div><span>They contain positive ions that move through the wire.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'b')"><div class="opt-indicator"></div><span>Their atoms share electrons in pairs.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'c')"><div class="opt-indicator"></div><span>They have delocalised electrons that are free to move through the structure.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'd')"><div class="opt-indicator"></div><span>They are hard and shiny.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s9','c','Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s9','Look at the small blue dots in the diagram.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','C &mdash; Metallic bonding gives a sea of delocalised electrons that can flow and carry charge.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Which substance is held together by <strong>covalent</strong> bonds?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'a')"><div class="opt-indicator"></div><span>Carbon dioxide, CO₂</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'b')"><div class="opt-indicator"></div><span>Sodium chloride, NaCl</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'c')"><div class="opt-indicator"></div><span>Magnesium oxide, MgO</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'd')"><div class="opt-indicator"></div><span>Copper, Cu</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s10','a','Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s10','Covalent bonding happens between non-metal atoms.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','A &mdash; Carbon and oxygen are both non-metals, so they share electrons. NaCl and MgO are ionic; copper is metallic.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A &mdash; ATOMS &AMP; BONDING</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ch-fill"></div></div>
+    <div class="section-score-val" id="sec-ch-val">0/13</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="bi">
+  <div class="section-header"><div class="section-icon">&#127807;</div><div><div class="sub-label">Section B &middot; Q11&ndash;Q18 &middot; Unit 2</div><h2>Plant Biology</h2></div></div>
+<div class="info-box">Photosynthesis, minerals and the two investigations.</div>
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Which is the word equation for photosynthesis?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s11-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'a')"><div class="opt-indicator"></div><span>glucose + oxygen → carbon dioxide + water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'b')"><div class="opt-indicator"></div><span>carbon dioxide + oxygen → glucose + water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'c')"><div class="opt-indicator"></div><span>water + oxygen → glucose + carbon dioxide</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s11', this, 'd')"><div class="opt-indicator"></div><span>carbon dioxide + water → glucose + oxygen</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s11','d','Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s11','Plants take in a gas from the air and water from the soil.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','D &mdash; carbon dioxide + water → glucose + oxygen (using light energy absorbed by chlorophyll). Option A is respiration.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Name the green pigment in chloroplasts that absorbs light energy.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s12-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s12',['chlorophyll'],'Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s12','It starts with “chloro-”.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','Chlorophyll')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Which of these is <strong>not</strong> a way a plant uses the glucose it makes?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s13-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'a')"><div class="opt-indicator"></div><span>Respiration, to release energy</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'b')"><div class="opt-indicator"></div><span>Changing it into starch for storage</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'c')"><div class="opt-indicator"></div><span>Absorbing light energy</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'd')"><div class="opt-indicator"></div><span>Making cellulose for cell walls</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s13','c','Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s13','Which job is done by chlorophyll, not glucose?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','C &mdash; Absorbing light is done by chlorophyll. Glucose is used for respiration, stored as starch and made into cellulose.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">A plant has pale yellow leaves. Which mineral is it most likely short of, and why?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 340 220" role="img" aria-label="Two leaves: a healthy green leaf and a pale yellow leaf from a plant short of a mineral" style="max-width:340px"><path class="draw" d="M90 190 C 20 140 30 60 90 20 C 150 60 160 140 90 190" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M90.0 190.0 L90.0 30.0" stroke="#3ecf8e" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M90.0 120.0 L62.0 95.0" stroke="#3ecf8e" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M90.0 120.0 L118.0 95.0" stroke="#3ecf8e" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M90.0 80.0 L68.0 60.0" stroke="#3ecf8e" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M90.0 80.0 L112.0 60.0" stroke="#3ecf8e" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="90.0" y="208.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">healthy</text><path class="draw" d="M250 190 C 180 140 190 60 250 20 C 310 60 320 140 250 190" stroke="#e8d06a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M250.0 190.0 L250.0 30.0" stroke="#e8d06a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M250.0 120.0 L222.0 95.0" stroke="#e8d06a" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M250.0 120.0 L278.0 95.0" stroke="#e8d06a" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M250.0 80.0 L228.0 60.0" stroke="#e8d06a" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M250.0 80.0 L272.0 60.0" stroke="#e8d06a" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="250.0" y="208.0" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">yellow leaves</text></svg>
+      <div class="mcq-options" id="s14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'a')"><div class="opt-indicator"></div><span>Nitrate, because it is needed to make starch</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'b')"><div class="opt-indicator"></div><span>Magnesium, because it is needed to make chlorophyll</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'c')"><div class="opt-indicator"></div><span>Oxygen, because it is needed for photosynthesis</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'd')"><div class="opt-indicator"></div><span>Glucose, because it is needed to make leaves green</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s14','b','Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s14','Chlorophyll molecules contain one particular metal.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','B &mdash; Magnesium is needed to make chlorophyll; without it, the leaves turn yellow.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Which mineral ion do plants need to make proteins for growth?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s15-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s15',['nitrate','nitrates','nitrate ions','nitrogen'],'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s15','Fertilisers are rich in it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','Nitrate (nitrate ions supply nitrogen to make proteins)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-s16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">In the pondweed investigation, how many <strong>more</strong> bubbles per minute were produced at 10 cm than at 40 cm?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 196" role="img" aria-label="A lamp at distance d from pondweed in a beaker giving off bubbles, with a table: 10 cm 48 bubbles per minute, 20 cm 30, 30 cm 18, 40 cm 9" style="max-width:420px"><path class="draw" d="M26 70 H64 A6 6 0 0 1 70 76 V98 A6 6 0 0 1 64 104 H26 A6 6 0 0 1 20 98 V76 A6 6 0 0 1 26 70 Z" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M45.0 104.0 L45.0 150.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M25.0 150.0 L65.0 150.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M74.0 80.0 L100.0 72.0" stroke="#f5a623" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M74.0 88.0 L100.0 88.0" stroke="#f5a623" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M74.0 96.0 L100.0 104.0" stroke="#f5a623" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M124 50 H186 A4 4 0 0 1 190 54 V146 A4 4 0 0 1 186 150 H124 A4 4 0 0 1 120 146 V54 A4 4 0 0 1 124 50 Z" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M155 145 C 145 120 165 110 152 85" stroke="#3ecf8e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M155.5 78.0 A3.5 3.5 0 1 1 148.5 78.0 A3.5 3.5 0 1 1 155.5 78.0" stroke="#e8eaf0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M158.5 66.0 A3.5 3.5 0 1 1 151.5 66.0 A3.5 3.5 0 1 1 158.5 66.0" stroke="#e8eaf0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M155.5 56.0 A3.5 3.5 0 1 1 148.5 56.0 A3.5 3.5 0 1 1 155.5 56.0" stroke="#e8eaf0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M45.0 165.0 L155.0 165.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="100.0" y="178.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">distance d</text><path class="draw" d="M221 30 H384 A6 6 0 0 1 390 36 V174 A6 6 0 0 1 384 180 H221 A6 6 0 0 1 215 174 V36 A6 6 0 0 1 221 30 Z" stroke="#4a5270" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="265.0" y="48.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">d (cm)</text><text x="340.0" y="48.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">bubbles/min</text><path class="draw" d="M215.0 60.0 L390.0 60.0" stroke="#4a5270" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="265.0" y="80.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">10</text><text x="340.0" y="80.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">48</text><text x="265.0" y="106.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">20</text><text x="340.0" y="106.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">30</text><text x="265.0" y="132.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">30</text><text x="340.0" y="132.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">18</text><text x="265.0" y="158.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">40</text><text x="340.0" y="158.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">9</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s16-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s16',39,'Q16',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s16','Read both values from the table.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','48 − 9 = 39 bubbles per minute')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s16-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">In the same investigation, what is the <strong>independent</strong> variable?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s17-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'a')"><div class="opt-indicator"></div><span>The number of bubbles per minute</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'b')"><div class="opt-indicator"></div><span>The type of pondweed</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'c')"><div class="opt-indicator"></div><span>The temperature of the water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s17', this, 'd')"><div class="opt-indicator"></div><span>The distance of the lamp (light intensity)</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s17','d','Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s17','The independent variable is the one you change on purpose.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','D &mdash; The distance of the lamp is changed on purpose; the number of bubbles is the dependent variable that is measured.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">When testing a leaf for starch, why is the leaf boiled in ethanol?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'a')"><div class="opt-indicator"></div><span>To remove the chlorophyll so the colour change can be seen</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'b')"><div class="opt-indicator"></div><span>To kill bacteria on the leaf</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'c')"><div class="opt-indicator"></div><span>To turn the starch into glucose</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'd')"><div class="opt-indicator"></div><span>To make the leaf green</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s18','a','Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s18','Iodine turns blue-black with starch. What would make that hard to see?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','A &mdash; Ethanol removes the green chlorophyll, so the blue-black colour of iodine with starch shows clearly.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION B &mdash; PLANT BIOLOGY</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-bi-fill"></div></div>
+    <div class="section-score-val" id="sec-bi-val">0/9</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="de">
+  <div class="section-header"><div class="section-icon">&#129482;</div><div><div class="sub-label">Section C &middot; Q19&ndash;Q24 &middot; Unit 3</div><h2>Density</h2></div></div>
+<div class="info-box">density = mass &divide; volume. Give answers in g/cm&sup3; unless asked otherwise.</div>
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-s19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A metal block has a mass of 240 g and a volume of 30 cm³. Find its density.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s19-ans" placeholder="Enter answer..."><span class="num-unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s19',8,'Q19',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s19','density = mass ÷ volume')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s19','240 ÷ 30 = 8 g/cm³')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s19-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-s20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">The cube in the diagram is made of aluminium with density 2.7 g/cm³. Find its mass.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 300 210" role="img" aria-label="A cube with sides of 3 cm" style="max-width:280px"><path class="draw" d="M60 70 H170 V180 H60 Z" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M60.0 70.0 L100.0 30.0 L210.0 30.0 L170.0 70.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M210.0 30.0 L210.0 140.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M210.0 140.0 L170.0 180.0" stroke="#3ecf8e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="115.0" y="198.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">3 cm</text><text x="236.0" y="105.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">3 cm</text><text x="52.0" y="44.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">3 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s20-ans" placeholder="Enter answer..."><span class="num-unit">g</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s20',72.9,'Q20',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s20','Find the volume first, then mass = density × volume.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','V = 3 × 3 × 3 = 27 cm³, so mass = 2.7 × 27 = 72.9 g')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s20-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-s21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">A stone of mass 45 g is lowered into a measuring cylinder. Use the diagram to find its density.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 330 220" role="img" aria-label="Two measuring cylinders in millilitres: water at 50 ml, then at 68 ml with a stone in it" style="max-width:330px"><path class="draw" d="M40 30 V190 H100 V30" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M42 110.0 H98 V189.0 H42 Z" stroke="#4f8ef7" stroke-width="1.5" fill="rgba(79,142,247,0.18)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M100.0 190.0 L92.0 190.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="120.0" y="190.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">0</text><path class="draw" d="M100.0 174.0 L92.0 174.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M100.0 158.0 L92.0 158.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="120.0" y="158.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">20</text><path class="draw" d="M100.0 142.0 L92.0 142.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M100.0 126.0 L92.0 126.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="120.0" y="126.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">40</text><path class="draw" d="M100.0 110.0 L92.0 110.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M100.0 94.0 L92.0 94.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="120.0" y="94.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">60</text><path class="draw" d="M100.0 78.0 L92.0 78.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M100.0 62.0 L92.0 62.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="120.0" y="62.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">80</text><path class="draw" d="M100.0 46.0 L92.0 46.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M100.0 30.0 L92.0 30.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="120.0" y="30.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">100</text><text x="70.0" y="208.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">before</text><path class="draw" d="M210 30 V190 H270 V30" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M212 81.19999999999999 H268 V189.0 H212 Z" stroke="#4f8ef7" stroke-width="1.5" fill="rgba(79,142,247,0.18)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M270.0 190.0 L262.0 190.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="190.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">0</text><path class="draw" d="M270.0 174.0 L262.0 174.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M270.0 158.0 L262.0 158.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="158.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">20</text><path class="draw" d="M270.0 142.0 L262.0 142.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M270.0 126.0 L262.0 126.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="126.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">40</text><path class="draw" d="M270.0 110.0 L262.0 110.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M270.0 94.0 L262.0 94.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="94.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">60</text><path class="draw" d="M270.0 78.0 L262.0 78.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M270.0 62.0 L262.0 62.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="62.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">80</text><path class="draw" d="M270.0 46.0 L262.0 46.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M270.0 30.0 L262.0 30.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="30.0" font-size="10" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">100</text><path class="draw" d="M228.0 186.0 L234.0 170.0 L250.0 168.0 L254.0 184.0 Z" stroke="#f5a623" stroke-width="2" fill="rgba(245,166,35,0.35)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="240.0" y="208.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">with stone</text><path class="draw" d="M140.0 110.0 L190.0 110.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M182.8 113.5 L190.0 110.0 L182.8 106.5" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s21-ans" placeholder="Enter answer..."><span class="num-unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s21',2.5,'Q21',0.001)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s21','The rise in water level is the stone’s volume.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','Volume = 68 − 50 = 18 cm³; density = 45 ÷ 18 = 2.5 g/cm³')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s21-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-s22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Water has a density of 1.0 g/cm³. Which of these will <strong>float</strong> in water?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s22-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'a')"><div class="opt-indicator"></div><span>Iron (7.9 g/cm³)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'b')"><div class="opt-indicator"></div><span>Glass (2.5 g/cm³)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'c')"><div class="opt-indicator"></div><span>Cork (0.24 g/cm³)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'd')"><div class="opt-indicator"></div><span>Aluminium (2.7 g/cm³)</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s22','c','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s22','Things float if they are less dense than the liquid.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s22','C &mdash; Cork is the only one less dense than water.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s22-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-s23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Why does ice float on water?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 320 210" role="img" aria-label="An ice cube floating in a glass of water with most of the cube below the surface" style="max-width:280px"><path class="draw" d="M90 30 L110 190 H210 L230 30" stroke="#7a84a0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M104 80 H216 V188 H104 Z" stroke="#4f8ef7" stroke-width="1" fill="rgba(79,142,247,0.15)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M136 64 H170 A6 6 0 0 1 176 70 V98 A6 6 0 0 1 170 104 H136 A6 6 0 0 1 130 98 V70 A6 6 0 0 1 136 64 Z" stroke="#bfe6ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M98.0 80.0 L222.0 80.0" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+      <div class="mcq-options" id="s23-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'a')"><div class="opt-indicator"></div><span>Ice is colder than water.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'b')"><div class="opt-indicator"></div><span>Water expands when it freezes, so ice is less dense than liquid water.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'c')"><div class="opt-indicator"></div><span>Ice contains air bubbles only.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'd')"><div class="opt-indicator"></div><span>Ice has a greater mass than water.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s23','b','Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s23','Compare the volume of the same mass of water before and after freezing.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','B &mdash; Water is unusual: it expands as it freezes, so the same mass takes up more volume and ice is less dense.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s23-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-s24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">In which state of matter are the particles furthest apart (so it has the lowest density)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s24-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s24',['gas','a gas','gases'],'Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s24','Solid, liquid or gas?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s24','Gas')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s24-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION C &mdash; DENSITY</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-de-fill"></div></div>
+    <div class="section-score-val" id="sec-de-val">0/8</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="wt">
+  <div class="section-header"><div class="section-icon">&#127925;</div><div><div class="sub-label">Section D &middot; Q25&ndash;Q32 &middot; Unit 3</div><h2>Sound Waves &amp; Thermal Energy</h2></div></div>
+<div class="info-box">Read values carefully from the diagrams; check the units on each axis.</div>
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-s25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Use the wave diagram. What is the <strong>wavelength</strong> of the wave?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 230" role="img" aria-label="A transverse wave drawn over a distance of 0 to 12 metres; the vertical scale shows displacement from −3 to 3 centimetres; three complete waves fit in the 12 metres and the peaks reach 3 cm" style="max-width:420px"><path class="draw" d="M50.0 110.0 L390.0 110.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M50.0 30.0 L50.0 190.0" stroke="#7a84a0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M50.0 106.0 L50.0 114.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="50.0" y="202.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">0</text><path class="draw" d="M105.0 106.0 L105.0 114.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="105.0" y="202.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">2</text><path class="draw" d="M160.0 106.0 L160.0 114.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="160.0" y="202.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4</text><path class="draw" d="M215.0 106.0 L215.0 114.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="215.0" y="202.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">6</text><path class="draw" d="M270.0 106.0 L270.0 114.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="270.0" y="202.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">8</text><path class="draw" d="M325.0 106.0 L325.0 114.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="325.0" y="202.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">10</text><path class="draw" d="M380.0 106.0 L380.0 114.0" stroke="#7a84a0" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="380.0" y="202.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">12</text><text x="32.0" y="176.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">−3</text><path class="draw" d="M46.0 176.0 L380.0 176.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="32.0" y="110.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">0</text><path class="draw" d="M46.0 110.0 L380.0 110.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="32.0" y="44.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">3</text><path class="draw" d="M46.0 44.0 L380.0 44.0" stroke="#232a42" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M50.0 110.0 L52.8 99.7 L55.5 89.6 L58.2 80.0 L61.0 71.2 L63.8 63.3 L66.5 56.6 L69.2 51.2 L72.0 47.2 L74.8 44.8 L77.5 44.0 L80.2 44.8 L83.0 47.2 L85.8 51.2 L88.5 56.6 L91.2 63.3 L94.0 71.2 L96.8 80.0 L99.5 89.6 L102.2 99.7 L105.0 110.0 L107.8 120.3 L110.5 130.4 L113.2 140.0 L116.0 148.8 L118.8 156.7 L121.5 163.4 L124.2 168.8 L127.0 172.8 L129.8 175.2 L132.5 176.0 L135.2 175.2 L138.0 172.8 L140.8 168.8 L143.5 163.4 L146.2 156.7 L149.0 148.8 L151.8 140.0 L154.5 130.4 L157.2 120.3 L160.0 110.0 L162.8 99.7 L165.5 89.6 L168.2 80.0 L171.0 71.2 L173.8 63.3 L176.5 56.6 L179.2 51.2 L182.0 47.2 L184.8 44.8 L187.5 44.0 L190.2 44.8 L193.0 47.2 L195.8 51.2 L198.5 56.6 L201.2 63.3 L204.0 71.2 L206.7 80.0 L209.5 89.6 L212.2 99.7 L215.0 110.0 L217.8 120.3 L220.5 130.4 L223.3 140.0 L226.0 148.8 L228.8 156.7 L231.5 163.4 L234.2 168.8 L237.0 172.8 L239.7 175.2 L242.5 176.0 L245.2 175.2 L248.0 172.8 L250.7 168.8 L253.5 163.4 L256.2 156.7 L259.0 148.8 L261.8 140.0 L264.5 130.4 L267.2 120.3 L270.0 110.0 L272.8 99.7 L275.5 89.6 L278.2 80.0 L281.0 71.2 L283.8 63.3 L286.5 56.6 L289.2 51.2 L292.0 47.2 L294.8 44.8 L297.5 44.0 L300.2 44.8 L303.0 47.2 L305.8 51.2 L308.5 56.6 L311.2 63.3 L314.0 71.2 L316.8 80.0 L319.5 89.6 L322.2 99.7 L325.0 110.0 L327.8 120.3 L330.5 130.4 L333.2 140.0 L336.0 148.8 L338.8 156.7 L341.5 163.4 L344.3 168.8 L347.0 172.8 L349.8 175.2 L352.5 176.0 L355.3 175.2 L358.0 172.8 L360.8 168.8 L363.5 163.4 L366.2 156.7 L369.0 148.8 L371.8 140.0 L374.5 130.4 L377.2 120.3 L380.0 110.0" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="215.0" y="218.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">distance (m)</text><text x="18.0" y="22.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s25-ans" placeholder="Enter answer..."><span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s25',4,'Q25',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s25','Measure from one peak to the next peak.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s25','Three complete waves fit in 12 m, so the wavelength is 4 m.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s25-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-s26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Use the same diagram (Q25). What is the <strong>amplitude</strong> of the wave?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s26-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s26',3,'Q26',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s26','Measure from the middle line to a peak, not from peak to trough.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s26','3 cm (from the rest position to a peak)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s26-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-s27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Five complete waves pass a point in 2 seconds. What is the frequency?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s27-ans" placeholder="Enter answer..."><span class="num-unit">Hz</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s27',2.5,'Q27',0.001)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s27','Frequency = waves per second.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s27','5 ÷ 2 = 2.5 Hz')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s27-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-s28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">The diagram shows a sound wave modelled with a slinky. What type of wave is sound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 176" role="img" aria-label="A slinky spring with coils bunched together at compressions and spread out at rarefactions" style="max-width:420px"><path class="draw" d="M20.0 100.0 L380.0 100.0" stroke="#4a5270" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M30.0 60 C 38.0 75 38.0 125 30.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M36.0 60 C 44.0 75 44.0 125 36.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M42.0 60 C 50.0 75 50.0 125 42.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M48.0 60 C 56.0 75 56.0 125 48.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M54.0 60 C 62.0 75 62.0 125 54.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M60.0 60 C 68.0 75 68.0 125 60.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M66.0 60 C 74.0 75 74.0 125 66.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M81.0 60 C 89.0 75 89.0 125 81.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M96.0 60 C 104.0 75 104.0 125 96.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M111.0 60 C 119.0 75 119.0 125 111.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M126.0 60 C 134.0 75 134.0 125 126.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M141.0 60 C 149.0 75 149.0 125 141.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M156.0 60 C 164.0 75 164.0 125 156.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M162.0 60 C 170.0 75 170.0 125 162.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M168.0 60 C 176.0 75 176.0 125 168.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M174.0 60 C 182.0 75 182.0 125 174.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M180.0 60 C 188.0 75 188.0 125 180.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M186.0 60 C 194.0 75 194.0 125 186.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M192.0 60 C 200.0 75 200.0 125 192.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M207.0 60 C 215.0 75 215.0 125 207.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M222.0 60 C 230.0 75 230.0 125 222.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M237.0 60 C 245.0 75 245.0 125 237.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M252.0 60 C 260.0 75 260.0 125 252.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M267.0 60 C 275.0 75 275.0 125 267.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M282.0 60 C 290.0 75 290.0 125 282.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M288.0 60 C 296.0 75 296.0 125 288.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M294.0 60 C 302.0 75 302.0 125 294.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M300.0 60 C 308.0 75 308.0 125 300.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M306.0 60 C 314.0 75 314.0 125 306.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M312.0 60 C 320.0 75 320.0 125 312.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M318.0 60 C 326.0 75 326.0 125 318.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M333.0 60 C 341.0 75 341.0 125 333.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M348.0 60 C 356.0 75 356.0 125 348.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M363.0 60 C 371.0 75 371.0 125 363.0 140" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="55.0" y="160.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">C</text><text x="120.0" y="160.0" font-size="13" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">R</text><text x="190.0" y="160.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">C</text><text x="265.0" y="160.0" font-size="13" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">R</text><text x="200.0" y="30.0" font-size="11" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">C = compression · R = rarefaction</text></svg>
+      <div class="mcq-options" id="s28-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'a')"><div class="opt-indicator"></div><span>Transverse: the vibrations are at right angles to the direction of travel</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'b')"><div class="opt-indicator"></div><span>Electromagnetic: it can travel through a vacuum</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'c')"><div class="opt-indicator"></div><span>Longitudinal: the vibrations are parallel to the direction of travel</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'd')"><div class="opt-indicator"></div><span>Transverse: it has peaks and troughs</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s28','c','Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s28','Sound travels as compressions and rarefactions.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s28','C &mdash; Sound is longitudinal: the particles vibrate back and forth along the direction the wave travels, making compressions and rarefactions.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-s29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Which property of a sound wave decides its <strong>pitch</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s29-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s29',['frequency','the frequency'],'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s29','Loudness depends on amplitude. What about high or low notes?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s29','Frequency: a higher frequency gives a higher pitch.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s29-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-s30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">A full bath of water is at 40 °C. A small cup of water is at 80 °C. Which statement is correct?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 420 190" role="img" aria-label="A full bath of water at 40 degrees and a small cup of water at 80 degrees, each with a thermometer" style="max-width:420px"><path class="draw" d="M30 90 Q30 170 110 170 H210 Q290 170 290 90" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M40 100 H280 V160 H40 Z" stroke="#4f8ef7" stroke-width="1" fill="rgba(79,142,247,0.15)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M330 110 V170 H380 V110" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M332 122 H378 V168 H332 Z" stroke="#f5a623" stroke-width="1" fill="rgba(245,166,35,0.2)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M380 125 q16 4 0 28" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M160.0 40.0 L160.0 130.0" stroke="#e8eaf0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M166.0 136.0 A6 6 0 1 1 154.0 136.0 A6 6 0 1 1 166.0 136.0" stroke="#e05252" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="160.0" y="26.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">40 °C</text><path class="draw" d="M355.0 60.0 L355.0 140.0" stroke="#e8eaf0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M361.0 146.0 A6 6 0 1 1 349.0 146.0 A6 6 0 1 1 361.0 146.0" stroke="#e05252" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="355.0" y="46.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">80 °C</text></svg>
+      <div class="mcq-options" id="s30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'a')"><div class="opt-indicator"></div><span>The cup has more thermal energy because it is hotter.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'b')"><div class="opt-indicator"></div><span>The bath has more thermal energy because it has far more particles, even though it is at a lower temperature.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'c')"><div class="opt-indicator"></div><span>They have the same thermal energy.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'd')"><div class="opt-indicator"></div><span>Temperature and thermal energy mean the same thing.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s30','b','Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s30','Temperature is the average energy of the particles. Thermal energy is the total.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s30','B &mdash; Temperature measures how hot something is (the average energy of a particle); heat is the total thermal energy. The bath has many more particles, so it has more energy in total.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s30-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-s31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">A heater is placed near the floor. Why does it warm the whole room?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 216" role="img" aria-label="A room with a heater near the floor; a loop of arrows shows the air moving up above the heater, across the ceiling, down the far wall and back along the floor" style="max-width:400px"><path class="draw" d="M30 20 H370 V200 H30 Z" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M50 160 H110 V196 H50 Z" stroke="#e05252" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="80.0" y="178.0" font-size="11" fill="#e05252" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">heater</text><path class="draw" d="M80 156 C 80 90 90 40 200 40 C 330 40 340 80 340 120 C 340 170 260 180 130 180" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M140.0 181.0 L128.0 180.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M135.5 177.1 L128.0 180.0 L134.9 184.1" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+      <div class="mcq-options" id="s31-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'a')"><div class="opt-indicator"></div><span>Warm air near the heater expands, becomes less dense and rises; cooler air sinks to take its place (convection).</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'b')"><div class="opt-indicator"></div><span>Heat travels through the air by conduction only.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'c')"><div class="opt-indicator"></div><span>Cold air rises and warm air sinks.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'd')"><div class="opt-indicator"></div><span>The heater warms the walls, which warm the air.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s31','a','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s31','Think about density again.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s31','A &mdash; Convection: warm air is less dense and rises, cooler, denser air sinks, and a convection current carries heat round the room.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s31-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-s32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">One end of a metal spoon is put in hot tea and the other end gets hot. Name this way of transferring heat.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s32-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s32',['conduction'],'Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s32','The heat passes through a solid from particle to particle.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s32','Conduction')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s32-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION D &mdash; SOUND WAVES &AMP; THERMAL ENERGY</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wt-fill"></div></div>
+    <div class="section-score-val" id="sec-wt-val">0/10</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="el">
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Section E &middot; Q33&ndash;Q39 &middot; Unit 3</div><h2>Electricity</h2></div></div>
+<div class="info-box">V = I &times; R. Current in amps (A), voltage in volts (V), resistance in ohms (&Omega;).</div>
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-s33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">A current of 0.5 A flows through a 12 Ω resistor. What is the voltage across it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s33-ans" placeholder="Enter answer..."><span class="num-unit">V</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s33',6,'Q33',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s33','V = I × R')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s33','0.5 × 12 = 6 V')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s33-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-s34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">A 9 V battery drives a current of 0.3 A through a lamp. What is the resistance of the lamp?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s34-ans" placeholder="Enter answer..."><span class="num-unit">Ω</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s34',30,'Q34',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s34','R = V ÷ I')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s34','9 ÷ 0.3 = 30 Ω')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s34-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-s35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">In the series circuit, what current does the ammeter read?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 230" role="img" aria-label="A series circuit: a 6 V cell, an ammeter and two resistors of 4 ohms and 8 ohms in one loop" style="max-width:400px"><path class="draw" d="M60.0 50.0 L340.0 50.0 L340.0 180.0 L60.0 180.0 Z" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M124 40 H176 V60 H124 Z" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="150.0" y="28.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4 Ω</text><path class="draw" d="M234 40 H286 V60 H234 Z" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="260.0" y="28.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">8 Ω</text><rect x="192" y="160" width="16" height="40" fill="#1e2336"/><path class="draw" d="M194.0 162.0 L194.0 198.0" stroke="#e8eaf0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M206.0 171.0 L206.0 189.0" stroke="#e8eaf0" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="200.0" y="212.0" font-size="13" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">6 V</text><path class="draw" d="M75.0 115.0 A15 15 0 1 1 45.0 115.0 A15 15 0 1 1 75.0 115.0" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="60.0" y="115.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">A</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s35-ans" placeholder="Enter answer..."><span class="num-unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s35',0.5,'Q35',0.001)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s35','In series, the total resistance is the sum of the resistances.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s35','R = 4 + 8 = 12 Ω; I = 6 ÷ 12 = 0.5 A')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s35-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-s36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">In the parallel circuit, what does the main ammeter read?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 240" role="img" aria-label="A parallel circuit: a cell and a main ammeter reading unknown, then two branches each with a lamp and an ammeter reading 0.2 A and 0.3 A" style="max-width:400px"><path class="draw" d="M60.0 40.0 L340.0 40.0 L340.0 200.0 L60.0 200.0 Z" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M120.0 40.0 L120.0 120.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M120.0 120.0 L340.0 120.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M245.0 40.0 A15 15 0 1 1 215.0 40.0 A15 15 0 1 1 245.0 40.0" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M220.0 30.0 L240.0 50.0" stroke="#e8eaf0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M220.0 50.0 L240.0 30.0" stroke="#e8eaf0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M245.0 120.0 A15 15 0 1 1 215.0 120.0 A15 15 0 1 1 245.0 120.0" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M220.0 110.0 L240.0 130.0" stroke="#e8eaf0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M220.0 130.0 L240.0 110.0" stroke="#e8eaf0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M305.0 40.0 A15 15 0 1 1 275.0 40.0 A15 15 0 1 1 305.0 40.0" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="40.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">A</text><text x="290.0" y="12.0" font-size="12" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">0.2 A</text><path class="draw" d="M305.0 120.0 A15 15 0 1 1 275.0 120.0 A15 15 0 1 1 305.0 120.0" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="290.0" y="120.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">A</text><text x="290.0" y="92.0" font-size="12" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">0.3 A</text><rect x="192" y="180" width="16" height="40" fill="#1e2336"/><path class="draw" d="M194.0 182.0 L194.0 218.0" stroke="#e8eaf0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M206.0 191.0 L206.0 209.0" stroke="#e8eaf0" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M75.0 120.0 A15 15 0 1 1 45.0 120.0 A15 15 0 1 1 75.0 120.0" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="60.0" y="120.0" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">A</text><text x="60.0" y="92.0" font-size="12" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">?</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s36-ans" placeholder="Enter answer..."><span class="num-unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s36',0.5,'Q36',0.001)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s36','The branch currents add up to the total.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s36','0.2 + 0.3 = 0.5 A')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s36-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-s37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Two lamps are connected in parallel to a 6 V battery. What is the voltage across each lamp?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s37-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'a')"><div class="opt-indicator"></div><span>3 V each</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'b')"><div class="opt-indicator"></div><span>12 V each</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'c')"><div class="opt-indicator"></div><span>6 V each</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'd')"><div class="opt-indicator"></div><span>It depends on which lamp is first.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s37','c','Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s37','Each branch is connected directly across the battery.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s37','C &mdash; In parallel, every branch gets the full battery voltage: 6 V each.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s37-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-s38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">In the circuit shown, the resistance of the variable resistor is increased. What happens?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 400 210" role="img" aria-label="A circuit with a cell, a lamp and a resistor symbol crossed by a diagonal arrow" style="max-width:400px"><path class="draw" d="M60.0 50.0 L340.0 50.0 L340.0 170.0 L60.0 170.0 Z" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M155.0 50.0 A15 15 0 1 1 125.0 50.0 A15 15 0 1 1 155.0 50.0" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M130.0 40.0 L150.0 60.0" stroke="#e8eaf0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M130.0 60.0 L150.0 40.0" stroke="#e8eaf0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><rect x="192" y="150" width="16" height="40" fill="#1e2336"/><path class="draw" d="M194.0 152.0 L194.0 188.0" stroke="#e8eaf0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M206.0 161.0 L206.0 179.0" stroke="#e8eaf0" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M234 40 H286 V60 H234 Z" stroke="#e8eaf0" stroke-width="2" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M226.0 76.0 L296.0 26.0" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M292.2 33.0 L296.0 26.0 L288.1 27.4" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+      <div class="mcq-options" id="s38-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'a')"><div class="opt-indicator"></div><span>The current increases and the lamp gets brighter.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'b')"><div class="opt-indicator"></div><span>Nothing changes.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'c')"><div class="opt-indicator"></div><span>The battery voltage increases.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'd')"><div class="opt-indicator"></div><span>The current decreases and the lamp gets dimmer.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s38','d','Q38')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s38','More resistance in the loop means…')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s38','D &mdash; More resistance means less current (I = V ÷ R), so the lamp gets dimmer.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s38-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-s39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Name the component shown by this circuit symbol.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 300 130" role="img" aria-label="A circuit symbol: a rectangle crossed by a diagonal arrow" style="max-width:260px"><path class="draw" d="M30.0 70.0 L110.0 70.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M190.0 70.0 L270.0 70.0" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M110 58 H190 V82 H110 Z" stroke="#e8eaf0" stroke-width="2.5" fill="#1e2336" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M96.0 104.0 L206.0 30.0" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><path class="draw" d="M201.0 38.6 L206.0 30.0 L196.1 31.4" stroke="#f5a623" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+      <input type="text" class="text-input" id="s39-ans" placeholder="two words" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s39',['variable resistor','a variable resistor','rheostat','variable resister'],'Q39')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s39','A resistor with an arrow through it can be adjusted.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s39','Variable resistor')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s39-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION E &mdash; ELECTRICITY</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-el-fill"></div></div>
+    <div class="section-score-val" id="sec-el-val">0/8</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { s1:1, s2:1, s3:1, s4:2, s5:1, s6:2, s7:1, s8:2, s9:1, s10:1, s11:1, s12:1, s13:1, s14:1, s15:1, s16:1, s17:1, s18:2, s19:1, s20:2, s21:2, s22:1, s23:1, s24:1, s25:1, s26:1, s27:1, s28:1, s29:1, s30:2, s31:2, s32:1, s33:1, s34:1, s35:2, s36:1, s37:1, s38:1, s39:1 };
+
+const sections = {
+  ch: { label: 'Atoms & Bonding', qs: ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'] },
+  bi: { label: 'Plant Biology', qs: ['s11','s12','s13','s14','s15','s16','s17','s18'] },
+  de: { label: 'Density', qs: ['s19','s20','s21','s22','s23','s24'] },
+  wt: { label: 'Sound Waves & Thermal Energy', qs: ['s25','s26','s27','s28','s29','s30','s31','s32'] },
+  el: { label: 'Electricity', qs: ['s33','s34','s35','s36','s37','s38','s39'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sem1-science-mock_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+
+// Diagrams draw themselves in as they scroll into view
+(function() {
+  const figs = document.querySelectorAll('.q-fig');
+  if (!('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('drawn')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  figs.forEach(f => io.observe(f));
+})();
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/[’‘]/g, "'").replace(/[“”"]/g, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('text-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
