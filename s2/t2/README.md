@@ -66,7 +66,7 @@ Source material: the Secondary 2 English Google Classroom (*Features of Persuasi
 |-------|-----------|-------|-----------|-------------|
 | **Density** — Solids, Liquids & Gases | 41 | 46 | [.md](./w4/term2-week4-science-unit3-density.md) | [.html](./w4/term2-week4-science-unit3-density.html) |
 | **Sound Waves & Thermal Energy** — Unit 3 | 46 | 46 | [.md](./w4/term2-week4-science-unit3-sound-thermal-energy.md) | [.html](./w4/term2-week4-science-unit3-sound-thermal-energy.html) |
-| **Electricity** — Circuits, V = IR, Series & Parallel | 43 | 45 | [.md](./w4/term2-week4-science-unit3-electricity.md) | [.html](./w4/term2-week4-science-unit3-electricity.html) |
+| **Electricity** — Circuits, V = IR, Series & Parallel | 48 | 50 | [.md](./w4/term2-week4-science-unit3-electricity.md) | [.html](./w4/term2-week4-science-unit3-electricity.html) |
 
 ### Science Unit 3: Thermal Energy Quick Test
 
