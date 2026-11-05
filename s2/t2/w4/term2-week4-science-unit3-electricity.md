@@ -1,7 +1,7 @@
 # Secondary 2 · Term 2 Week 4 · Science — Unit 3: Electricity
 
 **Stage 9 · Unit 3 · Electricity (circuit symbols, voltage, resistance, V = IR, series and parallel)**
-**43 auto-marked questions · 45 marks, plus 10 written questions · 38 marks**
+**48 auto-marked questions · 50 marks, plus 10 written questions · 38 marks**
 
 This document contains every auto-marked question from the interactive sheet (`term2-week4-science-unit3-electricity.html`) in a printable format, followed by extra written and drawing questions (Section F). Students write all answers on paper or in their notebooks. The interactive sheet has three animated explorers (Circuit Symbol Gallery, Ohm's Law Circuit, Series or Parallel?), which are described in words here. Reference symbols: cell (long and short parallel lines), battery (two or more cells), open and closed switch, lamp (circle with a cross), fixed resistor (rectangle), variable resistor (rectangle with an arrow), ammeter (circle with A), voltmeter (circle with V), buzzer.
 
