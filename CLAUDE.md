@@ -142,6 +142,16 @@ a check-2 giveaway is always fixed by hand.
 
 See `scripts/README.md` for what the three tools check and how they decide.
 
+## Check the totals
+
+Question counts and mark totals are typed by hand in several places (the header chip, score pills, the `index.html` card, the `.md` printable's heading, the term README table), while the score itself is computed from the `marks` object. After adding, removing or re-weighting a question, run:
+
+```bash
+python3 scripts/sheet_audit.py path/to/sheet.html
+```
+
+It checks every place in the `.html` and `index.html` against `marks`. The printable heading and the term README row are not checked; update them by hand.
+
 ## Exercise Sheet Architecture
 
 Each sheet is one HTML file with inline CSS and JS — no external dependencies except Google Fonts (Fraunces, Literata, DM Mono).

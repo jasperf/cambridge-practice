@@ -1,7 +1,7 @@
 # scripts
 
-Local audit helpers for the MCQ authoring rules in `CLAUDE.md` → *Writing
-Multiple-Choice Questions*. Plain Python 3, no dependencies, no build step —
+Local audit helpers for the authoring rules in `CLAUDE.md` (*Writing
+Multiple-Choice Questions* and *Check the totals*). Plain Python 3, no dependencies, no build step —
 they only read the sheets, they never modify them.
 
 ## `mcq_audit.py` — the two authoring checks
@@ -88,3 +88,27 @@ python3 scripts/mcq_sync.py s2/t1/w3/*.html   # re-run to confirm
 ```
 
 **Run it after every shuffle**, before committing.
+
+## `sheet_audit.py` — do the shown totals match the real ones?
+
+```bash
+python3 scripts/sheet_audit.py s2/t2/w4/*.html
+python3 scripts/sheet_audit.py $(find s1 s2 igcse-add-maths -name '*.html')
+```
+
+The score is computed at runtime from the sheet's `marks` object, but the
+totals a student *sees* are typed by hand, and they go stale when questions
+are added or re-weighted. This takes `marks` as the source of truth and
+checks it against:
+
+- each question's `N marks` badge;
+- the header chip (`48 questions · self-marked · 50 marks`);
+- the initial score pill (`0 / 50`) and each section pill (`0/13`, against
+  the questions listed for that section in `const sections`);
+- a hard-coded `maxMarks: { math: 23, sci: 22 }` on older sheets;
+- the sheet's card chips in the root `index.html` (`42 questions`, `60 marks`).
+
+Question cards with no `marks` entry are listed as info, not errors:
+unscored written cards such as `wr1` are legitimate. It does not read the
+`.md` printable or the term README tables, so check those by hand when a
+total changes. Exits non-zero if any sheet has a mismatch.
