@@ -9,6 +9,10 @@ No login. No install. Works offline.
 
 ### 👉 [Start practising](https://jasperf.github.io/cambridge-practice)
 
+<p align="center">
+  <img src="docs/img/demo.gif" alt="A science practice sheet being answered: a typed answer marked correct, a wrong multiple-choice answer followed by the revealed worked answer, then two more correct answers as the score goes up" width="800">
+</p>
+
 ## ✨ How it works
 
 1. **Pick a sheet:** maths, science or English, by unit or as a full mock exam.
