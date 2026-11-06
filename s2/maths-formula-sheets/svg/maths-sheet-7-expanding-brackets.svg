@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1340" viewBox="0 0 1080 1340" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="1340" fill="#FBF5E9"/><rect width="14" height="1340" fill="#1C6DD0"/>
+<text letter-spacing="2" xml:space="preserve" x="56.0" y="62.0" font-size="20" font-weight="700" fill="#1C6DD0">SECONDARY 2 MATHS · SHEET 7 OF 12</text>
+<text xml:space="preserve" x="56.0" y="108.0" font-size="40" font-weight="800" fill="#14213D">Expanding Brackets</text>
+<text xml:space="preserve" x="56.0" y="136.0" font-size="20" font-weight="400" fill="#5B6478">Term 1 · Unit 2 Expressions &amp; formulae · multiply out, then simplify</text>
+<text xml:space="preserve" x="56.0" y="180.0" font-size="24" font-weight="800" fill="#E8590C">One bracket: multiply EVERY term inside</text>
+<rect x="56" y="196" width="968" height="200" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="80.0" y="290.0" font-size="34" font-weight="800" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">4(2x − 3)</text>
+<path d="M92.0 258.0 Q116.0 222.0 140.0 258.0" fill="none" stroke="#E8590C" stroke-width="2.5"/>
+<polygon points="140.0,258.0 131.0,249.0 143.0,246.0" fill="#E8590C"/>
+<path d="M92.0 258.0 Q163.0 198.0 234.0 258.0" fill="none" stroke="#E8590C" stroke-width="2.5"/>
+<polygon points="234.0,258.0 225.0,249.0 237.0,246.0" fill="#E8590C"/>
+<text xml:space="preserve" x="80.0" y="350.0" font-size="22" font-weight="700" fill="#5B6478" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 4 × 2x  +  4 × (−3)</text>
+<text xml:space="preserve" x="80.0" y="382.0" font-size="26" font-weight="800" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 8x − 12</text>
+<line x1="540.0" y1="220.0" x2="540.0" y2="376.0" stroke="#EADFCB" stroke-width="2" stroke-linecap="round"/>
+<text xml:space="preserve" x="570.0" y="290.0" font-size="34" font-weight="800" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">−2(x − 5)</text>
+<path d="M588.0 258.0 Q615.0 222.0 642.0 258.0" fill="none" stroke="#E8590C" stroke-width="2.5"/>
+<polygon points="642.0,258.0 633.0,249.0 645.0,246.0" fill="#E8590C"/>
+<path d="M588.0 258.0 Q656.0 198.0 724.0 258.0" fill="none" stroke="#E8590C" stroke-width="2.5"/>
+<polygon points="724.0,258.0 715.0,249.0 727.0,246.0" fill="#E8590C"/>
+<text xml:space="preserve" x="570.0" y="350.0" font-size="26" font-weight="800" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= −2x  +  10</text>
+<text xml:space="preserve" x="570.0" y="382.0" font-size="20" font-weight="800" fill="#E8590C">minus × minus = plus</text>
+<text xml:space="preserve" x="56.0" y="436.0" font-size="24" font-weight="800" fill="#E8590C">Two brackets: the grid (area) method</text>
+<rect x="56" y="452" width="968" height="350" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="240.0" y="512.0" font-size="26" font-weight="800" fill="#1C6DD0" text-anchor="middle">3x</text>
+<text xml:space="preserve" x="385.0" y="512.0" font-size="26" font-weight="800" fill="#1C6DD0" text-anchor="middle">+2</text>
+<text xml:space="preserve" x="126.0" y="594.0" font-size="26" font-weight="800" fill="#E8590C" text-anchor="end">x</text>
+<text xml:space="preserve" x="126.0" y="694.0" font-size="26" font-weight="800" fill="#E8590C" text-anchor="end">+4</text>
+<rect x="150" y="530" width="180" height="110" fill="#DCE9FA" stroke="#14213D" stroke-width="3"/>
+<rect x="330" y="530" width="110" height="110" fill="#FDE1CF" stroke="#14213D" stroke-width="3"/>
+<rect x="150" y="640" width="180" height="90" fill="#FDE1CF" stroke="#14213D" stroke-width="3"/>
+<rect x="330" y="640" width="110" height="90" fill="#FFF4D6" stroke="#14213D" stroke-width="3"/>
+<text xml:space="preserve" x="240.0" y="595.0" font-size="30" font-weight="800" fill="#14213D" text-anchor="middle">3x²</text>
+<text xml:space="preserve" x="385.0" y="595.0" font-size="28" font-weight="800" fill="#14213D" text-anchor="middle">+2x</text>
+<text xml:space="preserve" x="240.0" y="695.0" font-size="28" font-weight="800" fill="#14213D" text-anchor="middle">+12x</text>
+<text xml:space="preserve" x="385.0" y="695.0" font-size="28" font-weight="800" fill="#14213D" text-anchor="middle">+8</text>
+<text xml:space="preserve" x="110.0" y="774.0" font-size="22" font-weight="700" fill="#5B6478" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">(3x + 2)(x + 4)</text>
+<circle cx="558" cy="520" r="16" fill="#1C6DD0"/>
+<text xml:space="preserve" x="558.0" y="527.0" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">1</text>
+<text xml:space="preserve" x="586.0" y="527.0" font-size="21" font-weight="700" fill="#14213D">Split each bracket into terms,</text>
+<text xml:space="preserve" x="586.0" y="555.0" font-size="19" font-weight="400" fill="#5B6478">and keep each sign with its term.</text>
+<circle cx="558" cy="600" r="16" fill="#1C6DD0"/>
+<text xml:space="preserve" x="558.0" y="607.0" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">2</text>
+<text xml:space="preserve" x="586.0" y="607.0" font-size="21" font-weight="700" fill="#14213D">Multiply row × column</text>
+<text xml:space="preserve" x="586.0" y="635.0" font-size="19" font-weight="400" fill="#5B6478">to fill all four cells.</text>
+<circle cx="558" cy="680" r="16" fill="#1C6DD0"/>
+<text xml:space="preserve" x="558.0" y="687.0" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">3</text>
+<text xml:space="preserve" x="586.0" y="687.0" font-size="21" font-weight="700" fill="#14213D">Collect like terms:</text>
+<text xml:space="preserve" x="586.0" y="715.0" font-size="21" font-weight="700" fill="#5B6478" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">12x + 2x = 14x</text>
+<text xml:space="preserve" x="552.0" y="772.0" font-size="30" font-weight="800" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= 3x² + 14x + 8</text>
+<text xml:space="preserve" x="56.0" y="842.0" font-size="24" font-weight="800" fill="#E8590C">Same job, no grid: FOIL (watch the signs)</text>
+<rect x="56" y="858" width="968" height="150" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="80.0" y="912.0" font-size="28" font-weight="800" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">(x − 5)(x + 2)</text>
+<text xml:space="preserve" x="80.0" y="962.0" font-size="24" font-weight="700" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= x² + 2x − 5x − 10  =  x² − 3x − 10</text>
+<text xml:space="preserve" x="700.0" y="900.0" font-size="19" font-weight="700" fill="#5B6478" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">F  first   x × x</text>
+<text xml:space="preserve" x="700.0" y="926.0" font-size="19" font-weight="700" fill="#5B6478" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">O  outer   x × 2</text>
+<text xml:space="preserve" x="700.0" y="952.0" font-size="19" font-weight="700" fill="#5B6478" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">I  inner  −5 × x</text>
+<text xml:space="preserve" x="700.0" y="978.0" font-size="19" font-weight="700" fill="#5B6478" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">L  last   −5 × 2</text>
+<text xml:space="preserve" x="56.0" y="1048.0" font-size="24" font-weight="800" fill="#E8590C">Two special products</text>
+<rect x="56" y="1064" width="968" height="186" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="96" y="1090" width="100" height="100" fill="#DCE9FA" stroke="#14213D" stroke-width="2.5"/>
+<rect x="196" y="1090" width="40" height="100" fill="#FDE1CF" stroke="#14213D" stroke-width="2.5"/>
+<rect x="96" y="1190" width="100" height="40" fill="#FDE1CF" stroke="#14213D" stroke-width="2.5"/>
+<rect x="196" y="1190" width="40" height="40" fill="#FFF4D6" stroke="#14213D" stroke-width="2.5"/>
+<text xml:space="preserve" x="146.0" y="1148.0" font-size="22" font-weight="800" fill="#14213D" text-anchor="middle">x²</text>
+<text xml:space="preserve" x="216.0" y="1148.0" font-size="16" font-weight="800" fill="#14213D" text-anchor="middle">3x</text>
+<text xml:space="preserve" x="146.0" y="1217.0" font-size="16" font-weight="800" fill="#14213D" text-anchor="middle">3x</text>
+<text xml:space="preserve" x="216.0" y="1217.0" font-size="16" font-weight="800" fill="#14213D" text-anchor="middle">9</text>
+<text xml:space="preserve" x="270.0" y="1120.0" font-size="26" font-weight="800" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">(x + 3)²</text>
+<text xml:space="preserve" x="270.0" y="1160.0" font-size="24" font-weight="800" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= x² + 6x + 9</text>
+<text xml:space="preserve" x="270.0" y="1196.0" font-size="19" font-weight="800" fill="#E8590C">NOT x² + 9:</text>
+<text xml:space="preserve" x="270.0" y="1222.0" font-size="17" font-weight="400" fill="#5B6478">the middle terms are missing</text>
+<line x1="570.0" y1="1084.0" x2="570.0" y2="1230.0" stroke="#EADFCB" stroke-width="2" stroke-linecap="round"/>
+<text xml:space="preserve" x="600.0" y="1120.0" font-size="26" font-weight="800" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">(x + 7)(x − 7)</text>
+<text xml:space="preserve" x="600.0" y="1160.0" font-size="22" font-weight="700" fill="#5B6478" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= x² − 7x + 7x − 49</text>
+<text xml:space="preserve" x="600.0" y="1196.0" font-size="24" font-weight="800" fill="#1C6DD0" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">= x² − 49</text>
+<text xml:space="preserve" x="800.0" y="1196.0" font-size="17" font-weight="700" fill="#E8590C">middle terms cancel</text>
+<text xml:space="preserve" x="56.0" y="1286.0" font-size="18" font-weight="700" fill="#14213D">Check: put x = 1 into both sides. (3 + 2)(1 + 4) = 25 and 3 + 14 + 8 = 25 ✓</text>
+<text xml:space="preserve" x="56.0" y="1314.0" font-size="18" font-weight="400" fill="#5B6478">Formula sheets · Jasper</text>
+</svg>

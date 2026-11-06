@@ -1,0 +1,11 @@
+# Sheet 10 · Inequalities
+
+![Inequalities formula sheet](svg/maths-sheet-10-inequalities.svg)
+
+Inequalities (Unit 4). < and > use an open circle, ≤ and ≥ a filled circle: x > 2, x ≤ −1 and −2 < x ≤ 3 on number lines. Solve like an equation: 5x − 3 > 17 gives 5x > 20, so x > 4, a range of answers. Flip rule: multiplying or dividing by a negative turns the sign round, so −4x ≤ 12 gives x ≥ −3 (because 2 < 5 but −2 > −5). Double inequalities: do the same to all three parts, 1 < 2x + 3 ≤ 11 gives −1 < x ≤ 4, and the whole numbers that fit are 0, 1, 2, 3, 4. Check by testing a number from your answer.
+
+**Built from:** [Week 1 · Linear Inequalities](../t2/w1/term2-week1-maths-unit4-linear-inequalities.md)
+
+**Image:** [SVG](svg/maths-sheet-10-inequalities.svg)
+
+[← All formula sheets](README.md)

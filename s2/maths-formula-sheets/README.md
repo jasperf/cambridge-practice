@@ -1,6 +1,6 @@
 # Secondary 2 · Maths Formula Sheets
 
-One-page formula and key-fact sheets for the Term 2 **Maths Unit Test 2** (Angles, Shapes & Measurements: Stage 9 Unit 5 and Unit 7.1–7.2). Sheet 6 goes back to Unit 5.1 angle facts for revision. Each sheet is an SVG for GitHub and print, with a short caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Two extra diagrams cover the circle formula triangles and the angles of the common regular polygons. The worked examples use different numbers from the practice sheet, so they don't give its answers away.
+One-page formula and key-fact sheets. Sheets 1–5 cover the Term 2 **Maths Unit Test 2** (Angles, Shapes & Measurements: Stage 9 Unit 5 and Unit 7.1–7.2) and Sheet 6 goes back to Unit 5.1 angle facts. Sheets 7–12 cover the number and algebra units for the **Semester 1 assessment**: expanding brackets, simultaneous equations, indices and standard form, inequalities, decimals and bounds, and formulae with algebraic fractions. Each sheet is an SVG for GitHub and print, with a short caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Two extra diagrams cover the circle formula triangles and the angles of the common regular polygons. The worked examples use different numbers from the practice sheet, so they don't give its answers away.
 
 | # | Sheet | Unit | Page | Image |
 |---|-------|------|------|-------|
@@ -10,6 +10,12 @@ One-page formula and key-fact sheets for the Term 2 **Maths Unit Test 2** (Angle
 | 4 | **Circles** | 7.1 · Shapes & measurements | [maths-sheet-4-circles.md](maths-sheet-4-circles.md) | [.svg](svg/maths-sheet-4-circles.svg) |
 | 5 | **Compound Shapes** | 7.2 · Shapes & measurements | [maths-sheet-5-compound-shapes.md](maths-sheet-5-compound-shapes.md) | [.svg](svg/maths-sheet-5-compound-shapes.svg) |
 | 6 | **Angle Facts** | 5.1 · Angles (revision) | [maths-sheet-6-angle-facts.md](maths-sheet-6-angle-facts.md) | [.svg](svg/maths-sheet-6-angle-facts.svg) |
+| 7 | **Expanding Brackets** | 2 · Expressions & formulae | [maths-sheet-7-expanding-brackets.md](maths-sheet-7-expanding-brackets.md) | [.svg](svg/maths-sheet-7-expanding-brackets.svg) |
+| 8 | **Simultaneous Equations** | 4 · Equations | [maths-sheet-8-simultaneous-equations.md](maths-sheet-8-simultaneous-equations.md) | [.svg](svg/maths-sheet-8-simultaneous-equations.svg) |
+| 9 | **Indices, Standard Form & Rational Numbers** | 1 · Number | [maths-sheet-9-indices-standard-form.md](maths-sheet-9-indices-standard-form.md) | [.svg](svg/maths-sheet-9-indices-standard-form.svg) |
+| 10 | **Inequalities** | 4 · Equations | [maths-sheet-10-inequalities.md](maths-sheet-10-inequalities.md) | [.svg](svg/maths-sheet-10-inequalities.svg) |
+| 11 | **Decimals, Rounding & Bounds** | 3 · Decimals, percentages & rounding | [maths-sheet-11-decimals-rounding-bounds.md](maths-sheet-11-decimals-rounding-bounds.md) | [.svg](svg/maths-sheet-11-decimals-rounding-bounds.svg) |
+| 12 | **Formulae & Algebraic Fractions** | 2 · Expressions & formulae | [maths-sheet-12-formulae-algebraic-fractions.md](maths-sheet-12-formulae-algebraic-fractions.md) | [.svg](svg/maths-sheet-12-formulae-algebraic-fractions.svg) |
 
 ## Previews
 
@@ -36,6 +42,30 @@ One-page formula and key-fact sheets for the Term 2 **Maths Unit Test 2** (Angle
 ### 6. Angle Facts
 
 [![Angle Facts](svg/maths-sheet-6-angle-facts.svg)](maths-sheet-6-angle-facts.md)
+
+### 7. Expanding Brackets
+
+[![Expanding Brackets](svg/maths-sheet-7-expanding-brackets.svg)](maths-sheet-7-expanding-brackets.md)
+
+### 8. Simultaneous Equations
+
+[![Simultaneous Equations](svg/maths-sheet-8-simultaneous-equations.svg)](maths-sheet-8-simultaneous-equations.md)
+
+### 9. Indices, Standard Form & Rational Numbers
+
+[![Indices, Standard Form & Rational Numbers](svg/maths-sheet-9-indices-standard-form.svg)](maths-sheet-9-indices-standard-form.md)
+
+### 10. Inequalities
+
+[![Inequalities](svg/maths-sheet-10-inequalities.svg)](maths-sheet-10-inequalities.md)
+
+### 11. Decimals, Rounding & Bounds
+
+[![Decimals, Rounding & Bounds](svg/maths-sheet-11-decimals-rounding-bounds.svg)](maths-sheet-11-decimals-rounding-bounds.md)
+
+### 12. Formulae & Algebraic Fractions
+
+[![Formulae & Algebraic Fractions](svg/maths-sheet-12-formulae-algebraic-fractions.svg)](maths-sheet-12-formulae-algebraic-fractions.md)
 
 ## Diagrams
 
