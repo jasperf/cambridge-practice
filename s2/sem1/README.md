@@ -25,6 +25,7 @@ Every paper comes in three files with the same basename:
 | **English Level 2/3** | Sentence types & punctuation · Reading two texts with P.E.E.E. · Viewpoints & arguments · Persuasive & emotive language | 41 Qs · 48 marks (33 MCQ) | Q42–Q45 · 38 marks | [.md](./sem1-english-level23-mock.md) | [.html](./sem1-english-level23-mock.html) | [answers](./sem1-english-level23-mock-answers.md) |
 | **Maths Paper 1: Non-Calculator** | All units, no calculator: number, indices & standard form · algebra, equations & inequalities · decimals & rounding · angles, circles (π ≈ 3) & area | 36 Qs · 50 marks (11 MCQ, 1 tick-all-true) | Q37–Q41 · 19 marks | [.md](./sem1-maths-paper1-non-calculator.md) | [.html](./sem1-maths-paper1-non-calculator.html) | [answers](./sem1-maths-paper1-non-calculator-answers.md) |
 | **Maths Paper 1B: Non-Calculator** | A second set of Paper 1 questions for another round: same layout, length and topics, all-new questions | 36 Qs · 50 marks (11 MCQ, 1 tick-all-true) | Q37–Q41 · 19 marks | [.md](./sem1-maths-paper1b-non-calculator.md) | [.html](./sem1-maths-paper1b-non-calculator.html) | [answers](./sem1-maths-paper1b-non-calculator-answers.md) |
+| **Maths Paper 1C: Non-Calculator** | A third set of Paper 1 questions for one more round: same layout, length and topics, all-new questions | 36 Qs · 50 marks (11 MCQ, 1 tick-all-true) | Q37–Q41 · 19 marks | [.md](./sem1-maths-paper1c-non-calculator.md) | [.html](./sem1-maths-paper1c-non-calculator.html) | [answers](./sem1-maths-paper1c-non-calculator-answers.md) |
 | **Maths Paper 2: Calculator** | All units, calculator: standard form, percentages, compound interest & bounds · forming and solving equations · polygons & Pythagoras · circles & compound shapes | 29 Qs · 50 marks (5 MCQ, 1 tick-all-true) | Q30–Q34 · 23 marks | [.md](./sem1-maths-paper2-calculator.md) | [.html](./sem1-maths-paper2-calculator.html) | [answers](./sem1-maths-paper2-calculator-answers.md) |
 | **Science** | Atoms & bonding · Plant biology · Density · Sound waves & thermal energy · Electricity | 39 Qs · 48 marks (17 MCQ) | Q40–Q45 · 24 marks | [.md](./sem1-science-mock.md) | [.html](./sem1-science-mock.html) | [answers](./sem1-science-mock-answers.md) |
 
@@ -34,7 +35,7 @@ Section A covers the four sentence types, FANBOYS, MOTH, semicolons and comma ru
 
 ### Mathematics
 
-The two papers follow the Cambridge Lower Secondary Checkpoint maths format (0862): **Paper 1 is non-calculator and Paper 2 allows a calculator. Each is 1 hour long, worth 50 marks, and mixes every unit.** So both papers test Unit 1 (rational and irrational numbers, indices, standard form), Unit 2 (expressions and formulae), Unit 3 (decimals, percentages, rounding and bounds), Unit 4 (simultaneous equations, inequalities), Unit 5 (angles, polygons, constructions, Pythagoras) and Unit 7.1–7.2 (circles, compound shapes). Questions that need a calculator, such as compound interest, Pythagoras with decimals and circle areas to 1 d.p., are in Paper 2. Paper 1 uses equivalent calculations, answers in terms of π and π ≈ 3. Each paper has a Checkpoint-style “tick every true statement” question, which scores only if every tick is right. Diagrams draw themselves in as you scroll: number lines, an area model, a lift loaded with boxes, a pair of lines crossing on a graph, parallel lines, polygons, a ladder, circles and compound shapes. They are not to scale. Paper 1’s written questions include a ruler-and-compass construction. **Paper 1B** is a second non-calculator paper for another round of practice. It has the same sections and marks as Paper 1, but every question is new (e.g. alternate angles, an isosceles triangle, a regular octagon, a rectangle with a semicircle).
+The two papers follow the Cambridge Lower Secondary Checkpoint maths format (0862): **Paper 1 is non-calculator and Paper 2 allows a calculator. Each is 1 hour long, worth 50 marks, and mixes every unit.** So both papers test Unit 1 (rational and irrational numbers, indices, standard form), Unit 2 (expressions and formulae), Unit 3 (decimals, percentages, rounding and bounds), Unit 4 (simultaneous equations, inequalities), Unit 5 (angles, polygons, constructions, Pythagoras) and Unit 7.1–7.2 (circles, compound shapes). Questions that need a calculator, such as compound interest, Pythagoras with decimals and circle areas to 1 d.p., are in Paper 2. Paper 1 uses equivalent calculations, answers in terms of π and π ≈ 3. Each paper has a Checkpoint-style “tick every true statement” question, which scores only if every tick is right. Diagrams draw themselves in as you scroll: number lines, an area model, a lift loaded with boxes, a pair of lines crossing on a graph, parallel lines, polygons, a ladder, circles and compound shapes. They are not to scale. Paper 1’s written questions include a ruler-and-compass construction. **Paper 1B** is a second non-calculator paper for another round of practice. It has the same sections and marks as Paper 1, but every question is new (e.g. alternate angles, an isosceles triangle, a regular octagon, a rectangle with a semicircle). **Paper 1C** is a third set in the same format (e.g. corresponding angles, a regular pentagon, a quarter circle, a running-track shape).
 
 ### Science
 
@@ -42,7 +43,7 @@ Section A covers atomic structure, electronic structure, the periodic table and 
 
 ## Checks
 
-All five interactive sheets pass `scripts/mcq_audit.py` (spread of correct letters and no answers given away in the teaching boxes), and their printables are in sync according to `scripts/mcq_sync.py`.
+All six interactive sheets pass `scripts/mcq_audit.py` (spread of correct letters and no answers given away in the teaching boxes), and their printables are in sync according to `scripts/mcq_sync.py`.
 
 ## Structure
 
@@ -58,6 +59,9 @@ s2/sem1/
 ├── sem1-maths-paper1b-non-calculator.html        ← Interactive (Maths Paper 1B, second non-calculator set)
 ├── sem1-maths-paper1b-non-calculator.md          ← Printable + Q37–Q41 written
 ├── sem1-maths-paper1b-non-calculator-answers.md  ← Answers + marking guide
+├── sem1-maths-paper1c-non-calculator.html        ← Interactive (Maths Paper 1C, third non-calculator set)
+├── sem1-maths-paper1c-non-calculator.md          ← Printable + Q37–Q41 written
+├── sem1-maths-paper1c-non-calculator-answers.md  ← Answers + marking guide
 ├── sem1-maths-paper2-calculator.html             ← Interactive (Maths Paper 2, calculator)
 ├── sem1-maths-paper2-calculator.md               ← Printable + Q30–Q34 written
 ├── sem1-maths-paper2-calculator-answers.md       ← Answers + marking guide
