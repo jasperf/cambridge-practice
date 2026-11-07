@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harder Simultaneous Equations &middot; Unit 4.2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: rgba(79,142,247,0.15); font-family: var(--font-mono); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box ol { margin: 6px 0 0 20px; }
+.kind-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.kind-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 520px; }
+.kind-table th, .kind-table td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+.kind-table th { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); background: var(--surface2); letter-spacing: 0.5px; }
+.kind-table td strong { color: var(--accent-sci); }
+.sim { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin: 16px 0 24px; }
+.sim-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+.sim-svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.sim-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.sim-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.sim-btn:hover { border-color: var(--accent-math); color: var(--text); }
+.ex-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; max-width: 560px; margin: 0 auto 14px; }
+.ex-inputs label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-inputs input, .ex-inputs select { width: 100%; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 7px 10px; outline: none; }
+.ex-inputs input:focus, .ex-inputs select:focus { border-color: var(--accent-math); }
+.ex-slider { max-width: 560px; margin: 12px auto 0; }
+.ex-slider label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-slider input[type=range] { width: 100%; accent-color: var(--accent-warn); }
+.ex-steps { max-width: 560px; margin: 14px auto 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+.ex-steps b { color: var(--text); }
+.ex-ineq { display: inline-block; font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-sci); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; margin: 6px 0; }
+@media (max-width: 600px) { .ex-inputs { grid-template-columns: 1fr; } .sim { padding: 12px; } }
+.info-box ul { margin: 6px 0 0 20px; }
+.gx-inputs { display: flex; flex-direction: column; gap: 8px; max-width: 560px; margin: 0 auto 14px; }
+.gx-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.85rem; }
+.gx-l1 span:first-child { color: var(--accent-math); }
+.gx-l2 span:first-child { color: var(--accent-sci); }
+.gx-line input { width: 74px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 6px 8px; outline: none; text-align: center; }
+.gx-line input:focus { border-color: var(--accent-math); }
+.q-graph { max-width: 400px; margin-bottom: 14px; }
+.q-body .kind-table { min-width: 0; max-width: 420px; }
+.num-row .num-input + .num-unit { margin-left: 8px; }
+.stack-row { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 10px; }
+.stack-wrap { flex: 1 1 220px; }
+.stack { display: inline-grid; grid-template-columns: 1.2em auto auto auto; column-gap: 8px; font-family: var(--font-mono); font-size: 1rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; }
+.stack > span:nth-of-type(4n+2) { text-align: right; }
+.stack > span:nth-of-type(4n+1) { color: var(--accent-warn); }
+.stack-rule { grid-column: 1 / -1; border-top: 1.5px solid var(--text-muted); margin: 3px 0; }
+.stack-cap { font-size: 0.84rem; margin-top: 6px; }
+.q-stack { margin: 0 0 14px; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.math-expr { font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; display: inline-block; margin: 2px 0; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .watch-links { justify-content: center; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+.sim-btn.go { border-color: var(--accent-warn); color: var(--accent-warn); }
+.sim-btn.go:hover { background: var(--accent-warn); color: #0f1117; }
+.sim-btn:disabled, .sim-btn:disabled:hover { opacity: 0.6; cursor: not-allowed; background: var(--surface); border-color: var(--border); color: var(--text-muted); }
+.sim-info { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin: 12px auto 0; max-width: 620px; min-height: 2.8em; line-height: 1.6; }
+.sim-info b { color: var(--text); }
+.ea-inputs { display: flex; flex-direction: column; gap: 8px; max-width: 560px; margin: 0 auto 14px; }
+.ea-lab { min-width: 74px; color: var(--text-muted); }
+.ea-note { color: var(--text-dim); font-size: 0.74rem; }
+.gx-line select { background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 6px 8px; outline: none; }
+.eng-h { font-family: var(--font-display); font-size: 1.12rem; font-weight: 600; margin: 30px 0 10px; }
+#ea-svg { max-width: 600px; }
+.ea-new { animation: eaIn 0.6s ease both; }
+.ea-drop { animation: eaDrop 0.8s cubic-bezier(0.34,1.4,0.64,1) both; }
+.ea-glow { animation: eaGlow 1.1s ease-in-out infinite; }
+.ea-strike { stroke-dasharray: 50; stroke-dashoffset: 50; animation: eaStrike 0.6s 0.5s ease forwards; }
+@keyframes eaIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes eaDrop { from { opacity: 0; transform: translateY(-80px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes eaGlow { 0%,100% { stroke-opacity: 1; fill-opacity: 1; } 50% { stroke-opacity: 0.35; fill-opacity: 0.4; } }
+@keyframes eaStrike { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .ea-new, .ea-drop, .ea-glow { animation: none; } .ea-strike { animation: none; stroke-dashoffset: 0; } }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Harder Simultaneous Equations</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 43</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Unit 4.2 &middot; Step Two</div>
+  <h1>When Nothing Matches Yet<br><em>Harder Simultaneous Equations</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Break It Down &middot; Multiply One Equation &middot; Multiply Both &middot; Tidy Up First &middot; Why Engineers Need This &middot; Problems in Words</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>29 questions &middot; self-marked &middot; 43 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#129513; The next step after the Unit 4.2 sheet</h3>
+  <p>The first Unit 4.2 sheet mostly used pairs where a letter already matched, like <em>x</em> + <em>y</em> = 12 and <em>x</em> − <em>y</em> = 2. This sheet is about the pairs where <strong>nothing matches yet</strong>, such as 2<em>x</em> + 3<em>y</em> = 13 and 5<em>x</em> − 2<em>y</em> = 4. Section A takes one of these apart one step at a time, with an animation you can step through at your own speed. Section E shows where engineers use exactly these steps: currents in a circuit, forces on a bridge, and a laser hitting a wall in a computer game.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=corbettmaths+simultaneous+equations+elimination+multiply" target="_blank" rel="noopener">&#128250; Corbettmaths &mdash; elimination when you have to multiply (search)</a>
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=kirchhoff+laws+simultaneous+equations+gcse" target="_blank" rel="noopener">&#128250; Circuits solved with simultaneous equations (search)</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#breakdown" class="sub-tab">Break It Down</a>
+  <a href="#multone" class="sub-tab">Multiply One Equation</a>
+  <a href="#multboth" class="sub-tab">Multiply Both</a>
+  <a href="#tidy" class="sub-tab">Tidy Up First</a>
+  <a href="#engineering" class="sub-tab">Why Engineers Need This</a>
+  <a href="#words" class="sub-tab">Problems in Words</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: BREAK IT DOWN ═══════════════ -->
+<div id="breakdown">
+  <div class="section-header"><div class="section-icon">1&middot;2&middot;3</div><div><div class="sub-label">Section A &middot; The Recipe</div><h2>Break It Down</h2></div></div>
+  <div class="info-box"><strong>Why does 2<em>x</em> + 3<em>y</em> = 13 and 5<em>x</em> − 2<em>y</em> = 4 feel hard?</strong> If you add them you get 7<em>x</em> + <em>y</em> = 17. If you subtract them you get −3<em>x</em> + 5<em>y</em> = 9. Either way, <strong>both letters are still there</strong>, so you are stuck. Nothing cancels because no pair of terms is the same size. The fix is to <strong>make</strong> a pair the same size first, by multiplying.</div>
+  <div class="info-box"><strong>The five-step recipe</strong> (use it every time):<ol>
+    <li><strong>Line up</strong> the equations: <em>x</em> under <em>x</em>, <em>y</em> under <em>y</em>, number under number.</li>
+    <li><strong>Pick a letter and make its sizes match.</strong> Look at the two numbers in front of it (3 and 2 in front of <em>y</em>). Find a number both go into (6). Multiply <strong>every</strong> term of each equation, including the number after the = sign.</li>
+    <li><strong>Look at the signs</strong> of the matching terms. <strong>S</strong>ame <strong>S</strong>igns <strong>S</strong>ubtract (+6<em>y</em> and +6<em>y</em>). Different signs add (+6<em>y</em> and −6<em>y</em>).</li>
+    <li><strong>Solve</strong> the one-letter equation that is left.</li>
+    <li><strong>Substitute back</strong> into an original equation to find the other letter, then <strong>check</strong> both values in the other original equation.</li>
+  </ol></div>
+  <div class="info-box"><strong>Why are we allowed to multiply?</strong> An equation is a balance. Doubling everything on both sides keeps it balanced: if 2<em>x</em> + 3<em>y</em> = 13 is true, then 4<em>x</em> + 6<em>y</em> = 26 is true for the same <em>x</em> and <em>y</em>. The answer does not change; only how the equation looks.</div>
+
+  <!-- Elimination Animator -->
+  <div class="sim">
+    <div class="sim-title">Elimination Animator &mdash; press <strong>Next step</strong> and watch each move</div>
+    <div class="ea-inputs">
+      <div class="gx-line"><span class="ea-lab">Eq 1:</span><input type="number" step="1" id="ea-a1" value="2"><span>x +</span><input type="number" step="1" id="ea-b1" value="3"><span>y =</span><input type="number" step="1" id="ea-c1" value="13"></div>
+      <div class="gx-line"><span class="ea-lab">Eq 2:</span><input type="number" step="1" id="ea-a2" value="5"><span>x +</span><input type="number" step="1" id="ea-b2" value="-2"><span>y =</span><input type="number" step="1" id="ea-c2" value="4"></div>
+      <div class="gx-line"><span class="ea-lab">Get rid of:</span><select id="ea-target" onchange="eaLoad()"><option value="y">y</option><option value="x">x</option></select><span class="ea-note">(type −2 for − 2y)</span></div>
+    </div>
+    <svg class="sim-svg" id="ea-svg" viewBox="0 0 560 330" role="img" aria-label="Two equations being multiplied, stacked, added or subtracted and solved, one step at a time"></svg>
+    <div class="sim-info" id="ea-info"></div>
+    <div class="sim-controls">
+      <button class="sim-btn" onclick="eaGo(-1)">&#9664; Back</button>
+      <button class="sim-btn go" onclick="eaGo(1)">Next step &#9654;</button>
+      <button class="sim-btn" onclick="eaPlay()">&#9654;&#9654; Play all</button>
+    </div>
+    <div class="sim-controls">
+      <button class="sim-btn" onclick="eaPreset(2,3,13,5,-2,4,'y')">2x + 3y = 13 &middot; 5x − 2y = 4</button>
+      <button class="sim-btn" onclick="eaPreset(2,3,13,5,-2,4,'x')">same pair, remove x</button>
+      <button class="sim-btn" onclick="eaPreset(4,-3,6,2,5,16,'x')">multiply just one</button>
+      <button class="sim-btn" onclick="eaPreset(2,3,6,4,6,5,'y')">no solution</button>
+    </div>
+  </div>
+  <div class="info-box"><strong>Try the second button.</strong> Removing <em>x</em> instead of <em>y</em> from the same pair needs ×5 and ×2 and gives a bigger number to divide, but <strong>the same answer</strong>: <em>x</em> = 2, <em>y</em> = 3. Either letter works; pick the one with the easier numbers.</div>
+  <div class="info-box">Now do the same moves yourself, on a new pair: <span class="math-expr">3x + 4y = 18</span> and <span class="math-expr">5x − 3y = 1</span>. You will get rid of <em>y</em>.</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-bd1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">For <span class="math-expr">3x + 4y = 18</span> and <span class="math-expr">5x − 3y = 1</span>, you want to get rid of <em>y</em>. What should you multiply each equation by?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="bd1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('bd1', this, 'a')"><div class="opt-indicator"></div><span>First ×4, second ×3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd1', this, 'b')"><div class="opt-indicator"></div><span>First ×3, second ×4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd1', this, 'c')"><div class="opt-indicator"></div><span>First ×5, second ×3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd1', this, 'd')"><div class="opt-indicator"></div><span>First ×3, second ×3</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('bd1','b','Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bd1','The numbers in front of <i>y</i> are 4 and 3. Which number do both go into? Multiply each equation to reach it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bd1','B — 4<i>y</i> × 3 = 12<i>y</i> and −3<i>y</i> × 4 = −12<i>y</i>: the same size. ×4 and ×3 gives 16<i>y</i> and −9<i>y</i>, which do not match. ×5 and ×3 makes the <i>x</i> terms match (15<i>x</i>), not the <i>y</i> terms.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bd1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-bd2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Multiply <span class="math-expr">3x + 4y = 18</span> by 3. It becomes 9<em>x</em> + 12<em>y</em> = ?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">9x + 12y =</span><input type="number" step="any" class="num-input" id="bd2-ans" placeholder="?"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bd2',54,'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bd2','Every term gets multiplied, including the number after the = sign.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bd2','54 — 18 × 3 = 54. Forgetting to multiply this number is the most common mistake.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bd2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-bd3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Multiply <span class="math-expr">5x − 3y = 1</span> by 4. It becomes 20<em>x</em> − 12<em>y</em> = ?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">20x − 12y =</span><input type="number" step="any" class="num-input" id="bd3-ans" placeholder="?"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bd3',4,'Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bd3','What is 1 × 4?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bd3','4 — 1 × 4 = 4, so the equation is 20<i>x</i> − 12<i>y</i> = 4')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bd3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-bd4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">You now have <span class="math-expr">9x + 12y = 54</span> and <span class="math-expr">20x − 12y = 4</span>. What is the next step?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="bd4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('bd4', this, 'a')"><div class="opt-indicator"></div><span>Subtract them, giving −11<em>x</em> = 50</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd4', this, 'b')"><div class="opt-indicator"></div><span>Subtract them, because 54 is bigger than 4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd4', this, 'c')"><div class="opt-indicator"></div><span>Add them, giving 29<em>x</em> + 24<em>y</em> = 58</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('bd4', this, 'd')"><div class="opt-indicator"></div><span>Add them, giving 29<em>x</em> = 58</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('bd4','d','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bd4','Look only at the signs of +12<i>y</i> and −12<i>y</i>. Same signs subtract; different signs …?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bd4','D — the signs are different, so add: 12<i>y</i> + (−12<i>y</i>) = 0, 9<i>x</i> + 20<i>x</i> = 29<i>x</i>, 54 + 4 = 58. Subtracting would give 24<i>y</i>, so <i>y</i> would not disappear.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bd4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-bd5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">29<em>x</em> = 58. What is <em>x</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="bd5-ans" placeholder="x"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bd5',2,'Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bd5','Divide both sides by 29.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bd5','2 — 58 ÷ 29 = 2')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bd5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-bd6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Put your <em>x</em> into the <strong>original</strong> first equation, <span class="math-expr">3x + 4y = 18</span>. What is <em>y</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="bd6-ans" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('bd6',3,'Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('bd6','3 × 2 + 4<i>y</i> = 18, so 4<i>y</i> = 18 − 6.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('bd6','3 — 6 + 4<i>y</i> = 18, 4<i>y</i> = 12, <i>y</i> = 3. Check in the other equation: 5 × 2 − 3 × 3 = 10 − 9 = 1 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="bd6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">BREAK IT DOWN &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-bd-fill"></div></div>
+    <div class="section-score-val" id="sec-bd-val">0/6</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: MULTIPLY ONE EQUATION ═══════════════ -->
+<div id="multone">
+  <div class="section-header"><div class="section-icon">&times;1</div><div><div class="sub-label">Section B &middot; The Gentler Step Up</div><h2>Multiply One Equation</h2></div></div>
+  <div class="info-box"><strong>Look for a number that goes into the other one.</strong> In <span class="math-expr">x + 5y = 17</span> and <span class="math-expr">3x + 2y = 12</span>, the <em>x</em> numbers are 1 and 3, and 1 goes into 3. So you only need to multiply the <strong>first</strong> equation by 3, to get 3<em>x</em> + 15<em>y</em> = 51. Leave the second one alone.</div>
+  <div class="info-box"><strong>Mistakes to watch for:</strong><ul>
+    <li>Multiplying the letters but <strong>not the number after =</strong>.</li>
+    <li>Subtracting a negative: 5 − (−2) is 5 + 2 = 7, not 3. Write the brackets in, so you see it.</li>
+    <li>Stopping after one letter. The question wants <strong>both</strong> values.</li>
+  </ul></div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-mo1">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">In <span class="math-expr">x + 4y = 18</span> and <span class="math-expr">3x + 2y = 14</span>, which <strong>single</strong> move makes one pair of terms the same size?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mo1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mo1', this, 'a')"><div class="opt-indicator"></div><span>Multiply the second equation by 2, to get 6<em>x</em> + 4<em>y</em> = 28</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mo1', this, 'b')"><div class="opt-indicator"></div><span>Multiply the first equation by 2, to get 2<em>x</em> + 8<em>y</em> = 36</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mo1', this, 'c')"><div class="opt-indicator"></div><span>Multiply the second equation by 4, to get 12<em>x</em> + 8<em>y</em> = 56</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mo1', this, 'd')"><div class="opt-indicator"></div><span>No multiplying: add them straight away</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mo1','a','Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mo1','After the move, look at both equations. Is there an <i>x</i> pair or a <i>y</i> pair with the same number?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mo1','A — 2<i>y</i> × 2 = 4<i>y</i>, which matches the 4<i>y</i> in the first equation. B gives 8<i>y</i> against 2<i>y</i>, C gives 8<i>y</i> against 4<i>y</i>, and adding straight away gives 4<i>x</i> + 6<i>y</i> = 32, where nothing has cancelled.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mo1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-mo2">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Now finish it. Solve <span class="math-expr">x + 4y = 18</span> and <span class="math-expr">3x + 2y = 14</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="mo2-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="mo2-y" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('mo2',2,4,'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mo2','6<i>x</i> + 4<i>y</i> = 28 and <i>x</i> + 4<i>y</i> = 18. Both have +4<i>y</i>: same signs, so subtract.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mo2','<i>x</i> = 2, <i>y</i> = 4 — subtracting gives 5<i>x</i> = 10, so <i>x</i> = 2. Then 2 + 4<i>y</i> = 18, 4<i>y</i> = 16, <i>y</i> = 4. Check: 3 × 2 + 2 × 4 = 14 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mo2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-mo3">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Solve <span class="math-expr">5x + 2y = 29</span> and <span class="math-expr">3x − y = 2</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="mo3-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="mo3-y" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('mo3',3,7,'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mo3','Multiply the second equation by 2 to get −2<i>y</i>. Then +2<i>y</i> and −2<i>y</i> have different signs: add.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mo3','<i>x</i> = 3, <i>y</i> = 7 — 6<i>x</i> − 2<i>y</i> = 4; adding gives 11<i>x</i> = 33, <i>x</i> = 3. Then 9 − <i>y</i> = 2, so <i>y</i> = 7. Check: 15 + 14 = 29 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mo3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-mo4">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Solve <span class="math-expr">2x + 5y = 1</span> and <span class="math-expr">4x + 3y = −5</span>. One answer is negative.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="mo4-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="mo4-y" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('mo4',-2,1,'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mo4','Multiply the first by 2: 4<i>x</i> + 10<i>y</i> = 2. Subtract the second: 10<i>y</i> − 3<i>y</i> and 2 − (−5).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mo4','<i>x</i> = −2, <i>y</i> = 1 — 7<i>y</i> = 2 − (−5) = 7, so <i>y</i> = 1. Then 2<i>x</i> + 5 = 1, 2<i>x</i> = −4, <i>x</i> = −2. Check: 4 × (−2) + 3 = −5 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mo4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-mo5">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Ali solves <span class="math-expr">3x + y = 11</span> and <span class="math-expr">2x + 3y = 19</span>. His first line is: “×3: 9<em>x</em> + 3<em>y</em> = 11”. What went wrong?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mo5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mo5', this, 'a')"><div class="opt-indicator"></div><span>He should have multiplied by 2, not 3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mo5', this, 'b')"><div class="opt-indicator"></div><span>He should have multiplied the second equation instead</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mo5', this, 'c')"><div class="opt-indicator"></div><span>He did not multiply the 11; it should be 33</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mo5', this, 'd')"><div class="opt-indicator"></div><span>Nothing is wrong yet</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mo5','c','Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mo5','Multiply every part of 3<i>x</i> + <i>y</i> = 11 by 3 yourself and compare.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mo5','C — ×3 must reach every term: 9<i>x</i> + 3<i>y</i> = 33. Multiplying by 3 was a good choice, because it makes 3<i>y</i> match the 3<i>y</i> in the second equation. (The answer is <i>x</i> = 2, <i>y</i> = 5.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mo5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MULTIPLY ONE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mo-fill"></div></div>
+    <div class="section-score-val" id="sec-mo-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: MULTIPLY BOTH ═══════════════ -->
+<div id="multboth">
+  <div class="section-header"><div class="section-icon">&times;2</div><div><div class="sub-label">Section C &middot; Like 2x + 3y = 13 and 5x − 2y = 4</div><h2>Multiply Both Equations</h2></div></div>
+  <div class="info-box"><strong>When neither number goes into the other</strong> (3 and 2, 4 and 5, …), multiply <strong>both</strong> equations. The quick way: multiply each equation by the number in front of the chosen letter in the <strong>other</strong> equation. For 4<em>x</em> + 5<em>y</em> = … and 3<em>x</em> + 2<em>y</em> = …, to remove <em>y</em> multiply the first by 2 and the second by 5. Both <em>y</em> terms become 10<em>y</em>.</div>
+  <div class="info-box"><strong>Write the signs into the stack.</strong> When you subtract, every column changes sign: 10<em>y</em> − (−3<em>y</em>) = 13<em>y</em> and 8 − (−6) = 14. Writing the brackets stops most sign mistakes.</div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-mb1">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">For <span class="math-expr">4x + 3y = 25</span> and <span class="math-expr">3x − 2y = 6</span>, which multipliers make the <strong><em>y</em> terms</strong> the same size?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mb1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mb1', this, 'a')"><div class="opt-indicator"></div><span>First ×2, second ×3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb1', this, 'b')"><div class="opt-indicator"></div><span>First ×3, second ×4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb1', this, 'c')"><div class="opt-indicator"></div><span>First ×3, second ×2</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb1', this, 'd')"><div class="opt-indicator"></div><span>First ×2, second ×2</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mb1','a','Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb1','Multiply each equation by the <i>y</i> number from the <b>other</b> equation.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb1','A — 3<i>y</i> × 2 = 6<i>y</i> and −2<i>y</i> × 3 = −6<i>y</i>. First ×3 and second ×4 would make the <i>x</i> terms match (12<i>x</i>), not the <i>y</i> terms.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-mb2">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Now solve <span class="math-expr">4x + 3y = 25</span> and <span class="math-expr">3x − 2y = 6</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="mb2-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="mb2-y" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('mb2',4,3,'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb2','8<i>x</i> + 6<i>y</i> = 50 and 9<i>x</i> − 6<i>y</i> = 18. Different signs: add.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb2','<i>x</i> = 4, <i>y</i> = 3 — adding gives 17<i>x</i> = 68, <i>x</i> = 4. Then 16 + 3<i>y</i> = 25, 3<i>y</i> = 9, <i>y</i> = 3. Check: 12 − 6 = 6 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-mb3">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Solve <span class="math-expr">3x + 4y = 10</span> and <span class="math-expr">2x + 3y = 7</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="mb3-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="mb3-y" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('mb3',2,1,'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb3','To remove <i>x</i>: first ×2 and second ×3 give 6<i>x</i> in both. Same signs: subtract.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb3','<i>x</i> = 2, <i>y</i> = 1 — 6<i>x</i> + 8<i>y</i> = 20 and 6<i>x</i> + 9<i>y</i> = 21; subtracting gives <i>y</i> = 1. Then 3<i>x</i> + 4 = 10, <i>x</i> = 2. Check: 4 + 3 = 7 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-mb4">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Solve <span class="math-expr">5x − 3y = 19</span> and <span class="math-expr">2x + 7y = −17</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="mb4-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="mb4-y" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('mb4',2,-3,'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb4','Remove <i>x</i>: first ×2 and second ×5 give 10<i>x</i> in both. Subtract, and use brackets for the negatives.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb4','<i>x</i> = 2, <i>y</i> = −3 — 10<i>x</i> − 6<i>y</i> = 38 and 10<i>x</i> + 35<i>y</i> = −85. Subtracting: −6<i>y</i> − 35<i>y</i> = −41<i>y</i> and 38 − (−85) = 123, so <i>y</i> = −3. Then 5<i>x</i> + 9 = 19, <i>x</i> = 2. Check: 4 − 21 = −17 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-mb5">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">After multiplying you have <span class="math-expr">6x + 10y = 32</span> and <span class="math-expr">6x − 9y = −6</span>. Both start with +6<em>x</em>, so you subtract. What do you get?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mb5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mb5', this, 'a')"><div class="opt-indicator"></div><span><em>y</em> = 26</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb5', this, 'b')"><div class="opt-indicator"></div><span>19<em>y</em> = 38</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb5', this, 'c')"><div class="opt-indicator"></div><span>19<em>y</em> = 26</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb5', this, 'd')"><div class="opt-indicator"></div><span><em>y</em> = 38</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mb5','b','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb5','Do each column with brackets: 10<i>y</i> − (−9<i>y</i>) and 32 − (−6).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb5','B — 10<i>y</i> − (−9<i>y</i>) = 19<i>y</i> and 32 − (−6) = 38, so 19<i>y</i> = 38 and <i>y</i> = 2. Forgetting that minus a negative is plus gives the wrong <i>y</i> = 26 or 19<i>y</i> = 26.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-mb6">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">For <span class="math-expr">7x + 2y = 25</span> and <span class="math-expr">3x − 4y = 1</span>, which plan works <strong>and</strong> takes the least work?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mb6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mb6', this, 'a')"><div class="opt-indicator"></div><span>Remove <em>x</em>: multiply the first by 3 and the second by 7, then add</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb6', this, 'b')"><div class="opt-indicator"></div><span>Remove <em>y</em>: multiply the first by 2, then subtract</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb6', this, 'c')"><div class="opt-indicator"></div><span>Remove <em>y</em>: multiply the second by 2, then add</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mb6', this, 'd')"><div class="opt-indicator"></div><span>Remove <em>y</em>: multiply the first by 2, then add</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mb6','d','Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mb6','2 goes into 4, so only one equation needs multiplying. Then check the signs of the two <i>y</i> terms.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mb6','D — 14<i>x</i> + 4<i>y</i> = 50 and 3<i>x</i> − 4<i>y</i> = 1 have different signs, so add: 17<i>x</i> = 51, <i>x</i> = 3, <i>y</i> = 2. Removing <i>x</i> needs two multiplications, and 21<i>x</i> with 21<i>x</i> must be subtracted, not added. Multiplying the second by 2 gives −8<i>y</i>, which does not match 2<i>y</i>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mb6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MULTIPLY BOTH &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mb-fill"></div></div>
+    <div class="section-score-val" id="sec-mb-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: TIDY UP FIRST ═══════════════ -->
+<div id="tidy">
+  <div class="section-header"><div class="section-icon">&#8644;</div><div><div class="sub-label">Section D &middot; Equations in a Messy Order</div><h2>Tidy Up First</h2></div></div>
+  <div class="info-box"><strong>Elimination needs both equations in the same shape</strong>: letters on the left in the order <em>x</em>, <em>y</em>, and the number on the right. If an equation arrives as <span class="math-expr">2y = 5x − 3</span>, move the terms across first. Taking 5<em>x</em> from both sides gives −5<em>x</em> + 2<em>y</em> = −3; multiplying everything by −1 turns it into 5<em>x</em> − 2<em>y</em> = 3, which is easier to read.</div>
+  <div class="info-box"><strong>If one equation already says <em>y</em> = …</strong>, you do not need elimination at all: put that expression in place of <em>y</em> in the other equation (substitution) and use brackets.</div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-rf1">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Rewrite <span class="math-expr">3y = 2x − 1</span> in the form <em>ax</em> + <em>by</em> = <em>c</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="rf1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('rf1', this, 'a')"><div class="opt-indicator"></div><span>2<em>x</em> + 3<em>y</em> = 1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rf1', this, 'b')"><div class="opt-indicator"></div><span>2<em>x</em> − 3<em>y</em> = −1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rf1', this, 'c')"><div class="opt-indicator"></div><span>2<em>x</em> − 3<em>y</em> = 1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rf1', this, 'd')"><div class="opt-indicator"></div><span>3<em>x</em> − 2<em>y</em> = 1</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('rf1','c','Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rf1','Take 3<i>y</i> from both sides and add 1 to both sides. Then test your answer with a point on the line, such as <i>x</i> = 2, <i>y</i> = 1.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rf1','C — 3<i>y</i> = 2<i>x</i> − 1 → 0 = 2<i>x</i> − 3<i>y</i> − 1 → 2<i>x</i> − 3<i>y</i> = 1. Test with (2, 1): 3 × 1 = 2 × 2 − 1 ✓ and 4 − 3 = 1 ✓.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rf1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-rf2">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Solve <span class="math-expr">3x = 2y + 4</span> and <span class="math-expr">5x + 3y = 13</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="rf2-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="rf2-y" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('rf2',2,1,'Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rf2','Rewrite the first as 3<i>x</i> − 2<i>y</i> = 4. Then ×3 and ×2 make the <i>y</i> terms −6<i>y</i> and +6<i>y</i>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rf2','<i>x</i> = 2, <i>y</i> = 1 — 9<i>x</i> − 6<i>y</i> = 12 and 10<i>x</i> + 6<i>y</i> = 26; adding gives 19<i>x</i> = 38, <i>x</i> = 2. Then 10 + 3<i>y</i> = 13, <i>y</i> = 1. Check: 3 × 2 = 2 × 1 + 4 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rf2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-rf3">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Solve <span class="math-expr">y = 3x − 7</span> and <span class="math-expr">5x + 2y = 30</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="rf3-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="rf3-y" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('rf3',4,5,'Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rf3','Replace <i>y</i> in the second equation: 5<i>x</i> + 2(3<i>x</i> − 7) = 30. Expand the bracket carefully.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rf3','<i>x</i> = 4, <i>y</i> = 5 — 5<i>x</i> + 6<i>x</i> − 14 = 30, 11<i>x</i> = 44, <i>x</i> = 4. Then <i>y</i> = 12 − 7 = 5. Check: 20 + 10 = 30 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rf3-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">TIDY UP FIRST &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-rf-fill"></div></div>
+    <div class="section-score-val" id="sec-rf-val">0/5</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: WHY ENGINEERS NEED THIS ═══════════════ -->
+<div id="engineering">
+  <div class="section-header"><div class="section-icon">&#9881;</div><div><div class="sub-label">Section E &middot; Electrical, Mechanical, Computer</div><h2>Why Engineers Need This</h2></div></div>
+  <div class="info-box"><strong>Engineers rarely meet one unknown on its own.</strong> Things in a machine or a circuit affect each other, so each rule an engineer writes down (a law of physics) usually contains <strong>several unknowns at once</strong>. One rule is not enough to find them; you need as many rules as unknowns, and then you solve them <em>simultaneously</em>. The three examples below are real methods, made small enough to do by hand:<ul>
+    <li><strong>Electrical engineering</strong> &mdash; the currents in a circuit with two batteries (Kirchhoff’s laws).</li>
+    <li><strong>Mechanical / civil engineering</strong> &mdash; how hard each support of a bridge must push up when a truck drives over it (balance of forces).</li>
+    <li><strong>Computer engineering</strong> &mdash; where a laser beam in a game hits a wall (two lines crossing).</li>
+  </ul></div>
+  <div class="info-box"><strong>At full size</strong> a chip design or a car frame can have <strong>thousands of unknowns</strong>. Nobody solves those by hand, but the computer runs the same moves you are practising: multiply a row so a term matches, subtract to remove it, repeat. Mathematicians call that recipe <em>Gaussian elimination</em>, and it is one of the most-used pieces of code in engineering software. When you learn the recipe for two unknowns, you are learning what that code does.</div>
+
+  <!-- E1: circuit -->
+  <h3 class="eng-h">&#9889; Electrical: two batteries, two currents</h3>
+  <div class="info-box">Two loops share the middle wire. Current <strong>I₁</strong> (blue) goes round the left loop and <strong>I₂</strong> (green) round the right loop; both flow down through the 2 Ω resistor in the middle, so that resistor carries I₁ + I₂. The rule for each loop is: <em>battery voltage = resistance × current, added up all the way round</em>. That gives:<br>
+  Left loop: 14 = 4I₁ + 2(I₁ + I₂), which tidies up to <span class="math-expr">6I₁ + 2I₂ = 14</span><br>
+  Right loop: 9 = 3I₂ + 2(I₁ + I₂), which tidies up to <span class="math-expr">2I₁ + 5I₂ = 9</span><br>
+  Each equation has <strong>both</strong> currents in it, because the middle resistor links the loops.</div>
+  <div class="sim">
+    <div class="sim-title">The circuit &mdash; the dots move faster where the current is bigger</div>
+    <svg id="ckt-svg" class="sim-svg" viewBox="0 0 560 280" role="img" aria-label="Two-loop circuit: a 14 volt battery and 4 ohm resistor on the left, a 9 volt battery and 3 ohm resistor on the right, and a shared 2 ohm resistor in the middle"></svg>
+    <div class="sim-controls">
+      <button class="sim-btn go" id="ckt-play" onclick="playCircuit()"></button>
+    </div>
+    <div class="sim-info" id="ckt-info"></div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-en1">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Solve <span class="math-expr">6I₁ + 2I₂ = 14</span> and <span class="math-expr">2I₁ + 5I₂ = 9</span> to find both currents in amps.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">I₁ =</span><input type="number" step="any" class="num-input" id="en1-x" placeholder="I₁"><span class="num-unit">A</span><span class="num-unit">&nbsp; I₂ =</span><input type="number" step="any" class="num-input" id="en1-y" placeholder="I₂"><span class="num-unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('en1',2,1,'Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('en1','I₁ and I₂ are just letters, like <i>x</i> and <i>y</i>. Multiply the second equation by 3 so both start with 6I₁, then subtract.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('en1','I₁ = 2 A, I₂ = 1 A — 6I₁ + 15I₂ = 27; subtracting 6I₁ + 2I₂ = 14 gives 13I₂ = 13, I₂ = 1. Then 6I₁ + 2 = 14, I₁ = 2. The middle resistor carries 2 + 1 = 3 A.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="en1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-en2">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">For a different circuit, an engineer’s equations give I₁ = 3 A and I₂ = −1 A. What does the minus sign tell them?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="en2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('en2', this, 'a')"><div class="opt-indicator"></div><span>I₂ really flows the opposite way round its loop to the arrow they drew</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('en2', this, 'b')"><div class="opt-indicator"></div><span>They made a mistake, because a current can never be negative</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('en2', this, 'c')"><div class="opt-indicator"></div><span>The battery in loop 2 is flat, so no current flows there</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('en2', this, 'd')"><div class="opt-indicator"></div><span>I₂ is 1 A smaller than I₁</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('en2','a','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('en2','Before solving, the engineer guesses a direction for each current and draws an arrow. What would a negative answer say about that guess?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('en2','A — the equations are written for the direction of the arrow. A negative answer means the current is 1 A in the <b>other</b> direction. Engineers do not need to guess right; the sign of the answer corrects them.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="en2-fb"></div>
+    </div>
+  </div>
+
+  <!-- E2: bridge -->
+  <h3 class="eng-h">&#127897; Mechanical: a truck on a bridge</h3>
+  <div class="info-box">A 10 m bridge rests on two supports, A and B. A 120 kN truck stops 4 m from A. Each support pushes up with an unknown force, R<sub>A</sub> and R<sub>B</sub>. An engineer uses two balance rules:<br>
+  <strong>Up = down</strong> (the bridge does not move up or down): <span class="math-expr">R<sub>A</sub> + R<sub>B</sub> = 120</span><br>
+  <strong>No turning</strong> (the bridge does not tip). Balancing the turning effects about the middle of the bridge gives: <span class="math-expr">R<sub>A</sub> − R<sub>B</sub> = 24</span><br>
+  Engineers need both forces to choose how strong each support must be.</div>
+  <div class="sim">
+    <div class="sim-title">The bridge &mdash; watch the support forces change as the truck drives across</div>
+    <svg id="br-svg" class="sim-svg" viewBox="0 0 560 280" role="img" aria-label="A truck on a bridge with two supports. Arrows under the supports show how hard each one pushes up"></svg>
+    <div class="sim-controls">
+      <button class="sim-btn go" id="br-play" onclick="playBridge()"></button>
+    </div>
+    <div class="sim-info" id="br-info"></div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-en3">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Solve <span class="math-expr">R<sub>A</sub> + R<sub>B</sub> = 120</span> and <span class="math-expr">R<sub>A</sub> − R<sub>B</sub> = 24</span>. Give both forces in kN.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">R<sub>A</sub> =</span><input type="number" step="any" class="num-input" id="en3-x" placeholder="RA"><span class="num-unit">kN</span><span class="num-unit">&nbsp; R<sub>B</sub> =</span><input type="number" step="any" class="num-input" id="en3-y" placeholder="RB"><span class="num-unit">kN</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('en3',72,48,'Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('en3','+R<sub>B</sub> and −R<sub>B</sub>: different signs, so add the equations.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('en3','R<sub>A</sub> = 72 kN, R<sub>B</sub> = 48 kN — adding gives 2R<sub>A</sub> = 144. Support A carries more because the truck is nearer to A.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="en3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-en4">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">The truck moves to the exact middle of the bridge. Now the turning rule gives <span class="math-expr">R<sub>A</sub> − R<sub>B</sub> = 0</span>, and still <span class="math-expr">R<sub>A</sub> + R<sub>B</sub> = 120</span>. What are the support forces?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="en4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('en4', this, 'a')"><div class="opt-indicator"></div><span>R<sub>A</sub> = 120 kN, R<sub>B</sub> = 0 kN</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('en4', this, 'b')"><div class="opt-indicator"></div><span>R<sub>A</sub> = 0 kN, R<sub>B</sub> = 120 kN</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('en4', this, 'c')"><div class="opt-indicator"></div><span>R<sub>A</sub> = 72 kN, R<sub>B</sub> = 48 kN</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('en4', this, 'd')"><div class="opt-indicator"></div><span>R<sub>A</sub> = 60 kN, R<sub>B</sub> = 60 kN</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('en4','d','Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('en4','R<sub>A</sub> − R<sub>B</sub> = 0 means the two forces are equal.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('en4','D — adding gives 2R<sub>A</sub> = 120, so R<sub>A</sub> = 60 and R<sub>B</sub> = 60. A truck in the middle is shared equally by the two supports.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="en4-fb"></div>
+    </div>
+  </div>
+
+  <!-- E3: laser -->
+  <h3 class="eng-h">&#128187; Computer: where does the laser hit the wall?</h3>
+  <div class="info-box">In a game, every straight laser beam and every wall is stored as an equation of a line. To draw the spark in the right place, the game must find the point that is on <strong>both</strong> lines &mdash; that is, solve a pair of simultaneous equations. It does this for every beam, every frame, many times a second. The same sum tells a robot vacuum where its path meets the edge of a rug, and a self-driving car where two paths cross.<br>
+  Laser beam: <span class="math-expr">3x − y = 4</span> &nbsp; Wall: <span class="math-expr">2x + 3y = 21</span></div>
+  <div class="sim">
+    <div class="sim-title">The game screen &mdash; fire the laser</div>
+    <svg id="lz-svg" class="sim-svg" viewBox="0 0 400 320" role="img" aria-label="A grid with a wall along 2x + 3y = 21 and a laser fired along 3x − y = 4"></svg>
+    <div class="sim-controls">
+      <button class="sim-btn go" id="lz-play" onclick="playLaser()"></button>
+    </div>
+    <div class="sim-info" id="lz-info"></div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-en5">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Solve <span class="math-expr">3x − y = 4</span> and <span class="math-expr">2x + 3y = 21</span> to find where the laser hits the wall.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">x =</span><input type="number" step="any" class="num-input" id="en5-x" placeholder="x"><span class="num-unit">y =</span><input type="number" step="any" class="num-input" id="en5-y" placeholder="y"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('en5',3,5,'Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('en5','Multiply the laser equation by 3 to get −3<i>y</i>, then add.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('en5','<i>x</i> = 3, <i>y</i> = 5 — 9<i>x</i> − 3<i>y</i> = 12; adding 2<i>x</i> + 3<i>y</i> = 21 gives 11<i>x</i> = 33, <i>x</i> = 3. Then 9 − <i>y</i> = 4, <i>y</i> = 5. The spark is drawn at (3, 5).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="en5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-en6">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">A program that simulates a computer chip must find 1000 unknown currents at once. Why does it use elimination rather than drawing graphs?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="en6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('en6', this, 'a')"><div class="opt-indicator"></div><span>Graphs only work when every answer is a whole number, and currents rarely are</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('en6', this, 'b')"><div class="opt-indicator"></div><span>Elimination is a fixed recipe it can repeat for any number of unknowns; a graph cannot have 1000 axes</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('en6', this, 'c')"><div class="opt-indicator"></div><span>Elimination always gets rid of all 1000 unknowns in one single step</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('en6', this, 'd')"><div class="opt-indicator"></div><span>Computers cannot draw lines, so they cannot read off a crossing point</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('en6','b','Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('en6','Two unknowns need a flat grid with two axes. How many axes would 1000 unknowns need? And elimination removes one letter at a time.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('en6','B — a graph needs one axis per unknown, so it only works for two (or, with effort, three). Elimination removes one unknown at a time, the same way every time, which is exactly what a computer is good at. Graphs can show non-whole crossings, but only roughly; and computers draw lines all the time.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="en6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">ENGINEERING &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-en-fill"></div></div>
+    <div class="section-score-val" id="sec-en-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: PROBLEMS IN WORDS ═══════════════ -->
+<div id="words">
+  <div class="section-header"><div class="section-icon">Aa</div><div><div class="sub-label">Section F &middot; Everyday Problems</div><h2>Problems in Words</h2></div></div>
+  <div class="info-box"><strong>Same recipe, words first.</strong> Pick a letter for each unknown, write one equation for each sentence that gives a total, line them up, and use the five steps. These all need multiplying before anything cancels. Finish by checking your answer makes sense in the story (a price cannot be negative).</div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-wp1">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">3 adult tickets and 2 child tickets cost $46. 2 adult tickets and 5 child tickets cost $49. Find the price of each ticket.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">adult $</span><input type="number" step="any" class="num-input" id="wp1-x" placeholder="adult"><span class="num-unit">&nbsp; child $</span><input type="number" step="any" class="num-input" id="wp1-y" placeholder="child"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('wp1',12,5,'Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp1','3<i>a</i> + 2<i>c</i> = 46 and 2<i>a</i> + 5<i>c</i> = 49. Multiply by 2 and by 3 so both have 6<i>a</i>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp1','Adult $12, child $5 — 6<i>a</i> + 4<i>c</i> = 92 and 6<i>a</i> + 15<i>c</i> = 147; subtracting gives 11<i>c</i> = 55, <i>c</i> = 5. Then 3<i>a</i> + 10 = 46, <i>a</i> = 12. Check: 24 + 25 = 49 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-wp2">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">A 3D printer uses 50 g of plastic for 4 small parts and 3 large parts, and 45 g for 5 small parts and 2 large parts. How many grams does each part use?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">small</span><input type="number" step="any" class="num-input" id="wp2-x" placeholder="small"><span class="num-unit">g &nbsp; large</span><input type="number" step="any" class="num-input" id="wp2-y" placeholder="large"><span class="num-unit">g</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('wp2',5,10,'Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp2','4<i>s</i> + 3<i>l</i> = 50 and 5<i>s</i> + 2<i>l</i> = 45. To remove <i>l</i>, multiply by 2 and by 3.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp2','Small 5 g, large 10 g — 8<i>s</i> + 6<i>l</i> = 100 and 15<i>s</i> + 6<i>l</i> = 135; subtracting gives 7<i>s</i> = 35, <i>s</i> = 5. Then 20 + 3<i>l</i> = 50, <i>l</i> = 10. Check: 25 + 20 = 45 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-wp3">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A taxi charges a fixed amount plus a price per km. An 8 km ride costs $13 and a 3 km ride costs $6. Find the fixed charge and the price per km.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="num-unit">fixed $</span><input type="number" step="any" class="num-input" id="wp3-x" placeholder="fixed"><span class="num-unit">&nbsp; per km $</span><input type="number" step="any" class="num-input" id="wp3-y" placeholder="per km"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkPair('wp3',1.8,1.4,'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('wp3','<i>f</i> + 8<i>r</i> = 13 and <i>f</i> + 3<i>r</i> = 6. The answers are decimals.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('wp3','Fixed $1.80, $1.40 per km — subtracting gives 5<i>r</i> = 7, <i>r</i> = 1.4. Then <i>f</i> + 4.2 = 6, <i>f</i> = 1.8. Check: 1.8 + 11.2 = 13 ✓')">Show Answer</button>
+      </div>
+      <div class="feedback" id="wp3-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">PROBLEMS IN WORDS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wp-fill"></div></div>
+    <div class="section-score-val" id="sec-wp-val">0/6</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  bd1: 1, bd2: 1, bd3: 1, bd4: 1, bd5: 1, bd6: 1,
+  mo1: 1, mo2: 2, mo3: 2, mo4: 2, mo5: 1,
+  mb1: 1, mb2: 2, mb3: 2, mb4: 2, mb5: 1, mb6: 1,
+  rf1: 1, rf2: 2, rf3: 2,
+  en1: 2, en2: 1, en3: 2, en4: 1, en5: 2, en6: 1,
+  wp1: 2, wp2: 2, wp3: 2
+};
+
+const sections = {
+  bd: { label: 'Break It Down', qs: ['bd1','bd2','bd3','bd4','bd5','bd6'] },
+  mo: { label: 'Multiply One', qs: ['mo1','mo2','mo3','mo4','mo5'] },
+  mb: { label: 'Multiply Both', qs: ['mb1','mb2','mb3','mb4','mb5','mb6'] },
+  rf: { label: 'Tidy Up First', qs: ['rf1','rf2','rf3'] },
+  en: { label: 'Engineering', qs: ['en1','en2','en3','en4','en5','en6'] },
+  wp: { label: 'Problems in Words', qs: ['wp1','wp2','wp3'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+// ── Helpers ────────────────────────────────────────────────
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const ease = p => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+function tween(ms, onFrame, alive) {
+  return new Promise(resolve => {
+    let t0 = null;
+    function frame(ts) {
+      if (!alive()) return resolve();
+      if (t0 === null) t0 = ts;
+      const p = Math.min(1, (ts - t0) / ms);
+      onFrame(p);
+      if (p < 1) requestAnimationFrame(frame); else resolve();
+    }
+    requestAnimationFrame(frame);
+  });
+}
+const MONO = 'font-family="DM Mono, monospace"';
+function nf(n) {
+  if (Math.abs(n - Math.round(n)) < 1e-9) return String(Math.round(n)).replace('-', '−');
+  return (Math.round(n * 1000) / 1000).toString().replace('-', '−');
+}
+function par(n) { return n < 0 ? `(${nf(n)})` : nf(n); }
+function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; }
+function fracStr(num, den) {
+  if (den < 0) { num = -num; den = -den; }
+  const g = gcd(num, den) || 1;
+  num /= g; den /= g;
+  return den === 1 ? nf(num) : `${nf(num)}/${den}`;
+}
+// A term such as 3y, − 2y, + x. `lead` = first term on the line (no + sign).
+function term(c, L, lead) {
+  const abs = Math.abs(c);
+  const body = c === 0 ? '0' + L : (abs === 1 ? '' : nf(abs)) + L;
+  if (lead) return (c < 0 ? '−' : '') + body;
+  return (c < 0 ? '− ' : '+ ') + body;
+}
+function eqStr(a, b, c) { return `${term(a, 'x', true)} ${term(b, 'y', false)} = ${nf(c)}`; }
+
+// ── Elimination Animator ───────────────────────────────────
+const EA = { step: 0, d: null, run: 0, max: 6 };
+
+function eaCompute(a1, b1, c1, a2, b2, c2, target) {
+  if ([a1, b1, c1, a2, b2, c2].some(n => !Number.isInteger(n))) return { err: 'Type a whole number in every box.' };
+  const keep = target === 'y' ? 'x' : 'y';
+  const e1 = target === 'y' ? b1 : a1, e2 = target === 'y' ? b2 : a2;
+  if (e1 === 0 || e2 === 0) return { err: `One equation has no ${target} in it at all, so there is nothing to eliminate. That equation tells you ${keep} straight away: solve it, then substitute.` };
+  const L = Math.abs(e1 * e2) / gcd(e1, e2);
+  const m1 = L / Math.abs(e1), m2 = L / Math.abs(e2);
+  const S1 = { a: a1 * m1, b: b1 * m1, c: c1 * m1 }, S2 = { a: a2 * m2, b: b2 * m2, c: c2 * m2 };
+  const same = Math.sign(e1) === Math.sign(e2);
+  const f = same ? -1 : 1;
+  const R = { a: S1.a + f * S2.a, b: S1.b + f * S2.b, c: S1.c + f * S2.c };
+  const K = target === 'y' ? R.a : R.b;
+  const d = { a1, b1, c1, a2, b2, c2, target, keep, e1, e2, L, m1, m2, S1, S2, same, R, K };
+  if (K === 0) { d.none = true; return d; }
+  const v = R.c / K;
+  const k1 = target === 'y' ? a1 : b1;
+  const other = (c1 - k1 * v) / e1;
+  d.vStr = fracStr(R.c, K);
+  d.oStr = fracStr(c1 * K - k1 * R.c, e1 * K);
+  d.x = target === 'y' ? v : other; d.y = target === 'y' ? other : v;
+  d.xStr = target === 'y' ? d.vStr : d.oStr; d.yStr = target === 'y' ? d.oStr : d.vStr;
+  return d;
+}
+
+function eaLoad() {
+  const g = id => Number(document.getElementById(id).value);
+  const t = document.getElementById('ea-target').value;
+  EA.run++;
+  EA.d = eaCompute(g('ea-a1'), g('ea-b1'), g('ea-c1'), g('ea-a2'), g('ea-b2'), g('ea-c2'), t);
+  EA.step = 0;
+  eaRender();
+}
+
+function eaPreset(a1, b1, c1, a2, b2, c2, t) {
+  [['ea-a1', a1], ['ea-b1', b1], ['ea-c1', c1], ['ea-a2', a2], ['ea-b2', b2], ['ea-c2', c2]].forEach(([id, v]) => document.getElementById(id).value = v);
+  document.getElementById('ea-target').value = t;
+  eaLoad();
+}
+
+function eaGo(dir) {
+  EA.run++;
+  const d = EA.d;
+  if (!d || d.err) return;
+  const max = d.none ? 4 : EA.max;
+  EA.step = Math.max(0, Math.min(max, EA.step + dir));
+  eaRender();
+}
+
+async function eaPlay() {
+  const run = ++EA.run, alive = () => run === EA.run;
+  if (!EA.d || EA.d.err) return;
+  const max = EA.d.none ? 4 : EA.max;
+  EA.step = 0; eaRender();
+  while (EA.step < max) {
+    await wait(2200);
+    if (!alive()) return;
+    EA.step++; eaRender();
+  }
+}
+
+// Column positions for the stacked equations
+const EC = { op: 46, x: 170, y: 270, eq: 292, rhs: 360, badge: 396, lab: 548 };
+function eaRow(y, a, b, c, cls, opts = {}) {
+  const fs = 19;
+  let s = `<g class="${cls}">`;
+  if (opts.op) s += `<text x="${EC.op}" y="${y}" text-anchor="middle" ${MONO} font-size="24" fill="#f5a623" font-weight="500">${opts.op}</text>`;
+  const xt = term(a, 'x', true), yt = term(b, 'y', false);
+  s += `<text x="${EC.x}" y="${y}" text-anchor="end" ${MONO} font-size="${fs}" fill="${opts.dimX ? '#4a5270' : '#e8eaf0'}">${xt}</text>`;
+  s += `<text x="${EC.y}" y="${y}" text-anchor="end" ${MONO} font-size="${fs}" fill="${opts.dimY ? '#4a5270' : '#e8eaf0'}">${yt}</text>`;
+  s += `<text x="${EC.eq}" y="${y}" text-anchor="middle" ${MONO} font-size="${fs}" fill="#7a84a0">=</text>`;
+  s += `<text x="${EC.rhs}" y="${y}" text-anchor="end" ${MONO} font-size="${fs}" fill="#e8eaf0">${nf(c)}</text>`;
+  if (opts.lab) s += `<text x="${EC.lab}" y="${y}" text-anchor="end" ${MONO} font-size="11" fill="#7a84a0">${opts.lab}</text>`;
+  return s + '</g>';
+}
+
+function eaRender() {
+  const svg = document.getElementById('ea-svg'), info = document.getElementById('ea-info');
+  const d = EA.d, st = EA.step;
+  if (!d) return;
+  if (d.err) { svg.innerHTML = `<text x="280" y="165" text-anchor="middle" ${MONO} font-size="13" fill="#f5a623">Check the boxes above</text>`; info.innerHTML = d.err; return; }
+  const cls = n => n === st ? 'ea-new' : '';
+  const T = d.target, K = d.keep;
+  let g = '';
+  // Step 0: the two equations
+  g += `<text x="12" y="22" ${MONO} font-size="11" fill="#4a5270">THE TWO EQUATIONS</text>`;
+  g += eaRow(52, d.a1, d.b1, d.c1, '', { lab: 'eq 1' });
+  g += eaRow(86, d.a2, d.b2, d.c2, '', { lab: 'eq 2' });
+  // Step 1: multipliers
+  if (st >= 1) {
+    [[52, d.m1], [86, d.m2]].forEach(([y, m]) => {
+      g += `<g class="${cls(1)}"><rect x="${EC.badge - 4}" y="${y - 19}" width="62" height="26" rx="13" fill="${m === 1 ? '#1e2336' : 'rgba(245,166,35,0.18)'}" stroke="${m === 1 ? '#2a3050' : '#f5a623'}"/>
+        <text x="${EC.badge + 27}" y="${y}" text-anchor="middle" ${MONO} font-size="15" fill="${m === 1 ? '#7a84a0' : '#f5a623'}">${m === 1 ? 'keep' : '× ' + m}</text></g>`;
+    });
+  }
+  // Step 2: the multiplied equations
+  if (st >= 2) {
+    g += `<text x="12" y="118" ${MONO} font-size="11" fill="#4a5270" class="${cls(2)}">AFTER MULTIPLYING</text>`;
+    g += eaRow(148, d.S1.a, d.S1.b, d.S1.c, cls(2) ? 'ea-drop' : '', { lab: d.m1 === 1 ? 'eq 1' : `eq 1 × ${d.m1}` });
+    g += eaRow(182, d.S2.a, d.S2.b, d.S2.c, cls(2) ? 'ea-drop' : '', { lab: d.m2 === 1 ? 'eq 2' : `eq 2 × ${d.m2}`, op: st >= 3 ? (d.same ? '−' : '+') : '' });
+  }
+  // Step 3: highlight the matching terms and the sign rule
+  if (st >= 3) {
+    const cx = T === 'y' ? EC.y : EC.x;
+    g += `<rect x="${cx - 78}" y="128" width="86" height="64" rx="8" fill="rgba(245,166,35,0.10)" stroke="#f5a623" stroke-width="2" class="${st === 3 ? 'ea-glow' : ''}"/>`;
+    if (st === 3) g += `<text x="${EC.lab}" y="118" text-anchor="end" ${MONO} font-size="13" fill="#f5a623" class="ea-new">${d.same ? 'same signs → SUBTRACT' : 'different signs → ADD'}</text>`;
+  }
+  // Step 4: the result row
+  if (st >= 4) {
+    g += `<line x1="70" y1="198" x2="372" y2="198" stroke="#7a84a0" stroke-width="1.5" class="${cls(4)}"/>`;
+    const r = d.R;
+    g += eaRow(228, r.a, r.b, r.c, cls(4), { dimX: T === 'x', dimY: T === 'y' });
+    const cx = T === 'y' ? EC.y : EC.x;
+    g += `<line x1="${cx - 40}" y1="221" x2="${cx + 4}" y2="221" stroke="#e74c3c" stroke-width="2.5" class="${st === 4 ? 'ea-strike' : ''}"/>`;
+    if (d.none) {
+      g += `<text x="280" y="268" text-anchor="middle" ${MONO} font-size="14" fill="#e74c3c" class="ea-new">${r.c === 0 ? 'Both letters vanished and 0 = 0: it is the same line twice.' : `Both letters vanished, leaving 0 = ${nf(r.c)}, which is false.`}</text>`;
+      g += `<text x="280" y="292" text-anchor="middle" ${MONO} font-size="13" fill="#7a84a0" class="ea-new">${r.c === 0 ? 'Every point on it is a solution.' : 'Parallel lines: there is NO solution.'}</text>`;
+    }
+  }
+  // Step 5: solve
+  if (st >= 5) {
+    g += `<text x="${EC.x - 60}" y="266" ${MONO} font-size="18" fill="#3ecf8e" class="${cls(5)}">${K} = ${nf(d.R.c)} ÷ ${par(d.K)} = ${d.vStr}</text>`;
+  }
+  // Step 6: substitute back and check
+  if (st >= 6) {
+    const sub = T === 'y'
+      ? `${nf(d.a1)}(${d.vStr}) ${term(d.b1, 'y', false)} = ${nf(d.c1)}`
+      : `${term(d.a1, 'x', true)} ${d.b1 < 0 ? '−' : '+'} ${nf(Math.abs(d.b1))}(${d.vStr}) = ${nf(d.c1)}`;
+    g += `<text x="${EC.x - 60}" y="296" ${MONO} font-size="15" fill="#e8eaf0" class="ea-new">${sub}  →  <tspan fill="#3ecf8e">${T} = ${d.oStr}</tspan></text>`;
+    const chk = d.a2 * d.x + d.b2 * d.y;
+    g += `<text x="${EC.x - 60}" y="322" ${MONO} font-size="13" fill="#7a84a0" class="ea-new">check in eq 2: ${nf(d.a2)}(${d.xStr}) ${d.b2 < 0 ? '−' : '+'} ${nf(Math.abs(d.b2))}(${d.yStr}) = ${nf(chk)} ✓</text>`;
+  }
+  svg.innerHTML = g;
+
+  // Words for each step
+  const colLine = (s1, s2, L) => `${nf(s1)}${L} ${d.same ? '−' : '+'} ${s2 < 0 ? `(${nf(s2)}${L})` : nf(s2) + L}`;
+  const msgs = [
+    `<b>Step 1 — line up.</b> Look at the ${T} numbers: ${nf(d.e1)} and ${nf(d.e2)}. ${d.m1 === 1 && d.m2 === 1 ? 'They are already the same size, so no multiplying is needed.' : 'They are not the same size, so adding or subtracting now would leave both letters. Press Next step.'}`,
+    `<b>Step 2 — make them match.</b> ${nf(Math.abs(d.e1))} and ${nf(Math.abs(d.e2))} both go into <b>${d.L}</b>. ${d.m1 === 1 ? 'Eq 1 already has it, so keep eq 1' : `Multiply eq 1 by <b>${d.m1}</b>`} and ${d.m2 === 1 ? 'keep eq 2 as it is' : `multiply eq 2 by <b>${d.m2}</b>`}.`,
+    `<b>Multiply every term</b> — the number after = as well: ${nf(d.c1)} × ${d.m1} = ${nf(d.S1.c)} and ${nf(d.c2)} × ${d.m2} = ${nf(d.S2.c)}. The equations look different, but they are still true for the same ${K} and ${T}.`,
+    `<b>Step 3 — check the signs</b> of the matching ${T} terms. ${d.same ? 'They have the <b>same</b> sign, so <b>subtract</b>.' : 'One is + and one is −, so <b>add</b>; then they cancel.'}`,
+    d.none
+      ? `Every column: ${colLine(d.S1.a, d.S2.a, 'x')}, ${colLine(d.S1.b, d.S2.b, 'y')}. Both letters disappeared, so the two lines are parallel (or the same line).`
+      : `${d.same ? 'Subtract' : 'Add'} column by column: ${colLine(d.S1.a, d.S2.a, 'x')} = ${nf(d.R.a)}x, ${colLine(d.S1.b, d.S2.b, 'y')} = ${nf(d.R.b)}y, ${nf(d.S1.c)} ${d.same ? '−' : '+'} ${par(d.S2.c)} = ${nf(d.R.c)}. <b>The ${T} has gone!</b>`,
+    `<b>Step 4 — solve</b> the one-letter equation: ${nf(d.K)}${K} = ${nf(d.R.c)}, so divide both sides by ${nf(d.K)}.`,
+    `<b>Step 5 — substitute back</b> into the original eq 1 to find ${T}, then <b>check</b> both values in eq 2. Answer: <b>x = ${d.xStr}, y = ${d.yStr}</b>.`
+  ];
+  info.innerHTML = msgs[st];
+}
+
+// ── Engineering animations: locked until their questions are answered ──
+const LOCKS = [
+  { btn: 'ckt-play', qs: ['en1','en2'], names: 'Q21 and Q22', label: '&#9654; Switch the circuit on', onOpen: () => drawCircuit(CK.t0) },
+  { btn: 'br-play', qs: ['en3','en4'], names: 'Q23 and Q24', label: '&#9654; Drive the truck across', onOpen: () => drawBridge(4, true) },
+  { btn: 'lz-play', qs: ['en5'], names: 'Q25', label: '&#9654; Fire the laser' }
+];
+const isUnlocked = btnId => LOCKS.find(l => l.btn === btnId).qs.every(q => state.correct[q] !== undefined);
+function refreshLocks() {
+  LOCKS.forEach(l => {
+    const b = document.getElementById(l.btn), open = isUnlocked(l.btn);
+    if (b.dataset.open === String(open)) return;
+    b.dataset.open = String(open);
+    b.disabled = !open;
+    b.innerHTML = open ? l.label : `&#128274; Answer ${l.names} to unlock`;
+    if (open && l.onOpen) l.onOpen();
+  });
+}
+
+// ── Circuit ────────────────────────────────────────────────
+const CK = { l: 70, m: 280, r: 490, t: 50, b: 230, I1: 2, I2: 1, on: false, t0: 0, raf: 0 };
+const loopL = [[CK.l, CK.b], [CK.l, CK.t], [CK.m, CK.t], [CK.m, CK.b]];
+const loopR = [[CK.r, CK.b], [CK.r, CK.t], [CK.m, CK.t], [CK.m, CK.b]];
+function alongLoop(pts, s) {
+  const segs = pts.map((p, i) => [p, pts[(i + 1) % pts.length]]);
+  const lens = segs.map(([p, q]) => Math.hypot(q[0] - p[0], q[1] - p[1]));
+  const total = lens.reduce((a, b) => a + b, 0);
+  s = ((s % total) + total) % total;
+  for (let i = 0; i < segs.length; i++) {
+    if (s <= lens[i]) { const [p, q] = segs[i], f = s / lens[i]; return [p[0] + (q[0] - p[0]) * f, p[1] + (q[1] - p[1]) * f]; }
+    s -= lens[i];
+  }
+  return pts[0];
+}
+function drawCircuit(time) {
+  const open = isUnlocked('ckt-play'), w = 'stroke="#7a84a0" stroke-width="3"';
+  let g = '';
+  // wires (gaps at the batteries)
+  g += `<path d="M${CK.l} ${CK.b} L${CK.l} 150 M${CK.l} 132 L${CK.l} ${CK.t} L${CK.r} ${CK.t} L${CK.r} 132 M${CK.r} 150 L${CK.r} ${CK.b} L${CK.l} ${CK.b} M${CK.m} ${CK.t} L${CK.m} ${CK.b}" fill="none" ${w}/>`;
+  // moving charges
+  const per = 2 * ((CK.m - CK.l) + (CK.b - CK.t));
+  for (let i = 0; i < 12; i++) {
+    const s0 = i * per / 12;
+    const p1 = alongLoop(loopL, s0 + CK.I1 * 45 * time), p2 = alongLoop(loopR, s0 + per / 24 + CK.I2 * 45 * time);
+    g += `<circle cx="${p1[0]}" cy="${p1[1]}" r="4.5" fill="#4f8ef7"/><circle cx="${p2[0]}" cy="${p2[1]}" r="4.5" fill="#3ecf8e"/>`;
+  }
+  // resistors (box symbol) and labels
+  const res = (x, y, wd, ht, lab, lx, ly, anchor) => `<rect x="${x}" y="${y}" width="${wd}" height="${ht}" rx="2" fill="#181c27" stroke="#e8eaf0" stroke-width="2"/><text x="${lx}" y="${ly}" text-anchor="${anchor}" ${MONO} font-size="13" fill="#e8eaf0">${lab}</text>`;
+  g += res(135, 41, 80, 18, '4 Ω', 175, 32, 'middle');
+  g += res(345, 41, 80, 18, '3 Ω', 385, 32, 'middle');
+  g += res(271, 100, 18, 80, '2 Ω', 296, 145, 'start');
+  // batteries: long plate = +
+  const bat = (x, lab, lx, anchor) => `<line x1="${x - 18}" y1="132" x2="${x + 18}" y2="132" stroke="#f5a623" stroke-width="3"/><line x1="${x - 9}" y1="150" x2="${x + 9}" y2="150" stroke="#f5a623" stroke-width="6"/><text x="${x + (anchor === 'start' ? 22 : -22)}" y="128" text-anchor="${anchor}" ${MONO} font-size="12" fill="#f5a623">+</text><text x="${lx}" y="146" text-anchor="${anchor}" ${MONO} font-size="14" fill="#f5a623">${lab}</text>`;
+  g += bat(CK.l, '14 V', CK.l - 26, 'end');
+  g += bat(CK.r, '9 V', CK.r + 26, 'start');
+  // current labels
+  g += `<text x="175" y="150" text-anchor="middle" ${MONO} font-size="16" fill="#4f8ef7">↻ I₁ = ${open ? CK.I1 : '?'} A</text>`;
+  g += `<text x="385" y="150" text-anchor="middle" ${MONO} font-size="16" fill="#3ecf8e">↺ I₂ = ${open ? CK.I2 : '?'} A</text>`;
+  g += `<text x="${CK.m}" y="258" text-anchor="middle" ${MONO} font-size="13" fill="#e8eaf0">middle wire: I₁ + I₂ = ${open ? CK.I1 + CK.I2 : '?'} A ↓</text>`;
+  document.getElementById('ckt-svg').innerHTML = g;
+}
+function playCircuit() {
+  if (!isUnlocked('ckt-play')) return;
+  const btn = document.getElementById('ckt-play');
+  CK.on = !CK.on;
+  btn.innerHTML = CK.on ? '&#10074;&#10074; Pause' : '&#9654; Switch the circuit on';
+  if (!CK.on) { cancelAnimationFrame(CK.raf); return; }
+  document.getElementById('ckt-info').innerHTML = 'Blue charges go round the left loop twice as fast as the green ones (2 A against 1 A). The middle wire carries both: 3 A. Check: 4 × 2 + 2 × 3 = 14 V ✓ and 3 × 1 + 2 × 3 = 9 V ✓';
+  const start = performance.now() - CK.t0 * 1000;
+  const frame = now => { if (!CK.on) return; CK.t0 = (now - start) / 1000; drawCircuit(CK.t0); CK.raf = requestAnimationFrame(frame); };
+  CK.raf = requestAnimationFrame(frame);
+}
+
+// ── Bridge ─────────────────────────────────────────────────
+const BR = { x0: 60, x1: 500, deck: 150, W: 120, span: 10, run: 0 };
+const bx = d => BR.x0 + d / BR.span * (BR.x1 - BR.x0);
+function upArrow(x, len, col) {
+  const tip = 200, tail = tip + Math.max(len, 8);
+  return `<line x1="${x}" y1="${tail}" x2="${x}" y2="${tip + 8}" stroke="${col}" stroke-width="5"/><path d="M${x - 9} ${tip + 12} L${x} ${tip} L${x + 9} ${tip + 12} Z" fill="${col}"/>`;
+}
+function drawBridge(d, show) {
+  const RA = BR.W * (BR.span - d) / BR.span, RB = BR.W * d / BR.span, x = bx(d);
+  let g = '';
+  g += `<rect x="0" y="192" width="560" height="4" fill="#2a3050"/>`;
+  g += `<rect x="${BR.x0 - 10}" y="${BR.deck}" width="${BR.x1 - BR.x0 + 20}" height="12" fill="#4a5270" stroke="#7a84a0"/>`;
+  [BR.x0, BR.x1].forEach((sx, i) => {
+    g += `<path d="M${sx} 162 L${sx - 16} 192 L${sx + 16} 192 Z" fill="#7a84a0"/><text x="${sx}" y="186" text-anchor="middle" ${MONO} font-size="11" fill="#0f1117" font-weight="500">${i ? 'B' : 'A'}</text>`;
+  });
+  // distance marker
+  g += `<line x1="${BR.x0}" y1="175" x2="${x}" y2="175" stroke="#f5a623" stroke-dasharray="4 3"/><text x="${(BR.x0 + x) / 2}" y="171" text-anchor="middle" ${MONO} font-size="11" fill="#f5a623">${nf(Math.round(d * 10) / 10)} m</text>`;
+  // truck
+  g += `<rect x="${x - 38}" y="108" width="52" height="34" rx="3" fill="#4f8ef7"/><rect x="${x + 16}" y="118" width="22" height="24" rx="4" fill="#3d72cc"/><rect x="${x + 22}" y="122" width="12" height="9" rx="2" fill="#bcd3fb"/>`;
+  g += `<circle cx="${x - 24}" cy="144" r="7" fill="#0f1117" stroke="#7a84a0" stroke-width="2"/><circle cx="${x + 26}" cy="144" r="7" fill="#0f1117" stroke="#7a84a0" stroke-width="2"/>`;
+  g += `<line x1="${x}" y1="60" x2="${x}" y2="96" stroke="#e74c3c" stroke-width="4"/><path d="M${x - 8} 92 L${x} 104 L${x + 8} 92 Z" fill="#e74c3c"/><text x="${x}" y="54" text-anchor="middle" ${MONO} font-size="12" fill="#e74c3c">120 kN</text>`;
+  if (show) {
+    g += upArrow(BR.x0, RA * 0.6, '#3ecf8e') + upArrow(BR.x1, RB * 0.6, '#3ecf8e');
+    g += `<text x="${BR.x0 + 16}" y="236" ${MONO} font-size="13" fill="#3ecf8e">R<tspan baseline-shift="sub" font-size="9">A</tspan> = ${nf(Math.round(RA * 10) / 10)} kN</text>`;
+    g += `<text x="${BR.x1 - 16}" y="236" text-anchor="end" ${MONO} font-size="13" fill="#3ecf8e">R<tspan baseline-shift="sub" font-size="9">B</tspan> = ${nf(Math.round(RB * 10) / 10)} kN</text>`;
+    const sb = l => `R<tspan baseline-shift="sub" font-size="9">${l}</tspan>`;
+    g += `<text x="12" y="22" ${MONO} font-size="12" fill="#7a84a0">${sb('A')} + ${sb('B')} = ${nf(Math.round((RA + RB) * 10) / 10)}  &#183;  ${sb('A')} − ${sb('B')} = ${nf(Math.round((RA - RB) * 10) / 10)}</text>`;
+  } else {
+    g += `<text x="${BR.x0 + 16}" y="236" ${MONO} font-size="14" fill="#7a84a0">R<tspan baseline-shift="sub" font-size="9">A</tspan> = ?</text><text x="${BR.x1 - 16}" y="236" text-anchor="end" ${MONO} font-size="14" fill="#7a84a0">R<tspan baseline-shift="sub" font-size="9">B</tspan> = ?</text>`;
+  }
+  document.getElementById('br-svg').innerHTML = g;
+}
+async function playBridge() {
+  if (!isUnlocked('br-play')) return;
+  const run = ++BR.run, alive = () => run === BR.run;
+  const info = document.getElementById('br-info');
+  info.innerHTML = 'Watch the arrows: the nearer the truck is to a support, the harder that support pushes.';
+  await tween(5500, p => drawBridge(0.5 + 9 * ease(p), true), alive);
+  if (!alive()) return;
+  await wait(500);
+  await tween(3000, p => drawBridge(9.5 - 5.5 * ease(p), true), alive);
+  if (!alive()) return;
+  info.innerHTML = 'Parked 4 m from A: R<sub>A</sub> = 72 kN and R<sub>B</sub> = 48 kN, as in Q23. They always add up to 120 kN. In the middle (5 m) they are 60 and 60 kN. Press again to replay.';
+}
+
+// ── Laser ──────────────────────────────────────────────────
+const LZ = { L: 34, R: 386, T: 14, B: 290, n: 8, src: [1.5, 0.5], hit: [3, 5], run: 0 };
+const lzX = x => LZ.L + x / LZ.n * (LZ.R - LZ.L), lzY = y => LZ.B - y / LZ.n * (LZ.B - LZ.T);
+function drawLaser(p, spark) {
+  const open = isUnlocked('lz-play');
+  let g = '';
+  for (let i = 0; i <= LZ.n; i++) {
+    g += `<line x1="${lzX(i)}" y1="${LZ.T}" x2="${lzX(i)}" y2="${LZ.B}" stroke="${i ? '#2a3050' : '#7a84a0'}"/><text x="${lzX(i)}" y="${LZ.B + 16}" text-anchor="middle" ${MONO} font-size="10" fill="#7a84a0">${i}</text>`;
+    g += `<line x1="${LZ.L}" y1="${lzY(i)}" x2="${LZ.R}" y2="${lzY(i)}" stroke="${i ? '#2a3050' : '#7a84a0'}"/><text x="${LZ.L - 6}" y="${lzY(i) + 3}" text-anchor="end" ${MONO} font-size="10" fill="#7a84a0">${i}</text>`;
+  }
+  // wall 2x + 3y = 21, with a brick-like hatch
+  g += `<line x1="${lzX(0)}" y1="${lzY(7)}" x2="${lzX(8)}" y2="${lzY(5 / 3)}" stroke="#c8893a" stroke-width="9" stroke-dasharray="14 3"/>`;
+  g += `<text x="${lzX(3.4)}" y="${lzY(2)}" ${MONO} font-size="12" fill="#c8893a">wall: 2x + 3y = 21</text>`;
+  // laser source
+  const [sx, sy] = LZ.src, [hx, hy] = LZ.hit;
+  g += `<circle cx="${lzX(sx)}" cy="${lzY(sy)}" r="8" fill="#1e2336" stroke="#ff5470" stroke-width="3"/>`;
+  g += `<text x="${lzX(sx) + 12}" y="${lzY(sy) + 4}" ${MONO} font-size="12" fill="#ff5470">laser: 3x − y = 4</text>`;
+  if (p > 0) {
+    const ex = sx + (hx - sx) * p, ey = sy + (hy - sy) * p;
+    g += `<line x1="${lzX(sx)}" y1="${lzY(sy)}" x2="${lzX(ex)}" y2="${lzY(ey)}" stroke="#ff5470" stroke-width="9" stroke-opacity="0.25" stroke-linecap="round"/>`;
+    g += `<line x1="${lzX(sx)}" y1="${lzY(sy)}" x2="${lzX(ex)}" y2="${lzY(ey)}" stroke="#ff8aa0" stroke-width="3" stroke-linecap="round"/>`;
+  }
+  if (spark > 0) {
+    const cx = lzX(hx), cy = lzY(hy);
+    for (let k = 0; k < 10; k++) {
+      const a = k / 10 * Math.PI * 2, r1 = 6 + spark * 10, r2 = 10 + spark * 26;
+      g += `<line x1="${cx + Math.cos(a) * r1}" y1="${cy + Math.sin(a) * r1}" x2="${cx + Math.cos(a) * r2}" y2="${cy + Math.sin(a) * r2}" stroke="#f5a623" stroke-width="2.5" stroke-opacity="${1 - spark * 0.7}"/>`;
+    }
+    g += `<circle cx="${cx}" cy="${cy}" r="6" fill="#fff"/>`;
+    g += `<text x="${cx + 18}" y="${cy - 24}" ${MONO} font-size="14" fill="#f5a623">hit at (3, 5)</text>`;
+  } else if (!open) {
+    g += `<text x="${lzX(2.4)}" y="${lzY(6.4)}" text-anchor="middle" ${MONO} font-size="14" fill="#7a84a0">hit at (?, ?)</text>`;
+  }
+  document.getElementById('lz-svg').innerHTML = g;
+}
+async function playLaser() {
+  if (!isUnlocked('lz-play')) return;
+  const run = ++LZ.run, alive = () => run === LZ.run;
+  const info = document.getElementById('lz-info');
+  info.innerHTML = '';
+  await tween(1400, p => drawLaser(p, 0), alive);
+  if (!alive()) return;
+  await tween(700, p => drawLaser(1, Math.max(0.05, p)), alive);
+  if (!alive()) return;
+  info.innerHTML = 'The beam stops exactly at (3, 5), the solution of the two equations. A game does this sum for every beam, every frame.';
+}
+
+// ── Start-up ───────────────────────────────────────────────
+eaLoad();
+refreshLocks();
+drawCircuit(0);
+drawBridge(4, false);
+drawLaser(0, 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=1e-9) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function checkPair(qid, xVal, yVal, label) {
+  const xi = document.getElementById(`${qid}-x`), yi = document.getElementById(`${qid}-y`);
+  if (xi.value === '' || yi.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const okX = Math.abs(parseFloat(xi.value) - xVal) <= 1e-9;
+  const okY = Math.abs(parseFloat(yi.value) - yVal) <= 1e-9;
+  xi.classList.add(okX ? 'correct' : 'wrong');
+  yi.classList.add(okY ? 'correct' : 'wrong');
+  markResult(qid, okX && okY);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  refreshLocks();
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`unit4-simultaneous-equations-harder_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
