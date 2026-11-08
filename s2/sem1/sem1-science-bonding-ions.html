@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonding &amp; Ions &middot; Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci), var(--accent-warn)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.88rem; color: var(--text-muted); margin-top: 12px; max-width: 720px; }
+.btn-cover { margin-top: 16px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+.btn-cover:hover { border-color: var(--accent); }
+body.cover .btn-cover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.section-tabs { position: sticky; top: 58px; z-index: 50; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); max-width: 100%; padding: 10px max(28px, calc((100% - 844px) / 2)); display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border); }
+.sub-tab { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.main > div[id] { scroll-margin-top: 120px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 18px; flex-wrap: wrap; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(var(--sec-rgb),0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.src-links { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.src-link { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; }
+.src-link:hover { color: var(--sec); border-color: var(--sec); }
+.facts-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sec); margin: 6px 0 10px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 26px; }
+.fact { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--sec); border-radius: 8px; padding: 12px 14px; font-size: 0.86rem; line-height: 1.6; cursor: default; }
+.fact h4 { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.fact em { color: var(--sec); }
+.fact .f { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-warn); }
+.fact-body { transition: filter 0.25s, opacity 0.25s; }
+body.cover .fact { cursor: pointer; }
+body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-select: none; }
+.explorer { background: linear-gradient(135deg, rgba(var(--sec-rgb),0.07), rgba(var(--sec-rgb),0.02)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin: 0 0 28px; }
+.explorer h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 2px; }
+.ex-note { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 14px; }
+.ex-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.ex-svg { width: 100%; max-width: 420px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; display: block; }
+.ex-svg.wide { max-width: 100%; }
+.ex-controls { flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ex-controls label { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted); }
+.ex-controls input[type=range] { width: 100%; accent-color: var(--sec); }
+.ex-readout { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; margin-top: 6px; color: var(--text); }
+.ex-readout strong { color: var(--sec); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--sec, var(--accent)); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: var(--sec, var(--accent)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-ok { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-ok 0.6s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .section-tabs { top: 0; position: relative; padding: 10px 16px; }
+  .hero, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .src-links { margin-left: 0; }
+  .q-header, .q-body { padding-left: 14px; padding-right: 14px; }
+  .explorer { padding: 14px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+
+.ex-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.ex-btn { font-family: var(--font-mono); font-size: 0.76rem; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; }
+.ex-btn:hover { border-color: var(--sec); }
+.ex-btn.on { background: rgba(var(--sec-rgb),0.18); border-color: var(--sec); }
+.ex-btn.go { background: var(--sec); color: #0f1117; border-color: var(--sec); font-weight: 600; }
+.ex-btn:disabled { opacity: 0.45; cursor: default; }
+.ex-select { font-family: var(--font-mono); font-size: 0.85rem; padding: 6px 8px; border-radius: 6px; background: var(--surface2); color: var(--text); border: 1px solid var(--border); max-width: 120px; }
+#tr-svg .mv { transition: transform 1.2s cubic-bezier(0.45,0,0.25,1); }
+#tr-svg .fade { transition: opacity 0.6s ease; }
+@media (prefers-reduced-motion: reduce) { #tr-svg .mv, #tr-svg .fade { transition: none; } }
+
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Science &middot; Bonding &amp; Ions</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 44</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Term 1 topic drill</div>
+  <h1>Bonding &amp; Ions<br><em>step by step</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>36 questions &middot; self-marked &middot; 44 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>About 35 minutes &middot; periodic table helps</div>
+  </div>
+  <p class="credit">One topic, taken slowly: how atoms turn into ions, how to write ionic formulae, why ionic compounds behave as they do, then covalent and metallic bonding and how to tell the three apart. Each section starts with its key facts, and three explorers let you watch electrons move and balance charges yourself. Use <strong>Cover the notes</strong> to test yourself first.</p>
+  <button class="btn btn-cover" id="cover-btn" onclick="toggleCover()">&#128584; Cover the notes</button>
+</div>
+<div class="section-tabs">
+  <a href="#io" class="sub-tab">&#9883; From Atoms to Ions</a>
+  <a href="#fo" class="sub-tab">&#9878; Writing Ionic Formulae</a>
+  <a href="#ic" class="sub-tab">&#129482; Ionic Compounds</a>
+  <a href="#co" class="sub-tab">&#128279; Covalent Bonding</a>
+  <a href="#me" class="sub-tab">&#9881; Metallic Bonding &amp; Telling Them Apart</a>
+</div>
+<div class="main">
+
+<div id="io" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#9883;</div><div><div class="sub-label">Section A &middot; Q1&ndash;Q8 &middot; Term 1 &middot; Week 3</div><h2>From Atoms to Ions</h2></div><div class="src-links"><a class="src-link" href="../t1/w3/term1-week3-science-ionic-bonding.html" target="_blank" rel="noopener">Full sheet &rarr;</a> <a class="src-link" href="../science-formula-sheets/svg/science-diagram-periodic-table.svg" target="_blank" rel="noopener">Periodic table &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Why atoms react</h4><div class="fact-body">Every atom &ldquo;wants&rdquo; a full outer shell. The noble gases (Group 8) already have one, so they hardly react. Other atoms lose, gain or share electrons to get there.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>What an ion is</h4><div class="fact-body">A charged particle made when an atom loses or gains <em>electrons</em>. The protons never change, so the element stays the same.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Which way?</h4><div class="fact-body">Metals have few outer electrons and <strong>lose</strong> them &rarr; <span class="f">positive ions</span>. Non-metals have nearly full outer shells and <strong>gain</strong> electrons &rarr; <span class="f">negative ions</span>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>The charge from the group</h4><div class="fact-body">Groups 1, 2, 3 &rarr; <span class="f">1+, 2+, 3+</span><br>Groups 5, 6, 7 &rarr; <span class="f">3&minus;, 2&minus;, 1&minus;</span><br>Group 4 and Group 8 do not usually form ions.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Counting electrons in an ion</h4><div class="fact-body">Start from the atomic number (protons). A + charge means that many electrons fewer; a &minus; charge means that many more. Example: Li&#8314; has 3 protons and 2 electrons.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Naming ions</h4><div class="fact-body">A metal ion keeps its name: lithium &rarr; lithium ion. A non-metal ion ends in <strong>-ide</strong>: bromine &rarr; bromide, phosphorus &rarr; phosphide.</div></div>
+  </div>
+  <div class="explorer">
+  <h3>&#9883; Electron Transfer</h3>
+  <p class="ex-note">Pick a metal and a non-metal, then press <strong>Transfer</strong>. Dots are the metal&rsquo;s electrons; crosses are the non-metal&rsquo;s.</p>
+  <div class="ex-btns">
+    <button class="ex-btn on" data-pair="nacl">Sodium + chlorine</button>
+    <button class="ex-btn" data-pair="mgo">Magnesium + oxygen</button>
+    <button class="ex-btn go" id="tr-go">Transfer &rarr;</button>
+    <button class="ex-btn" id="tr-reset">Reset</button>
+  </div>
+  <svg class="ex-svg wide" id="tr-svg" viewBox="0 0 440 230" role="img" aria-label="Two atoms; the metal's outer electrons move across to the non-metal"></svg>
+  <div class="ex-readout" id="tr-read"></div>
+</div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Calcium has atomic number 20 and forms Ca²⁺ ions. How many <strong>electrons</strong> does one Ca²⁺ ion have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s1-ans" placeholder="Enter answer..."><span class="num-unit">electrons</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s1',18,'Q1',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s1','A 2+ ion has lost two electrons. How many did the atom have?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','20 − 2 = 18 electrons (2,8,8). It still has 20 protons.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Sulfur has atomic number 16. Write the electronic structure of the sulfide ion, S²⁻.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s2-ans" placeholder="e.g. 2,8,1" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s2',['2,8,8','2.8.8','2, 8, 8','2 8 8','2-8-8'],'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s2','Write the atom first (16 electrons), then add the electrons it gains.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','Sulfur is 2,8,6. It gains two electrons, so S²⁻ is 2,8,8: a full outer shell, like argon.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">A particle has 12 protons and 10 electrons. What is it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>A neon atom, Ne</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>A magnesium ion, Mg²⁺</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'c')"><div class="opt-indicator"></div><span>An oxide ion, O²⁻</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'd')"><div class="opt-indicator"></div><span>A magnesium ion, Mg²⁻</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s3','b','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s3','The protons tell you the element. Then compare the protons with the electrons.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','B — 12 protons makes it magnesium. Two fewer electrons than protons means a charge of 2+. (Neon and O²⁻ also have 10 electrons, but not 12 protons.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Nitrogen has the electronic structure 2,5. How many electrons does a nitrogen atom <strong>gain</strong> when it forms an ion?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s4-ans" placeholder="Enter answer..."><span class="num-unit">electrons</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s4',3,'Q4',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s4','How many more does the outer shell need to hold 8?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','5 + 3 = 8, so it gains 3 electrons and becomes N³⁻ (a nitride ion).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">What is the name of the ion that a fluorine atom forms?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s5-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s5',['fluoride','fluoride ion','a fluoride ion','the fluoride ion','f-','f−'],'Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s5','Non-metal ions change their ending.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','Fluoride (F⁻)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Which two ions <strong>both</strong> have the electronic structure 2,8?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'a')"><div class="opt-indicator"></div><span>K⁺ and Cl⁻</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'b')"><div class="opt-indicator"></div><span>Li⁺ and Be²⁺</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>Mg²⁺ and S²⁻</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>Al³⁺ and F⁻</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s6','d','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s6','Work out each ion: atomic number, then add or take away electrons.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','D — Al (13) loses 3 → 10 electrons; F (9) gains 1 → 10 electrons. Both are 2,8. K⁺ and Cl⁻ are 2,8,8; Li⁺ and Be²⁺ are 2; S²⁻ is 2,8,8.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">A potassium atom (atomic number 19) becomes a K⁺ ion. Which statement is true?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'a')"><div class="opt-indicator"></div><span>It loses one electron and still has 19 protons.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'b')"><div class="opt-indicator"></div><span>It gains one proton, which makes it positive.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'c')"><div class="opt-indicator"></div><span>It loses one proton and becomes argon.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s7', this, 'd')"><div class="opt-indicator"></div><span>It gains one electron, which makes it positive.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s7','a','Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s7','Which particles can an atom lose or gain in a reaction?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','A — Only electrons move. Losing one negative electron leaves one more proton than electrons, so the charge is 1+. The 19 protons keep it potassium.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">An ion X³⁻ has 10 electrons. What is the atomic number of element X?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s8-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s8',7,'Q8',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s8','A 3− ion has gained 3 electrons. How many did the atom have?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','10 − 3 = 7 electrons in the atom, so 7 protons: X is nitrogen.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A &mdash; ATOMS TO IONS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-io-fill"></div></div>
+    <div class="section-score-val" id="sec-io-val">0/10</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="fo" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#9878;</div><div><div class="sub-label">Section B &middot; Q9&ndash;Q16 &middot; Term 1 &middot; Week 3</div><h2>Writing Ionic Formulae</h2></div><div class="src-links"><a class="src-link" href="../t1/w3/term1-week3-science-ionic-bonding.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>The one rule</h4><div class="fact-body">An ionic compound has no overall charge: <span class="f">total + charge = total &minus; charge</span>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Step by step</h4><div class="fact-body">1. Write each ion&rsquo;s charge.<br>2. Find the smallest number both charges go into.<br>3. Use enough of each ion to reach it.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Worked example</h4><div class="fact-body">Al&sup3;&#8314; and S&sup2;&#8315;: 3 and 2 both go into 6. Two Al&sup3;&#8314; give 6+, three S&sup2;&#8315; give 6&minus; &rarr; <span class="f">Al&#8322;S&#8323;</span>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Equal charges</h4><div class="fact-body">If the charges are the same size, one of each is enough: Ba&sup2;&#8314; with S&sup2;&#8315; &rarr; <span class="f">BaS</span>, not Ba&#8322;S&#8322;.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Reading a formula</h4><div class="fact-body">The small number counts the ion just before it. A missing number means one. The charges are never written in the formula.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Naming the compound</h4><div class="fact-body">Metal first, then the non-metal with <strong>-ide</strong>: KBr is potassium bromide.</div></div>
+  </div>
+  <div class="explorer">
+  <h3>&#9878; Charge Balancer</h3>
+  <p class="ex-note">M is a made-up metal and X a made-up non-metal. Choose their charges, then add ions until the charges cancel with as few ions as possible.</p>
+  <div class="ex-row">
+    <div class="ex-controls">
+      <label for="cb-p">Charge on M</label>
+      <select id="cb-p" class="ex-select"><option value="1">1+</option><option value="2" selected>2+</option><option value="3">3+</option></select>
+      <div class="ex-btns"><button class="ex-btn" data-cb="m+">+ M</button><button class="ex-btn" data-cb="m-">&minus; M</button></div>
+      <label for="cb-n">Charge on X</label>
+      <select id="cb-n" class="ex-select"><option value="1">1&minus;</option><option value="2">2&minus;</option><option value="3" selected>3&minus;</option></select>
+      <div class="ex-btns"><button class="ex-btn" data-cb="x+">+ X</button><button class="ex-btn" data-cb="x-">&minus; X</button></div>
+    </div>
+    <svg class="ex-svg" id="cb-svg" viewBox="0 0 360 140" style="max-width:400px" role="img" aria-label="The M and X ions you have added"></svg>
+  </div>
+  <div class="ex-readout" id="cb-read"></div>
+</div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Lithium forms Li⁺ ions and sulfur forms S²⁻ ions. Write the formula of lithium sulfide.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s9-ans" placeholder="e.g. NaCl" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s9',['Li2S','Li₂S'],'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s9','How many 1+ ions balance one 2− ion?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','Li₂S: two Li⁺ (2+) balance one S²⁻ (2−).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Aluminium forms Al³⁺ ions and fluorine forms F⁻ ions. Write the formula of aluminium fluoride.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s10-ans" placeholder="e.g. NaCl" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s10',['AlF3','AlF₃'],'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s10','How many 1− ions balance one 3+ ion?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','AlF₃: one Al³⁺ (3+) balances three F⁻ (3−).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Calcium forms Ca²⁺ ions and nitrogen forms N³⁻ ions. Write the formula of calcium nitride.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s11-ans" placeholder="e.g. CaCl2" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s11',['Ca3N2','Ca₃N₂'],'Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s11','What is the smallest number that both 2 and 3 go into?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','Ca₃N₂: three Ca²⁺ give 6+, two N³⁻ give 6−.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Aluminium forms Al³⁺ ions and oxygen forms O²⁻ ions. Write the formula of aluminium oxide.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s12-ans" placeholder="e.g. CaCl2" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s12',['Al2O3','Al₂O₃'],'Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s12','Find the smallest number both 3 and 2 go into, then count the ions.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','Al₂O₃: two Al³⁺ give 6+, three O²⁻ give 6−.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Sodium is in Group 1 and oxygen is in Group 6. Write the formula of sodium oxide.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s13-ans" placeholder="e.g. NaCl" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s13',['Na2O','Na₂O'],'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s13','First use the groups to work out each ion’s charge.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','Na⁺ and O²⁻, so two Na⁺ balance one O²⁻: Na₂O.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">What is the name of the compound CaBr₂?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'a')"><div class="opt-indicator"></div><span>Calcium dibromine</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'b')"><div class="opt-indicator"></div><span>Bromine calcide</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'c')"><div class="opt-indicator"></div><span>Calcium bromide</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'd')"><div class="opt-indicator"></div><span>Calcium bromate</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s14','c','Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s14','Which element is named first, and how does the non-metal’s name change?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','C — Calcium bromide: the metal keeps its name and bromine becomes bromide. The “2” is not said in the name of an ionic compound.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">A student writes the formula of magnesium fluoride as MgF. What is wrong?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s15-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'a')"><div class="opt-indicator"></div><span>The charges do not balance: one Mg²⁺ needs two F⁻, so it is MgF₂.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'b')"><div class="opt-indicator"></div><span>The fluorine should be written first: FMg.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'c')"><div class="opt-indicator"></div><span>It should be Mg₂F, because magnesium has two outer electrons.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s15', this, 'd')"><div class="opt-indicator"></div><span>Fluorine forms 2− ions, so it should be MgF.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s15','a','Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s15','Write the two charges and add them up.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','A — Mg²⁺ + F⁻ leaves 1+ left over. Two F⁻ ions are needed: MgF₂.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-s16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Barium chloride has the formula BaCl₂. Chloride ions are Cl⁻. What is the charge on a barium ion? (Type it like 2+ or 1−.)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s16-ans" placeholder="e.g. 3+" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s16',['2+','+2','ba2+','2 +'],'Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s16','Two Cl⁻ ions give a total of 2−. What must balance that?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','2+: two Cl⁻ give 2−, so the single barium ion must be Ba²⁺. (Barium is in Group 2.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s16-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION B &mdash; IONIC FORMULAE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-fo-fill"></div></div>
+    <div class="section-score-val" id="sec-fo-val">0/10</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="ic" style="--sec:var(--accent-sci);--sec-rgb:62,207,142">
+  <div class="section-header"><div class="section-icon">&#129482;</div><div><div class="sub-label">Section C &middot; Q17&ndash;Q22 &middot; Term 1 &middot; Week 3</div><h2>Ionic Compounds</h2></div><div class="src-links"><a class="src-link" href="../t1/w3/term1-week3-science-ionic-bonding.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>The bond</h4><div class="fact-body">Ionic bonding is the strong <em>electrostatic attraction</em> between oppositely charged ions.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Giant lattice</h4><div class="fact-body">The ions pack in a huge, regular 3D pattern. Each ion is surrounded by ions of the opposite charge, pulling on it from every side.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Melting points</h4><div class="fact-body">To melt the lattice, a huge number of strong attractions must be overcome, so ionic compounds melt at high temperatures and are solid at room temperature.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Conducting</h4><div class="fact-body">A current needs charged particles that can <em>move</em>. Solid: the ions are locked in place, so no current. Molten or dissolved in water: the ions are free, so it conducts.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>No molecules</h4><div class="fact-body">An ionic compound is not made of separate molecules. NaCl is a <em>ratio</em> (one Na&#8314; for every Cl&#8315;), not one small particle.</div></div>
+  </div>
+  <div class="explorer">
+  <h3>&#128161; Can It Conduct?</h3>
+  <p class="ex-note">An ionic compound between two electrodes wired to a bulb. Switch between solid and melted and watch the ions.</p>
+  <div class="ex-btns">
+    <button class="ex-btn on" data-state="solid">Solid</button>
+    <button class="ex-btn" data-state="melt">Melted</button>
+  </div>
+  <svg class="ex-svg wide" id="lc-svg" viewBox="0 0 440 220" role="img" aria-label="Ions between two electrodes, with a bulb in the circuit">
+    <path d="M84 40 V22 H206 M234 22 H356 V40" stroke="#7a84a0" stroke-width="2" fill="none"/>
+    <circle id="lc-glow" cx="220" cy="22" r="24" fill="#f5a623" opacity="0"/>
+    <circle cx="220" cy="22" r="12" fill="#1e2336" stroke="#e8eaf0" stroke-width="2"/>
+    <path d="M212 14 L228 30 M228 14 L212 30" stroke="#e8eaf0" stroke-width="1.6"/>
+    <line x1="140" y1="12" x2="140" y2="32" stroke="#e8eaf0" stroke-width="2.5"/><line x1="148" y1="16" x2="148" y2="28" stroke="#e8eaf0" stroke-width="5"/>
+    <rect x="96" y="48" width="248" height="160" rx="6" fill="rgba(62,207,142,0.06)" stroke="#2a3050"/>
+    <rect x="80" y="40" width="8" height="150" fill="#7a84a0"/><rect x="352" y="40" width="8" height="150" fill="#7a84a0"/>
+    <g id="lc-ions"></g>
+  </svg>
+  <div class="ex-readout" id="lc-read"></div>
+</div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">The diagram shows how the particles are arranged in a solid. What type of bonding holds it together?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 300 190" role="img" aria-label="A grid of particles in rows: positive and negative ones alternate in every direction" style="max-width:300px"><circle class="draw" cx="50" cy="35" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="50" y="35" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="90" cy="35" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="90" y="35" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="130" cy="35" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="130" y="35" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="170" cy="35" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="170" y="35" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="210" cy="35" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="210" y="35" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="250" cy="35" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="250" y="35" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="50" cy="75" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="50" y="75" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="90" cy="75" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="90" y="75" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="130" cy="75" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="130" y="75" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="170" cy="75" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="170" y="75" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="210" cy="75" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="210" y="75" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="250" cy="75" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="250" y="75" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="50" cy="115" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="50" y="115" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="90" cy="115" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="90" y="115" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="130" cy="115" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="130" y="115" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="170" cy="115" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="170" y="115" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="210" cy="115" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="210" y="115" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="250" cy="115" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="250" y="115" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="50" cy="155" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="50" y="155" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="90" cy="155" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="90" y="155" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="130" cy="155" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="130" y="155" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="170" cy="155" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="170" y="155" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="210" cy="155" r="16" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="210" y="155" font-size="15" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">&#8722;</text><circle class="draw" cx="250" cy="155" r="13" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="250" y="155" font-size="15" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text></svg>
+      <input type="text" class="text-input" id="s17-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s17',['ionic','ionic bonding','ionic bond','ionic bonds','an ionic lattice','ionic lattice'],'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s17','Look at the charges on neighbouring particles.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','Ionic: positive and negative ions alternate in a regular lattice, held by attraction between opposite charges.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Four substances were tested. Which one is most likely to be an ionic compound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'a')"><div class="opt-indicator"></div><span>Melts at −7 °C; never conducts</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'b')"><div class="opt-indicator"></div><span>Melts at 1083 °C; conducts as a solid and as a liquid</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'c')"><div class="opt-indicator"></div><span>Melts at 3550 °C; never conducts</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'd')"><div class="opt-indicator"></div><span>Melts at 714 °C; conducts only when melted or dissolved</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s18','d','Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s18','Which one has charged particles that are only free to move once it melts?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','D — A high melting point plus conducting only when molten or dissolved is the pattern of an ionic compound. B is a metal (copper), A is a covalent molecule (bromine).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-s19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Sodium chloride is still solid at 700 °C. Which explanation is best?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s19-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'a')"><div class="opt-indicator"></div><span>The covalent bond inside each NaCl molecule is very hard to break.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'b')"><div class="opt-indicator"></div><span>Millions of strong attractions between Na⁺ and Cl⁻ ions all have to be overcome.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'c')"><div class="opt-indicator"></div><span>The electrons in sodium chloride are stuck in a sea and cannot escape.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s19', this, 'd')"><div class="opt-indicator"></div><span>Sodium and chlorine atoms have no charge, so they do not move apart.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s19','b','Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s19','Is sodium chloride made of molecules? What holds each ion in place?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s19','B — There are no NaCl molecules. Each ion is pulled on from every side by oppositely charged ions, and all of those attractions must be overcome to melt the lattice.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s19-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-s20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Copper chloride solution conducts electricity. Which particles carry the charge through the solution?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s20-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s20',['ions','the ions','charged ions','copper and chloride ions','copper ions and chloride ions','cu2+ and cl-'],'Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s20','They are charged, and dissolving set them free.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','Ions (Cu²⁺ and Cl⁻), which can move once dissolved. It is not electrons that flow through the solution.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s20-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-s21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">A crystal of salt is hit with a hammer and shatters, instead of bending. Why?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s21-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'a')"><div class="opt-indicator"></div><span>The hammer breaks the covalent bonds between the atoms.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'b')"><div class="opt-indicator"></div><span>Salt has a sea of electrons that is easily lost.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'c')"><div class="opt-indicator"></div><span>When a layer shifts, ions with the same charge end up side by side and repel.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s21', this, 'd')"><div class="opt-indicator"></div><span>The ions melt where the hammer hits.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s21','c','Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s21','Picture the lattice: what lines up after one layer slides by one ion?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','C — Sliding one layer puts + next to + and − next to −. These repel, so the crystal splits apart. A metal has no such problem, because its sea of electrons keeps holding the layers.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s21-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-s22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Potassium bromide is dissolved in water and two electrodes are dipped in. Which way do the K⁺ ions move?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s22-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'a')"><div class="opt-indicator"></div><span>Towards the positive electrode</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'b')"><div class="opt-indicator"></div><span>They stay in one place in the lattice</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'c')"><div class="opt-indicator"></div><span>Up to the surface of the water</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s22', this, 'd')"><div class="opt-indicator"></div><span>Towards the negative electrode</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s22','d','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s22','Opposite charges attract.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s22','D — K⁺ is positive, so it is attracted to the negative electrode. The Br⁻ ions move the other way, to the positive electrode.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s22-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION C &mdash; IONIC COMPOUNDS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ic-fill"></div></div>
+    <div class="section-score-val" id="sec-ic-val">0/7</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="co" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#128279;</div><div><div class="sub-label">Section D &middot; Q23&ndash;Q30 &middot; Term 1 &middot; Week 4</div><h2>Covalent Bonding</h2></div><div class="src-links"><a class="src-link" href="../t1/w4/term1-week4-science-covalent-metallic-bonding.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Sharing</h4><div class="fact-body">Two non-metal atoms each put one electron into a <strong>shared pair</strong>. One shared pair is one covalent bond. The pair counts towards the outer shell of <em>both</em> atoms.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>How many bonds?</h4><div class="fact-body">An atom makes as many bonds as the electrons it is short of a full shell. Hydrogen (1 short) makes 1. Carbon (2,4: 4 short) makes 4.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Double bonds</h4><div class="fact-body">Two shared pairs between the same two atoms make a <strong>double bond</strong>: 4 shared electrons. An atom that is 2 short can fill its shell this way.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Dot-and-cross</h4><div class="fact-body">Draw one atom&rsquo;s electrons as dots and the other&rsquo;s as crosses. Each shared pair sits where the two outer shells overlap.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Simple molecules</h4><div class="fact-body">The bonds <em>inside</em> a molecule are strong, but the forces <em>between</em> molecules are weak. Little energy separates them: low melting and boiling points.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>No current</h4><div class="fact-body">Molecules have no overall charge and no free electrons, so covalent substances do not conduct, even when melted.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-s23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">In ammonia, one nitrogen atom (2,5) bonds covalently to hydrogen atoms. How many hydrogen atoms does it join to?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s23-ans" placeholder="Enter answer..."><span class="num-unit">atoms</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s23',3,'Q23',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s23','How many electrons is nitrogen short of a full outer shell? Each hydrogen provides one.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','Nitrogen is 3 short, so it makes 3 bonds, one to each of 3 hydrogen atoms: NH₃.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s23-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-s24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">Carbon makes four bonds and chlorine makes one. Write the formula of the molecule formed from one carbon atom and chlorine.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s24-ans" placeholder="e.g. CH4" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s24',['CCl4','CCl₄'],'Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s24','How many chlorine atoms does it take to use up carbon’s four bonds?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s24','CCl₄: four chlorine atoms, one on each of carbon’s four bonds.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s24-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-s25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A methane molecule, CH₄, has four single covalent bonds. How many electrons are shared in the molecule altogether?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s25-ans" placeholder="Enter answer..."><span class="num-unit">electrons</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s25',8,'Q25',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s25','Count the shared pairs first, then the electrons.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s25','4 bonds × 2 electrons each = 8 shared electrons.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s25-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-s26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">The diagram shows the outer shells in a chlorine molecule, Cl₂. How many electrons are in the outer shell of the <strong>left</strong> atom, counting the shared pair?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 300 200" role="img" aria-label="Dot-and-cross diagram of a chlorine molecule: two overlapping outer shells, one shared pair in the overlap, and three more pairs around each atom" style="max-width:300px"><circle class="draw" cx="110" cy="100" r="58" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><circle class="draw" cx="190" cy="100" r="58" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="110" y="100" font-size="18" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Cl</text><text x="190" y="100" font-size="18" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Cl</text><circle class="fill" cx="150.0" cy="90.0" r="4" fill="#4f8ef7"/><path class="draw" d="M146.0 106.0 L154.0 114.0 M154.0 106.0 L146.0 114.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><circle class="fill" cx="101.0" cy="158.0" r="4" fill="#4f8ef7"/><circle class="fill" cx="119.0" cy="158.0" r="4" fill="#4f8ef7"/><circle class="fill" cx="52.0" cy="91.0" r="4" fill="#4f8ef7"/><circle class="fill" cx="52.0" cy="109.0" r="4" fill="#4f8ef7"/><circle class="fill" cx="119.0" cy="42.0" r="4" fill="#4f8ef7"/><circle class="fill" cx="101.0" cy="42.0" r="4" fill="#4f8ef7"/><path class="draw" d="M177.0 154.0 L185.0 162.0 M185.0 154.0 L177.0 162.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><path class="draw" d="M195.0 154.0 L203.0 162.0 M203.0 154.0 L195.0 162.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><path class="draw" d="M244.0 105.0 L252.0 113.0 M252.0 105.0 L244.0 113.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><path class="draw" d="M244.0 87.0 L252.0 95.0 M252.0 87.0 L244.0 95.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><path class="draw" d="M195.0 38.0 L203.0 46.0 M203.0 38.0 L195.0 46.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><path class="draw" d="M177.0 38.0 L185.0 46.0 M185.0 38.0 L177.0 46.0" stroke="#f5a623" stroke-width="2" fill="none" pathLength="1"/><text x="150" y="190" font-size="11" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">outer shells only</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s26-ans" placeholder="Enter answer..."><span class="num-unit">electrons</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s26',8,'Q26',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s26','The shared pair counts for both atoms.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s26','6 of its own unshared electrons + the 2 in the shared pair = 8: a full outer shell.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s26-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-s27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Water boils at 100 °C but sodium chloride melts at 801 °C. Why is water’s value so much lower?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s27-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s27', this, 'a')"><div class="opt-indicator"></div><span>Covalent bonds are weak, so the O–H bonds break at 100 °C.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s27', this, 'b')"><div class="opt-indicator"></div><span>Water molecules are charged, so they push each other apart.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s27', this, 'c')"><div class="opt-indicator"></div><span>Water has fewer electrons than sodium chloride.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s27', this, 'd')"><div class="opt-indicator"></div><span>Boiling only separates whole water molecules, and the forces between them are weak.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s27','d','Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s27','When water boils, are the O–H bonds broken? What is pulled apart?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s27','D — Steam is still H₂O, so no covalent bonds break. Only the weak forces between molecules are overcome, which takes little energy. Melting NaCl means breaking strong ionic attractions.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s27-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-s28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Which substance is made of covalent molecules?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s28-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'a')"><div class="opt-indicator"></div><span>Potassium oxide</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'b')"><div class="opt-indicator"></div><span>Calcium</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'c')"><div class="opt-indicator"></div><span>Sulfur dioxide</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'd')"><div class="opt-indicator"></div><span>Lithium fluoride</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s28','c','Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s28','Look for a compound made only of non-metals.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s28','C — Sulfur and oxygen are both non-metals, so they share electrons. Potassium oxide and lithium fluoride are ionic (metal + non-metal); calcium is a metal.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-s29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">In a nitrogen molecule, N₂, the two atoms share <strong>three</strong> pairs of electrons. What is this kind of bond called?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s29-ans" placeholder="e.g. single bond" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s29',['triple','triple bond','a triple bond','triple covalent bond','a triple covalent bond','triple covalent'],'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s29','One pair is a single bond, two pairs a double bond...')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s29','A triple bond (6 shared electrons). Each nitrogen was 3 short of a full shell.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s29-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-s30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">A carbon dioxide molecule is O=C=O: carbon has a double bond to each oxygen. How many shared <strong>pairs</strong> of electrons are in the molecule?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s30-ans" placeholder="Enter answer..."><span class="num-unit">pairs</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s30',4,'Q30',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s30','How many pairs make one double bond?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s30','2 double bonds × 2 pairs = 4 shared pairs (8 electrons). Carbon makes 4 bonds in total.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s30-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION D &mdash; COVALENT BONDING</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-co-fill"></div></div>
+    <div class="section-score-val" id="sec-co-val">0/10</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="me" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#9881;</div><div><div class="sub-label">Section E &middot; Q31&ndash;Q36 &middot; Term 1 &middot; Week 4</div><h2>Metallic Bonding &amp; Telling Them Apart</h2></div><div class="src-links"><a class="src-link" href="../t1/w4/term1-week4-science-covalent-metallic-bonding.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Metallic bonding</h4><div class="fact-body">Metal atoms give up their outer electrons to the whole structure. Positive metal ions sit in layers in a &ldquo;sea&rdquo; of <strong>delocalised</strong> electrons, and the two attract.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Conducting</h4><div class="fact-body">The delocalised electrons drift through the metal when a voltage is applied, so metals conduct as solids and when melted.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Bending</h4><div class="fact-body">Layers of ions can slide over each other while the sea of electrons keeps holding them together, so metals bend and can be hammered into shape.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Spot the type</h4><div class="fact-body"><span class="f">metal + non-metal &rarr; ionic</span><br><span class="f">non-metal + non-metal &rarr; covalent</span><br><span class="f">metal(s) only &rarr; metallic</span></div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-s31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">The diagram shows the particles in a solid. What type of bonding does it show?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 300 190" role="img" aria-label="Rows of positive particles, all the same, with many small negative dots scattered between them" style="max-width:300px"><rect class="fill" x="20" y="14" width="260" height="162" rx="10" fill="rgba(79,142,247,0.10)"/><circle class="draw" cx="50" cy="45" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="50" y="45" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="100" cy="45" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="100" y="45" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="150" cy="45" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="150" y="45" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="200" cy="45" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="200" y="45" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="250" cy="45" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="250" y="45" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="50" cy="95" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="50" y="95" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="100" cy="95" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="100" y="95" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="150" cy="95" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="150" y="95" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="200" cy="95" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="200" y="95" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="250" cy="95" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="250" y="95" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="50" cy="145" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="50" y="145" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="100" cy="145" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="100" y="145" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="150" cy="145" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="150" y="145" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="200" cy="145" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="200" y="145" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="draw" cx="250" cy="145" r="16" stroke="#3ecf8e" stroke-width="2" fill="none" pathLength="1"/><text x="250" y="145" font-size="15" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">+</text><circle class="fill" cx="75" cy="30" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="125" cy="68" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="178" cy="28" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="225" cy="72" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="32" cy="95" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="100" cy="118" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="150" cy="75" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="268" cy="120" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="75" cy="168" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="200" cy="165" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="250" cy="30" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="125" cy="160" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="175" cy="118" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="30" cy="150" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="270" cy="70" r="3.5" fill="#e8eaf0"/><circle class="fill" cx="225" cy="125" r="3.5" fill="#e8eaf0"/></svg>
+      <div class="mcq-options" id="s31-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'a')"><div class="opt-indicator"></div><span>Ionic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'b')"><div class="opt-indicator"></div><span>Metallic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'c')"><div class="opt-indicator"></div><span>Covalent</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'd')"><div class="opt-indicator"></div><span>None: these are separate noble gas atoms</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s31','b','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s31','Are all the big particles the same charge? What are the small dots?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s31','B — Metallic: identical positive ions with free electrons spread between them. In an ionic lattice the charges would alternate.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s31-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-s32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">Solid copper conducts electricity, but solid copper chloride does not. Why?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s32-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'a')"><div class="opt-indicator"></div><span>Copper chloride has no charged particles in it.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'b')"><div class="opt-indicator"></div><span>Copper atoms are smaller, so the current squeezes through.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'c')"><div class="opt-indicator"></div><span>Copper has electrons that are free to move; the ions in solid copper chloride are held in place.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'd')"><div class="opt-indicator"></div><span>Chloride ions block the flow of protons.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s32','c','Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s32','Which charged particles can move in each solid?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s32','C — Copper’s delocalised electrons can drift through it. Copper chloride is full of ions, but in the solid they cannot move, so no current flows until it melts or dissolves.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s32-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-s33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">Brass is an alloy of copper and zinc. What type of bonding holds brass together?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s33-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s33',['metallic','metallic bonding','metallic bond','metallic bonds'],'Q33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s33','Copper and zinc: metal or non-metal?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s33','Metallic: an alloy contains only metals.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s33-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-s34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Which substance is matched with the correct type of bonding?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s34-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'a')"><div class="opt-indicator"></div><span>Magnesium: metallic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'b')"><div class="opt-indicator"></div><span>Calcium chloride: covalent</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'c')"><div class="opt-indicator"></div><span>Ammonia: ionic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'd')"><div class="opt-indicator"></div><span>Carbon dioxide: metallic</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s34','a','Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s34','Sort each substance into metal only, metal + non-metal, or non-metals only.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s34','A — Magnesium is a metal element, so metallic. Calcium chloride is ionic (metal + non-metal); ammonia and carbon dioxide are covalent (non-metals only).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s34-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-s35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Substance X melts at 1538 °C, conducts both as a solid and when melted, and can be hammered into thin sheets. What type of bonding does it have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s35-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s35',['metallic','metallic bonding','metallic bond'],'Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s35','Which type conducts even as a solid?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s35','Metallic (it is iron). Conducting as a solid and bending without breaking both come from the sea of electrons.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s35-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-s36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Substance Y melts at −114 °C and does not conduct electricity as a solid or as a liquid. What type of bonding does it have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s36-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s36',['covalent','covalent bonding','covalent bond','covalent molecules','simple covalent','simple molecular','molecular'],'Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s36','A very low melting point means weak forces between particles.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s36','Covalent: small molecules with weak forces between them, and no ions or free electrons to carry a current.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s36-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION E &mdash; METALLIC &amp; COMPARING</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-me-fill"></div></div>
+    <div class="section-score-val" id="sec-me-val">0/7</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { s1:1, s2:2, s3:1, s4:1, s5:1, s6:1, s7:1, s8:2, s9:1, s10:1, s11:2, s12:2, s13:1, s14:1, s15:1, s16:1, s17:1, s18:1, s19:2, s20:1, s21:1, s22:1, s23:1, s24:1, s25:2, s26:1, s27:2, s28:1, s29:1, s30:1, s31:1, s32:2, s33:1, s34:1, s35:1, s36:1 };
+
+const sections = {
+  io: { label: 'Atoms to Ions', qs: ['s1','s2','s3','s4','s5','s6','s7','s8'] },
+  fo: { label: 'Ionic Formulae', qs: ['s9','s10','s11','s12','s13','s14','s15','s16'] },
+  ic: { label: 'Ionic Compounds', qs: ['s17','s18','s19','s20','s21','s22'] },
+  co: { label: 'Covalent Bonding', qs: ['s23','s24','s25','s26','s27','s28','s29','s30'] },
+  me: { label: 'Metallic & Comparing', qs: ['s31','s32','s33','s34','s35','s36'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function toggleCover() {
+  const on = document.body.classList.toggle('cover');
+  document.querySelectorAll('.fact.peek').forEach(f => f.classList.remove('peek'));
+  document.getElementById('cover-btn').innerHTML = on ? '&#128064; Show the notes' : '&#128584; Cover the notes';
+}
+
+function selectMCQ(qid, el) {
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'\)/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'\)/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance + 1e-9;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  input.disabled = true;
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/[’‘]/g, "'").replace(/[“”"]/g, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Reveal the answer, then look back at the key facts above.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    document.getElementById(`sec-${key}-fill`).style.width = (secScore/secMax)*100 + '%';
+    document.getElementById(`sec-${key}-val`).textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sem1-science-bonding-ions_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height), w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length], rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw); else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const a = document.activeElement;
+  if (a && (a.classList.contains('num-input') || a.classList.contains('text-input'))) a.closest('.q-body')?.querySelector('.btn-check')?.click();
+});
+
+// Diagrams draw themselves in as they scroll into view
+(function() {
+  const figs = document.querySelectorAll('.q-fig');
+  if (!('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('drawn')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  figs.forEach(f => io.observe(f));
+})();
+
+const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SUBN = n => n === 1 ? '' : String(n).split('').map(d => '₀₁₂₃₄₅₆₇₈₉'[d]).join('');
+
+// ---- Electron Transfer
+(function() {
+  const svg = document.getElementById('tr-svg');
+  if (!svg) return;
+  const PAIRS = {
+    nacl: { m: ['Na', [2,8,1], 'sodium'], n: ['Cl', [2,8,7], 'chlorine'], k: 1, name: 'NaCl' },
+    mgo:  { m: ['Mg', [2,8,2], 'magnesium'], n: ['O', [2,6], 'oxygen'], k: 2, name: 'MgO' },
+  };
+  const RAD = [22, 40, 58], MX = 110, NX = 330, CY = 118;
+  const dotBtns = svg.parentNode.querySelectorAll('[data-pair]');
+  const go = document.getElementById('tr-go');
+  let cur = 'nacl', moving = [];
+  const at = (cx, r, deg) => [cx + r*Math.cos(deg*Math.PI/180), CY + r*Math.sin(deg*Math.PI/180)];
+  const dot = (x, y, cls='') => `<circle class="${cls}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.5" fill="#4f8ef7"/>`;
+  const cross = (x, y) => `<path d="M${x-4} ${y-4} L${x+4} ${y+4} M${x+4} ${y-4} L${x-4} ${y+4}" stroke="#f5a623" stroke-width="2.2"/>`;
+  const shellAngles = n => n === 2 ? [-90, 90] : Array.from({length: n}, (_, j) => 22.5 + j*45);
+  const ions = sh => sh.join(',');
+  function draw() {
+    const P = PAIRS[cur], k = P.k, [ms, msh] = P.m, [ns, nsh] = P.n;
+    let s = '';
+    // metal: inner shells, then the outer shell (which empties)
+    msh.forEach((n, i) => {
+      const r = RAD[i], outer = i === msh.length - 1;
+      s += `<circle class="${outer ? 'fade m-outer' : ''}" cx="${MX}" cy="${CY}" r="${r}" fill="none" stroke="#4a5270" stroke-width="1.5"/>`;
+      if (!outer) shellAngles(n).forEach(a => { const [x, y] = at(MX, r, a); s += dot(x, y); });
+    });
+    // non-metal: inner shells full, outer shell with k empty slots facing the metal
+    nsh.forEach((n, i) => {
+      const r = RAD[i], outer = i === nsh.length - 1;
+      s += `<circle cx="${NX}" cy="${CY}" r="${r}" fill="none" stroke="#4a5270" stroke-width="1.5"/>`;
+      if (!outer) { shellAngles(n).forEach(a => { const [x, y] = at(NX, r, a); s += cross(x, y); }); return; }
+      const base = 180 - (k-1)*22.5;
+      for (let j = k; j < 8; j++) { const [x, y] = at(NX, r, base + j*45); s += cross(x, y); }
+    });
+    s += `<circle cx="${MX}" cy="${CY}" r="13" fill="#f5a623"/><text x="${MX}" y="${CY}" font-size="12" fill="#0f1117" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace" font-weight="600">${ms}</text>`;
+    s += `<circle cx="${NX}" cy="${CY}" r="13" fill="#f5a623"/><text x="${NX}" y="${CY}" font-size="12" fill="#0f1117" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace" font-weight="600">${ns}</text>`;
+    // the electrons that will move: start on the metal's outer shell, facing right
+    moving = [];
+    const mr = RAD[msh.length-1], nr = RAD[nsh.length-1], base = 180 - (k-1)*22.5;
+    for (let j = 0; j < k; j++) {
+      const [x0, y0] = at(MX, mr, -(k-1)*22.5 + j*45), [x1, y1] = at(NX, nr, base - j*45 + (k-1)*45);
+      s += `<g class="mv" id="tr-e${j}">${dot(x0, y0)}</g>`;
+      moving.push([x1 - x0, y1 - y0]);
+    }
+    // brackets and charges, hidden until the transfer
+    const br = (cx, r, label) => `<g class="fade br" opacity="0"><path d="M${cx-r-6} ${CY-r-6} h-7 v${2*r+12} h7 M${cx+r+6} ${CY-r-6} h7 v${2*r+12} h-7" stroke="#e8eaf0" stroke-width="2" fill="none"/><text x="${cx+r+18}" y="${CY-r-2}" font-size="15" fill="#3ecf8e" font-family="DM Mono, monospace">${label}</text></g>`;
+    s += br(MX, RAD[msh.length-2], (k > 1 ? k : '') + '+') + br(NX, nr, (k > 1 ? k : '') + '−');
+    svg.innerHTML = s;
+    go.disabled = false;
+    document.getElementById('tr-read').innerHTML = `<strong>${ms}</strong> ${ions(msh)} &nbsp;&middot;&nbsp; <strong>${ns}</strong> ${ions(nsh)}<br>The ${P.m[2]} atom has ${k} outer electron${k > 1 ? 's' : ''}; the ${P.n[2]} atom is ${k} short of a full shell. Press Transfer.`;
+  }
+  function transfer() {
+    const P = PAIRS[cur], k = P.k, [ms, msh] = P.m, [ns, nsh] = P.n;
+    go.disabled = true;
+    moving.forEach(([dx, dy], j) => { document.getElementById('tr-e' + j).style.transform = `translate(${dx}px, ${dy}px)`; });
+    setTimeout(() => {
+      svg.querySelector('.m-outer').setAttribute('opacity', '0');
+      svg.querySelectorAll('.br').forEach(b => b.setAttribute('opacity', '1'));
+      const after = nsh.slice(); after[after.length-1] += k;
+      document.getElementById('tr-read').innerHTML = `<strong>${ms}${k > 1 ? '²' : ''}⁺</strong> ${ions(msh.slice(0, -1))} &nbsp;&middot;&nbsp; <strong>${ns}${k > 1 ? '²' : ''}⁻</strong> ${ions(after)}<br>Both ions now have a full outer shell. The ${k}+ and ${k}− attract: <strong>${P.name}</strong>.`;
+    }, REDUCED ? 0 : 1250);
+  }
+  dotBtns.forEach(b => b.addEventListener('click', () => { dotBtns.forEach(o => o.classList.toggle('on', o === b)); cur = b.dataset.pair; draw(); }));
+  go.addEventListener('click', transfer);
+  document.getElementById('tr-reset').addEventListener('click', draw);
+  draw();
+})();
+
+// ---- Charge Balancer
+(function() {
+  const svg = document.getElementById('cb-svg');
+  if (!svg) return;
+  const pc = document.getElementById('cb-p'), nc = document.getElementById('cb-n');
+  let m = 1, x = 1;
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  function ion(cx, cy, label, col) {
+    return `<circle cx="${cx}" cy="${cy}" r="21" fill="${col}22" stroke="${col}" stroke-width="2"/><text x="${cx}" y="${cy}" font-size="12" fill="${col}" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">${label}</text>`;
+  }
+  function draw() {
+    const p = +pc.value, n = +nc.value;
+    let s = '';
+    for (let i = 0; i < m; i++) s += ion(36 + i*58, 38, 'M' + (p > 1 ? p : '') + '+', '#4f8ef7');
+    for (let i = 0; i < x; i++) s += ion(36 + i*58, 102, 'X' + (n > 1 ? n : '') + '−', '#f5a623');
+    svg.innerHTML = s;
+    const tp = m*p, tn = x*n;
+    let msg;
+    if (tp === tn) msg = gcd(m, x) === 1
+      ? `<span style="color:var(--correct)">Balanced, with the fewest ions.</span> Formula: <strong>M${SUBN(m)}X${SUBN(x)}</strong>`
+      : 'Balanced, but not the smallest set. Can you take away ions and still balance?';
+    else msg = tp > tn ? 'Too much positive charge. Add an X or take away an M.' : 'Too much negative charge. Add an M or take away an X.';
+    document.getElementById('cb-read').innerHTML = `Total positive: <strong>+${tp}</strong> &nbsp;&middot;&nbsp; total negative: <strong>−${tn}</strong><br>${msg}`;
+  }
+  svg.parentNode.parentNode.querySelectorAll('[data-cb]').forEach(b => b.addEventListener('click', () => {
+    const a = b.dataset.cb;
+    if (a === 'm+' && m < 6) m++; if (a === 'm-' && m > 1) m--;
+    if (a === 'x+' && x < 6) x++; if (a === 'x-' && x > 1) x--;
+    draw();
+  }));
+  [pc, nc].forEach(sel => sel.addEventListener('change', () => { m = 1; x = 1; draw(); }));
+  draw();
+})();
+
+// ---- Can It Conduct?
+(function() {
+  const grp = document.getElementById('lc-ions');
+  if (!grp) return;
+  const btns = grp.closest('.explorer').querySelectorAll('[data-state]');
+  const glow = document.getElementById('lc-glow');
+  let melted = false;
+  const ions = [];
+  for (let r = 0; r < 4; r++) for (let c = 0; c < 6; c++) {
+    const pos = (r + c) % 2 === 0, hx = 125 + c*38, hy = 74 + r*36;
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    const col = pos ? '#4f8ef7' : '#f5a623';
+    g.innerHTML = `<circle r="${pos ? 10 : 12}" fill="${col}33" stroke="${col}" stroke-width="1.8"/><text font-size="13" fill="${col}" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">${pos ? '+' : '−'}</text>`;
+    grp.appendChild(g);
+    ions.push({ g, hx, hy, x: hx, y: hy, vx: 0, vy: 0, ph: Math.random()*6.28 });
+  }
+  function place(o) { o.g.setAttribute('transform', `translate(${o.x.toFixed(1)} ${o.y.toFixed(1)})`); }
+  function readout() {
+    glow.setAttribute('opacity', melted ? '0.75' : '0');
+    document.getElementById('lc-read').innerHTML = melted
+      ? 'Melted: the lattice has broken up and the ions <strong>move freely</strong>. Moving charges make a current, so the bulb lights.'
+      : 'Solid: every ion only <strong>vibrates on the spot</strong>, held by its neighbours. No charge can travel, so the bulb stays off.';
+  }
+  function scatter() { ions.forEach(o => { o.x = 110 + Math.random()*220; o.y = 64 + Math.random()*130; place(o); }); }
+  let t = 0, last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last)/1000); last = now; t += dt;
+    ions.forEach(o => {
+      if (!melted) { o.x = o.hx + 1.8*Math.sin(t*14 + o.ph); o.y = o.hy + 1.8*Math.cos(t*11 + o.ph); }
+      else {
+        o.vx += (Math.random() - 0.5)*120*dt; o.vy += (Math.random() - 0.5)*120*dt;
+        o.vx = Math.max(-40, Math.min(40, o.vx)); o.vy = Math.max(-40, Math.min(40, o.vy));
+        o.x += o.vx*dt; o.y += o.vy*dt;
+        if (o.x < 110 || o.x > 330) { o.vx = -o.vx; o.x = Math.max(110, Math.min(330, o.x)); }
+        if (o.y < 62 || o.y > 194) { o.vy = -o.vy; o.y = Math.max(62, Math.min(194, o.y)); }
+      }
+      place(o);
+    });
+    requestAnimationFrame(frame);
+  }
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(o => o.classList.toggle('on', o === b));
+    melted = b.dataset.state === 'melt';
+    if (!melted) ions.forEach(o => { o.x = o.hx; o.y = o.hy; o.vx = o.vy = 0; place(o); });
+    else if (REDUCED) scatter();
+    readout();
+  }));
+  ions.forEach(place); readout();
+  if (!REDUCED) requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
