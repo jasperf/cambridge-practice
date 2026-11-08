@@ -112,3 +112,27 @@ Question cards with no `marks` entry are listed as info, not errors:
 unscored written cards such as `wr1` are legitimate. It does not read the
 `.md` printable or the term README tables, so check those by hand when a
 total changes. Exits non-zero if any sheet has a mismatch.
+
+## `build_review_sheet.py` — generate a review sheet from a spec
+
+```bash
+python3 scripts/build_review_sheet.py scripts/review_specs/s2_sem1_science_revision.py
+```
+
+Unlike the tools above, this one **writes** files. A review sheet covers several
+topics. For each topic it shows key-fact cards, then an optional interactive
+explorer, then auto-marked questions. The page has a *Cover the notes* toggle
+that blurs the facts. From one spec the builder writes three files: the `.html`,
+the `.md` printable (with the written questions added) and the `-answers.md`.
+The output is ordinary self-contained HTML, the same as every hand-made sheet,
+so nothing in the site depends on the script.
+
+A spec is a plain Python file in `review_specs/`. It defines `META`,
+`SECTIONS` (with their key facts), `Q` (the questions) and `WRITTEN`. It can
+also define `EXPLORERS` / `EXPLORER_CSS` / `EXPLORER_JS`. The docstring at the
+top of `build_review_sheet.py` lists the fields. To make a new review page,
+copy an existing spec, change `META['out']` and the content, then build.
+**Edit the spec, not the generated files**, because a rebuild overwrites them.
+
+Run the usual checks on the result afterwards. The builder does not shuffle
+anything for you: set each MCQ's `correct` letter so the spread passes check 1.
