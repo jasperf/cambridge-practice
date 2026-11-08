@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Revision &middot; Terms 1&ndash;2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci), var(--accent-warn)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.88rem; color: var(--text-muted); margin-top: 12px; max-width: 720px; }
+.btn-cover { margin-top: 16px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+.btn-cover:hover { border-color: var(--accent); }
+body.cover .btn-cover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.section-tabs { position: sticky; top: 58px; z-index: 50; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); max-width: 100%; padding: 10px max(28px, calc((100% - 844px) / 2)); display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border); }
+.sub-tab { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.main > div[id] { scroll-margin-top: 120px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 18px; flex-wrap: wrap; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(var(--sec-rgb),0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.src-links { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.src-link { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; }
+.src-link:hover { color: var(--sec); border-color: var(--sec); }
+.facts-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sec); margin: 6px 0 10px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 26px; }
+.fact { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--sec); border-radius: 8px; padding: 12px 14px; font-size: 0.86rem; line-height: 1.6; cursor: default; }
+.fact h4 { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.fact em { color: var(--sec); }
+.fact .f { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-warn); }
+.fact-body { transition: filter 0.25s, opacity 0.25s; }
+body.cover .fact { cursor: pointer; }
+body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-select: none; }
+.explorer { background: linear-gradient(135deg, rgba(var(--sec-rgb),0.07), rgba(var(--sec-rgb),0.02)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin: 0 0 28px; }
+.explorer h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 2px; }
+.ex-note { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 14px; }
+.ex-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.ex-svg { width: 100%; max-width: 420px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; display: block; }
+.ex-svg.wide { max-width: 100%; }
+.ex-controls { flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ex-controls label { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted); }
+.ex-controls input[type=range] { width: 100%; accent-color: var(--sec); }
+.ex-readout { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; margin-top: 6px; color: var(--text); }
+.ex-readout strong { color: var(--sec); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--sec, var(--accent)); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: var(--sec, var(--accent)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-ok { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-ok 0.6s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .section-tabs { top: 0; position: relative; padding: 10px 16px; }
+  .hero, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .src-links { margin-left: 0; }
+  .q-header, .q-body { padding-left: 14px; padding-right: 14px; }
+  .explorer { padding: 14px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+
+.rays path, .flow-in path, .flow-up { animation: dashFlow 1.2s linear infinite; }
+.flow-up { animation-direction: reverse; }
+.bub { animation: bubbleUp 2.4s ease-in infinite; }
+.b2 { animation-delay: 0.8s; } .b3 { animation-delay: 1.6s; }
+@keyframes dashFlow { to { stroke-dashoffset: -28; } }
+@keyframes bubbleUp { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-46px); opacity: 0; } }
+.orbit { transform-origin: 120px 120px; animation: spin linear infinite; }
+.e-pop { animation: ePop 0.35s ease both; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes ePop { from { opacity: 0; transform: scale(0.2); } to { opacity: 1; transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .rays path, .flow-in path, .flow-up, .bub, .orbit, .e-pop { animation: none; } }
+
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Science &middot; Terms 1&ndash;2 Review</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 50</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Terms 1&ndash;2 review</div>
+  <h1>Science Review<br><em>Terms 1 &amp; 2</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>42 questions &middot; self-marked &middot; 50 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>About 45 minutes &middot; a calculator helps</div>
+  </div>
+  <p class="credit">Every science topic from Terms 1 and 2 on one page: atoms and the periodic table, bonding, plant biology, density, waves and sound, thermal energy and electricity. Each topic starts with its key facts, then a short set of self-marked questions that make you use them. Use <strong>Cover the notes</strong> to test yourself first.</p>
+  <button class="btn btn-cover" id="cover-btn" onclick="toggleCover()">&#128584; Cover the notes</button>
+</div>
+<div class="section-tabs">
+  <a href="#at" class="sub-tab">&#9883; Atoms &amp; the Periodic Table</a>
+  <a href="#bo" class="sub-tab">&#128279; Bonding &amp; Ions</a>
+  <a href="#pl" class="sub-tab">&#127807; Plant Biology</a>
+  <a href="#de" class="sub-tab">&#129482; Density</a>
+  <a href="#wa" class="sub-tab">&#127925; Waves &amp; Sound</a>
+  <a href="#th" class="sub-tab">&#128293; Thermal Energy</a>
+  <a href="#el" class="sub-tab">&#9889; Electricity</a>
+</div>
+<div class="main">
+
+<div id="at" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#9883;</div><div><div class="sub-label">Section A &middot; Q1&ndash;Q6 &middot; Term 1 &middot; Week 2</div><h2>Atoms &amp; the Periodic Table</h2></div><div class="src-links"><a class="src-link" href="../t1/w2/term1-week2-atomic-structure-periodic.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Inside an atom</h4><div class="fact-body">Protons (charge +1) and neutrons (no charge) sit in the nucleus. Electrons (charge &minus;1) move in shells around it.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Two numbers</h4><div class="fact-body"><span class="f">atomic number = protons</span><br>In a neutral atom, electrons = protons.<br><span class="f">mass number = protons + neutrons</span></div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Filling shells</h4><div class="fact-body">For the first 20 elements the shells hold <span class="f">2, 8, 8, 2</span>. Example: nitrogen (7) is 2,5.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Reading the table</h4><div class="fact-body">Group number = how many electrons are in the outer shell. Period = how many shells are in use. Group 0, the noble gases, have a full outer shell.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Trends</h4><div class="fact-body">Group 1 metals react by <em>losing</em> their single outer electron and get more reactive further down. Group 7 non-metals react by <em>gaining</em> one electron and get less reactive further down.</div></div>
+  </div>
+  <div class="explorer">
+  <h3>&#9883; Shell Builder</h3>
+  <p class="ex-note">Slide through the first 20 elements and watch the electrons fill the shells.</p>
+  <div class="ex-row">
+    <svg class="ex-svg" id="atom-svg" viewBox="0 0 240 240" style="max-width:260px" role="img" aria-label="Electron shell diagram of the chosen element"></svg>
+    <div class="ex-controls">
+      <label for="atom-z">Atomic number: <span id="atom-z-val">11</span></label>
+      <input type="range" id="atom-z" min="1" max="20" value="11">
+      <div class="ex-readout" id="atom-read"></div>
+    </div>
+  </div>
+</div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">A potassium atom has atomic number 19 and mass number 39. How many neutrons are in its nucleus?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s1',20,'Q1',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s1','The mass number counts protons and neutrons together.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','39 − 19 = 20 neutrons')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">A chlorine atom (atomic number 17) gains one electron to become a chloride ion, Cl⁻. Write the electronic structure of the <strong>ion</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s2-ans" placeholder="e.g. 2,8,1" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s2',['2,8,8','2.8.8','2, 8, 8','2 8 8','2-8-8'],'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s2','Write the atom’s structure first, then add one electron to the outer shell.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','Chlorine is 2,8,7. One extra electron gives 2,8,8: a full outer shell, like argon.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">An element has the electronic structure 2,8,3. Which <strong>group</strong> of the periodic table is it in?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s3-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s3',3,'Q3',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s3','Look only at the last number.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','Group 3: three electrons in the outer shell. (It is aluminium, in Period 3.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Fluorine is more reactive than chlorine, and chlorine is more reactive than bromine. Which explanation is correct?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'a')"><div class="opt-indicator"></div><span>Bromine has more electrons in its outer shell, so it is already more stable.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'b')"><div class="opt-indicator"></div><span>Fluorine has the most protons, so its nucleus pulls hardest.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'c')"><div class="opt-indicator"></div><span>Fluorine’s outer shell is closest to the nucleus, so an incoming electron is attracted most strongly.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s4', this, 'd')"><div class="opt-indicator"></div><span>Bromine atoms are smaller, so there is no room for an extra electron.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s4','c','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s4','Group 7 atoms react by gaining an electron. How far from the nucleus does that electron land?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','C — Going down Group 7 each atom has one more shell, so the outer shell is further from the nucleus and pulls less strongly on an extra electron. Fluorine, at the top, pulls hardest.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">A neutral atom has 15 electrons and 16 neutrons. What is its mass number?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s5-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s5',31,'Q5',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s5','In a neutral atom, how many protons go with 15 electrons?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','15 protons + 16 neutrons = 31 (it is phosphorus).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Which electronic structure belongs to an element that hardly reacts at all?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'a')"><div class="opt-indicator"></div><span>2,8,8</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'b')"><div class="opt-indicator"></div><span>2,8,7</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'c')"><div class="opt-indicator"></div><span>2,8,1</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s6', this, 'd')"><div class="opt-indicator"></div><span>2,8,8,1</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s6','a','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s6','Which atom has nothing to gain, lose or share?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','A — 2,8,8 is argon, a noble gas. Its outer shell is already full.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A &mdash; ATOMS &amp; PERIODIC TABLE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-at-fill"></div></div>
+    <div class="section-score-val" id="sec-at-val">0/7</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="bo" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#128279;</div><div><div class="sub-label">Section B &middot; Q7&ndash;Q12 &middot; Term 1 &middot; Weeks 3&ndash;4</div><h2>Bonding &amp; Ions</h2></div><div class="src-links"><a class="src-link" href="../t1/w3/term1-week3-science-ionic-bonding.html" target="_blank" rel="noopener">Full sheet &rarr;</a> <a class="src-link" href="../t1/w4/term1-week4-science-covalent-metallic-bonding.html" target="_blank" rel="noopener">Covalent &amp; metallic &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Ionic bonding</h4><div class="fact-body">A metal reacts with a non-metal. Electrons move from the metal atom to the non-metal atom, and the oppositely charged ions attract.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Ion charges</h4><div class="fact-body">Groups 1, 2, 3 lose electrons: <span class="f">1+, 2+, 3+</span>. Groups 5, 6, 7 gain electrons: <span class="f">3&minus;, 2&minus;, 1&minus;</span>. Either way the ion ends up with a full outer shell.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Writing formulae</h4><div class="fact-body">Total + charge = total &minus; charge. Ca&sup2;&#8314; with Cl&#8315; gives <span class="f">CaCl&#8322;</span> (one 2+ balances two 1&minus;).</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Covalent bonding</h4><div class="fact-body">Between non-metal atoms, which share pairs of electrons. A single bond is one shared pair and a double bond is two. Examples: H&#8322;O, CO&#8322;, CH&#8324;.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Metallic bonding</h4><div class="fact-body">Positive metal ions sit in a &ldquo;sea&rdquo; of delocalised electrons. That is why metals conduct and can be bent into shape.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Ionic compounds</h4><div class="fact-body">A giant lattice of ions with high melting points. They conduct electricity only when melted or dissolved in water.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Aluminium has atomic number 13. What is the charge on an aluminium ion? (Type it like 2+ or 1−.)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s7-ans" placeholder="e.g. 2+" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s7',['3+','+3','al3+','3 +'],'Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s7','Work out its electronic structure, then its group.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','3+: aluminium (2,8,3) loses its 3 outer electrons.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Potassium forms K⁺ ions and oxygen forms O²⁻ ions. Write the formula of potassium oxide.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s8-ans" placeholder="e.g. NaCl" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s8',['K2O','K₂O'],'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s8','How many 1+ ions balance one 2− ion?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','K₂O: two 1+ ions balance one 2− ion.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Magnesium forms Mg²⁺ ions and nitrogen forms N³⁻ ions. Write the formula of magnesium nitride.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s9-ans" placeholder="e.g. CaCl2" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s9',['Mg3N2','Mg₃N₂'],'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s9','Find the smallest number that both 2 and 3 go into.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','Mg₃N₂: three Mg²⁺ give 6+, two N³⁻ give 6−, so the charges cancel.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Which pair of elements would join by a <strong>covalent</strong> bond?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'a')"><div class="opt-indicator"></div><span>Sodium and fluorine</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'b')"><div class="opt-indicator"></div><span>Magnesium and oxygen</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'c')"><div class="opt-indicator"></div><span>Copper and zinc</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'd')"><div class="opt-indicator"></div><span>Hydrogen and chlorine</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s10','d','Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s10','Covalent bonds form between two non-metals.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','D — Hydrogen and chlorine are both non-metals, so they share a pair of electrons (HCl). Sodium fluoride and magnesium oxide are ionic; copper and zinc are both metals.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">An oxygen molecule, O₂, is held together by a <strong>double</strong> covalent bond. How many electrons are shared between the two atoms?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s11-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s11',4,'Q11',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s11','Count pairs first, then electrons.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','A double bond is 2 shared pairs, so 4 electrons.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Solid sodium chloride does not conduct electricity, but melted sodium chloride does. Why?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s12-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'a')"><div class="opt-indicator"></div><span>Melting releases free electrons from the chlorine atoms.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'b')"><div class="opt-indicator"></div><span>In the solid the ions are locked in place; in the liquid they can move and carry charge.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'c')"><div class="opt-indicator"></div><span>Melting turns the ionic bonds into covalent bonds.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s12', this, 'd')"><div class="opt-indicator"></div><span>The solid has no charged particles in it at all.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s12','b','Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s12','What are the charged particles in an ionic compound, and can they move?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','B — The ions themselves carry the current. They can only flow once the lattice breaks up on melting (or dissolving).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION B &mdash; BONDING &amp; IONS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-bo-fill"></div></div>
+    <div class="section-score-val" id="sec-bo-val">0/8</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="pl" style="--sec:var(--accent-sci);--sec-rgb:62,207,142">
+  <div class="section-header"><div class="section-icon">&#127807;</div><div><div class="sub-label">Section C &middot; Q13&ndash;Q18 &middot; Term 1 &middot; Week 7</div><h2>Plant Biology</h2></div><div class="src-links"><a class="src-link" href="../t1/w7/term1-week7-science-unit-test2-plant-biology.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Photosynthesis</h4><div class="fact-body"><span class="f">carbon dioxide + water &rarr; glucose + oxygen</span><br>Light energy, absorbed by chlorophyll, is written above the arrow.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Where it happens</h4><div class="fact-body">In the chloroplasts of leaf cells. Carbon dioxide comes in from the air, and water comes up from the roots.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Using the glucose</h4><div class="fact-body">Glucose is used for respiration and is turned into starch, cellulose, proteins, and fats and oils.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Minerals</h4><div class="fact-body">Magnesium is part of the chlorophyll molecule. Nitrate is needed to make proteins. Fertilisers add both to the soil to raise the yield.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Investigation 1: light</h4><div class="fact-body">Pondweed in water with a lamp at different distances. Count the oxygen bubbles per minute. Keep the pondweed, the water temperature and the timing the same.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Investigation 2: starch test</h4><div class="fact-body">Boil the leaf in water, warm it in ethanol, rinse it, then add iodine solution.</div></div>
+  </div>
+  <div class="explorer">
+  <h3>&#127807; A Leaf at Work</h3>
+  <p class="ex-note">What goes in, what comes out, and where the energy comes from.</p>
+  <svg class="ex-svg wide" viewBox="0 0 440 230" role="img" aria-label="Animated leaf: light from the Sun and carbon dioxide from the air go in, water comes up the stem, oxygen bubbles out">
+    <circle cx="48" cy="44" r="22" fill="#f5a623"/>
+    <g class="rays" stroke="#f5a623" stroke-width="2.5" stroke-dasharray="6 8"><path d="M74 58 L170 100"/><path d="M66 74 L160 124"/><path d="M80 44 L182 80"/></g>
+    <text x="48" y="88" font-size="11" fill="#f5a623" text-anchor="middle" font-family="DM Mono, monospace">light</text>
+    <path d="M220 215 C 222 180, 222 150, 220 132" stroke="#3ecf8e" stroke-width="4" fill="none"/>
+    <path d="M150 110 C 180 50, 280 40, 300 100 C 280 160, 180 165, 150 110 Z" fill="rgba(62,207,142,0.28)" stroke="#3ecf8e" stroke-width="2"/>
+    <path d="M155 110 C 200 100, 250 98, 296 100" stroke="#3ecf8e" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <text x="225" y="122" font-size="12" fill="#e8eaf0" text-anchor="middle" font-family="DM Mono, monospace">glucose</text>
+    <g class="flow-in" stroke="#7a84a0" stroke-width="2" stroke-dasharray="5 6" fill="none"><path d="M420 132 L304 112"/><path d="M420 150 L298 122"/></g>
+    <text x="372" y="172" font-size="11" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">carbon dioxide</text>
+    <text x="372" y="186" font-size="11" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">from the air</text>
+    <path class="flow-up" d="M232 215 L232 140" stroke="#4f8ef7" stroke-width="2.5" stroke-dasharray="5 6" fill="none"/>
+    <text x="300" y="214" font-size="11" fill="#4f8ef7" text-anchor="middle" font-family="DM Mono, monospace">water from the roots</text>
+    <g fill="none" stroke="#e8eaf0" stroke-width="1.5"><circle class="bub b1" cx="290" cy="62" r="5"/><circle class="bub b2" cx="304" cy="70" r="4"/><circle class="bub b3" cx="280" cy="70" r="3.5"/></g>
+    <text x="330" y="30" font-size="11" fill="#e8eaf0" text-anchor="middle" font-family="DM Mono, monospace">oxygen out</text>
+  </svg>
+</div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">A plant is kept in a dark cupboard for two days. One of its leaves is then tested with iodine solution. What do you see?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s13-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'a')"><div class="opt-indicator"></div><span>The leaf turns blue-black all over.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'b')"><div class="opt-indicator"></div><span>The iodine stays orange-brown.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'c')"><div class="opt-indicator"></div><span>The leaf turns bright green.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s13', this, 'd')"><div class="opt-indicator"></div><span>Only the veins turn blue-black.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s13','b','Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s13','Can the plant photosynthesise in the dark? What happens to its stored starch?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','B — With no light there is no photosynthesis, and the plant uses up its stored starch. No starch, so the iodine stays orange-brown.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Plants turn some of their glucose into which substance to build strong cell walls?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s14-ans" placeholder="type your answer" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s14',['cellulose'],'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s14','It is one of the uses of glucose, and it is not starch.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','Cellulose')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">A field gives 4.0 tonnes of wheat without fertiliser and 5.2 tonnes with a nitrate fertiliser. By what percentage did the yield go up?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s15-ans" placeholder="Enter answer..."><span class="num-unit">%</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s15',30,'Q15',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s15','Percentage increase = increase ÷ original × 100.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','1.2 ÷ 4.0 × 100 = 30%')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-s16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">A plant grows in soil with no nitrate. What would you expect to see?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'a')"><div class="opt-indicator"></div><span>Its leaves turn blue-black.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'b')"><div class="opt-indicator"></div><span>It makes extra starch and grows faster.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'c')"><div class="opt-indicator"></div><span>Its roots stop taking in water.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'd')"><div class="opt-indicator"></div><span>Slow, stunted growth.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s16','d','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s16','What does a plant build from nitrate, and what is that needed for?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','D — Without nitrate the plant cannot make enough protein, and protein is needed to build new cells, so growth is poor.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s16-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">In the pondweed investigation, 54 bubbles are counted in 3 minutes. How many bubbles is that per minute?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s17-ans" placeholder="Enter answer..."><span class="num-unit">per minute</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s17',18,'Q17',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s17','Share the bubbles equally between the minutes.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','54 ÷ 3 = 18 bubbles per minute')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Which change would make the pondweed give off <strong>fewer</strong> bubbles per minute?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'a')"><div class="opt-indicator"></div><span>Moving the lamp further away</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'b')"><div class="opt-indicator"></div><span>Moving the lamp closer</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'c')"><div class="opt-indicator"></div><span>Using a brighter bulb</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'd')"><div class="opt-indicator"></div><span>Adding a second lamp beside the first</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s18','a','Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s18','Which change gives the pondweed less light?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','A — Moving the lamp away lowers the light intensity, so photosynthesis slows and less oxygen is made.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION C &mdash; PLANT BIOLOGY</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pl-fill"></div></div>
+    <div class="section-score-val" id="sec-pl-val">0/6</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="de" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#129482;</div><div><div class="sub-label">Section D &middot; Q19&ndash;Q24 &middot; Term 2 &middot; Week 4</div><h2>Density</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-density.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>The formula</h4><div class="fact-body"><span class="f">&rho; = m &divide; V</span><br>Rearranged: <span class="f">m = &rho; &times; V</span>, <span class="f">V = m &divide; &rho;</span>. Units: g/cm&sup3;.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Finding volume</h4><div class="fact-body">Regular block: length &times; width &times; height. Irregular object: lower it into a measuring cylinder; the rise in level is its volume (1 mL = 1 cm&sup3;).</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Units</h4><div class="fact-body"><span class="f">1 g/cm&sup3; = 1000 kg/m&sup3;</span>. Water is 1 g/cm&sup3;.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Float or sink</h4><div class="fact-body">Less dense than the liquid: floats. Denser: sinks. Liquids that do not mix stack in layers by density.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Heating and cooling</h4><div class="fact-body">Heated particles move faster and spread out. The mass stays the same while the volume grows, so the density falls. Gases are far less dense than solids and liquids.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Water is odd</h4><div class="fact-body">Ice (0.92 g/cm&sup3;) is less dense than liquid water, because hydrogen bonds hold the molecules in an open pattern. Lakes freeze from the top down.</div></div>
+  </div>
+  <div class="explorer">
+  <h3>&#129482; Float or Sink?</h3>
+  <p class="ex-note">Set the mass and volume of a block and drop it into water (1.00 g/cm&sup3;). Each dot is 10 g of matter.</p>
+  <div class="ex-row">
+    <svg class="ex-svg" id="dens-svg" viewBox="0 0 300 240" style="max-width:340px" role="img" aria-label="A tank of water with a block that floats or sinks">
+      <rect x="20" y="30" width="260" height="200" fill="none" stroke="#7a84a0" stroke-width="2"/>
+      <rect x="21" y="80" width="258" height="149" fill="rgba(79,142,247,0.28)"/>
+      <line x1="21" y1="80" x2="279" y2="80" stroke="#4f8ef7" stroke-width="2"/>
+      <g id="dens-block" style="transition: transform 0.9s cubic-bezier(0.34,1.3,0.64,1)"></g>
+    </svg>
+    <div class="ex-controls">
+      <label for="dens-m">Mass: <span id="dens-m-val">60</span> g</label>
+      <input type="range" id="dens-m" min="10" max="200" step="10" value="60">
+      <label for="dens-v">Volume: <span id="dens-v-val">80</span> cm&sup3;</label>
+      <input type="range" id="dens-v" min="10" max="100" step="10" value="80">
+      <div class="ex-readout" id="dens-read"></div>
+    </div>
+  </div>
+</div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-s19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A metal block measures 5 cm × 4 cm × 2.5 cm and has a mass of 135 g. What is its density?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s19-ans" placeholder="Enter answer..."><span class="num-unit">g/cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s19',2.7,'Q19',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s19','Find the volume first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s19','V = 5 × 4 × 2.5 = 50 cm³, so ρ = 135 ÷ 50 = 2.7 g/cm³ (aluminium).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s19-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-s20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Gold has a density of 19.3 g/cm³. What is the volume of a 386 g gold bar?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s20-ans" placeholder="Enter answer..."><span class="num-unit">cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s20',20,'Q20',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s20','Which rearrangement gives V?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','V = m ÷ ρ = 386 ÷ 19.3 = 20 cm³')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s20-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-s21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">A key is dropped into a measuring cylinder of water. Use the diagram to find the volume of the key.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 280 210" role="img" aria-label="Two measuring cylinders: water at 50 mL, then at 68 mL with a key inside" style="max-width:300px"><path class="draw" d="M50 30 V185 H110 V30" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><rect class="fill" x="52" y="110" width="56" height="74" fill="rgba(79,142,247,0.35)"/><path class="draw" d="M50 110 H64" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="80" y="200" font-size="12" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">before</text><text x="22" y="114" font-size="12" fill="#e8eaf0" text-anchor="middle" font-family="DM Mono, monospace">50</text><path class="draw" d="M170 30 V185 H230 V30" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><rect class="fill" x="172" y="81" width="56" height="103" fill="rgba(79,142,247,0.35)"/><path class="draw" d="M170 81 H184" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><path class="draw" d="M190 165 h22 M212 165 v8 M205 165 v6 M184 165 a6 6 0 1 1 6 0" stroke="#f5a623" stroke-width="3" fill="none" pathLength="1"/><text x="200" y="200" font-size="12" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">after</text><text x="256" y="85" font-size="12" fill="#e8eaf0" text-anchor="middle" font-family="DM Mono, monospace">68</text><text x="140" y="20" font-size="11" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">readings in mL</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s21-ans" placeholder="Enter answer..."><span class="num-unit">cm³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s21',18,'Q21',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s21','How far did the level rise?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','68 − 50 = 18 mL, which is 18 cm³')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s21-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-s22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Cooking oil has a density of 0.92 g/cm³. What is that in kg/m³?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s22-ans" placeholder="Enter answer..."><span class="num-unit">kg/m³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s22',920,'Q22',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s22','How many kg/m³ is 1 g/cm³?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s22','0.92 × 1000 = 920 kg/m³')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s22-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-s23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">A plastic bead (0.96 g/cm³) is dropped into the jar in the diagram. Where does it end up?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 300 210" role="img" aria-label="A jar with a layer of oil floating on water, and a plastic bead about to be dropped in" style="max-width:300px"><path class="draw" d="M60 40 V190 H180 V40" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><rect class="fill" x="62" y="120" width="116" height="68" fill="rgba(79,142,247,0.35)"/><rect class="fill" x="62" y="80" width="116" height="40" fill="rgba(245,166,35,0.3)"/><circle class="fill" cx="120" cy="22" r="8" fill="#e05252"/><text x="120" y="22" font-size="10" fill="#fff" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">?</text><text x="196" y="104" font-size="12" fill="#f5a623" font-family="DM Mono, monospace">oil 0.92</text><text x="196" y="158" font-size="12" fill="#4f8ef7" font-family="DM Mono, monospace">water 1.00</text><text x="136" y="26" font-size="12" fill="#e8eaf0" font-family="DM Mono, monospace">bead 0.96</text><text x="250" y="200" font-size="10" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">g/cm³</text></svg>
+      <div class="mcq-options" id="s23-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'a')"><div class="opt-indicator"></div><span>It floats on top of the oil.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'b')"><div class="opt-indicator"></div><span>It sinks to the bottom of the jar.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'c')"><div class="opt-indicator"></div><span>It sinks through the oil and floats on top of the water.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'd')"><div class="opt-indicator"></div><span>It floats halfway up the oil layer.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s23','c','Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s23','Compare the bead with each liquid in turn.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','C — 0.96 is more than 0.92, so the bead sinks through the oil. 0.96 is less than 1.00, so it floats on the water and rests where the layers meet.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s23-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-s24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">A metal ball just fits through a ring. After the ball is heated it no longer fits. Does its density increase, decrease or stay the same?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s24-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s24',['decrease','decreases','it decreases','decreased','goes down'],'Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s24','What happens to its mass? What happens to its volume?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s24','Decreases: the mass is unchanged but the volume is bigger, so m ÷ V is smaller.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s24-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION D &mdash; DENSITY</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-de-fill"></div></div>
+    <div class="section-score-val" id="sec-de-val">0/8</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="wa" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#127925;</div><div><div class="sub-label">Section E &middot; Q25&ndash;Q30 &middot; Term 2 &middot; Week 4</div><h2>Waves &amp; Sound</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-sound-thermal-energy.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Two kinds of wave</h4><div class="fact-body"><strong>Transverse</strong>: vibrations at right angles to the direction of travel (crests and troughs), e.g. light. <strong>Longitudinal</strong>: vibrations along the direction of travel (compressions and rarefactions), e.g. sound.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Measuring a wave</h4><div class="fact-body">Amplitude: middle line to a crest. Wavelength: one crest to the next. Frequency: waves per second, in hertz (Hz).</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Period</h4><div class="fact-body"><span class="f">T = 1 &divide; f</span> and <span class="f">f = 1 &divide; T</span>, with T in seconds.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>What you hear</h4><div class="fact-body">Bigger amplitude: louder. Higher frequency: higher pitch.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Superposition</h4><div class="fact-body">Crest meets crest: the amplitudes add. Crest meets trough: they cancel.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Sound needs a medium</h4><div class="fact-body">Sound is passed along by vibrating particles, so it travels through solids, liquids and gases but not through a vacuum.</div></div>
+  </div>
+  <div class="explorer">
+  <h3>&#127925; Wave Maker</h3>
+  <p class="ex-note">Change the amplitude and the frequency. The red dot shows how one particle moves as the wave passes.</p>
+  <svg class="ex-svg wide" id="wave-svg" viewBox="0 0 600 200" role="img" aria-label="A moving transverse wave">
+    <line x1="0" y1="100" x2="600" y2="100" stroke="#2a3050" stroke-width="1.5" stroke-dasharray="4 6"/>
+    <line x1="300" y1="10" x2="300" y2="190" stroke="#2a3050" stroke-width="1"/>
+    <path id="wave-path" stroke="#f5a623" stroke-width="3" fill="none"/>
+    <circle id="wave-dot" cx="300" cy="100" r="7" fill="#e05252"/>
+  </svg>
+  <div class="ex-row" style="margin-top:12px">
+    <div class="ex-controls">
+      <label for="wave-a">Amplitude: <span id="wave-a-val">2</span> cm</label>
+      <input type="range" id="wave-a" min="1" max="4" step="1" value="2">
+    </div>
+    <div class="ex-controls">
+      <label for="wave-f">Frequency: <span id="wave-f-val">1</span> Hz</label>
+      <input type="range" id="wave-f" min="0.5" max="3" step="0.5" value="1">
+    </div>
+    <div class="ex-readout" id="wave-read" style="flex:1 1 220px"></div>
+  </div>
+</div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-s25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A tuning fork vibrates at 50 Hz. What is the period of one vibration?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s25-ans" placeholder="Enter answer..."><span class="num-unit">s</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s25',0.02,'Q25',0.0001)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s25','Period and frequency are each 1 divided by the other.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s25','T = 1 ÷ 50 = 0.02 s')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s25-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-s26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">One wave passes a point every 0.25 s. What is the frequency?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s26-ans" placeholder="Enter answer..."><span class="num-unit">Hz</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s26',4,'Q26',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s26','How many 0.25 s fit into one second?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s26','f = 1 ÷ 0.25 = 4 Hz')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s26-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-s27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Two water waves meet crest to crest. One has an amplitude of 3 cm and the other 4 cm. What is the amplitude where they meet?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s27-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s27',7,'Q27',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s27','Crest on crest: do they add or cancel?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s27','3 + 4 = 7 cm')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s27-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-s28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">A guitar string is plucked again, harder, on the same note. How does the sound change?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s28-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'a')"><div class="opt-indicator"></div><span>It sounds higher, because the frequency goes up.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'b')"><div class="opt-indicator"></div><span>It sounds lower, because the wavelength gets longer.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'c')"><div class="opt-indicator"></div><span>It sounds louder and higher.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s28', this, 'd')"><div class="opt-indicator"></div><span>It sounds louder, but the pitch stays the same.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s28','d','Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s28','Plucking harder changes the size of the vibration, not how often it happens.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s28','D — A harder pluck gives a bigger amplitude, so the sound is louder. The note, the frequency, is unchanged, so the pitch is the same.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-s29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A slinky is pushed and pulled along its length. What are the stretched-out parts, where the coils are furthest apart, called?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s29-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s29',['rarefactions','rarefaction','rarefractions','rarefraction'],'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s29','The squashed parts are compressions.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s29','Rarefactions')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s29-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-s30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">An electric bell rings inside a sealed glass jar. A pump slowly removes the air. What do you hear?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'a')"><div class="opt-indicator"></div><span>The ringing gets quieter and quieter, until it can hardly be heard.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'b')"><div class="opt-indicator"></div><span>The ringing gets louder, because nothing gets in the way.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'c')"><div class="opt-indicator"></div><span>The ringing gets higher in pitch.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'd')"><div class="opt-indicator"></div><span>No change: sound passes through glass.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s30','a','Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s30','What carries a sound from the bell to the glass?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s30','A — As air is removed there are fewer particles to pass the vibrations on, so less sound reaches you. In a perfect vacuum there would be none.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s30-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION E &mdash; WAVES &amp; SOUND</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wa-fill"></div></div>
+    <div class="section-score-val" id="sec-wa-val">0/6</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="th" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#128293;</div><div><div class="sub-label">Section F &middot; Q31&ndash;Q36 &middot; Term 2 &middot; Week 4</div><h2>Thermal Energy</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-sound-thermal-energy.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Heat vs temperature</h4><div class="fact-body">Temperature (&deg;C) says how hot something is: the <em>average</em> kinetic energy of its particles. Heat, or thermal energy (J), is the <em>total</em>, so it also depends on the mass.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Which way?</h4><div class="fact-body">Heat always flows from the hotter object to the colder one, until both reach the same temperature.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Conduction</h4><div class="fact-body">Vibrating particles pass energy to their neighbours. Best in solids, especially metals.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Convection</h4><div class="fact-body">In liquids and gases: warm fluid expands, becomes less dense and rises; cooler fluid sinks to take its place.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Radiation</h4><div class="fact-body">Infrared waves. It needs no particles, so it crosses empty space.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Insulation &amp; evaporation</h4><div class="fact-body">Insulators trap still air (wool, foam, double glazing). Evaporation happens at the surface at any temperature and cools the liquid left behind. Boiling happens all through a liquid at its boiling point.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-s31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">A sparkler burns at about 1000 °C. A full bath of water is at 40 °C. Which statement is correct?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s31-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'a')"><div class="opt-indicator"></div><span>The sparkler has more thermal energy, because it is hotter.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'b')"><div class="opt-indicator"></div><span>The bath has more thermal energy: its particles move more slowly, but there are vastly more of them.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'c')"><div class="opt-indicator"></div><span>They have the same thermal energy, because both are hot.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'd')"><div class="opt-indicator"></div><span>The bath has a higher temperature, because it is bigger.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s31','b','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s31','Temperature is an average; thermal energy is a total.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s31','B — The sparkler is hotter (higher average energy per particle), but the huge mass of bath water stores far more energy in total.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s31-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-s32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">A mug of tea at 70 °C is left in a room at 25 °C. At what temperature does the tea stop losing heat? (Assume the room stays at 25 °C.)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s32-ans" placeholder="Enter answer..."><span class="num-unit">°C</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s32',25,'Q32',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s32','Heat flows until there is no temperature difference.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s32','25 °C: once the tea matches the room, there is no more heat flow.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s32-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-s33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">You feel the warmth of a campfire on your face, even though the air between you is cool. Which way of transferring heat is this?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s33-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s33',['radiation','infrared radiation','infrared','thermal radiation'],'Q33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s33','It does not need the air to carry it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s33','Radiation (infrared)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s33-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-s34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Why does double glazing help keep a room warm?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s34-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'a')"><div class="opt-indicator"></div><span>The two panes reflect all the heat back into the room.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'b')"><div class="opt-indicator"></div><span>Glass is a good conductor, so it spreads the heat evenly.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'c')"><div class="opt-indicator"></div><span>The thin gap of air between the panes conducts heat badly and is too narrow to circulate.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'd')"><div class="opt-indicator"></div><span>It stops infrared from the Sun getting in.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s34','c','Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s34','What is between the two panes?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s34','C — Still air conducts heat very poorly, and the gap is too narrow for convection currents, so heat escapes slowly.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s34-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-s35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">You step out of a swimming pool on a windy day and feel cold, even though the air is warm. Why?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s35-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'a')"><div class="opt-indicator"></div><span>The fastest water particles escape from your skin as vapour, taking energy with them.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'b')"><div class="opt-indicator"></div><span>The wind is colder than the air.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'c')"><div class="opt-indicator"></div><span>The water on your skin is boiling away.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'd')"><div class="opt-indicator"></div><span>Cold flows from the water into your body.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s35','a','Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s35','Which water particles are most likely to leave the surface?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s35','A — This is evaporation. The most energetic particles leave, so the average energy of what remains drops and your skin cools. Wind carries the vapour away, which speeds it up.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s35-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-s36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">In which state of matter can convection <strong>not</strong> happen?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s36-ans" placeholder="one word" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s36',['solid','solids','a solid','in solids','in a solid'],'Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s36','Convection needs the particles themselves to move from place to place.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s36','Solids: the particles can only vibrate in place.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s36-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION F &mdash; THERMAL ENERGY</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-th-fill"></div></div>
+    <div class="section-score-val" id="sec-th-val">0/8</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="el" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Section G &middot; Q37&ndash;Q42 &middot; Term 2 &middot; Week 4</div><h2>Electricity</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-electricity.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Three quantities</h4><div class="fact-body">Voltage V, in volts (V): the push. Current I, in amps (A): the flow of charge. Resistance R, in ohms (&Omega;): how hard it is for current to flow.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Ohm&rsquo;s law</h4><div class="fact-body"><span class="f">V = I &times; R</span><br>so <span class="f">I = V &divide; R</span> and <span class="f">R = V &divide; I</span>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Series</h4><div class="fact-body">One loop. The current is the same everywhere. The cell&rsquo;s voltage is shared between the components. <span class="f">R = R&#8321; + R&#8322; + &hellip;</span></div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Parallel</h4><div class="fact-body">Several branches. Each branch gets the full voltage. The branch currents add up to the current from the cell.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Variable resistor</h4><div class="fact-body">Turning its resistance up lets less current flow, so a lamp in series with it gets dimmer.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Meters</h4><div class="fact-body">An ammeter measures current; a voltmeter measures voltage.</div></div>
+  </div>
+  <div class="explorer">
+  <h3>&#9889; Ohm&rsquo;s Law Circuit</h3>
+  <p class="ex-note">Change the battery voltage and the resistance. Watch the moving charges and the lamp.</p>
+  <div class="ex-row">
+    <svg class="ex-svg" id="ohm-svg" viewBox="0 0 360 230" style="max-width:380px" role="img" aria-label="A circuit with a battery, resistor, lamp and ammeter">
+      <path id="ohm-loop" d="M40 40 H320 V190 H40 Z" stroke="#7a84a0" stroke-width="2.5" fill="none"/>
+      <rect x="28" y="96" width="24" height="28" fill="#1e2336"/>
+      <line x1="24" y1="100" x2="56" y2="100" stroke="#e8eaf0" stroke-width="3"/>
+      <line x1="31" y1="114" x2="49" y2="114" stroke="#e8eaf0" stroke-width="5"/>
+      <text x="12" y="112" font-size="11" fill="#7a84a0" font-family="DM Mono, monospace" text-anchor="middle">+</text>
+      <rect x="150" y="30" width="60" height="20" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <text x="180" y="22" font-size="12" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace" id="ohm-rlab">R</text>
+      <circle id="ohm-glow" cx="320" cy="115" r="30" fill="#f5a623" opacity="0.3"/>
+      <circle cx="320" cy="115" r="13" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <path d="M311 106 L329 124 M329 106 L311 124" stroke="#e8eaf0" stroke-width="2"/>
+      <circle cx="180" cy="190" r="14" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <text x="180" y="191" font-size="13" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">A</text>
+      <text x="180" y="222" font-size="12" fill="#3ecf8e" text-anchor="middle" font-family="DM Mono, monospace" id="ohm-alab"></text>
+      <g id="ohm-charges"></g>
+    </svg>
+    <div class="ex-controls">
+      <label for="ohm-v">Battery voltage: <span id="ohm-v-val">6</span> V</label>
+      <input type="range" id="ohm-v" min="1.5" max="12" step="1.5" value="6">
+      <label for="ohm-r">Resistance: <span id="ohm-r-val">4</span> &Omega;</label>
+      <input type="range" id="ohm-r" min="2" max="20" step="2" value="4">
+      <div class="ex-readout" id="ohm-read"></div>
+    </div>
+  </div>
+</div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-s37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">A 6 V battery is connected across a 3 Ω resistor. What current flows?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s37-ans" placeholder="Enter answer..."><span class="num-unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s37',2,'Q37',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s37','Which form of Ohm’s law gives I?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s37','I = V ÷ R = 6 ÷ 3 = 2 A')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s37-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-s38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">A current of 0.2 A flows through a 45 Ω resistor. What is the voltage across it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s38-ans" placeholder="Enter answer..."><span class="num-unit">V</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s38',9,'Q38',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s38','Which form of Ohm’s law gives V?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s38','V = I × R = 0.2 × 45 = 9 V')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s38-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-s39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Three resistors, 5 Ω, 7 Ω and 12 Ω, are joined in series. What is their total resistance?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s39-ans" placeholder="Enter answer..."><span class="num-unit">Ω</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s39',24,'Q39',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s39','In series, resistances simply add.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s39','5 + 7 + 12 = 24 Ω')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s39-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-s40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">The three resistors from Q39 are connected to a 12 V battery. What current flows?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s40-ans" placeholder="Enter answer..."><span class="num-unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s40',0.5,'Q40',0.001)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s40','Use the total resistance from Q39.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s40','I = V ÷ R = 12 ÷ 24 = 0.5 A')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s40-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-s41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">How should a voltmeter be connected to measure the voltage across a lamp?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s41-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'a')"><div class="opt-indicator"></div><span>In series with the lamp, on the same wire.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'b')"><div class="opt-indicator"></div><span>In series with the cell, before the lamp.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'c')"><div class="opt-indicator"></div><span>Anywhere in the circuit, as long as the switch is closed.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'd')"><div class="opt-indicator"></div><span>In parallel, with one lead on each side of the lamp.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s41','d','Q41')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s41','A voltmeter compares the two ends of a component.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s41','D — The voltmeter goes across the lamp, in parallel. It is the ammeter that goes in series.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s41-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="q-card" id="qcard-s42">
+    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">Why are the lights in a house wired in parallel rather than in series?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s42-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'a')"><div class="opt-indicator"></div><span>Parallel circuits use less current altogether.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'b')"><div class="opt-indicator"></div><span>Each light gets the full mains voltage and can be switched on or off without the others.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'c')"><div class="opt-indicator"></div><span>In parallel the bulbs share the voltage, so they last longer.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'd')"><div class="opt-indicator"></div><span>Series circuits cannot carry mains electricity.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s42','b','Q42')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s42','Think about what happens to the other lights when one is switched off.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s42','B — Every parallel branch gets the full voltage, so each lamp is fully bright, and a broken or switched-off lamp does not break the circuit for the others.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s42-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION G &mdash; ELECTRICITY</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-el-fill"></div></div>
+    <div class="section-score-val" id="sec-el-val">0/7</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { s1:1, s2:1, s3:1, s4:2, s5:1, s6:1, s7:1, s8:1, s9:2, s10:1, s11:1, s12:2, s13:1, s14:1, s15:1, s16:1, s17:1, s18:1, s19:2, s20:1, s21:1, s22:1, s23:2, s24:1, s25:1, s26:1, s27:1, s28:1, s29:1, s30:1, s31:2, s32:1, s33:1, s34:1, s35:2, s36:1, s37:1, s38:1, s39:1, s40:2, s41:1, s42:1 };
+
+const sections = {
+  at: { label: 'Atoms & Periodic Table', qs: ['s1','s2','s3','s4','s5','s6'] },
+  bo: { label: 'Bonding & Ions', qs: ['s7','s8','s9','s10','s11','s12'] },
+  pl: { label: 'Plant Biology', qs: ['s13','s14','s15','s16','s17','s18'] },
+  de: { label: 'Density', qs: ['s19','s20','s21','s22','s23','s24'] },
+  wa: { label: 'Waves & Sound', qs: ['s25','s26','s27','s28','s29','s30'] },
+  th: { label: 'Thermal Energy', qs: ['s31','s32','s33','s34','s35','s36'] },
+  el: { label: 'Electricity', qs: ['s37','s38','s39','s40','s41','s42'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function toggleCover() {
+  const on = document.body.classList.toggle('cover');
+  document.querySelectorAll('.fact.peek').forEach(f => f.classList.remove('peek'));
+  document.getElementById('cover-btn').innerHTML = on ? '&#128064; Show the notes' : '&#128584; Cover the notes';
+}
+
+function selectMCQ(qid, el) {
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'\)/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'\)/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance + 1e-9;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  input.disabled = true;
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/[’‘]/g, "'").replace(/[“”"]/g, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Reveal the answer, then look back at the key facts above.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    document.getElementById(`sec-${key}-fill`).style.width = (secScore/secMax)*100 + '%';
+    document.getElementById(`sec-${key}-val`).textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sem1-science-revision_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height), w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length], rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw); else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const a = document.activeElement;
+  if (a && (a.classList.contains('num-input') || a.classList.contains('text-input'))) a.closest('.q-body')?.querySelector('.btn-check')?.click();
+});
+
+// Diagrams draw themselves in as they scroll into view
+(function() {
+  const figs = document.querySelectorAll('.q-fig');
+  if (!('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('drawn')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  figs.forEach(f => io.observe(f));
+})();
+
+const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---- Shell Builder
+(function() {
+  const EL = ['Hydrogen H','Helium He','Lithium Li','Beryllium Be','Boron B','Carbon C','Nitrogen N','Oxygen O','Fluorine F','Neon Ne',
+              'Sodium Na','Magnesium Mg','Aluminium Al','Silicon Si','Phosphorus P','Sulfur S','Chlorine Cl','Argon Ar','Potassium K','Calcium Ca'];
+  const svg = document.getElementById('atom-svg'), slider = document.getElementById('atom-z');
+  if (!svg) return;
+  function shells(z) { const caps = [2,8,8,2], out = []; let left = z; for (const c of caps) { if (left <= 0) break; out.push(Math.min(c,left)); left -= c; } return out; }
+  function draw() {
+    const z = +slider.value, [name, sym] = EL[z-1].split(' '), sh = shells(z);
+    document.getElementById('atom-z-val').textContent = z;
+    let s = `<circle cx="120" cy="120" r="17" fill="#f5a623"/><text x="120" y="120" font-size="12" fill="#0f1117" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace" font-weight="600">${sym}</text>`;
+    let k = 0;
+    sh.forEach((n, i) => {
+      const r = 34 + i*24;
+      s += `<g class="orbit" style="animation-duration:${10+i*6}s"><circle cx="120" cy="120" r="${r}" fill="none" stroke="#4a5270" stroke-width="1.5"/>`;
+      for (let j = 0; j < n; j++) {
+        const a = -Math.PI/2 + j*2*Math.PI/n, x = 120 + r*Math.cos(a), y = 120 + r*Math.sin(a);
+        s += `<circle class="e-pop" style="animation-delay:${(k++)*0.04}s;transform-origin:${x}px ${y}px" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.5" fill="#4f8ef7"/>`;
+      }
+      s += '</g>';
+    });
+    svg.innerHTML = s;
+    document.getElementById('atom-read').innerHTML = `<strong>${name} (${sym})</strong><br>${z} proton${z>1?'s':''}, ${z} electron${z>1?'s':''}<br>Electronic structure: <strong>${sh.join(',')}</strong>`;
+  }
+  slider.addEventListener('input', draw); draw();
+})();
+
+// ---- Float or Sink?
+(function() {
+  const m = document.getElementById('dens-m'), v = document.getElementById('dens-v'), g = document.getElementById('dens-block');
+  if (!g) return;
+  function draw() {
+    const mass = +m.value, vol = +v.value, rho = mass/vol;
+    document.getElementById('dens-m-val').textContent = mass;
+    document.getElementById('dens-v-val').textContent = vol;
+    const side = 24 + vol*0.48, x = 150 - side/2;
+    let top;
+    if (rho < 1) top = 80 - side*(1-rho); else if (rho > 1) top = 228 - side; else top = 150 - side/2;
+    let dots = '';
+    const n = mass/10, cols = Math.ceil(Math.sqrt(n)), step = side/(cols+1);
+    for (let i = 0; i < n; i++) dots += `<circle cx="${(step*(1 + i%cols)).toFixed(1)}" cy="${(step*(1 + Math.floor(i/cols))).toFixed(1)}" r="2.6" fill="#0f1117"/>`;
+    g.innerHTML = `<rect width="${side}" height="${side}" rx="3" fill="#f5a623" stroke="#e8eaf0" stroke-width="1.5"/>${dots}`;
+    g.style.transform = `translate(${x}px, ${top}px)`;
+    const verdict = rho < 1 ? 'less dense than water, so it <strong>floats</strong>' : rho > 1 ? 'denser than water, so it <strong>sinks</strong>' : 'the same as water, so it <strong>hovers</strong> wherever you leave it';
+    document.getElementById('dens-read').innerHTML = `&rho; = ${mass} &divide; ${vol} = <strong>${rho.toFixed(2)} g/cm&sup3;</strong><br>That is ${verdict}.`;
+  }
+  m.addEventListener('input', draw); v.addEventListener('input', draw); draw();
+})();
+
+// ---- Wave Maker
+(function() {
+  const path = document.getElementById('wave-path'), dot = document.getElementById('wave-dot');
+  if (!path) return;
+  const a = document.getElementById('wave-a'), f = document.getElementById('wave-f');
+  const bars = (n, max) => '&#9646;'.repeat(n) + '<span style="opacity:.3">' + '&#9646;'.repeat(max-n) + '</span>';
+  function readout() {
+    const A = +a.value, F = +f.value, T = 1/F;
+    document.getElementById('wave-a-val').textContent = A;
+    document.getElementById('wave-f-val').textContent = F;
+    document.getElementById('wave-read').innerHTML = `T = 1 &divide; ${F} = <strong>${+T.toFixed(2)} s</strong><br>Loudness ${bars(A,4)}<br>Pitch&nbsp;&nbsp;&nbsp; ${bars(F*2,6)}`;
+  }
+  const t0 = performance.now();
+  function frame(now) {
+    const t = REDUCED ? 0 : (now - t0)/1000, A = +a.value*20, F = +f.value, lam = 240/F;
+    let d = '';
+    for (let x = 0; x <= 600; x += 4) { const y = 100 - A*Math.sin(2*Math.PI*(F*t - x/lam)); d += (x ? 'L' : 'M') + x + ' ' + y.toFixed(1); }
+    path.setAttribute('d', d);
+    dot.setAttribute('cy', (100 - A*Math.sin(2*Math.PI*(F*t - 300/lam))).toFixed(1));
+    if (!REDUCED) requestAnimationFrame(frame);
+  }
+  a.addEventListener('input', () => { readout(); if (REDUCED) frame(0); });
+  f.addEventListener('input', () => { readout(); if (REDUCED) frame(0); });
+  readout(); requestAnimationFrame(frame);
+})();
+
+// ---- Ohm's Law Circuit
+(function() {
+  const loop = document.getElementById('ohm-loop'), grp = document.getElementById('ohm-charges');
+  if (!loop) return;
+  const v = document.getElementById('ohm-v'), r = document.getElementById('ohm-r');
+  const L = loop.getTotalLength(), N = 16, dots = [];
+  for (let i = 0; i < N; i++) { const c = document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('r','4'); c.setAttribute('fill','#4f8ef7'); grp.appendChild(c); dots.push(c); }
+  let offset = 0, last = performance.now();
+  const current = () => +v.value / +r.value;
+  function readout() {
+    const V = +v.value, R = +r.value, I = V/R;
+    document.getElementById('ohm-v-val').textContent = V;
+    document.getElementById('ohm-r-val').textContent = R;
+    document.getElementById('ohm-rlab').textContent = R + ' Ω';
+    document.getElementById('ohm-alab').textContent = I.toFixed(2) + ' A';
+    document.getElementById('ohm-glow').setAttribute('opacity', Math.min(0.9, 0.05 + I/3).toFixed(2));
+    document.getElementById('ohm-glow').setAttribute('r', (16 + Math.min(1, I/3)*20).toFixed(1));
+    document.getElementById('ohm-read').innerHTML = `I = V &divide; R = ${V} &divide; ${R} = <strong>${+I.toFixed(3)} A</strong><br>${I >= 2 ? 'A large current: the lamp glows brightly.' : I >= 0.6 ? 'A moderate current: the lamp is lit.' : 'A small current: the lamp is dim.'}`;
+  }
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last)/1000); last = now;
+    if (!REDUCED) offset = (offset + current()*40*dt) % L;
+    dots.forEach((c, i) => { const p = loop.getPointAtLength((offset + i*L/N) % L); c.setAttribute('cx', p.x.toFixed(1)); c.setAttribute('cy', p.y.toFixed(1)); });
+    if (!REDUCED) requestAnimationFrame(frame);
+  }
+  v.addEventListener('input', readout); r.addEventListener('input', readout);
+  readout(); requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
