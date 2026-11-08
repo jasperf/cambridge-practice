@@ -1,6 +1,6 @@
 # Secondary 2 · Science Formula Sheets
 
-One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Five extra diagrams cover the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the two-step phone-charger explainer.
+One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Six extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the two-step phone-charger explainer.
 
 | # | Sheet | Term | Page | Image |
 |---|-------|------|------|-------|
@@ -41,11 +41,14 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 
 | Diagram | Page | Image |
 |---------|------|-------|
+| **The Periodic Table** — elements 1–20 with electronic structures, metals and non-metals, ions, reading group and period from 2,8,3 | [science-diagram-periodic-table.md](science-diagram-periodic-table.md) | [.svg](svg/science-diagram-periodic-table.svg) |
 | **Anatomy of a Wave** — amplitude, wavelength, crest, trough, period, frequency, compressions | [science-diagram-waves.md](science-diagram-waves.md) | [.svg](svg/science-diagram-waves.svg) |
 | **Formula Triangles** — density, Ohm's law, period and frequency, with worked examples | [science-diagram-formula-triangles.md](science-diagram-formula-triangles.md) | [.svg](svg/science-diagram-formula-triangles.svg) |
 | **How Heat Travels** — conduction, convection, radiation, insulation, heat vs temperature | [science-diagram-heat-transfer.md](science-diagram-heat-transfer.md) | [.svg](svg/science-diagram-heat-transfer.svg) |
 | **Phone Charger 1: The Five Stages** — 220 V AC to 5 V DC | [science-diagram-phone-charger-1-stages.md](science-diagram-phone-charger-1-stages.md) | [.svg](svg/science-diagram-phone-charger-1-stages.svg) |
 | **Phone Charger 2: The Transformer** — turns ratio, step-down | [science-diagram-phone-charger-2-transformer.md](science-diagram-phone-charger-2-transformer.md) | [.svg](svg/science-diagram-phone-charger-2-transformer.svg) |
+
+[![The periodic table, elements 1–20](svg/science-diagram-periodic-table.svg)](science-diagram-periodic-table.md)
 
 [![Anatomy of a wave](svg/science-diagram-waves.svg)](science-diagram-waves.md)
 
@@ -71,7 +74,7 @@ science-formula-sheets/
 ├── README.md                 ← This file
 ├── formula-reference.md      ← Text version of all six sheets
 ├── science-sheet-N-*.md      ← One page per sheet: image + caption + source worksheets
-├── science-diagram-*.md      ← Wave, formula-triangle, heat-transfer and phone-charger diagrams
+├── science-diagram-*.md      ← Periodic-table, wave, formula-triangle, heat-transfer and phone-charger diagrams
 ├── svg/                      ← Sheet images (SVG)
 └── whatsapp/                 ← captions-whatsapp.txt (JPGs here are git-ignored)
 ```

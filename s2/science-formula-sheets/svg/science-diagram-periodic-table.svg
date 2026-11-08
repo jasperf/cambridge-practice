@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1000" viewBox="0 0 1080 1000" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E8590C"/></marker></defs>
+<rect width="1080" height="1000" fill="#FBF5E9"/><rect width="14" height="1000" fill="#E8590C"/>
+<text x="56" y="62" font-size="20" font-weight="700" fill="#E8590C" text-anchor="start" letter-spacing="2">SECONDARY 2 SCIENCE · DIAGRAM</text>
+<text x="56" y="108" font-size="40" font-weight="800" fill="#14213D" text-anchor="start">The Periodic Table: Elements 1–20</text>
+<text x="56" y="136" font-size="20" font-weight="400" fill="#5B6478" text-anchor="start">Term 1 · Unit 1 · Atomic structure and the periodic table</text>
+<text x="222.0" y="192" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Group 1</text>
+<text x="332.0" y="192" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Group 2</text>
+<text x="442.0" y="192" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Group 3</text>
+<text x="552.0" y="192" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Group 4</text>
+<text x="662.0" y="192" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Group 5</text>
+<text x="772.0" y="192" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Group 6</text>
+<text x="882.0" y="192" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Group 7</text>
+<text x="992.0" y="184" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Group 8</text>
+<text x="992.0" y="200" font-size="12" font-weight="400" fill="#5B6478" text-anchor="middle">(also 0 or 18)</text>
+<text x="56" y="254" font-size="18" font-weight="700" fill="#14213D" text-anchor="start">Period 1</text>
+<text x="56" y="278" font-size="15" font-weight="400" fill="#5B6478" text-anchor="start">1 shell</text>
+<text x="56" y="366" font-size="18" font-weight="700" fill="#14213D" text-anchor="start">Period 2</text>
+<text x="56" y="390" font-size="15" font-weight="400" fill="#5B6478" text-anchor="start">2 shells</text>
+<text x="56" y="478" font-size="18" font-weight="700" fill="#14213D" text-anchor="start">Period 3</text>
+<text x="56" y="502" font-size="15" font-weight="400" fill="#5B6478" text-anchor="start">3 shells</text>
+<text x="56" y="590" font-size="18" font-weight="700" fill="#14213D" text-anchor="start">Period 4</text>
+<text x="56" y="614" font-size="15" font-weight="400" fill="#5B6478" text-anchor="start">4 shells</text>
+<rect x="170" y="206" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="180" y="228" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">1</text>
+<text x="222.0" y="262" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">H</text>
+<text x="222.0" y="282" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Hydrogen</text>
+<text x="222.0" y="302" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">1</text>
+<rect x="940" y="206" width="104" height="104" rx="10" fill="#ECE3F7" stroke="#A58BD0" stroke-width="1.5"/>
+<text x="950" y="228" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">2</text>
+<text x="992.0" y="262" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">He</text>
+<text x="992.0" y="282" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Helium</text>
+<text x="992.0" y="302" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2</text>
+<rect x="170" y="318" width="104" height="104" rx="10" fill="#FFE8D6" stroke="#F4A26B" stroke-width="1.5"/>
+<text x="180" y="340" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">3</text>
+<text x="222.0" y="374" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Li</text>
+<text x="222.0" y="394" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Lithium</text>
+<text x="222.0" y="414" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,1</text>
+<rect x="280" y="318" width="104" height="104" rx="10" fill="#FFE8D6" stroke="#F4A26B" stroke-width="1.5"/>
+<text x="290" y="340" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">4</text>
+<text x="332.0" y="374" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Be</text>
+<text x="332.0" y="394" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Beryllium</text>
+<text x="332.0" y="414" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,2</text>
+<rect x="390" y="318" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="400" y="340" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">5</text>
+<text x="442.0" y="374" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">B</text>
+<text x="442.0" y="394" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Boron</text>
+<text x="442.0" y="414" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,3</text>
+<rect x="500" y="318" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="510" y="340" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">6</text>
+<text x="552.0" y="374" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">C</text>
+<text x="552.0" y="394" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Carbon</text>
+<text x="552.0" y="414" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,4</text>
+<rect x="610" y="318" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="620" y="340" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">7</text>
+<text x="662.0" y="374" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">N</text>
+<text x="662.0" y="394" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Nitrogen</text>
+<text x="662.0" y="414" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,5</text>
+<rect x="720" y="318" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="730" y="340" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">8</text>
+<text x="772.0" y="374" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">O</text>
+<text x="772.0" y="394" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Oxygen</text>
+<text x="772.0" y="414" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,6</text>
+<rect x="830" y="318" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="840" y="340" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">9</text>
+<text x="882.0" y="374" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">F</text>
+<text x="882.0" y="394" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Fluorine</text>
+<text x="882.0" y="414" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,7</text>
+<rect x="940" y="318" width="104" height="104" rx="10" fill="#ECE3F7" stroke="#A58BD0" stroke-width="1.5"/>
+<text x="950" y="340" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">10</text>
+<text x="992.0" y="374" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Ne</text>
+<text x="992.0" y="394" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Neon</text>
+<text x="992.0" y="414" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8</text>
+<rect x="170" y="430" width="104" height="104" rx="10" fill="#FFE8D6" stroke="#F4A26B" stroke-width="1.5"/>
+<text x="180" y="452" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">11</text>
+<text x="222.0" y="486" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Na</text>
+<text x="222.0" y="506" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Sodium</text>
+<text x="222.0" y="526" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,1</text>
+<rect x="280" y="430" width="104" height="104" rx="10" fill="#FFE8D6" stroke="#F4A26B" stroke-width="1.5"/>
+<text x="290" y="452" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">12</text>
+<text x="332.0" y="486" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Mg</text>
+<text x="332.0" y="506" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Magnesium</text>
+<text x="332.0" y="526" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,2</text>
+<rect x="390" y="430" width="104" height="104" rx="10" fill="#FFE8D6" stroke="#E8590C" stroke-width="4"/>
+<text x="400" y="452" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">13</text>
+<text x="442.0" y="486" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Al</text>
+<text x="442.0" y="506" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Aluminium</text>
+<text x="442.0" y="526" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,3</text>
+<rect x="500" y="430" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="510" y="452" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">14</text>
+<text x="552.0" y="486" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Si</text>
+<text x="552.0" y="506" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Silicon</text>
+<text x="552.0" y="526" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,4</text>
+<rect x="610" y="430" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="620" y="452" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">15</text>
+<text x="662.0" y="486" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">P</text>
+<text x="662.0" y="506" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Phosphorus</text>
+<text x="662.0" y="526" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,5</text>
+<rect x="720" y="430" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="730" y="452" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">16</text>
+<text x="772.0" y="486" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">S</text>
+<text x="772.0" y="506" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Sulfur</text>
+<text x="772.0" y="526" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,6</text>
+<rect x="830" y="430" width="104" height="104" rx="10" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="840" y="452" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">17</text>
+<text x="882.0" y="486" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Cl</text>
+<text x="882.0" y="506" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Chlorine</text>
+<text x="882.0" y="526" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,7</text>
+<rect x="940" y="430" width="104" height="104" rx="10" fill="#ECE3F7" stroke="#A58BD0" stroke-width="1.5"/>
+<text x="950" y="452" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">18</text>
+<text x="992.0" y="486" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Ar</text>
+<text x="992.0" y="506" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Argon</text>
+<text x="992.0" y="526" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,8</text>
+<rect x="170" y="542" width="104" height="104" rx="10" fill="#FFE8D6" stroke="#F4A26B" stroke-width="1.5"/>
+<text x="180" y="564" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">19</text>
+<text x="222.0" y="598" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">K</text>
+<text x="222.0" y="618" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Potassium</text>
+<text x="222.0" y="638" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,8,1</text>
+<rect x="280" y="542" width="104" height="104" rx="10" fill="#FFE8D6" stroke="#F4A26B" stroke-width="1.5"/>
+<text x="290" y="564" font-size="15" font-weight="600" fill="#5B6478" text-anchor="start">20</text>
+<text x="332.0" y="598" font-size="32" font-weight="800" fill="#14213D" text-anchor="middle">Ca</text>
+<text x="332.0" y="618" font-size="12.5" font-weight="400" fill="#5B6478" text-anchor="middle">Calcium</text>
+<text x="332.0" y="638" font-size="15" font-weight="700" fill="#E8590C" text-anchor="middle">2,8,8,2</text>
+<text x="607.0" y="264" font-size="14" font-weight="400" fill="#5B6478" text-anchor="middle" font-style="italic">Hydrogen sits in Group 1 here, but it is a non-metal</text>
+<text x="717.0" y="592" font-size="14" font-weight="400" fill="#5B6478" text-anchor="middle" font-style="italic">Period 4 carries on with the transition metals</text>
+<text x="717.0" y="612" font-size="14" font-weight="400" fill="#5B6478" text-anchor="middle" font-style="italic">(not needed yet)</text>
+<path d="M387.0 314.0 V426.0 H497.0 V538.0" fill="none" stroke="#14213D" stroke-width="5" stroke-linejoin="round"/>
+<rect x="166" y="664" width="882" height="74" rx="10" fill="#fff" stroke="#EADFCB"/>
+<text x="56" y="694" font-size="16" font-weight="700" fill="#14213D" text-anchor="start">Ion formed</text>
+<text x="56" y="720" font-size="15" font-weight="400" fill="#5B6478" text-anchor="start">Reactivity</text>
+<text x="222.0" y="694" font-size="20" font-weight="800" fill="#E8590C" text-anchor="middle">1+</text>
+<text x="332.0" y="694" font-size="20" font-weight="800" fill="#E8590C" text-anchor="middle">2+</text>
+<text x="442.0" y="694" font-size="20" font-weight="800" fill="#E8590C" text-anchor="middle">3+</text>
+<text x="552.0" y="694" font-size="15" font-weight="800" fill="#5B6478" text-anchor="middle">shares</text>
+<text x="662.0" y="694" font-size="20" font-weight="800" fill="#2F6DB5" text-anchor="middle">3−</text>
+<text x="772.0" y="694" font-size="20" font-weight="800" fill="#2F6DB5" text-anchor="middle">2−</text>
+<text x="882.0" y="694" font-size="20" font-weight="800" fill="#2F6DB5" text-anchor="middle">1−</text>
+<text x="992.0" y="694" font-size="15" font-weight="800" fill="#5B6478" text-anchor="middle">none</text>
+<text x="222.0" y="720" font-size="12.5" font-weight="600" fill="#14213D" text-anchor="middle">↓ more reactive</text>
+<text x="882.0" y="720" font-size="12.5" font-weight="600" fill="#14213D" text-anchor="middle">↓ less reactive</text>
+<text x="992.0" y="720" font-size="12.5" font-weight="600" fill="#14213D" text-anchor="middle">unreactive</text>
+<rect x="56" y="745" width="22" height="22" rx="5" fill="#FFE8D6" stroke="#F4A26B" stroke-width="1.5"/>
+<text x="86" y="762" font-size="16" font-weight="400" fill="#14213D" text-anchor="start">Metal</text>
+<rect x="166" y="745" width="22" height="22" rx="5" fill="#DDEBFA" stroke="#7FA7D9" stroke-width="1.5"/>
+<text x="196" y="762" font-size="16" font-weight="400" fill="#14213D" text-anchor="start">Non-metal</text>
+<rect x="316" y="745" width="22" height="22" rx="5" fill="#ECE3F7" stroke="#A58BD0" stroke-width="1.5"/>
+<text x="346" y="762" font-size="16" font-weight="400" fill="#14213D" text-anchor="start">Noble gas</text>
+<path d="M466 756 h34" stroke="#14213D" stroke-width="5"/>
+<text x="510" y="762" font-size="16" font-weight="400" fill="#14213D" text-anchor="start">line between metals and non-metals</text>
+<rect x="56" y="784" width="968" height="184" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="80" y="816" font-size="16" font-weight="700" fill="#E8590C" text-anchor="start" letter-spacing="1.5">HOW TO READ AN ELECTRONIC STRUCTURE</text>
+<text x="100" y="892" font-size="58" font-weight="800" fill="#14213D" text-anchor="middle">2</text>
+<text x="137" y="892" font-size="58" font-weight="800" fill="#14213D" text-anchor="middle">,</text>
+<text x="175" y="892" font-size="58" font-weight="800" fill="#14213D" text-anchor="middle">8</text>
+<text x="212" y="892" font-size="58" font-weight="800" fill="#14213D" text-anchor="middle">,</text>
+<text x="250" y="892" font-size="58" font-weight="800" fill="#E8590C" text-anchor="middle">3</text>
+<path d="M76 906 v10 H274 v-10" fill="none" stroke="#14213D" stroke-width="3"/>
+<text x="175" y="936" font-size="16" font-weight="700" fill="#14213D" text-anchor="middle">3 numbers</text>
+<text x="400" y="848" font-size="19" font-weight="400" fill="#14213D" text-anchor="start"><tspan fill="#14213D">3 numbers</tspan> = 3 shells → <tspan font-weight="800">Period 3</tspan></text>
+<text x="400" y="876" font-size="19" font-weight="400" fill="#14213D" text-anchor="start"><tspan fill="#E8590C" font-weight="700">last number</tspan> = 3 outer electrons → <tspan font-weight="800">Group 3</tspan></text>
+<text x="400" y="908" font-size="20" font-weight="800" fill="#E8590C" text-anchor="start">So 2,8,3 is aluminium (Al), outlined in the table.</text>
+<text x="400" y="932" font-size="16" font-weight="400" fill="#5B6478" text-anchor="start">A metal: it loses its 3 outer electrons to form Al³⁺.</text>
+<text x="400" y="954" font-size="16" font-weight="400" fill="#5B6478" text-anchor="start">Exception: helium (2) has a full shell, so it is in Group 8.</text>
+<text x="56" y="990" font-size="16" font-weight="400" fill="#5B6478" text-anchor="start">Count the numbers → period · read the last number → group</text>
+</svg>
