@@ -29,11 +29,12 @@ SECTIONS = [
   dict(key='at', icon='&#9883;', color='var(--accent-math)', rgba='79,142,247',
        title='Atoms &amp; the Periodic Table', label='Atoms & Periodic Table',
        src='Term 1 &middot; Week 2', link='../t1/w2/term1-week2-atomic-structure-periodic.html',
+       link2=('../science-formula-sheets/svg/science-diagram-periodic-table.svg', 'Periodic table'),
        facts=[
          ('Inside an atom', 'Protons (charge +1) and neutrons (no charge) sit in the nucleus. Electrons (charge &minus;1) move in shells around it.'),
          ('Two numbers', '<span class="f">atomic number = protons</span><br>In a neutral atom, electrons = protons.<br><span class="f">mass number = protons + neutrons</span>'),
          ('Filling shells', 'For the first 20 elements the shells hold <span class="f">2, 8, 8, 2</span>. Example: nitrogen (7) is 2,5.'),
-         ('Reading the table', 'Group number = how many electrons are in the outer shell. Period = how many shells are in use. Group 0, the noble gases, have a full outer shell.'),
+         ('Reading the table', 'Group number = how many electrons are in the outer shell. Period = how many shells are in use. Group 8 (also called Group 0 or 18), the noble gases, have a full outer shell.'),
          ('Trends', 'Group 1 metals react by <em>losing</em> their single outer electron and get more reactive further down. Group 7 non-metals react by <em>gaining</em> one electron and get less reactive further down.'),
        ]),
   dict(key='bo', icon='&#128279;', color='var(--accent-math)', rgba='79,142,247',

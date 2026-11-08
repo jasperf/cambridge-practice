@@ -13,7 +13,7 @@ Every science topic from Terms 1 and 2: the key facts for each topic, then quest
 - **Inside an atom:** Protons (charge +1) and neutrons (no charge) sit in the nucleus. Electrons (charge −1) move in shells around it.
 - **Two numbers:** atomic number = protons · In a neutral atom, electrons = protons. · mass number = protons + neutrons
 - **Filling shells:** For the first 20 elements the shells hold 2, 8, 8, 2. Example: nitrogen (7) is 2,5.
-- **Reading the table:** Group number = how many electrons are in the outer shell. Period = how many shells are in use. Group 0, the noble gases, have a full outer shell.
+- **Reading the table:** Group number = how many electrons are in the outer shell. Period = how many shells are in use. Group 8 (also called Group 0 or 18), the noble gases, have a full outer shell.
 - **Trends:** Group 1 metals react by *losing* their single outer electron and get more reactive further down. Group 7 non-metals react by *gaining* one electron and get less reactive further down.
 
 ### Questions
