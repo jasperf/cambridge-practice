@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Test 2 Retake Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(79,142,247,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box em { font-style: italic; color: var(--accent); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .hero, .section-tabs, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: drawIn 1.1s ease forwards, fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+</style>
+</head>
+<body>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Unit Test 2 &middot; Retake Practice</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 35</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Term 2 Week 5</div>
+  <h1>Unit Test 2<br><em>Retake Practice &mdash; 20 Questions</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>20 questions &middot; self-marked &middot; 35 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>Aim for about 35 minutes &mdash; with your working on paper</div>
+  </div>
+  <p class="credit">A shorter paper with the same six topics as the full Unit Test 2 practice sheet: polygon angles, constructions, Pythagoras, circles, compound areas and Unit 5.1 angle revision. Every question is new. Diagrams are not drawn accurately &mdash; use the numbers given.</p>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128218; Need a refresher first?</h3>
+  <p>The full Unit Test 2 practice sheet has more questions on every topic here, and the formula sheets put the rules on one page each.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="term2-week5-maths-unit-test2-angles-shapes-measurements.html" target="_blank" rel="noopener">Unit Test 2 full practice &rarr;</a>
+    <a class="watch-link" href="term2-week5-maths-unit-test2-combined-test3.html" target="_blank" rel="noopener">Combined Test 3 &rarr;</a>
+    <a class="watch-link" href="../w2/term2-week2-maths-unit5-calculating-angles.html" target="_blank" rel="noopener">Week 2: Polygon Explorer &rarr;</a>
+    <a class="watch-link" href="../../maths-formula-sheets/index.html" target="_blank" rel="noopener">Formula sheets &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#pg" class="sub-tab">Polygon Angles</a>
+  <a href="#cn" class="sub-tab">Constructions</a>
+  <a href="#py" class="sub-tab">Pythagoras&rsquo; Theorem</a>
+  <a href="#ci" class="sub-tab">Circles</a>
+  <a href="#cp" class="sub-tab">Compound Areas</a>
+  <a href="#rv" class="sub-tab">Angle Revision (Unit 5.1)</a>
+</div>
+
+<div class="main">
+
+<div id="pg">
+  <div class="section-header"><div class="section-icon">&#11043;</div><div><div class="sub-label">Section A &middot; Q1&ndash;Q4</div><h2>Polygon Angles</h2></div></div>
+  <div class="info-box"><strong>Remember:</strong> Interior angle sum of an <em>n</em>-sided polygon = (<em>n</em> &minus; 2) &times; 180&deg;. The exterior angles of any polygon add to 360&deg;. At each vertex, interior + exterior = 180&deg;.</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-pg1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Find the sum of the interior angles of a 9-sided polygon (a nonagon).</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg1-ans" placeholder="Enter answer..."><span class="num-unit">degrees</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg1',1260,'Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg1','Use (n &minus; 2) &times; 180 with n = 9.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg1','1260&deg; ((9 &minus; 2) &times; 180 = 7 &times; 180 = 1260)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-pg2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Each exterior angle of a regular polygon is 24&deg;. How many sides does it have?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="pg2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('pg2', this, 'a')"><div class="opt-indicator"></div><span>13</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg2', this, 'b')"><div class="opt-indicator"></div><span>7.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg2', this, 'c')"><div class="opt-indicator"></div><span>15</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('pg2', this, 'd')"><div class="opt-indicator"></div><span>17</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('pg2','c','Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg2','All the exterior angles together make 360&deg;, and in a regular polygon they are all equal.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg2','C &mdash; 15 sides (360 &divide; 24 = 15). 7.5 comes from 180 &divide; 24, and a polygon cannot have half a side.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-pg3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">A pentagon has angles <em>x</em>&deg;, 2<em>x</em>&deg;, 100&deg;, 110&deg; and 120&deg;. Find <em>x</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg3-ans" placeholder="Enter answer..."><span class="num-unit">x =</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg3',70,'Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg3','First find the angle sum of a pentagon (5 sides), then subtract the three known angles.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg3','x = 70 (pentagon sum = 3 &times; 180 = 540; 540 &minus; 330 = 210 = 3x)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-pg4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Each interior angle of a regular polygon is 160&deg;. How many sides does it have?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="pg4-ans" placeholder="Enter answer..."><span class="num-unit">sides</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('pg4',18,'Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('pg4','Find the exterior angle first: 180 &minus; 160. Then divide 360 by it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('pg4','18 sides (exterior angle = 20&deg;; 360 &divide; 20 = 18)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="pg4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pg-fill"></div></div>
+    <div class="section-score-val" id="sec-pg-val">0/7</div>
+  </div>
+</div>
+
+<div id="cn">
+  <div class="section-header"><div class="section-icon">&#9711;</div><div><div class="sub-label">Section B &middot; Q5&ndash;Q6</div><h2>Constructions</h2></div></div>
+  <div class="info-box"><strong>Remember:</strong> With only a ruler and compasses you can draw an equilateral triangle, bisect an angle, bisect a line and draw a perpendicular. Many other angles and shapes come from combining these.</div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-cn1">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">You need to construct an angle of 30&deg; with only a ruler and compasses. Which method works?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="cn1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('cn1', this, 'a')"><div class="opt-indicator"></div><span>Construct a 60&deg; angle (from an equilateral triangle), then bisect it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cn1', this, 'b')"><div class="opt-indicator"></div><span>Construct a 90&deg; angle, then bisect it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cn1', this, 'c')"><div class="opt-indicator"></div><span>Bisect a straight line (180&deg;) twice</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cn1', this, 'd')"><div class="opt-indicator"></div><span>Construct two 60&deg; angles next to each other</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('cn1','a','Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cn1','Bisecting halves an angle. Which angle is double 30&deg;?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cn1','A &mdash; 60&deg; &divide; 2 = 30&deg;. Bisecting 90&deg; gives 45&deg;, bisecting 180&deg; twice also gives 45&deg;, and two 60&deg; angles make 120&deg;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cn1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-cn2">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">A regular hexagon is drawn inside a circle of radius 5 cm by stepping the compasses round the circle, without changing their setting. How long is each side of the hexagon?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="cn2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('cn2', this, 'a')"><div class="opt-indicator"></div><span>10 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cn2', this, 'b')"><div class="opt-indicator"></div><span>2.5 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cn2', this, 'c')"><div class="opt-indicator"></div><span>6 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('cn2', this, 'd')"><div class="opt-indicator"></div><span>5 cm</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('cn2','d','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cn2','What were the compasses set to when the circle was drawn?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cn2','D &mdash; 5 cm. A regular hexagon is made of six equilateral triangles, so each side equals the radius. 10 cm is the diameter.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cn2-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION B &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-cn-fill"></div></div>
+    <div class="section-score-val" id="sec-cn-val">0/2</div>
+  </div>
+</div>
+
+<div id="py">
+  <div class="section-header"><div class="section-icon">&#128208;</div><div><div class="sub-label">Section C &middot; Q7&ndash;Q10</div><h2>Pythagoras&rsquo; Theorem</h2></div></div>
+  <div class="info-box"><strong>Remember:</strong> In a right-angled triangle, <em>a</em>&sup2; + <em>b</em>&sup2; = <em>c</em>&sup2;, where <em>c</em> is the hypotenuse (the longest side, opposite the right angle).</div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-py1">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">A right-angled triangle has shorter sides of 9 cm and 12 cm. Find the hypotenuse <em>h</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 200" role="img" aria-label="A right-angled triangle with shorter sides 9 cm and 12 cm and hypotenuse h"><path class="draw" d="M80 170 L280 170 L80 30 Z" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path d="M80 156 L94 156 L94 170" stroke="#7a84a0" stroke-width="1.5" fill="none"/><text x="180" y="186" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">12 cm</text><text x="56" y="100" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">9 cm</text><text x="196" y="88" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">h</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py1-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py1',15,'Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py1','h&sup2; = 9&sup2; + 12&sup2;. Then square-root.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py1','h = 15 cm (81 + 144 = 225; &radic;225 = 15)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-py2">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A right-angled triangle has a hypotenuse of 17 cm and one shorter side of 8 cm. Find the other shorter side <em>a</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 200" role="img" aria-label="A right-angled triangle with hypotenuse 17 cm, one shorter side 8 cm and the other shorter side a"><path class="draw" d="M80 170 L280 170 L80 30 Z" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path d="M80 156 L94 156 L94 170" stroke="#7a84a0" stroke-width="1.5" fill="none"/><text x="180" y="186" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">a</text><text x="56" y="100" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">8 cm</text><text x="200" y="88" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">17 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py2-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py2',15,'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py2','For a shorter side you <em>subtract</em>: a&sup2; = 17&sup2; &minus; 8&sup2;.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py2','a = 15 cm (289 &minus; 64 = 225; &radic;225 = 15)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-py3">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">A 5 m ladder leans against a vertical wall. Its foot is 1.8 m from the wall. How high up the wall does it reach? Give your answer to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 210" role="img" aria-label="A 5 m ladder leaning against a vertical wall with its foot 1.8 m from the wall; the height up the wall is h"><path class="draw" d="M260 20 L260 190" stroke="#7a84a0" stroke-width="4" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M60 190 L300 190" stroke="#7a84a0" stroke-width="3" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M190 190 L260 40" stroke="#f5a623" stroke-width="4" fill="none" stroke-linecap="round" pathLength="1"/><path d="M246 190 L246 176 L260 176" stroke="#7a84a0" stroke-width="1.5" fill="none"/><text x="225" y="205" font-size="13" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">1.8 m</text><text x="200" y="105" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">5 m</text><text x="285" y="115" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">h</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="py3-ans" placeholder="Enter answer..."><span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('py3',4.7,'Q9',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py3','The ladder is the hypotenuse. h&sup2; = 5&sup2; &minus; 1.8&sup2;.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py3','h = 4.7 m (25 &minus; 3.24 = 21.76; &radic;21.76 = 4.664&hellip;)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-py4">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Which three side lengths make a right-angled triangle?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="py4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('py4', this, 'a')"><div class="opt-indicator"></div><span>6 cm, 8 cm, 11 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py4', this, 'b')"><div class="opt-indicator"></div><span>7 cm, 24 cm, 25 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py4', this, 'c')"><div class="opt-indicator"></div><span>5 cm, 11 cm, 12 cm</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('py4', this, 'd')"><div class="opt-indicator"></div><span>9 cm, 12 cm, 16 cm</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('py4','b','Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('py4','Square the two shorter sides and add. Does it equal the longest side squared?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('py4','B &mdash; 49 + 576 = 625 = 25&sup2;. The others give 100 &ne; 121, 146 &ne; 144 and 225 &ne; 256.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="py4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION C &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-py-fill"></div></div>
+    <div class="section-score-val" id="sec-py-val">0/7</div>
+  </div>
+</div>
+
+<div id="ci">
+  <div class="section-header"><div class="section-icon">&#9898;</div><div><div class="sub-label">Section D &middot; Q11&ndash;Q14</div><h2>Circles</h2></div></div>
+  <div class="info-box"><strong>Remember:</strong> Circumference <em>C</em> = &pi;<em>d</em> = 2&pi;<em>r</em>. Area <em>A</em> = &pi;<em>r</em>&sup2;. Use the &pi; button on your calculator unless the question says otherwise.</div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-ci1">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Find the circumference of a circle with diameter 14 cm. Give your answer to 1 decimal place.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci1-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci1',44.0,'Q11',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci1','C = &pi; &times; d.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci1','44.0 cm (&pi; &times; 14 = 43.98&hellip;)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-ci2">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Find the area of a circle with radius 6 cm, to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="ci2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('ci2', this, 'a')"><div class="opt-indicator"></div><span>37.7 cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci2', this, 'b')"><div class="opt-indicator"></div><span>452.4 cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci2', this, 'c')"><div class="opt-indicator"></div><span>18.8 cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci2', this, 'd')"><div class="opt-indicator"></div><span>113.1 cm&sup2;</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('ci2','d','Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci2','Square the radius first, then multiply by &pi;.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci2','D &mdash; 113.1 cm&sup2; (&pi; &times; 6&sup2; = &pi; &times; 36 = 113.09&hellip;). 37.7 is the circumference (2&pi;r), 452.4 uses 12 as the radius, and 18.8 is &pi; &times; 6 without squaring.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-ci3">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">A circle has a circumference of 50 cm. Find its <em>radius</em> to 1 decimal place.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      
+      <div class="num-row"><input type="number" step="any" class="num-input" id="ci3-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('ci3',8.0,'Q13',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci3','Work backwards: C = 2&pi;r, so r = 50 &divide; (2&pi;).')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci3','r = 8.0 cm (50 &divide; 6.283&hellip; = 7.957&hellip;)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-ci4">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">A circle has radius 5 cm. What is its area <em>in terms of &pi;</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="ci4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('ci4', this, 'a')"><div class="opt-indicator"></div><span>25&pi; cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci4', this, 'b')"><div class="opt-indicator"></div><span>10&pi; cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci4', this, 'c')"><div class="opt-indicator"></div><span>100&pi; cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('ci4', this, 'd')"><div class="opt-indicator"></div><span>50&pi; cm&sup2;</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('ci4','a','Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('ci4','Work out r&sup2; and leave &pi; as a letter.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('ci4','A &mdash; 25&pi; cm&sup2; (5&sup2; = 25). 10&pi; is the circumference, and 100&pi; uses the diameter (10&sup2;).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="ci4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION D &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ci-fill"></div></div>
+    <div class="section-score-val" id="sec-ci-val">0/6</div>
+  </div>
+</div>
+
+<div id="cp">
+  <div class="section-header"><div class="section-icon">&#9635;</div><div><div class="sub-label">Section E &middot; Q15&ndash;Q18</div><h2>Compound Areas</h2></div></div>
+  <div class="info-box"><strong>Remember:</strong> Split a shape into rectangles, triangles, trapeziums and parts of circles. Add the pieces, or subtract the parts that are cut out. Trapezium area = &frac12;(<em>a</em> + <em>b</em>)<em>h</em>.</div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-cp1">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">An L-shape is made by cutting a 4 cm by 3 cm rectangle from the corner of a 10 cm by 8 cm rectangle. Find its area.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 220" role="img" aria-label="An L-shape: a 10 cm by 8 cm rectangle with a 4 cm by 3 cm rectangle cut from the top-right corner"><path class="fill draw" d="M70 40 L190 40 L190 85 L250 85 L250 190 L70 190 Z" stroke="#4f8ef7" stroke-width="2" fill="rgba(79,142,247,0.15)" pathLength="1"/><path d="M190 40 L250 40 L250 85" stroke="#7a84a0" stroke-width="1.2" fill="none" stroke-dasharray="4 4" pathLength="1"/><text x="160" y="206" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">10 cm</text><text x="48" y="115" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">8 cm</text><text x="220" y="70" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">4 cm</text><text x="270" y="62" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">3 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cp1-ans" placeholder="Enter answer..."><span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cp1',68,'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cp1','Whole rectangle minus the piece cut out.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cp1','68 cm&sup2; (10 &times; 8 = 80; 4 &times; 3 = 12; 80 &minus; 12 = 68)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cp1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-cp2">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">A trapezium has parallel sides of 7 cm and 13 cm and a perpendicular height of 6 cm. Find its area.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 190" role="img" aria-label="A trapezium with parallel sides 7 cm (top) and 13 cm (bottom) and a perpendicular height of 6 cm"><path class="fill draw" d="M60 160 L300 160 L235 50 L105 50 Z" stroke="#4f8ef7" stroke-width="2" fill="rgba(79,142,247,0.15)" pathLength="1"/><path class="draw" d="M105 50 L105 160" stroke="#f5a623" stroke-width="1.5" fill="none" stroke-linecap="round" pathLength="1"/><path d="M105 146 L119 146 L119 160" stroke="#7a84a0" stroke-width="1.5" fill="none"/><text x="170" y="36" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">7 cm</text><text x="180" y="176" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">13 cm</text><text x="80" y="105" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">6 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cp2-ans" placeholder="Enter answer..."><span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cp2',60,'Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cp2','Add the parallel sides, halve, then multiply by the height.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cp2','60 cm&sup2; (7 + 13 = 20; 20 &divide; 2 = 10; 10 &times; 6 = 60)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cp2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-cp3">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">A shape is a 12 cm by 8 cm rectangle with a semicircle on its 12 cm side. Find the total area to 1 decimal place.</div><div class="q-marks">3 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 250" role="img" aria-label="A 12 cm by 8 cm rectangle with a semicircle on its top 12 cm side"><path class="fill draw" d="M60 220 L300 220 L300 130 A120 120 0 0 0 60 130 Z" stroke="#4f8ef7" stroke-width="2" fill="rgba(79,142,247,0.15)" pathLength="1"/><path d="M60 130 L300 130" stroke="#7a84a0" stroke-width="1.2" fill="none" stroke-dasharray="4 4" pathLength="1"/><text x="180" y="238" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">12 cm</text><text x="38" y="175" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">8 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cp3-ans" placeholder="Enter answer..."><span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cp3',152.5,'Q17',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cp3','The semicircle&rsquo;s diameter is 12 cm, so its radius is 6 cm. Rectangle + half of &pi;r&sup2;.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cp3','152.5 cm&sup2; (96 + &pi; &times; 6&sup2; &divide; 2 = 96 + 56.55&hellip; = 152.55&hellip;)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cp3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-cp4">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">A ring is the shaded part between two circles with the same centre. The outer radius is 9 cm and the inner radius is 5 cm. Find the area of the ring to 1 decimal place.</div><div class="q-marks">3 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 220" role="img" aria-label="A ring between two circles with the same centre; outer radius 9 cm, inner radius 5 cm"><path class="fill draw" fill-rule="evenodd" d="M180 20 A90 90 0 1 1 179.9 20 Z M180 60 A50 50 0 1 0 180.1 60 Z" stroke="#4f8ef7" stroke-width="2" fill="rgba(79,142,247,0.2)" pathLength="1"/><circle cx="180" cy="110" r="2.5" fill="#e8eaf0"/><path class="draw" d="M180 110 L270 110" stroke="#f5a623" stroke-width="1.5" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M180 110 L180 60" stroke="#3ecf8e" stroke-width="1.5" fill="none" stroke-linecap="round" pathLength="1"/><text x="252" y="124" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">9 cm</text><text x="198" y="84" font-size="12" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">5 cm</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="cp4-ans" placeholder="Enter answer..."><span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('cp4',175.9,'Q18',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('cp4','Big circle area minus small circle area. Do not subtract the radii first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('cp4','175.9 cm&sup2; (&pi; &times; 81 &minus; &pi; &times; 25 = 56&pi; = 175.92&hellip;). Using a radius of 9 &minus; 5 = 4 gives the wrong answer.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="cp4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION E &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-cp-fill"></div></div>
+    <div class="section-score-val" id="sec-cp-val">0/10</div>
+  </div>
+</div>
+
+<div id="rv">
+  <div class="section-header"><div class="section-icon">&#8634;</div><div><div class="sub-label">Section F &middot; Q19&ndash;Q20</div><h2>Angle Revision (Unit 5.1)</h2></div></div>
+  <div class="info-box"><strong>Remember:</strong> Vertically opposite angles are equal. Angles in a triangle add to 180&deg;. Between parallel lines: alternate and corresponding angles are equal, and co-interior angles add to 180&deg;.</div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-rv1">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Two straight lines cross at the top corner of a triangle. The angle above the crossing point is 38&deg;. The bottom-right angle of the triangle is 75&deg;. Find the bottom-left angle <em>y</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 360 210" role="img" aria-label="Two straight lines cross at the top of a triangle. The angle above the crossing point is 38 degrees. The bottom-right angle of the triangle is 75 degrees and the bottom-left angle is y"><path class="draw" d="M70 190 L230 30" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M290 190 L130 30" stroke="#7a84a0" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><path class="draw" d="M70 190 L290 190" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><circle cx="180" cy="80" r="2.5" fill="#e8eaf0"/><path class="draw" d="M197 63 A24 24 0 0 0 163 63" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><text x="180" y="40" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">38&deg;</text><path class="draw" d="M260 190 A30 30 0 0 1 268 168" stroke="#f5a623" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><text x="240" y="172" font-size="14" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">75&deg;</text><path class="draw" d="M100 190 A30 30 0 0 0 91 169" stroke="#4f8ef7" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1"/><text x="116" y="172" font-size="14" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">y</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rv1-ans" placeholder="Enter answer..."><span class="num-unit">degrees</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rv1',67,'Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rv1','The triangle&rsquo;s top angle is vertically opposite the 38&deg; angle.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rv1','y = 67&deg; (top angle = 38&deg;, vertically opposite; 180 &minus; 38 &minus; 75 = 67)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rv1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-rv2">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Two lines are cut by a transversal. Two co-interior angles between them are 106&deg; and 78&deg;. Are the two lines parallel?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      
+      <div class="mcq-options" id="rv2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('rv2', this, 'a')"><div class="opt-indicator"></div><span>Yes &mdash; both angles are less than 180&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rv2', this, 'b')"><div class="opt-indicator"></div><span>Yes &mdash; co-interior angles do not need to be equal</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rv2', this, 'c')"><div class="opt-indicator"></div><span>No &mdash; the two angles add up to 184&deg;, not 180&deg;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rv2', this, 'd')"><div class="opt-indicator"></div><span>No &mdash; 106&deg; and 78&deg; are not alternate angles</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('rv2','c','Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rv2','If the lines were parallel, what would co-interior angles add up to?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rv2','C &mdash; 106 + 78 = 184. For parallel lines co-interior angles add to exactly 180&deg;, so these lines are not parallel.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rv2-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION F &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-rv-fill"></div></div>
+    <div class="section-score-val" id="sec-rv-val">0/3</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { pg1:1, pg2:2, pg3:2, pg4:2, cn1:1, cn2:1, py1:2, py2:2, py3:2, py4:1, ci1:1, ci2:2, ci3:2, ci4:1, cp1:2, cp2:2, cp3:3, cp4:3, rv1:2, rv2:1 };
+
+const sections = {
+  pg: { label: 'Polygon Angles', qs: ['pg1','pg2','pg3','pg4'] },
+  cn: { label: 'Constructions', qs: ['cn1','cn2'] },
+  py: { label: 'Pythagoras&rsquo; Theorem', qs: ['py1','py2','py3','py4'] },
+  ci: { label: 'Circles', qs: ['ci1','ci2','ci3','ci4'] },
+  cp: { label: 'Compound Areas', qs: ['cp1','cp2','cp3','cp4'] },
+  rv: { label: 'Angle Revision (Unit 5.1)', qs: ['rv1','rv2'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+
+// Diagrams draw themselves in as they scroll into view
+(function() {
+  const figs = document.querySelectorAll('.q-fig');
+  if (!('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('drawn')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  figs.forEach(f => io.observe(f));
+})();
+</script>
+</body>
+</html>
