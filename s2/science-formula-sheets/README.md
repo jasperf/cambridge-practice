@@ -1,6 +1,6 @@
 # Secondary 2 · Science Formula Sheets
 
-One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Eight extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the three-step phone-charger explainer, plus a V = I × R examples-and-practice sheet.
+One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Nine extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the three-step phone-charger explainer, plus V = I × R and P = I × V examples-and-practice sheets.
 
 | # | Sheet | Term | Page | Image |
 |---|-------|------|------|-------|
@@ -49,6 +49,7 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 | **Phone Charger 2: The Transformer** — turns ratio, step-down | [science-diagram-phone-charger-2-transformer.md](science-diagram-phone-charger-2-transformer.md) | [.svg](svg/science-diagram-phone-charger-2-transformer.svg) |
 | **Phone Charger 3: Ohm's Law at the Phone** — worked example, 5 V and 2 A give R = 2.5 Ω | [science-diagram-phone-charger-3-ohms-law.md](science-diagram-phone-charger-3-ohms-law.md) | [.svg](svg/science-diagram-phone-charger-3-ohms-law.svg) |
 | **V = I × R: Examples & Practice** — three worked circuit examples, eight practice questions with answers (no transformer) | [science-diagram-ohms-law-practice.md](science-diagram-ohms-law-practice.md) | [.svg](svg/science-diagram-ohms-law-practice.svg) |
+| **P = I × V: Examples & Practice** — power in watts, three worked circuit examples, eight practice questions with answers | [science-diagram-power-practice.md](science-diagram-power-practice.md) | [.svg](svg/science-diagram-power-practice.svg) |
 
 [![The periodic table, elements 1–20](svg/science-diagram-periodic-table.svg)](science-diagram-periodic-table.md)
 
@@ -66,10 +67,12 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 
 [![V = I × R: examples and practice](svg/science-diagram-ohms-law-practice.svg)](science-diagram-ohms-law-practice.md)
 
+[![P = I × V: examples and practice](svg/science-diagram-power-practice.svg)](science-diagram-power-practice.md)
+
 ## Other files
 
 - [index.html](index.html) — browser gallery of every sheet and diagram with captions (the home-page card links here).
-- [electricity.html](electricity.html) — electricity-only page: the V = I × R practice sheet, Sheet 6 and the phone-charging worked example, without the transformer diagrams.
+- [electricity.html](electricity.html) — electricity-only page: the V = I × R and P = I × V practice sheets, Sheet 6 and the phone-charging worked example, without the transformer diagrams.
 - [formula-reference.md](formula-reference.md) — all six sheets as one text document (tables, copy-friendly).
 - [whatsapp/captions-whatsapp.txt](whatsapp/captions-whatsapp.txt) — all captions in one file, ready to paste. The matching JPGs live in `whatsapp/` locally but are git-ignored.
 
@@ -78,7 +81,7 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 ```
 science-formula-sheets/
 ├── index.html                ← Browser gallery of all sheets (linked from the home page)
-├── electricity.html          ← Electricity-only page (V = I × R, no transformer)
+├── electricity.html          ← Electricity-only page (V = I × R, P = I × V, no transformer)
 ├── README.md                 ← This file
 ├── formula-reference.md      ← Text version of all six sheets
 ├── science-sheet-N-*.md      ← One page per sheet: image + caption + source worksheets
