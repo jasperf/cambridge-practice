@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electricity: V = I &times; R &middot; Secondary 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Mono:wght@400;500&family=Literata:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent2: #3ecf8e;
+  --text: #e8eaf0; --text-muted: #7a84a0;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); min-height: 100vh; padding-bottom: 80px; }
+header { max-width: 1100px; margin: 0 auto; padding: 48px 24px 24px; }
+.back { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-decoration: none; }
+.back:hover { color: var(--text); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent2); margin-top: 24px; }
+h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.6rem); margin: 8px 0 12px; }
+.sub { color: var(--text-muted); max-width: 640px; line-height: 1.6; }
+.grid { max-width: 1100px; margin: 0 auto; padding: 16px 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+.img-link { background: #fff; display: block; }
+.img-link img { width: 100%; height: auto; display: block; }
+.card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.kind { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent2); }
+h2 { font-family: var(--font-display); font-size: 1.15rem; }
+.card p { font-size: 0.88rem; line-height: 1.6; color: var(--text-muted); }
+.more { margin-top: auto; padding-top: 8px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent); text-decoration: none; }
+.more:hover { text-decoration: underline; }
+.wide { grid-column: 1 / -1; }
+.wide .img-link { max-width: 760px; margin: 0 auto; width: 100%; }
+.sub a { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">&larr; All science formula sheets</a>
+  <div class="eyebrow">Secondary 2 &middot; Science &middot; Electricity</div>
+  <h1>Electricity: V = I &times; R</h1>
+  <p class="sub">Just the Ohm&#x27;s law material, without the charger&#x27;s transformer. Start with the practice sheet, then use Sheet 6 and the phone example to revise. Tap an image to open it full size.</p>
+</header>
+<main class="grid">
+  <article class="card wide">
+    <a href="svg/science-diagram-ohms-law-practice.svg" class="img-link"><img src="svg/science-diagram-ohms-law-practice.svg" alt="V = I × R examples and practice sheet" loading="lazy"></a>
+    <div class="card-body">
+      <div class="kind">Practice</div>
+      <h2>V = I &times; R: Examples &amp; Practice</h2>
+      <p>Ohm&#x27;s law only, no transformer. A key box with the formula triangle, the three forms (V = I × R, I = V ÷ R, R = V ÷ I), units and meters. Three worked examples with circuit diagrams: 9 V across 18 Ω gives 0.5 A; 2 A through 6 Ω gives 12 V; 6 V and 0.5 A give 12 Ω. Then eight questions to try (kettle, torch bulb, mA to A, reading meters off a circuit, what happens when R doubles), with answers and working at the bottom.</p>
+      <a class="more" href="science-diagram-ohms-law-practice.md">Caption &amp; source &rarr;</a>
+    </div>
+  </article>
+  <article class="card">
+    <a href="svg/science-sheet-6-electricity.svg" class="img-link"><img src="svg/science-sheet-6-electricity.svg" alt="Electricity formula sheet" loading="lazy"></a>
+    <div class="card-body">
+      <div class="kind">Sheet 6</div>
+      <h2>Electricity</h2>
+      <p>V = I × R, so I = V ÷ R and R = V ÷ I (volts, amperes, ohms). Ammeter in series, voltmeter in parallel. Series: same current, voltage divides, resistances add up. Parallel: same voltage on every branch, current divides. Check: 12 V and 3 A gives 4 Ω.</p>
+      <a class="more" href="science-sheet-6-electricity.md">Caption &amp; source &rarr;</a>
+    </div>
+  </article>
+  <article class="card">
+    <a href="svg/science-diagram-phone-charger-3-ohms-law.svg" class="img-link"><img src="svg/science-diagram-phone-charger-3-ohms-law.svg" alt="Phone Charger: Ohm&#x27;s Law at the Phone diagram" loading="lazy"></a>
+    <div class="card-body">
+      <div class="kind">Worked example</div>
+      <h2>Charging a Phone</h2>
+      <p>Inside a phone charger, step 3: Ohm&#x27;s law at the phone. The charger from step 1 gives out a steady 5 V and the phone draws 2 A. We want R, so cover R in the triangle: V is over I, so R = V ÷ I = 5 ÷ 2 = 2.5 Ω. Check: I × R = 2 A × 2.5 Ω = 5 V, which matches the charger. Simplified: a phone isn&#x27;t a fixed resistor, because the current it draws changes as the battery fills, so 2.5 Ω is its effective resistance at that moment.</p>
+      <a class="more" href="science-diagram-phone-charger-3-ohms-law.md">Caption &amp; source &rarr;</a>
+    </div>
+  </article>
+</main>
+</body>
+</html>
