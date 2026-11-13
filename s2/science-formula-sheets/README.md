@@ -1,6 +1,6 @@
 # Secondary 2 · Science Formula Sheets
 
-One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Six extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the two-step phone-charger explainer.
+One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Seven extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the three-step phone-charger explainer.
 
 | # | Sheet | Term | Page | Image |
 |---|-------|------|------|-------|
@@ -47,6 +47,7 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 | **How Heat Travels** — conduction, convection, radiation, insulation, heat vs temperature | [science-diagram-heat-transfer.md](science-diagram-heat-transfer.md) | [.svg](svg/science-diagram-heat-transfer.svg) |
 | **Phone Charger 1: The Five Stages** — 220 V AC to 5 V DC | [science-diagram-phone-charger-1-stages.md](science-diagram-phone-charger-1-stages.md) | [.svg](svg/science-diagram-phone-charger-1-stages.svg) |
 | **Phone Charger 2: The Transformer** — turns ratio, step-down | [science-diagram-phone-charger-2-transformer.md](science-diagram-phone-charger-2-transformer.md) | [.svg](svg/science-diagram-phone-charger-2-transformer.svg) |
+| **Phone Charger 3: Ohm's Law at the Phone** — worked example, 5 V and 2 A give R = 2.5 Ω | [science-diagram-phone-charger-3-ohms-law.md](science-diagram-phone-charger-3-ohms-law.md) | [.svg](svg/science-diagram-phone-charger-3-ohms-law.svg) |
 
 [![The periodic table, elements 1–20](svg/science-diagram-periodic-table.svg)](science-diagram-periodic-table.md)
 
@@ -59,6 +60,8 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 [![Phone charger: the five stages](svg/science-diagram-phone-charger-1-stages.svg)](science-diagram-phone-charger-1-stages.md)
 
 [![Phone charger: the transformer](svg/science-diagram-phone-charger-2-transformer.svg)](science-diagram-phone-charger-2-transformer.md)
+
+[![Phone charger: Ohm's law at the phone](svg/science-diagram-phone-charger-3-ohms-law.svg)](science-diagram-phone-charger-3-ohms-law.md)
 
 ## Other files
 
