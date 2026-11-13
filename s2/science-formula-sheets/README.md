@@ -1,6 +1,6 @@
 # Secondary 2 · Science Formula Sheets
 
-One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Nine extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the three-step phone-charger explainer, plus V = I × R and P = I × V examples-and-practice sheets.
+One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Ten extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the three-step phone-charger explainer, plus V = I × R and P = I × V examples-and-practice sheets and an animated wire-vs-water-pipe picture of volts, amps, ohms and watts.
 
 | # | Sheet | Term | Page | Image |
 |---|-------|------|------|-------|
@@ -50,6 +50,7 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 | **Phone Charger 3: Ohm's Law at the Phone** — worked example, 5 V and 2 A give R = 2.5 Ω | [science-diagram-phone-charger-3-ohms-law.md](science-diagram-phone-charger-3-ohms-law.md) | [.svg](svg/science-diagram-phone-charger-3-ohms-law.svg) |
 | **V = I × R: Examples & Practice** — three worked circuit examples, eight practice questions with answers (no transformer) | [science-diagram-ohms-law-practice.md](science-diagram-ohms-law-practice.md) | [.svg](svg/science-diagram-ohms-law-practice.svg) |
 | **P = I × V: Examples & Practice** — power in watts, three worked circuit examples, eight practice questions with answers | [science-diagram-power-practice.md](science-diagram-power-practice.md) | [.svg](svg/science-diagram-power-practice.svg) |
+| **Volts, Amps, Ohms and Watts in a Wire** — animated electrons in a wire next to water in a pipe; electron direction vs current arrow | [science-diagram-electron-flow.md](science-diagram-electron-flow.md) | [.svg](svg/science-diagram-electron-flow.svg) |
 
 [![The periodic table, elements 1–20](svg/science-diagram-periodic-table.svg)](science-diagram-periodic-table.md)
 
@@ -69,10 +70,12 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 
 [![P = I × V: examples and practice](svg/science-diagram-power-practice.svg)](science-diagram-power-practice.md)
 
+[![Volts, amps, ohms and watts in a wire](svg/science-diagram-electron-flow.svg)](science-diagram-electron-flow.md)
+
 ## Other files
 
 - [index.html](index.html) — browser gallery of every sheet and diagram with captions (the home-page card links here).
-- [electricity.html](electricity.html) — electricity-only page: the V = I × R and P = I × V practice sheets, Sheet 6 and the phone-charging worked example, without the transformer diagrams.
+- [electricity.html](electricity.html) — electricity-only page: the wire-and-water diagram, the V = I × R and P = I × V practice sheets, Sheet 6 and the phone-charging worked example, without the transformer diagrams.
 - [formula-reference.md](formula-reference.md) — all six sheets as one text document (tables, copy-friendly).
 - [whatsapp/captions-whatsapp.txt](whatsapp/captions-whatsapp.txt) — all captions in one file, ready to paste. The matching JPGs live in `whatsapp/` locally but are git-ignored.
 
