@@ -36,3 +36,6 @@ Inside a phone charger, step 3: Ohm's law at the phone. The charger from step 1 
 
 DIAGRAM – The Periodic Table (Elements 1–20)
 The periodic table for elements 1–20. Each box shows the atomic number, symbol, name and electronic structure. Groups are columns: the group number is the number of outer electrons, which is the last number in the structure. Periods are rows: the period number is the number of shells, which is how many numbers there are. Example: 2,8,3 has three numbers, so Period 3, and ends in 3, so Group 3: aluminium. Metals (orange) sit left of the staircase line and lose electrons to form positive ions; non-metals (blue) gain or share electrons. Group 8 (also called Group 0 or 18) holds the noble gases, with a full outer shell.
+
+DIAGRAM – V = I × R: Examples & Practice
+Ohm's law only, no transformer. A key box with the formula triangle, the three forms (V = I × R, I = V ÷ R, R = V ÷ I), units and meters. Three worked examples with circuit diagrams: 9 V across 18 Ω gives 0.5 A; 2 A through 6 Ω gives 12 V; 6 V and 0.5 A give 12 Ω. Then eight questions to try (kettle, torch bulb, mA to A, reading meters off a circuit, what happens when R doubles), with answers and working at the bottom.

@@ -1,0 +1,2 @@
+DIAGRAM – V = I × R: Examples & Practice
+Ohm's law only, no transformer. A key box with the formula triangle, the three forms (V = I × R, I = V ÷ R, R = V ÷ I), units and meters. Three worked examples with circuit diagrams: 9 V across 18 Ω gives 0.5 A; 2 A through 6 Ω gives 12 V; 6 V and 0.5 A give 12 Ω. Then eight questions to try (kettle, torch bulb, mA to A, reading meters off a circuit, what happens when R doubles), with answers and working at the bottom.

@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1712" viewBox="0 0 1080 1712" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="1712" fill="#FBF5E9"/><rect width="14" height="1712" fill="#E8590C"/>
+<text x="56" y="62" font-size="20" fill="#E8590C" font-weight="700" letter-spacing="2">ELECTRICITY · OHM'S LAW ONLY</text>
+<text x="56" y="108" font-size="40" fill="#14213D" font-weight="800" >V = I × R: Examples &amp; Practice</text>
+<text x="56" y="136" font-size="20" fill="#5B6478" >Three worked examples with circuit diagrams, then eight to try yourself</text>
+<rect x="56" y="166" width="968" height="214" rx="16" fill="#fff" stroke="#EADFCB"/>
+<polygon points="156,190 86,300 226,300" fill="none" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<line x1="121" y1="245" x2="191" y2="245" stroke="#14213D" stroke-width="3"/>
+<line x1="156" y1="245" x2="156" y2="300" stroke="#14213D" stroke-width="3"/>
+<text x="156" y="238" font-size="30" fill="#E8590C" font-weight="800" text-anchor="middle" >V</text>
+<text x="130" y="290" font-size="28" fill="#1C6DD0" font-weight="800" text-anchor="middle" >I</text>
+<text x="181" y="290" font-size="28" fill="#2F9E5A" font-weight="800" text-anchor="middle" >R</text>
+<text x="156" y="330" font-size="13" fill="#5B6478" text-anchor="middle" >Cover what you want</text>
+<text x="156" y="348" font-size="13" fill="#5B6478" text-anchor="middle" >and read what is left</text>
+<rect x="262" y="188" width="300" height="44" rx="10" fill="#F4EEE2"/>
+<text x="278" y="217" font-size="22" fill="#14213D" font-weight="700" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">V = I × R</text>
+<text x="430" y="216" font-size="13" fill="#5B6478" >volts: multiply</text>
+<rect x="262" y="242" width="300" height="44" rx="10" fill="#F4EEE2"/>
+<text x="278" y="271" font-size="22" fill="#14213D" font-weight="700" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">I = V ÷ R</text>
+<text x="430" y="270" font-size="13" fill="#5B6478" >amps: V over R</text>
+<rect x="262" y="296" width="300" height="44" rx="10" fill="#F4EEE2"/>
+<text x="278" y="325" font-size="22" fill="#14213D" font-weight="700" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">R = V ÷ I</text>
+<text x="430" y="324" font-size="13" fill="#5B6478" >ohms: V over I</text>
+<text x="590" y="204" font-size="13" fill="#5B6478" font-weight="700" >Quantity</text>
+<text x="740" y="204" font-size="13" fill="#5B6478" font-weight="700" >Unit</text>
+<text x="840" y="204" font-size="13" fill="#5B6478" font-weight="700" >Measured with</text>
+<text x="590" y="234" font-size="15" fill="#E8590C" font-weight="800" >Voltage V</text>
+<text x="740" y="234" font-size="15" fill="#14213D" >volt (V)</text>
+<text x="840" y="234" font-size="15" fill="#14213D" >voltmeter, in parallel</text>
+<text x="590" y="264" font-size="15" fill="#1C6DD0" font-weight="800" >Current I</text>
+<text x="740" y="264" font-size="15" fill="#14213D" >ampere (A)</text>
+<text x="840" y="264" font-size="15" fill="#14213D" >ammeter, in series</text>
+<text x="590" y="294" font-size="15" fill="#2F9E5A" font-weight="800" >Resistance R</text>
+<text x="740" y="294" font-size="15" fill="#14213D" >ohm (Ω)</text>
+<text x="840" y="294" font-size="15" fill="#14213D" >V ÷ I</text>
+<line x1="590" y1="318" x2="1000" y2="318" stroke="#EADFCB" stroke-width="1.5"/>
+<text x="590" y="342" font-size="14" fill="#14213D" font-weight="700" >1000 mA = 1 A  ·  change mA to A first</text>
+<text x="590" y="364" font-size="14" fill="#5B6478" >Same voltage, more resistance → less current</text>
+<text x="56" y="424" font-size="26" fill="#14213D" font-weight="800" >Worked examples</text>
+<rect x="56" y="444" width="309" height="436" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="76" y="480" font-size="19" fill="#14213D" font-weight="800" >A · Find the current</text>
+<rect x="126" y="536" width="170" height="110" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<rect x="202.0" y="516" width="18" height="40" fill="#fff"/>
+<line x1="205.0" y1="519" x2="205.0" y2="553" stroke="#14213D" stroke-width="2.5"/>
+<line x1="217.0" y1="527" x2="217.0" y2="545" stroke="#14213D" stroke-width="6"/>
+<text x="211.0" y="510" font-size="15" fill="#E8590C" font-weight="800" text-anchor="middle" >9 V</text>
+<circle cx="126" cy="591.0" r="15" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="126" y="597.0" font-size="16" fill="#1C6DD0" font-weight="800" text-anchor="middle" >A</text>
+<text x="150" y="596.0" font-size="15" fill="#8A8574" font-weight="800" >I = ?</text>
+<rect x="181.0" y="635" width="60" height="22" rx="2" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="211.0" y="626" font-size="15" fill="#2F9E5A" font-weight="800" text-anchor="middle" >18 Ω</text>
+<polyline points="167.0,646 167.0,684 255.0,684 255.0,646" fill="none" stroke="#14213D" stroke-width="2"/>
+<circle cx="167.0" cy="646" r="3.5" fill="#14213D"/><circle cx="255.0" cy="646" r="3.5" fill="#14213D"/>
+<circle cx="211.0" cy="684" r="15" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="211.0" y="690" font-size="16" fill="#E8590C" font-weight="800" text-anchor="middle" >V</text>
+<text x="265.0" y="689" font-size="15" fill="#E8590C" font-weight="800" >9 V</text>
+<text x="76" y="744" font-size="13" fill="#5B6478" font-weight="700" >Know</text>
+<text x="160" y="744" font-size="17" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">V = 9 V,  R = 18 Ω</text>
+<text x="76" y="774" font-size="13" fill="#5B6478" font-weight="700" >Cover I</text>
+<text x="160" y="774" font-size="17" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">I = V ÷ R</text>
+<text x="76" y="804" font-size="13" fill="#5B6478" font-weight="700" >Numbers</text>
+<text x="160" y="804" font-size="17" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">I = 9 ÷ 18</text>
+<rect x="72" y="820" width="277" height="38" rx="10" fill="#14213D"/>
+<text x="210.5" y="846" font-size="20" fill="#52D6A0" font-weight="800" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">I = 0.5 A</text>
+<text x="76" y="876" font-size="13" fill="#5B6478" >Smaller V than R? Expect less than 1 A.</text>
+<rect x="385" y="444" width="309" height="436" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="405" y="480" font-size="19" fill="#14213D" font-weight="800" >B · Find the voltage</text>
+<rect x="455" y="536" width="170" height="110" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<rect x="531.0" y="516" width="18" height="40" fill="#fff"/>
+<line x1="534.0" y1="519" x2="534.0" y2="553" stroke="#14213D" stroke-width="2.5"/>
+<line x1="546.0" y1="527" x2="546.0" y2="545" stroke="#14213D" stroke-width="6"/>
+<text x="540.0" y="510" font-size="15" fill="#5B6478" font-weight="800" text-anchor="middle" >cell</text>
+<circle cx="455" cy="591.0" r="15" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="455" y="597.0" font-size="16" fill="#1C6DD0" font-weight="800" text-anchor="middle" >A</text>
+<text x="479" y="596.0" font-size="15" fill="#1C6DD0" font-weight="800" >2 A</text>
+<rect x="510.0" y="635" width="60" height="22" rx="2" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="540.0" y="626" font-size="15" fill="#2F9E5A" font-weight="800" text-anchor="middle" >6 Ω</text>
+<polyline points="496.0,646 496.0,684 584.0,684 584.0,646" fill="none" stroke="#14213D" stroke-width="2"/>
+<circle cx="496.0" cy="646" r="3.5" fill="#14213D"/><circle cx="584.0" cy="646" r="3.5" fill="#14213D"/>
+<circle cx="540.0" cy="684" r="15" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="540.0" y="690" font-size="16" fill="#E8590C" font-weight="800" text-anchor="middle" >V</text>
+<text x="594.0" y="689" font-size="15" fill="#8A8574" font-weight="800" >V = ?</text>
+<text x="405" y="744" font-size="13" fill="#5B6478" font-weight="700" >Know</text>
+<text x="489" y="744" font-size="17" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">I = 2 A,  R = 6 Ω</text>
+<text x="405" y="774" font-size="13" fill="#5B6478" font-weight="700" >Cover V</text>
+<text x="489" y="774" font-size="17" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">V = I × R</text>
+<text x="405" y="804" font-size="13" fill="#5B6478" font-weight="700" >Numbers</text>
+<text x="489" y="804" font-size="17" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">V = 2 × 6</text>
+<rect x="401" y="820" width="277" height="38" rx="10" fill="#14213D"/>
+<text x="539.5" y="846" font-size="20" fill="#52D6A0" font-weight="800" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">V = 12 V</text>
+<text x="405" y="876" font-size="13" fill="#5B6478" >V is on top, so multiply.</text>
+<rect x="714" y="444" width="309" height="436" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="734" y="480" font-size="19" fill="#14213D" font-weight="800" >C · Find the resistance</text>
+<rect x="784" y="536" width="170" height="110" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<rect x="860.0" y="516" width="18" height="40" fill="#fff"/>
+<line x1="863.0" y1="519" x2="863.0" y2="553" stroke="#14213D" stroke-width="2.5"/>
+<line x1="875.0" y1="527" x2="875.0" y2="545" stroke="#14213D" stroke-width="6"/>
+<text x="869.0" y="510" font-size="15" fill="#5B6478" font-weight="800" text-anchor="middle" >cell</text>
+<circle cx="784" cy="591.0" r="15" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="784" y="597.0" font-size="16" fill="#1C6DD0" font-weight="800" text-anchor="middle" >A</text>
+<text x="808" y="596.0" font-size="15" fill="#1C6DD0" font-weight="800" >0.5 A</text>
+<rect x="839.0" y="635" width="60" height="22" rx="2" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="869.0" y="626" font-size="15" fill="#8A8574" font-weight="800" text-anchor="middle" >R = ?</text>
+<polyline points="825.0,646 825.0,684 913.0,684 913.0,646" fill="none" stroke="#14213D" stroke-width="2"/>
+<circle cx="825.0" cy="646" r="3.5" fill="#14213D"/><circle cx="913.0" cy="646" r="3.5" fill="#14213D"/>
+<circle cx="869.0" cy="684" r="15" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="869.0" y="690" font-size="16" fill="#E8590C" font-weight="800" text-anchor="middle" >V</text>
+<text x="923.0" y="689" font-size="15" fill="#E8590C" font-weight="800" >6 V</text>
+<text x="734" y="744" font-size="13" fill="#5B6478" font-weight="700" >Know</text>
+<text x="818" y="744" font-size="17" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">V = 6 V,  I = 0.5 A</text>
+<text x="734" y="774" font-size="13" fill="#5B6478" font-weight="700" >Cover R</text>
+<text x="818" y="774" font-size="17" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">R = V ÷ I</text>
+<text x="734" y="804" font-size="13" fill="#5B6478" font-weight="700" >Numbers</text>
+<text x="818" y="804" font-size="17" fill="#14213D" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">R = 6 ÷ 0.5</text>
+<rect x="730" y="820" width="277" height="38" rx="10" fill="#14213D"/>
+<text x="868.5" y="846" font-size="20" fill="#52D6A0" font-weight="800" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">R = 12 Ω</text>
+<text x="734" y="876" font-size="13" fill="#5B6478" >Dividing by 0.5 is the same as doubling.</text>
+<text x="56" y="930" font-size="26" fill="#14213D" font-weight="800" >Your turn</text>
+<text x="196" y="930" font-size="15" fill="#5B6478" >Write what you know, cover the one you want, put in the numbers, give the unit.</text>
+<rect x="56" y="950" width="474" height="124" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="86" cy="980" r="15" fill="#E8590C"/>
+<text x="86" y="986" font-size="16" fill="#fff" font-weight="800" text-anchor="middle" >1</text>
+<text x="114" y="986" font-size="16" fill="#14213D" >A kettle runs on 230 V and draws 10 A.</text>
+<text x="114" y="1010" font-size="16" fill="#14213D" >What is its resistance?</text>
+<rect x="550" y="950" width="474" height="124" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="580" cy="980" r="15" fill="#E8590C"/>
+<text x="580" y="986" font-size="16" fill="#fff" font-weight="800" text-anchor="middle" >2</text>
+<text x="608" y="986" font-size="16" fill="#14213D" >A 15 Ω torch bulb is connected to a 4.5 V</text>
+<text x="608" y="1010" font-size="16" fill="#14213D" >battery. What current flows?</text>
+<rect x="56" y="1088" width="474" height="124" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="86" cy="1118" r="15" fill="#E8590C"/>
+<text x="86" y="1124" font-size="16" fill="#fff" font-weight="800" text-anchor="middle" >3</text>
+<text x="114" y="1124" font-size="16" fill="#14213D" >0.05 A flows through a 220 Ω resistor.</text>
+<text x="114" y="1148" font-size="16" fill="#14213D" >What is the voltage across it?</text>
+<rect x="550" y="1088" width="474" height="124" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="580" cy="1118" r="15" fill="#E8590C"/>
+<text x="580" y="1124" font-size="16" fill="#fff" font-weight="800" text-anchor="middle" >4</text>
+<text x="608" y="1124" font-size="16" fill="#14213D" >20 mA flows through a 150 Ω resistor.</text>
+<text x="608" y="1148" font-size="16" fill="#14213D" >Find the voltage. (Change mA to A first!)</text>
+<rect x="56" y="1226" width="474" height="124" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="86" cy="1256" r="15" fill="#E8590C"/>
+<text x="86" y="1262" font-size="16" fill="#fff" font-weight="800" text-anchor="middle" >5</text>
+<text x="114" y="1262" font-size="16" fill="#14213D" >A heater on 240 V has a resistance of 60 Ω.</text>
+<text x="114" y="1286" font-size="16" fill="#14213D" >What current does it draw?</text>
+<rect x="550" y="1226" width="474" height="124" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="580" cy="1256" r="15" fill="#E8590C"/>
+<text x="580" y="1262" font-size="16" fill="#fff" font-weight="800" text-anchor="middle" >6</text>
+<text x="608" y="1262" font-size="16" fill="#14213D" >Read the meters,</text>
+<text x="608" y="1286" font-size="16" fill="#14213D" >then find the lamp's</text>
+<text x="608" y="1310" font-size="16" fill="#14213D" >resistance R.</text>
+<rect x="850" y="1256" width="120" height="36" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<rect x="901.0" y="1236" width="18" height="40" fill="#fff"/>
+<line x1="904.0" y1="1239" x2="904.0" y2="1273" stroke="#14213D" stroke-width="2.5"/>
+<line x1="916.0" y1="1247" x2="916.0" y2="1265" stroke="#14213D" stroke-width="6"/>
+<text x="910.0" y="1230" font-size="15" fill="#14213D" font-weight="800" text-anchor="middle" ></text>
+<circle cx="850" cy="1274.0" r="15" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="850" y="1280.0" font-size="16" fill="#1C6DD0" font-weight="800" text-anchor="middle" >A</text>
+<text x="828" y="1279.0" font-size="15" fill="#1C6DD0" font-weight="800" text-anchor="end" >0.4 A</text>
+<rect x="880.0" y="1281" width="60" height="22" rx="2" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="910.0" y="1272" font-size="15" fill="#14213D" font-weight="800" text-anchor="middle" ></text>
+<polyline points="866.0,1292 866.0,1330 954.0,1330 954.0,1292" fill="none" stroke="#14213D" stroke-width="2"/>
+<circle cx="866.0" cy="1292" r="3.5" fill="#14213D"/><circle cx="954.0" cy="1292" r="3.5" fill="#14213D"/>
+<circle cx="910.0" cy="1330" r="15" fill="#fff" stroke="#14213D" stroke-width="2.5"/>
+<text x="910.0" y="1336" font-size="16" fill="#E8590C" font-weight="800" text-anchor="middle" >V</text>
+<text x="964.0" y="1335" font-size="15" fill="#E8590C" font-weight="800" >6 V</text>
+<rect x="56" y="1364" width="474" height="124" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="86" cy="1394" r="15" fill="#E8590C"/>
+<text x="86" y="1400" font-size="16" fill="#fff" font-weight="800" text-anchor="middle" >7</text>
+<text x="114" y="1400" font-size="16" fill="#14213D" >A 6 V cell drives current through 10 Ω. Then</text>
+<text x="114" y="1424" font-size="16" fill="#14213D" >the resistor is swapped for 20 Ω. Find both</text>
+<text x="114" y="1448" font-size="16" fill="#14213D" >currents. What happens to I when R doubles?</text>
+<rect x="550" y="1364" width="474" height="124" rx="14" fill="#fff" stroke="#EADFCB"/>
+<circle cx="580" cy="1394" r="15" fill="#E8590C"/>
+<text x="580" y="1400" font-size="16" fill="#fff" font-weight="800" text-anchor="middle" >8</text>
+<text x="608" y="1400" font-size="16" fill="#14213D" >A car headlamp works on 12 V and draws 4 A.</text>
+<text x="608" y="1424" font-size="16" fill="#14213D" >Find its resistance.</text>
+<rect x="56" y="1512" width="968" height="170" rx="16" fill="#14213D"/>
+<text x="84" y="1548" font-size="20" fill="#fff" font-weight="800" >Answers</text>
+<text x="184" y="1548" font-size="14" fill="#EADFCB" >(try them first!)</text>
+<text x="84" y="1584" font-size="16" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">1.  R = 230 ÷ 10 = 23 Ω</text>
+<text x="568" y="1584" font-size="16" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">2.  I = 4.5 ÷ 15 = 0.3 A</text>
+<text x="84" y="1612" font-size="16" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">3.  V = 0.05 × 220 = 11 V</text>
+<text x="568" y="1612" font-size="16" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">4.  20 mA = 0.02 A, V = 0.02 × 150 = 3 V</text>
+<text x="84" y="1640" font-size="16" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">5.  I = 240 ÷ 60 = 4 A</text>
+<text x="568" y="1640" font-size="16" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">6.  R = 6 ÷ 0.4 = 15 Ω</text>
+<text x="84" y="1668" font-size="16" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">7.  6 ÷ 10 = 0.6 A, 6 ÷ 20 = 0.3 A: I halves</text>
+<text x="568" y="1668" font-size="16" fill="#fff" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">8.  R = 12 ÷ 4 = 3 Ω</text>
+</svg>
