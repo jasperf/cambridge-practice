@@ -1,0 +1,11 @@
+# Diagram · Electrons Are Delivery Vans
+
+![Electrons as delivery vans carrying energy from the battery to the bulb](svg/science-diagram-delivery-vans.svg)
+
+Electrons are delivery vans on a loop road. The battery is the depot: it loads every van (electron) with a parcel of energy. The vans carry the energy round the circuit and drop it off at the bulb, where it comes out as light and heat. The same empty vans drive back to the battery to pick up more. Vans are never used up, only the parcels, so the current is the same everywhere in one loop. Voltage V is the energy loaded on each van (1 V = 1 joule per coulomb), current I is how many vans pass a point each second, and power P = I × V is the energy dropped off each second. Example: 2 A × 6 V = 12 W.
+
+The vans move and the bulb glows when the SVG is opened in a browser; the WhatsApp JPG is a still.
+
+**Built from:** [Week 4 · Electricity](../t2/w4/term2-week4-science-unit3-electricity.md)
+
+**Image:** [SVG](svg/science-diagram-delivery-vans.svg) · **Electricity only:** [electricity.html](electricity.html)

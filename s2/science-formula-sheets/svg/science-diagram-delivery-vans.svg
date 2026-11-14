@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1140" viewBox="0 0 1080 1140" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="1140" fill="#FBF5E9"/><rect width="14" height="1140" fill="#E8590C"/>
+<text x="56" y="62" font-size="20" fill="#E8590C" font-weight="700" letter-spacing="2">ELECTRICITY · WHO CARRIES THE ENERGY?</text>
+<text x="56" y="108" font-size="40" fill="#14213D" font-weight="800">Electrons Are Delivery Vans</text>
+<text x="56" y="136" font-size="20" fill="#5B6478">Electrons are not the energy. They carry it round the circuit, like vans carrying parcels.</text>
+<rect x="56" y="166" width="968" height="440" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="84" y="204" font-size="20" fill="#14213D" font-weight="800">Vans on a loop road</text>
+<rect x="536" y="189" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g><rect x="540" y="192" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="549" y1="192" x2="549" y2="204" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="570" cy="198" r="10" fill="#1C6DD0"/><line x1="565" y1="198" x2="575" y2="198" stroke="#fff" stroke-width="2.5"/>
+<text x="584" y="203" font-size="14" fill="#14213D" font-weight="700">van = electron</text>
+<rect x="730" y="190" width="20" height="14" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="740" y1="190" x2="740" y2="204" stroke="#B5650A" stroke-width="1.5"/>
+<text x="760" y="203" font-size="14" fill="#14213D" font-weight="700">parcel = energy</text>
+<polygon points="300,270 760,270 760,520 300,520 300,270" fill="none" stroke="#4A4F5C" stroke-width="38" stroke-linejoin="round"/>
+<polygon points="300,270 760,270 760,520 300,520 300,270" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="10 12" opacity="0.7"/>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="0.00s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="0.00s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-1.67s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-1.67s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-3.33s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-3.33s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-5.00s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-5.00s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-6.67s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-6.67s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-8.33s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-8.33s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-10.00s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-10.00s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-11.67s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-11.67s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-13.33s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-13.33s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-15.00s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-15.00s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-16.67s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-16.67s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<g><rect x="-24" y="-9" width="26" height="18" rx="3" fill="#E9EEF6" stroke="#14213D" stroke-width="2"/><g opacity="1"><animate attributeName="opacity" values="1;0" keyTimes="0;0.5000" calcMode="discrete" dur="20s" begin="-18.33s" repeatCount="indefinite"/><rect x="-20" y="-6" width="18" height="12" rx="2" fill="#F5A623" stroke="#B5650A" stroke-width="1.5"/><line x1="-11" y1="-6" x2="-11" y2="6" stroke="#B5650A" stroke-width="1.5"/></g><circle cx="10" cy="0" r="10" fill="#1C6DD0"/><line x1="5" y1="0" x2="15" y2="0" stroke="#fff" stroke-width="2.5"/><animateMotion dur="20s" begin="-18.33s" repeatCount="indefinite" rotate="auto" path="M300,435.0 L300,520 L760,520 L760,270 L300,270 L300,355.0"/></g>
+<rect x="260" y="337.0" width="80" height="116" rx="10" fill="#FFE8D1" stroke="#E8590C" stroke-width="3"/>
+<line x1="276" y1="387.0" x2="324" y2="387.0" stroke="#14213D" stroke-width="3"/>
+<line x1="288" y1="403.0" x2="312" y2="403.0" stroke="#14213D" stroke-width="7"/>
+<text x="300" y="369.0" font-size="22" fill="#E8590C" font-weight="800" text-anchor="middle">+</text>
+<text x="300" y="437.0" font-size="24" fill="#1C6DD0" font-weight="800" text-anchor="middle">−</text>
+<text x="84" y="373.0" font-size="17" fill="#E8590C" font-weight="800">Battery = depot</text>
+<text x="84" y="395.0" font-size="14" fill="#5B6478">loads every van</text>
+<text x="84" y="415.0" font-size="14" fill="#5B6478">with energy</text>
+<text x="84" y="441.0" font-size="13" fill="#14213D" font-weight="700">V = energy per van</text>
+<circle cx="760" cy="395.0" r="54" fill="#FFE066" opacity="0.35"><animate attributeName="r" values="46;58;46" dur="1.6667s" repeatCount="indefinite"/></circle>
+<circle cx="760" cy="395.0" r="34" fill="#FFF3B0" stroke="#14213D" stroke-width="3"/>
+<path d="M746,403.0 q7,-22 14,0 q7,22 14,0" fill="none" stroke="#D9480F" stroke-width="3"/>
+<line x1="822" y1="395" x2="844" y2="395" stroke="#F5A623" stroke-width="4" stroke-linecap="round"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.6667s" begin="0.0000s" repeatCount="indefinite"/></line>
+<line x1="806" y1="354" x2="823" y2="340" stroke="#F5A623" stroke-width="4" stroke-linecap="round"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.6667s" begin="0.5556s" repeatCount="indefinite"/></line>
+<line x1="806" y1="436" x2="823" y2="450" stroke="#F5A623" stroke-width="4" stroke-linecap="round"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.6667s" begin="1.1111s" repeatCount="indefinite"/></line>
+<text x="858" y="373.0" font-size="17" fill="#D9480F" font-weight="800">Bulb = drop-off</text>
+<text x="858" y="395.0" font-size="14" fill="#5B6478">parcels unloaded</text>
+<text x="858" y="415.0" font-size="14" fill="#5B6478">as light and heat</text>
+<text x="858" y="441.0" font-size="13" fill="#14213D" font-weight="700">P = energy per second</text>
+<text x="530" y="244" font-size="14" fill="#5B6478" font-weight="700" text-anchor="middle">← empty vans head back to the battery for more</text>
+<text x="530" y="492" font-size="14" fill="#E8590C" font-weight="700" text-anchor="middle">full vans carry energy to the bulb →</text>
+<text x="530" y="372" font-size="15" fill="#14213D" font-weight="800" text-anchor="middle">The same vans go round and round.</text>
+<text x="530" y="396" font-size="14" fill="#5B6478" text-anchor="middle">Vans are never used up:</text>
+<text x="530" y="416" font-size="14" fill="#5B6478" text-anchor="middle">only the parcels are.</text>
+<line x1="440" y1="498" x2="440" y2="550" stroke="#1C6DD0" stroke-width="2.5" stroke-dasharray="5 4"/>
+<text x="530" y="576" font-size="14" fill="#1C6DD0" font-weight="700" text-anchor="middle">I · current = vans passing the dashed line each second</text>
+<rect x="56" y="626" width="309" height="176" rx="16" fill="#fff" stroke="#E8590C" stroke-width="3"/>
+<text x="76" y="662" font-size="20" fill="#E8590C" font-weight="800">Voltage V</text>
+<text x="76" y="684" font-size="14" fill="#14213D" font-weight="700">volt (V)</text>
+<text x="76" y="714" font-size="17" fill="#14213D" font-weight="800">Energy per van</text>
+<text x="76" y="738" font-size="14" fill="#5B6478">How much energy each</text>
+<text x="76" y="758" font-size="14" fill="#5B6478">van is loaded with.</text>
+<text x="76" y="778" font-size="14" fill="#5B6478">1 V = 1 joule per coulomb</text>
+<rect x="385" y="626" width="309" height="176" rx="16" fill="#fff" stroke="#1C6DD0" stroke-width="3"/>
+<text x="405" y="662" font-size="20" fill="#1C6DD0" font-weight="800">Current I</text>
+<text x="405" y="684" font-size="14" fill="#14213D" font-weight="700">ampere (A)</text>
+<text x="405" y="714" font-size="17" fill="#14213D" font-weight="800">Vans per second</text>
+<text x="405" y="738" font-size="14" fill="#5B6478">How many vans pass a</text>
+<text x="405" y="758" font-size="14" fill="#5B6478">point each second. Same</text>
+<text x="405" y="778" font-size="14" fill="#5B6478">all the way round the loop</text>
+<rect x="715" y="626" width="309" height="176" rx="16" fill="#fff" stroke="#7B4FD0" stroke-width="3"/>
+<text x="735" y="662" font-size="20" fill="#7B4FD0" font-weight="800">Power P</text>
+<text x="735" y="684" font-size="14" fill="#14213D" font-weight="700">watt (W)</text>
+<text x="735" y="714" font-size="17" fill="#14213D" font-weight="800">Energy dropped off</text>
+<text x="735" y="738" font-size="14" fill="#5B6478">each second:</text>
+<text x="735" y="758" font-size="14" fill="#5B6478">vans per second ×</text>
+<text x="735" y="778" font-size="14" fill="#5B6478">energy per van = I × V</text>
+<rect x="56" y="822" width="968" height="128" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text x="84" y="858" font-size="18" fill="#14213D" font-weight="800">Putting numbers on it</text>
+<text x="84" y="886" font-size="14" fill="#5B6478">A 6 V battery loads 6 joules onto every coulomb of charge.  A current of 2 A means 2 coulombs pass each second.</text>
+<text x="84" y="910" font-size="14" fill="#5B6478">So every second the bulb is handed 2 × 6 = 12 joules of energy.</text>
+<text x="84" y="936" font-size="18" fill="#7B4FD0" font-weight="700" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">P = I × V = 2 A × 6 V = 12 W</text>
+<rect x="56" y="970" width="968" height="146" rx="16" fill="#14213D"/>
+<text x="84" y="1008" font-size="17" fill="#fff" font-weight="800">Electrons carry the energy. They are not the energy.</text>
+<text x="84" y="1034" font-size="14" fill="#EADFCB">Electrons are not used up: the same number goes round, so the current is the same everywhere in one loop.</text>
+<text x="84" y="1056" font-size="14" fill="#EADFCB">Only the energy gets used, by the bulb or resistor, as light and heat.</text>
+<text x="84" y="1086" font-size="13" fill="#C9B5F5">Bonus: real electrons crawl along at less than 1 mm per second. The bulb still lights at once because the wire</text>
+<text x="84" y="1104" font-size="13" fill="#C9B5F5">is already full of electrons and they all start moving together, like pushing a pipe that is full of marbles.</text>
+</svg>
