@@ -129,6 +129,20 @@ A shorter, 35-minute paper of twenty new questions for a Unit Test 2 retake. It 
 
 Source material: the Unit 5 and Unit 7 textbook pages in `material/math/s2/t2/w5/unit5/` and `unit7/` (sections 5.1–5.5, 7.1 and 7.2) and the practice-book pages in `unit5+7-practise/`, used only to see which topics and skills are covered (the `material/` folder is not tracked in git). Every question, number, scenario and diagram is original, written for this sheet; none is copied from the books.
 
+## Week 7 (16–20 November)
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test: Electricity + Human Biology** — test on Wed 18 November | 50 | 56 | [.md](./w7/term2-week7-science-unit-test-electricity-human-biology.md) | [.html](./w7/term2-week7-science-unit-test-electricity-human-biology.html) |
+
+### Science Unit Test: Electricity + Human Biology
+
+The **Unit Test** practice sheet covers the scope given for the test on Wednesday 18 November: Electricity + Human Biology. The biology half follows the Human Reproduction slides. Section A covers DNA, genes and chromosomes (what DNA stands for, Watson and Crick and the double helix, cell → nucleus → chromosome → gene, 46 chromosomes in 23 pairs, and why a child is like both parents without being identical to either); Section B gametes, fertilisation and cell division (sperm, egg and zygote, mitosis versus meiosis, haploid and diploid, and chromosome numbers using the slides' dog, goldfish and lettuce examples), ending with a **Cell Division Explorer** that splits a 4-chromosome cell by mitosis or meiosis; Section C how the sex of a baby is decided (XX and XY, why the sperm decides, and the 50% chance), ending with a **Fertilisation Explorer** where a sperm swims to the egg and a 100-baby tally creeps towards 50%; Section D the mother's health and the fetus (uterus and placenta, listeria and caffeine, the effects of smoking, diet, alcohol and fetal alcohol syndrome). The electricity half recaps the Week 4 Unit 3 sheet with new numbers: Section E reads a numbered circuit diagram and covers series and parallel; Section F uses V = I × R, including a milliamp conversion and two resistors in series, and ends with an **Ohm's Law Circuit** with voltage and resistance sliders. Explorers sit at the end of their sections so they don't give away the answers. 17 of the 50 questions are multiple choice (one is select-three; the correct letter is spread evenly across A–D); the other 33 are typed numbers or short words, and every question on the interactive sheet is auto-marked. The printable `.md` has the same 50 questions plus nine written and drawing questions (Q51–Q59, 32 marks, marked by the teacher): a cell-to-gene diagram, mitosis versus meiosis, why gametes need meiosis, a 2 × 2 sex-inheritance diagram, smoking and the fetus, alcohol and drugs, a circuit with an ammeter and voltmeter, a series calculation, and why houses are wired in parallel. The excretory system, which is on the SA2 revision list under Human Biology, is not in the Human Reproduction slides and is not on this sheet.
+
+Source material: `material/science/s2/t2/w7/` (the Human Reproduction slide PDF and the SA2 revision topic list; the `material/` folder is not tracked in git).
+
 ## Writing project
 
 ### English: UN Day Writing Project
@@ -165,7 +179,7 @@ s2/t2/
     ├── term2-week4-science-unit3-thermal-energy-extra-questions.md ← Printable extra questions (6 q, no .html)
     ├── term2-week4-science-unit3-thermal-energy-extra-questions-whatsapp.txt ← 6 extra q, paste-ready
     ├── term2-week4-science-unit3-thermal-energy-extra-questions-answers.md ← Answers
-└── w5/
+├── w5/
     ├── term2-week5-maths-unit-test2-angles-shapes-measurements.html ← Interactive (Unit Test 2 practice)
     ├── term2-week5-maths-unit-test2-angles-shapes-measurements.md   ← Printable (+16 written q)
     ├── term2-week5-maths-unit-test2-mock-test5.html ← Interactive (Geometry Mock Test 5)
@@ -178,4 +192,7 @@ s2/t2/
     ├── term2-week5-maths-unit-test2-combined-test3.md   ← Printable (+4 written q)
     ├── term2-week5-maths-unit-test2-retake-practice.html ← Interactive (Unit Test 2 Retake Practice)
     └── term2-week5-maths-unit-test2-retake-practice.md   ← Printable (+4 written q)
+└── w7/
+    ├── term2-week7-science-unit-test-electricity-human-biology.html ← Interactive (Science Unit Test: Electricity + Human Biology)
+    └── term2-week7-science-unit-test-electricity-human-biology.md   ← Printable (+9 written and drawing q)
 ```
