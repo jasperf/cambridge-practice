@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electricity &amp; Human Biology &middot; Science Unit Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 62px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-sci { background: var(--accent-sci); }
+.exam-banner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.exam-inner { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.28); border-radius: 12px; padding: 14px 18px; font-size: 0.88rem; color: var(--text-muted); }
+.exam-inner strong { color: var(--accent-warn); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.5px; }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 12px auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-sci); color: var(--accent-sci); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.atom-diagram { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0 24px; text-align: center; }
+.atom-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.atom-info { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.5; }
+.word-eq { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text); background: rgba(15,17,23,0.5); border: 1px dashed var(--border); border-radius: 8px; padding: 14px 16px; margin: 16px 0 24px; text-align: center; line-height: 2; }
+.word-eq .reactant { color: var(--accent-math); }
+.word-eq .product { color: var(--accent-sci); }
+.word-eq .over { color: var(--accent-warn); font-size: 0.76rem; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.multi-opt .opt-indicator { border-radius: 5px; }
+.multi-note { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-warn); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent-sci); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+.mineral-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 16px 0 24px; }
+.mineral-card { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--accent-sci); border-radius: 0 8px 8px 0; padding: 14px 16px; }
+.mineral-card h4 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 6px; color: var(--text); }
+.mineral-card .sym { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-warn); letter-spacing: 1px; }
+.mineral-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-top: 4px; }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box, .exam-banner { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+.ans-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.unit { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+.diagram-box, .explorer { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin: 16px 0 24px; }
+.diagram-cap { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 10px; }
+.diagram-svg { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.sym-txt { font-family: Arial, sans-serif; font-weight: bold; font-size: 17px; fill: #e8eaf0; }
+.num-tag text { font-family: Arial, sans-serif; font-size: 20px; fill: #f5a623; }
+.cell-txt { font-family: 'DM Mono', monospace; font-size: 13px; fill: #e8eaf0; font-weight: 500; }
+.cap-txt { font-family: 'DM Mono', monospace; font-size: 11px; fill: #7a84a0; }
+.sperm-txt { font-family: Arial, sans-serif; font-weight: bold; font-size: 11px; fill: #0f1117; }
+.explorer { border-color: rgba(62,207,142,0.35); background: linear-gradient(135deg, rgba(62,207,142,0.07), rgba(79,142,247,0.05)); }
+.explorer-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+.explorer-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.6; }
+.explorer-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.btn-ex { background: var(--surface); border: 1px solid var(--accent-sci); color: var(--accent-sci); }
+.btn-ex:hover { background: rgba(62,207,142,0.12); }
+.tally { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 6px; }
+.tally b { color: var(--text); }
+.slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); }
+.slider-row label { width: 110px; flex-shrink: 0; }
+.slider-row input { flex: 1; accent-color: var(--accent-sci); min-width: 0; }
+.slider-row span { width: 52px; text-align: right; color: var(--text); }
+.pop { animation: popOut 0.7s cubic-bezier(0.34,1.56,0.64,1) both; transform-box: fill-box; transform-origin: center; }
+@keyframes popOut { from { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.4); } to { opacity: 1; transform: translate(0,0) scale(1); } }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Science Unit Test</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 56</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Term 2 Week 7</div>
+  <h1>Science Unit Test<br><em>Electricity + Human Biology</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-sci"></div>DNA &amp; Genes &middot; Gametes &middot; XX/XY &middot; Fetal Health &middot; Circuits &middot; V = IR</div>
+    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>50 questions &middot; self-marked &middot; 56 marks</div>
+  </div>
+</div>
+
+<div class="exam-banner"><div class="exam-inner">
+  <strong>SCIENCE UNIT TEST &middot; WEDNESDAY 18 NOVEMBER</strong><br>
+  Scope: <strong style="color:var(--text)">Electricity + Human Biology</strong>. Human Biology: chromosomes, genes and DNA; gametes, fertilisation, mitosis and meiosis; how the sex of a baby is decided (XX and XY); how the mother&rsquo;s diet, smoking, alcohol and drugs affect the fetus. Electricity: circuit symbols, current, voltage and resistance, series and parallel, and V = I &times; R.
+</div></div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128250; Revise first</h3>
+  <p>The video below is the one linked from the Human Reproduction slides. For the electricity half, the Unit 3 Electricity sheet and the formula sheets go over every idea again.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/watch?v=q4uWTmO0xvc" target="_blank" rel="noopener">Slides video &middot; Fetus and mother</a>
+    <a class="watch-link" href="../w4/term2-week4-science-unit3-electricity.html">Unit 3 Electricity sheet</a>
+    <a class="watch-link" href="../../science-formula-sheets/electricity.html">Electricity formula sheets</a>
+    <a class="watch-link" href="../../../resources.html" target="_blank" rel="noopener">More videos &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#dna" class="sub-tab">&#129516; A &middot; DNA &amp; Genes</a>
+  <a href="#gametes" class="sub-tab">&#128300; B &middot; Gametes &amp; Division</a>
+  <a href="#boy-girl" class="sub-tab">&#128118; C &middot; XX &amp; XY</a>
+  <a href="#mother" class="sub-tab">&#129328; D &middot; Mother &amp; Fetus</a>
+  <a href="#circuits" class="sub-tab">&#128161; E &middot; Circuits</a>
+  <a href="#ohms-law" class="sub-tab">&#9889; F &middot; V = I &times; R</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: DNA, GENES & CHROMOSOMES ═══════════════ -->
+<div id="dna">
+  <div class="section-header"><div class="section-icon">&#129516;</div><div><div class="sub-label">Section A &middot; Human Biology</div><h2>DNA, Genes &amp; Chromosomes</h2></div></div>
+  <div class="info-box">We look a little like both of our parents because our characteristics are coded for by <strong>genetic information</strong> that we inherit from them. That information is stored inside the <strong>nucleus</strong> of our cells. Key words for this section: <strong>gene</strong>, <strong>inheritance</strong>, <strong>chromosome</strong>, <strong>characteristic (trait)</strong>, <strong>DNA</strong>, <strong>sexual reproduction</strong>.</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">What do the letters <em>DNA</em> stand for? (two words)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s1-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s1',['deoxyribonucleic acid','deoxyribose nucleic acid','deoxyribo nucleic acid'],'Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','Deoxyribonucleic acid &mdash; the chemical that chromosomes are made of.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Which list goes from the <em>largest</em> structure to the <em>smallest</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'a')"><div class="opt-indicator"></div><span>Gene &rarr; chromosome &rarr; nucleus &rarr; cell</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'b')"><div class="opt-indicator"></div><span>Nucleus &rarr; cell &rarr; gene &rarr; chromosome</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'c')"><div class="opt-indicator"></div><span>Cell &rarr; nucleus &rarr; chromosome &rarr; gene</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s2', this, 'd')"><div class="opt-indicator"></div><span>Chromosome &rarr; cell &rarr; gene &rarr; nucleus</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s2','c','Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','C &mdash; The cell contains a nucleus, the nucleus holds the chromosomes, each chromosome is one long DNA molecule, and a gene is a short section of that DNA.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">How many chromosomes are there in the nucleus of a normal human <em>body</em> cell, such as a skin cell?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s3-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">chromosomes</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s3',46,'Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','46 chromosomes, arranged in 23 pairs.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Chromosomes in body cells come in pairs. How many <em>pairs</em> does a human body cell have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s4-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">pairs</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s4',23,'Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','23 pairs (46 &divide; 2). One chromosome of each pair came from the mother and one from the father.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Which statement best describes a <em>gene</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'a')"><div class="opt-indicator"></div><span>A short section of DNA that carries the code for a particular characteristic</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'b')"><div class="opt-indicator"></div><span>A whole chromosome, from one end to the other</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'c')"><div class="opt-indicator"></div><span>The membrane around the nucleus that protects the DNA</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'd')"><div class="opt-indicator"></div><span>A type of cell found only in the reproductive organs</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s5','a','Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','A &mdash; One chromosome carries many genes. Each gene is a short section of DNA that codes for a particular characteristic, such as eye colour.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">In 1953 two scientists worked out that DNA is shaped like a twisted ladder. Name <em>both</em> of them. (Type the two surnames, e.g. <em>Smith and Jones</em>.)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s6-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s6',['watson and crick','crick and watson','watson & crick','crick & watson','watson crick','crick watson','watson, crick','crick, watson','james watson and francis crick','francis crick and james watson'],'Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','James Watson and Francis Crick.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">What is the name of the twisted-ladder shape of a DNA molecule? (two words)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s7-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s7',['double helix'],'Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','A double helix &mdash; two long strands coiled around each other.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A dog has 78 chromosomes in each body cell. How many chromosomes are in one dog <em>sperm</em> cell?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s8-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">chromosomes</span></div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s8','A gamete gets one chromosome from each pair.')">Hint</button>
+        <button class="btn btn-check" onclick="checkNum('s8',39,'Q8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','39 &mdash; Sperm are made by meiosis, so each one gets one chromosome from every pair: half of 78. When a sperm (39) fertilises an egg (39), the puppy is back to 78.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">A girl has her mother&rsquo;s eye colour and her father&rsquo;s hair type, but she is not identical to either of them. What is the best explanation?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s9-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'a')"><div class="opt-indicator"></div><span>She inherited all her genes from her mother, and her hair changed as she grew</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'b')"><div class="opt-indicator"></div><span>Characteristics are not inherited; children learn them by copying their parents</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'c')"><div class="opt-indicator"></div><span>She has twice as many chromosomes as each of her parents</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s9', this, 'd')"><div class="opt-indicator"></div><span>She inherited half of her genetic information from each parent, so she has a new mix of both</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s9','d','Q9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','D &mdash; In sexual reproduction half of the genetic information comes from the mother&rsquo;s egg and half from the father&rsquo;s sperm. The child gets a new combination, so it can look a little like both parents without being identical to either.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">What is the name for the study of how characteristics (traits) are passed from parents to their offspring? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s10-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s10',['genetics'],'Q10')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','Genetics.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">DNA, GENES &AMP; CHROMOSOMES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-dna-fill"></div></div>
+    <div class="section-score-val" id="sec-dna-val">0/11</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: GAMETES & CELL DIVISION ═══════════════ -->
+<div id="gametes">
+  <div class="section-header"><div class="section-icon">&#128300;</div><div><div class="sub-label">Section B &middot; Human Biology</div><h2>Gametes, Fertilisation &amp; Cell Division</h2></div></div>
+  <div class="info-box">Sexual reproduction needs two kinds of <strong>gamete</strong> (reproductive cell), one from each parent. Key words for this section: <strong>sperm</strong>, <strong>egg (ovum)</strong>, <strong>fertilisation</strong>, <strong>zygote</strong>, <strong>mitosis</strong>, <strong>meiosis</strong>, <strong>haploid (n)</strong>, <strong>diploid (2n)</strong>. Answer the questions first, then use the <em>Cell Division Explorer</em> at the end of the section to check your thinking.</div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Reproductive cells are called gametes. What is the <em>male</em> gamete in humans called? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s11-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s11',['sperm','sperm cell','sperms','spermatozoon','spermatozoa'],'Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','Sperm (the female gamete is the egg, or ovum).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">During fertilisation the nucleus of a sperm joins with the nucleus of an egg. What is the single new cell called? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s12-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s12',['zygote'],'Q12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','A zygote. It divides again and again to grow into a new individual.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">How many chromosomes are in a human <em>egg</em> cell?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s13-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">chromosomes</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s13',23,'Q13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','23 &mdash; one from each pair. The sperm brings another 23.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Gametes are made by a special kind of cell division, so that they carry only <em>half</em> the usual number of chromosomes. Why is this needed?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'a')"><div class="opt-indicator"></div><span>So that gametes are smaller and can move faster</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'b')"><div class="opt-indicator"></div><span>So that the zygote gets the normal 46, not 92, otherwise the number would double every generation</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'c')"><div class="opt-indicator"></div><span>So that the baby only gets characteristics from one parent</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'd')"><div class="opt-indicator"></div><span>Because half of the chromosomes are lost during fertilisation anyway</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s14','Work out what the zygote would have if a sperm and an egg each carried 46.')">Hint</button>
+        <button class="btn btn-check" onclick="checkMCQ('s14','b','Q14')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','B &mdash; 23 + 23 = 46, the normal number. If gametes carried 46 each, the zygote would have 92, the next generation 184, and so on. After a few generations the cells would be so packed with chromosomes that they would die.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Which type of cell division happens in the reproductive organs to make gametes? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s15-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s15',['meiosis'],'Q15')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','Meiosis. The pairs of chromosomes separate, so each gamete gets one chromosome from each pair.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-s16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">You graze your knee, and new skin cells grow to repair it. How are these new cells made?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'a')"><div class="opt-indicator"></div><span>By meiosis: four cells, each with 23 chromosomes</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'b')"><div class="opt-indicator"></div><span>By mitosis: two cells, each the same as the parent cell, with 46 chromosomes</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'c')"><div class="opt-indicator"></div><span>By fertilisation: a sperm joins each skin cell</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s16', this, 'd')"><div class="opt-indicator"></div><span>By meiosis: two cells, each with 92 chromosomes</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s16','b','Q16')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s16','B &mdash; Mitosis is for growth and repair. It happens in body cells and makes two daughter cells that are the same as the parent cell.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s16-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-s17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">One cell in an ovary has 46 chromosomes. It divides by <em>meiosis</em>. How many chromosomes are there <em>altogether</em> in all of the new cells it makes?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s17-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">chromosomes</span></div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s17','First: how many cells does meiosis make? Then: how many chromosomes does each one get?')">Hint</button>
+        <button class="btn btn-check" onclick="checkNum('s17',92,'Q17')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s17','92 &mdash; Meiosis makes 4 cells, and each gets half of 46 = 23 chromosomes. 4 &times; 23 = 92.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s17-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-s18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Which of these human cells is <em>haploid</em> (one set of chromosomes, n = 23)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'a')"><div class="opt-indicator"></div><span>A skin cell</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'b')"><div class="opt-indicator"></div><span>A muscle cell</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'c')"><div class="opt-indicator"></div><span>A zygote</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s18', this, 'd')"><div class="opt-indicator"></div><span>An egg cell</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s18','d','Q18')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s18','D &mdash; Gametes (sperm and eggs) are haploid. Body cells, and the zygote made at fertilisation, are diploid (2n = 46).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s18-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-s19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A goldfish egg has 47 chromosomes. It is fertilised by a goldfish sperm. How many chromosomes does the goldfish zygote have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s19-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">chromosomes</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s19',94,'Q19')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s19','94 &mdash; The sperm also carries 47, and 47 + 47 = 94, the normal number for a goldfish body cell.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s19-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-s20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">A lettuce plant has 9 <em>pairs</em> of chromosomes. How many chromosomes are in one of its leaf cells?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s20-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">chromosomes</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s20',18,'Q20')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s20','18 &mdash; a leaf cell is a body cell, so it has the full set: 9 pairs = 18.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s20-fb"></div>
+    </div>
+  </div>
+
+  <div class="explorer" id="division-explorer">
+    <div class="explorer-title">&#128300; Cell Division Explorer</div>
+    <div class="explorer-sub">A pretend cell with only <strong>2 pairs</strong> of chromosomes (4 in total). Pink came from the mother, blue from the father. Press a button and count the chromosomes in each new cell.</div>
+    <div class="explorer-btns">
+      <button class="btn btn-ex" onclick="runDivision('mitosis')">Mitosis</button>
+      <button class="btn btn-ex" onclick="runDivision('meiosis')">Meiosis</button>
+    </div>
+    <svg id="division-svg" viewBox="0 0 520 230" class="diagram-svg" role="img" aria-label="Cell division animation"></svg>
+    <div class="atom-info" id="division-info">Choose mitosis or meiosis.</div>
+  </div>
+
+
+  <div class="section-score">
+    <div class="section-score-label">GAMETES &AMP; CELL DIVISION &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-gam-fill"></div></div>
+    <div class="section-score-val" id="sec-gam-val">0/12</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: BOY OR GIRL? ═══════════════ -->
+<div id="boy-girl">
+  <div class="section-header"><div class="section-icon">&#128118;</div><div><div class="sub-label">Section C &middot; Human Biology</div><h2>Boy or Girl? XX and XY</h2></div></div>
+  <div class="info-box">Of the 23 pairs of human chromosomes, 22 pairs are <strong>autosomes</strong> (body chromosomes), which carry genes for characteristics such as eye colour. The remaining pair are the <strong>sex chromosomes</strong>. There are two kinds of sex chromosome, called <strong>X</strong> and <strong>Y</strong>. Answer the questions, then try the <em>Fertilisation Explorer</em> at the end of the section.</div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-s21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Which two sex chromosomes does a human <em>female</em> have? (two letters)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s21-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s21',['xx'],'Q21')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s21','XX &mdash; two X chromosomes.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s21-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-s22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Every egg cell carries the same sex chromosome. Which one? (one letter)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s22-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s22',['x','x chromosome','an x','an x chromosome'],'Q22')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s22','X &mdash; a woman is XX, so every egg she makes gets an X.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s22-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-s23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Whose gamete decides whether the baby will be a boy or a girl, and why?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s23-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'a')"><div class="opt-indicator"></div><span>The father&rsquo;s sperm, because a sperm can carry either an X or a Y</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'b')"><div class="opt-indicator"></div><span>The mother&rsquo;s egg, because an egg can carry either an X or a Y</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'c')"><div class="opt-indicator"></div><span>Both equally, because each gamete gives one Y</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s23', this, 'd')"><div class="opt-indicator"></div><span>Neither: it depends on what the mother eats during pregnancy</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s23','a','Q23')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s23','A &mdash; Every egg carries an X. Half of the sperm carry an X (giving XX, a girl) and half carry a Y (giving XY, a boy), so it is the sperm that decides.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s23-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-s24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">What is the percentage chance that a baby will be a boy? (type a number)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s24-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">%</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s24',50,'Q24')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s24','50% &mdash; Half of the sperm carry X and half carry Y, so XX and XY are equally likely: a 1 in 2 chance.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s24-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-s25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">A couple already have three daughters. What is the chance that their next baby is a boy?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s25-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s25', this, 'a')"><div class="opt-indicator"></div><span>Almost 100%, because a boy is now &lsquo;due&rsquo;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s25', this, 'b')"><div class="opt-indicator"></div><span>Less than 50%, because this couple clearly make girls</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s25', this, 'c')"><div class="opt-indicator"></div><span>Still 50%, because every fertilisation is a new 50 : 50 chance</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s25', this, 'd')"><div class="opt-indicator"></div><span>25%, because they have had three girls in a row</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s25','c','Q25')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s25','C &mdash; The sperm does not &lsquo;remember&rsquo; earlier babies. Each time, half of the sperm carry X and half carry Y, so the chance is 50% every time.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s25-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-s26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Which two sex chromosomes does a human <em>male</em> have? (two letters)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s26-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s26',['xy','yx'],'Q26')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s26','XY &mdash; one X and one Y. That is why his sperm can carry either.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s26-fb"></div>
+    </div>
+  </div>
+
+  <div class="explorer" id="fert-explorer">
+    <div class="explorer-title">&#128118; Fertilisation Explorer</div>
+    <div class="explorer-sub">Send a sperm to the egg and see which sex chromosomes the zygote gets. Then send lots of random sperm and watch the tally.</div>
+    <div class="explorer-btns">
+      <button class="btn btn-ex" onclick="sendSperm('X')">Send an X sperm</button>
+      <button class="btn btn-ex" onclick="sendSperm('Y')">Send a Y sperm</button>
+      <button class="btn btn-ex" onclick="sendSperm(Math.random() &lt; 0.5 ? 'X' : 'Y')">Random sperm</button>
+      <button class="btn btn-ex" onclick="randomBatch(100)">100 random babies</button>
+    </div>
+    <svg id="fert-svg" viewBox="0 0 520 200" class="diagram-svg" role="img" aria-label="A sperm swims to an egg and fertilises it">
+      <circle id="egg" cx="410" cy="100" r="62" fill="rgba(247,143,179,0.18)" stroke="#f78fb3" stroke-width="2.5"/>
+      <circle cx="410" cy="100" r="22" fill="rgba(247,143,179,0.25)" stroke="#f78fb3" stroke-width="1.5"/>
+      <text id="egg-label" x="410" y="105" text-anchor="middle" class="cell-txt">22 + X</text>
+      <text id="egg-cap" x="410" y="186" text-anchor="middle" class="cap-txt">egg (23 chromosomes)</text>
+      <g id="sperm" transform="translate(40,100)" opacity="0">
+        <path id="sperm-tail" d="M-12 0 Q-24 -8 -36 0 T-60 0" stroke="#4f8ef7" stroke-width="2.5" fill="none"/>
+        <ellipse cx="0" cy="0" rx="13" ry="9" fill="#4f8ef7"/>
+        <text id="sperm-label" x="0" y="4" text-anchor="middle" class="sperm-txt">X</text>
+      </g>
+      <text x="40" y="186" class="cap-txt">sperm: 22 + X or 22 + Y</text>
+    </svg>
+    <div class="atom-info" id="fert-info">Every egg carries 22 + X. What will the sperm bring?</div>
+    <div class="tally" id="fert-tally">Girls (XX): <b id="t-girls">0</b> &nbsp;&middot;&nbsp; Boys (XY): <b id="t-boys">0</b> &nbsp;&middot;&nbsp; Boys: <b id="t-pct">&ndash;</b></div>
+  </div>
+
+
+  <div class="section-score">
+    <div class="section-score-label">BOY OR GIRL? &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sex-fill"></div></div>
+    <div class="section-score-val" id="sec-sex-val">0/6</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: MOTHER'S HEALTH & THE FETUS ═══════════════ -->
+<div id="mother">
+  <div class="section-header"><div class="section-icon">&#129328;</div><div><div class="sub-label">Section D &middot; Human Biology</div><h2>Mother&rsquo;s Health &amp; the Fetus</h2></div></div>
+  <div class="info-box">The developing baby is called a <strong>fetus</strong> (also spelt <em>foetus</em>). Whatever the mother eats, drinks, smokes or takes can reach the fetus through her blood. The slides looked at three factors: <strong>diet</strong>, <strong>smoking</strong> and <strong>drugs</strong> (including alcohol).</div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-s27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">In which organ does the fetus develop for about nine months? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s27-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s27',['uterus','womb'],'Q27')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s27','The uterus (womb).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s27-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-s28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Which structure, attached to both the mother and the baby, passes nutrients and oxygen to the fetus? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s28-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s28',['placenta'],'Q28')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s28','The placenta. Harmful substances in the mother&rsquo;s blood can cross it too.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-s29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A pregnant woman is told to avoid soft cheeses such as Camembert. Why?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s29-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'a')"><div class="opt-indicator"></div><span>They contain too much caffeine</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'b')"><div class="opt-indicator"></div><span>They contain nicotine, which reduces oxygen</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'c')"><div class="opt-indicator"></div><span>They have too little protein for the fetus to grow</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'd')"><div class="opt-indicator"></div><span>They can contain microorganisms that cause listeria, which can kill a developing fetus</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s29','d','Q29')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s29','D &mdash; Soft cheeses can carry the bacteria that cause listeria, an infection that can be fatal to a developing fetus.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s29-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-s30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Which of these can happen if a mother <em>smokes</em> during pregnancy? Select the <strong>three</strong> correct effects.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="multi-note">Select 3 &middot; all three must be right for the marks</div>
+      <div class="mcq-options" id="s30-opts">
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('s30', this, 'a')"><div class="opt-indicator"></div><span>The baby is born heavier than normal</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('s30', this, 'b')"><div class="opt-indicator"></div><span>The fetus gets less oxygen</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('s30', this, 'c')"><div class="opt-indicator"></div><span>The baby is born early (premature) with a low birth weight</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('s30', this, 'd')"><div class="opt-indicator"></div><span>The fetus&rsquo;s lungs grow stronger</span></div>
+        <div class="mcq-opt multi-opt" onclick="toggleMulti('s30', this, 'e')"><div class="opt-indicator"></div><span>A still birth: the fetus dies before it is born</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMulti('s30',['b','c','e'],'Q30')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s30','B, C and E &mdash; Nicotine, tar and other poisons from burning tobacco travel in the mother&rsquo;s blood to the fetus. Its blood carries less oxygen, it is more likely to be born early and small, and the risk of a still birth goes up. Smoking can also damage the lungs and nervous system.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s30-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-s31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">When a pregnant woman smokes, the heart rate of the fetus goes up. Why?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s31-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'a')"><div class="opt-indicator"></div><span>Its blood carries less oxygen, so its heart beats faster to get more oxygen to its cells</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'b')"><div class="opt-indicator"></div><span>The nicotine gives the fetus extra energy to grow</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'c')"><div class="opt-indicator"></div><span>The fetus is getting too much food</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'd')"><div class="opt-indicator"></div><span>Smoke gets into the fetus&rsquo;s lungs and makes it breathe faster</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s31','a','Q31')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s31','A &mdash; Substances from tobacco mean the blood carries less oxygen, and the fetus responds by raising its heart rate. (D is wrong: a fetus does not breathe air &mdash; it gets oxygen through the placenta.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s31-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-s32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">A mother does not eat a balanced diet during her pregnancy. What is the most likely effect on her baby?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s32-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'a')"><div class="opt-indicator"></div><span>The baby is born larger, because it stored extra fat</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'b')"><div class="opt-indicator"></div><span>No effect, because the fetus always takes what it needs first</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'c')"><div class="opt-indicator"></div><span>The fetus grows more slowly, and the baby is born smaller and less able to fight diseases</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'd')"><div class="opt-indicator"></div><span>The baby is born with a different blood group</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s32','c','Q32')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s32','C &mdash; Without a balanced diet the fetus does not get all the nutrients it needs, so its growth slows. The baby is smaller than normal and has less immunity to disease.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s32-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-s33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">A baby is born with a small head, a smooth upper lip and small eye openings because its mother drank a lot of alcohol while pregnant. What is this condition called? (three words)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s33-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s33',['fetal alcohol syndrome','foetal alcohol syndrome','fas','fetal alcohol spectrum disorder','foetal alcohol spectrum disorder'],'Q33')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s33','Fetal alcohol syndrome. Alcohol can also cause nerve damage, poor coordination and memory, poor concentration and hyperactivity.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s33-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-s34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Which substance, found in coffee, tea and chocolate, should a pregnant woman have less of because it can slow the growth of the fetus? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s34-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s34',['caffeine','caffein'],'Q34')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s34','Caffeine.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s34-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MOTHER&rsquo;S HEALTH &AMP; THE FETUS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mom-fill"></div></div>
+    <div class="section-score-val" id="sec-mom-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: CIRCUITS & SYMBOLS ═══════════════ -->
+<div id="circuits">
+  <div class="section-header"><div class="section-icon">&#128161;</div><div><div class="sub-label">Section E &middot; Electricity</div><h2>Circuits, Symbols, Series &amp; Parallel</h2></div></div>
+  <div class="info-box">Key words for this section: <strong>cell</strong>, <strong>lamp</strong>, <strong>ammeter</strong>, <strong>voltmeter</strong>, <strong>fixed and variable resistor</strong>, <strong>current</strong>, <strong>voltage</strong>, <strong>resistance</strong>, <strong>series</strong>, <strong>parallel</strong>. Use the numbered circuit diagram for Q35, Q36 and Q42.</div>
+
+  <div class="diagram-box">
+    <div class="diagram-cap">Circuit diagram for Q35, Q36 and Q42</div>
+    <svg viewBox="0 0 520 250" class="diagram-svg" role="img" aria-label="A series circuit with five numbered components: 1 cell, 2 circle with A, 3 circle with a cross, 4 rectangle with a diagonal arrow, 5 circle with V connected across component 3">
+      <g stroke="#7a84a0" stroke-width="2.5" fill="none">
+        <path d="M90 100 H430 V220 H90 Z"/>
+        <path d="M300 100 V40 H360 V100"/>
+      </g>
+      <g fill="#7a84a0"><circle cx="300" cy="100" r="4"/><circle cx="360" cy="100" r="4"/></g>
+      <!-- 1 cell (left side) -->
+      <rect x="70" y="148" width="40" height="24" fill="#1e2336"/>
+      <line x1="70" y1="152" x2="110" y2="152" stroke="#e8eaf0" stroke-width="2.5"/>
+      <line x1="80" y1="166" x2="100" y2="166" stroke="#e8eaf0" stroke-width="5"/>
+      <!-- 2 ammeter -->
+      <circle cx="190" cy="100" r="17" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <text x="190" y="106" text-anchor="middle" class="sym-txt">A</text>
+      <!-- 3 lamp -->
+      <circle cx="330" cy="100" r="17" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <path d="M318 88 L342 112 M342 88 L318 112" stroke="#e8eaf0" stroke-width="2.5"/>
+      <!-- 5 voltmeter -->
+      <circle cx="330" cy="40" r="17" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <text x="330" y="46" text-anchor="middle" class="sym-txt">V</text>
+      <!-- 4 variable resistor -->
+      <rect x="230" y="210" width="60" height="20" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <line x1="222" y1="242" x2="296" y2="200" stroke="#f5a623" stroke-width="2.5"/>
+      <path d="M296 200 L284 201 L290 210 Z" fill="#f5a623"/>
+      <!-- numbers -->
+      <g class="num-tag">
+        <text x="52" y="166">&#9312;</text>
+        <text x="190" y="80" text-anchor="middle">&#9313;</text>
+        <text x="330" y="140" text-anchor="middle">&#9314;</text>
+        <text x="260" y="200" text-anchor="middle">&#9315;</text>
+        <text x="372" y="34">&#9316;</text>
+      </g>
+    </svg>
+  </div>
+
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-s35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Look at the circuit diagram. Name component &#9316; (the circle with a V inside). (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s35-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s35',['voltmeter','volt meter'],'Q35')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s35','A voltmeter. It measures the voltage across the lamp, so it is connected in parallel with it.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s35-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-s36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Meter &#9313; is connected <em>in series</em>, in the main loop. Why is that the right way to connect it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s36-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'a')"><div class="opt-indicator"></div><span>It measures voltage, and voltage must be measured in the main loop</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'b')"><div class="opt-indicator"></div><span>It is an ammeter: it measures current, so all of the current has to flow through it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'c')"><div class="opt-indicator"></div><span>It is a voltmeter, and voltmeters always go in series</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s36', this, 'd')"><div class="opt-indicator"></div><span>All meters must be placed next to the cell</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s36','b','Q36')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s36','B &mdash; &#9313; is an ammeter (circle with an A). It counts the current flowing through it, so it goes in series. A voltmeter measures the difference across a component, so it goes in parallel.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s36-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-s37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">What is the unit of resistance? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s37-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s37',['ohm','ohms','Ω'],'Q37')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s37','The ohm (symbol &Omega;).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s37-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-s38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">Three lamps are connected in <em>series</em>. One of them blows. What happens to the other two?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s38-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'a')"><div class="opt-indicator"></div><span>They both go out, because the only path for the current is broken</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'b')"><div class="opt-indicator"></div><span>They stay lit and get brighter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'c')"><div class="opt-indicator"></div><span>They stay lit at the same brightness</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'd')"><div class="opt-indicator"></div><span>Only the lamp next to the blown one goes out</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s38','a','Q38')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s38','A &mdash; A series circuit has one path. Break it anywhere and no current flows, so every lamp goes out.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s38-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-s39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">A 12 V cell is connected to two identical lamps in <em>series</em>. What is the voltage across each lamp?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s39-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">V</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s39',6,'Q39')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s39','6 V &mdash; In series the voltage is shared between the components: 12 &divide; 2 = 6 V.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s39-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-s40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">An ammeter next to the cell reads 1.5 A. The current then splits equally between three identical lamps in <em>parallel</em>. What is the current in each branch?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s40-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s40',0.5,'Q40')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s40','0.5 A &mdash; In parallel the current divides between the branches: 1.5 &divide; 3 = 0.5 A.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s40-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-s41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">Are the lights and sockets in a house wired in <em>series</em> or in <em>parallel</em>? (one word)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s41-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" inputmode="text"></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s41',['parallel','in parallel'],'Q41')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s41','Parallel &mdash; each one gets the full voltage, and if one fails the others keep working.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s41-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="q-card" id="qcard-s42">
+    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">Component &#9315; is used to make the lamp brighter or dimmer. What is it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s42-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'a')"><div class="opt-indicator"></div><span>A fixed resistor</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'b')"><div class="opt-indicator"></div><span>A buzzer</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'c')"><div class="opt-indicator"></div><span>A fuse</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'd')"><div class="opt-indicator"></div><span>A variable resistor</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s42','d','Q42')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s42','D &mdash; A variable resistor (a rectangle with a diagonal arrow through it). Changing its resistance changes the current, and so the brightness of the lamp.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s42-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">CIRCUITS &AMP; SYMBOLS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-cir-fill"></div></div>
+    <div class="section-score-val" id="sec-cir-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: OHM'S LAW ═══════════════ -->
+<div id="ohms-law">
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Section F &middot; Electricity</div><h2>Ohm&rsquo;s Law: V = I &times; R</h2></div></div>
+  <div class="info-box"><strong>V = I &times; R</strong>, so <strong>I = V &divide; R</strong> and <strong>R = V &divide; I</strong> (cover the one you want in the formula triangle). V is in volts, I in amperes and R in ohms. 1000 mA = 1 A. Answer the questions, then try the <em>Ohm&rsquo;s Law Circuit</em> at the end of the section.</div>
+
+  <!-- Q43 -->
+  <div class="q-card" id="qcard-s43">
+    <div class="q-header"><div class="q-num">Q43</div><div class="q-text">A 9 V battery is connected across a 3 &Omega; resistor. What current flows?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s43-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s43',3,'Q43')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s43','3 A &mdash; I = V &divide; R = 9 &divide; 3 = 3 A.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s43-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q44 -->
+  <div class="q-card" id="qcard-s44">
+    <div class="q-header"><div class="q-num">Q44</div><div class="q-text">A current of 0.5 A flows through a 24 &Omega; lamp. What is the voltage across it?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s44-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">V</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s44',12,'Q44')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s44','12 V &mdash; V = I &times; R = 0.5 &times; 24 = 12 V.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s44-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q45 -->
+  <div class="q-card" id="qcard-s45">
+    <div class="q-header"><div class="q-num">Q45</div><div class="q-text">A heater works on the 230 V mains and draws a current of 2 A. What is its resistance?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s45-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">&Omega;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s45',115,'Q45')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s45','115 &Omega; &mdash; R = V &divide; I = 230 &divide; 2 = 115 &Omega;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s45-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q46 -->
+  <div class="q-card" id="qcard-s46">
+    <div class="q-header"><div class="q-num">Q46</div><div class="q-text">A current of 250 mA flows through a 40 &Omega; resistor. What is the voltage across it?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s46-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">V</span></div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s46','Change mA into A first (divide by 1000).')">Hint</button>
+        <button class="btn btn-check" onclick="checkNum('s46',10,'Q46')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s46','10 V &mdash; 250 mA = 0.25 A, then V = I &times; R = 0.25 &times; 40 = 10 V. (Using 250 instead of 0.25 gives 10 000 V!)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s46-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q47 -->
+  <div class="q-card" id="qcard-s47">
+    <div class="q-header"><div class="q-num">Q47</div><div class="q-text">A 6 V cell is connected to a 2 &Omega; resistor and a 4 &Omega; resistor in <em>series</em>. What current flows?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s47-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">A</span></div>
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s47','In series, add the resistances to get the total first.')">Hint</button>
+        <button class="btn btn-check" onclick="checkNum('s47',1,'Q47')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s47','1 A &mdash; Total resistance = 2 + 4 = 6 &Omega;, then I = V &divide; R = 6 &divide; 6 = 1 A.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s47-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q48 -->
+  <div class="q-card" id="qcard-s48">
+    <div class="q-header"><div class="q-num">Q48</div><div class="q-text">The resistance of a variable resistor in series with a lamp is turned <em>up</em>. What happens?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s48-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s48', this, 'a')"><div class="opt-indicator"></div><span>The current increases and the lamp gets brighter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s48', this, 'b')"><div class="opt-indicator"></div><span>The current stays the same but the lamp gets dimmer</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s48', this, 'c')"><div class="opt-indicator"></div><span>The current decreases and the lamp gets dimmer</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s48', this, 'd')"><div class="opt-indicator"></div><span>The voltage of the cell increases</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s48','c','Q48')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s48','C &mdash; More resistance with the same voltage means less current (I = V &divide; R), so the lamp gets dimmer.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s48-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q49 -->
+  <div class="q-card" id="qcard-s49">
+    <div class="q-header"><div class="q-num">Q49</div><div class="q-text">In an experiment a resistor has 3.0 V across it and a current of 0.6 A through it. Calculate its resistance.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="ans-row"><input type="text" class="text-input" id="s49-ans" placeholder="type a number&hellip;" autocomplete="off" spellcheck="false" inputmode="decimal"> <span class="unit">&Omega;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s49',5,'Q49')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s49','5 &Omega; &mdash; R = V &divide; I = 3.0 &divide; 0.6 = 5 &Omega;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s49-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q50 -->
+  <div class="q-card" id="qcard-s50">
+    <div class="q-header"><div class="q-num">Q50</div><div class="q-text">The voltage across a fixed resistor is doubled, from 4 V to 8 V. What happens to the current?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s50-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s50', this, 'a')"><div class="opt-indicator"></div><span>It halves</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s50', this, 'b')"><div class="opt-indicator"></div><span>It doubles</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s50', this, 'c')"><div class="opt-indicator"></div><span>It stays the same</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s50', this, 'd')"><div class="opt-indicator"></div><span>It goes up by exactly 4 A</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s50','b','Q50')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s50','B &mdash; The resistance stays the same, so I = V &divide; R doubles when V doubles. Current is proportional to voltage for a fixed resistor.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s50-fb"></div>
+    </div>
+  </div>
+
+  <div class="explorer" id="ohm-explorer">
+    <div class="explorer-title">&#9889; Ohm&rsquo;s Law Circuit</div>
+    <div class="explorer-sub">Change the voltage of the cell and the resistance of the resistor. The ammeter shows I = V &divide; R; the moving dots show the charge flowing, and the lamp glows brighter with more current.</div>
+    <div class="slider-row"><label for="v-slider">Voltage V</label><input type="range" id="v-slider" min="1" max="12" step="0.5" value="6"><span id="v-val">6 V</span></div>
+    <div class="slider-row"><label for="r-slider">Resistance R</label><input type="range" id="r-slider" min="1" max="24" step="1" value="4"><span id="r-val">4 &Omega;</span></div>
+    <svg id="ohm-svg" viewBox="0 0 520 240" class="diagram-svg" role="img" aria-label="Circuit with a cell, a resistor, a lamp and an ammeter">
+      <path id="ohm-loop" d="M80 40 H440 V200 H80 Z" stroke="#7a84a0" stroke-width="2.5" fill="none"/>
+      <g id="ohm-dots"></g>
+      <!-- cell -->
+      <rect x="60" y="106" width="40" height="28" fill="#1e2336"/>
+      <line x1="60" y1="110" x2="100" y2="110" stroke="#e8eaf0" stroke-width="2.5"/>
+      <line x1="70" y1="128" x2="90" y2="128" stroke="#e8eaf0" stroke-width="5"/>
+      <text x="30" y="124" text-anchor="middle" class="cap-txt" id="cell-txt">6 V</text>
+      <!-- resistor -->
+      <rect x="225" y="30" width="70" height="20" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <text x="260" y="20" text-anchor="middle" class="cap-txt" id="res-txt">4 &Omega;</text>
+      <!-- lamp -->
+      <circle id="lamp-glow" cx="440" cy="120" r="34" fill="#f5a623" opacity="0.3"/>
+      <circle cx="440" cy="120" r="17" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <path d="M428 108 L452 132 M452 108 L428 132" stroke="#e8eaf0" stroke-width="2.5"/>
+      <!-- ammeter -->
+      <circle cx="260" cy="200" r="17" fill="#1e2336" stroke="#e8eaf0" stroke-width="2.5"/>
+      <text x="260" y="206" text-anchor="middle" class="sym-txt">A</text>
+      <text x="260" y="234" text-anchor="middle" class="cap-txt" id="amm-txt">1.50 A</text>
+    </svg>
+    <div class="atom-info" id="ohm-info">I = V &divide; R = 6 &divide; 4 = 1.50 A</div>
+  </div>
+
+
+  <div class="section-score">
+    <div class="section-score-label">OHM&rsquo;S LAW &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ohm-fill"></div></div>
+    <div class="section-score-val" id="sec-ohm-val">0/10</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { s1:1, s2:1, s3:1, s4:1, s5:1, s6:1, s7:1, s8:2, s9:1, s10:1, s11:1, s12:1, s13:1, s14:2, s15:1, s16:1, s17:2, s18:1, s19:1, s20:1, s21:1, s22:1, s23:1, s24:1, s25:1, s26:1, s27:1, s28:1, s29:1, s30:2, s31:1, s32:1, s33:1, s34:1, s35:1, s36:1, s37:1, s38:1, s39:1, s40:1, s41:1, s42:1, s43:1, s44:1, s45:1, s46:2, s47:2, s48:1, s49:1, s50:1 };
+
+const sections = {
+  dna: { label: 'DNA, Genes & Chromosomes', qs: ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'] },
+  gam: { label: 'Gametes & Cell Division', qs: ['s11','s12','s13','s14','s15','s16','s17','s18','s19','s20'] },
+  sex: { label: 'Boy or Girl?', qs: ['s21','s22','s23','s24','s25','s26'] },
+  mom: { label: 'Mother\'s Health & the Fetus', qs: ['s27','s28','s29','s30','s31','s32','s33','s34'] },
+  cir: { label: 'Circuits & Symbols', qs: ['s35','s36','s37','s38','s39','s40','s41','s42'] },
+  ohm: { label: 'Ohm\'s Law', qs: ['s43','s44','s45','s46','s47','s48','s49','s50'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+const SVGNS = 'http://www.w3.org/2000/svg';
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Section B: cell division explorer ───────────────────────
+const MUM = '#f78fb3', DAD = '#4f8ef7';
+function chromo(x, y, long, colour) {
+  const h = long ? 30 : 18;
+  return `<rect x="${x-4}" y="${y-h/2}" width="8" height="${h}" rx="4" fill="${colour}"/>`;
+}
+function cellSVG(cx, cy, r, set, extra, caption) {
+  // set: list of [long, colour]
+  const gap = 14, start = cx - (set.length-1)*gap/2;
+  let s = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="rgba(62,207,142,0.10)" stroke="#3ecf8e" stroke-width="2"/>`;
+  set.forEach((c, i) => { s += chromo(start + i*gap, cy - 4, c[0], c[1]); });
+  s += `<text x="${cx}" y="${cy + r + 14}" text-anchor="middle" class="cap-txt">${caption || set.length + ' chromosomes'}</text>`;
+  return `<g ${extra || ''}>${s}</g>`;
+}
+const PARENT = [[true, MUM], [true, DAD], [false, MUM], [false, DAD]];
+function drawParent() {
+  document.getElementById('division-svg').innerHTML =
+    cellSVG(90, 110, 58, PARENT, '', 'parent cell: 4 chromosomes');
+}
+function runDivision(type) {
+  drawParent();
+  const svg = document.getElementById('division-svg');
+  let html = svg.innerHTML + `<path d="M160 110 H215" stroke="#7a84a0" stroke-width="2"/><path d="M215 110 l-8 -5 v10 z" fill="#7a84a0"/>`;
+  const info = document.getElementById('division-info');
+  if (type === 'mitosis') {
+    [[340, 50], [340, 160]].forEach(([x, y], i) => {
+      html += cellSVG(x, y, 40, PARENT, `class="pop" style="--dx:${90-x}px;--dy:${110-y}px;animation-delay:${i*0.15}s"`);
+    });
+    html += `<text x="450" y="114" text-anchor="middle" class="cap-txt">identical</text>`;
+    info.innerHTML = 'Mitosis: <strong>2</strong> daughter cells, each with <strong>4</strong> chromosomes &mdash; the same as the parent. Used for <strong>growth and repair</strong>.';
+  } else {
+    const sets = [[[true, MUM], [false, DAD]], [[true, DAD], [false, MUM]], [[true, MUM], [false, MUM]], [[true, DAD], [false, DAD]]];
+    [[300, 50], [430, 50], [300, 160], [430, 160]].forEach(([x, y], i) => {
+      html += cellSVG(x, y, 40, sets[i], `class="pop" style="--dx:${90-x}px;--dy:${110-y}px;animation-delay:${i*0.15}s"`);
+    });
+    info.innerHTML = 'Meiosis: <strong>4</strong> daughter cells (gametes), each with <strong>2</strong> chromosomes &mdash; <strong>one from each pair</strong>, half the parent number. Every gamete gets a different mix.';
+  }
+  svg.innerHTML = html;
+}
+drawParent();
+
+// ── Section C: fertilisation explorer ───────────────────────
+let spermBusy = false, girls = 0, boys = 0;
+function updateTally() {
+  document.getElementById('t-girls').textContent = girls;
+  document.getElementById('t-boys').textContent = boys;
+  document.getElementById('t-pct').textContent = (girls + boys) ? Math.round(100*boys/(girls+boys)) + '%' : '–';
+}
+function showZygote(chr) {
+  const egg = document.getElementById('egg');
+  const girl = chr === 'X';
+  egg.setAttribute('fill', girl ? 'rgba(247,143,179,0.35)' : 'rgba(79,142,247,0.30)');
+  egg.setAttribute('stroke', girl ? MUM : DAD);
+  document.getElementById('egg-label').textContent = girl ? '44 + XX' : '44 + XY';
+  document.getElementById('egg-cap').textContent = girl ? 'zygote → girl (46)' : 'zygote → boy (46)';
+}
+function resetEgg() {
+  const egg = document.getElementById('egg');
+  egg.setAttribute('fill', 'rgba(247,143,179,0.18)'); egg.setAttribute('stroke', MUM);
+  document.getElementById('egg-label').textContent = '22 + X';
+  document.getElementById('egg-cap').textContent = 'egg (23 chromosomes)';
+}
+function sendSperm(chr) {
+  if (spermBusy) return;
+  spermBusy = true;
+  resetEgg();
+  const sperm = document.getElementById('sperm'), tail = document.getElementById('sperm-tail');
+  document.getElementById('sperm-label').textContent = chr;
+  sperm.querySelector('ellipse').setAttribute('fill', chr === 'X' ? MUM : DAD);
+  tail.setAttribute('stroke', chr === 'X' ? MUM : DAD);
+  document.getElementById('fert-info').innerHTML = `A sperm carrying <strong>22 + ${chr}</strong> swims to the egg&hellip;`;
+  sperm.setAttribute('opacity', '1');
+  const t0 = performance.now(), dur = 1500, x0 = 60, x1 = 395;
+  function step(now) {
+    const t = Math.min(1, (now - t0) / dur);
+    const x = x0 + (x1 - x0) * (1 - Math.pow(1 - t, 2));
+    const y = 100 + Math.sin(t * 14) * 10 * (1 - t);
+    sperm.setAttribute('transform', `translate(${x},${y})`);
+    const w = Math.sin(now / 60) * 8;
+    tail.setAttribute('d', `M-12 0 Q-24 ${w} -36 0 T-60 0`);
+    if (t < 1) { requestAnimationFrame(step); return; }
+    sperm.setAttribute('opacity', '0');
+    showZygote(chr);
+    if (chr === 'X') girls++; else boys++;
+    updateTally();
+    document.getElementById('fert-info').innerHTML = chr === 'X'
+      ? 'Egg (22 + X) + sperm (22 + X) = <strong>44 + XX</strong>: a <strong>girl</strong>.'
+      : 'Egg (22 + X) + sperm (22 + Y) = <strong>44 + XY</strong>: a <strong>boy</strong>.';
+    spermBusy = false;
+  }
+  requestAnimationFrame(step);
+}
+function randomBatch(n) {
+  let b = 0;
+  for (let i = 0; i < n; i++) { if (Math.random() < 0.5) { boys++; b++; } else girls++; }
+  updateTally();
+  document.getElementById('fert-info').innerHTML = `${n} random fertilisations: <strong>${b}</strong> boys and <strong>${n-b}</strong> girls. Press it a few more times &mdash; the total creeps towards 50%.`;
+}
+
+// ── Section F: Ohm's law circuit ────────────────────────────
+const ohm = { V: 6, R: 4, offset: 0, last: 0 };
+const loop = document.getElementById('ohm-loop');
+const loopLen = loop.getTotalLength();
+const dotsG = document.getElementById('ohm-dots');
+const NDOTS = 18;
+for (let i = 0; i < NDOTS; i++) {
+  const c = document.createElementNS(SVGNS, 'circle');
+  c.setAttribute('r', '4'); c.setAttribute('fill', '#3ecf8e');
+  dotsG.appendChild(c);
+}
+function updateOhm() {
+  ohm.V = parseFloat(document.getElementById('v-slider').value);
+  ohm.R = parseFloat(document.getElementById('r-slider').value);
+  const I = ohm.V / ohm.R;
+  document.getElementById('v-val').textContent = ohm.V + ' V';
+  document.getElementById('r-val').textContent = ohm.R + ' Ω';
+  document.getElementById('cell-txt').textContent = ohm.V + ' V';
+  document.getElementById('res-txt').textContent = ohm.R + ' Ω';
+  document.getElementById('amm-txt').textContent = I.toFixed(2) + ' A';
+  document.getElementById('lamp-glow').setAttribute('opacity', Math.min(0.9, 0.05 + I / 4).toFixed(2));
+  document.getElementById('ohm-info').textContent = `I = V ÷ R = ${ohm.V} ÷ ${ohm.R} = ${I.toFixed(2)} A`;
+}
+document.getElementById('v-slider').addEventListener('input', updateOhm);
+document.getElementById('r-slider').addEventListener('input', updateOhm);
+function animateOhm(now) {
+  const dt = ohm.last ? (now - ohm.last) / 1000 : 0;
+  ohm.last = now;
+  const I = ohm.V / ohm.R;
+  // conventional current: from + (long line, top of cell) round the loop
+  ohm.offset = (ohm.offset + Math.min(I, 6) * 40 * dt) % loopLen;
+  const dots = dotsG.children;
+  for (let i = 0; i < NDOTS; i++) {
+    const p = loop.getPointAtLength((ohm.offset + i * loopLen / NDOTS) % loopLen);
+    dots[i].setAttribute('cx', p.x); dots[i].setAttribute('cy', p.y);
+  }
+  requestAnimationFrame(animateOhm);
+}
+updateOhm();
+requestAnimationFrame(animateOhm);
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-f])'\)/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-f])'\)/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function toggleMulti(qid, el, val) {
+  if (state.correct[qid] !== undefined) return;
+  const chosen = state.answers[qid] instanceof Set ? state.answers[qid] : new Set();
+  if (chosen.has(val)) {
+    chosen.delete(val);
+    el.classList.remove('selected');
+    el.querySelector('.opt-indicator').textContent = '';
+  } else {
+    chosen.add(val);
+    el.classList.add('selected');
+    el.querySelector('.opt-indicator').textContent = '✓';
+  }
+  state.answers[qid] = chosen;
+}
+
+function checkMulti(qid, correctVals, label) {
+  const chosen = state.answers[qid];
+  if (!(chosen instanceof Set) || chosen.size === 0) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = chosen.size === correctVals.length && correctVals.every(v => chosen.has(v));
+  document.querySelectorAll(`#${qid}-opts .mcq-opt`).forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-f])'\)/);
+    const v = m ? m[1] : null;
+    if (correctVals.includes(v)) opt.classList.add('correct');
+    else if (opt.classList.contains('selected')) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim()
+    .replace(/[.,!?]+$/, '').replace(/\s+/g, ' ')
+    .replace(/^(the|a|an) /, '').replace(/œ/g, 'oe');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance) {
+  const input = document.getElementById(`${qid}-ans`);
+  const cleaned = input.value.replace(',', '.').replace(/[^0-9.\-]/g, '');
+  const val = parseFloat(cleaned);
+  if (cleaned === '' || isNaN(val)) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const tol = tolerance === undefined ? 0.01 : tolerance;
+  const isCorrect = Math.abs(val - correctVal) <= tol;
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = val;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Reveal the answer, then make sure you understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  const input = document.getElementById(`${qid}-ans`);
+  if (input) input.disabled = true;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`science-unit-test-elec-hb_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('text-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
