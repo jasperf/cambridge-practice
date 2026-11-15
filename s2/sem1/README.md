@@ -55,6 +55,28 @@ A focused drill on the topic that gives the most trouble in the review: [interac
 
 Built from `scripts/review_specs/s2_sem1_science_bonding_ions.py` in the same way.
 
+### Human Biology
+
+The science mock and the review page do not cover Human Biology yet. For chromosomes, genes and DNA, gametes and inheritance, and fetal development and the mother's health, use the [Term 2 Unit Test: Electricity + Human Biology](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.html) ([printable](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.md)).
+
+### Videos to watch
+
+Free videos for the science revision topics, most of all the ones the sheets cover only lightly. Each takes 4 to 10 minutes. Where there is no direct link, the link runs a YouTube search for the exact title.
+
+| Topic | Video | Why watch it |
+|-------|-------|--------------|
+| Excretory system | [TED-Ed: How do your kidneys work?](https://ed.ted.com/lessons/how-do-your-kidneys-work-emma-bryce) | Nephrons filter the blood; urea leaves as urine through the ureters to the bladder |
+| Transpiration and transport | [Veritasium: Why Trees Are Out to Get You](https://www.youtube.com/results?search_query=veritasium+why+trees+are+out+to+get+you) | How water evaporating from leaves pulls water up the xylem |
+| Carbon cycle | [FuseSchool: What Is the Carbon Cycle, Parts 1 and 2](https://www.youtube.com/results?search_query=fuseschool+what+is+the+carbon+cycle) | Photosynthesis and respiration, then what burning fossil fuels changes |
+| Carbon cycle | [Crash Course Ecology #8: The Hydrologic and Carbon Cycles](https://www.youtube.com/results?search_query=crash+course+ecology+8+hydrologic+and+carbon+cycles) | A faster, wider overview |
+| Conservation of energy | [TED-Ed: All of the energy in the universe is…](https://www.youtube.com/results?search_query=ted-ed+all+of+the+energy+in+the+universe+is) | Energy is never made or destroyed, only moved around |
+| Simple and giant structures | [FuseSchool: What Are Giant Chemical Structures](https://www.youtube.com/results?search_query=fuseschool+what+are+giant+chemical+structures) | Diamond, graphite and sand; why graphite conducts and diamond does not |
+| DNA and proteins | [Kurzgesagt: The Most Complex Language in the World](https://www.youtube.com/watch?v=TYPFenJQciw) | DNA as the instructions for building proteins from amino acids (goes beyond the syllabus) |
+| Inheritance | [Amoeba Sisters: Monohybrid crosses and Punnett squares](https://www.youtube.com/results?search_query=amoeba+sisters+monohybrid+crosses+punnett+squares) | Dominant and recessive alleles, worked step by step |
+| Inheritance | [Amoeba Sisters: Sex-linked traits](https://www.youtube.com/results?search_query=amoeba+sisters+sex+linked+traits) | XX and XY, and traits carried on the X chromosome |
+
+For something longer about plants, the BBC series *The Green Planet* (David Attenborough, 2022) is on BBC iPlayer in the UK; elsewhere it depends on the streaming service.
+
 ## Checks
 
 All eight interactive sheets pass `scripts/mcq_audit.py` (spread of correct letters and no answers given away in the teaching boxes), and their printables are in sync according to `scripts/mcq_sync.py`.
