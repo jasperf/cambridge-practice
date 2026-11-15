@@ -55,9 +55,15 @@ A focused drill on the topic that gives the most trouble in the review: [interac
 
 Built from `scripts/review_specs/s2_sem1_science_bonding_ions.py` in the same way.
 
+### Gaps drill
+
+Five topics on the science revision list that the other sheets hardly cover: [interactive](./sem1-science-gaps.html) · [printable](./sem1-science-gaps.md) · [answers](./sem1-science-gaps-answers.md). Section A is the human excretory system (urea and the liver, kidneys, ureters, bladder and urethra, how nephrons filter and take back, water balance), with a numbered diagram to label. Section B is absorption, transport and transpiration (root hair cells, xylem and phloem, stomata, a potometer and a mass-loss reading, and the petroleum-jelly leaf experiment). Section C is the carbon cycle (photosynthesis, respiration, feeding, decomposers, fossil fuels and combustion, a burned rainforest, CO₂ since 1750 and hydrogencarbonate indicator). Section D is conservation of energy (useful and wasted energy, a Sankey diagram, and the class's heat-conservation slides). Section E is simple and giant structures (diamond, graphite and silicon dioxide). **37 questions, 49 marks, 14 MCQ**, all auto-marked. Three explorers come **after** their section's questions, so they cannot give answers away: a **Kidney Filter** (blood particles sorted into blood or urine, with a normal, hot or well-watered day), a **Transpiration Lab** (temperature, wind, humidity and day or night) and **Run the Carbon Cycle** (move carbon between five stores and watch the CO₂ in the air). The printable adds six written questions (Q38–Q43, 21 marks): drawing the urinary system, water's journey from soil to air, drawing a carbon cycle, planning a wind-and-transpiration investigation, a Sankey diagram for a filament bulb, and diamond versus graphite.
+
+The class slides do not cover most of these topics, so the facts follow the Cambridge Lower Secondary Stage 9 syllabus; check them against your class notes. Built from `scripts/review_specs/s2_sem1_science_gaps.py`.
+
 ### Human Biology
 
-The science mock and the review page do not cover Human Biology yet. For chromosomes, genes and DNA, gametes and inheritance, and fetal development and the mother's health, use the [Term 2 Unit Test: Electricity + Human Biology](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.html) ([printable](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.md)).
+The science mock and the review page do not cover Human Biology yet. For chromosomes, genes and DNA, gametes and inheritance, and fetal development and the mother's health, use the [Term 2 Unit Test: Electricity + Human Biology](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.html) ([printable](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.md)). The excretory system is in the [gaps drill](./sem1-science-gaps.html), Section A.
 
 ### Videos to watch
 
@@ -79,7 +85,7 @@ For something longer about plants, the BBC series *The Green Planet* (David Atte
 
 ## Checks
 
-All eight interactive sheets pass `scripts/mcq_audit.py` (spread of correct letters and no answers given away in the teaching boxes), and their printables are in sync according to `scripts/mcq_sync.py`.
+All nine interactive sheets pass `scripts/mcq_audit.py` (spread of correct letters and no answers given away in the teaching boxes), and their printables are in sync according to `scripts/mcq_sync.py`.
 
 ## Structure
 
@@ -110,4 +116,7 @@ s2/sem1/
 ├── sem1-science-bonding-ions.html                ← Interactive (Bonding & Ions practice)
 ├── sem1-science-bonding-ions.md                  ← Printable + Q37–Q42 written
 ├── sem1-science-bonding-ions-answers.md          ← Answers + marking guide
+├── sem1-science-gaps.html                        ← Interactive (Gaps drill: five missing topics)
+├── sem1-science-gaps.md                          ← Printable + Q38–Q43 written
+├── sem1-science-gaps-answers.md                  ← Answers + marking guide
 ```
