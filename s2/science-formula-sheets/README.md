@@ -1,6 +1,6 @@
 # Secondary 2 · Science Formula Sheets
 
-One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Ten extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the three-step phone-charger explainer, plus V = I × R and P = I × V examples-and-practice sheets and an animated wire-vs-water-pipe picture of volts, amps, ohms and watts. Four animated Human Biology diagrams (cell to gene, mitosis and meiosis, XX and XY, mother and fetus) have their own page, [human-biology.html](human-biology.html).
+One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Eleven extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the three-step phone-charger explainer, plus V = I × R and P = I × V examples-and-practice sheets and an animated wire-vs-water-pipe picture of volts, amps, ohms and watts and an animated picture of electrons as delivery vans carrying energy. Four animated Human Biology diagrams (cell to gene, mitosis and meiosis, XX and XY, mother and fetus) have their own page, [human-biology.html](human-biology.html).
 
 | # | Sheet | Term | Page | Image |
 |---|-------|------|------|-------|
@@ -51,6 +51,7 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 | **V = I × R: Examples & Practice** — three worked circuit examples, eight practice questions with answers (no transformer) | [science-diagram-ohms-law-practice.md](science-diagram-ohms-law-practice.md) | [.svg](svg/science-diagram-ohms-law-practice.svg) |
 | **P = I × V: Examples & Practice** — power in watts, three worked circuit examples, eight practice questions with answers | [science-diagram-power-practice.md](science-diagram-power-practice.md) | [.svg](svg/science-diagram-power-practice.svg) |
 | **Volts, Amps, Ohms and Watts in a Wire** — animated electrons in a wire next to water in a pipe; electron direction vs current arrow | [science-diagram-electron-flow.md](science-diagram-electron-flow.md) | [.svg](svg/science-diagram-electron-flow.svg) |
+| **Electrons Are Delivery Vans** — animated: electrons carry energy from the battery to the bulb and go back for more; current the same all round the loop, P = I × V | [science-diagram-delivery-vans.md](science-diagram-delivery-vans.md) | [.svg](svg/science-diagram-delivery-vans.svg) |
 | **From Cell to Gene** — animated zoom from cell to nucleus to chromosome to DNA; the double helix, 46 chromosomes in 23 pairs, what a gene is | [science-diagram-cell-to-gene.md](science-diagram-cell-to-gene.md) | [.svg](svg/science-diagram-cell-to-gene.svg) |
 | **Mitosis and Meiosis** — animated: 2 identical cells vs 4 different gametes, diploid and haploid, fertilisation puts the number back | [science-diagram-mitosis-meiosis.md](science-diagram-mitosis-meiosis.md) | [.svg](svg/science-diagram-mitosis-meiosis.svg) |
 | **XX and XY: Boy or Girl?** — autosomes and sex chromosomes, a 2 × 2 grid, sperm swimming to the egg; why the sperm decides and the 50 : 50 chance | [science-diagram-xx-xy.md](science-diagram-xx-xy.md) | [.svg](svg/science-diagram-xx-xy.svg) |
@@ -75,6 +76,8 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 [![P = I × V: examples and practice](svg/science-diagram-power-practice.svg)](science-diagram-power-practice.md)
 
 [![Volts, amps, ohms and watts in a wire](svg/science-diagram-electron-flow.svg)](science-diagram-electron-flow.md)
+
+[![Electrons as delivery vans carrying energy from the battery to the bulb](svg/science-diagram-delivery-vans.svg)](science-diagram-delivery-vans.md)
 
 [![From cell to gene](svg/science-diagram-cell-to-gene.svg)](science-diagram-cell-to-gene.md)
 
