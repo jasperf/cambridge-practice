@@ -246,7 +246,7 @@ def mitosis_meiosis():
     sperm = (f'<g><ellipse cx="0" cy="0" rx="15" ry="10" fill="{DAD}"/>'
              f'<path fill="none" stroke="{DAD}" stroke-width="3" stroke-linecap="round" d="M-14,0 C-30,-10 -40,10 -56,0 S-80,-10 -92,0">'
              f'<animate attributeName="d" dur="0.5s" repeatCount="indefinite" values="M-14,0 C-30,-10 -40,10 -56,0 S-80,-10 -92,0;M-14,0 C-30,10 -40,-10 -56,0 S-80,10 -92,0;M-14,0 C-30,-10 -40,10 -56,0 S-80,-10 -92,0"/></path>'
-             f'<animateMotion dur="5s" repeatCount="indefinite" keyTimes="0;0.8;1" keyPoints="0;1;1" calcMode="linear" path="M220,{fy} C330,{fy - 40} 420,{fy + 40} 545,{fy}"/></g>')
+             f'<animateMotion dur="9s" repeatCount="indefinite" keyTimes="0;0.5;1" keyPoints="0;1;1" calcMode="linear" path="M220,{fy} C330,{fy - 40} 420,{fy + 40} 545,{fy}"/></g>')
     o.append(t(250, fy + 84, "sperm: n = 23", 16, NAVY, 700, "middle"))
     o.append(sperm)
     o.append(t(408, fy + 84, "+", 30, NAVY, 800, "middle"))
@@ -311,7 +311,7 @@ def boy_or_girl():
             o.append(t(x + cs // 2, y + 102, "girl" if girl else "boy", 20, MUM if girl else DAD, 800, "middle"))
         # pulse Y column
     o.append(f'<rect x="{gx + cs}" y="{gy}" width="{cs}" height="{cs * 2}" fill="none" stroke="{AMBER}" stroke-width="5">'
-             f'<animate attributeName="opacity" values="0;1;0" dur="2.4s" repeatCount="indefinite"/></rect>')
+             f'<animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/></rect>')
     o.append(t(336, py + 450, "2 girls : 2 boys = 50% each", 18, NAVY, 800, "middle"))
     # right: sperm decides
     o.append(panel(632, py, 392, 470, "The sperm decides"))
