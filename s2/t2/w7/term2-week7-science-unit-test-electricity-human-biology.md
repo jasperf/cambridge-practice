@@ -7,6 +7,8 @@ This document has every auto-marked question from the interactive sheet (`term2-
 
 **Scope of the test:** Human Biology — chromosomes, genes and DNA; gametes, fertilisation, mitosis and meiosis; XX and XY (the sex of the baby); how the mother's diet, smoking, alcohol and drugs affect the fetus. Electricity — circuit symbols and diagrams, current, voltage and resistance, series and parallel circuits, and V = I × R.
 
+**Revise first:** [Human Biology diagrams](../../science-formula-sheets/human-biology.html) (cell to gene, mitosis and meiosis, XX and XY, mother and fetus) · [Unit 3 Electricity sheet](../w4/term2-week4-science-unit3-electricity.md) · [Electricity formula sheets](../../science-formula-sheets/electricity.html)
+
 ---
 
 ## Section A: DNA, Genes & Chromosomes
