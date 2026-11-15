@@ -13,11 +13,14 @@ The spec is a plain Python file defining:
   META        dict: out (basename, repo-relative), title, badge, eyebrow, h1,
               md_title, intro, md_intro, time_chip, storage_key, back,
               answers_note, extra_links [(href, label), ...]
-  SECTIONS    list of dicts: key, icon, color, rgba, title, label, src, link,
+  SECTIONS    list of dicts: key, icon, color, rgba, title, label, src,
+              optional link (+ link_label, default "Full sheet"),
               optional link2 (href, label), facts [(heading, html), ...]
   Q           list of question dicts (see the num/text/mcq helpers in the spec)
   WRITTEN     list of (number, marks, question, marking guide) — printable only
   EXPLORERS   optional dict: section key -> raw html placed after the facts
+  EXPLORERS_LAST  optional bool: put each explorer after the section's
+              questions instead, so it cannot give an answer away
   EXPLORER_CSS / EXPLORER_JS   optional strings appended to the page
 
 The output is ordinary static HTML with no dependencies beyond Google Fonts,
@@ -142,7 +145,9 @@ def build_html(spec):
         first, last = num[qs[0]['id']], num[qs[-1]['id']]
         smax = sum(q['marks'] for q in qs)
         letter = chr(ord('A') + si)
-        links = f'<a class="src-link" href="{s["link"]}" target="_blank" rel="noopener">Full sheet &rarr;</a>'
+        links = ''
+        if s.get('link'):
+            links = f'<a class="src-link" href="{s["link"]}" target="_blank" rel="noopener">{s.get("link_label", "Full sheet")} &rarr;</a>'
         if s.get('link2'):
             links += f' <a class="src-link" href="{s["link2"][0]}" target="_blank" rel="noopener">{s["link2"][1]} &rarr;</a>'
         out.append(f'<div id="{s["key"]}" style="--sec:{s["color"]};--sec-rgb:{s["rgba"]}">\n')
@@ -153,11 +158,14 @@ def build_html(spec):
         for h, body in s['facts']:
             out.append(f'    <div class="fact" onclick="this.classList.toggle(\'peek\')"><h4>{h}</h4><div class="fact-body">{body}</div></div>\n')
         out.append('  </div>\n')
-        if s['key'] in explorers:
+        last_ex = getattr(spec, 'EXPLORERS_LAST', False)
+        if s['key'] in explorers and not last_ex:
             out.append('  ' + explorers[s['key']] + '\n')
         out.append('  <div class="facts-label">Check yourself</div>\n')
         for q in qs:
             out.append(q_card(q, num[q['id']]))
+        if s['key'] in explorers and last_ex:
+            out.append('  <div class="facts-label">Explore</div>\n  ' + explorers[s['key']] + '\n')
         out.append(f'''  <div class="section-score">
     <div class="section-score-label">SECTION {letter} &mdash; {H.escape(s['label'].upper())}</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-{s['key']}-fill"></div></div>
