@@ -156,3 +156,25 @@ Animations are SMIL (`<animate>`, `<animateMotion>`) and every one is fully draw
 at t = 0, so a still screenshot shows the whole diagram. `rsvg-convert` gives a
 quick still preview but leaves moving parts at the origin; check the motion in a
 browser.
+
+## `whatsapp_media.mjs` — JPG, MP4 and GIF copies for WhatsApp
+
+```bash
+S=s2/science-formula-sheets/svg
+node scripts/whatsapp_media.mjs $S/science-diagram-cell-to-gene.svg:4 $S/science-diagram-mitosis-meiosis.svg:9 \
+  $S/science-diagram-xx-xy.svg:6 $S/science-diagram-mother-fetus.svg:6
+node scripts/whatsapp_media.mjs $S/science-sheet-4-density.svg     # static: JPG only
+```
+
+For each SVG it writes, into `s2/science-formula-sheets/whatsapp/`: a full-size
+JPG still (t = 0), a 1080 px-wide MP4 of at least 10 s, and a 720 px-wide GIF
+of one loop at 15 fps. The number after the colon is one loop in seconds. Every
+animation in the SVG has to repeat evenly inside it, or the GIF jumps when it
+restarts. Loops so far: delivery vans 20, cell to gene 4, mitosis and meiosis
+9, XX and XY 6, mother and fetus 6. These files are git-ignored: rebuild them
+locally when an SVG changes.
+
+It runs headless Chrome through the DevTools protocol, pauses the SVG's SMIL
+animations and steps `setCurrentTime()` frame by frame, so the capture is
+exact rather than a screen recording. Needs Node 22 (no npm packages), Google
+Chrome, `ffmpeg` and `gifski`.
