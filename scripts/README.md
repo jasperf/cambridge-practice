@@ -129,7 +129,9 @@ so nothing in the site depends on the script.
 
 A spec is a plain Python file in `review_specs/`. It defines `META`,
 `SECTIONS` (with their key facts), `Q` (the questions) and `WRITTEN`. It can
-also define `EXPLORERS` / `EXPLORER_CSS` / `EXPLORER_JS`. The docstring at the
+also define `EXPLORERS` / `EXPLORER_CSS` / `EXPLORER_JS`, and `EXPLORERS_LAST = True`
+to place each explorer after its section's questions instead of before them, so
+an explorer can show the ideas freely without giving answers away. The docstring at the
 top of `build_review_sheet.py` lists the fields. To make a new review page,
 copy an existing spec, change `META['out']` and the content, then build.
 **Edit the spec, not the generated files**, because a rebuild overwrites them.
