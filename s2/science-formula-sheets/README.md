@@ -1,6 +1,6 @@
 # Secondary 2 · Science Formula Sheets
 
-One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Ten extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the three-step phone-charger explainer, plus V = I × R and P = I × V examples-and-practice sheets and an animated wire-vs-water-pipe picture of volts, amps, ohms and watts.
+One-page formula and key-fact sheets for every science topic covered so far (Term 1 Units 1–2, Term 2 Unit 3). Each sheet is an SVG for GitHub and print, with a short explanatory caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Ten extra diagrams cover the periodic table for elements 1–20, the anatomy of a wave, the formula triangles (with worked examples), how heat travels, and the three-step phone-charger explainer, plus V = I × R and P = I × V examples-and-practice sheets and an animated wire-vs-water-pipe picture of volts, amps, ohms and watts. Four animated Human Biology diagrams (cell to gene, mitosis and meiosis, XX and XY, mother and fetus) have their own page, [human-biology.html](human-biology.html).
 
 | # | Sheet | Term | Page | Image |
 |---|-------|------|------|-------|
@@ -51,6 +51,10 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 | **V = I × R: Examples & Practice** — three worked circuit examples, eight practice questions with answers (no transformer) | [science-diagram-ohms-law-practice.md](science-diagram-ohms-law-practice.md) | [.svg](svg/science-diagram-ohms-law-practice.svg) |
 | **P = I × V: Examples & Practice** — power in watts, three worked circuit examples, eight practice questions with answers | [science-diagram-power-practice.md](science-diagram-power-practice.md) | [.svg](svg/science-diagram-power-practice.svg) |
 | **Volts, Amps, Ohms and Watts in a Wire** — animated electrons in a wire next to water in a pipe; electron direction vs current arrow | [science-diagram-electron-flow.md](science-diagram-electron-flow.md) | [.svg](svg/science-diagram-electron-flow.svg) |
+| **From Cell to Gene** — animated zoom from cell to nucleus to chromosome to DNA; the double helix, 46 chromosomes in 23 pairs, what a gene is | [science-diagram-cell-to-gene.md](science-diagram-cell-to-gene.md) | [.svg](svg/science-diagram-cell-to-gene.svg) |
+| **Mitosis and Meiosis** — animated: 2 identical cells vs 4 different gametes, diploid and haploid, fertilisation puts the number back | [science-diagram-mitosis-meiosis.md](science-diagram-mitosis-meiosis.md) | [.svg](svg/science-diagram-mitosis-meiosis.svg) |
+| **XX and XY: Boy or Girl?** — autosomes and sex chromosomes, a 2 × 2 grid, sperm swimming to the egg; why the sperm decides and the 50 : 50 chance | [science-diagram-xx-xy.md](science-diagram-xx-xy.md) | [.svg](svg/science-diagram-xx-xy.svg) |
+| **Mother and Fetus** — animated uterus, placenta and umbilical cord; what crosses to the baby; diet, smoking, alcohol and drugs | [science-diagram-mother-fetus.md](science-diagram-mother-fetus.md) | [.svg](svg/science-diagram-mother-fetus.svg) |
 
 [![The periodic table, elements 1–20](svg/science-diagram-periodic-table.svg)](science-diagram-periodic-table.md)
 
@@ -72,10 +76,19 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 
 [![Volts, amps, ohms and watts in a wire](svg/science-diagram-electron-flow.svg)](science-diagram-electron-flow.md)
 
+[![From cell to gene](svg/science-diagram-cell-to-gene.svg)](science-diagram-cell-to-gene.md)
+
+[![Mitosis and meiosis](svg/science-diagram-mitosis-meiosis.svg)](science-diagram-mitosis-meiosis.md)
+
+[![XX and XY: boy or girl?](svg/science-diagram-xx-xy.svg)](science-diagram-xx-xy.md)
+
+[![Mother and fetus](svg/science-diagram-mother-fetus.svg)](science-diagram-mother-fetus.md)
+
 ## Other files
 
 - [index.html](index.html) — browser gallery of every sheet and diagram with captions (the home-page card links here).
 - [electricity.html](electricity.html) — electricity-only page: the wire-and-water diagram, the V = I × R and P = I × V practice sheets, Sheet 6 and the phone-charging worked example, without the transformer diagrams.
+- [human-biology.html](human-biology.html) — Human Biology page for the Term 2 unit test: the four animated diagrams on genes, cell division, XX and XY, and the mother and fetus.
 - [formula-reference.md](formula-reference.md) — all six sheets as one text document (tables, copy-friendly).
 - [whatsapp/captions-whatsapp.txt](whatsapp/captions-whatsapp.txt) — all captions in one file, ready to paste. The matching JPGs live in `whatsapp/` locally but are git-ignored.
 
@@ -85,6 +98,7 @@ One-page formula and key-fact sheets for every science topic covered so far (Ter
 science-formula-sheets/
 ├── index.html                ← Browser gallery of all sheets (linked from the home page)
 ├── electricity.html          ← Electricity-only page (V = I × R, P = I × V, no transformer)
+├── human-biology.html        ← Human Biology page (genes, cell division, XX/XY, pregnancy)
 ├── README.md                 ← This file
 ├── formula-reference.md      ← Text version of all six sheets
 ├── science-sheet-N-*.md      ← One page per sheet: image + caption + source worksheets
