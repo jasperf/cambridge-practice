@@ -136,3 +136,23 @@ copy an existing spec, change `META['out']` and the content, then build.
 
 Run the usual checks on the result afterwards. The builder does not shuffle
 anything for you: set each MCQ's `correct` letter so the spread passes check 1.
+
+## `build_human_biology_diagrams.py` — draw the Human Biology SVGs
+
+```bash
+python3 scripts/build_human_biology_diagrams.py            # writes into s2/science-formula-sheets/svg/
+python3 scripts/build_human_biology_diagrams.py /tmp/prev  # or anywhere else, to preview
+```
+
+Writes the four animated diagrams on `s2/science-formula-sheets/human-biology.html`:
+cell to gene, mitosis and meiosis, XX and XY, and mother and fetus. Each diagram
+is one function, laid out in plain SVG coordinates (1080 px wide, the same cream
+background and Montserrat type as the other formula-sheet diagrams). **Edit the
+script, not the SVGs**, because a rebuild overwrites them. The captions live in
+the matching `science-diagram-*.md` pages and `whatsapp/*.cap.txt`, not in the
+script, so update those by hand when the content changes.
+
+Animations are SMIL (`<animate>`, `<animateMotion>`) and every one is fully drawn
+at t = 0, so a still screenshot shows the whole diagram. `rsvg-convert` gives a
+quick still preview but leaves moving parts at the origin; check the motion in a
+browser.
