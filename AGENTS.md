@@ -58,11 +58,20 @@ php -S localhost:3000         # PHP
 git add .
 git commit -m "Add Week N: Subject exercises"
 git push                          # auto-deploys to GitHub Pages
+
+# Audit a sheet before committing (details in scripts/README.md)
+python3 scripts/sheet_audit.py s2/t2/w7/*.html        # shown totals vs the real `marks` object
+python3 scripts/mcq_audit.py s2/t2/w7/*.html          # MCQ letter spread, reveal-letter sync, giveaways
+python3 scripts/mcq_sync.py s2/t2/w7/*.html           # printable .md option order vs the .html (--fix repairs)
+python3 scripts/mcq_shuffle.py --dry-run s2/t2/w7/*.html   # rebalance MCQ answer letters if the spread fails
 ```
 
 ## Conventions
 
 - One HTML file per exercise sheet — fully self-contained with inline CSS and JS
+- Sheets ship as a pair: `name.html` (interactive) + `name.md` (printable). The `.md` must list MCQ options in the same order as the `.html` — `mcq_sync.py` checks this
+- A shorter second paper on the same topic is named `unit-test2-…` (e.g. `term2-week5-maths-unit-test2-retake-practice.html`, `term2-week7-science-unit-test2-electricity-human-biology.html`)
+- If an `index.html` card shows `N questions` / `N marks` chips, they must match the sheet — `sheet_audit.py` checks this
 - No external dependencies except Google Fonts (Fraunces, Literata, DM Mono)
 - Answers checked client-side; no server, no login, no tracking
 - File naming: flexible but follow patterns like `term{N}-week{N}-{subject}.html` or `{level}/{term}/{week}/{name}.html`
@@ -171,5 +180,6 @@ Every sheet must define these button classes (never use inline styles on buttons
 ## Git
 
 - Atomic commits: one logical change per commit — one new sheet, one fix, or one index update, never bundled together
+- Run the audit scripts above on any new or edited sheet before committing
 - GitHub Pages: auto-deploys from `main` branch within ~30 seconds of push
 - After push, the site (GitHub free site) will be deployed, which takes some time. Use `gh` CLI tool to check deployment status.
