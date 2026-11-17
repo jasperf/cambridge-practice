@@ -78,6 +78,14 @@ python3 scripts/mcq_shuffle.py --dry-run s2/t2/w7/*.html   # rebalance MCQ answe
 - **Always update `index.html`** when adding a new sheet
 - Card classes: `.math` (blue), `.sci` (green), `.eng` (amber) for subject color-coding
 
+### Writing Sheets Larger Than 64 KB
+The agent harness's `write_file` tool hard-rejects content over 64,000 bytes (`Content exceeds 64000 bytes limit`). The cap is hardcoded in the tool layer — it cannot be raised from config (the `max_write_bytes` / `max_read_bytes` keys are accepted by the config schema but ignored at runtime), so do not try to "fix" it that way. A sheet with five or six sections routinely lands around 80 KB, so plan for chunked writing **from the start**, not after a failed write:
+
+- Write the sheet through `bash` heredocs: first chunk with `cat > path/name.html <<'EOF'`, following chunks appended with `cat >> path/name.html <<'EOF'`.
+- Keep each chunk around 20 KB, quote the delimiter (`<<'EOF'`) so nothing expands, and only split at section boundaries — never inside a question, a `<script>` block, or a CSS rule.
+- Verify the assembled file: `wc -c` the size, view the tail with `tail -20`, and remember reading back pages at ~64 KB per call (continue from the offset the read result reports).
+- For sheets with repetitive sections, the neater variant is a small generator script: write it to `/private/tmp`, run it to emit the big file whole, then remove the script.
+
 ### Sheet Header Pattern (all sheets must follow this)
 
 Every sheet — regardless of subject or course — must use the same topbar/header structure:
