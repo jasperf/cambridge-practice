@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="880" viewBox="0 0 1080 880" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="880" fill="#FBF5E9"/><rect width="14" height="880" fill="#1C6DD0"/>
+<text xml:space="preserve" x="56" y="62" font-size="20" font-weight="700" fill="#1C6DD0" letter-spacing="2">SECONDARY 2 MATHS · TEST DAY</text>
+<text xml:space="preserve" x="56" y="108" font-size="40" font-weight="800" fill="#14213D">Square vs Trapezium</text>
+<text xml:space="preserve" x="56" y="136" font-size="20" font-weight="400" fill="#5B6478">How many pairs of parallel sides, and which area formula to use</text>
+
+<!-- square card -->
+<rect x="56" y="170" width="468" height="600" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="56" y="170" width="468" height="52" rx="16" fill="#1C6DD0"/><rect x="56" y="200" width="468" height="22" fill="#1C6DD0"/>
+<text xml:space="preserve" x="290" y="206" font-size="24" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="2">SQUARE</text>
+<rect x="210" y="270" width="160" height="160" fill="#DCE9FA" stroke="#14213D" stroke-width="4" stroke-linejoin="round"/>
+<line x1="210" y1="270" x2="370" y2="430" stroke="#1C6DD0" stroke-width="2.5" stroke-dasharray="8 6"/>
+<line x1="370" y1="270" x2="210" y2="430" stroke="#1C6DD0" stroke-width="2.5" stroke-dasharray="8 6"/>
+<path d="M210 284 L224 284 L224 270 M356 270 L356 284 L370 284 M370 416 L356 416 L356 430 M224 430 L224 416 L210 416" fill="none" stroke="#14213D" stroke-width="2"/>
+<line x1="290" y1="262" x2="290" y2="278" stroke="#E8590C" stroke-width="4" stroke-linecap="round"/>
+<line x1="290" y1="422" x2="290" y2="438" stroke="#E8590C" stroke-width="4" stroke-linecap="round"/>
+<line x1="202" y1="350" x2="218" y2="350" stroke="#E8590C" stroke-width="4" stroke-linecap="round"/>
+<line x1="362" y1="350" x2="378" y2="350" stroke="#E8590C" stroke-width="4" stroke-linecap="round"/>
+<text xml:space="preserve" x="290" y="462" font-size="24" font-weight="800" fill="#E8590C" text-anchor="middle" font-style="italic">s</text>
+<text xml:space="preserve" x="396" y="360" font-size="24" font-weight="800" fill="#E8590C" font-style="italic">s</text>
+<text xml:space="preserve" x="262" y="318" font-size="22" font-weight="800" fill="#1C6DD0" font-style="italic">d</text>
+<text xml:space="preserve" x="306" y="400" font-size="22" font-weight="800" fill="#1C6DD0" font-style="italic">d</text>
+<circle cx="92" cy="512" r="6" fill="#1C6DD0"/><text xml:space="preserve" x="110" y="519" font-size="20" font-weight="700" fill="#14213D">4 equal sides</text>
+<circle cx="92" cy="556" r="6" fill="#1C6DD0"/><text xml:space="preserve" x="110" y="563" font-size="20" font-weight="700" fill="#14213D">4 right angles (90°)</text>
+<circle cx="92" cy="600" r="6" fill="#1C6DD0"/><text xml:space="preserve" x="110" y="607" font-size="20" font-weight="700" fill="#14213D">2 pairs of parallel sides</text>
+<rect x="76" y="634" width="428" height="52" rx="10" fill="#14213D"/>
+<text xml:space="preserve" x="290" y="668" font-size="26" font-weight="700" fill="#fff" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">A = s × s = s²</text>
+<text xml:space="preserve" x="290" y="716" font-size="18" font-weight="400" fill="#14213D" text-anchor="middle">Example: s = 7 cm</text>
+<text xml:space="preserve" x="290" y="746" font-size="18" font-weight="700" fill="#14213D" text-anchor="middle">A = 7 × 7 = 49 cm²</text>
+
+<!-- trapezium card -->
+<rect x="556" y="170" width="468" height="600" rx="16" fill="#fff" stroke="#EADFCB"/>
+<rect x="556" y="170" width="468" height="52" rx="16" fill="#E8590C"/><rect x="556" y="200" width="468" height="22" fill="#E8590C"/>
+<text xml:space="preserve" x="790" y="206" font-size="24" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="2">TRAPEZIUM</text>
+<polygon points="710,300 902,300 950,428 630,428" fill="#FFD9B8" stroke="#14213D" stroke-width="4" stroke-linejoin="round"/>
+<line x1="800" y1="300" x2="800" y2="428" stroke="#E8590C" stroke-width="3" stroke-dasharray="9 7"/>
+<rect x="800" y="414" width="14" height="14" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<line x1="710" y1="276" x2="902" y2="276" stroke="#14213D" stroke-width="2.5"/>
+<path d="M710 270 L710 282 M902 270 L902 282" stroke="#14213D" stroke-width="2.5"/>
+<text xml:space="preserve" x="806" y="264" font-size="24" font-weight="800" fill="#14213D" text-anchor="middle" font-style="italic">a</text>
+<line x1="630" y1="454" x2="950" y2="454" stroke="#14213D" stroke-width="2.5"/>
+<path d="M630 448 L630 460 M950 448 L950 460" stroke="#14213D" stroke-width="2.5"/>
+<text xml:space="preserve" x="790" y="486" font-size="24" font-weight="800" fill="#14213D" text-anchor="middle" font-style="italic">b</text>
+<text xml:space="preserve" x="788" y="372" font-size="24" font-weight="800" fill="#E8590C" text-anchor="end" font-style="italic">h</text>
+<circle cx="592" cy="512" r="6" fill="#E8590C"/><text xml:space="preserve" x="610" y="519" font-size="20" font-weight="700" fill="#14213D">Exactly 1 pair of parallel sides</text>
+<circle cx="592" cy="556" r="6" fill="#E8590C"/><text xml:space="preserve" x="610" y="563" font-size="20" font-weight="700" fill="#14213D">The parallel sides are a and b</text>
+<circle cx="592" cy="600" r="6" fill="#E8590C"/><text xml:space="preserve" x="610" y="607" font-size="20" font-weight="700" fill="#14213D">The other two sides (legs) may differ</text>
+<rect x="576" y="634" width="428" height="52" rx="10" fill="#14213D"/>
+<text xml:space="preserve" x="790" y="668" font-size="26" font-weight="700" fill="#fff" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">A = ½ × (a + b) × h</text>
+<text xml:space="preserve" x="790" y="716" font-size="18" font-weight="400" fill="#14213D" text-anchor="middle">Example: a = 6, b = 10, h = 4 cm</text>
+<text xml:space="preserve" x="790" y="746" font-size="18" font-weight="700" fill="#14213D" text-anchor="middle">A = ½ × 16 × 4 = 32 cm²</text>
+
+<text xml:space="preserve" x="56" y="822" font-size="17" font-weight="400" fill="#5B6478">h is the perpendicular height (the dashed line at 90° to the parallel sides), never the slanted leg.</text>
+<text xml:space="preserve" x="56" y="848" font-size="17" font-weight="400" fill="#5B6478">Add the two parallel sides first, then multiply by h, then halve.</text>
+</svg>

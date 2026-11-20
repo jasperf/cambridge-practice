@@ -1,6 +1,6 @@
 # Secondary 2 · Maths Formula Sheets
 
-One-page formula and key-fact sheets. Sheets 1–5 cover the Term 2 **Maths Unit Test 2** (Angles, Shapes & Measurements: Stage 9 Unit 5 and Unit 7.1–7.2) and Sheet 6 goes back to Unit 5.1 angle facts. Sheets 7–12 cover the number and algebra units for the **Semester 1 assessment**: expanding brackets, simultaneous equations, indices and standard form, inequalities, decimals and bounds, and formulae with algebraic fractions. Each sheet is an SVG for GitHub and print, with a short caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Three extra diagrams cover the circle formula triangles, the angles of the common regular polygons, and the isosceles triangle rules. The worked examples use different numbers from the practice sheet, so they don't give its answers away.
+One-page formula and key-fact sheets. Sheets 1–5 cover the Term 2 **Maths Unit Test 2** (Angles, Shapes & Measurements: Stage 9 Unit 5 and Unit 7.1–7.2) and Sheet 6 goes back to Unit 5.1 angle facts. Sheets 7–12 cover the number and algebra units for the **Semester 1 assessment**: expanding brackets, simultaneous equations, indices and standard form, inequalities, decimals and bounds, and formulae with algebraic fractions. Each sheet is an SVG for GitHub and print, with a short caption. WhatsApp JPGs are made locally from the SVGs and are not committed (see `.gitignore`). Four extra diagrams cover the circle formula triangles, the angles of the common regular polygons, the isosceles triangle rules, and square versus trapezium. The worked examples use different numbers from the practice sheet, so they don't give its answers away.
 
 | # | Sheet | Unit | Page | Image |
 |---|-------|------|------|-------|
@@ -74,6 +74,7 @@ One-page formula and key-fact sheets. Sheets 1–5 cover the Term 2 **Maths Unit
 | **Circle Formula Triangles** — circumference, radius ⇄ diameter, area (with r = √(A ÷ π)), with worked examples | [maths-diagram-circle-formula-triangles.md](maths-diagram-circle-formula-triangles.md) | [.svg](svg/maths-diagram-circle-formula-triangles.svg) |
 | **Regular Polygons** — angle sum, interior and exterior angle for 3, 4, 5, 6, 8, 10 and 12 sides | [maths-diagram-regular-polygons.md](maths-diagram-regular-polygons.md) | [.svg](svg/maths-diagram-regular-polygons.svg) |
 | **Isosceles Triangle Rules** — angle sum, equal base angles, height h = √(a² − (b/2)²) and area ½ × b × h | [maths-diagram-isosceles-triangle.md](maths-diagram-isosceles-triangle.md) | [.svg](svg/maths-diagram-isosceles-triangle.svg) |
+| **Square vs Trapezium** — parallel sides, A = s × s against A = ½ × (a + b) × h | [maths-diagram-square-vs-trapezium.md](maths-diagram-square-vs-trapezium.md) | [.svg](svg/maths-diagram-square-vs-trapezium.svg) |
 
 [![Circle formula triangles](svg/maths-diagram-circle-formula-triangles.svg)](maths-diagram-circle-formula-triangles.md)
 
@@ -81,6 +82,7 @@ One-page formula and key-fact sheets. Sheets 1–5 cover the Term 2 **Maths Unit
 
 [![Isosceles triangle rules](svg/maths-diagram-isosceles-triangle.svg)](maths-diagram-isosceles-triangle.md)
 
+[![Square vs trapezium](svg/maths-diagram-square-vs-trapezium.svg)](maths-diagram-square-vs-trapezium.md)
 
 ## Other files
 
@@ -94,7 +96,7 @@ maths-formula-sheets/
 ├── index.html              ← Browser gallery of all sheets (linked from the home page)
 ├── README.md               ← This file
 ├── maths-sheet-N-*.md      ← One page per sheet: image + caption + source worksheets
-├── maths-diagram-*.md      ← Diagrams: circle triangles, regular polygons, isosceles triangle
+├── maths-diagram-*.md      ← Diagrams: circle triangles, regular polygons, isosceles triangle, square vs trapezium
 ├── svg/                    ← Sheet images (SVG)
 └── whatsapp/               ← captions-whatsapp.txt + *.cap.txt (JPGs here are git-ignored)
 ```
