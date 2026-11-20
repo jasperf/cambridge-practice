@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="880" viewBox="0 0 1080 880" font-family="Montserrat,Helvetica,Arial,DejaVu Sans,sans-serif">
+<rect width="1080" height="880" fill="#FBF5E9"/><rect width="14" height="880" fill="#1C6DD0"/>
+<text xml:space="preserve" x="56" y="62" font-size="20" font-weight="700" fill="#1C6DD0" letter-spacing="2">SECONDARY 2 MATHS · TEST DAY</text>
+<text xml:space="preserve" x="56" y="108" font-size="40" font-weight="800" fill="#14213D">Isosceles Triangle Rules</text>
+<text xml:space="preserve" x="56" y="136" font-size="20" font-weight="400" fill="#5B6478">Two equal sides, two equal base angles: angles, height and area</text>
+
+<!-- left boxes -->
+<rect x="56" y="170" width="268" height="230" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="190" y="208" font-size="22" font-weight="800" fill="#1C6DD0" text-anchor="middle">Angle sum</text>
+<text xml:space="preserve" x="190" y="262" font-size="30" font-weight="700" fill="#14213D" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">α + 2β = 180°</text>
+<text xml:space="preserve" x="190" y="312" font-size="17" font-weight="400" fill="#5B6478" text-anchor="middle">α = apex angle</text>
+<text xml:space="preserve" x="190" y="338" font-size="17" font-weight="400" fill="#5B6478" text-anchor="middle">β = each base angle</text>
+<text xml:space="preserve" x="190" y="376" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Apex 40° → β = 70°</text>
+
+<rect x="56" y="424" width="268" height="230" rx="16" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="190" y="462" font-size="22" font-weight="800" fill="#1C6DD0" text-anchor="middle">Base angles are equal</text>
+<text xml:space="preserve" x="190" y="504" font-size="17" font-weight="400" fill="#5B6478" text-anchor="middle">Opposite the equal sides.</text>
+<text xml:space="preserve" x="190" y="566" font-size="22" font-weight="700" fill="#14213D" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">β = (180° − α) ÷ 2</text>
+<text xml:space="preserve" x="190" y="616" font-size="17" font-weight="700" fill="#14213D" text-anchor="middle">Base angle 50° → α = 80°</text>
+
+<!-- right boxes -->
+<rect x="756" y="170" width="268" height="230" rx="16" fill="#14213D"/>
+<text xml:space="preserve" x="890" y="208" font-size="22" font-weight="800" fill="#FFB27A" text-anchor="middle">Height</text>
+<text xml:space="preserve" x="890" y="262" font-size="21" font-weight="700" fill="#fff" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">h = √(a² − (b/2)²)</text>
+<text xml:space="preserve" x="890" y="312" font-size="17" font-weight="400" fill="#fff" text-anchor="middle">h cuts the base in half at 90°,</text>
+<text xml:space="preserve" x="890" y="338" font-size="17" font-weight="400" fill="#fff" text-anchor="middle">so Pythagoras: a² = h² + (b/2)²</text>
+
+<rect x="756" y="424" width="268" height="230" rx="16" fill="#14213D"/>
+<text xml:space="preserve" x="890" y="462" font-size="22" font-weight="800" fill="#FFB27A" text-anchor="middle">Area</text>
+<text xml:space="preserve" x="890" y="530" font-size="30" font-weight="700" fill="#fff" text-anchor="middle" font-family="Menlo,Consolas,DejaVu Sans Mono,monospace">A = ½ × b × h</text>
+<text xml:space="preserve" x="890" y="580" font-size="17" font-weight="400" fill="#fff" text-anchor="middle">b = whole base</text>
+<text xml:space="preserve" x="890" y="606" font-size="17" font-weight="400" fill="#fff" text-anchor="middle">h = vertical height, not side a</text>
+
+<!-- triangle -->
+<polygon points="540,250 360,620 720,620" fill="#DCE9FA" stroke="#14213D" stroke-width="4" stroke-linejoin="round"/>
+<line x1="540" y1="250" x2="540" y2="620" stroke="#1C6DD0" stroke-width="3" stroke-dasharray="9 7"/>
+<rect x="540" y="606" width="14" height="14" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<!-- equal side ticks -->
+<line x1="444" y1="429" x2="462" y2="437" stroke="#E8590C" stroke-width="4" stroke-linecap="round" transform="translate(-4,0)"/>
+<line x1="618" y1="437" x2="636" y2="429" stroke="#E8590C" stroke-width="4" stroke-linecap="round" transform="translate(4,0)"/>
+<!-- half-base ticks -->
+<line x1="450" y1="610" x2="450" y2="630" stroke="#E8590C" stroke-width="4" stroke-linecap="round"/>
+<line x1="630" y1="610" x2="630" y2="630" stroke="#E8590C" stroke-width="4" stroke-linecap="round"/>
+<!-- angle arcs -->
+<path d="M522.5 286 A40 40 0 0 0 557.5 286" fill="none" stroke="#1C6DD0" stroke-width="4"/>
+<path d="M405 620 A45 45 0 0 0 379.7 579.5" fill="none" stroke="#1C6DD0" stroke-width="4"/>
+<path d="M675 620 A45 45 0 0 1 700.3 579.5" fill="none" stroke="#1C6DD0" stroke-width="4"/>
+<circle cx="540" cy="250" r="6" fill="#fff" stroke="#14213D" stroke-width="3"/>
+<circle cx="540" cy="620" r="5" fill="#14213D"/>
+<text xml:space="preserve" x="540" y="330" font-size="30" font-weight="800" fill="#1C6DD0" text-anchor="middle" font-style="italic">α</text>
+<text xml:space="preserve" x="432" y="598" font-size="30" font-weight="800" fill="#E8590C" text-anchor="middle" font-style="italic">β</text>
+<text xml:space="preserve" x="648" y="598" font-size="30" font-weight="800" fill="#E8590C" text-anchor="middle" font-style="italic">β</text>
+<text xml:space="preserve" x="410" y="420" font-size="32" font-weight="800" fill="#E8590C" text-anchor="middle" font-style="italic">a</text>
+<text xml:space="preserve" x="670" y="420" font-size="32" font-weight="800" fill="#E8590C" text-anchor="middle" font-style="italic">a</text>
+<text xml:space="preserve" x="522" y="470" font-size="32" font-weight="800" fill="#1C6DD0" text-anchor="end" font-style="italic">h</text>
+<!-- base brackets -->
+<path d="M360 646 L360 656 L540 656 L540 646" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<path d="M540 646 L540 656 L720 656 L720 646" fill="none" stroke="#14213D" stroke-width="2.5"/>
+<text xml:space="preserve" x="450" y="684" font-size="20" font-weight="700" fill="#14213D" text-anchor="middle">b/2</text>
+<text xml:space="preserve" x="630" y="684" font-size="20" font-weight="700" fill="#14213D" text-anchor="middle">b/2</text>
+<text xml:space="preserve" x="540" y="716" font-size="22" font-weight="800" fill="#14213D" text-anchor="middle" font-style="italic">b</text>
+
+<!-- worked example -->
+<rect x="56" y="742" width="968" height="84" rx="12" fill="#fff" stroke="#EADFCB"/>
+<text xml:space="preserve" x="540" y="774" font-size="19" font-weight="700" fill="#1C6DD0" text-anchor="middle">Worked example: equal sides a = 13 cm, base b = 10 cm</text>
+<text xml:space="preserve" x="540" y="806" font-size="19" font-weight="400" fill="#14213D" text-anchor="middle">h = √(13² − 5²) = √144 = 12 cm, so A = ½ × 10 × 12 = 60 cm²</text>
+<text xml:space="preserve" x="56" y="858" font-size="17" font-weight="400" fill="#5B6478">Tick marks show equal sides and equal halves of the base. Always halve the base before using Pythagoras.</text>
+</svg>
