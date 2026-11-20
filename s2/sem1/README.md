@@ -13,7 +13,7 @@ Every paper comes in three files with the same basename:
 | Day | Exam | Mock paper |
 |-----|------|------------|
 | Mon 23 Nov | Chinese (Writing + Reading) | — |
-| Tue 24 Nov | Bahasa Indonesia (Reading & Understanding + Writing) | — |
+| Tue 24 Nov | Bahasa Indonesia (Reading & Understanding + Writing) | Bahasa Indonesia |
 | Wed 25 Nov | English (Levels 2 and 3: one standardised paper) | English Level 2/3 |
 | Thu 26 Nov | Mathematics (two standardised papers) | Maths Paper 1 + Paper 2 |
 | Fri 27 Nov | Science (one standardised paper) | Science |
@@ -24,11 +24,16 @@ Every paper comes in three files with the same basename:
 |-------|--------|-------------|---------|-----------|-------------|---------|
 | **English Level 2/3** | Sentence types & punctuation · Reading two texts with P.E.E.E. · Viewpoints & arguments · Persuasive & emotive language | 41 Qs · 48 marks (33 MCQ) | Q42–Q45 · 38 marks | [.md](./sem1-english-level23-mock.md) | [.html](./sem1-english-level23-mock.html) | [answers](./sem1-english-level23-mock-answers.md) |
 | **English Revision Pack** | All ten Stage 9 revision topics (Units 9.1–9.3), one section each: reading comprehension · text analysis · summary writing · punctuation · sentence structures · connectives · figurative language & sound devices · persuasive techniques · argumentative writing · organisation & accuracy | 69 Qs · 69 marks (43 MCQ, 26 typed) | Q70–Q91 · 125 marks | [.md](./sem1-english-revision-pack-mock.md) | [.html](./sem1-english-revision-pack-mock.html) | [answers](./sem1-english-revision-pack-mock-answers.md) |
+| **Bahasa Indonesia** | Unit 1 *Di Dalam Kelasku* · Unit 2 *Teks Iklan* · Unit 3 *Mengenal Hewan* | 76 Qs · 76 marks (29 MCQ, 47 typed) | Q77–Q83 · 74 marks | [.md](./sem1-bahasa-indonesia-mock.md) | [.html](./sem1-bahasa-indonesia-mock.html) | [answers](./sem1-bahasa-indonesia-mock-answers.md) |
 | **Maths Paper 1: Non-Calculator** | All units, no calculator: number, indices & standard form · algebra, equations & inequalities · decimals & rounding · angles, circles (π ≈ 3) & area | 36 Qs · 50 marks (11 MCQ, 1 tick-all-true) | Q37–Q41 · 19 marks | [.md](./sem1-maths-paper1-non-calculator.md) | [.html](./sem1-maths-paper1-non-calculator.html) | [answers](./sem1-maths-paper1-non-calculator-answers.md) |
 | **Maths Paper 1B: Non-Calculator** | A second set of Paper 1 questions for another round: same layout, length and topics, all-new questions | 36 Qs · 50 marks (11 MCQ, 1 tick-all-true) | Q37–Q41 · 19 marks | [.md](./sem1-maths-paper1b-non-calculator.md) | [.html](./sem1-maths-paper1b-non-calculator.html) | [answers](./sem1-maths-paper1b-non-calculator-answers.md) |
 | **Maths Paper 1C: Non-Calculator** | A third set of Paper 1 questions for one more round: same layout, length and topics, all-new questions | 36 Qs · 50 marks (11 MCQ, 1 tick-all-true) | Q37–Q41 · 19 marks | [.md](./sem1-maths-paper1c-non-calculator.md) | [.html](./sem1-maths-paper1c-non-calculator.html) | [answers](./sem1-maths-paper1c-non-calculator-answers.md) |
 | **Maths Paper 2: Calculator** | All units, calculator: standard form, percentages, compound interest & bounds · forming and solving equations · polygons & Pythagoras · circles & compound shapes | 29 Qs · 50 marks (5 MCQ, 1 tick-all-true) | Q30–Q34 · 23 marks | [.md](./sem1-maths-paper2-calculator.md) | [.html](./sem1-maths-paper2-calculator.html) | [answers](./sem1-maths-paper2-calculator-answers.md) |
 | **Science** | Atoms & bonding · Plant biology · Density · Sound waves & thermal energy · Electricity | 39 Qs · 48 marks (17 MCQ) | Q40–Q45 · 24 marks | [.md](./sem1-science-mock.md) | [.html](./sem1-science-mock.html) | [answers](./sem1-science-mock-answers.md) |
+
+### Bahasa Indonesia
+
+Built from the S2 Bahasa Indonesia SA revision list (Level 1), so every topic on it has questions. Section A, *Di Dalam Kelasku*: a reading text about a classroom, classroom vocabulary, prepositions of place (with a four-picture diagram), the verb *ada*, *apakah*, personal pronouns and possessive pronouns (-ku, -mu). Section B, *Teks Iklan*: two original advertisements (a food promo and an apartment) with questions on vocabulary, information, prices and times, the question words *apa*, *di mana*, *siapa* and *berapa*, and *kalimat ajakan* with *-lah* and *-kan*. Section C, *Mengenal Hewan*: animal vocabulary, body parts on a fish and a bird, adjectives and opposites, comparative sentences read from a bar chart of animal heights, *punya / mempunyai / memiliki*, and the prefix *ber-*. 29 of the 76 questions are multiple choice; the rest are typed Indonesian words with the accepted spellings checked. The printable has the same Q1–Q76 plus seven written tasks (Q77–Q83, 74 marks, marked by the teacher): write your own advertisement (30 marks, split into title, product information and persuasive sentences), describe a classroom, ask and answer with the four question words, describe an animal, comparative sentences, translation and *ber-* rewriting. The fable unit (*Fabel*) is not on the revision list and is not covered. All texts and questions are original.
 
 ### English Level 2/3
 
@@ -90,7 +95,7 @@ For something longer about plants, the BBC series *The Green Planet* (David Atte
 
 ## Checks
 
-All nine interactive sheets pass `scripts/mcq_audit.py` (spread of correct letters and no answers given away in the teaching boxes), and their printables are in sync according to `scripts/mcq_sync.py`.
+All ten interactive sheets pass `scripts/mcq_audit.py` (spread of correct letters and no answers given away in the teaching boxes), and their printables are in sync according to `scripts/mcq_sync.py`.
 
 ## Structure
 
@@ -103,6 +108,9 @@ s2/sem1/
 ├── sem1-english-revision-pack-mock.html          ← Interactive (English Revision Pack, all 10 topics)
 ├── sem1-english-revision-pack-mock.md            ← Printable + Q70–Q91 written
 ├── sem1-english-revision-pack-mock-answers.md    ← Answers + marking guide
+├── sem1-bahasa-indonesia-mock.html               ← Interactive (Bahasa Indonesia, Units 1–3)
+├── sem1-bahasa-indonesia-mock.md                 ← Printable + Q77–Q83 written
+├── sem1-bahasa-indonesia-mock-answers.md         ← Answers + marking guide
 ├── sem1-maths-paper1-non-calculator.html         ← Interactive (Maths Paper 1, no calculator)
 ├── sem1-maths-paper1-non-calculator.md           ← Printable + Q37–Q41 written
 ├── sem1-maths-paper1-non-calculator-answers.md   ← Answers + marking guide
