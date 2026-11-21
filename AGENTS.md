@@ -86,6 +86,20 @@ python3 scripts/build_vocab_drill.py scripts/review_specs/s2_sem1_bahasa_vocab_2
 - **Always update `index.html`** when adding a new sheet
 - Card classes: `.math` (blue), `.sci` (green), `.eng` (amber) for subject color-coding
 
+### OCR of photographed worksheets (incl. Chinese)
+
+Source photos (usually HEIC) go in `material/<subject>/` as JPG (gitignored, never commit). Convert with `magick in.HEIC -quality 90 out.jpg` (or `sips -s format jpeg`).
+
+**Tesseract can read Chinese, but only if told to.** The default model is English-only and turns Chinese into Latin garbage (e.g. "Bu ae ie ee"), which looks like OCR "failing". Check the installed models with `tesseract --list-langs` (`chi_sim` is installed here) and always pass the language:
+
+```bash
+tesseract material/chinese/IMG_7711.jpg - -l chi_sim+eng --psm 6
+```
+
+Expect it to be only partly right on phone photos (skewed pages, overlapping papers, handwriting): it misreads similar characters (运动鞋 → 运动壮, 白色 → 晶色, 回家 → 加家), drops lines and mangles ☐ boxes. Treat the output as a draft and proofread it against the image (view the JPG directly) before building a sheet from it. Crop/deskew first if a page is bad. Keep handwriting answers out of the transcript.
+
+Other Chinese gotchas: a typed-answer `normalise()` must strip Chinese punctuation (。，、！？) and spaces; add CJK fonts (PingFang SC, Noto Sans SC) to the font stack, since Fraunces/Literata have no Han glyphs; `mcq_sync.py` matches question stems on Latin words only, so CJK-stem questions show as "no md counterpart" (options are still compared, so check the "options out of sync" line).
+
 ### Writing Sheets Larger Than 64 KB
 The agent harness's `write_file` tool hard-rejects content over 64,000 bytes (`Content exceeds 64000 bytes limit`). The cap is hardcoded in the tool layer — it cannot be raised from config (the `max_write_bytes` / `max_read_bytes` keys are accepted by the config schema but ignored at runtime), so do not try to "fix" it that way. A sheet with five or six sections routinely lands around 80 KB, so plan for chunked writing **from the start**, not after a failed write:
 

@@ -67,6 +67,20 @@ A clean run prints no `Missing character` lines at all; if any appear, the glyph
 
 This is an on-demand, local step — no PDF output is committed or wired into any build/deploy process (see Constraints below).
 
+## OCR of photographed worksheets (incl. Chinese)
+
+Source photos (usually HEIC) go in `material/<subject>/` as JPG (gitignored, never commit). Convert with `magick in.HEIC -quality 90 out.jpg` (or `sips -s format jpeg`).
+
+**Tesseract can read Chinese, but only if told to.** The default model is English-only and turns Chinese into Latin garbage (e.g. "Bu ae ie ee"), which looks like OCR "failing". Check the installed models with `tesseract --list-langs` (`chi_sim` is installed here) and always pass the language:
+
+```bash
+tesseract material/chinese/IMG_7711.jpg - -l chi_sim+eng --psm 6
+```
+
+Expect it to be only partly right on phone photos (skewed pages, overlapping papers, handwriting): it misreads similar characters (运动鞋 → 运动壮, 白色 → 晶色, 回家 → 加家), drops lines and mangles ☐ boxes. Treat the output as a draft and proofread it against the image (view the JPG directly) before building a sheet from it. Crop/deskew first if a page is bad. Keep handwriting answers out of the transcript.
+
+Other Chinese gotchas: a typed-answer `normalise()` must strip Chinese punctuation (。，、！？) and spaces; add CJK fonts (PingFang SC, Noto Sans SC) to the font stack, since Fraunces/Literata have no Han glyphs; `mcq_sync.py` matches question stems on Latin words only, so CJK-stem questions show as "no md counterpart" (options are still compared, so check the "options out of sync" line).
+
 ## Adding a New Exercise Sheet
 
 ### Cambridge sheets
