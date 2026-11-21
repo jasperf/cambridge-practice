@@ -76,7 +76,7 @@ The class slides do not cover most of these topics, so the facts follow the Camb
 
 ### Human Biology
 
-The science mock and the review page do not cover Human Biology yet. For chromosomes, genes and DNA, gametes and inheritance, and fetal development and the mother's health, use the [Term 2 Unit Test: Electricity + Human Biology](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.html) ([printable](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.md)). The excretory system is in the [gaps drill](./sem1-science-gaps.html), Section A.
+[Science Mock 2](./sem1-science-mock2-combined.html) covers excretion, chromosomes and inheritance. The first science mock and the review page do not cover Human Biology. For more on chromosomes, genes and DNA, gametes and inheritance, and fetal development and the mother's health, use the [Term 2 Unit Test: Electricity + Human Biology](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.html) ([printable](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.md)). The excretory system is in the [gaps drill](./sem1-science-gaps.html), Section A.
 
 ### Videos to watch
 
@@ -135,6 +135,9 @@ s2/sem1/
 ├── sem1-science-mock.html                        ← Interactive (Science)
 ├── sem1-science-mock.md                          ← Printable + Q40–Q45 written
 ├── sem1-science-mock-answers.md                  ← Answers + marking guide
+├── sem1-science-mock2-combined.html             ← Interactive (Science Mock 2: combined paper)
+├── sem1-science-mock2-combined.md                ← Printable + Q47–Q52 written
+├── sem1-science-mock2-combined-answers.md        ← Answers + marking guide
 ├── sem1-science-revision.html                    ← Interactive (Terms 1–2 science review)
 ├── sem1-science-revision.md                      ← Printable + Q43–Q48 written
 ├── sem1-science-revision-answers.md              ← Answers + marking guide
