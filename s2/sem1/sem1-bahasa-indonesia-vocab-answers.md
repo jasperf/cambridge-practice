@@ -16,14 +16,14 @@ Answers for Vocabulary Drill 1, both directions. On the interactive sheet (sem1-
 | 10 | in front of | di depan / didepan / depan |
 | 11 | between | di antara / diantara / antara |
 | 12 | product | produk |
-| 13 | price | harga |
-| 14 | contact | hubungi / menghubungi |
-| 15 | free | gratis |
+| 13 | advertisement | iklan |
+| 14 | title | judul / judul iklan |
+| 15 | information | informasi / info |
 | 16 | elephant | gajah |
 | 17 | giraffe | jerapah |
 | 18 | monkey | monyet / kera |
 | 19 | tortoise | kura-kura / kura kura |
-| 20 | pet | hewan peliharaan / hewan-peliharaan / hewan piaraan / hewan-piaraan |
+| 20 | rabbit | kelinci |
 | 21 | papan tulis | board / whiteboard / white board / blackboard / black board / the board |
 | 22 | jendela | window |
 | 23 | guru | teacher |
@@ -35,7 +35,7 @@ Answers for Vocabulary Drill 1, both directions. On the interactive sheet (sem1-
 | 29 | kalimat ajakan | persuasive sentence / call to action / call-to-action / persuasive call |
 | 30 | berapa | how much / how many |
 | 31 | apa | what |
-| 32 | diskon | discount |
+| 32 | siapa | who |
 | 33 | harimau | tiger |
 | 34 | paruh | beak |
 | 35 | belalai | trunk |

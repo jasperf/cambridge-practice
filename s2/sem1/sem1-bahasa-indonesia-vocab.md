@@ -77,17 +77,17 @@ Tulis kata bahasa Indonesia untuk *product*. (Write the Indonesian word for “p
 Answer: ____________________
 
 **Q13** (1 mark)\
-Tulis kata bahasa Indonesia untuk *price*. (Write the Indonesian word for “price”.)
+Tulis kata bahasa Indonesia untuk *advertisement*. (Write the Indonesian word for “advertisement”.)
 
 Answer: ____________________
 
 **Q14** (1 mark)\
-Tulis kata bahasa Indonesia untuk *contact*. (call or message the seller) (Write the Indonesian verb for “contact”.)
+Tulis kata bahasa Indonesia untuk *title*. (the headline of an ad) (Write the Indonesian word for “title”.)
 
 Answer: ____________________
 
 **Q15** (1 mark)\
-Tulis kata bahasa Indonesia untuk *free*. (costs nothing) (Write the Indonesian word for “free”.)
+Tulis kata bahasa Indonesia untuk *information*. (Write the Indonesian word for “information”.)
 
 Answer: ____________________
 
@@ -114,7 +114,7 @@ Tulis nama hewan bahasa Indonesia untuk *tortoise*. (Write the Indonesian name o
 Answer: ____________________
 
 **Q20** (1 mark)\
-Tulis kata bahasa Indonesia untuk *pet*. (an animal kept at home) (Write the Indonesian for “pet”.)
+Tulis nama hewan bahasa Indonesia untuk *rabbit*. (Write the Indonesian name of the animal “rabbit”.)
 
 Answer: ____________________
 
@@ -186,7 +186,7 @@ Apa arti *apa* dalam bahasa Inggris? (What is “apa” in English?)
 Answer: ____________________
 
 **Q32** (1 mark)\
-Apa arti *diskon* dalam bahasa Inggris? (What is “diskon” in English?)
+Apa arti *siapa* dalam bahasa Inggris? (What is “siapa” in English?)
 
 Answer: ____________________
 

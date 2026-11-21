@@ -2,10 +2,9 @@
 
 Build with:  python3 scripts/build_vocab_drill.py --only-md scripts/review_specs/s2_sem1_bahasa_vocab.py
 
-The .html for this drill was hand-written before the builder existed, so we
-only generate the printable .md and -answers.md from this spec (`--only-md`).
-The spec still mirrors the html faithfully — same 40 words, same accepted
-answers and hints — so a full rebuild would reproduce the same questions.
+Every word comes from the class materials in material/bahasa/s2 (unit 1 module,
+unit 3 slides, SA revision pack, ad assignment slide). Rebuild all three files
+with the command above (without --only-md).
 """
 
 META = dict(
@@ -83,15 +82,14 @@ SECTIONS = [
             ]),
             ('Teks iklan &middot; Advertisements', [
                 w('product', ['produk'], 'In an advertisement, the thing being sold.'),
-                w('price', ['harga'], 'The amount of money an advertisement asks for something.'),
-                w('contact', ['hubungi', 'menghubungi'],
-                  'The verb in an ad that tells you to phone or message the seller.',
-                  tail='(call or message the seller)',
-                  help='(Write the Indonesian verb for &ldquo;contact&rdquo;.)',
-                  reveal='&lt;em&gt;hubungi&lt;/em&gt; = contact (call / message).'),
-                w('free', ['gratis'], 'When something costs Rp0.',
-                  tail='(costs nothing)',
-                  help='(Write the Indonesian word for &ldquo;free&rdquo;.)'),
+                w('advertisement', ['iklan'],
+                  'A short text with a picture that tries to make people want a product.'),
+                w('title', ['judul', 'judul iklan'],
+                  'The big words at the top of an advertisement or a story.',
+                  tail='(the headline of an ad)',
+                  help='(Write the Indonesian word for &ldquo;title&rdquo;.)'),
+                w('information', ['informasi', 'info'],
+                  'Facts that tell you about a product: what it is, what it costs, where to get it.'),
             ]),
             ('Hewan &middot; Animals', [
                 w('elephant', ['gajah'],
@@ -106,10 +104,9 @@ SECTIONS = [
                 w('tortoise', ['kura-kura', 'kura kura'],
                   'A very slow animal that carries its house on its back.',
                   ask_prefix=HAIWAN_A, help=HAIWAN_B.format('tortoise')),
-                w('pet', ['hewan peliharaan', 'hewan-peliharaan', 'hewan piaraan', 'hewan-piaraan'],
-                  'An animal that lives in your home and is your friend.',
-                  tail='(an animal kept at home)',
-                  help='(Write the Indonesian for &ldquo;pet&rdquo;.)'),
+                w('rabbit', ['kelinci'],
+                  'A small animal with long ears that hops and eats carrots.',
+                  ask_prefix=HAIWAN_A, help=HAIWAN_B.format('rabbit')),
             ]),
         ],
     ),
@@ -161,8 +158,7 @@ SECTIONS = [
                   'Ask this to find out a price, a number or an amount.',
                   reveal='&lt;em&gt;how much&lt;/em&gt; / &lt;em&gt;how many&lt;/em&gt; (berapa).'),
                 w('apa', ['what'], 'Ask this to find out the name or nature of a thing.'),
-                w('diskon', ['discount'],
-                  'When a Rp10.000 item costs Rp8.000, you get a ___.'),
+                w('siapa', ['who'], 'Ask this to find out which person.'),
             ]),
             ('Hewan &amp; bagian tubuh &middot; Animals &amp; body parts', [
                 w('harimau', ['tiger'],

@@ -4,46 +4,46 @@ Answers for Vocabulary Drill 2, both directions. On the interactive sheet (sem1-
 
 | Q | Question | Accepted answers |
 |---|----------|------------------|
-| 1 | door | pintu |
-| 2 | desk | meja / meja tulis |
-| 3 | book | buku |
-| 4 | pen | pulpen / pen / pena |
-| 5 | pencil | pensil |
-| 6 | map | peta |
-| 7 | classroom | kelas / ruang kelas / ruangkelas |
-| 8 | school | sekolah |
-| 9 | eraser | penghapus |
-| 10 | dictionary | kamus |
-| 11 | advertisement | iklan |
-| 12 | to buy | membeli / beli |
-| 13 | to sell | menjual / jual |
-| 14 | cheap | murah |
-| 15 | expensive | mahal |
-| 16 | new | baru |
-| 17 | quality | kualitas / mutu |
-| 18 | shop | toko |
-| 19 | where | di mana / dimana |
-| 20 | who | siapa |
+| 1 | book | buku |
+| 2 | pencil case | tempat pensil / tempat-pensil |
+| 3 | teacher's desk | meja guru / meja-guru |
+| 4 | student's desk | meja siswa / meja-siswa |
+| 5 | cupboard | lemari |
+| 6 | plant | tanaman |
+| 7 | notice board | papan pengumuman / papan-pengumuman |
+| 8 | loudspeaker | pengeras suara / pengeras-suara |
+| 9 | neat | rapi |
+| 10 | comfortable | nyaman |
+| 11 | school | sekolah |
+| 12 | age | umur / usia |
+| 13 | right side | di sisi kanan / sisi kanan / kanan |
+| 14 | left side | di sisi kiri / sisi kiri / kiri |
+| 15 | where | di mana / dimana |
+| 16 | duck | bebek |
+| 17 | goat | kambing |
+| 18 | cow | sapi |
+| 19 | chicken | ayam |
+| 20 | deer | rusa |
 | 21 | singa | lion |
 | 22 | kucing | cat |
 | 23 | anjing | dog |
-| 24 | burung | bird |
-| 25 | kupu-kupu | butterfly |
-| 26 | ular | snake |
-| 27 | buaya | crocodile |
-| 28 | badak | rhinoceros / rhino |
-| 29 | sayap | wing / wings |
-| 30 | tanduk | horn |
-| 31 | kaki | leg / legs / foot / feet |
-| 32 | besar | big / large |
-| 33 | kecil | small / little |
-| 34 | tinggi | tall / high |
-| 35 | lucu | funny / cute |
-| 36 | makan | eat / to eat / eating |
-| 37 | minum | drink / to drink / drinking |
-| 38 | tidur | sleep / to sleep / sleeping |
-| 39 | bermain | play / to play / playing |
-| 40 | bagaimana | how |
+| 24 | ular | snake |
+| 25 | tupai | squirrel |
+| 26 | sayap | wing / wings |
+| 27 | tanduk | horn / horns |
+| 28 | kaki | leg / legs / foot / feet |
+| 29 | kumis | whiskers / whisker / moustache / mustache |
+| 30 | taring | fang / fangs / tusk / tusks |
+| 31 | cangkang | shell |
+| 32 | cakar | claw / claws |
+| 33 | sirip | fin / fins |
+| 34 | sisik | scale / scales |
+| 35 | punuk | hump |
+| 36 | bulu | fur / feather / feathers / hair |
+| 37 | kecil | small / little |
+| 38 | pendek | short |
+| 39 | ringan | light |
+| 40 | lebih | more / more than / -er / er |
 
 On the interactive sheet capital letters do not matter, trailing
 punctuation is ignored, and every spelling in the table above
