@@ -12,7 +12,7 @@ Every paper comes in three files with the same basename:
 
 | Day | Exam | Mock paper |
 |-----|------|------------|
-| Mon 23 Nov | Chinese (Writing + Reading) | — |
+| Mon 23 Nov | Chinese (Writing + Reading) | Chinese |
 | Tue 24 Nov | Bahasa Indonesia (Reading & Understanding + Writing) | Bahasa Indonesia |
 | Wed 25 Nov | English (Levels 2 and 3: one standardised paper) | English Level 2/3 |
 | Thu 26 Nov | Mathematics (two standardised papers) | Maths Paper 1 + Paper 2 |
@@ -24,6 +24,7 @@ Every paper comes in three files with the same basename:
 |-------|--------|-------------|---------|-----------|-------------|---------|
 | **English Level 2/3** | Sentence types & punctuation · Reading two texts with P.E.E.E. · Viewpoints & arguments · Persuasive & emotive language | 41 Qs · 48 marks (33 MCQ) | Q42–Q45 · 38 marks | [.md](./sem1-english-level23-mock.md) | [.html](./sem1-english-level23-mock.html) | [answers](./sem1-english-level23-mock-answers.md) |
 | **English Revision Pack** | All ten Stage 9 revision topics (Units 9.1–9.3), one section each: reading comprehension · text analysis · summary writing · punctuation · sentence structures · connectives · figurative language & sound devices · persuasive techniques · argumentative writing · organisation & accuracy | 69 Qs · 69 marks (43 MCQ, 26 typed) | Q70–Q91 · 125 marks | [.md](./sem1-english-revision-pack-mock.md) | [.html](./sem1-english-revision-pack-mock.html) | [answers](./sem1-english-revision-pack-mock-answers.md) |
+| **Chinese** | Seasons & weather · Occupations & places · Shopping (Easy Steps to Chinese 3): reading, sentence order, passages, measure words, writing words, price board | 49 Qs · 59 marks (21 MCQ, 28 typed) | Q50–Q54 · 48 marks | [.md](./sem1-chinese-mock.md) | [.html](./sem1-chinese-mock.html) | [answers](./sem1-chinese-mock-answers.md) |
 | **Bahasa Indonesia** | Unit 1 *Di Dalam Kelasku* · Unit 2 *Teks Iklan* · Unit 3 *Mengenal Hewan* | 76 Qs · 76 marks (29 MCQ, 47 typed) | Q77–Q83 · 74 marks | [.md](./sem1-bahasa-indonesia-mock.md) | [.html](./sem1-bahasa-indonesia-mock.html) | [answers](./sem1-bahasa-indonesia-mock-answers.md) |
 | **Maths Paper 1: Non-Calculator** | All units, no calculator: number, indices & standard form · algebra, equations & inequalities · decimals & rounding · angles, circles (π ≈ 3) & area | 36 Qs · 50 marks (11 MCQ, 1 tick-all-true) | Q37–Q41 · 19 marks | [.md](./sem1-maths-paper1-non-calculator.md) | [.html](./sem1-maths-paper1-non-calculator.html) | [answers](./sem1-maths-paper1-non-calculator-answers.md) |
 | **Maths Paper 1B: Non-Calculator** | A second set of Paper 1 questions for another round: same layout, length and topics, all-new questions | 36 Qs · 50 marks (11 MCQ, 1 tick-all-true) | Q37–Q41 · 19 marks | [.md](./sem1-maths-paper1b-non-calculator.md) | [.html](./sem1-maths-paper1b-non-calculator.html) | [answers](./sem1-maths-paper1b-non-calculator-answers.md) |
@@ -31,6 +32,10 @@ Every paper comes in three files with the same basename:
 | **Maths Paper 2: Calculator** | All units, calculator: standard form, percentages, compound interest & bounds · forming and solving equations · polygons & Pythagoras · circles & compound shapes | 29 Qs · 50 marks (5 MCQ, 1 tick-all-true) | Q30–Q34 · 23 marks | [.md](./sem1-maths-paper2-calculator.md) | [.html](./sem1-maths-paper2-calculator.html) | [answers](./sem1-maths-paper2-calculator-answers.md) |
 | **Science** | Atoms & bonding · Plant biology · Density · Sound waves & thermal energy · Electricity | 39 Qs · 48 marks (17 MCQ) | Q40–Q45 · 24 marks | [.md](./sem1-science-mock.md) | [.html](./sem1-science-mock.html) | [answers](./sem1-science-mock-answers.md) |
 | **Science Mock 2: Combined** | A second, wider science paper: atoms & the periodic table · bonding & structures · photosynthesis & minerals · transport, transpiration & the carbon cycle · human biology (excretion, chromosomes & inheritance, fetal development & the mother’s health) · density · sound waves & interference · thermal energy & conservation · electricity & circuit symbols — the gaps-drill topics included | 52 Qs · 70 marks (24 MCQ) | Q53–Q58 · 25 marks | [.md](./sem1-science-mock2-combined.md) | [.html](./sem1-science-mock2-combined.html) | [answers](./sem1-science-mock2-combined-answers.md) |
+
+### Chinese
+
+Follows the layout of the school's Semester 1 revision worksheet (A. Reading, B. Writing) with all-new texts and questions. Section A, *Reading 阅读*: choose the meaning of a sentence, fill the blanks from a word bank, put the words in order, two short passages (a judging task and short typed answers), and measure words and grammar (一双 / 一件, 多少钱, 虽然……但是……). Section B, *Writing 写作*: complete sentences with the writing words (打算, 因为, 后来, 一起, 觉得, 虽然), write shopping vocabulary in characters, and read a drawn price board. 21 of the 49 questions are multiple choice; the rest are typed Chinese answers, checked against a list of accepted answers (spaces and punctuation are ignored). The printable has the same Q1–Q49 plus five written tasks (Q50–Q54, 48 marks, marked by the teacher): the five-item shopping form, 80–100 character guided writing, translation, sentence making and jobs-and-places sentences. Type Chinese with a pinyin keyboard on the interactive sheet.
 
 ### Bahasa Indonesia
 
@@ -111,6 +116,9 @@ s2/sem1/
 ├── sem1-english-revision-pack-mock.html          ← Interactive (English Revision Pack, all 10 topics)
 ├── sem1-english-revision-pack-mock.md            ← Printable + Q70–Q91 written
 ├── sem1-english-revision-pack-mock-answers.md    ← Answers + marking guide
+├── sem1-chinese-mock.html                        ← Interactive (Chinese: Seasons, Occupations, Shopping)
+├── sem1-chinese-mock.md                          ← Printable + Q50–Q54 written
+├── sem1-chinese-mock-answers.md                  ← Answers + marking guide
 ├── sem1-bahasa-indonesia-mock.html               ← Interactive (Bahasa Indonesia, Units 1–3)
 ├── sem1-bahasa-indonesia-mock.md                 ← Printable + Q77–Q83 written
 ├── sem1-bahasa-indonesia-mock-answers.md         ← Answers + marking guide
