@@ -35,6 +35,8 @@ Every paper comes in three files with the same basename:
 
 Built from the S2 Bahasa Indonesia SA revision list (Level 1), so every topic on it has questions. Section A, *Di Dalam Kelasku*: a reading text about a classroom, classroom vocabulary, prepositions of place (with a four-picture diagram), the verb *ada*, *apakah*, personal pronouns and possessive pronouns (-ku, -mu). Section B, *Teks Iklan*: two original advertisements (a food promo and an apartment) with questions on vocabulary, information, prices and times, the question words *apa*, *di mana*, *siapa* and *berapa*, and *kalimat ajakan* with *-lah* and *-kan*. Section C, *Mengenal Hewan*: animal vocabulary, body parts on a fish and a bird, adjectives and opposites, comparative sentences read from a bar chart of animal heights, *punya / mempunyai / memiliki*, and the prefix *ber-*. 29 of the 76 questions are multiple choice; the rest are typed Indonesian words with the accepted spellings checked. The printable has the same Q1–Q76 plus seven written tasks (Q77–Q83, 74 marks, marked by the teacher): write your own advertisement (30 marks, split into title, product information and persuasive sentences), describe a classroom, ask and answer with the four question words, describe an animal, comparative sentences, translation and *ber-* rewriting. The fable unit (*Fabel*) is not on the revision list and is not covered. All texts and questions are original.
 
+**Vocabulary drills.** Two extra 40-question drills for the words behind the mock: [Drill 1](./sem1-bahasa-indonesia-vocab.html) ([printable](./sem1-bahasa-indonesia-vocab.md) · [answers](./sem1-bahasa-indonesia-vocab-answers.md)) and [Drill 2](./sem1-bahasa-indonesia-vocab-2.html) ([printable](./sem1-bahasa-indonesia-vocab-2.md) · [answers](./sem1-bahasa-indonesia-vocab-2-answers.md)). Every question is typed — 20 English → Indonesian, 20 Indonesian → English, 1 mark each, no multiple choice — grouped by classroom, advertisements, animals, prepositions and question words. The Hints describe a word without revealing it, Drill 2 repeats none of Drill 1's words, and both printables list every accepted spelling in their answer sheets. Both drills are generated with `scripts/build_vocab_drill.py` from specs in `scripts/review_specs/`.
+
 ### English Level 2/3
 
 Section A covers the four sentence types, FANBOYS, MOTH, semicolons and comma rules (Term 1 Unit 1). Section B is a student magazine article, *Dig In: Why Every School Needs a Garden*, with questions on viewpoint, simile, juxtaposition, statistics, expert opinion, rule of three, concession, anecdote, repetition, a P.E.E.E. *Explore* step and imperatives. Section C is a parent’s reply, *Gardens Can Wait*, with questions on claim, evidence and transitions (Term 1 Unit Test 2), followed by questions comparing the two texts. Section D applies persuasive and emotive techniques to new sentences (Term 2 Unit Test 1). The printable adds a P.E.E.E. paragraph, a comparison of how the two writers use concession, sentence rewriting and a 300-word persuasive speech or letter (20 marks). Both texts are original. Only the Level 2/3 paper is written; the Level 1 format (three shorter papers) is not covered here.
@@ -111,6 +113,12 @@ s2/sem1/
 ├── sem1-bahasa-indonesia-mock.html               ← Interactive (Bahasa Indonesia, Units 1–3)
 ├── sem1-bahasa-indonesia-mock.md                 ← Printable + Q77–Q83 written
 ├── sem1-bahasa-indonesia-mock-answers.md         ← Answers + marking guide
+├── sem1-bahasa-indonesia-vocab.html              ← Interactive (Vocabulary drill 1: 40 typed, EN ↔ ID)
+├── sem1-bahasa-indonesia-vocab.md                ← Printable drill 1
+├── sem1-bahasa-indonesia-vocab-answers.md        ← Every accepted spelling
+├── sem1-bahasa-indonesia-vocab-2.html            ← Interactive (Vocabulary drill 2: 40 more words)
+├── sem1-bahasa-indonesia-vocab-2.md              ← Printable drill 2
+├── sem1-bahasa-indonesia-vocab-2-answers.md      ← Every accepted spelling
 ├── sem1-maths-paper1-non-calculator.html         ← Interactive (Maths Paper 1, no calculator)
 ├── sem1-maths-paper1-non-calculator.md           ← Printable + Q37–Q41 written
 ├── sem1-maths-paper1-non-calculator-answers.md   ← Answers + marking guide

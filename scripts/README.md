@@ -139,6 +139,35 @@ copy an existing spec, change `META['out']` and the content, then build.
 Run the usual checks on the result afterwards. The builder does not shuffle
 anything for you: set each MCQ's `correct` letter so the spread passes check 1.
 
+## `build_vocab_drill.py` — generate a vocabulary drill from a spec
+
+```bash
+python3 scripts/build_vocab_drill.py scripts/review_specs/s2_sem1_bahasa_vocab_2.py
+python3 scripts/build_vocab_drill.py --only-md scripts/review_specs/s2_sem1_bahasa_vocab.py
+```
+
+Like the review-sheet builder, this one **writes** files: from one spec it
+writes the `.html`, the printable `.md` and the `-answers.md` (every accepted
+spelling listed in a table). A drill is 40 typed translation questions in two
+sections — 20 English → target language, 20 target language → English —
+grouped by theme, 1 mark each, no multiple choice, so there is no letter
+spread to check and no `.md` option order to keep in sync; `sheet_audit.py`
+is the only audit that applies. The page is the same as the hand-written
+`s2/sem1/sem1-bahasa-indonesia-vocab.html` (identical CSS and scoring JS),
+so a generated drill is indistinguishable from a hand-made one.
+
+A spec is a plain Python file in `review_specs/` defining `META` (filenames,
+titles, hero copy) and `SECTIONS` (groups of question dicts: the word, the
+accepted answers, and a hint that describes the word without revealing it).
+To make a new drill, copy `s2_sem1_bahasa_vocab_2.py`, change `META['out']`
+and the words, and build. Edit the spec, not the generated files, because a
+rebuild overwrites them. `--only-md` writes just the two printables — used
+for the first Bahasa drill, whose `.html` was written by hand before this
+builder existed (spec `s2_sem1_bahasa_vocab.py` mirrors it exactly).
+
+Afterwards run `sheet_audit.py` and (if the totals changed) update the
+`index.html` card chips.
+
 ## `build_human_biology_diagrams.py` — draw the Human Biology SVGs
 
 ```bash

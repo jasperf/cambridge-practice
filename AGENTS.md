@@ -25,6 +25,8 @@ cambridge-practice/
 ├── docs/                   ← technical documentation
 │   ├── README.md           ← docs index
 │   └── state-management.md ← state object and scoring explained
+├── scripts/                ← audit + generator scripts (details in scripts/README.md)
+│   └── review_specs/       ← Python specs for the review-sheet and vocab-drill builders
 ├── s1/                     ← Secondary 1 sheets
 │   ├── sa2/                ← Summer Assessment 2 revision
 │   │   ├── focus/          ← focused topic drills
@@ -39,6 +41,7 @@ cambridge-practice/
 │       └── w6/             ← Week 6
 │           ├── term4-week6-english.html
 │           └── term4-week6-science.html
+├── s2/                     ← Secondary 2 sheets (sem1 mocks, drills & practice; term weekly sheets; formula sheets)
 └── igcse/                  ← IGCSE (planned)
 ```
 
@@ -64,12 +67,17 @@ python3 scripts/sheet_audit.py s2/t2/w7/*.html        # shown totals vs the real
 python3 scripts/mcq_audit.py s2/t2/w7/*.html          # MCQ letter spread, reveal-letter sync, giveaways
 python3 scripts/mcq_sync.py s2/t2/w7/*.html           # printable .md option order vs the .html (--fix repairs)
 python3 scripts/mcq_shuffle.py --dry-run s2/t2/w7/*.html   # rebalance MCQ answer letters if the spread fails
+
+# Generate a review sheet or a vocabulary drill from a spec (writes .html + .md + -answers.md)
+python3 scripts/build_review_sheet.py scripts/review_specs/s2_sem1_science_revision.py
+python3 scripts/build_vocab_drill.py scripts/review_specs/s2_sem1_bahasa_vocab_2.py
 ```
 
 ## Conventions
 
 - One HTML file per exercise sheet — fully self-contained with inline CSS and JS
 - Sheets ship as a pair: `name.html` (interactive) + `name.md` (printable). The `.md` must list MCQ options in the same order as the `.html` — `mcq_sync.py` checks this
+- Spec-built sheets (review sheets, vocabulary drills) are generated from specs in `scripts/review_specs/` and write `.html` + `.md` + `-answers.md` in one run — edit the spec and rebuild, never the generated files
 - A shorter second paper on the same topic is named `unit-test2-…` (e.g. `term2-week5-maths-unit-test2-retake-practice.html`, `term2-week7-science-unit-test2-electricity-human-biology.html`)
 - If an `index.html` card shows `N questions` / `N marks` chips, they must match the sheet — `sheet_audit.py` checks this
 - No external dependencies except Google Fonts (Fraunces, Literata, DM Mono)
@@ -84,7 +92,7 @@ The agent harness's `write_file` tool hard-rejects content over 64,000 bytes (`C
 - Write the sheet through `bash` heredocs: first chunk with `cat > path/name.html <<'EOF'`, following chunks appended with `cat >> path/name.html <<'EOF'`.
 - Keep each chunk around 20 KB, quote the delimiter (`<<'EOF'`) so nothing expands, and only split at section boundaries — never inside a question, a `<script>` block, or a CSS rule.
 - Verify the assembled file: `wc -c` the size, view the tail with `tail -20`, and remember reading back pages at ~64 KB per call (continue from the offset the read result reports).
-- For sheets with repetitive sections, the neater variant is a small generator script: write it to `/private/tmp`, run it to emit the big file whole, then remove the script.
+- For sheets with repetitive sections, the neater variant is a small generator script: write it to `/private/tmp`, run it to emit the big file whole, then remove the script. For the sheet types we generate often there are permanent builders instead — review sheets (`scripts/build_review_sheet.py`) and vocabulary drills (`scripts/build_vocab_drill.py`) — write a spec in `scripts/review_specs/` and build from it; do not hand-edit their output.
 
 ### Sheet Header Pattern (all sheets must follow this)
 
