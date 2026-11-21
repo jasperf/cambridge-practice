@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahasa Indonesia Word List &middot; Semester 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #f5a623; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; min-height: 100vh; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.hero, .main, .tabs { max-width: 900px; margin: 0 auto; padding-left: 28px; padding-right: 28px; }
+.hero { padding-top: 48px; padding-bottom: 12px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+h1 em { font-style: italic; color: var(--accent); }
+.credit { font-size: 0.88rem; color: var(--text-muted); max-width: 640px; }
+.tabs { padding-top: 16px; padding-bottom: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+.tab { font-family: var(--font-mono); font-size: 0.75rem; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; }
+.tab:hover { border-color: var(--accent); color: var(--text); }
+.main { padding-bottom: 80px; }
+.section-head { display: flex; align-items: center; gap: 14px; margin: 40px 0 14px; flex-wrap: wrap; }
+.section-head h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; flex: 1; min-width: 220px; }
+.section-head .sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+.dir-en { color: var(--accent-math); } .dir-id { color: var(--accent-warn); }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; }
+.info-box em { color: var(--accent); }
+.btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.btn { font-family: var(--font-mono); font-size: 0.74rem; padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted); cursor: pointer; transition: all .18s; }
+.btn:hover { border-color: var(--accent); color: var(--text); }
+.btn.primary { background: var(--accent); color: #0f1117; border-color: var(--accent); }
+.btn.primary:hover { opacity: .85; color: #0f1117; }
+.sub-head { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--accent); margin: 26px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.row { display: contents; }
+.cell { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 11px 16px; min-height: 48px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; }
+.cell.shown { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
+.cell.shown .alt { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 400; color: var(--text-muted); }
+.cell.hidden-cell { cursor: pointer; font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-dim); border-style: dashed; user-select: none; }
+.cell.hidden-cell:hover { border-color: var(--accent); color: var(--accent); }
+.cell.hidden-cell:focus-visible { outline: 2px solid var(--accent); }
+.cell.revealed { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; border-color: rgba(46,204,113,0.35); background: rgba(46,204,113,0.06); cursor: pointer; }
+.cell.revealed .alt { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 400; color: var(--text-muted); }
+.en-side { color: var(--accent-math); } .id-side { color: var(--accent-warn); }
+.divider { height: 1px; background: var(--border); margin: 52px 0 0; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .hero, .main, .tabs { padding-left: 16px; padding-right: 16px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  h1 { font-size: 1.8rem; }
+  .cell { padding: 10px 12px; }
+}
+@media print { .btns, .topbar, .tabs { display: none; } body { background: #fff; color: #000; } }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Bahasa Indonesia &middot; Word List</div>
+  </div>
+  <a href="../../index.html" class="back-link">&larr; All sheets</a>
+</div>
+<div class="hero">
+  <div class="eyebrow">Secondary 2 &middot; Bahasa Indonesia Level 1 &middot; Semester 1</div>
+  <h1>Word List<br><em>English &harr; Indonesian</em></h1>
+  <p class="credit">All 96 words from the Semester 1 units &mdash; <em>Di Dalam Kelasku</em>, <em>Teks Iklan</em> and <em>Mengenal Hewan</em> &mdash; in one place. Part A shows the English and hides the Indonesian; Part B does the reverse. Tap a hidden box to check yourself, or use the buttons to reveal or hide a whole part.</p>
+</div>
+<div class="tabs">
+  <a href="#a" class="tab">A &middot; English &rarr; Indonesian</a>
+  <a href="#b" class="tab">B &middot; Indonesian &rarr; English</a>
+</div>
+<div class="main">
+  <section id="a">
+    <div class="section-head"><h2>Part A &middot; English &rarr; Indonesian</h2><div class="sub dir-en">Say the Indonesian first</div></div>
+    <div class="info-box">Read the <em>English</em> word, say the Indonesian out loud, then tap the box to check. Tap a revealed box to hide it again.</div>
+    <div class="btns">
+      <button class="btn primary" data-act="reveal" data-part="a">Reveal all</button>
+      <button class="btn" data-act="hide" data-part="a">Hide all</button>
+      <button class="btn" data-act="shuffle" data-part="a">Shuffle</button>
+      <button class="btn" data-act="reset" data-part="a">Original order</button>
+    </div>
+    <div id="list-a"></div>
+  </section>
+  <div class="divider"></div>
+  <section id="b">
+    <div class="section-head"><h2>Part B &middot; Indonesian &rarr; English</h2><div class="sub dir-id">Say the English first</div></div>
+    <div class="info-box">Read the <em>Indonesian</em> word, say the English meaning, then tap the box to check.</div>
+    <div class="btns">
+      <button class="btn primary" data-act="reveal" data-part="b">Reveal all</button>
+      <button class="btn" data-act="hide" data-part="b">Hide all</button>
+      <button class="btn" data-act="shuffle" data-part="b">Shuffle</button>
+      <button class="btn" data-act="reset" data-part="b">Original order</button>
+    </div>
+    <div id="list-b"></div>
+  </section>
+</div>
+<script>
+const DATA = [{"title": "Kelas & sekolah · Classroom & school", "words": [{"id": "kursi", "en": "chair", "ida": [], "ena": []}, {"id": "rak buku", "en": "bookshelf", "ida": [], "ena": []}, {"id": "jam dinding", "en": "wall clock", "ida": [], "ena": []}, {"id": "tempat sampah", "en": "rubbish bin", "ida": [], "ena": []}, {"id": "bola dunia", "en": "globe", "ida": [], "ena": []}, {"id": "siswa", "en": "student", "ida": ["pelajar"], "ena": []}, {"id": "papan tulis", "en": "board", "ida": [], "ena": []}, {"id": "jendela", "en": "window", "ida": [], "ena": []}, {"id": "guru", "en": "teacher", "ida": [], "ena": []}, {"id": "bersih", "en": "clean", "ida": [], "ena": []}, {"id": "buku", "en": "book", "ida": [], "ena": []}, {"id": "tempat pensil", "en": "pencil case", "ida": [], "ena": []}, {"id": "meja guru", "en": "teacher's desk", "ida": [], "ena": []}, {"id": "meja siswa", "en": "student's desk", "ida": [], "ena": []}, {"id": "lemari", "en": "cupboard", "ida": [], "ena": []}, {"id": "tanaman", "en": "plant", "ida": [], "ena": []}, {"id": "papan pengumuman", "en": "notice board", "ida": [], "ena": []}, {"id": "pengeras suara", "en": "loudspeaker", "ida": [], "ena": []}]}, {"title": "Preposisi · Prepositions of place", "words": [{"id": "di atas", "en": "on / above", "ida": [], "ena": []}, {"id": "di bawah", "en": "under / below", "ida": [], "ena": []}, {"id": "di dalam", "en": "inside", "ida": [], "ena": []}, {"id": "di depan", "en": "in front of", "ida": [], "ena": []}, {"id": "di antara", "en": "between", "ida": [], "ena": []}, {"id": "di belakang", "en": "behind", "ida": [], "ena": ["at the back"]}, {"id": "di samping", "en": "beside", "ida": [], "ena": ["next to"]}, {"id": "di tengah", "en": "in the middle", "ida": [], "ena": ["in the centre", "in the center"]}, {"id": "di dekat", "en": "near", "ida": [], "ena": ["close to"]}]}, {"title": "Teks iklan · Advertisements", "words": [{"id": "produk", "en": "product", "ida": [], "ena": []}, {"id": "iklan", "en": "advertisement", "ida": [], "ena": []}, {"id": "judul", "en": "title", "ida": [], "ena": []}, {"id": "informasi", "en": "information", "ida": [], "ena": []}]}, {"title": "Hewan · Animals", "words": [{"id": "gajah", "en": "elephant", "ida": [], "ena": []}, {"id": "jerapah", "en": "giraffe", "ida": [], "ena": []}, {"id": "monyet", "en": "monkey", "ida": ["kera"], "ena": []}, {"id": "kura-kura", "en": "tortoise", "ida": [], "ena": []}, {"id": "kelinci", "en": "rabbit", "ida": [], "ena": []}, {"id": "bebek", "en": "duck", "ida": [], "ena": []}, {"id": "kambing", "en": "goat", "ida": [], "ena": []}, {"id": "sapi", "en": "cow", "ida": [], "ena": []}, {"id": "ayam", "en": "chicken", "ida": [], "ena": []}, {"id": "rusa", "en": "deer", "ida": [], "ena": []}, {"id": "singa", "en": "lion", "ida": [], "ena": []}, {"id": "kucing", "en": "cat", "ida": [], "ena": []}, {"id": "anjing", "en": "dog", "ida": [], "ena": []}, {"id": "ular", "en": "snake", "ida": [], "ena": []}, {"id": "tupai", "en": "squirrel", "ida": [], "ena": []}]}, {"title": "Iklan & kata tanya · Ads & question words", "words": [{"id": "kalimat ajakan", "en": "persuasive sentence", "ida": [], "ena": ["call to action", "persuasive call"]}, {"id": "berapa", "en": "how much", "ida": [], "ena": ["how many"]}, {"id": "apa", "en": "what", "ida": [], "ena": []}, {"id": "siapa", "en": "who", "ida": [], "ena": []}]}, {"title": "Hewan & bagian tubuh · Animals & body parts", "words": [{"id": "harimau", "en": "tiger", "ida": [], "ena": []}, {"id": "paruh", "en": "beak", "ida": [], "ena": []}, {"id": "belalai", "en": "trunk", "ida": [], "ena": []}, {"id": "ekor", "en": "tail", "ida": [], "ena": []}]}, {"title": "Kata sifat & kata kerja · Adjectives & verbs", "words": [{"id": "cepat", "en": "fast", "ida": [], "ena": ["quick"]}, {"id": "lambat", "en": "slow", "ida": [], "ena": []}, {"id": "berat", "en": "heavy", "ida": [], "ena": []}, {"id": "punya", "en": "have", "ida": [], "ena": ["has"]}]}, {"title": "Tentang kelas · Describing the class", "words": [{"id": "rapi", "en": "neat", "ida": [], "ena": []}, {"id": "nyaman", "en": "comfortable", "ida": [], "ena": []}, {"id": "sekolah", "en": "school", "ida": [], "ena": []}, {"id": "umur", "en": "age", "ida": ["usia"], "ena": []}, {"id": "di sisi kanan", "en": "right side", "ida": [], "ena": []}, {"id": "di sisi kiri", "en": "left side", "ida": [], "ena": []}, {"id": "di mana", "en": "where", "ida": [], "ena": []}]}, {"title": "Bagian tubuh hewan · Animal body parts", "words": [{"id": "sayap", "en": "wing", "ida": [], "ena": []}, {"id": "tanduk", "en": "horn", "ida": [], "ena": []}, {"id": "kaki", "en": "leg", "ida": [], "ena": ["foot", "feet"]}, {"id": "kumis", "en": "whiskers", "ida": [], "ena": ["moustache", "mustache"]}, {"id": "taring", "en": "fang", "ida": [], "ena": ["tusk"]}, {"id": "cangkang", "en": "shell", "ida": [], "ena": []}, {"id": "cakar", "en": "claw", "ida": [], "ena": []}, {"id": "sirip", "en": "fin", "ida": [], "ena": []}, {"id": "sisik", "en": "scale", "ida": [], "ena": []}, {"id": "punuk", "en": "hump", "ida": [], "ena": []}, {"id": "bulu", "en": "fur", "ida": [], "ena": ["feather", "hair"]}]}, {"title": "Kata sifat & perbandingan · Adjectives & comparing", "words": [{"id": "kecil", "en": "small", "ida": [], "ena": ["little"]}, {"id": "pendek", "en": "short", "ida": [], "ena": []}, {"id": "ringan", "en": "light", "ida": [], "ena": []}, {"id": "lebih", "en": "more", "ida": [], "ena": ["-er"]}]}, {"title": "Kata baru dalam iklan · New words in the ads", "words": [{"id": "tersedia", "en": "available", "ida": [], "ena": []}, {"id": "hubungi", "en": "contact", "ida": [], "ena": []}, {"id": "gratis", "en": "free", "ida": [], "ena": []}, {"id": "diskon", "en": "discount", "ida": [], "ena": []}, {"id": "harga", "en": "price", "ida": [], "ena": []}, {"id": "cicilan", "en": "instalment", "ida": [], "ena": []}, {"id": "kolam renang", "en": "swimming pool", "ida": [], "ena": []}, {"id": "mahasiswa", "en": "university student", "ida": [], "ena": []}, {"id": "dibawa pulang", "en": "takeaway", "ida": [], "ena": []}, {"id": "kantin", "en": "canteen", "ida": [], "ena": []}, {"id": "segar", "en": "fresh", "ida": [], "ena": []}, {"id": "tiket", "en": "ticket", "ida": [], "ena": []}, {"id": "loket", "en": "ticket counter", "ida": [], "ena": []}, {"id": "kupon", "en": "coupon", "ida": [], "ena": []}, {"id": "jus jeruk", "en": "orange juice", "ida": [], "ena": []}, {"id": "es kelapa", "en": "coconut ice drink", "ida": [], "ena": []}]}];
+// part a: show en, hide id.  part b: show id, hide en.
+const PARTS = {
+  a: { shown: 'en', hidden: 'id', hiddenAlt: 'ida', shownCls: 'en-side', label: 'tap to show Indonesian' },
+  b: { shown: 'id', hidden: 'en', hiddenAlt: 'ena', shownCls: 'id-side', label: 'tap to show English' }
+};
+const order = { a: null, b: null };
+
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function wordCell(w, part) {
+  const p = PARTS[part];
+  const alts = (w[p.hiddenAlt] || []).map(a => '<span class="alt">/ ' + esc(a) + '</span>').join('');
+  return { text: esc(w[p.hidden]), alts };
+}
+
+function render(part) {
+  const p = PARTS[part];
+  const root = document.getElementById('list-' + part);
+  let html = '';
+  if (order[part]) {
+    html += '<div class="list">' + order[part].map(w => rowHtml(w, part)).join('') + '</div>';
+  } else {
+    DATA.forEach(g => {
+      html += '<h3 class="sub-head">' + esc(g.title) + '</h3><div class="list">' + g.words.map(w => rowHtml(w, part)).join('') + '</div>';
+    });
+  }
+  root.innerHTML = html;
+}
+
+function rowHtml(w, part) {
+  const p = PARTS[part];
+  const c = wordCell(w, part);
+  return '<div class="row">' +
+    '<div class="cell shown ' + p.shownCls + '">' + esc(w[p.shown]) + '</div>' +
+    '<div class="cell hidden-cell" tabindex="0" role="button" aria-label="Reveal answer" data-text="' + c.text + '" data-alts="' + esc(c.alts) + '">' + p.label + '</div>' +
+    '</div>';
+}
+
+function reveal(cell) {
+  cell.className = 'cell revealed';
+  cell.removeAttribute('role');
+  cell.innerHTML = cell.dataset.text + (cell.dataset.alts ? ' ' + cell.dataset.alts : '');
+}
+function hide(cell, part) {
+  cell.className = 'cell hidden-cell';
+  cell.textContent = PARTS[part].label;
+}
+function toggle(cell, part) {
+  if (cell.classList.contains('revealed')) hide(cell, part); else reveal(cell);
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+document.addEventListener('click', e => {
+  const cell = e.target.closest('.hidden-cell, .revealed');
+  if (cell) { toggle(cell, cell.closest('#list-b') ? 'b' : 'a'); return; }
+  const btn = e.target.closest('[data-act]');
+  if (!btn) return;
+  const part = btn.dataset.part, root = document.getElementById('list-' + part);
+  const act = btn.dataset.act;
+  if (act === 'reveal') root.querySelectorAll('.hidden-cell').forEach(reveal);
+  else if (act === 'hide') root.querySelectorAll('.revealed').forEach(c => hide(c, part));
+  else if (act === 'shuffle') { order[part] = shuffle(DATA.flatMap(g => g.words)); render(part); }
+  else if (act === 'reset') { order[part] = null; render(part); }
+});
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('hidden-cell')) {
+    e.preventDefault(); toggle(e.target, e.target.closest('#list-b') ? 'b' : 'a');
+  }
+});
+render('a'); render('b');
+</script>
+</body>
+</html>
