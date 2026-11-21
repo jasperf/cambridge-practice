@@ -143,7 +143,7 @@ anything for you: set each MCQ's `correct` letter so the spread passes check 1.
 
 ```bash
 python3 scripts/build_vocab_drill.py scripts/review_specs/s2_sem1_bahasa_vocab_2.py
-python3 scripts/build_vocab_drill.py --only-md scripts/review_specs/s2_sem1_bahasa_vocab.py
+python3 scripts/build_vocab_drill.py scripts/review_specs/s2_sem1_bahasa_vocab.py
 ```
 
 Like the review-sheet builder, this one **writes** files: from one spec it
