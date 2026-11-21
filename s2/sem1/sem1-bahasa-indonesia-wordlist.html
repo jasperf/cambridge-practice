@@ -58,7 +58,34 @@ h1 em { font-style: italic; color: var(--accent); }
 .cell.revealed .alt { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 400; color: var(--text-muted); }
 .en-side { color: var(--accent-math); } .id-side { color: var(--accent-warn); }
 .divider { height: 1px; background: var(--border); margin: 52px 0 0; }
+.steps { display: grid; gap: 10px; }
+.step { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 13px 16px; }
+.step-num { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--accent); min-width: 28px; line-height: 1.15; }
+.step h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
+.step p { font-size: 0.9rem; color: var(--text-muted); }
+.step p em { color: var(--text); font-style: normal; font-family: var(--font-mono); font-size: 0.82rem; }
+.golden { background: var(--surface2); border-left: 3px solid var(--accent-warn); border-radius: 0 6px 6px 0; padding: 12px 16px; font-size: 0.95rem; margin-top: 16px; }
+.golden b { color: var(--accent-warn); }
+.guide-p { font-size: 0.92rem; color: var(--text-muted); max-width: 700px; margin-bottom: 6px; }
+.guide-p em { color: var(--text); }
+.trick { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 0.9rem; color: var(--text-muted); }
+.trick b { color: var(--text); font-family: var(--font-display); }
+.trick em { color: var(--accent-warn); font-style: normal; }
+.tricks { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+.sched { width: 100%; max-width: 700px; border-collapse: collapse; font-size: 0.88rem; }
+.sched th { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); }
+.sched td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.sched td:first-child { font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-math); white-space: nowrap; }
+.sched tr.today td { color: var(--text); background: rgba(245,166,35,0.07); }
+.sched tr.today td:first-child { color: var(--accent-warn); }
+.checklist { display: grid; gap: 8px; }
+.check-item { display: flex; align-items: center; gap: 11px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 11px 14px; cursor: pointer; user-select: none; font-size: 0.9rem; transition: border-color .18s; }
+.check-item:hover { border-color: var(--accent); }
+.check-item input { accent-color: var(--accent); width: 16px; height: 16px; pointer-events: none; flex-shrink: 0; }
+.check-item.done { border-color: rgba(46,204,113,0.35); color: var(--text-dim); }
+.check-item.done span { text-decoration: line-through; }
 @media (max-width: 600px) {
+  .tricks { grid-template-columns: 1fr; }
   .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
   .hero, .main, .tabs { padding-left: 16px; padding-right: 16px; }
   .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
@@ -84,6 +111,7 @@ h1 em { font-style: italic; color: var(--accent); }
 <div class="tabs">
   <a href="#a" class="tab">A &middot; English &rarr; Indonesian</a>
   <a href="#b" class="tab">B &middot; Indonesian &rarr; English</a>
+  <a href="#guide" class="tab">How to use these cards</a>
 </div>
 <div class="main">
   <section id="a">
@@ -108,6 +136,50 @@ h1 em { font-style: italic; color: var(--accent); }
       <button class="btn" data-act="reset" data-part="b">Original order</button>
     </div>
     <div id="list-b"></div>
+  </section>
+  <div class="divider"></div>
+  <section id="guide">
+    <div class="section-head"><h2>How to use these cards to <em>memorize</em></h2><div class="sub">Read once &mdash; then do it every time</div></div>
+    <div class="info-box">Short answer: <em>do not read the list</em>. To memorize, you test yourself out loud (your brain only keeps what it has to work for) and you come back over several days (memory strengthens with sleep and repetition). The word list above is your deck &mdash; the routine below turns it into memory. The <em>Reveal all</em> / <em>Hide all</em> buttons are only for a final check, never for learning.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><h4>Shuffle first</h4><p>Press <em>Shuffle</em> in the part you are doing. If the words stay in the same order, you will memorize the list &mdash; not the words.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div><h4>Say the answer out loud &mdash; before tapping</h4><p>Look at the English word and say the Indonesian out loud (in Part B, the reverse). Speaking forces recall; reading silently does not.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div><h4>Tap to check &mdash; honestly</h4><p>Only tap a hidden box after you have said an answer. If you peeked, tap the revealed box to hide it again and put that word in your <em>again</em> pile.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div><h4>Do the wrong pile again</h4><p>At the end of the list, hide the words you got wrong and do them again. Keep looping until one full pass has zero wrong. Words you get right twice move to the back of the deck &mdash; spend your time on the hard ones.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div><h4>Use both directions</h4><p>Do Part A (English &rarr; Indonesian) <em>and</em> Part B (Indonesian &rarr; English). Producing a word is harder than recognizing it, and the exam asks you to produce &mdash; so Part A usually needs the most practice.</p></div></div>
+      <div class="step"><div class="step-num">6</div><div><h4>Short sessions, repeated</h4><p>10&ndash;15 minutes a day beats one long cram. Words stick when you come back to them tomorrow, not when you see them twenty times in one evening.</p></div></div>
+    </div>
+    <div class="golden"><b>Golden rule:</b> never reveal a card before you have tried it. A card you peek at is a card you have not learned.</div>
+
+    <h3 class="sub-head">Memory tricks that work with this list</h3>
+    <div class="tricks">
+      <div class="trick"><b>Say it in a sentence.</b> Take <em>kursi</em> (chair) and say &ldquo;Kursi itu di bawah meja&rdquo; &mdash; &ldquo;the chair is under the table&rdquo;. Using a word in your own sentence turns &ldquo;I&rsquo;ve seen this&rdquo; into &ldquo;I can use this&rdquo;.</div>
+      <div class="trick"><b>Make a picture or a sound-link.</b> <em>Monyet</em> (monkey) sounds like &ldquo;monkey&rdquo;. <em>Gajah</em> (elephant) &mdash; imagine a grey giant with big ears. The sillier the image, the stickier it is.</div>
+      <div class="trick"><b>Write it down after checking.</b> When you reveal a word, write it 2&ndash;3 times on paper while saying it out loud. Hand + mouth + ear together lock it in faster than eyes alone.</div>
+      <div class="trick"><b>Teach it.</b> Explain 5 words to someone at home, or say them to yourself as if teaching. If you can teach it, you know it.</div>
+      <div class="trick"><b>Learn one group, then mix.</b> The list is grouped by topic (classroom, animals, ads). Learn one group until it is clean, then press <em>Shuffle</em> so the groups mix &mdash; the exam will not give you words in neat groups.</div>
+      <div class="trick"><b>Sleep on it.</b> Do your last pass in the evening. Sleep is when the brain files new words into long-term memory &mdash; cramming at midnight without sleep is mostly wasted.</div>
+    </div>
+
+    <h3 class="sub-head">Plan until the exam &mdash; Tuesday 24 November</h3>
+    <table class="sched">
+      <tr><th>Day</th><th>What to do</th><th>Time</th></tr>
+      <tr data-date="2026-11-21"><td>Sat 21 Nov</td><td>Part A shuffled + wrong-pile loop, then the memory tricks</td><td>15 min</td></tr>
+      <tr data-date="2026-11-22"><td>Sun 22 Nov</td><td>Part B shuffled, then Part A again</td><td>15 min</td></tr>
+      <tr data-date="2026-11-23"><td>Mon 23 Nov</td><td>Both parts &mdash; only the words you got wrong before</td><td>10 min</td></tr>
+      <tr data-date="2026-11-24"><td>Tue 24 Nov &middot; exam morning</td><td>One quick shuffled pass of both parts</td><td>10 min</td></tr>
+    </table>
+
+    <h3 class="sub-head">Today's checklist</h3>
+    <div class="btns"><button class="btn" id="check-reset">Reset checklist</button></div>
+    <div class="checklist" id="checklist">
+      <div class="check-item" data-id="shuffle"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Pressed Shuffle &mdash; did not memorize the order</span></div>
+      <div class="check-item" data-id="a"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Part A: said every answer out loud before tapping</span></div>
+      <div class="check-item" data-id="pile"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Wrong pile done again until one full pass was clean</span></div>
+      <div class="check-item" data-id="b"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Part B (Indonesian &rarr; English), same routine</span></div>
+      <div class="check-item" data-id="tricks"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Used 2 memory tricks: a sentence and a picture/sound-link</span></div>
+      <div class="check-item" data-id="hide"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Hid everything again so tomorrow starts fresh</span></div>
+    </div>
   </section>
 </div>
 <script>
@@ -186,6 +258,40 @@ document.addEventListener('keydown', e => {
     e.preventDefault(); toggle(e.target, e.target.closest('#list-b') ? 'b' : 'a');
   }
 });
+// guide: highlight today's row in the exam plan
+(function(){
+  var now = new Date();
+  var iso = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+  document.querySelectorAll('.sched tr[data-date]').forEach(function(r){ if (r.dataset.date === iso) r.classList.add('today'); });
+})();
+// guide: persistent checklist
+(function(){
+  var KEY = 'bi-wordlist-guide-checks-v1';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) {}
+  var items = document.querySelectorAll('.check-item');
+  function apply() {
+    items.forEach(function(it){
+      var on = !!state[it.dataset.id];
+      it.classList.toggle('done', on);
+      it.querySelector('input').checked = on;
+    });
+  }
+  items.forEach(function(it){
+    it.addEventListener('click', function(e){
+      e.preventDefault();
+      state[it.dataset.id] = !state[it.dataset.id];
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(err) {}
+      apply();
+    });
+  });
+  document.getElementById('check-reset').addEventListener('click', function(){
+    state = {};
+    try { localStorage.setItem(KEY, '{}'); } catch(err) {}
+    apply();
+  });
+  apply();
+})();
 render('a'); render('b');
 </script>
 </body>

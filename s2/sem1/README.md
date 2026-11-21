@@ -120,7 +120,7 @@ s2/sem1/
 ├── sem1-bahasa-indonesia-vocab-2.html            ← Interactive (Vocabulary drill 2: 40 more words)
 ├── sem1-bahasa-indonesia-vocab-2.md              ← Printable drill 2
 ├── sem1-bahasa-indonesia-vocab-2-answers.md      ← Every accepted spelling
-├── sem1-bahasa-indonesia-wordlist.html           ← Word list: all 96 words, hide/reveal EN ↔ ID (not marked)
+├── sem1-bahasa-indonesia-wordlist.html           ← Word list: all 96 words, hide/reveal EN ↔ ID + how-to-memorize guide tab (not marked)
 ├── sem1-maths-paper1-non-calculator.html         ← Interactive (Maths Paper 1, no calculator)
 ├── sem1-maths-paper1-non-calculator.md           ← Printable + Q37–Q41 written
 ├── sem1-maths-paper1-non-calculator-answers.md   ← Answers + marking guide
