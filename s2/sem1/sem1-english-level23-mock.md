@@ -16,16 +16,16 @@ Simple, compound, complex and compound-complex sentences; FANBOYS and MOTH; semi
 **Q1** (1 mark)\
 What type of sentence is this? *“The bell rang, and the students rushed outside.”*
 - A) Simple
-- B) Compound
+- B) Compound-complex
 - C) Complex
-- D) Compound-complex
+- D) Compound
 
 **Q2** (1 mark)\
 What type of sentence is this? *“Although the rain was heavy, the match continued.”*
 - A) Compound
 - B) Simple
-- C) Complex
-- D) Compound-complex
+- C) Compound-complex
+- D) Complex
 
 **Q3** (1 mark)\
 What type of sentence is this? *“My sister and her friend cooked and served dinner.”*
@@ -37,9 +37,9 @@ What type of sentence is this? *“My sister and her friend cooked and served di
 **Q4** (1 mark)\
 What type of sentence is this? *“Because the road was flooded, the bus was late, so we missed assembly.”*
 - A) Complex
-- B) Compound
+- B) Compound-complex
 - C) Simple
-- D) Compound-complex
+- D) Compound
 
 **Q5** (1 mark)\
 Type the FANBOYS conjunction that best completes the sentence: *“I wanted to join the team, ___ I had not practised all summer.”*
@@ -48,16 +48,16 @@ Answer: ____________________
 
 **Q6** (1 mark)\
 Which sentence uses *however* correctly?
-- A) The test was hard, however everyone finished.
-- B) The test was hard however, everyone finished.
-- C) The test was hard; however, everyone finished.
+- A) The test was hard; however everyone, finished.
+- B) The test was hard; however everyone, finished.
+- C) The test was hard; however everyone, finished.
 - D) The test was hard; however everyone, finished.
 
 **Q7** (1 mark)\
 Which sentence uses a semicolon correctly?
-- A) The library was silent; not a single page turned.
+- A) Because the library was silent; we whispered.
 - B) The library was silent; and quiet.
-- C) Because the library was silent; we whispered.
+- C) The library was silent; not a single page turned.
 - D) The library; was silent.
 
 **Q8** (1 mark)\
@@ -67,9 +67,9 @@ Answer: ____________________
 
 **Q9** (1 mark)\
 Which complex sentence is punctuated correctly?
-- A) Because it was raining we stayed inside.
-- B) We stayed inside, because it was raining.
-- C) We stayed inside because it was raining.
+- A) We stayed inside because it was raining.
+- B) We stayed inside because it was raining.
+- C) Because, it was raining we stayed inside.
 - D) Because, it was raining we stayed inside.
 
 **Q10** (1 mark)\
@@ -108,8 +108,8 @@ Which sentence best sums up the writer’s **viewpoint** in Text 1?
 
 **Q12** (1 mark)\
 Text 1 opens with *“Picture this:”*. What is the writer doing with these words?
-- A) Quoting an expert to sound reliable
-- B) Using an imperative to pull the reader into the scene
+- A) Using an imperative to pull the reader into the scene
+- B) Quoting an expert to sound reliable
 - C) Admitting the other side has a point
 - D) Giving a statistic
 
@@ -117,16 +117,16 @@ Text 1 opens with *“Picture this:”*. What is the writer doing with these wor
 What is the effect of the simile *“crisp packets drift like tumbleweed”* in paragraph 1?
 
 **Diagram:** A before-and-after picture: a strip of cracked concrete with a crisp packet blowing across it, then the same strip full of sunflowers and tomato plants.
-- A) It makes the space feel empty and abandoned, like a deserted desert town.
+- A) It proves that the school has a cleaner.
 - B) It shows that students enjoy playing in this area.
 - C) It warns the reader that litter causes illness.
-- D) It proves that the school has a cleaner.
+- D) It makes the space feel empty and abandoned, like a deserted desert town.
 
 **Q14** (1 mark)\
 In paragraph 1 the writer places two pictures of the same space side by side. Which technique is this?
 - A) Rule of three
-- B) Anecdote
-- C) Juxtaposition
+- B) Juxtaposition
+- C) Anecdote
 - D) Expert opinion
 
 **Q15** (1 mark)\
@@ -138,8 +138,8 @@ Answer: ______ %
 Why does the writer include the words of Dr Amara Osei?
 - A) To give an anecdote about her own school
 - B) To show the reader that gardens are expensive
-- C) To ask the reader a question
-- D) Because the view of a qualified person makes the claim more believable
+- C) Because the view of a qualified person makes the claim more believable
+- D) To ask the reader a question
 
 **Q17** (1 mark)\
 Paragraph 2 ends with a rule of three. Type the **first** of the three things gardens teach.
@@ -148,8 +148,8 @@ Answer: ____________________
 
 **Q18** (1 mark)\
 Paragraph 3 begins *“Some people argue that gardens cost too much. It is true that…”*. Which technique is the writer using?
-- A) Repetition
-- B) Concession (a counter-argument, then a reply)
+- A) Concession (a counter-argument, then a reply)
+- B) Repetition
 - C) Direct address
 - D) Inclusive language
 
@@ -160,9 +160,9 @@ Answer: ____________________
 
 **Q20** (2 marks)\
 What is the main purpose of the story about Rafi in paragraph 4?
-- A) To give a relatable example of a garden changing a student’s attitude
+- A) To explain how a watering system works
 - B) To prove that gardens are cheap to run
-- C) To explain how a watering system works
+- C) To give a relatable example of a garden changing a student’s attitude
 - D) To show that Rafi was a bad student
 
 **Q21** (1 mark)\
@@ -175,9 +175,9 @@ What is the main purpose of the story about Rafi in paragraph 4?
 **Q22** (2 marks)\
 A student is writing a PEEE answer about the phrase *“a classroom without walls”*. Which sentence is the best **Explore** step?
 - A) The writer says a garden is a classroom without walls.
-- B) This quotation comes from paragraph 2.
+- B) The metaphor “without walls” suggests freedom: learning is no longer boxed in, so a garden sounds bigger and more exciting than a normal classroom.
 - C) Gardens are good for students.
-- D) The metaphor “without walls” suggests freedom: learning is no longer boxed in, so a garden sounds bigger and more exciting than a normal classroom.
+- D) This quotation comes from paragraph 2.
 
 **Q23** (1 mark)\
 Paragraph 5 has two sentences that start with an imperative verb. Type the imperative verb that starts the **second** of them.
@@ -211,22 +211,22 @@ What is the viewpoint of the writer of Text 2?
 
 **Diagram:** An envelope with a stamp, labelled “Letters to the Editor”.
 - A) School gardens are a waste of time.
-- B) Gardens are a good idea, but repairs should come first.
+- B) Science lessons should take place outdoors.
 - C) Students should water the garden in the holidays.
-- D) Science lessons should take place outdoors.
+- D) Gardens are a good idea, but repairs should come first.
 
 **Q25** (1 mark)\
 Paragraph 1 says *“I agree that fresh air is good for young people. But…”*. Why does the writer agree before disagreeing?
-- A) To sound fair and reasonable, so the reader is more willing to listen to the objection
-- B) To change their mind and support the garden
+- A) To change their mind and support the garden
+- B) To sound fair and reasonable, so the reader is more willing to listen to the objection
 - C) To give a statistic about fresh air
 - D) To add a rhetorical question
 
 **Q26** (1 mark)\
 *“Our science laboratory still has only six working microscopes for a class of thirty.”* Which part of an argument is this sentence?
 - A) Claim
-- B) Counter-argument
-- C) Evidence
+- B) Evidence
+- C) Counter-argument
 - D) Conclusion
 
 **Q27** (1 mark)\
@@ -238,28 +238,28 @@ Answer: ____________________
 In paragraph 3 the writer turns *“the beautiful garden in the article”* into *“a patch of dead stalks”*. What is the effect?
 - A) It praises the garden in the article.
 - B) It gives the reader an expert opinion.
-- C) It describes what the school looks like now.
-- D) The sudden contrast shows how quickly the dream could fail without a plan.
+- C) The sudden contrast shows how quickly the dream could fail without a plan.
+- D) It describes what the school looks like now.
 
 **Q29** (2 marks)\
 Which statement best compares the viewpoints of Text 1 and Text 2?
-- A) Both writers think gardens are a bad idea.
-- B) Both see some value in gardens, but they disagree about whether one should come first.
+- A) Both see some value in gardens, but they disagree about whether one should come first.
+- B) Both writers think gardens are a bad idea.
 - C) Text 2 agrees with everything in Text 1.
 - D) Text 1 is against gardens and Text 2 is for them.
 
 **Q30** (2 marks)\
 How are the two writers’ methods **different**?
-- A) Text 1 appeals more to feelings (imagery, anecdote, rhetorical question); Text 2 relies more on practical facts and logical order.
-- B) Text 1 only uses statistics; Text 2 only uses emotive language.
+- A) Text 1 only uses statistics; Text 2 only uses emotive language.
+- B) Text 1 appeals more to feelings (imagery, anecdote, rhetorical question); Text 2 relies more on practical facts and logical order.
 - C) Neither text uses any persuasive techniques.
 - D) Text 2 uses an anecdote about a student; Text 1 does not.
 
 **Q31** (1 mark)\
 *“Let us repair the classrooms first; the garden can come next year.”* Why is the semicolon correct here?
 - A) It comes before a list.
-- B) It replaces the word *because*.
-- C) It joins two closely related independent clauses.
+- B) It joins two closely related independent clauses.
+- C) It replaces the word *because*.
 - D) It always goes before the word *the*.
 
 ---
@@ -272,54 +272,54 @@ New sentences, not from the texts. Name the technique, then think about its effe
 
 **Q32** (1 mark)\
 *“Cheaper, cleaner, quicker: the bicycle wins every time.”* Which technique opens this sentence?
-- A) Rhetorical question
+- A) Rule of three
 - B) Concession
 - C) Expert opinion
-- D) Rule of three
+- D) Rhetorical question
 
 **Q33** (1 mark)\
 *“According to the city council, 4,000 plastic bottles are thrown away near our beach every week.”* Which technique is this?
 - A) Anecdote
-- B) Facts and statistics
+- B) Juxtaposition
 - C) Imperative verb
-- D) Juxtaposition
+- D) Facts and statistics
 
 **Q34** (1 mark)\
 *“You deserve a school day that doesn’t leave you exhausted.”* Which technique is this?
-- A) Direct address
+- A) Repetition
 - B) Inclusive language
-- C) Repetition
+- C) Direct address
 - D) Expert opinion
 
 **Q35** (1 mark)\
 Which version of the sentence is the most **emotive**?
 
 **Diagram:** An “emotion meter” going from neutral to emotive, with the needle pointing high.
-- A) The dog was left outside.
+- A) The frightened puppy was abandoned in the freezing dark.
 - B) The dog stayed outside for some time.
 - C) The dog was outside during the night.
-- D) The frightened puppy was abandoned in the freezing dark.
+- D) The dog was left outside.
 
 **Q36** (1 mark)\
 *“Hundreds of innocent animals are trapped in filthy cages.”* Which word makes the reader feel the animals are **not to blame**?
 - A) trapped
 - B) filthy
-- C) innocent
-- D) hundreds
+- C) hundreds
+- D) innocent
 
 **Q37** (2 marks)\
 A writer asks: *“Do we really want our children breathing poisoned air?”* Which sentence best explains the **effect** on the reader?
 
 **Diagram:** A chain of four boxes: Technique (name it) → Evidence (quote it) → Purpose (why use it?) → Effect (on the reader).
-- A) It is a question with a question mark.
-- B) It makes the reader answer “no” in their head and feel worried for children, so they are more likely to agree that action is needed.
+- A) It makes the reader answer “no” in their head and feel worried for children, so they are more likely to agree that action is needed.
+- B) It is a question with a question mark.
 - C) It tells the reader how many children there are.
 - D) It is a rhetorical question because it asks something.
 
 **Q38** (1 mark)\
 Which sentence is a **sweeping generalisation** that a careful persuasive writer should avoid?
-- A) Everybody knows homework is pointless.
-- B) In our class, 18 of 30 students said homework took over two hours a night.
+- A) In our class, 18 of 30 students said homework took over two hours a night.
+- B) Everybody knows homework is pointless.
 - C) Some students find long homework tiring.
 - D) A shorter homework load could give students more time to rest.
 
@@ -327,20 +327,20 @@ Which sentence is a **sweeping generalisation** that a careful persuasive writer
 In a persuasive essay, what is the job of the **thesis statement**?
 - A) To tell a funny story that grabs attention
 - B) To list every source used
-- C) To give the other side’s view
-- D) To state the writer’s opinion and what should be done
+- C) To state the writer’s opinion and what should be done
+- D) To give the other side’s view
 
 **Q40** (1 mark)\
 Which is the strongest **hook** to open a speech about plastic waste?
 - A) Today I am going to talk about plastic.
 - B) Plastic is a material.
-- C) By the time I finish this speech, another truckload of plastic will have entered the ocean.
-- D) In conclusion, plastic is bad.
+- C) In conclusion, plastic is bad.
+- D) By the time I finish this speech, another truckload of plastic will have entered the ocean.
 
 **Q41** (1 mark)\
 Two writers describe the same council plan. Which word shows that the writer **disapproves**?
-- A) The council’s plan is *bold*.
-- B) The council’s plan is *reckless*.
+- A) The council’s plan is *reckless*.
+- B) The council’s plan is *bold*.
 - C) The council’s plan is *ambitious*.
 - D) The council’s plan is *daring*.
 

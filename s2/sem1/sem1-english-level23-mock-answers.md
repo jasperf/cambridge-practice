@@ -8,23 +8,23 @@ Answers for Q1–Q41 (auto-marked on the interactive sheet) and a marking guide 
 
 ## Section A: Sentences & Punctuation
 
-**Q1** (1 mark): **B**: Compound. Compound: two independent clauses (*the bell rang* / *the students rushed outside*) joined by the FANBOYS conjunction *and*.
+**Q1** (1 mark): **D**: Compound. Compound: two independent clauses (*the bell rang* / *the students rushed outside*) joined by the FANBOYS conjunction *and*.
 
-**Q2** (1 mark): **C**: Complex. Complex: one dependent clause (*Although the rain was heavy*) plus one independent clause (*the match continued*).
+**Q2** (1 mark): **D**: Complex. Complex: one dependent clause (*Although the rain was heavy*) plus one independent clause (*the match continued*).
 
 **Q3** (1 mark): **A**: Simple. Simple: one clause with a compound subject (*my sister and her friend*) and a compound predicate (*cooked and served*).
 
-**Q4** (1 mark): **D**: Compound-complex. Compound-complex: a dependent clause (*Because the road was flooded*) plus two independent clauses joined by *so*.
+**Q4** (1 mark): **B**: Compound-complex. Compound-complex: a dependent clause (*Because the road was flooded*) plus two independent clauses joined by *so*.
 
 **Q5** (1 mark): *but* (or *yet*): the second clause contrasts with the first.
 
 **Q6** (1 mark): **C**: The test was hard; however, everyone finished.. A semicolon goes before the conjunctive adverb and a comma after it: *…hard; however, everyone…*
 
-**Q7** (1 mark): **A**: The library was silent; not a single page turned.. Both sides of the semicolon are independent clauses, and the ideas are closely linked.
+**Q7** (1 mark): **C**: The library was silent; not a single page turned.. Both sides of the semicolon are independent clauses, and the ideas are closely linked.
 
 **Q8** (1 mark): *otherwise*: it means “if you don’t take one”.
 
-**Q9** (1 mark): **C**: We stayed inside because it was raining.. When the dependent clause comes after the independent clause, no comma is needed. (If it came first, you would put a comma after it.)
+**Q9** (1 mark): **A**: We stayed inside because it was raining.. When the dependent clause comes after the independent clause, no comma is needed. (If it came first, you would put a comma after it.)
 
 **Q10** (1 mark): *Unless*: it turns *you water them* into a dependent clause.
 
@@ -32,69 +32,69 @@ Answers for Q1–Q41 (auto-marked on the interactive sheet) and a marking guide 
 
 **Q11** (1 mark): **D**: Every school should have a garden because it helps students learn and grow.. The title and every paragraph build towards one belief: every school should have a garden because of what it does for students.
 
-**Q12** (1 mark): **B**: Using an imperative to pull the reader into the scene. *Picture* is an imperative verb aimed straight at the reader, so the reader is pulled into imagining the scene from the first word.
+**Q12** (1 mark): **A**: Using an imperative to pull the reader into the scene. *Picture* is an imperative verb aimed straight at the reader, so the reader is pulled into imagining the scene from the first word.
 
-**Q13** (2 marks): **A**: It makes the space feel empty and abandoned, like a deserted desert town.. Tumbleweed belongs to empty, deserted places, so the simile makes the concrete strip feel lifeless and forgotten, which makes the garden picture that follows more attractive.
+**Q13** (2 marks): **D**: It makes the space feel empty and abandoned, like a deserted desert town.. Tumbleweed belongs to empty, deserted places, so the simile makes the concrete strip feel lifeless and forgotten, which makes the garden picture that follows more attractive.
 
-**Q14** (1 mark): **C**: Juxtaposition. Juxtaposition: the grey concrete and the blooming garden are placed side by side, so the contrast makes the garden look far better.
+**Q14** (1 mark): **B**: Juxtaposition. Juxtaposition: the grey concrete and the blooming garden are placed side by side, so the contrast makes the garden look far better.
 
 **Q15** (1 mark): 68%: a fact or statistic makes the claim sound checkable and convincing.
 
-**Q16** (1 mark): **D**: Because the view of a qualified person makes the claim more believable. Expert opinion: a child psychologist is qualified to talk about stress and concentration, so her words make the claim more trustworthy.
+**Q16** (1 mark): **C**: Because the view of a qualified person makes the claim more believable. Expert opinion: a child psychologist is qualified to talk about stress and concentration, so her words make the claim more trustworthy.
 
 **Q17** (1 mark): *patience* (patience, teamwork and responsibility).
 
-**Q18** (1 mark): **B**: Concession (a counter-argument, then a reply). Concession: the writer admits the cost point first, then answers it with *However…*. This makes the writer seem fair, and the reply seems stronger.
+**Q18** (1 mark): **A**: Concession (a counter-argument, then a reply). Concession: the writer admits the cost point first, then answers it with *However…*. This makes the writer seem fair, and the reply seems stronger.
 
 **Q19** (1 mark): *However*: it signals the reply to the counter-argument.
 
-**Q20** (2 marks): **A**: To give a relatable example of a garden changing a student’s attitude. Anecdote: one real-feeling case of a shy student who starts to care makes the benefit personal and easy for the reader to believe.
+**Q20** (2 marks): **C**: To give a relatable example of a garden changing a student’s attitude. Anecdote: one real-feeling case of a shy student who starts to care makes the benefit personal and easy for the reader to believe.
 
 **Q21** (1 mark): **C**: It stresses how much of students’ time screens take up, so it sounds excessive.. Repeating the same pattern hammers home how much time is spent on screens, so the change the writer wants seems more needed.
 
-**Q22** (2 marks): **D**: The metaphor “without walls” suggests freedom: learning is no longer boxed in, so a garden sounds bigger and more exciting than a normal classroom.. Explore zooms in on the metaphor and its effect on the reader. The other options only repeat the quote, give its location, or make a general comment.
+**Q22** (2 marks): **B**: The metaphor “without walls” suggests freedom: learning is no longer boxed in, so a garden sounds bigger and more exciting than a normal classroom.. Explore zooms in on the metaphor and its effect on the reader. The other options only repeat the quote, give its location, or make a general comment.
 
 **Q23** (1 mark): *Sign* (“Sign the petition outside the library.”). It is a call to action that tells the reader exactly what to do.
 
 ## Section C: Reading: Text 2 & Comparing
 
-**Q24** (1 mark): **B**: Gardens are a good idea, but repairs should come first.. The parent accepts that gardens have value but argues that the classrooms should be repaired first.
+**Q24** (1 mark): **D**: Gardens are a good idea, but repairs should come first.. The parent accepts that gardens have value but argues that the classrooms should be repaired first.
 
-**Q25** (1 mark): **A**: To sound fair and reasonable, so the reader is more willing to listen to the objection. Concession makes the writer seem balanced and reasonable, so the reader trusts the objection that follows.
+**Q25** (1 mark): **B**: To sound fair and reasonable, so the reader is more willing to listen to the objection. Concession makes the writer seem balanced and reasonable, so the reader trusts the objection that follows.
 
-**Q26** (1 mark): **C**: Evidence. Evidence: a specific, checkable detail that supports the claim that money should go on equipment first.
+**Q26** (1 mark): **B**: Evidence. Evidence: a specific, checkable detail that supports the claim that money should go on equipment first.
 
 **Q27** (1 mark): *Secondly*: a transition word that signposts the next argument.
 
-**Q28** (2 marks): **D**: The sudden contrast shows how quickly the dream could fail without a plan.. The juxtaposition of *beautiful* and *dead stalks* makes the risk vivid: without a holiday plan, the money would be wasted.
+**Q28** (2 marks): **C**: The sudden contrast shows how quickly the dream could fail without a plan.. The juxtaposition of *beautiful* and *dead stalks* makes the risk vivid: without a holiday plan, the money would be wasted.
 
-**Q29** (2 marks): **B**: Both see some value in gardens, but they disagree about whether one should come first.. Text 1 wants a garden now; Text 2 accepts the benefits but wants repairs first. They agree on value and disagree on priority.
+**Q29** (2 marks): **A**: Both see some value in gardens, but they disagree about whether one should come first.. Text 1 wants a garden now; Text 2 accepts the benefits but wants repairs first. They agree on value and disagree on priority.
 
-**Q30** (2 marks): **A**: Text 1 appeals more to feelings (imagery, anecdote, rhetorical question); Text 2 relies more on practical facts and logical order.. Text 1 paints pictures and tells a story to win the reader’s heart; Text 2 lists practical problems (Firstly… Secondly…) to win the reader’s head.
+**Q30** (2 marks): **B**: Text 1 appeals more to feelings (imagery, anecdote, rhetorical question); Text 2 relies more on practical facts and logical order.. Text 1 paints pictures and tells a story to win the reader’s heart; Text 2 lists practical problems (Firstly… Secondly…) to win the reader’s head.
 
-**Q31** (1 mark): **C**: It joins two closely related independent clauses.. Both halves are independent clauses with closely linked ideas (what to do now and what to do later), so a semicolon can join them.
+**Q31** (1 mark): **B**: It joins two closely related independent clauses.. Both halves are independent clauses with closely linked ideas (what to do now and what to do later), so a semicolon can join them.
 
 ## Section D: Persuasive & Emotive Language
 
-**Q32** (1 mark): **D**: Rule of three. Rule of three: three linked words in a row make the point sound complete and memorable.
+**Q32** (1 mark): **A**: Rule of three. Rule of three: three linked words in a row make the point sound complete and memorable.
 
-**Q33** (1 mark): **B**: Facts and statistics. Facts and statistics: a precise, sourced number makes the problem sound real and serious.
+**Q33** (1 mark): **D**: Facts and statistics. Facts and statistics: a precise, sourced number makes the problem sound real and serious.
 
-**Q34** (1 mark): **A**: Direct address. Direct address: speaking to the reader as *you* makes the issue feel personal.
+**Q34** (1 mark): **C**: Direct address. Direct address: speaking to the reader as *you* makes the issue feel personal.
 
-**Q35** (1 mark): **D**: The frightened puppy was abandoned in the freezing dark.. *frightened*, *puppy*, *abandoned* and *freezing* are all chosen to stir up pity and anger.
+**Q35** (1 mark): **A**: The frightened puppy was abandoned in the freezing dark.. *frightened*, *puppy*, *abandoned* and *freezing* are all chosen to stir up pity and anger.
 
-**Q36** (1 mark): **C**: innocent. *innocent* means having done nothing wrong, so the reader feels the animals are suffering unfairly.
+**Q36** (1 mark): **D**: innocent. *innocent* means having done nothing wrong, so the reader feels the animals are suffering unfairly.
 
-**Q37** (2 marks): **B**: It makes the reader answer “no” in their head and feel worried for children, so they are more likely to agree that action is needed.. A good effect sentence explains what the reader thinks or feels and how that pushes them towards the writer’s view. The other options only name or describe the technique.
+**Q37** (2 marks): **A**: It makes the reader answer “no” in their head and feel worried for children, so they are more likely to agree that action is needed.. A good effect sentence explains what the reader thinks or feels and how that pushes them towards the writer’s view. The other options only name or describe the technique.
 
-**Q38** (1 mark): **A**: Everybody knows homework is pointless.. *Everybody knows…* claims something about all people without evidence, so a reader can easily reject it.
+**Q38** (1 mark): **B**: Everybody knows homework is pointless.. *Everybody knows…* claims something about all people without evidence, so a reader can easily reject it.
 
-**Q39** (1 mark): **D**: To state the writer’s opinion and what should be done. The thesis states the writer’s position (and often what should happen), so the reader knows what the essay will argue.
+**Q39** (1 mark): **C**: To state the writer’s opinion and what should be done. The thesis states the writer’s position (and often what should happen), so the reader knows what the essay will argue.
 
-**Q40** (1 mark): **C**: By the time I finish this speech, another truckload of plastic will have entered the ocean.. A surprising, vivid fact creates urgency at once. The other openings are flat, or belong at the end.
+**Q40** (1 mark): **D**: By the time I finish this speech, another truckload of plastic will have entered the ocean.. A surprising, vivid fact creates urgency at once. The other openings are flat, or belong at the end.
 
-**Q41** (1 mark): **B**: The council’s plan is *reckless*.. *reckless* means acting without thinking about danger, which is negative. The other three words are positive or neutral.
+**Q41** (1 mark): **A**: The council’s plan is *reckless*.. *reckless* means acting without thinking about danger, which is negative. The other three words are positive or neutral.
 
 ---
 
