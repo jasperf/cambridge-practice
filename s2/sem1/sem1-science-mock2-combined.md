@@ -1,8 +1,8 @@
 # Secondary 2 · Science — Semester 1 Mock Paper 2 (Combined)
 
-**46 questions · 60 marks** (+ 6 written questions, 24 marks)
+**52 questions · 70 marks** (+ 6 written questions, 24 marks)
 
-A second full practice paper for the Semester 1 assessment, combining every topic on the revision list — including the ones only the gaps drill covers: the excretory system, plant transport, the carbon cycle, conservation of energy, simple versus giant structures, and chromosomes and inheritance. All questions are new. Q1–Q46 match the interactive sheet; Q47–Q52 are written questions marked by the teacher. Allow about 80 minutes for Q1–Q46 and 30 minutes for the written questions. Diagrams are described in words.
+A second full practice paper for the Semester 1 assessment, combining every topic on the revision list — including the ones only the gaps drill covers: the excretory system, plant transport, the carbon cycle, conservation of energy, simple versus giant structures, and chromosomes and inheritance, fetal development and the mother’s health, and interference of sound. All questions are new. Q1–Q52 match the interactive sheet; Q53–Q58 are written questions marked by the teacher. Allow about 80 minutes for Q1–Q52 and 30 minutes for the written questions. Diagrams are described in words.
 
 ---
 
@@ -194,6 +194,7 @@ Answer: ____________________ tonnes
 - **Urinary system:** Kidneys filter blood (renal artery in, renal vein out) → each kidney’s urine goes down a *ureter* to the *bladder*, out through the *urethra*.
 - **Nephrons:** Filter everything except cells and protein, then take back *all the glucose*, most water and the salts the body needs.
 - **DNA, genes, chromosomes:** DNA is the twisted-ladder molecule; a gene is a section that codes for one feature; genes sit on chromosomes in the nucleus.
+- **Pregnancy:** The fetus grows in the uterus, cushioned by amniotic fluid, and is joined to the placenta by the *umbilical cord*. Oxygen and nutrients pass from the mother’s blood to the fetus’s blood, and carbon dioxide and urea pass back. The bloods never mix, but harmful substances (nicotine, carbon monoxide, alcohol, some viruses) can cross too.
 - **Inheritance:** Body cells have 46 chromosomes (23 pairs). *Meiosis* makes gametes with 23 each. Egg always carries X; sperm carries X or Y, so the sperm decides the sex: XX girl, XY boy — a 50/50 chance.
 
 ### Questions
@@ -232,6 +233,25 @@ About 400 babies are born at a hospital. Given a 50/50 chance for each, roughly 
 
 Answer: ____________________
 
+**Q28** (1 mark)\
+After a baby is born, a midwife clamps and cuts the tube that joined the baby to the placenta. What is this tube called?
+
+Answer: ____________________
+
+**Q29** (2 marks)\
+The blood of a mother and her fetus never mix, yet oxygen still gets from her blood to the fetus. How?
+- A) Blood flows straight from her arteries into the fetus’s heart
+- B) The fetus breathes in air from the amniotic fluid
+- C) Oxygen diffuses across the thin placenta from her blood into the fetus’s blood
+- D) Oxygen is carried through the amniotic fluid by the uterus wall
+
+**Q30** (2 marks)\
+A woman smokes throughout her pregnancy. Why is this a risk to her baby?
+- A) The smoke fills the fetus’s lungs with tar
+- B) Carbon monoxide crosses the placenta and lowers the oxygen the fetus’s blood can carry, so the baby may be born small
+- C) Nicotine makes the amniotic fluid too thick for the fetus to move
+- D) The smoke shortens the umbilical cord
+
 ---
 
 ## Section F: Density
@@ -246,31 +266,31 @@ Answer: ____________________
 
 ### Questions
 
-**Q28** (2 marks)\
+**Q31** (2 marks)\
 A block of wood measures 5 cm × 4 cm × 3 cm and has a mass of 90 g. What is its density?
 
 Answer: ____________________ g/cm³
 
-**Q29** (1 mark)\
+**Q32** (1 mark)\
 Use the diagram to find the volume of the small metal object.
 
 **Diagram:** A measuring cylinder reads 60 mL before a small metal object goes in and 75 mL after.
 
 Answer: ____________________ cm³
 
-**Q30** (1 mark)\
+**Q33** (1 mark)\
 Aluminium has a density of 2.7 g/cm³. What is that in kg/m³?
 
 Answer: ____________________ kg/m³
 
-**Q31** (1 mark)\
+**Q34** (1 mark)\
 Iron has a density of 7.9 g/cm³ and mercury is a liquid metal with a density of 13.6 g/cm³. An iron cube is dropped into a bowl of mercury. What happens?
 - A) It floats
 - B) It sinks to the bottom
 - C) It dissolves
 - D) It hangs exactly in the middle
 
-**Q32** (2 marks)\
+**Q35** (2 marks)\
 On a hot day, the air just above a sun-baked road ripples as it rises. Why does warm air rise?
 - A) Warm air is made of lighter particles than cool air
 - B) Warm air is pulled up by the Sun
@@ -288,32 +308,47 @@ On a hot day, the air just above a sun-baked road ripples as it rises. Why does 
 - **Period:** T = 1 ÷ f. A wave with period 0.005 s has f = 1 ÷ 0.005 = 200 Hz.
 - **Loud and quiet:** Bigger amplitude = louder. Higher frequency = higher pitch.
 - **Superposition:** Crest meets crest: add. Crest meets trough: subtract or cancel.
+- **Interference:** Two waves meeting add up. In step (crest with crest): constructive, a bigger wave and a louder sound. Out of step (crest with trough): destructive, they cancel and the sound gets quieter.
 
 ### Questions
 
-**Q33** (1 mark)\
+**Q36** (1 mark)\
 A wave has a period of 0.005 s. What is its frequency?
 
 Answer: ____________________ Hz
 
-**Q34** (1 mark)\
+**Q37** (1 mark)\
 A student wants to make a note sound **louder** without changing its pitch. What should they change?
 - A) Increase the amplitude of the vibration
 - B) Increase the frequency of the vibration
 - C) Decrease the wavelength
 - D) Make the sound travel faster
 
-**Q35** (1 mark)\
+**Q38** (1 mark)\
 Which of these travels as a **transverse** wave?
 - A) Sound from a drum
 - B) Light from the Sun
 - C) The push-and-pull of a slinky sound model
 - D) An echo coming back
 
-**Q36** (1 mark)\
+**Q39** (1 mark)\
 Two water waves meet. One is a crest of amplitude 3 cm; the other, at the same moment and place, is a trough of amplitude 3 cm. What is the amplitude where they meet?
 
 Answer: ____________________ cm
+
+**Q40** (1 mark)\
+Two loudspeakers play the same note. At one spot in the room the crests of the two sound waves arrive together. What does a listener there hear?
+- A) No sound, because the waves cancel
+- B) A higher-pitched note
+- C) A louder note of the same pitch
+- D) A quieter note of lower pitch
+
+**Q41** (2 marks)\
+Noise-cancelling headphones listen to the noise around you and play a second sound that is an exact upside-down copy of it. Why does the noise get quieter?
+- A) Where crest meets trough the two waves cancel (destructive interference), so the combined amplitude is smaller
+- B) The second sound has a higher frequency, so the ear cannot hear it
+- C) The two waves add up and the headphones absorb the extra energy
+- D) The headphones lower the pitch of the noise, so it travels more slowly
 
 ---
 
@@ -329,33 +364,33 @@ Answer: ____________________ cm
 
 ### Questions
 
-**Q37** (2 marks)\
+**Q42** (2 marks)\
 A metal bench and a wooden bench have BOTH been sitting in the same room for hours, at exactly the same temperature. The metal one feels much colder to sit on. Why?
 - A) Metal is naturally at a lower temperature than wood
 - B) Wood stores more heat than metal, so it feels warmer
 - C) Wood is at a higher temperature than metal at all times
 - D) Metal conducts heat away from your body faster than wood does, so your nerves sense a bigger heat loss
 
-**Q38** (1 mark)\
+**Q43** (1 mark)\
 There is almost nothing between the Sun and the Earth. By which method does the Sun’s energy still reach us?
 - A) Conduction
 - B) Convection
 - C) Radiation
 - D) Evaporation
 
-**Q39** (1 mark)\
+**Q44** (1 mark)\
 Hand sanitiser dries on your hands and your skin feels cooler. Which process cooled your skin?
 
 Answer: ____________________
 
-**Q40** (2 marks)\
+**Q45** (2 marks)\
 Use the Sankey diagram. How much energy is transferred as **sound**?
 
 **Diagram:** A Sankey diagram for an electric motor. Input: 800 J electrical. Straight on: 500 J kinetic. Bending downwards: 240 J heat, and a thin arrow labelled "Sound ? J".
 
 Answer: ____________________ J
 
-**Q41** (2 marks)\
+**Q46** (2 marks)\
 A kettle transfers 2000 J of energy every second. 1600 J of each second heats the water. What **percentage** of the energy is useful?
 
 Answer: ____________________ %
@@ -369,38 +404,48 @@ Answer: ____________________ %
 - **Ohm’s law:** V = I × R, so I = V ÷ R and R = V ÷ I. Volts, amps, ohms.
 - **Series:** One loop, same current everywhere, voltages add, R = R₁ + R₂. Break anywhere and everything stops.
 - **Parallel:** Each branch gets the full voltage; branch currents add up. A break in one branch leaves the others working.
+- **Circuit symbols:** Cell: a long and a short line. Switch: a gap with a lever. Lamp: a circle with a cross. Resistor: a rectangle. Ammeter: a circle with A. Voltmeter: a circle with V.
 - **Meters:** Ammeter in *series*; voltmeter in *parallel* across the component.
 
 ### Questions
 
-**Q42** (2 marks)\
+**Q47** (2 marks)\
 Two resistors, 3 Ω and 9 Ω, are joined in series with a 12 V battery. What current flows?
 
 Answer: ____________________ A
 
-**Q43** (1 mark)\
+**Q48** (1 mark)\
 A lamp carries a current of 0.25 A when the voltage across it is 5 V. What is its resistance?
 
 Answer: ____________________ Ω
 
-**Q44** (1 mark)\
+**Q49** (1 mark)\
 Two identical lamps are wired in parallel. The current through each lamp is 0.4 A. What current flows from the battery?
 
 Answer: ____________________ A
 
-**Q45** (1 mark)\
+**Q50** (1 mark)\
 Two lamps are wired in **series** with one battery. One lamp’s filament breaks. What happens to the other lamp?
 - A) It goes out too — the loop is broken and no current can flow
 - B) It stays lit at the same brightness
 - C) It glows brighter than before
 - D) It flickers on and off
 
-**Q46** (1 mark)\
+**Q51** (1 mark)\
 Which meter is connected in **series** in a circuit to measure current?
 - A) A voltmeter
 - B) Either meter works
 - C) An ammeter
 - D) A switch, briefly closed
+
+**Q52** (2 marks)\
+The diagram shows part of a circuit. Symbol X is a circle with a cross inside it and symbol Y is a circle with the letter V inside it. What are X and Y?
+
+**Diagram:** Part of a circuit diagram: symbol X is a circle with a cross inside it; symbol Y is a circle with the letter V inside it.
+- A) X is a resistor and Y is an ammeter
+- B) X is a cell and Y is a voltmeter
+- C) X is a lamp and Y is an ammeter
+- D) X is a lamp and Y is a voltmeter
 
 ---
 
@@ -408,24 +453,24 @@ Which meter is connected in **series** in a circuit to measure current?
 
 Answer these in your notebook. They are not on the interactive sheet.
 
-**Q47** (4 marks)\
+**Q53** (4 marks)\
 Draw dot-and-cross diagrams to show how a magnesium atom (2,8,2) and an oxygen atom (2,6) form ions. Show the electron arrangement and the charge on each ion, then write the formula of the compound.
 
-**Q48** (3 marks)\
+**Q54** (3 marks)\
 A hot air balloon is held upright and then its burner heats the air inside the envelope. Use what you know about particles, density and floating to explain why the balloon rises.
 
-**Q49** (4 marks)\
+**Q55** (4 marks)\
 Plan an investigation into how <strong>temperature</strong> affects the rate of transpiration in a plant. Name the independent variable, the dependent variable, two control variables, and say what result you expect.
 
-**Q50** (4 marks)\
+**Q56** (4 marks)\
 A blade of grass takes carbon dioxide out of the air. A rabbit eats the grass, a fox eats the rabbit, and later all three are dead. Describe how the carbon gets into the grass, how it reaches the fox, and how it returns to the air.
 
-**Q51** (4 marks)\
+**Q57** (4 marks)\
 On a cold day Shanti drinks two large glasses of water; on a hot day, playing football, she drinks almost none. Describe what her kidneys do differently on the two days, and what happens to her urine.
 
-**Q52** (5 marks)\
+**Q58** (5 marks)\
 Draw a circuit diagram with a cell, a switch and two lamps in <strong>series</strong>. Then explain what happens to both lamps if the switch is opened, and explain why houses are wired in parallel rather than series.
 
 ---
 
-*Note: Q1–Q46 match the interactive sheet's questions exactly, so they can be self-checked there. Q47–Q52 are written questions for the notebook and are not auto-marked. Answers and a marking guide are in [`sem1-science-mock2-combined-answers.md`](./sem1-science-mock2-combined-answers.md).*
+*Note: Q1–Q52 match the interactive sheet's questions exactly, so they can be self-checked there. Q53–Q58 are written questions for the notebook and are not auto-marked. Answers and a marking guide are in [`sem1-science-mock2-combined-answers.md`](./sem1-science-mock2-combined-answers.md).*

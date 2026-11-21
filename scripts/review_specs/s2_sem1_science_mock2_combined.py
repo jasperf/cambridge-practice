@@ -18,21 +18,22 @@ META = dict(
     h1='Science Mock 2<br><em>Everything, combined</em>',
     intro=('A second Semester 1 mock that combines every topic on the revision list: atoms, bonding and '
            'giant structures, photosynthesis, transport and the carbon cycle, the excretory system, '
-           'chromosomes and inheritance, density, sound, thermal energy and conservation of energy, and '
-           'electricity. The questions are all new, so take mock 1 first. Use <strong>Cover the notes</strong> '
+           'chromosomes and inheritance, fetal development and the mother&rsquo;s health, density, sound and '
+           'interference, thermal energy and conservation of energy, and electricity with circuit symbols. The questions are all new, so take mock 1 first. Use <strong>Cover the notes</strong> '
            'and try each section cold before reading its key facts.'),
     md_title='Secondary 2 · Science — Semester 1 Mock Paper 2 (Combined)',
     md_intro=('A second full practice paper for the Semester 1 assessment, combining every topic on the '
               'revision list — including the ones only the gaps drill covers: the excretory system, plant '
               'transport, the carbon cycle, conservation of energy, simple versus giant structures, and '
-              'chromosomes and inheritance. All questions are new. Q1–Q46 match the interactive sheet; '
-              'Q47–Q52 are written questions marked by the teacher. Allow about 80 minutes for Q1–Q46 '
+              'chromosomes and inheritance, fetal development and the mother’s health, and interference of '
+              'sound. All questions are new. Q1–Q52 match the interactive sheet; '
+              'Q53–Q58 are written questions marked by the teacher. Allow about 80 minutes for Q1–Q52 '
               'and 30 minutes for the written questions. Diagrams are described in words.'),
     time_chip='About 80 minutes &middot; a calculator helps',
     storage_key='sem1-science-mock2-combined',
     back='../../index.html',
-    answers_note=('Answers for Q1–Q46 (auto-marked on the interactive sheet) and a marking guide for the '
-                  'written questions Q47–Q52. Keep this separate from the question sheet.'),
+    answers_note=('Answers for Q1–Q52 (auto-marked on the interactive sheet) and a marking guide for the '
+                  'written questions Q53–Q58. Keep this separate from the question sheet.'),
     extra_links=[('../sem1/sem1-science-mock.html', 'Mock paper 1'),
                  ('../sem1/sem1-science-revision.html', 'Terms 1–2 review'),
                  ('../sem1/sem1-science-gaps.html', 'Gaps drill'),
@@ -96,6 +97,7 @@ SECTIONS = [
          ('Urinary system', 'Kidneys filter blood (renal artery in, renal vein out) &rarr; each kidney&rsquo;s urine goes down a <em>ureter</em> to the <em>bladder</em>, out through the <em>urethra</em>.'),
          ('Nephrons', 'Filter everything except cells and protein, then take back <em>all the glucose</em>, most water and the salts the body needs.'),
          ('DNA, genes, chromosomes', 'DNA is the twisted-ladder molecule; a <span class="f">gene</span> is a section that codes for one feature; genes sit on <span class="f">chromosomes</span> in the nucleus.'),
+         ('Pregnancy', 'The fetus grows in the uterus, cushioned by amniotic fluid, and is joined to the <span class="f">placenta</span> by the <em>umbilical cord</em>. Oxygen and nutrients pass from the mother&rsquo;s blood to the fetus&rsquo;s blood, and carbon dioxide and urea pass back. The bloods never mix, but harmful substances (nicotine, carbon monoxide, alcohol, some viruses) can cross too.'),
          ('Inheritance', 'Body cells have 46 chromosomes (23 pairs). <em>Meiosis</em> makes gametes with 23 each. Egg always carries X; sperm carries X or Y, so the <span class="f">sperm decides the sex</span>: XX girl, XY boy — a 50/50 chance.'),
        ]),
   dict(key='de', icon='&#129482;', color='var(--accent-warn)', rgba='245,166,35',
@@ -117,6 +119,7 @@ SECTIONS = [
          ('Period', '<span class="f">T = 1 &divide; f</span>. A wave with period 0.005 s has f = 1 &divide; 0.005 = 200 Hz.'),
          ('Loud and quiet', 'Bigger amplitude = louder. Higher frequency = higher pitch.'),
          ('Superposition', 'Crest meets crest: add. Crest meets trough: subtract or cancel.'),
+         ('Interference', 'Two waves meeting add up. In step (crest with crest): <span class="f">constructive</span>, a bigger wave and a louder sound. Out of step (crest with trough): <span class="f">destructive</span>, they cancel and the sound gets quieter.'),
        ]),
   dict(key='th', icon='&#128293;', color='var(--accent-warn)', rgba='245,166,35',
        title='Thermal Energy &amp; Conservation', label='Thermal Energy',
@@ -135,6 +138,7 @@ SECTIONS = [
          ('Ohm&rsquo;s law', '<span class="f">V = I &times; R</span>, so I = V &divide; R and R = V &divide; I. Volts, amps, ohms.'),
          ('Series', 'One loop, same current everywhere, voltages add, <span class="f">R = R&#8321; + R&#8322;</span>. Break anywhere and everything stops.'),
          ('Parallel', 'Each branch gets the full voltage; branch currents add up. A break in one branch leaves the others working.'),
+         ('Circuit symbols', 'Cell: a long and a short line. Switch: a gap with a lever. Lamp: a circle with a cross. Resistor: a rectangle. Ammeter: a circle with A. Voltmeter: a circle with V.'),
          ('Meters', 'Ammeter in <em>series</em>; voltmeter in <em>parallel</em> across the component.'),
        ]),
 ]
@@ -157,6 +161,17 @@ FIG_CYL2 = ('<svg class="q-fig" viewBox="0 0 280 210" role="img" aria-label="Two
             '<text x="200" y="200" font-size="12" fill="#7a84a0" text-anchor="middle" ' + MONO + '>after</text>'
             '<text x="256" y="74" font-size="12" fill="#e8eaf0" text-anchor="middle" ' + MONO + '>75</text>'
             '<text x="140" y="20" font-size="11" fill="#7a84a0" text-anchor="middle" ' + MONO + '>readings in mL</text></svg>')
+FIG_SYM = ('<svg class="q-fig" viewBox="0 0 300 120" role="img" aria-label="Two circuit symbols on a wire: X is a circle '
+           'with a cross inside, Y is a circle with the letter V inside" style="max-width:320px">'
+           '<path class="draw" d="M10 55 H58 M102 55 H178 M222 55 H290" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/>'
+           '<circle class="fill" cx="80" cy="55" r="22" stroke="#e8eaf0" stroke-width="2" fill="none"/>'
+           '<path class="draw" d="M64 39 L96 71 M96 39 L64 71" stroke="#e8eaf0" stroke-width="2" fill="none" pathLength="1"/>'
+           '<text x="80" y="100" font-size="14" fill="#f5a623" text-anchor="middle" ' + MONO + '>X</text>'
+           '<circle class="fill" cx="200" cy="55" r="22" stroke="#e8eaf0" stroke-width="2" fill="none"/>'
+           '<text x="200" y="56" font-size="18" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" ' + MONO + '>V</text>'
+           '<text x="200" y="100" font-size="14" fill="#f5a623" text-anchor="middle" ' + MONO + '>Y</text></svg>')
+MD_SYM = 'Part of a circuit diagram: symbol X is a circle with a cross inside it; symbol Y is a circle with the letter V inside it.'
+
 MD_CYL2 = 'A measuring cylinder reads 60 mL before a small metal object goes in and 75 mL after.'
 
 FIG_SANKEY2 = (
@@ -290,90 +305,117 @@ num('s27','hb',2,'About 400 babies are born at a hospital. Given a 50/50 chance 
     'Half of 400.',
     'About 200 girls (and about 200 boys).')
 
+text('s28','hb',1,'After a baby is born, a midwife clamps and cuts the tube that joined the baby to the placenta. What is this tube called?',
+    ['umbilical cord','the umbilical cord','umbilical'],'It is attached at the baby&rsquo;s navel.',
+    'The umbilical cord.', ph='two words')
+mcq('s29','hb',2,'The blood of a mother and her fetus never mix, yet oxygen still gets from her blood to the fetus. How?',
+    ['Blood flows straight from her arteries into the fetus&rsquo;s heart','The fetus breathes in air from the amniotic fluid','Oxygen diffuses across the thin placenta from her blood into the fetus&rsquo;s blood','Oxygen is carried through the amniotic fluid by the uterus wall'],'c',
+    'Where do the two blood supplies come close together, and what moves from the higher concentration to the lower?',
+    'C — The placenta is a thin exchange surface where the two blood supplies lie side by side, so oxygen diffuses from her blood into the fetus&rsquo;s. The fetus does not breathe air, and the bloods do not mix.')
+mcq('s30','hb',2,'A woman smokes throughout her pregnancy. Why is this a risk to her baby?',
+    ['The smoke fills the fetus&rsquo;s lungs with tar','Carbon monoxide crosses the placenta and lowers the oxygen the fetus&rsquo;s blood can carry, so the baby may be born small','Nicotine makes the amniotic fluid too thick for the fetus to move','The smoke shortens the umbilical cord'],'b',
+    'Think about what passes across the placenta, and what the fetus needs from the mother&rsquo;s blood.',
+    'B — Harmful substances in the mother&rsquo;s blood, such as carbon monoxide and nicotine, cross the placenta. Less oxygen reaches the fetus, which slows its growth. The fetus does not breathe in smoke.')
+
 # ---- F: density
-num('s28','de',2,'A block of wood measures 5 cm &times; 4 cm &times; 3 cm and has a mass of 90 g. What is its density?',1.5,
+num('s31','de',2,'A block of wood measures 5 cm &times; 4 cm &times; 3 cm and has a mass of 90 g. What is its density?',1.5,
     'Find the volume first, then divide the mass by it.',
     'V = 5 × 4 × 3 = 60 cm³, so ρ = 90 ÷ 60 = 1.5 g/cm³.', unit='g/cm³', tol=0.05)
-num('s29','de',1,'Use the diagram to find the volume of the small metal object.',15,
+num('s32','de',1,'Use the diagram to find the volume of the small metal object.',15,
     'How far did the water level rise?',
     '75 − 60 = 15 mL, so the volume is 15 cm³.', unit='cm³', tol=0.05, fig=FIG_CYL2, figmd=MD_CYL2)
-num('s30','de',1,'Aluminium has a density of 2.7 g/cm&sup3;. What is that in kg/m&sup3;?',2700,
+num('s33','de',1,'Aluminium has a density of 2.7 g/cm&sup3;. What is that in kg/m&sup3;?',2700,
     'One g/cm³ is how many kg/m³?',
     '2.7 × 1000 = 2700 kg/m³', unit='kg/m³')
-mcq('s31','de',1,'Iron has a density of 7.9 g/cm&sup3; and mercury is a liquid metal with a density of 13.6 g/cm&sup3;. An iron cube is dropped into a bowl of mercury. What happens?',
+mcq('s34','de',1,'Iron has a density of 7.9 g/cm&sup3; and mercury is a liquid metal with a density of 13.6 g/cm&sup3;. An iron cube is dropped into a bowl of mercury. What happens?',
     ['It floats','It sinks to the bottom','It dissolves','It hangs exactly in the middle'],'a',
     'Compare the two densities.',
     'A — 7.9 g/cm³ is less than 13.6 g/cm³, so the iron floats, even though it would sink in water.')
-mcq('s32','de',2,'On a hot day, the air just above a sun-baked road ripples as it rises. Why does warm air rise?',
+mcq('s35','de',2,'On a hot day, the air just above a sun-baked road ripples as it rises. Why does warm air rise?',
     ['Warm air is made of lighter particles than cool air','Warm air is pulled up by the Sun','The road pushes the air away from itself as it expands','The warm air expands, becomes less dense than the cool air around it, and cooler air sinks beneath it and pushes it up'],'d',
     'What happens to the mass of a parcel of air, and to its volume, as it warms?',
     'D — The mass stays the same but the volume grows, so the density falls. Cool, denser air sinks underneath and lifts the warm air — that is convection.')
 
 # ---- G: sound & waves
-num('s33','wa',1,'A wave has a period of 0.005 s. What is its frequency?',200,
+num('s36','wa',1,'A wave has a period of 0.005 s. What is its frequency?',200,
     'Frequency is 1 divided by the period.',
     'f = 1 ÷ 0.005 = 200 Hz', unit='Hz')
-mcq('s34','wa',1,'A student wants to make a note sound <strong>louder</strong> without changing its pitch. What should they change?',
+mcq('s37','wa',1,'A student wants to make a note sound <strong>louder</strong> without changing its pitch. What should they change?',
     ['Increase the amplitude of the vibration','Increase the frequency of the vibration','Decrease the wavelength','Make the sound travel faster'],'a',
     'Which measurement decides loudness, and which decides pitch?',
     'A — A bigger amplitude carries more energy, so the note is louder. Frequency decides pitch, so it must stay the same.')
-mcq('s35','wa',1,'Which of these travels as a <strong>transverse</strong> wave?',
+mcq('s38','wa',1,'Which of these travels as a <strong>transverse</strong> wave?',
     ['Sound from a drum','Light from the Sun','The push-and-pull of a slinky sound model','An echo coming back'],'b',
     'Which one vibrates at right angles to its direction of travel?',
     'B — Light vibrates at right angles to the direction it travels. Sound — and its slinky model — is longitudinal.')
-num('s36','wa',1,'Two water waves meet. One is a crest of amplitude 3 cm; the other, at the same moment and place, is a trough of amplitude 3 cm. What is the amplitude where they meet?',0,
+num('s39','wa',1,'Two water waves meet. One is a crest of amplitude 3 cm; the other, at the same moment and place, is a trough of amplitude 3 cm. What is the amplitude where they meet?',0,
     'A trough is a crest upside-down. Do they add or subtract?',
     '3 cm up meets 3 cm down: they cancel exactly, so the amplitude is 0.', unit='cm')
 
+mcq('s40','wa',1,'Two loudspeakers play the same note. At one spot in the room the crests of the two sound waves arrive together. What does a listener there hear?',
+    ['No sound, because the waves cancel','A higher-pitched note','A louder note of the same pitch','A quieter note of lower pitch'],'c',
+    'When two waves are in step, do they add or cancel? And does the frequency change?',
+    'C — Waves in step add up, which is constructive interference: a bigger amplitude, so a louder sound. The frequency has not changed, so the pitch is the same.')
+mcq('s41','wa',2,'Noise-cancelling headphones listen to the noise around you and play a second sound that is an exact upside-down copy of it. Why does the noise get quieter?',
+    ['Where crest meets trough the two waves cancel (destructive interference), so the combined amplitude is smaller','The second sound has a higher frequency, so the ear cannot hear it','The two waves add up and the headphones absorb the extra energy','The headphones lower the pitch of the noise, so it travels more slowly'],'a',
+    'An upside-down copy of a wave has a trough exactly where the original has a crest.',
+    'A — The copy has a trough wherever the noise has a crest, so the two waves cancel. This is destructive interference: the amplitude drops and the sound is quieter.')
+
 # ---- H: thermal energy & conservation
-mcq('s37','th',2,'A metal bench and a wooden bench have BOTH been sitting in the same room for hours, at exactly the same temperature. The metal one feels much colder to sit on. Why?',
+mcq('s42','th',2,'A metal bench and a wooden bench have BOTH been sitting in the same room for hours, at exactly the same temperature. The metal one feels much colder to sit on. Why?',
     ['Metal is naturally at a lower temperature than wood','Wood stores more heat than metal, so it feels warmer','Wood is at a higher temperature than metal at all times','Metal conducts heat away from your body faster than wood does, so your nerves sense a bigger heat loss'],'d',
     'The two surfaces are at the same temperature, so the difference is in how fast heat leaves <em>you</em>.',
     'D — Conduction: your body loses heat to the metal much faster than to the wood, even at the same temperature. Wood is a poor conductor, so it feels warmer.')
-mcq('s38','th',1,'There is almost nothing between the Sun and the Earth. By which method does the Sun&rsquo;s energy still reach us?',
+mcq('s43','th',1,'There is almost nothing between the Sun and the Earth. By which method does the Sun&rsquo;s energy still reach us?',
     ['Conduction','Convection','Radiation','Evaporation'],'c',
     'One of these needs no particles at all.',
     'C — Infrared radiation travels through empty space. Conduction and convection both need particles; evaporation is not a way for heat to cross a vacuum.')
-text('s39','th',1,'Hand sanitiser dries on your hands and your skin feels cooler. Which process cooled your skin?',
+text('s44','th',1,'Hand sanitiser dries on your hands and your skin feels cooler. Which process cooled your skin?',
     ['evaporation'],'The liquid particles that escape are the fastest ones.',
     'Evaporation: the fastest particles escape as vapour, taking energy with them, so what is left behind cools.', ph='one word')
-num('s40','th',2,'Use the Sankey diagram. How much energy is transferred as <strong>sound</strong>?',60,
+num('s45','th',2,'Use the Sankey diagram. How much energy is transferred as <strong>sound</strong>?',60,
     'Everything out must add up to what went in.',
     '800 − 500 − 240 = 60 J of sound.', unit='J', fig=FIG_SANKEY2, figmd=MD_SANKEY2)
-num('s41','th',2,'A kettle transfers 2000 J of energy every second. 1600 J of each second heats the water. What <strong>percentage</strong> of the energy is useful?',80,
+num('s46','th',2,'A kettle transfers 2000 J of energy every second. 1600 J of each second heats the water. What <strong>percentage</strong> of the energy is useful?',80,
     'Useful ÷ total × 100.',
     '1600 ÷ 2000 × 100 = 80%', unit='%', tol=0.5)
 
 # ---- I: electricity
-num('s42','el',2,'Two resistors, 3 &Omega; and 9 &Omega;, are joined in series with a 12 V battery. What current flows?',1,
+num('s47','el',2,'Two resistors, 3 &Omega; and 9 &Omega;, are joined in series with a 12 V battery. What current flows?',1,
     'In series the resistances add. Then use Ohm&rsquo;s law.',
     'R = 3 + 9 = 12 Ω, so I = V ÷ R = 12 ÷ 12 = 1 A.', unit='A', tol=0.01)
-num('s43','el',1,'A lamp carries a current of 0.25 A when the voltage across it is 5 V. What is its resistance?',20,
+num('s48','el',1,'A lamp carries a current of 0.25 A when the voltage across it is 5 V. What is its resistance?',20,
     'Which rearrangement of V = I × R gives R?',
     'R = V ÷ I = 5 ÷ 0.25 = 20 Ω', unit='Ω', tol=0.05)
-num('s44','el',1,'Two identical lamps are wired in parallel. The current through each lamp is 0.4 A. What current flows from the battery?',0.8,
+num('s49','el',1,'Two identical lamps are wired in parallel. The current through each lamp is 0.4 A. What current flows from the battery?',0.8,
     'Branch currents add up.',
     '0.4 + 0.4 = 0.8 A', unit='A', tol=0.01)
-mcq('s45','el',1,'Two lamps are wired in <strong>series</strong> with one battery. One lamp&rsquo;s filament breaks. What happens to the other lamp?',
+mcq('s50','el',1,'Two lamps are wired in <strong>series</strong> with one battery. One lamp&rsquo;s filament breaks. What happens to the other lamp?',
     ['It goes out too — the loop is broken and no current can flow','It stays lit at the same brightness','It glows brighter than before','It flickers on and off'],'a',
     'How many loops does a series circuit have?',
     'A — A series circuit is one single loop. A break anywhere stops the current everywhere — which is one reason houses are wired in parallel.')
-mcq('s46','el',1,'Which meter is connected in <strong>series</strong> in a circuit to measure current?',
+mcq('s51','el',1,'Which meter is connected in <strong>series</strong> in a circuit to measure current?',
     ['A voltmeter','Either meter works','An ammeter','A switch, briefly closed'],'c',
     'Which meter needs the current to flow through itself?',
     'C — The ammeter measures the current flowing through it, so it sits in series on the wire. The voltmeter connects across a component, in parallel.')
 
+mcq('s52','el',2,'The diagram shows part of a circuit. Symbol X is a circle with a cross inside it and symbol Y is a circle with the letter V inside it. What are X and Y?',
+    ['X is a resistor and Y is an ammeter','X is a cell and Y is a voltmeter','X is a lamp and Y is an ammeter','X is a lamp and Y is a voltmeter'],'d',
+    'A cross in a circle is a light source. Which meter is shown by the letter V?',
+    'D — A circle with a cross is the symbol for a lamp, and a circle with V is a voltmeter. A resistor is a rectangle, a cell is a long and a short line, and an ammeter has an A in the circle.',
+    fig=FIG_SYM, figmd=MD_SYM)
+
 WRITTEN = [
-  (47, 4, 'Draw dot-and-cross diagrams to show how a magnesium atom (2,8,2) and an oxygen atom (2,6) form ions. Show the electron arrangement and the charge on each ion, then write the formula of the compound.',
+  (53, 4, 'Draw dot-and-cross diagrams to show how a magnesium atom (2,8,2) and an oxygen atom (2,6) form ions. Show the electron arrangement and the charge on each ion, then write the formula of the compound.',
    'Mg²⁺ drawn as 2,8 with both outer electrons gone [1]; O²⁻ drawn as 2,8 with the two gained electrons shown as a different symbol [1]; charges +2 and −2 shown in square brackets [1]; formula MgO, because one 2+ balances one 2− [1].'),
-  (48, 3, 'A hot air balloon is held upright and then its burner heats the air inside the envelope. Use what you know about particles, density and floating to explain why the balloon rises.',
+  (54, 3, 'A hot air balloon is held upright and then its burner heats the air inside the envelope. Use what you know about particles, density and floating to explain why the balloon rises.',
    'Heating makes the air particles move faster and spread apart [1]; the same mass of air now fills a bigger volume, so the air inside is less dense than the cooler air outside [1]; the denser air sinks below and pushes the balloon up, like a solid floating on a liquid [1].'),
-  (49, 4, 'Plan an investigation into how <strong>temperature</strong> affects the rate of transpiration in a plant. Name the independent variable, the dependent variable, two control variables, and say what result you expect.',
+  (55, 4, 'Plan an investigation into how <strong>temperature</strong> affects the rate of transpiration in a plant. Name the independent variable, the dependent variable, two control variables, and say what result you expect.',
    'Independent: the temperature, e.g. a water bath or room at different temperatures [1]; dependent: water lost, e.g. mass lost by the plant, or how far a potometer bubble moves in a set time [1]; two controls: the same plant or leaf size, the same light intensity, the same humidity/wind, the same timing [1]; expected: warmer → faster transpiration [1].'),
-  (50, 4, 'A blade of grass takes carbon dioxide out of the air. A rabbit eats the grass, a fox eats the rabbit, and later all three are dead. Describe how the carbon gets into the grass, how it reaches the fox, and how it returns to the air.',
+  (56, 4, 'A blade of grass takes carbon dioxide out of the air. A rabbit eats the grass, a fox eats the rabbit, and later all three are dead. Describe how the carbon gets into the grass, how it reaches the fox, and how it returns to the air.',
    'Photosynthesis builds the carbon into glucose in the grass [1]; the carbon compounds pass along the food chain by feeding — grass to rabbit, rabbit to fox [1]; after death, decomposers (bacteria and fungi) feed on the remains and respire, releasing the carbon as carbon dioxide [1]; a fourth process that also returns carbon to the air is respiration by each living organism along the way (or combustion) [1].'),
-  (51, 4, 'On a cold day Shanti drinks two large glasses of water; on a hot day, playing football, she drinks almost none. Describe what her kidneys do differently on the two days, and what happens to her urine.',
+  (57, 4, 'On a cold day Shanti drinks two large glasses of water; on a hot day, playing football, she drinks almost none. Describe what her kidneys do differently on the two days, and what happens to her urine.',
    'The kidneys keep the water content of the blood steady [1]; on the cold day there is spare water, so nephrons take less water back — more, paler urine [1]; on the hot day she loses water in sweat, so the kidneys take more water back into the blood [1]; so she produces little urine, and it is darker because the same urea is dissolved in less water [1].'),
-  (52, 5, 'Draw a circuit diagram with a cell, a switch and two lamps in <strong>series</strong>. Then explain what happens to both lamps if the switch is opened, and explain why houses are wired in parallel rather than series.',
+  (58, 5, 'Draw a circuit diagram with a cell, a switch and two lamps in <strong>series</strong>. Then explain what happens to both lamps if the switch is opened, and explain why houses are wired in parallel rather than series.',
    'Cell, switch and two lamps drawn in one single loop with correct symbols [1]; opening the switch breaks the one loop, so both lamps go out — a series circuit has no other path for the current [1]; in parallel, each branch gets the full voltage so lamps are fully bright [1]; each lamp or appliance can be switched on and off independently [1]; a break in one branch does not stop the others working [1].'),
 ]

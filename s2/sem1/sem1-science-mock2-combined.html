@@ -178,7 +178,7 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="../../index.html" class="back-link">&larr; All sheets</a>
     <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
-    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 60</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 70</div></div>
   </div>
 </div>
 <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
@@ -186,10 +186,10 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
   <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Semester 1 assessment &middot; second paper</div>
   <h1>Science Mock 2<br><em>Everything, combined</em></h1>
   <div class="hero-meta">
-    <div class="hero-chip"><div class="dot"></div>46 questions &middot; self-marked &middot; 60 marks</div>
+    <div class="hero-chip"><div class="dot"></div>52 questions &middot; self-marked &middot; 70 marks</div>
     <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>About 80 minutes &middot; a calculator helps</div>
   </div>
-  <p class="credit">A second Semester 1 mock that combines every topic on the revision list: atoms, bonding and giant structures, photosynthesis, transport and the carbon cycle, the excretory system, chromosomes and inheritance, density, sound, thermal energy and conservation of energy, and electricity. The questions are all new, so take mock 1 first. Use <strong>Cover the notes</strong> and try each section cold before reading its key facts.</p>
+  <p class="credit">A second Semester 1 mock that combines every topic on the revision list: atoms, bonding and giant structures, photosynthesis, transport and the carbon cycle, the excretory system, chromosomes and inheritance, fetal development and the mother&rsquo;s health, density, sound and interference, thermal energy and conservation of energy, and electricity with circuit symbols. The questions are all new, so take mock 1 first. Use <strong>Cover the notes</strong> and try each section cold before reading its key facts.</p>
   <button class="btn btn-cover" id="cover-btn" onclick="toggleCover()">&#128584; Cover the notes</button>
 </div>
 <div class="section-tabs">
@@ -622,13 +622,14 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
 <div class="divider"></div>
 
 <div id="hb" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
-  <div class="section-header"><div class="section-icon">&#129516;</div><div><div class="sub-label">Section E &middot; Q22&ndash;Q27 &middot; Human biology &middot; gap topic</div><h2>Human Biology: Excretion &amp; Inheritance</h2></div><div class="src-links"><a class="src-link" href="../t2/w7/term2-week7-science-unit-test-electricity-human-biology.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="section-header"><div class="section-icon">&#129516;</div><div><div class="sub-label">Section E &middot; Q22&ndash;Q30 &middot; Human biology &middot; gap topic</div><h2>Human Biology: Excretion &amp; Inheritance</h2></div><div class="src-links"><a class="src-link" href="../t2/w7/term2-week7-science-unit-test-electricity-human-biology.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
   <div class="facts-label">Key facts</div>
   <div class="facts">
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Excretion</h4><div class="fact-body">Removing waste made by the body&rsquo;s own cells. The lungs excrete CO&#8322;; the <strong>liver</strong> turns spare amino acids into <strong>urea</strong>; the kidneys put urea into urine.</div></div>
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Urinary system</h4><div class="fact-body">Kidneys filter blood (renal artery in, renal vein out) &rarr; each kidney&rsquo;s urine goes down a <em>ureter</em> to the <em>bladder</em>, out through the <em>urethra</em>.</div></div>
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Nephrons</h4><div class="fact-body">Filter everything except cells and protein, then take back <em>all the glucose</em>, most water and the salts the body needs.</div></div>
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>DNA, genes, chromosomes</h4><div class="fact-body">DNA is the twisted-ladder molecule; a <span class="f">gene</span> is a section that codes for one feature; genes sit on <span class="f">chromosomes</span> in the nucleus.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Pregnancy</h4><div class="fact-body">The fetus grows in the uterus, cushioned by amniotic fluid, and is joined to the <span class="f">placenta</span> by the <em>umbilical cord</em>. Oxygen and nutrients pass from the mother&rsquo;s blood to the fetus&rsquo;s blood, and carbon dioxide and urea pass back. The bloods never mix, but harmful substances (nicotine, carbon monoxide, alcohol, some viruses) can cross too.</div></div>
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Inheritance</h4><div class="fact-body">Body cells have 46 chromosomes (23 pairs). <em>Meiosis</em> makes gametes with 23 each. Egg always carries X; sperm carries X or Y, so the <span class="f">sperm decides the sex</span>: XX girl, XY boy — a 50/50 chance.</div></div>
   </div>
   <div class="facts-label">Check yourself</div>
@@ -726,16 +727,68 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
     </div>
   </div>
 
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-s28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">After a baby is born, a midwife clamps and cuts the tube that joined the baby to the placenta. What is this tube called?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s28-ans" placeholder="two words" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s28',['umbilical cord','the umbilical cord','umbilical'],'Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s28','It is attached at the baby&rsquo;s navel.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s28','The umbilical cord.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-s29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">The blood of a mother and her fetus never mix, yet oxygen still gets from her blood to the fetus. How?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s29-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'a')"><div class="opt-indicator"></div><span>Blood flows straight from her arteries into the fetus&rsquo;s heart</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'b')"><div class="opt-indicator"></div><span>The fetus breathes in air from the amniotic fluid</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'c')"><div class="opt-indicator"></div><span>Oxygen diffuses across the thin placenta from her blood into the fetus&rsquo;s blood</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s29', this, 'd')"><div class="opt-indicator"></div><span>Oxygen is carried through the amniotic fluid by the uterus wall</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s29','c','Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s29','Where do the two blood supplies come close together, and what moves from the higher concentration to the lower?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s29','C — The placenta is a thin exchange surface where the two blood supplies lie side by side, so oxygen diffuses from her blood into the fetus&rsquo;s. The fetus does not breathe air, and the bloods do not mix.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s29-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-s30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">A woman smokes throughout her pregnancy. Why is this a risk to her baby?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'a')"><div class="opt-indicator"></div><span>The smoke fills the fetus&rsquo;s lungs with tar</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'b')"><div class="opt-indicator"></div><span>Carbon monoxide crosses the placenta and lowers the oxygen the fetus&rsquo;s blood can carry, so the baby may be born small</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'c')"><div class="opt-indicator"></div><span>Nicotine makes the amniotic fluid too thick for the fetus to move</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s30', this, 'd')"><div class="opt-indicator"></div><span>The smoke shortens the umbilical cord</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s30','b','Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s30','Think about what passes across the placenta, and what the fetus needs from the mother&rsquo;s blood.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s30','B — Harmful substances in the mother&rsquo;s blood, such as carbon monoxide and nicotine, cross the placenta. Less oxygen reaches the fetus, which slows its growth. The fetus does not breathe in smoke.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s30-fb"></div>
+    </div>
+  </div>
+
   <div class="section-score">
     <div class="section-score-label">SECTION E &mdash; HUMAN BIOLOGY</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-hb-fill"></div></div>
-    <div class="section-score-val" id="sec-hb-val">0/8</div>
+    <div class="section-score-val" id="sec-hb-val">0/13</div>
   </div>
 </div>
 <div class="divider"></div>
 
 <div id="de" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
-  <div class="section-header"><div class="section-icon">&#129482;</div><div><div class="sub-label">Section F &middot; Q28&ndash;Q32 &middot; Chemical structures &middot; properties</div><h2>Density</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-density.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="section-header"><div class="section-icon">&#129482;</div><div><div class="sub-label">Section F &middot; Q31&ndash;Q35 &middot; Chemical structures &middot; properties</div><h2>Density</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-density.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
   <div class="facts-label">Key facts</div>
   <div class="facts">
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>The formula</h4><div class="fact-body"><span class="f">&rho; = m &divide; V</span>, rearranged to m = &rho; &times; V and V = m &divide; &rho;.</div></div>
@@ -745,63 +798,15 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Heating</h4><div class="fact-body">Particles spread out: mass unchanged, volume bigger, so <span class="f">density falls</span> — which is why warm air rises.</div></div>
   </div>
   <div class="facts-label">Check yourself</div>
-  <!-- Q28 -->
-  <div class="q-card" id="qcard-s28">
-    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">A block of wood measures 5 cm &times; 4 cm &times; 3 cm and has a mass of 90 g. What is its density?</div><div class="q-marks">2 marks</div></div>
-    <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s28-ans" placeholder="Enter answer..."><span class="num-unit">g/cm³</span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s28',1.5,'Q28',0.05)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s28','Find the volume first, then divide the mass by it.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s28','V = 5 × 4 × 3 = 60 cm³, so ρ = 90 ÷ 60 = 1.5 g/cm³.')">Show Answer</button>
-      </div>
-      <div class="feedback" id="s28-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q29 -->
-  <div class="q-card" id="qcard-s29">
-    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Use the diagram to find the volume of the small metal object.</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <svg class="q-fig" viewBox="0 0 280 210" role="img" aria-label="Two measuring cylinders: water at 60 mL, then at 75 mL with a small metal object inside" style="max-width:300px"><path class="draw" d="M50 30 V185 H110 V30" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><rect class="fill" x="52" y="94" width="56" height="90" fill="rgba(79,142,247,0.35)"/><path class="draw" d="M50 94 H64" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="80" y="200" font-size="12" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">before</text><text x="22" y="98" font-size="12" fill="#e8eaf0" text-anchor="middle" font-family="DM Mono, monospace">60</text><path class="draw" d="M170 30 V185 H230 V30" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><rect class="fill" x="172" y="70" width="56" height="114" fill="rgba(79,142,247,0.35)"/><path class="draw" d="M170 70 H184" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><path class="draw" d="M192 150 h16 M200 150 v10 M196 150 a5 5 0 1 1 6 0" stroke="#f5a623" stroke-width="3" fill="none" pathLength="1"/><text x="200" y="200" font-size="12" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">after</text><text x="256" y="74" font-size="12" fill="#e8eaf0" text-anchor="middle" font-family="DM Mono, monospace">75</text><text x="140" y="20" font-size="11" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">readings in mL</text></svg>
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s29-ans" placeholder="Enter answer..."><span class="num-unit">cm³</span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s29',15,'Q29',0.05)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s29','How far did the water level rise?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s29','75 − 60 = 15 mL, so the volume is 15 cm³.')">Show Answer</button>
-      </div>
-      <div class="feedback" id="s29-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q30 -->
-  <div class="q-card" id="qcard-s30">
-    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Aluminium has a density of 2.7 g/cm&sup3;. What is that in kg/m&sup3;?</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s30-ans" placeholder="Enter answer..."><span class="num-unit">kg/m³</span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s30',2700,'Q30',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s30','One g/cm³ is how many kg/m³?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s30','2.7 × 1000 = 2700 kg/m³')">Show Answer</button>
-      </div>
-      <div class="feedback" id="s30-fb"></div>
-    </div>
-  </div>
-
   <!-- Q31 -->
   <div class="q-card" id="qcard-s31">
-    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">Iron has a density of 7.9 g/cm&sup3; and mercury is a liquid metal with a density of 13.6 g/cm&sup3;. An iron cube is dropped into a bowl of mercury. What happens?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">A block of wood measures 5 cm &times; 4 cm &times; 3 cm and has a mass of 90 g. What is its density?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="s31-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'a')"><div class="opt-indicator"></div><span>It floats</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'b')"><div class="opt-indicator"></div><span>It sinks to the bottom</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'c')"><div class="opt-indicator"></div><span>It dissolves</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s31', this, 'd')"><div class="opt-indicator"></div><span>It hangs exactly in the middle</span></div>
-      </div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s31-ans" placeholder="Enter answer..."><span class="num-unit">g/cm³</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s31','a','Q31')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s31','Compare the two densities.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s31','A — 7.9 g/cm³ is less than 13.6 g/cm³, so the iron floats, even though it would sink in water.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('s31',1.5,'Q31',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s31','Find the volume first, then divide the mass by it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s31','V = 5 × 4 × 3 = 60 cm³, so ρ = 90 ÷ 60 = 1.5 g/cm³.')">Show Answer</button>
       </div>
       <div class="feedback" id="s31-fb"></div>
     </div>
@@ -809,20 +814,68 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
 
   <!-- Q32 -->
   <div class="q-card" id="qcard-s32">
-    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">On a hot day, the air just above a sun-baked road ripples as it rises. Why does warm air rise?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">Use the diagram to find the volume of the small metal object.</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="s32-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'a')"><div class="opt-indicator"></div><span>Warm air is made of lighter particles than cool air</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'b')"><div class="opt-indicator"></div><span>Warm air is pulled up by the Sun</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'c')"><div class="opt-indicator"></div><span>The road pushes the air away from itself as it expands</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s32', this, 'd')"><div class="opt-indicator"></div><span>The warm air expands, becomes less dense than the cool air around it, and cooler air sinks beneath it and pushes it up</span></div>
-      </div>
+      <svg class="q-fig" viewBox="0 0 280 210" role="img" aria-label="Two measuring cylinders: water at 60 mL, then at 75 mL with a small metal object inside" style="max-width:300px"><path class="draw" d="M50 30 V185 H110 V30" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><rect class="fill" x="52" y="94" width="56" height="90" fill="rgba(79,142,247,0.35)"/><path class="draw" d="M50 94 H64" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><text x="80" y="200" font-size="12" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">before</text><text x="22" y="98" font-size="12" fill="#e8eaf0" text-anchor="middle" font-family="DM Mono, monospace">60</text><path class="draw" d="M170 30 V185 H230 V30" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><rect class="fill" x="172" y="70" width="56" height="114" fill="rgba(79,142,247,0.35)"/><path class="draw" d="M170 70 H184" stroke="#4f8ef7" stroke-width="2" fill="none" pathLength="1"/><path class="draw" d="M192 150 h16 M200 150 v10 M196 150 a5 5 0 1 1 6 0" stroke="#f5a623" stroke-width="3" fill="none" pathLength="1"/><text x="200" y="200" font-size="12" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">after</text><text x="256" y="74" font-size="12" fill="#e8eaf0" text-anchor="middle" font-family="DM Mono, monospace">75</text><text x="140" y="20" font-size="11" fill="#7a84a0" text-anchor="middle" font-family="DM Mono, monospace">readings in mL</text></svg>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s32-ans" placeholder="Enter answer..."><span class="num-unit">cm³</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s32','d','Q32')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s32','What happens to the mass of a parcel of air, and to its volume, as it warms?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s32','D — The mass stays the same but the volume grows, so the density falls. Cool, denser air sinks underneath and lifts the warm air — that is convection.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('s32',15,'Q32',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s32','How far did the water level rise?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s32','75 − 60 = 15 mL, so the volume is 15 cm³.')">Show Answer</button>
       </div>
       <div class="feedback" id="s32-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-s33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">Aluminium has a density of 2.7 g/cm&sup3;. What is that in kg/m&sup3;?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s33-ans" placeholder="Enter answer..."><span class="num-unit">kg/m³</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s33',2700,'Q33',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s33','One g/cm³ is how many kg/m³?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s33','2.7 × 1000 = 2700 kg/m³')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s33-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-s34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Iron has a density of 7.9 g/cm&sup3; and mercury is a liquid metal with a density of 13.6 g/cm&sup3;. An iron cube is dropped into a bowl of mercury. What happens?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s34-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'a')"><div class="opt-indicator"></div><span>It floats</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'b')"><div class="opt-indicator"></div><span>It sinks to the bottom</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'c')"><div class="opt-indicator"></div><span>It dissolves</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'd')"><div class="opt-indicator"></div><span>It hangs exactly in the middle</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s34','a','Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s34','Compare the two densities.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s34','A — 7.9 g/cm³ is less than 13.6 g/cm³, so the iron floats, even though it would sink in water.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s34-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-s35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">On a hot day, the air just above a sun-baked road ripples as it rises. Why does warm air rise?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s35-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'a')"><div class="opt-indicator"></div><span>Warm air is made of lighter particles than cool air</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'b')"><div class="opt-indicator"></div><span>Warm air is pulled up by the Sun</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'c')"><div class="opt-indicator"></div><span>The road pushes the air away from itself as it expands</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'd')"><div class="opt-indicator"></div><span>The warm air expands, becomes less dense than the cool air around it, and cooler air sinks beneath it and pushes it up</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s35','d','Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s35','What happens to the mass of a parcel of air, and to its volume, as it warms?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s35','D — The mass stays the same but the volume grows, so the density falls. Cool, denser air sinks underneath and lifts the warm air — that is convection.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s35-fb"></div>
     </div>
   </div>
 
@@ -835,7 +888,7 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
 <div class="divider"></div>
 
 <div id="wa" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
-  <div class="section-header"><div class="section-icon">&#127925;</div><div><div class="sub-label">Section G &middot; Q33&ndash;Q36 &middot; Sound</div><h2>Sound &amp; Waves</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-sound-thermal-energy.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="section-header"><div class="section-icon">&#127925;</div><div><div class="sub-label">Section G &middot; Q36&ndash;Q41 &middot; Sound</div><h2>Sound &amp; Waves</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-sound-thermal-energy.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
   <div class="facts-label">Key facts</div>
   <div class="facts">
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Two kinds of wave</h4><div class="fact-body">Transverse: vibrations at right angles to travel (light, water ripples). Longitudinal: vibrations along the direction of travel (sound: compressions and rarefactions).</div></div>
@@ -843,84 +896,123 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Period</h4><div class="fact-body"><span class="f">T = 1 &divide; f</span>. A wave with period 0.005 s has f = 1 &divide; 0.005 = 200 Hz.</div></div>
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Loud and quiet</h4><div class="fact-body">Bigger amplitude = louder. Higher frequency = higher pitch.</div></div>
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Superposition</h4><div class="fact-body">Crest meets crest: add. Crest meets trough: subtract or cancel.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Interference</h4><div class="fact-body">Two waves meeting add up. In step (crest with crest): <span class="f">constructive</span>, a bigger wave and a louder sound. Out of step (crest with trough): <span class="f">destructive</span>, they cancel and the sound gets quieter.</div></div>
   </div>
   <div class="facts-label">Check yourself</div>
-  <!-- Q33 -->
-  <div class="q-card" id="qcard-s33">
-    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">A wave has a period of 0.005 s. What is its frequency?</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s33-ans" placeholder="Enter answer..."><span class="num-unit">Hz</span></div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s33',200,'Q33',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s33','Frequency is 1 divided by the period.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s33','f = 1 ÷ 0.005 = 200 Hz')">Show Answer</button>
-      </div>
-      <div class="feedback" id="s33-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q34 -->
-  <div class="q-card" id="qcard-s34">
-    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">A student wants to make a note sound <strong>louder</strong> without changing its pitch. What should they change?</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <div class="mcq-options" id="s34-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'a')"><div class="opt-indicator"></div><span>Increase the amplitude of the vibration</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'b')"><div class="opt-indicator"></div><span>Increase the frequency of the vibration</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'c')"><div class="opt-indicator"></div><span>Decrease the wavelength</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s34', this, 'd')"><div class="opt-indicator"></div><span>Make the sound travel faster</span></div>
-      </div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s34','a','Q34')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s34','Which measurement decides loudness, and which decides pitch?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s34','A — A bigger amplitude carries more energy, so the note is louder. Frequency decides pitch, so it must stay the same.')">Show Answer</button>
-      </div>
-      <div class="feedback" id="s34-fb"></div>
-    </div>
-  </div>
-
-  <!-- Q35 -->
-  <div class="q-card" id="qcard-s35">
-    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Which of these travels as a <strong>transverse</strong> wave?</div><div class="q-marks">1 mark</div></div>
-    <div class="q-body">
-      <div class="mcq-options" id="s35-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'a')"><div class="opt-indicator"></div><span>Sound from a drum</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'b')"><div class="opt-indicator"></div><span>Light from the Sun</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'c')"><div class="opt-indicator"></div><span>The push-and-pull of a slinky sound model</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s35', this, 'd')"><div class="opt-indicator"></div><span>An echo coming back</span></div>
-      </div>
-      <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s35','b','Q35')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s35','Which one vibrates at right angles to its direction of travel?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s35','B — Light vibrates at right angles to the direction it travels. Sound — and its slinky model — is longitudinal.')">Show Answer</button>
-      </div>
-      <div class="feedback" id="s35-fb"></div>
-    </div>
-  </div>
-
   <!-- Q36 -->
   <div class="q-card" id="qcard-s36">
-    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Two water waves meet. One is a crest of amplitude 3 cm; the other, at the same moment and place, is a trough of amplitude 3 cm. What is the amplitude where they meet?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">A wave has a period of 0.005 s. What is its frequency?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s36-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s36-ans" placeholder="Enter answer..."><span class="num-unit">Hz</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s36',0,'Q36',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s36','A trough is a crest upside-down. Do they add or subtract?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s36','3 cm up meets 3 cm down: they cancel exactly, so the amplitude is 0.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('s36',200,'Q36',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s36','Frequency is 1 divided by the period.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s36','f = 1 ÷ 0.005 = 200 Hz')">Show Answer</button>
       </div>
       <div class="feedback" id="s36-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-s37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">A student wants to make a note sound <strong>louder</strong> without changing its pitch. What should they change?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s37-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'a')"><div class="opt-indicator"></div><span>Increase the amplitude of the vibration</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'b')"><div class="opt-indicator"></div><span>Increase the frequency of the vibration</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'c')"><div class="opt-indicator"></div><span>Decrease the wavelength</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'd')"><div class="opt-indicator"></div><span>Make the sound travel faster</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s37','a','Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s37','Which measurement decides loudness, and which decides pitch?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s37','A — A bigger amplitude carries more energy, so the note is louder. Frequency decides pitch, so it must stay the same.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s37-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-s38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">Which of these travels as a <strong>transverse</strong> wave?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s38-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'a')"><div class="opt-indicator"></div><span>Sound from a drum</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'b')"><div class="opt-indicator"></div><span>Light from the Sun</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'c')"><div class="opt-indicator"></div><span>The push-and-pull of a slinky sound model</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'd')"><div class="opt-indicator"></div><span>An echo coming back</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s38','b','Q38')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s38','Which one vibrates at right angles to its direction of travel?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s38','B — Light vibrates at right angles to the direction it travels. Sound — and its slinky model — is longitudinal.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s38-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-s39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Two water waves meet. One is a crest of amplitude 3 cm; the other, at the same moment and place, is a trough of amplitude 3 cm. What is the amplitude where they meet?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s39-ans" placeholder="Enter answer..."><span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('s39',0,'Q39',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s39','A trough is a crest upside-down. Do they add or subtract?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s39','3 cm up meets 3 cm down: they cancel exactly, so the amplitude is 0.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s39-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-s40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">Two loudspeakers play the same note. At one spot in the room the crests of the two sound waves arrive together. What does a listener there hear?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s40-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'a')"><div class="opt-indicator"></div><span>No sound, because the waves cancel</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'b')"><div class="opt-indicator"></div><span>A higher-pitched note</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'c')"><div class="opt-indicator"></div><span>A louder note of the same pitch</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s40', this, 'd')"><div class="opt-indicator"></div><span>A quieter note of lower pitch</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s40','c','Q40')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s40','When two waves are in step, do they add or cancel? And does the frequency change?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s40','C — Waves in step add up, which is constructive interference: a bigger amplitude, so a louder sound. The frequency has not changed, so the pitch is the same.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s40-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-s41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">Noise-cancelling headphones listen to the noise around you and play a second sound that is an exact upside-down copy of it. Why does the noise get quieter?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s41-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'a')"><div class="opt-indicator"></div><span>Where crest meets trough the two waves cancel (destructive interference), so the combined amplitude is smaller</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'b')"><div class="opt-indicator"></div><span>The second sound has a higher frequency, so the ear cannot hear it</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'c')"><div class="opt-indicator"></div><span>The two waves add up and the headphones absorb the extra energy</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s41', this, 'd')"><div class="opt-indicator"></div><span>The headphones lower the pitch of the noise, so it travels more slowly</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s41','a','Q41')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s41','An upside-down copy of a wave has a trough exactly where the original has a crest.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s41','A — The copy has a trough wherever the noise has a crest, so the two waves cancel. This is destructive interference: the amplitude drops and the sound is quieter.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s41-fb"></div>
     </div>
   </div>
 
   <div class="section-score">
     <div class="section-score-label">SECTION G &mdash; SOUND &amp; WAVES</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-wa-fill"></div></div>
-    <div class="section-score-val" id="sec-wa-val">0/4</div>
+    <div class="section-score-val" id="sec-wa-val">0/7</div>
   </div>
 </div>
 <div class="divider"></div>
 
 <div id="th" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
-  <div class="section-header"><div class="section-icon">&#128293;</div><div><div class="sub-label">Section H &middot; Q37&ndash;Q41 &middot; Thermal energy</div><h2>Thermal Energy &amp; Conservation</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-sound-thermal-energy.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="section-header"><div class="section-icon">&#128293;</div><div><div class="sub-label">Section H &middot; Q42&ndash;Q46 &middot; Thermal energy</div><h2>Thermal Energy &amp; Conservation</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-sound-thermal-energy.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
   <div class="facts-label">Key facts</div>
   <div class="facts">
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Heat flows hot &rarr; cold</h4><div class="fact-body">Temperature is the average energy of the particles; thermal energy is the total and depends on mass too.</div></div>
@@ -930,84 +1022,84 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Sankey diagrams</h4><div class="fact-body">The arrow widths show the amounts. Everything out must add up to what went in.</div></div>
   </div>
   <div class="facts-label">Check yourself</div>
-  <!-- Q37 -->
-  <div class="q-card" id="qcard-s37">
-    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">A metal bench and a wooden bench have BOTH been sitting in the same room for hours, at exactly the same temperature. The metal one feels much colder to sit on. Why?</div><div class="q-marks">2 marks</div></div>
+  <!-- Q42 -->
+  <div class="q-card" id="qcard-s42">
+    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">A metal bench and a wooden bench have BOTH been sitting in the same room for hours, at exactly the same temperature. The metal one feels much colder to sit on. Why?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="s37-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'a')"><div class="opt-indicator"></div><span>Metal is naturally at a lower temperature than wood</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'b')"><div class="opt-indicator"></div><span>Wood stores more heat than metal, so it feels warmer</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'c')"><div class="opt-indicator"></div><span>Wood is at a higher temperature than metal at all times</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s37', this, 'd')"><div class="opt-indicator"></div><span>Metal conducts heat away from your body faster than wood does, so your nerves sense a bigger heat loss</span></div>
+      <div class="mcq-options" id="s42-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'a')"><div class="opt-indicator"></div><span>Metal is naturally at a lower temperature than wood</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'b')"><div class="opt-indicator"></div><span>Wood stores more heat than metal, so it feels warmer</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'c')"><div class="opt-indicator"></div><span>Wood is at a higher temperature than metal at all times</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s42', this, 'd')"><div class="opt-indicator"></div><span>Metal conducts heat away from your body faster than wood does, so your nerves sense a bigger heat loss</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s37','d','Q37')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s37','The two surfaces are at the same temperature, so the difference is in how fast heat leaves <em>you</em>.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s37','D — Conduction: your body loses heat to the metal much faster than to the wood, even at the same temperature. Wood is a poor conductor, so it feels warmer.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s42','d','Q42')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s42','The two surfaces are at the same temperature, so the difference is in how fast heat leaves <em>you</em>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s42','D — Conduction: your body loses heat to the metal much faster than to the wood, even at the same temperature. Wood is a poor conductor, so it feels warmer.')">Show Answer</button>
       </div>
-      <div class="feedback" id="s37-fb"></div>
+      <div class="feedback" id="s42-fb"></div>
     </div>
   </div>
 
-  <!-- Q38 -->
-  <div class="q-card" id="qcard-s38">
-    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">There is almost nothing between the Sun and the Earth. By which method does the Sun&rsquo;s energy still reach us?</div><div class="q-marks">1 mark</div></div>
+  <!-- Q43 -->
+  <div class="q-card" id="qcard-s43">
+    <div class="q-header"><div class="q-num">Q43</div><div class="q-text">There is almost nothing between the Sun and the Earth. By which method does the Sun&rsquo;s energy still reach us?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="s38-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'a')"><div class="opt-indicator"></div><span>Conduction</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'b')"><div class="opt-indicator"></div><span>Convection</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'c')"><div class="opt-indicator"></div><span>Radiation</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s38', this, 'd')"><div class="opt-indicator"></div><span>Evaporation</span></div>
+      <div class="mcq-options" id="s43-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'a')"><div class="opt-indicator"></div><span>Conduction</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'b')"><div class="opt-indicator"></div><span>Convection</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'c')"><div class="opt-indicator"></div><span>Radiation</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s43', this, 'd')"><div class="opt-indicator"></div><span>Evaporation</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s38','c','Q38')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s38','One of these needs no particles at all.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s38','C — Infrared radiation travels through empty space. Conduction and convection both need particles; evaporation is not a way for heat to cross a vacuum.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s43','c','Q43')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s43','One of these needs no particles at all.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s43','C — Infrared radiation travels through empty space. Conduction and convection both need particles; evaporation is not a way for heat to cross a vacuum.')">Show Answer</button>
       </div>
-      <div class="feedback" id="s38-fb"></div>
+      <div class="feedback" id="s43-fb"></div>
     </div>
   </div>
 
-  <!-- Q39 -->
-  <div class="q-card" id="qcard-s39">
-    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Hand sanitiser dries on your hands and your skin feels cooler. Which process cooled your skin?</div><div class="q-marks">1 mark</div></div>
+  <!-- Q44 -->
+  <div class="q-card" id="qcard-s44">
+    <div class="q-header"><div class="q-num">Q44</div><div class="q-text">Hand sanitiser dries on your hands and your skin feels cooler. Which process cooled your skin?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <input type="text" class="text-input" id="s39-ans" placeholder="one word" autocomplete="off">
+      <input type="text" class="text-input" id="s44-ans" placeholder="one word" autocomplete="off">
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkText('s39',['evaporation'],'Q39')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s39','The liquid particles that escape are the fastest ones.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s39','Evaporation: the fastest particles escape as vapour, taking energy with them, so what is left behind cools.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkText('s44',['evaporation'],'Q44')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s44','The liquid particles that escape are the fastest ones.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s44','Evaporation: the fastest particles escape as vapour, taking energy with them, so what is left behind cools.')">Show Answer</button>
       </div>
-      <div class="feedback" id="s39-fb"></div>
+      <div class="feedback" id="s44-fb"></div>
     </div>
   </div>
 
-  <!-- Q40 -->
-  <div class="q-card" id="qcard-s40">
-    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">Use the Sankey diagram. How much energy is transferred as <strong>sound</strong>?</div><div class="q-marks">2 marks</div></div>
+  <!-- Q45 -->
+  <div class="q-card" id="qcard-s45">
+    <div class="q-header"><div class="q-num">Q45</div><div class="q-text">Use the Sankey diagram. How much energy is transferred as <strong>sound</strong>?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
       <svg class="q-fig" viewBox="0 0 380 230" role="img" aria-label="Sankey diagram for an electric motor: 800 J electrical in; 500 J kinetic straight on; 240 J heat and an unknown amount of sound bend downwards" style="max-width:380px"><path class="draw" d="M20 90 H150" stroke="#4f8ef7" stroke-width="100" fill="none" pathLength="1" opacity="0.85"/><path class="draw" d="M150 72 H300" stroke="#3ecf8e" stroke-width="66" fill="none" pathLength="1" opacity="0.85"/><polygon class="fill" points="300,39 340,72 300,105" fill="#3ecf8e" opacity="0.85"/><path class="draw" d="M150 121 H180 Q 214 121 214 154 V188" stroke="#f5a623" stroke-width="30" fill="none" pathLength="1" opacity="0.85"/><polygon class="fill" points="199,188 229,188 214,206" fill="#f5a623" opacity="0.85"/><path class="draw" d="M150 141 Q 160 141 160 152 V192" stroke="#e8a090" stroke-width="8" fill="none" pathLength="1"/><polygon class="fill" points="156,192 164,192 160,202" fill="#e8a090"/><text x="85" y="86" font-size="12" fill="#0f1117" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Electrical</text><text x="85" y="102" font-size="12" fill="#0f1117" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">800 J</text><text x="234" y="70" font-size="12" fill="#0f1117" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">Kinetic 500 J</text><text x="238" y="172" font-size="12" fill="#e8eaf0" text-anchor="start" dominant-baseline="central" font-family="DM Mono, monospace">Heat 240 J</text><text x="146" y="224" font-size="12" fill="#e8eaf0" text-anchor="end" dominant-baseline="central" font-family="DM Mono, monospace">Sound ? J</text></svg>
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s40-ans" placeholder="Enter answer..."><span class="num-unit">J</span></div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s45-ans" placeholder="Enter answer..."><span class="num-unit">J</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s40',60,'Q40',0)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s40','Everything out must add up to what went in.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s40','800 − 500 − 240 = 60 J of sound.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('s45',60,'Q45',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s45','Everything out must add up to what went in.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s45','800 − 500 − 240 = 60 J of sound.')">Show Answer</button>
       </div>
-      <div class="feedback" id="s40-fb"></div>
+      <div class="feedback" id="s45-fb"></div>
     </div>
   </div>
 
-  <!-- Q41 -->
-  <div class="q-card" id="qcard-s41">
-    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">A kettle transfers 2000 J of energy every second. 1600 J of each second heats the water. What <strong>percentage</strong> of the energy is useful?</div><div class="q-marks">2 marks</div></div>
+  <!-- Q46 -->
+  <div class="q-card" id="qcard-s46">
+    <div class="q-header"><div class="q-num">Q46</div><div class="q-text">A kettle transfers 2000 J of energy every second. 1600 J of each second heats the water. What <strong>percentage</strong> of the energy is useful?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s41-ans" placeholder="Enter answer..."><span class="num-unit">%</span></div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s46-ans" placeholder="Enter answer..."><span class="num-unit">%</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s41',80,'Q41',0.5)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s41','Useful ÷ total × 100.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s41','1600 ÷ 2000 × 100 = 80%')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('s46',80,'Q46',0.5)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s46','Useful ÷ total × 100.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s46','1600 ÷ 2000 × 100 = 80%')">Show Answer</button>
       </div>
-      <div class="feedback" id="s41-fb"></div>
+      <div class="feedback" id="s46-fb"></div>
     </div>
   </div>
 
@@ -1020,99 +1112,120 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
 <div class="divider"></div>
 
 <div id="el" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
-  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Section I &middot; Q42&ndash;Q46 &middot; Electricity</div><h2>Electricity</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-electricity.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Section I &middot; Q47&ndash;Q52 &middot; Electricity</div><h2>Electricity</h2></div><div class="src-links"><a class="src-link" href="../t2/w4/term2-week4-science-unit3-electricity.html" target="_blank" rel="noopener">Full sheet &rarr;</a></div></div>
   <div class="facts-label">Key facts</div>
   <div class="facts">
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Ohm&rsquo;s law</h4><div class="fact-body"><span class="f">V = I &times; R</span>, so I = V &divide; R and R = V &divide; I. Volts, amps, ohms.</div></div>
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Series</h4><div class="fact-body">One loop, same current everywhere, voltages add, <span class="f">R = R&#8321; + R&#8322;</span>. Break anywhere and everything stops.</div></div>
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Parallel</h4><div class="fact-body">Each branch gets the full voltage; branch currents add up. A break in one branch leaves the others working.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Circuit symbols</h4><div class="fact-body">Cell: a long and a short line. Switch: a gap with a lever. Lamp: a circle with a cross. Resistor: a rectangle. Ammeter: a circle with A. Voltmeter: a circle with V.</div></div>
     <div class="fact" onclick="this.classList.toggle('peek')"><h4>Meters</h4><div class="fact-body">Ammeter in <em>series</em>; voltmeter in <em>parallel</em> across the component.</div></div>
   </div>
   <div class="facts-label">Check yourself</div>
-  <!-- Q42 -->
-  <div class="q-card" id="qcard-s42">
-    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">Two resistors, 3 &Omega; and 9 &Omega;, are joined in series with a 12 V battery. What current flows?</div><div class="q-marks">2 marks</div></div>
+  <!-- Q47 -->
+  <div class="q-card" id="qcard-s47">
+    <div class="q-header"><div class="q-num">Q47</div><div class="q-text">Two resistors, 3 &Omega; and 9 &Omega;, are joined in series with a 12 V battery. What current flows?</div><div class="q-marks">2 marks</div></div>
     <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s42-ans" placeholder="Enter answer..."><span class="num-unit">A</span></div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s47-ans" placeholder="Enter answer..."><span class="num-unit">A</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s42',1,'Q42',0.01)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s42','In series the resistances add. Then use Ohm&rsquo;s law.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s42','R = 3 + 9 = 12 Ω, so I = V ÷ R = 12 ÷ 12 = 1 A.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('s47',1,'Q47',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s47','In series the resistances add. Then use Ohm&rsquo;s law.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s47','R = 3 + 9 = 12 Ω, so I = V ÷ R = 12 ÷ 12 = 1 A.')">Show Answer</button>
       </div>
-      <div class="feedback" id="s42-fb"></div>
+      <div class="feedback" id="s47-fb"></div>
     </div>
   </div>
 
-  <!-- Q43 -->
-  <div class="q-card" id="qcard-s43">
-    <div class="q-header"><div class="q-num">Q43</div><div class="q-text">A lamp carries a current of 0.25 A when the voltage across it is 5 V. What is its resistance?</div><div class="q-marks">1 mark</div></div>
+  <!-- Q48 -->
+  <div class="q-card" id="qcard-s48">
+    <div class="q-header"><div class="q-num">Q48</div><div class="q-text">A lamp carries a current of 0.25 A when the voltage across it is 5 V. What is its resistance?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s43-ans" placeholder="Enter answer..."><span class="num-unit">Ω</span></div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s48-ans" placeholder="Enter answer..."><span class="num-unit">Ω</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s43',20,'Q43',0.05)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s43','Which rearrangement of V = I × R gives R?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s43','R = V ÷ I = 5 ÷ 0.25 = 20 Ω')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('s48',20,'Q48',0.05)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s48','Which rearrangement of V = I × R gives R?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s48','R = V ÷ I = 5 ÷ 0.25 = 20 Ω')">Show Answer</button>
       </div>
-      <div class="feedback" id="s43-fb"></div>
+      <div class="feedback" id="s48-fb"></div>
     </div>
   </div>
 
-  <!-- Q44 -->
-  <div class="q-card" id="qcard-s44">
-    <div class="q-header"><div class="q-num">Q44</div><div class="q-text">Two identical lamps are wired in parallel. The current through each lamp is 0.4 A. What current flows from the battery?</div><div class="q-marks">1 mark</div></div>
+  <!-- Q49 -->
+  <div class="q-card" id="qcard-s49">
+    <div class="q-header"><div class="q-num">Q49</div><div class="q-text">Two identical lamps are wired in parallel. The current through each lamp is 0.4 A. What current flows from the battery?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="num-row"><input type="number" step="any" class="num-input" id="s44-ans" placeholder="Enter answer..."><span class="num-unit">A</span></div>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="s49-ans" placeholder="Enter answer..."><span class="num-unit">A</span></div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkNum('s44',0.8,'Q44',0.01)">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s44','Branch currents add up.')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s44','0.4 + 0.4 = 0.8 A')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkNum('s49',0.8,'Q49',0.01)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s49','Branch currents add up.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s49','0.4 + 0.4 = 0.8 A')">Show Answer</button>
       </div>
-      <div class="feedback" id="s44-fb"></div>
+      <div class="feedback" id="s49-fb"></div>
     </div>
   </div>
 
-  <!-- Q45 -->
-  <div class="q-card" id="qcard-s45">
-    <div class="q-header"><div class="q-num">Q45</div><div class="q-text">Two lamps are wired in <strong>series</strong> with one battery. One lamp&rsquo;s filament breaks. What happens to the other lamp?</div><div class="q-marks">1 mark</div></div>
+  <!-- Q50 -->
+  <div class="q-card" id="qcard-s50">
+    <div class="q-header"><div class="q-num">Q50</div><div class="q-text">Two lamps are wired in <strong>series</strong> with one battery. One lamp&rsquo;s filament breaks. What happens to the other lamp?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="s45-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'a')"><div class="opt-indicator"></div><span>It goes out too — the loop is broken and no current can flow</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'b')"><div class="opt-indicator"></div><span>It stays lit at the same brightness</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'c')"><div class="opt-indicator"></div><span>It glows brighter than before</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s45', this, 'd')"><div class="opt-indicator"></div><span>It flickers on and off</span></div>
+      <div class="mcq-options" id="s50-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s50', this, 'a')"><div class="opt-indicator"></div><span>It goes out too — the loop is broken and no current can flow</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s50', this, 'b')"><div class="opt-indicator"></div><span>It stays lit at the same brightness</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s50', this, 'c')"><div class="opt-indicator"></div><span>It glows brighter than before</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s50', this, 'd')"><div class="opt-indicator"></div><span>It flickers on and off</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s45','a','Q45')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s45','How many loops does a series circuit have?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s45','A — A series circuit is one single loop. A break anywhere stops the current everywhere — which is one reason houses are wired in parallel.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s50','a','Q50')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s50','How many loops does a series circuit have?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s50','A — A series circuit is one single loop. A break anywhere stops the current everywhere — which is one reason houses are wired in parallel.')">Show Answer</button>
       </div>
-      <div class="feedback" id="s45-fb"></div>
+      <div class="feedback" id="s50-fb"></div>
     </div>
   </div>
 
-  <!-- Q46 -->
-  <div class="q-card" id="qcard-s46">
-    <div class="q-header"><div class="q-num">Q46</div><div class="q-text">Which meter is connected in <strong>series</strong> in a circuit to measure current?</div><div class="q-marks">1 mark</div></div>
+  <!-- Q51 -->
+  <div class="q-card" id="qcard-s51">
+    <div class="q-header"><div class="q-num">Q51</div><div class="q-text">Which meter is connected in <strong>series</strong> in a circuit to measure current?</div><div class="q-marks">1 mark</div></div>
     <div class="q-body">
-      <div class="mcq-options" id="s46-opts">
-        <div class="mcq-opt" onclick="selectMCQ('s46', this, 'a')"><div class="opt-indicator"></div><span>A voltmeter</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s46', this, 'b')"><div class="opt-indicator"></div><span>Either meter works</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s46', this, 'c')"><div class="opt-indicator"></div><span>An ammeter</span></div>
-        <div class="mcq-opt" onclick="selectMCQ('s46', this, 'd')"><div class="opt-indicator"></div><span>A switch, briefly closed</span></div>
+      <div class="mcq-options" id="s51-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s51', this, 'a')"><div class="opt-indicator"></div><span>A voltmeter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s51', this, 'b')"><div class="opt-indicator"></div><span>Either meter works</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s51', this, 'c')"><div class="opt-indicator"></div><span>An ammeter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s51', this, 'd')"><div class="opt-indicator"></div><span>A switch, briefly closed</span></div>
       </div>
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkMCQ('s46','c','Q46')">Check</button>
-        <button class="btn btn-hint" onclick="showHint('s46','Which meter needs the current to flow through itself?')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('s46','C — The ammeter measures the current flowing through it, so it sits in series on the wire. The voltmeter connects across a component, in parallel.')">Show Answer</button>
+        <button class="btn btn-check" onclick="checkMCQ('s51','c','Q51')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s51','Which meter needs the current to flow through itself?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s51','C — The ammeter measures the current flowing through it, so it sits in series on the wire. The voltmeter connects across a component, in parallel.')">Show Answer</button>
       </div>
-      <div class="feedback" id="s46-fb"></div>
+      <div class="feedback" id="s51-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q52 -->
+  <div class="q-card" id="qcard-s52">
+    <div class="q-header"><div class="q-num">Q52</div><div class="q-text">The diagram shows part of a circuit. Symbol X is a circle with a cross inside it and symbol Y is a circle with the letter V inside it. What are X and Y?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <svg class="q-fig" viewBox="0 0 300 120" role="img" aria-label="Two circuit symbols on a wire: X is a circle with a cross inside, Y is a circle with the letter V inside" style="max-width:320px"><path class="draw" d="M10 55 H58 M102 55 H178 M222 55 H290" stroke="#7a84a0" stroke-width="2" fill="none" pathLength="1"/><circle class="fill" cx="80" cy="55" r="22" stroke="#e8eaf0" stroke-width="2" fill="none"/><path class="draw" d="M64 39 L96 71 M96 39 L64 71" stroke="#e8eaf0" stroke-width="2" fill="none" pathLength="1"/><text x="80" y="100" font-size="14" fill="#f5a623" text-anchor="middle" font-family="DM Mono, monospace">X</text><circle class="fill" cx="200" cy="55" r="22" stroke="#e8eaf0" stroke-width="2" fill="none"/><text x="200" y="56" font-size="18" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">V</text><text x="200" y="100" font-size="14" fill="#f5a623" text-anchor="middle" font-family="DM Mono, monospace">Y</text></svg>
+      <div class="mcq-options" id="s52-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s52', this, 'a')"><div class="opt-indicator"></div><span>X is a resistor and Y is an ammeter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s52', this, 'b')"><div class="opt-indicator"></div><span>X is a cell and Y is a voltmeter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s52', this, 'c')"><div class="opt-indicator"></div><span>X is a lamp and Y is an ammeter</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s52', this, 'd')"><div class="opt-indicator"></div><span>X is a lamp and Y is a voltmeter</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s52','d','Q52')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s52','A cross in a circle is a light source. Which meter is shown by the letter V?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s52','D — A circle with a cross is the symbol for a lamp, and a circle with V is a voltmeter. A resistor is a rectangle, a cell is a long and a short line, and an ammeter has an A in the circle.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s52-fb"></div>
     </div>
   </div>
 
   <div class="section-score">
     <div class="section-score-label">SECTION I &mdash; ELECTRICITY</div>
     <div class="section-score-bar"><div class="section-score-fill" id="sec-el-fill"></div></div>
-    <div class="section-score-val" id="sec-el-val">0/6</div>
+    <div class="section-score-val" id="sec-el-val">0/8</div>
   </div>
 </div>
 <div class="divider"></div>
@@ -1128,18 +1241,18 @@ body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-s
 <script>
 const state = { answers: {}, correct: {}, startTime: Date.now() };
 
-const marks = { s1:1, s2:1, s3:1, s4:2, s5:1, s6:1, s7:1, s8:1, s9:2, s10:2, s11:1, s12:1, s13:1, s14:1, s15:1, s16:2, s17:2, s18:1, s19:2, s20:1, s21:1, s22:1, s23:2, s24:1, s25:1, s26:1, s27:2, s28:2, s29:1, s30:1, s31:1, s32:2, s33:1, s34:1, s35:1, s36:1, s37:2, s38:1, s39:1, s40:2, s41:2, s42:2, s43:1, s44:1, s45:1, s46:1 };
+const marks = { s1:1, s2:1, s3:1, s4:2, s5:1, s6:1, s7:1, s8:1, s9:2, s10:2, s11:1, s12:1, s13:1, s14:1, s15:1, s16:2, s17:2, s18:1, s19:2, s20:1, s21:1, s22:1, s23:2, s24:1, s25:1, s26:1, s27:2, s28:1, s29:2, s30:2, s31:2, s32:1, s33:1, s34:1, s35:2, s36:1, s37:1, s38:1, s39:1, s40:1, s41:2, s42:2, s43:1, s44:1, s45:2, s46:2, s47:2, s48:1, s49:1, s50:1, s51:1, s52:2 };
 
 const sections = {
   at: { label: 'Atoms & Periodic Table', qs: ['s1','s2','s3','s4'] },
   bo: { label: 'Bonding & Structures', qs: ['s5','s6','s7','s8','s9','s10'] },
   pp: { label: 'Photosynthesis & Minerals', qs: ['s11','s12','s13','s14','s15','s16'] },
   tr: { label: 'Transport & Carbon Cycle', qs: ['s17','s18','s19','s20','s21'] },
-  hb: { label: 'Human Biology', qs: ['s22','s23','s24','s25','s26','s27'] },
-  de: { label: 'Density', qs: ['s28','s29','s30','s31','s32'] },
-  wa: { label: 'Sound & Waves', qs: ['s33','s34','s35','s36'] },
-  th: { label: 'Thermal Energy', qs: ['s37','s38','s39','s40','s41'] },
-  el: { label: 'Electricity', qs: ['s42','s43','s44','s45','s46'] }
+  hb: { label: 'Human Biology', qs: ['s22','s23','s24','s25','s26','s27','s28','s29','s30'] },
+  de: { label: 'Density', qs: ['s31','s32','s33','s34','s35'] },
+  wa: { label: 'Sound & Waves', qs: ['s36','s37','s38','s39','s40','s41'] },
+  th: { label: 'Thermal Energy', qs: ['s42','s43','s44','s45','s46'] },
+  el: { label: 'Electricity', qs: ['s47','s48','s49','s50','s51','s52'] }
 };
 
 const allQs = Object.values(sections).flatMap(s => s.qs);
