@@ -52,15 +52,15 @@ Answers for Q1–Q76 (auto-marked on the interactive sheet) and a marking guide 
 
 ## Section B: Teks Iklan
 
-**Q23** (1 mark): **C**: Takeaway (taken home): dibawa pulang = takeaway: the food is carried home. (makan di tempat = eat in.)
+**Q23** (1 mark): **C**: Title (headline): judul = title. It is the first part of an advertisement.
 
 **Q24** (1 mark): *produk* = product. Accepted: produk.
 
-**Q25** (1 mark): **C**: Contact (call or message): hubungi = contact (someone).
+**Q25** (1 mark): **C**: Product information: informasi produk = product information, the second part of an advertisement.
 
-**Q26** (1 mark): *keunggulan* = advantage / strong point. Accepted: keunggulan.
+**Q26** (1 mark): *iklan* = advertisement. Accepted: iklan.
 
-**Q27** (1 mark): **A**: University student: mahasiswa = university student (siswa = pupil, maha- = great / higher).
+**Q27** (1 mark): **A**: Who: siapa = who. (apa = what, di mana = where, berapa = how much.)
 
 **Q28** (1 mark): **D**: Kalimat ajakan (persuasive sentence): It uses commands (Cobalah…, Dapatkan…) to persuade: this is the kalimat ajakan.
 
@@ -112,7 +112,7 @@ Answers for Q1–Q76 (auto-marked on the interactive sheet) and a marking guide 
 
 **Q51** (1 mark): *monyet* = monkey. Accepted: monyet.
 
-**Q52** (1 mark): *ikan* = fish. Accepted: ikan.
+**Q52** (1 mark): *kelinci* = rabbit. Accepted: kelinci.
 
 **Q53** (1 mark): *sapi* = cow. Accepted: sapi.
 

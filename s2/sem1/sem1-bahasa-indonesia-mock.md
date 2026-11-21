@@ -189,16 +189,18 @@ An advertisement (iklan) has a **judul** (title), **informasi produk** (product 
 >
 > Pilih apartemen impianmu sekarang!
 
+**Kata baru (new words in the ads):** tersedia = available · hubungi = contact · gratis = free · diskon = discount · harga = price · cicilan = instalment · kolam renang = swimming pool · mahasiswa = university student · dibawa pulang = takeaway · kantin = canteen · segar = fresh · tiket = ticket · loket = ticket counter · kupon = coupon · jus jeruk = orange juice · es kelapa = coconut ice drink.
+
 #### Kosakata (Vocabulary)
 
 ### Questions
 
 **Q23** (1 mark)\
-Apa arti “dibawa pulang”? (What does “dibawa pulang” mean?)
-- A) Eaten at the restaurant
-- B) Delivered to a shop
-- C) Takeaway (taken home)
-- D) Thrown away
+Apa arti “judul” dalam iklan? (What does “judul” mean in an advertisement?)
+- A) Price
+- B) Phone number
+- C) Title (headline)
+- D) Picture
 
 **Q24** (1 mark)\
 Tulis kata bahasa Indonesia untuk *product*. (Write the Indonesian word for “product”.)
@@ -206,25 +208,23 @@ Tulis kata bahasa Indonesia untuk *product*. (Write the Indonesian word for “p
 Answer: ____________________
 
 **Q25** (1 mark)\
-Apa arti “hubungi”? (What does “hubungi” mean?)
-- A) Choose
-- B) Buy
-- C) Contact (call or message)
-- D) Taste
+Apa arti “informasi produk”? (What does “informasi produk” mean?)
+- A) Persuasive sentence
+- B) Title
+- C) Product information
+- D) Phone number
 
 **Q26** (1 mark)\
-Tulis kata bahasa Indonesia untuk *advantage* (a feature that makes a product special).
+Tulis kata bahasa Indonesia untuk *advertisement*. (Write the Indonesian word for “advertisement”.)
 
 Answer: ____________________
 
 **Q27** (1 mark)\
-Apa arti “mahasiswa”? (What does “mahasiswa” mean?)
-- A) University student
-- B) Primary school pupil
-- C) Teacher
-- D) Shopkeeper
-
-#### Informasi dalam iklan (Information in the advertisement)
+Apa arti “siapa”? (What does “siapa” mean?)
+- A) Who
+- B) Where
+- C) What
+- D) How much
 
 **Q28** (1 mark)\
 Bagian apa: “Cobalah nasi goreng kami! Dapatkan promonya sekarang!”? (Which part of Ad A is this?)
@@ -381,7 +381,7 @@ Tulis nama hewan untuk *monkey*.
 Answer: ____________________
 
 **Q52** (1 mark)\
-Tulis nama hewan untuk *fish*.
+Tulis nama hewan untuk *rabbit*.
 
 Answer: ____________________
 
