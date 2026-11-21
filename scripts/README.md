@@ -165,6 +165,13 @@ rebuild overwrites them. `--only-md` writes just the two printables — used
 for the first Bahasa drill, whose `.html` was written by hand before this
 builder existed (spec `s2_sem1_bahasa_vocab.py` mirrors it exactly).
 
+**Other languages.** Defaults are Indonesian; a spec can add `META['lang']` to
+change the question wording, direction chips, placeholder, the characters
+ignored when matching (`strip`, e.g. Chinese punctuation) and extra CSS
+(CJK fonts). `s2_sem1_chinese_vocab.py` is the worked example. Keep pinyin
+out of the question text (the exam shows characters only) and put it in the
+reveal via `note`.
+
 Afterwards run `sheet_audit.py` and (if the totals changed) update the
 `index.html` card chips.
 

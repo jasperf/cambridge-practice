@@ -33,6 +33,13 @@ A question dict:
   tail         optional extra words appended to the question (html)
   help         optional override of the grey parenthetical (html)
   placeholder  optional per-question input placeholder
+  fmt          optional dict of extra {fields} for a LANG help_source template (e.g. pinyin)
+
+META may also carry an optional `lang` dict to adapt the builder to another
+language (defaults are Indonesian): ask_target, ask_source ({w}), help_target
+({noun}, {w}), help_source ({w} plus any q['fmt'] fields), chip_target,
+chip_source, placeholder, strip (extra characters ignored when matching, e.g.
+Chinese punctuation) and extra_css (appended inside <style>, e.g. CJK fonts).
   note         optional extra words appended to the reveal text
 
 The page is the same as the hand-written first drill
@@ -48,6 +55,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+LANG = {}  # optional per-spec overrides, set from META['lang'] in main() (see the docstring)
 
 
 def load(path):
@@ -186,9 +194,10 @@ def q_text(sec, q):
         return q['ask']
     word = esc(q['a'])
     if sec['dir'] == 'en-id':
-        out = f'{q.get("ask_prefix", "Tulis kata bahasa Indonesia untuk")} <em>{word}</em>.'
+        prefix = q.get('ask_prefix', LANG.get('ask_target', 'Tulis kata bahasa Indonesia untuk'))
+        out = f'{prefix} <em>{word}</em>.'
     else:
-        out = f'Apa arti <em>{word}</em> dalam bahasa Inggris?'
+        out = LANG.get('ask_source', 'Apa arti <em>{w}</em> dalam bahasa Inggris?').format(w=word)
     if 'tail' in q:
         out += ' ' + q['tail']
     return out
@@ -202,8 +211,8 @@ def q_help(sec, q):
     if sec['dir'] == 'en-id':
         canon = q.get('display', q['ans'][0])
         noun = 'words' if ' ' in canon else 'word'
-        return f'(Write the Indonesian {noun} for &ldquo;{word}&rdquo;.)'
-    return f'(What is &ldquo;{word}&rdquo; in English?)'
+        return LANG.get('help_target', '(Write the Indonesian {noun} for &ldquo;{w}&rdquo;.)').format(noun=noun, w=word)
+    return LANG.get('help_source', '(What is &ldquo;{w}&rdquo; in English?)').format(w=word, **q.get('fmt', {}))
 
 
 def q_reveal(sec, q):
@@ -219,8 +228,8 @@ def q_reveal(sec, q):
 def q_card(sec, q, n, qid):
     dirn = sec['dir']
     chip_cls = 'dir-en-id' if dirn == 'en-id' else 'dir-id-en'
-    chip_label = 'EN &rarr; ID' if dirn == 'en-id' else 'ID &rarr; EN'
-    placeholder = q.get('placeholder', sec.get('placeholder', 'bahasa Indonesia&hellip;'))
+    chip_label = LANG.get('chip_target', 'EN &rarr; ID') if dirn == 'en-id' else LANG.get('chip_source', 'ID &rarr; EN')
+    placeholder = q.get('placeholder', sec.get('placeholder', LANG.get('placeholder', 'bahasa Indonesia&hellip;')))
     answers = ','.join(f"'{js(a)}'" for a in q['ans'])
     return (f'  <!-- Q{n} -->\n'
             f'  <div class="q-card" id="qcard-{qid}">\n'
@@ -436,6 +445,9 @@ def build_html(meta, sections):
         for sec in sections)
     script = JS.replace('__MARKS__', marks_line).replace('__SECTIONS__', js_secs) \
                 .replace('__STORAGEKEY__', meta['storage_key'])
+    if LANG.get('strip'):  # extra characters ignored when matching typed answers (e.g. Chinese punctuation)
+        script = script.replace("replace(/[.,!?]+$/, '')", "replace(/[.,!?]+$/, '').replace(/[" + LANG['strip'] + "]+/g, '')")
+    css = CSS.replace('</style>', LANG['extra_css'] + '\n</style>') if LANG.get('extra_css') else CSS
 
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -444,7 +456,7 @@ def build_html(meta, sections):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{meta['title']}</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-{CSS}
+{css}
 </head>
 <body>
 <canvas id="confetti-canvas"></canvas>
@@ -549,6 +561,7 @@ def main():
         sys.exit(f'usage: {Path(__file__).name} [--only-md] <spec.py>')
     mod = load(args[0])
     meta, sections = mod.META, mod.SECTIONS
+    LANG.update(meta.get('lang', {}))
     out_base = ROOT / meta['out']
     out_base.parent.mkdir(parents=True, exist_ok=True)
     md_path = out_base.with_suffix('.md')
