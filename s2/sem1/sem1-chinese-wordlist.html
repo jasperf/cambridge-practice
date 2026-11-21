@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chinese Word List &middot; Semester 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #f5a623; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; min-height: 100vh; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.hero, .main, .tabs { max-width: 900px; margin: 0 auto; padding-left: 28px; padding-right: 28px; }
+.hero { padding-top: 48px; padding-bottom: 12px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+h1 em { font-style: italic; color: var(--accent); }
+.credit { font-size: 0.88rem; color: var(--text-muted); max-width: 640px; }
+.tabs { padding-top: 16px; padding-bottom: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+.tab { font-family: var(--font-mono); font-size: 0.75rem; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; }
+.tab:hover { border-color: var(--accent); color: var(--text); }
+.main { padding-bottom: 80px; }
+.section-head { display: flex; align-items: center; gap: 14px; margin: 40px 0 14px; flex-wrap: wrap; }
+.section-head h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; flex: 1; min-width: 220px; }
+.section-head .sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+.dir-en { color: var(--accent-math); } .dir-id { color: var(--accent-warn); }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; }
+.info-box em { color: var(--accent); }
+.btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.btn { font-family: var(--font-mono); font-size: 0.74rem; padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted); cursor: pointer; transition: all .18s; }
+.btn:hover { border-color: var(--accent); color: var(--text); }
+.btn.primary { background: var(--accent); color: #0f1117; border-color: var(--accent); }
+.btn.primary:hover { opacity: .85; color: #0f1117; }
+.sub-head { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--accent); margin: 26px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.row { display: contents; }
+.cell { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 11px 16px; min-height: 48px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; }
+.cell.shown { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
+.cell.shown .alt { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 400; color: var(--text-muted); }
+.cell.hidden-cell { cursor: pointer; font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-dim); border-style: dashed; user-select: none; }
+.cell.hidden-cell:hover { border-color: var(--accent); color: var(--accent); }
+.cell.hidden-cell:focus-visible { outline: 2px solid var(--accent); }
+.cell.revealed { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; border-color: rgba(46,204,113,0.35); background: rgba(46,204,113,0.06); cursor: pointer; }
+.cell.revealed .alt { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 400; color: var(--text-muted); }
+.en-side { color: var(--accent-math); } .id-side { color: var(--accent-warn); }
+.divider { height: 1px; background: var(--border); margin: 52px 0 0; }
+.steps { display: grid; gap: 10px; }
+.step { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 13px 16px; }
+.step-num { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--accent); min-width: 28px; line-height: 1.15; }
+.step h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
+.step p { font-size: 0.9rem; color: var(--text-muted); }
+.step p em { color: var(--text); font-style: normal; font-family: var(--font-mono); font-size: 0.82rem; }
+.golden { background: var(--surface2); border-left: 3px solid var(--accent-warn); border-radius: 0 6px 6px 0; padding: 12px 16px; font-size: 0.95rem; margin-top: 16px; }
+.golden b { color: var(--accent-warn); }
+.guide-p { font-size: 0.92rem; color: var(--text-muted); max-width: 700px; margin-bottom: 6px; }
+.guide-p em { color: var(--text); }
+.trick { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 0.9rem; color: var(--text-muted); }
+.trick b { color: var(--text); font-family: var(--font-display); }
+.trick em { color: var(--accent-warn); font-style: normal; }
+.tricks { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+.sched { width: 100%; max-width: 700px; border-collapse: collapse; font-size: 0.88rem; }
+.sched th { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); }
+.sched td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.sched td:first-child { font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-math); white-space: nowrap; }
+.sched tr.today td { color: var(--text); background: rgba(245,166,35,0.07); }
+.sched tr.today td:first-child { color: var(--accent-warn); }
+.checklist { display: grid; gap: 8px; }
+.check-item { display: flex; align-items: center; gap: 11px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 11px 14px; cursor: pointer; user-select: none; font-size: 0.9rem; transition: border-color .18s; }
+.check-item:hover { border-color: var(--accent); }
+.check-item input { accent-color: var(--accent); width: 16px; height: 16px; pointer-events: none; flex-shrink: 0; }
+.check-item.done { border-color: rgba(46,204,113,0.35); color: var(--text-dim); }
+.check-item.done span { text-decoration: line-through; }
+@media (max-width: 600px) {
+  .tricks { grid-template-columns: 1fr; }
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .hero, .main, .tabs { padding-left: 16px; padding-right: 16px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  h1 { font-size: 1.8rem; }
+  .cell { padding: 10px 12px; }
+}
+@media print { .btns, .topbar, .tabs { display: none; } body { background: #fff; color: #000; } }
+.cell { font-family: var(--font-body), 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
+.cell.id-side { font-size: 1.15rem; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Chinese &middot; Word List</div>
+  </div>
+  <a href="../../index.html" class="back-link">&larr; All sheets</a>
+</div>
+<div class="hero">
+  <div class="eyebrow">Secondary 2 &middot; Chinese L2 &middot; Semester 1</div>
+  <h1>Word List<br><em>English &harr; Chinese</em></h1>
+  <p class="credit">All 64 words from the Semester 1 Chinese revision worksheet and the mock paper &mdash; weather and seasons, jobs and places, clothes and shopping, time and family, and the writing words &mdash; in one place, with pinyin. Part A shows the English and hides the Chinese; Part B does the reverse. Tap a hidden box to check yourself, or use the buttons to reveal or hide a whole part.</p>
+</div>
+<div class="tabs">
+  <a href="#a" class="tab">A &middot; English &rarr; Chinese</a>
+  <a href="#b" class="tab">B &middot; Chinese &rarr; English</a>
+  <a href="#guide" class="tab">How to use these cards</a>
+</div>
+<div class="main">
+  <section id="a">
+    <div class="section-head"><h2>Part A &middot; English &rarr; Chinese</h2><div class="sub dir-en">Say the Chinese first</div></div>
+    <div class="info-box">Read the <em>English</em> word, say the Chinese out loud (and picture the characters), then tap the box to check. The pinyin appears with the answer. Tap a revealed box to hide it again.</div>
+    <div class="btns">
+      <button class="btn primary" data-act="reveal" data-part="a">Reveal all</button>
+      <button class="btn" data-act="hide" data-part="a">Hide all</button>
+      <button class="btn" data-act="shuffle" data-part="a">Shuffle</button>
+      <button class="btn" data-act="reset" data-part="a">Original order</button>
+    </div>
+    <div id="list-a"></div>
+  </section>
+  <div class="divider"></div>
+  <section id="b">
+    <div class="section-head"><h2>Part B &middot; Chinese &rarr; English</h2><div class="sub dir-id">Say the English first</div></div>
+    <div class="info-box">Read the <em>Chinese</em> characters, say the English meaning, then tap the box to check. The pinyin appears with the answer, so read the characters first.</div>
+    <div class="btns">
+      <button class="btn primary" data-act="reveal" data-part="b">Reveal all</button>
+      <button class="btn" data-act="hide" data-part="b">Hide all</button>
+      <button class="btn" data-act="shuffle" data-part="b">Shuffle</button>
+      <button class="btn" data-act="reset" data-part="b">Original order</button>
+    </div>
+    <div id="list-b"></div>
+  </section>
+  <div class="divider"></div>
+  <section id="guide">
+    <div class="section-head"><h2>How to use these cards to <em>memorize</em></h2><div class="sub">Read once &mdash; then do it every time</div></div>
+    <div class="info-box">Short answer: <em>do not read the list</em>. To memorize characters you test yourself (your brain only keeps what it has to work for), you <em>write</em> them, and you come back over several days. The word list above is your deck &mdash; the routine below turns it into memory. <em>Reveal all</em> / <em>Hide all</em> are for a final check, never for learning.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><h4>Shuffle first</h4><p>Press <em>Shuffle</em> in the part you are doing, so you learn the words and not the order of the list.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div><h4>Say it, then picture it</h4><p>In Part A say the Chinese word out loud <em>with its tones</em>, then picture or air-write the characters before you tap. In Part B read the characters and say the English meaning.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div><h4>Tap to check &mdash; honestly</h4><p>Only tap after you have given an answer. If you peeked, tap the box to hide it again and add that word to your <em>again</em> pile.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div><h4>Write every word you missed</h4><p>Copy a missed word 3 times on paper, saying it as you write. The exam asks you to write characters, so the hand has to know them as well as the eyes.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div><h4>Do the wrong pile again</h4><p>Hide the words you got wrong and loop until one full pass has zero wrong. Do <em>both</em> parts: writing a word from English (Part A) is harder than recognising it (Part B).</p></div></div>
+      <div class="step"><div class="step-num">6</div><div><h4>Short sessions, repeated</h4><p>10&ndash;15 minutes a day beats one long cram. Words stick when you return to them tomorrow.</p></div></div>
+    </div>
+    <div class="golden"><b>Golden rule:</b> never reveal a card before you have tried it. A card you peek at is a card you have not learned.</div>
+
+    <h3 class="sub-head">Memory tricks that work with Chinese</h3>
+    <div class="tricks">
+      <div class="trick"><b>Break characters into parts.</b> 律师 (lawyer) and 医生 (doctor) both start with a person-like part; 鞋 (shoe) has the leather radical 革 on the left. Spot the repeated parts &mdash; 皮鞋, 高跟鞋 and 运动鞋 all end in 鞋, so you only learn it once.</div>
+      <div class="trick"><b>Learn measure words in pairs.</b> 一<em>双</em>鞋 (a pair of shoes), 一<em>件</em>外套 (a coat). Say the whole phrase every time, not the measure word alone.</div>
+      <div class="trick"><b>Say it in a sentence.</b> 夏天很热 (summer is hot), 我妈妈是经理 (my mum is a manager), 这双鞋太贵了 (these shoes are too expensive). A word in your own sentence turns &ldquo;I have seen this&rdquo; into &ldquo;I can use this&rdquo;.</div>
+      <div class="trick"><b>Use the pairs.</b> 因为……所以…… and 虽然……但是…… always come as a pair. Learn the frame, then change what goes inside it.</div>
+      <div class="trick"><b>Tones matter.</b> The pinyin tells you the tone: 买 (mǎi, buy) and 卖 (mài, sell) differ only in tone. Say tones out loud when you check.</div>
+      <div class="trick"><b>Sleep on it.</b> Do your last pass in the evening. Sleep files new words into long-term memory, so a midnight cram does little.</div>
+    </div>
+
+    <h3 class="sub-head">Plan until the exam &mdash; Monday 23 November</h3>
+    <table class="sched">
+      <tr><th>Day</th><th>What to do</th><th>Time</th></tr>
+      <tr data-date="2026-11-21"><td>Sat 21 Nov</td><td>Part A shuffled + wrong-pile loop; write the missed words</td><td>15 min</td></tr>
+      <tr data-date="2026-11-22"><td>Sun 22 Nov &middot; the day before</td><td>Part B shuffled, then Part A again; say the 因为&hellip;所以&hellip; and 虽然&hellip;但是&hellip; frames</td><td>15 min</td></tr>
+      <tr data-date="2026-11-23"><td>Mon 23 Nov &middot; exam morning</td><td>One quick shuffled pass of both parts, wrong words only</td><td>10 min</td></tr>
+    </table>
+
+    <h3 class="sub-head">Today's checklist</h3>
+    <div class="btns"><button class="btn" id="check-reset">Reset checklist</button></div>
+    <div class="checklist" id="checklist">
+      <div class="check-item" data-id="shuffle"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Pressed Shuffle &mdash; did not memorize the order</span></div>
+      <div class="check-item" data-id="a"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Part A: said the Chinese with tones before tapping</span></div>
+      <div class="check-item" data-id="write"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Wrote every missed word 3 times on paper</span></div>
+      <div class="check-item" data-id="pile"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Wrong pile done again until one full pass was clean</span></div>
+      <div class="check-item" data-id="b"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Part B (Chinese &rarr; English), same routine</span></div>
+      <div class="check-item" data-id="hide"><input type="checkbox" tabindex="-1" aria-hidden="true"><span>Hid everything again so tomorrow starts fresh</span></div>
+    </div>
+  </section>
+</div>
+<script>
+const DATA = [{"title": "天气与季节 · Weather & seasons", "words": [{"id": "春天", "en": "spring", "ida": ["chūntiān"], "ena": ["chūntiān"]}, {"id": "夏天", "en": "summer", "ida": ["xiàtiān"], "ena": ["xiàtiān"]}, {"id": "秋天", "en": "autumn", "ida": ["qiūtiān"], "ena": ["qiūtiān"]}, {"id": "冬天", "en": "winter", "ida": ["dōngtiān"], "ena": ["dōngtiān"]}, {"id": "暖和", "en": "warm", "ida": ["nuǎnhuo"], "ena": ["nuǎnhuo"]}, {"id": "凉快", "en": "cool (pleasantly)", "ida": ["liángkuai"], "ena": ["liángkuai"]}, {"id": "热", "en": "hot", "ida": ["rè"], "ena": ["rè"]}, {"id": "冷", "en": "cold", "ida": ["lěng"], "ena": ["lěng"]}, {"id": "下雨", "en": "to rain", "ida": ["xià yǔ"], "ena": ["xià yǔ"]}, {"id": "雨伞", "en": "umbrella", "ida": ["yǔsǎn"], "ena": ["yǔsǎn"]}, {"id": "天气", "en": "weather", "ida": ["tiānqì"], "ena": ["tiānqì"]}]}, {"title": "职业与地点 · Jobs & places", "words": [{"id": "医生", "en": "doctor", "ida": ["yīshēng"], "ena": ["yīshēng"]}, {"id": "律师", "en": "lawyer", "ida": ["lǜshī"], "ena": ["lǜshī"]}, {"id": "经理", "en": "manager", "ida": ["jīnglǐ"], "ena": ["jīnglǐ"]}, {"id": "公司", "en": "company", "ida": ["gōngsī"], "ena": ["gōngsī"]}, {"id": "医院", "en": "hospital", "ida": ["yīyuàn"], "ena": ["yīyuàn"]}, {"id": "律师事务所", "en": "law firm", "ida": ["lǜshī shìwùsuǒ"], "ena": ["lǜshī shìwùsuǒ"]}, {"id": "商店", "en": "shop", "ida": ["shāngdiàn"], "ena": ["shāngdiàn"]}, {"id": "商场", "en": "shopping mall", "ida": ["shāngchǎng"], "ena": ["shāngchǎng"]}, {"id": "百货商店", "en": "department store", "ida": ["bǎihuò shāngdiàn"], "ena": ["bǎihuò shāngdiàn"]}, {"id": "工作", "en": "to work / job", "ida": ["gōngzuò"], "ena": ["gōngzuò"]}]}, {"title": "服装与购物 · Clothes & shopping", "words": [{"id": "皮鞋", "en": "leather shoes", "ida": ["píxié"], "ena": ["píxié"]}, {"id": "高跟鞋", "en": "high-heeled shoes", "ida": ["gāogēnxié"], "ena": ["gāogēnxié"]}, {"id": "运动鞋", "en": "trainers / sports shoes", "ida": ["yùndòngxié"], "ena": ["yùndòngxié"]}, {"id": "书包", "en": "school bag", "ida": ["shūbāo"], "ena": ["shūbāo"]}, {"id": "衣服", "en": "clothes", "ida": ["yīfu"], "ena": ["yīfu"]}, {"id": "外套", "en": "coat / jacket", "ida": ["wàitào"], "ena": ["wàitào"]}, {"id": "一双", "en": "a pair (of)", "ida": ["yì shuāng"], "ena": ["yì shuāng"]}, {"id": "一件", "en": "a piece (of clothing)", "ida": ["yí jiàn"], "ena": ["yí jiàn"]}, {"id": "多少钱", "en": "how much (money)?", "ida": ["duōshao qián"], "ena": ["duōshao qián"]}, {"id": "太贵了", "en": "too expensive", "ida": ["tài guì le"], "ena": ["tài guì le"]}, {"id": "贵", "en": "expensive", "ida": ["guì"], "ena": ["guì"]}, {"id": "便宜", "en": "cheap", "ida": ["piányi"], "ena": ["piányi"]}, {"id": "合适", "en": "suitable / a good fit", "ida": ["héshì"], "ena": ["héshì"]}, {"id": "价格", "en": "price", "ida": ["jiàgé"], "ena": ["jiàgé"]}, {"id": "块", "en": "yuan (spoken)", "ida": ["kuài"], "ena": ["kuài"]}, {"id": "买", "en": "to buy", "ida": ["mǎi"], "ena": ["mǎi"]}, {"id": "试", "en": "to try (on)", "ida": ["shì"], "ena": ["shì"]}, {"id": "颜色", "en": "colour", "ida": ["yánsè"], "ena": ["yánsè"]}, {"id": "黑色", "en": "black", "ida": ["hēisè"], "ena": ["hēisè"]}, {"id": "白色", "en": "white", "ida": ["báisè"], "ena": ["báisè"]}, {"id": "红色", "en": "red", "ida": ["hóngsè"], "ena": ["hóngsè"]}, {"id": "蓝色", "en": "blue", "ida": ["lánsè"], "ena": ["lánsè"]}, {"id": "黄色", "en": "yellow", "ida": ["huángsè"], "ena": ["huángsè"]}]}, {"title": "时间与家人 · Time & family", "words": [{"id": "周末", "en": "weekend", "ida": ["zhōumò"], "ena": ["zhōumò"]}, {"id": "星期六", "en": "Saturday", "ida": ["xīngqīliù"], "ena": ["xīngqīliù"]}, {"id": "星期天", "en": "Sunday", "ida": ["xīngqītiān"], "ena": ["xīngqītiān"]}, {"id": "上午", "en": "morning", "ida": ["shàngwǔ"], "ena": ["shàngwǔ"]}, {"id": "下午", "en": "afternoon", "ida": ["xiàwǔ"], "ena": ["xiàwǔ"]}, {"id": "午饭", "en": "lunch", "ida": ["wǔfàn"], "ena": ["wǔfàn"]}, {"id": "回家", "en": "to go home", "ida": ["huí jiā"], "ena": ["huí jiā"]}, {"id": "妈妈", "en": "mum", "ida": ["māma"], "ena": ["māma"]}, {"id": "爸爸", "en": "dad", "ida": ["bàba"], "ena": ["bàba"]}, {"id": "哥哥", "en": "elder brother", "ida": ["gēge"], "ena": ["gēge"]}, {"id": "姐姐", "en": "elder sister", "ida": ["jiějie"], "ena": ["jiějie"]}]}, {"title": "写作词语 · Writing words", "words": [{"id": "购物", "en": "shopping", "ida": ["gòuwù"], "ena": ["gòuwù"]}, {"id": "打算", "en": "to plan to", "ida": ["dǎsuàn"], "ena": ["dǎsuàn"]}, {"id": "准备", "en": "to prepare / intend", "ida": ["zhǔnbèi"], "ena": ["zhǔnbèi"]}, {"id": "一起", "en": "together", "ida": ["yìqǐ"], "ena": ["yìqǐ"]}, {"id": "因为……所以……", "en": "because … so …", "ida": ["yīnwèi … suǒyǐ …"], "ena": ["yīnwèi … suǒyǐ …"]}, {"id": "觉得", "en": "to think / feel", "ida": ["juéde"], "ena": ["juéde"]}, {"id": "后来", "en": "later / afterwards", "ida": ["hòulái"], "ena": ["hòulái"]}, {"id": "虽然……但是……", "en": "although … but …", "ida": ["suīrán … dànshì …"], "ena": ["suīrán … dànshì …"]}, {"id": "开心", "en": "happy", "ida": ["kāixīn"], "ena": ["kāixīn"]}]}];
+// part a: show en, hide id.  part b: show id, hide en.
+const PARTS = {
+  a: { shown: 'en', hidden: 'id', hiddenAlt: 'ida', shownCls: 'en-side', label: 'tap to show Chinese' },
+  b: { shown: 'id', hidden: 'en', hiddenAlt: 'ena', shownCls: 'id-side', label: 'tap to show English' }
+};
+const order = { a: null, b: null };
+
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function wordCell(w, part) {
+  const p = PARTS[part];
+  const alts = (w[p.hiddenAlt] || []).map(a => '<span class="alt">/ ' + esc(a) + '</span>').join('');
+  return { text: esc(w[p.hidden]), alts };
+}
+
+function render(part) {
+  const p = PARTS[part];
+  const root = document.getElementById('list-' + part);
+  let html = '';
+  if (order[part]) {
+    html += '<div class="list">' + order[part].map(w => rowHtml(w, part)).join('') + '</div>';
+  } else {
+    DATA.forEach(g => {
+      html += '<h3 class="sub-head">' + esc(g.title) + '</h3><div class="list">' + g.words.map(w => rowHtml(w, part)).join('') + '</div>';
+    });
+  }
+  root.innerHTML = html;
+}
+
+function rowHtml(w, part) {
+  const p = PARTS[part];
+  const c = wordCell(w, part);
+  return '<div class="row">' +
+    '<div class="cell shown ' + p.shownCls + '">' + esc(w[p.shown]) + '</div>' +
+    '<div class="cell hidden-cell" tabindex="0" role="button" aria-label="Reveal answer" data-text="' + c.text + '" data-alts="' + esc(c.alts) + '">' + p.label + '</div>' +
+    '</div>';
+}
+
+function reveal(cell) {
+  cell.className = 'cell revealed';
+  cell.removeAttribute('role');
+  cell.innerHTML = cell.dataset.text + (cell.dataset.alts ? ' ' + cell.dataset.alts : '');
+}
+function hide(cell, part) {
+  cell.className = 'cell hidden-cell';
+  cell.textContent = PARTS[part].label;
+}
+function toggle(cell, part) {
+  if (cell.classList.contains('revealed')) hide(cell, part); else reveal(cell);
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+document.addEventListener('click', e => {
+  const cell = e.target.closest('.hidden-cell, .revealed');
+  if (cell) { toggle(cell, cell.closest('#list-b') ? 'b' : 'a'); return; }
+  const btn = e.target.closest('[data-act]');
+  if (!btn) return;
+  const part = btn.dataset.part, root = document.getElementById('list-' + part);
+  const act = btn.dataset.act;
+  if (act === 'reveal') root.querySelectorAll('.hidden-cell').forEach(reveal);
+  else if (act === 'hide') root.querySelectorAll('.revealed').forEach(c => hide(c, part));
+  else if (act === 'shuffle') { order[part] = shuffle(DATA.flatMap(g => g.words)); render(part); }
+  else if (act === 'reset') { order[part] = null; render(part); }
+});
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('hidden-cell')) {
+    e.preventDefault(); toggle(e.target, e.target.closest('#list-b') ? 'b' : 'a');
+  }
+});
+// guide: highlight today's row in the exam plan
+(function(){
+  var now = new Date();
+  var iso = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+  document.querySelectorAll('.sched tr[data-date]').forEach(function(r){ if (r.dataset.date === iso) r.classList.add('today'); });
+})();
+// guide: persistent checklist
+(function(){
+  var KEY = 'zh-wordlist-guide-checks-v1';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) {}
+  var items = document.querySelectorAll('.check-item');
+  function apply() {
+    items.forEach(function(it){
+      var on = !!state[it.dataset.id];
+      it.classList.toggle('done', on);
+      it.querySelector('input').checked = on;
+    });
+  }
+  items.forEach(function(it){
+    it.addEventListener('click', function(e){
+      e.preventDefault();
+      state[it.dataset.id] = !state[it.dataset.id];
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(err) {}
+      apply();
+    });
+  });
+  document.getElementById('check-reset').addEventListener('click', function(){
+    state = {};
+    try { localStorage.setItem(KEY, '{}'); } catch(err) {}
+    apply();
+  });
+  apply();
+})();
+render('a'); render('b');
+</script>
+</body>
+</html>
