@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Body Parts &middot; Bahasa Indonesia Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #f5a623; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(245,166,35,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box em { font-style: italic; color: var(--accent); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent); }
+.q-en { color: var(--text-dim); font-size: 0.82rem; }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.dir-chip { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.5px; padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
+.dir-en-id { background: rgba(79,142,247,0.12); color: var(--accent-math); border: 1px solid rgba(79,142,247,0.3); }
+.dir-id-en { background: rgba(245,166,35,0.12); color: var(--accent-warn); border: 1px solid rgba(245,166,35,0.3); }
+.q-body { padding: 14px 20px; }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(245,166,35,0.4)} 70%{box-shadow:0 0 0 10px rgba(245,166,35,0)} 100%{box-shadow:0 0 0 0 rgba(245,166,35,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+.sub-head { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--accent); margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .hero, .section-tabs, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(245,166,35,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.dir-mc { background: rgba(62,207,142,0.12); color: var(--accent-sci); border: 1px solid rgba(62,207,142,0.3); }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Bahasa Indonesia &middot; Animal Body Parts</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 40</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Bahasa Indonesia Level 1 &middot; Unit 3 <em style="font-style:normal">Mengenal Hewan</em></div>
+  <h1>Animal Body Parts<br><em>Bagian Tubuh Hewan</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>40 questions &middot; self-marked &middot; 40 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-math)"></div>Typed answers plus a few multiple-choice</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>Hints describe the word, they never give it away</div>
+  </div>
+  <p class="credit">All 11 animal-body-part words from Unit 3, plus 10 extra words in Section E &mdash; <em>sayap, tanduk, kaki, kumis, taring, cangkang, cakar, sirip, sisik, punuk, bulu</em> &mdash; tested both ways, in sentences, and with the look-alike pairs (<em>sirip</em> / <em>sisik</em>, <em>cangkang</em> / <em>punuk</em>). Learn them first with the <a href="sem1-bahasa-indonesia-animal-body-parts-flashcards.html" style="color:var(--accent)">flashcards</a>.</p>
+</div>
+<div class="section-tabs">
+  <a href="#a" class="sub-tab">&#128203; A &middot; EN &rarr; ID</a>
+  <a href="#b" class="sub-tab">&#128302; B &middot; ID &rarr; EN</a>
+  <a href="#c" class="sub-tab">&#128161; C &middot; Choose</a>
+  <a href="#d" class="sub-tab">&#9997;&#65039; D &middot; Fill the gap</a>
+  <a href="#e" class="sub-tab">&#10024; E &middot; Extra words</a>
+</div>
+<div class="main">
+<div id="a">
+  <div class="section-header"><div class="section-icon">&#128203;</div><div><div class="sub-label">Section A &middot; English &rarr; Indonesian &middot; Q1&ndash;Q11</div><h2>Write it in Indonesian</h2></div></div>
+<div class="info-box">Type the <strong>Indonesian</strong> word for each animal body part. Capital letters do not matter. Press <strong>Check</strong> or <strong>Enter</strong>. The <strong>Hint</strong> describes the word in other words &mdash; it never gives the word away.</div>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-q1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>fin</em>. <span class="q-en">(Write the Indonesian word for &ldquo;fin&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q1-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q1',['sirip'],'Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q1','It helps a fish swim.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q1','&lt;em&gt;sirip&lt;/em&gt; = fin.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q1-fb"></div>
+    </div>
+  </div>
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-q2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>claw</em>. <span class="q-en">(Write the Indonesian word for &ldquo;claw&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q2-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q2',['cakar'],'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q2','A sharp, curved nail on a cat's or tiger's paw.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q2','&lt;em&gt;cakar&lt;/em&gt; = claw.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q2-fb"></div>
+    </div>
+  </div>
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-q3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>hump</em>. <span class="q-en">(Write the Indonesian word for &ldquo;hump&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q3-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q3',['punuk'],'Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q3','A camel carries one or two of these on its back.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q3','&lt;em&gt;punuk&lt;/em&gt; = hump.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q3-fb"></div>
+    </div>
+  </div>
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-q4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>fur or feathers</em>. <span class="q-en">(Write the Indonesian word for &ldquo;fur or feathers&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q4-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q4',['bulu'],'Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q4','It covers a rabbit's body; a bird has it too.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q4','&lt;em&gt;bulu&lt;/em&gt; = fur or feathers.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q4-fb"></div>
+    </div>
+  </div>
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-q5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>wing</em>. <span class="q-en">(Write the Indonesian word for &ldquo;wing&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q5-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q5',['sayap'],'Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q5','A bird flaps these to fly.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q5','&lt;em&gt;sayap&lt;/em&gt; = wing.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q5-fb"></div>
+    </div>
+  </div>
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-q6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>shell</em>. <span class="q-en">(Write the Indonesian word for &ldquo;shell&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q6-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q6',['cangkang'],'Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q6','A tortoise hides inside this hard cover.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q6','&lt;em&gt;cangkang&lt;/em&gt; = shell.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q6-fb"></div>
+    </div>
+  </div>
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-q7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>whiskers</em>. <span class="q-en">(Write the Indonesian word for &ldquo;whiskers&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q7-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q7',['kumis'],'Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q7','The long stiff hairs beside a cat's nose.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q7','&lt;em&gt;kumis&lt;/em&gt; = whiskers.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q7-fb"></div>
+    </div>
+  </div>
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-q8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>horn</em>. <span class="q-en">(Write the Indonesian word for &ldquo;horn&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q8-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q8',['tanduk'],'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q8','A hard pointed growth on a goat's or cow's head.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q8','&lt;em&gt;tanduk&lt;/em&gt; = horn.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q8-fb"></div>
+    </div>
+  </div>
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-q9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>scale</em>. <span class="q-en">(Write the Indonesian word for &ldquo;scale&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q9-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q9',['sisik'],'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q9','A small, hard plate on a fish's skin.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q9','&lt;em&gt;sisik&lt;/em&gt; = scale.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q9-fb"></div>
+    </div>
+  </div>
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-q10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>fang (or tusk)</em>. <span class="q-en">(Write the Indonesian word for &ldquo;fang (or tusk)&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q10-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q10',['taring'],'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q10','A long pointed tooth; one word covers both.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q10','&lt;em&gt;taring&lt;/em&gt; = fang (or tusk).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q10-fb"></div>
+    </div>
+  </div>
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-q11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>leg (or foot)</em>. <span class="q-en">(Write the Indonesian word for &ldquo;leg (or foot)&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q11-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q11',['kaki'],'Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q11','An animal stands and walks on these; one word covers both.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q11','&lt;em&gt;kaki&lt;/em&gt; = leg (or foot).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q11-fb"></div>
+    </div>
+  </div>
+  <div class="section-score">
+    <div class="section-score-label">SECTION A</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-a-fill"></div></div>
+    <div class="section-score-val" id="sec-a-val">0/11</div>
+  </div>
+</div>
+<div class="divider"></div>
+<div id="b">
+  <div class="section-header"><div class="section-icon">&#128302;</div><div><div class="sub-label">Section B &middot; Indonesian &rarr; English &middot; Q12&ndash;Q17</div><h2>Write it in English</h2></div></div>
+<div class="info-box">Type the <strong>English</strong> word. Some Indonesian words cover more than one English word &mdash; any correct meaning scores the mark.</div>
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-q12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Apa arti <em>kaki</em> dalam bahasa Inggris? <span class="q-en">(What is &ldquo;kaki&rdquo; in English?)</span></div><span class="dir-chip dir-id-en">ID &rarr; EN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q12-ans" placeholder="English&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q12',['leg','legs','foot','feet'],'Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q12','What a cat walks on; there are four of them.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q12','&lt;em&gt;leg / foot&lt;/em&gt; (kaki).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q12-fb"></div>
+    </div>
+  </div>
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-q13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Apa arti <em>taring</em> dalam bahasa Inggris? <span class="q-en">(What is &ldquo;taring&rdquo; in English?)</span></div><span class="dir-chip dir-id-en">ID &rarr; EN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q13-ans" placeholder="English&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q13',['fang','fangs','tusk','tusks'],'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q13','The pointed tooth of a tiger or an elephant.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q13','&lt;em&gt;fang / tusk&lt;/em&gt; (taring).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q13-fb"></div>
+    </div>
+  </div>
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-q14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Apa arti <em>bulu</em> dalam bahasa Inggris? <span class="q-en">(What is &ldquo;bulu&rdquo; in English?)</span></div><span class="dir-chip dir-id-en">ID &rarr; EN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q14-ans" placeholder="English&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q14',['fur','feather','feathers','hair'],'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q14','The soft covering on a rabbit or a duck.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q14','&lt;em&gt;fur / feathers&lt;/em&gt; (bulu).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q14-fb"></div>
+    </div>
+  </div>
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-q15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Apa arti <em>cangkang</em> dalam bahasa Inggris? <span class="q-en">(What is &ldquo;cangkang&rdquo; in English?)</span></div><span class="dir-chip dir-id-en">ID &rarr; EN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q15-ans" placeholder="English&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q15',['shell'],'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q15','The hard cover on a tortoise's back.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q15','&lt;em&gt;shell&lt;/em&gt; (cangkang).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q15-fb"></div>
+    </div>
+  </div>
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-q16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Apa arti <em>punuk</em> dalam bahasa Inggris? <span class="q-en">(What is &ldquo;punuk&rdquo; in English?)</span></div><span class="dir-chip dir-id-en">ID &rarr; EN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q16-ans" placeholder="English&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q16',['hump','humps'],'Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q16','The lump on a camel's back.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q16','&lt;em&gt;hump&lt;/em&gt; (punuk).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q16-fb"></div>
+    </div>
+  </div>
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-q17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Apa arti <em>sisik</em> dalam bahasa Inggris? <span class="q-en">(What is &ldquo;sisik&rdquo; in English?)</span></div><span class="dir-chip dir-id-en">ID &rarr; EN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q17-ans" placeholder="English&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q17',['scale','scales'],'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q17','Small plates on the skin of a fish or a snake.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q17','&lt;em&gt;scale&lt;/em&gt; (sisik).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q17-fb"></div>
+    </div>
+  </div>
+  <div class="section-score">
+    <div class="section-score-label">SECTION B</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-b-fill"></div></div>
+    <div class="section-score-val" id="sec-b-val">0/6</div>
+  </div>
+</div>
+<div class="divider"></div>
+<div id="c">
+  <div class="section-header"><div class="section-icon">&#128161;</div><div><div class="sub-label">Section C &middot; Choose the answer &middot; Q18&ndash;Q26</div><h2>Pick the right word</h2></div></div>
+<div class="info-box">Read each sentence and choose the word that fits. The English version is in brackets to help you.</div>
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-q18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Burung terbang dengan ___. <span class="q-en">(A bird flies with its ___.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q18', this, 'a')"><div class="opt-indicator"></div><span>sirip</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q18', this, 'b')"><div class="opt-indicator"></div><span>cakar</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q18', this, 'c')"><div class="opt-indicator"></div><span>sayap</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q18', this, 'd')"><div class="opt-indicator"></div><span>kumis</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q18','c','Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q18','It is flapped up and down in the air.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q18','C &amp;mdash; sayap = wing. Sirip is a fish's fin, cakar is a claw and kumis is whiskers.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q18-fb"></div>
+    </div>
+  </div>
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-q19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Ikan berenang dengan bantuan ___. <span class="q-en">(A fish swims with the help of its ___.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q19-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q19', this, 'a')"><div class="opt-indicator"></div><span>sirip</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q19', this, 'b')"><div class="opt-indicator"></div><span>sisik</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q19', this, 'c')"><div class="opt-indicator"></div><span>punuk</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q19', this, 'd')"><div class="opt-indicator"></div><span>taring</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q19','a','Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q19','Think of the flat parts that push through the water. (Sisik covers the body; it does not push.)')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q19','A &amp;mdash; sirip = fin. Sisik (scales) cover a fish's skin but do not move it through the water.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q19-fb"></div>
+    </div>
+  </div>
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-q20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Sapi dan kambing punya ___ di kepala mereka. <span class="q-en">(Cows and goats have ___ on their heads.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q20-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q20', this, 'a')"><div class="opt-indicator"></div><span>bulu</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q20', this, 'b')"><div class="opt-indicator"></div><span>kaki</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q20', this, 'c')"><div class="opt-indicator"></div><span>cangkang</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q20', this, 'd')"><div class="opt-indicator"></div><span>tanduk</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q20','d','Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q20','Hard, pointed, and a goat can butt with them.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q20','D &amp;mdash; tanduk = horn.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q20-fb"></div>
+    </div>
+  </div>
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-q21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Unta punya ___ di punggungnya. <span class="q-en">(A camel has a ___ on its back.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q21-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q21', this, 'a')"><div class="opt-indicator"></div><span>cangkang</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q21', this, 'b')"><div class="opt-indicator"></div><span>punuk</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q21', this, 'c')"><div class="opt-indicator"></div><span>sayap</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q21', this, 'd')"><div class="opt-indicator"></div><span>kumis</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q21','b','Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q21','It stores fat so the camel can go without food.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q21','B &amp;mdash; punuk = hump. A tortoise has a cangkang on its back, not a camel.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q21-fb"></div>
+    </div>
+  </div>
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-q22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Kucing punya ___ di dekat hidungnya. <span class="q-en">(A cat has ___ near its nose.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q22-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q22', this, 'a')"><div class="opt-indicator"></div><span>cakar</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q22', this, 'b')"><div class="opt-indicator"></div><span>taring</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q22', this, 'c')"><div class="opt-indicator"></div><span>kumis</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q22', this, 'd')"><div class="opt-indicator"></div><span>bulu</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q22','c','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q22','They help it feel its way in the dark.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q22','C &amp;mdash; kumis = whiskers.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q22-fb"></div>
+    </div>
+  </div>
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-q23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Kura-kura membawa ___ di punggungnya. <span class="q-en">(A tortoise carries a ___ on its back.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q23-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q23', this, 'a')"><div class="opt-indicator"></div><span>sisik</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q23', this, 'b')"><div class="opt-indicator"></div><span>punuk</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q23', this, 'c')"><div class="opt-indicator"></div><span>tanduk</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q23', this, 'd')"><div class="opt-indicator"></div><span>cangkang</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q23','d','Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q23','It is its house; the tortoise pulls its head in when afraid.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q23','D &amp;mdash; cangkang = shell.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q23-fb"></div>
+    </div>
+  </div>
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-q24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">Harimau menggigit dengan ___ yang tajam. <span class="q-en">(A tiger bites with its sharp ___.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q24-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q24', this, 'a')"><div class="opt-indicator"></div><span>taring</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q24', this, 'b')"><div class="opt-indicator"></div><span>sayap</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q24', this, 'c')"><div class="opt-indicator"></div><span>sirip</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q24', this, 'd')"><div class="opt-indicator"></div><span>kaki</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q24','a','Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q24','A pointed tooth, not a nail.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q24','A &amp;mdash; taring = fang.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q24-fb"></div>
+    </div>
+  </div>
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-q25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Pasangan mana yang benar? (Which pair is correct?)</div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q25-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q25', this, 'a')"><div class="opt-indicator"></div><span>bulu = scale</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q25', this, 'b')"><div class="opt-indicator"></div><span>cakar = claw</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q25', this, 'c')"><div class="opt-indicator"></div><span>sirip = shell</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q25', this, 'd')"><div class="opt-indicator"></div><span>taring = hump</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q25','b','Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q25','Three pairs are mixed up; only one matches a word to its real meaning.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q25','B &amp;mdash; cakar = claw. The others should be bulu = fur, sirip = fin, taring = fang.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q25-fb"></div>
+    </div>
+  </div>
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-q26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Kata mana dipakai untuk bulu kelinci dan bulu burung? <span class="q-en">(Which Indonesian word is used for both a rabbit's fur and a bird's feathers?)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q26-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q26', this, 'a')"><div class="opt-indicator"></div><span>kumis</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q26', this, 'b')"><div class="opt-indicator"></div><span>sisik</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q26', this, 'c')"><div class="opt-indicator"></div><span>cangkang</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q26', this, 'd')"><div class="opt-indicator"></div><span>bulu</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q26','d','Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q26','One word, two English words: soft covering on a mammal and on a bird.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q26','D &amp;mdash; bulu = fur and feathers: the same word is used for both.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q26-fb"></div>
+    </div>
+  </div>
+  <div class="section-score">
+    <div class="section-score-label">SECTION C</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-c-fill"></div></div>
+    <div class="section-score-val" id="sec-c-val">0/9</div>
+  </div>
+</div>
+<div class="divider"></div>
+<div id="d">
+  <div class="section-header"><div class="section-icon">&#9997;&#65039;</div><div><div class="sub-label">Section D &middot; Fill the gap &middot; Q27&ndash;Q30</div><h2>Complete the sentence</h2></div></div>
+<div class="info-box">Type the missing Indonesian word. No choices this time.</div>
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-q27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Kucing punya empat ___. <span class="q-en">(A cat has four ___.)</span></div><span class="dir-chip dir-en-id">FILL IN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q27-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q27',['kaki'],'Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q27','What it stands and walks on.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q27','&lt;em&gt;kaki&lt;/em&gt;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q27-fb"></div>
+    </div>
+  </div>
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-q28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Kelinci punya ___ yang lembut. <span class="q-en">(A rabbit has soft ___.)</span></div><span class="dir-chip dir-en-id">FILL IN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q28-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q28',['bulu'],'Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q28','A soft covering all over its body.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q28','&lt;em&gt;bulu&lt;/em&gt;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q28-fb"></div>
+    </div>
+  </div>
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-q29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Harimau memakai ___ yang tajam untuk menangkap mangsa. <span class="q-en">(A tiger uses its sharp ___ to catch prey.)</span></div><span class="dir-chip dir-en-id">FILL IN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q29-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q29',['cakar'],'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q29','Sharp nails on its paws.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q29','&lt;em&gt;cakar&lt;/em&gt;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q29-fb"></div>
+    </div>
+  </div>
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-q30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Ikan punya ___ kecil di kulitnya. <span class="q-en">(A fish has small ___ on its skin.)</span></div><span class="dir-chip dir-en-id">FILL IN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q30-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q30',['sisik'],'Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q30','Tiny hard plates, a bit like armour.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q30','&lt;em&gt;sisik&lt;/em&gt;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q30-fb"></div>
+    </div>
+  </div>
+  <div class="section-score">
+    <div class="section-score-label">SECTION D</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-d-fill"></div></div>
+    <div class="section-score-val" id="sec-d-val">0/4</div>
+  </div>
+</div>
+<div class="divider"></div>
+<div id="e">
+  <div class="section-header"><div class="section-icon">&#10024;</div><div><div class="sub-label">Section E &middot; Extra words &middot; Q31&ndash;Q40</div><h2>More body parts</h2></div></div>
+<div class="info-box">Ten more animal-body-part words, beyond the first eleven: <em>ekor, telinga, mata, mulut, leher, hidung, kepala, paruh, belalai, surai</em>.</div>
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-q31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>tail</em>. <span class="q-en">(Write the Indonesian word for &ldquo;tail&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q31-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q31',['ekor'],'Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q31','A dog wags it when it is happy.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q31','&lt;em&gt;ekor&lt;/em&gt; = tail.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q31-fb"></div>
+    </div>
+  </div>
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-q32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>ear</em>. <span class="q-en">(Write the Indonesian word for &ldquo;ear&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q32-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q32',['telinga'],'Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q32','You hear with it; a rabbit has long ones.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q32','&lt;em&gt;telinga&lt;/em&gt; = ear.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q32-fb"></div>
+    </div>
+  </div>
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-q33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>eye</em>. <span class="q-en">(Write the Indonesian word for &ldquo;eye&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q33-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q33',['mata'],'Q33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q33','You see with it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q33','&lt;em&gt;mata&lt;/em&gt; = eye.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q33-fb"></div>
+    </div>
+  </div>
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-q34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">Tulis kata bahasa Indonesia untuk <em>mouth</em>. <span class="q-en">(Write the Indonesian word for &ldquo;mouth&rdquo;.)</span></div><span class="dir-chip dir-en-id">EN &rarr; ID</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q34-ans" placeholder="bahasa Indonesia&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q34',['mulut'],'Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q34','Where food goes in.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q34','&lt;em&gt;mulut&lt;/em&gt; = mouth.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q34-fb"></div>
+    </div>
+  </div>
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-q35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Apa arti <em>leher</em> dalam bahasa Inggris? <span class="q-en">(What is &ldquo;leher&rdquo;in English?)</span></div><span class="dir-chip dir-id-en">ID &rarr; EN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q35-ans" placeholder="English&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q35',['neck'],'Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q35','The part of a giraffe between its head and its body.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q35','&lt;em&gt;neck&lt;/em&gt; (leher).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q35-fb"></div>
+    </div>
+  </div>
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-q36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Apa arti <em>hidung</em> dalam bahasa Inggris? <span class="q-en">(What is &ldquo;hidung&rdquo;in English?)</span></div><span class="dir-chip dir-id-en">ID &rarr; EN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q36-ans" placeholder="English&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q36',['nose'],'Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q36','You smell with it; a cat's whiskers grow beside it.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q36','&lt;em&gt;nose&lt;/em&gt; (hidung).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q36-fb"></div>
+    </div>
+  </div>
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-q37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Apa arti <em>kepala</em> dalam bahasa Inggris? <span class="q-en">(What is &ldquo;kepala&rdquo;in English?)</span></div><span class="dir-chip dir-id-en">ID &rarr; EN</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="q37-ans" placeholder="English&hellip;" autocomplete="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('q37',['head'],'Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q37','The part of a cow where its horns grow.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q37','&lt;em&gt;head&lt;/em&gt; (kepala).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q37-fb"></div>
+    </div>
+  </div>
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-q38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">Burung makan dengan ___. <span class="q-en">(A bird eats with its ___.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q38-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q38', this, 'a')"><div class="opt-indicator"></div><span>paruh</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q38', this, 'b')"><div class="opt-indicator"></div><span>taring</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q38', this, 'c')"><div class="opt-indicator"></div><span>telinga</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q38', this, 'd')"><div class="opt-indicator"></div><span>cakar</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q38','a','Q38')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q38','A hard pointed part that is not a tooth.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q38','A &amp;mdash; paruh = beak.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q38-fb"></div>
+    </div>
+  </div>
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-q39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Gajah mengambil air dengan ___ yang panjang. <span class="q-en">(An elephant takes up water with its long ___.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q39-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q39', this, 'a')"><div class="opt-indicator"></div><span>ekor</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q39', this, 'b')"><div class="opt-indicator"></div><span>sayap</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q39', this, 'c')"><div class="opt-indicator"></div><span>belalai</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q39', this, 'd')"><div class="opt-indicator"></div><span>leher</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q39','c','Q39')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q39','It is a long nose that works like a hand.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q39','C &amp;mdash; belalai = trunk.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q39-fb"></div>
+    </div>
+  </div>
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-q40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">Singa jantan punya ___ yang tebal di lehernya. <span class="q-en">(A male lion has a thick ___ around its neck.)</span></div><span class="dir-chip dir-mc">MCQ</span><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q40-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q40', this, 'a')"><div class="opt-indicator"></div><span>sisik</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q40', this, 'b')"><div class="opt-indicator"></div><span>surai</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q40', this, 'c')"><div class="opt-indicator"></div><span>punuk</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q40', this, 'd')"><div class="opt-indicator"></div><span>cangkang</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q40','b','Q40')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q40','Long thick hair, not a shell or scales.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q40','B &amp;mdash; surai = mane.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q40-fb"></div>
+    </div>
+  </div>
+  <div class="section-score">
+    <div class="section-score-label">SECTION E</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-e-fill"></div></div>
+    <div class="section-score-val" id="sec-e-val">0/10</div>
+  </div>
+</div>
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+</div>
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { q1:1, q2:1, q3:1, q4:1, q5:1, q6:1, q7:1, q8:1, q9:1, q10:1, q11:1, q12:1, q13:1, q14:1, q15:1, q16:1, q17:1, q18:1, q19:1, q20:1, q21:1, q22:1, q23:1, q24:1, q25:1, q26:1, q27:1, q28:1, q29:1, q30:1, q31:1, q32:1, q33:1, q34:1, q35:1, q36:1, q37:1, q38:1, q39:1, q40:1 };
+
+const sections = {
+  a: { label: 'English \u2192 Indonesian', qs: ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10','q11'] },
+  b: { label: 'Indonesian \u2192 English', qs: ['q12','q13','q14','q15','q16','q17'] },
+  c: { label: 'Choose the answer', qs: ['q18','q19','q20','q21','q22','q23','q24','q25','q26'] },
+  d: { label: 'Fill the gap', qs: ['q27','q28','q29','q30'] },
+  e: { label: 'Extra words', qs: ['q31','q32','q33','q34','q35','q36','q37','q38','q39','q40'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/[\u2019\u2018]/g, "'").replace(/[\u201c\u201d"]/g, '').replace(/\s+/g, ' ').replace(/^(a|an|the) /, '');
+}
+
+function selectMCQ(qid, el, val) {
+  if (state.correct[qid] !== undefined) return;
+  document.querySelectorAll(`#${qid}-opts .mcq-opt`).forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '\u2713';
+  state.answers[qid] = val;
+}
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = selected === correctVal;
+  document.querySelectorAll(`#${qid}-opts .mcq-opt`).forEach(opt => {
+    opt.classList.add('disabled');
+    const v = opt.getAttribute('onclick').match(/'([a-d])'\)/)[1];
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected')) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `\u2705 <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `\u274c <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `\ud83d\udca1 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `\ud83d\udcd6 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'\ud83c\udfc6 Excellent!':pct>=70?'\u2b50 Great Job!':pct>=55?'\ud83d\udc4d Good Effort':'\ud83d\udcda Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem('sem1-bahasa-indonesia-animal-body-parts' + '_' + Date.now(), JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('text-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
