@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animal Body Parts &middot; Bahasa Indonesia Flashcards</title>
+<title>Bahasa Indonesia Flashcards &middot; Indonesian &rarr; English</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>:root {
   --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
@@ -84,28 +84,28 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <div class="topbar">
   <div class="topbar-left">
     <div class="logo">Student<span>'s</span> Study Hub</div>
-    <div class="week-badge">Bahasa Indonesia &middot; Flashcards</div>
+    <div class="week-badge">Bahasa Indonesia &middot; Flashcards &middot; Indonesian &rarr; English</div>
   </div>
   <a href="../../../index.html" class="back-link">&larr; All sheets</a>
 </div>
 <div class="progress-wrap"><div class="progress-bar" id="bar"></div></div>
 <div class="hero">
   <div class="hero-eyebrow">Secondary 2 &middot; Bahasa Indonesia Level 1 &middot; Unit 3 Mengenal Hewan</div>
-  <h1>Animal Body Parts<br><em>Bagian Tubuh Hewan</em></h1>
-  <p class="credit">21 flashcards: the 11 words from Unit 3 plus 10 extra body parts. Say the answer out loud, then tap the card to flip it. Mark the ones you know and they disappear, so only the tricky ones are left. Then take the <a href="sem1-bahasa-indonesia-animal-body-parts.html" style="color:var(--accent)">test</a>. Nothing here is scored.</p>
+  <h1>Vocabulary Flashcards<br><em>Indonesian &rarr; English</em></h1>
+  <p class="credit">50 flashcards: every word from Vocabulary Drill 2 (classroom, describing the class, animals, adjectives) plus all the animal body parts from Unit 3. Say the answer out loud, then tap the card to flip it. Mark the ones you know and they disappear, so only the tricky ones are left. Want the other way round? Try <a href="sem1-bahasa-indonesia-animal-body-parts-flashcards-en-id.html" style="color:var(--accent)">English &rarr; Indonesian</a>, or take the <a href="sem1-bahasa-indonesia-animal-body-parts.html" style="color:var(--accent)">body-parts test</a>. Nothing here is scored.</p>
 </div>
 <div class="main">
   <div class="stats">
-    <div class="stat"><strong id="s-total">21</strong>cards</div>
+    <div class="stat"><strong id="s-total">50</strong>cards</div>
     <div class="stat"><strong id="s-known">0</strong>known</div>
-    <div class="stat"><strong id="s-left">21</strong>still learning</div>
+    <div class="stat"><strong id="s-left">50</strong>still learning</div>
   </div>
   <div class="toolbar">
     <button class="chipbtn on" data-f="learning">Still learning</button>
     <button class="chipbtn" data-f="known">Known (hidden)</button>
     <button class="chipbtn" data-f="all">All</button>
+    <select id="cat" class="chipbtn"><option value="">All topics</option><option>Kelas &amp; sekolah</option><option>Tentang kelas</option><option>Hewan</option><option>Bagian tubuh hewan</option><option>Kata sifat &amp; perbandingan</option></select>
     <span class="grow"></span>
-    <button class="chipbtn" id="dir">Showing: Indonesian &rarr; English</button>
     <button class="chipbtn" id="shuf">Shuffle</button>
     <button class="chipbtn" id="reset">Reset</button>
   </div>
@@ -114,46 +114,78 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 </div>
 <script>
 const WORDS = [
-  { id:'sayap',    en:'wing',            hint:'A bird flaps these to fly.', ex:'Burung terbang dengan <em>sayap</em>.', exEn:'A bird flies with its wings.' },
-  { id:'tanduk',   en:'horn',            hint:'Found on cows and goats.', ex:'Sapi punya <em>tanduk</em> di kepalanya.', exEn:'A cow has horns on its head.' },
-  { id:'kaki',     en:'leg / foot',      hint:'Animals walk and stand on these.', ex:'Kucing punya empat <em>kaki</em>.', exEn:'A cat has four legs.' },
-  { id:'kumis',    en:'whiskers',        hint:'A cat has these near its nose.', ex:'Kucing punya <em>kumis</em> panjang.', exEn:'A cat has long whiskers.' },
-  { id:'taring',   en:'fang / tusk',     hint:'A long pointed tooth.', ex:'Harimau menggigit dengan <em>taring</em>.', exEn:'A tiger bites with its fangs.' },
-  { id:'cangkang', en:'shell',           hint:'A tortoise carries this on its back.', ex:'Kura-kura masuk ke <em>cangkang</em>.', exEn:'The tortoise goes into its shell.' },
-  { id:'cakar',    en:'claw',            hint:'A sharp nail on an animal.', ex:'Harimau punya <em>cakar</em> tajam.', exEn:'A tiger has sharp claws.' },
-  { id:'sirip',    en:'fin',             hint:'Helps a fish swim.', ex:'Ikan berenang dengan <em>sirip</em>.', exEn:'A fish swims with its fins.' },
-  { id:'sisik',    en:'scale',           hint:'Small hard plates on a fish.', ex:'Ikan punya <em>sisik</em> kecil.', exEn:'A fish has small scales.' },
-  { id:'punuk',    en:'hump',            hint:'On a camel\'s back.', ex:'Unta punya <em>punuk</em>.', exEn:'A camel has a hump.' },
-  { id:'bulu',     en:'fur / feathers',  hint:'Covers a rabbit or a bird.', ex:'Kelinci punya <em>bulu</em> lembut.', exEn:'A rabbit has soft fur.' },
-  { id:'ekor',     en:'tail',            hint:'A dog wags it when it is happy.', ex:'Anjing menggoyangkan <em>ekor</em>.', exEn:'The dog wags its tail.' },
-  { id:'telinga',  en:'ear',             hint:'You hear with it; a rabbit has long ones.', ex:'Kelinci punya <em>telinga</em> panjang.', exEn:'A rabbit has long ears.' },
-  { id:'mata',     en:'eye',             hint:'You see with it.', ex:'Kucing punya dua <em>mata</em>.', exEn:'A cat has two eyes.' },
-  { id:'mulut',    en:'mouth',           hint:'Where food goes in.', ex:'Ikan membuka <em>mulut</em>.', exEn:'The fish opens its mouth.' },
-  { id:'hidung',   en:'nose',            hint:'You smell with it.', ex:'Kumis kucing ada di dekat <em>hidung</em>.', exEn:'A cat\'s whiskers are near its nose.' },
-  { id:'kepala',   en:'head',            hint:'Where a cow\'s horns grow.', ex:'Sapi punya tanduk di <em>kepala</em>.', exEn:'A cow has horns on its head.' },
-  { id:'leher',    en:'neck',            hint:'A giraffe has a very long one.', ex:'Jerapah punya <em>leher</em> panjang.', exEn:'A giraffe has a long neck.' },
-  { id:'paruh',    en:'beak',            hint:'A bird\'s hard pointed mouth.', ex:'Burung makan dengan <em>paruh</em>.', exEn:'A bird eats with its beak.' },
-  { id:'belalai',  en:'trunk',           hint:'An elephant\'s long nose.', ex:'Gajah minum dengan <em>belalai</em>.', exEn:'An elephant drinks with its trunk.' },
-  { id:'surai',    en:'mane',            hint:'Thick hair around a male lion\'s neck.', ex:'Singa jantan punya <em>surai</em>.', exEn:'A male lion has a mane.' }
+  { id:'buku', en:'book', hint:'It has pages and you read it.', cat:'Kelas & sekolah' },
+  { id:'tempat pensil', en:'pencil case', hint:'A small box or bag that holds your pens and pencils.', cat:'Kelas & sekolah' },
+  { id:'meja guru', en:'teacher\'s desk', hint:'The table at the front where the teacher sits and works.', cat:'Kelas & sekolah' },
+  { id:'meja siswa', en:'student\'s desk', hint:'The table you sit at to do your work in class.', cat:'Kelas & sekolah' },
+  { id:'lemari', en:'cupboard', hint:'A tall piece of furniture with doors where things are stored.', cat:'Kelas & sekolah' },
+  { id:'tanaman', en:'plant', hint:'It is green, grows in a pot by the window and needs water.', cat:'Kelas & sekolah' },
+  { id:'papan pengumuman', en:'notice board', hint:'A board on the wall where posters and messages are pinned.', cat:'Kelas & sekolah' },
+  { id:'pengeras suara', en:'loudspeaker', hint:'It makes sounds and announcements louder so everyone can hear.', cat:'Kelas & sekolah' },
+  { id:'rapi', en:'neat', hint:'When everything is in its place and nothing is messy.', cat:'Tentang kelas' },
+  { id:'nyaman', en:'comfortable', hint:'How you feel on a soft chair in a cool room.', cat:'Tentang kelas' },
+  { id:'sekolah', en:'school', hint:'The place you go every morning to learn, with teachers and lessons.', cat:'Tentang kelas' },
+  { id:'umur / usia', en:'age', hint:'The number of years old you are.', cat:'Tentang kelas' },
+  { id:'di sisi kanan', en:'right side', hint:'The opposite of the left side, where most people hold a pen.', cat:'Tentang kelas' },
+  { id:'di sisi kiri', en:'left side', hint:'The opposite of the right side.', cat:'Tentang kelas' },
+  { id:'di mana', en:'where', hint:'Ask this question word to learn about a place.', cat:'Tentang kelas' },
+  { id:'bebek', en:'duck', hint:'A bird that swims on ponds and says quack.', cat:'Hewan' },
+  { id:'kambing', en:'goat', hint:'A farm animal with a beard that climbs rocks and eats grass.', cat:'Hewan' },
+  { id:'sapi', en:'cow', hint:'A farm animal that gives us milk and says moo.', cat:'Hewan' },
+  { id:'ayam', en:'chicken', hint:'A farm bird that lays eggs and says cluck.', cat:'Hewan' },
+  { id:'rusa', en:'deer', hint:'A shy brown forest animal; the males have antlers.', cat:'Hewan' },
+  { id:'singa', en:'lion', hint:'The big cat sometimes called the king of the jungle.', cat:'Hewan' },
+  { id:'kucing', en:'cat', hint:'A small pet that says meow and chases mice.', cat:'Hewan' },
+  { id:'anjing', en:'dog', hint:'A pet that barks at strangers and wags its tail.', cat:'Hewan' },
+  { id:'ular', en:'snake', hint:'A long thin reptile with no legs; some of them are poisonous.', cat:'Hewan' },
+  { id:'tupai', en:'squirrel', hint:'A small animal with a bushy tail that climbs trees and collects nuts.', cat:'Hewan' },
+  { id:'kecil', en:'small / little', hint:'An ant is ___; an elephant is not.', cat:'Kata sifat & perbandingan' },
+  { id:'pendek', en:'short', hint:'The opposite of tall (tinggi); a tortoise is ___.', cat:'Kata sifat & perbandingan' },
+  { id:'ringan', en:'light (weight)', hint:'A feather is ___; the opposite of heavy (berat).', cat:'Kata sifat & perbandingan' },
+  { id:'lebih', en:'more / more than', hint:'The word in "Gajah ___ besar dari kelinci" that makes a comparison.', cat:'Kata sifat & perbandingan' },
+  { id:'sayap',    en:'wing',            hint:'A bird flaps these to fly.', ex:'Burung terbang dengan <em>sayap</em>.', exEn:'A bird flies with its wings.', cat:'Bagian tubuh hewan' },
+  { id:'tanduk',   en:'horn',            hint:'Found on cows and goats.', ex:'Sapi punya <em>tanduk</em> di kepalanya.', exEn:'A cow has horns on its head.', cat:'Bagian tubuh hewan' },
+  { id:'kaki',     en:'leg / foot',      hint:'Animals walk and stand on these.', ex:'Kucing punya empat <em>kaki</em>.', exEn:'A cat has four legs.', cat:'Bagian tubuh hewan' },
+  { id:'kumis',    en:'whiskers',        hint:'A cat has these near its nose.', ex:'Kucing punya <em>kumis</em> panjang.', exEn:'A cat has long whiskers.', cat:'Bagian tubuh hewan' },
+  { id:'taring',   en:'fang / tusk',     hint:'A long pointed tooth.', ex:'Harimau menggigit dengan <em>taring</em>.', exEn:'A tiger bites with its fangs.', cat:'Bagian tubuh hewan' },
+  { id:'cangkang', en:'shell',           hint:'A tortoise carries this on its back.', ex:'Kura-kura masuk ke <em>cangkang</em>.', exEn:'The tortoise goes into its shell.', cat:'Bagian tubuh hewan' },
+  { id:'cakar',    en:'claw',            hint:'A sharp nail on an animal.', ex:'Harimau punya <em>cakar</em> tajam.', exEn:'A tiger has sharp claws.', cat:'Bagian tubuh hewan' },
+  { id:'sirip',    en:'fin',             hint:'Helps a fish swim.', ex:'Ikan berenang dengan <em>sirip</em>.', exEn:'A fish swims with its fins.', cat:'Bagian tubuh hewan' },
+  { id:'sisik',    en:'scale',           hint:'Small hard plates on a fish.', ex:'Ikan punya <em>sisik</em> kecil.', exEn:'A fish has small scales.', cat:'Bagian tubuh hewan' },
+  { id:'punuk',    en:'hump',            hint:'On a camel\'s back.', ex:'Unta punya <em>punuk</em>.', exEn:'A camel has a hump.', cat:'Bagian tubuh hewan' },
+  { id:'bulu',     en:'fur / feathers',  hint:'Covers a rabbit or a bird.', ex:'Kelinci punya <em>bulu</em> lembut.', exEn:'A rabbit has soft fur.', cat:'Bagian tubuh hewan' },
+  { id:'ekor',     en:'tail',            hint:'A dog wags it when it is happy.', ex:'Anjing menggoyangkan <em>ekor</em>.', exEn:'The dog wags its tail.', cat:'Bagian tubuh hewan' },
+  { id:'telinga',  en:'ear',             hint:'You hear with it; a rabbit has long ones.', ex:'Kelinci punya <em>telinga</em> panjang.', exEn:'A rabbit has long ears.', cat:'Bagian tubuh hewan' },
+  { id:'mata',     en:'eye',             hint:'You see with it.', ex:'Kucing punya dua <em>mata</em>.', exEn:'A cat has two eyes.', cat:'Bagian tubuh hewan' },
+  { id:'mulut',    en:'mouth',           hint:'Where food goes in.', ex:'Ikan membuka <em>mulut</em>.', exEn:'The fish opens its mouth.', cat:'Bagian tubuh hewan' },
+  { id:'hidung',   en:'nose',            hint:'You smell with it.', ex:'Kumis kucing ada di dekat <em>hidung</em>.', exEn:'A cat\'s whiskers are near its nose.', cat:'Bagian tubuh hewan' },
+  { id:'kepala',   en:'head',            hint:'Where a cow\'s horns grow.', ex:'Sapi punya tanduk di <em>kepala</em>.', exEn:'A cow has horns on its head.', cat:'Bagian tubuh hewan' },
+  { id:'leher',    en:'neck',            hint:'A giraffe has a very long one.', ex:'Jerapah punya <em>leher</em> panjang.', exEn:'A giraffe has a long neck.', cat:'Bagian tubuh hewan' },
+  { id:'paruh',    en:'beak',            hint:'A bird\'s hard pointed mouth.', ex:'Burung makan dengan <em>paruh</em>.', exEn:'A bird eats with its beak.', cat:'Bagian tubuh hewan' },
+  { id:'belalai',  en:'trunk',           hint:'An elephant\'s long nose.', ex:'Gajah minum dengan <em>belalai</em>.', exEn:'An elephant drinks with its trunk.', cat:'Bagian tubuh hewan' },
+  { id:'surai',    en:'mane',            hint:'Thick hair around a male lion\'s neck.', ex:'Singa jantan punya <em>surai</em>.', exEn:'A male lion has a mane.', cat:'Bagian tubuh hewan' }
 ];
-let order = shuffled(WORDS.map(w => w.id)), known = new Set(), flipped = new Set(), filter = 'learning', dir = 'id';
-try { known = new Set(JSON.parse(localStorage.getItem('abp-known') || '[]')); } catch (e) {}
+const DIR = 'id', CAT_KEY = 'abp-known-id-en';
+let cat = '';
+let order = shuffled(WORDS.map(w => w.id)), known = new Set(), flipped = new Set(), filter = 'learning';
+try { known = new Set(JSON.parse(localStorage.getItem(CAT_KEY) || '[]')); } catch (e) {}
 function shuffled(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 const deck = document.getElementById('deck');
-function save() { try { localStorage.setItem('abp-known', JSON.stringify([...known])); } catch (e) {} }
+function save() { try { localStorage.setItem(CAT_KEY, JSON.stringify([...known])); } catch (e) {} }
 function render() {
-  const list = order.map(id => WORDS.find(w => w.id === id)).filter(w => filter === 'all' || (filter === 'known') === known.has(w.id));
+  const list = order.map(id => WORDS.find(w => w.id === id)).filter(w => (!cat || w.cat === cat)).filter(w => filter === 'all' || (filter === 'known') === known.has(w.id));
   deck.innerHTML = list.length ? list.map(w => {
-    const front = dir === 'id' ? w.id : w.en, back = dir === 'id' ? w.en : w.id;
+    const front = DIR === 'id' ? w.id : w.en, back = DIR === 'id' ? w.en : w.id;
     const k = known.has(w.id), f = flipped.has(w.id);
     return `<div class="fc ${f ? 'flipped' : ''} ${k ? 'known' : ''}" data-id="${w.id}">
       <div class="fc-in">
         <div class="face"><span class="num">${WORDS.indexOf(w) + 1} / ${WORDS.length}</span>${k ? '<span class="badge">&#10003; known</span>' : ''}<div class="big">${front}</div><div class="tap">tap to flip</div></div>
-        <div class="face back"><div class="big">${back}</div><div class="small">${w.hint}<br>${w.ex}<br>(${w.exEn})</div></div>
+        <div class="face back"><div class="big">${back}</div><div class="small">${w.hint}${w.ex ? '<br>' + w.ex + '<br>(' + w.exEn + ')' : ''}<br><span style="color:var(--text-dim);font-size:.7rem">${w.cat}</span></div></div>
       </div>
       <div class="mark"><button class="knownbtn ${k ? 'on' : ''}" data-k="${w.id}">${k ? '&#10003; Known' : 'Mark known'}</button></div>
     </div>`;
   }).join('') : (filter === 'learning' && known.size === WORDS.length ? '<div class="empty">&#127942; You know every card! Take the test, or press Reset to start again.</div>' : '<div class="empty">No cards here yet. Try another filter.</div>');
+  document.getElementById('s-total').textContent = WORDS.length;
   document.getElementById('s-known').textContent = known.size;
   document.getElementById('s-left').textContent = WORDS.length - known.size;
   document.getElementById('bar').style.width = (known.size / WORDS.length * 100) + '%';
@@ -175,10 +207,7 @@ deck.addEventListener('click', e => {
 document.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => {
   filter = b.dataset.f; document.querySelectorAll('[data-f]').forEach(x => x.classList.toggle('on', x === b)); render();
 }));
-document.getElementById('dir').addEventListener('click', e => {
-  dir = dir === 'id' ? 'en' : 'id'; flipped.clear();
-  e.target.innerHTML = dir === 'id' ? 'Showing: Indonesian &rarr; English' : 'Showing: English &rarr; Indonesian'; render();
-});
+document.getElementById('cat').addEventListener('change', e => { cat = e.target.value; render(); });
 document.getElementById('shuf').addEventListener('click', () => {
   order = shuffled(order); flipped.clear(); render();
 });
