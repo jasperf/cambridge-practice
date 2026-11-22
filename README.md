@@ -1,6 +1,6 @@
 # 📚 Cambridge Practice
 
-**Free, self-marking practice sheets for Cambridge Lower Secondary and IGCSE.**
+**Free, self-marking practice sheets for Cambridge Lower Secondary and IGCSE — plus Bahasa Indonesia and Mandarin.**
 No login. No install. Works offline.
 
 [![Live site](https://img.shields.io/badge/live-jasperf.github.io-4f8ef7)](https://jasperf.github.io/cambridge-practice)
@@ -12,6 +12,15 @@ No login. No install. Works offline.
 <p align="center">
   <img src="docs/img/demo.gif" alt="A science practice sheet being answered: a typed answer marked correct, a wrong multiple-choice answer followed by the revealed worked answer, then two more correct answers as the score goes up" width="800">
 </p>
+
+## 🌏 Who this is for
+
+The academic sheets follow the **Cambridge pathway** — Lower Secondary (Secondary 1 & 2, ending in Checkpoint), then IGCSE and A-Level — which is how maths, science and English are taught at English-medium international schools such as **SIS South Jakarta** (SIS schools in Indonesia run the Singapore, Cambridge and IB curricula, and SIS South Jakarta has offered the IB Diploma Programme since 2014). On top of the Cambridge subjects, students at schools in Indonesia also study **Bahasa Indonesia** (a required national subject) and **Mandarin Chinese** — so this repo has language practice alongside the academic sheets:
+
+- **Bahasa Indonesia** — Semester 1 mock (Units 1–3), two 40-question vocabulary drills, a 96-word word list
+- **Chinese (Mandarin)** — Semester 1 mock (seasons, occupations, shopping), a 40-question vocabulary drill, a 64-word word list
+
+The Cambridge-subject sheets work for any student following that curriculum, anywhere in the world; the language sheets are aimed at students in Indonesia and Mandarin learners elsewhere.
 
 ## ✨ How it works
 
@@ -44,4 +53,4 @@ Plain HTML, CSS and JavaScript, with no build step. See [CONTRIBUTING.md](CONTRI
 
 ---
 
-*Not affiliated with Cambridge Assessment International Education.*
+*Not affiliated with Cambridge Assessment International Education or Singapore Intercultural School (SIS).*
