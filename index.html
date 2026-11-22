@@ -111,6 +111,7 @@ h1 em { font-style: italic; color: var(--accent); }
   padding: 0 32px;
 }
 .grid-label {
+  scroll-margin-top: 170px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 2px;
@@ -223,6 +224,32 @@ footer p {
 }
 footer a { color: var(--text-muted); text-decoration: none; }
 footer a:hover { color: var(--text); }
+
+/* FILTER BAR */
+.filters {
+  position: sticky; top: 56px; z-index: 90;
+  background: rgba(15,17,23,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0 12px; margin-bottom: 28px;
+}
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.filter-row:first-child { margin-top: 0; }
+.filter-name {
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-dim); width: 70px; flex-shrink: 0;
+}
+.fbtn {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.5px;
+  padding: 5px 12px; border-radius: 20px; cursor: pointer;
+  border: 1px solid var(--border); background: transparent; color: var(--text-muted);
+  transition: all 0.15s;
+}
+.fbtn:hover { color: var(--text); border-color: var(--accent); }
+.fbtn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.fbtn[hidden] { display: none; }
+.is-hidden { display: none !important; }
+.no-results { display: none; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; padding: 24px 0 48px; }
+@media (max-width: 600px) { .filter-name { width: 100%; } }
 </style>
 </head>
 <body>
@@ -254,7 +281,30 @@ footer a:hover { color: var(--text); }
 
 <div class="grid-wrap">
 
-  <div class="grid-label" id="secondary1">Secondary 1 — Term 4</div>
+  <div class="filters" id="filters" aria-label="Filter sheets">
+    <div class="filter-row" data-key="level"><span class="filter-name">Level</span>
+      <button class="fbtn" data-v="all">All</button>
+      <button class="fbtn" data-v="s1">Secondary 1</button>
+      <button class="fbtn" data-v="s2">Secondary 2</button>
+      <button class="fbtn" data-v="igcse">IGCSE</button>
+    </div>
+    <div class="filter-row" data-key="sem"><span class="filter-name">Semester</span>
+      <button class="fbtn" data-v="all">All</button>
+      <button class="fbtn" data-v="1" data-levels="s2">Semester 1</button>
+      <button class="fbtn" data-v="2" data-levels="s1">Semester 2</button>
+    </div>
+    <div class="filter-row" data-key="term"><span class="filter-name">Term</span>
+      <button class="fbtn" data-v="all">All</button>
+      <button class="fbtn" data-v="t1" data-levels="s2">Term 1</button>
+      <button class="fbtn" data-v="t2" data-levels="s2">Term 2</button>
+      <button class="fbtn" data-v="mock" data-levels="s2">Sem 1 mocks</button>
+      <button class="fbtn" data-v="t4" data-levels="s1">Term 4</button>
+      <button class="fbtn" data-v="sa2" data-levels="s1">SA2 revision</button>
+    </div>
+  </div>
+  <div class="no-results" id="no-results">No sheets match this combination — try &ldquo;All&rdquo;.</div>
+
+  <div class="grid-label" id="secondary1" data-level="s1" data-sem="2" data-term="t4">Secondary 1 — Term 4</div>
   <div class="grid">
 
     <a href="s1/t4/w1/term4-week1-maths-science.html" class="card math">
@@ -332,7 +382,7 @@ footer a:hover { color: var(--text); }
 
   </div>
 
-  <div class="grid-label" id="sa2">Secondary 1 — SA2 Revision (Exam: 21 May 2026)</div>
+  <div class="grid-label" id="sa2" data-level="s1" data-sem="2" data-term="sa2">Secondary 1 — SA2 Revision (Exam: 21 May 2026)</div>
   <div class="grid">
 
     <a href="s1/sa2/term4-sa2-maths.html" class="card math">
@@ -379,7 +429,7 @@ footer a:hover { color: var(--text); }
 
   </div>
 
-  <div class="grid-label" id="sa2-focus">Science SA2 — Topic Focus Drills (one topic at a time)</div>
+  <div class="grid-label" id="sa2-focus" data-level="s1" data-sem="2" data-term="sa2">Science SA2 — Topic Focus Drills (one topic at a time)</div>
   <div class="grid">
 
     <a href="s1/sa2/focus/term4-sa2-science-respiration.html" class="card sci">
@@ -526,7 +576,7 @@ footer a:hover { color: var(--text); }
 
   </div>
 
-  <div class="grid-label" id="secondary2">Secondary 2 — Term 1</div>
+  <div class="grid-label" id="secondary2" data-level="s2" data-sem="1" data-term="t1">Secondary 2 — Term 1</div>
   <div class="grid">
 
     <a href="s2/sem1/t1/w2/term1-week2-atomic-structure-periodic.html" class="card sci">
@@ -762,7 +812,7 @@ footer a:hover { color: var(--text); }
 
   </div>
 
-  <div class="grid-label" id="secondary2-t2">Secondary 2 — Term 2</div>
+  <div class="grid-label" id="secondary2-t2" data-level="s2" data-sem="1" data-term="t2">Secondary 2 — Term 2</div>
   <div class="grid">
 
     <a href="s2/sem1/t2/w1/term2-week1-maths-unit4-linear-inequalities.html" class="card math">
@@ -1142,7 +1192,7 @@ footer a:hover { color: var(--text); }
 
   </div>
 
-  <div class="grid-label" id="secondary2-sem1">Secondary 2 &mdash; Semester 1 Assessment Mocks (23&ndash;27 November 2026)</div>
+  <div class="grid-label" id="secondary2-sem1" data-level="s2" data-sem="1" data-term="mock">Secondary 2 &mdash; Semester 1 Assessment Mocks (23&ndash;27 November 2026)</div>
   <div class="grid">
 
     <a href="s2/sem1/mocks/sem1-english-level23-mock.html" class="card eng">
@@ -1431,7 +1481,7 @@ footer a:hover { color: var(--text); }
 
   </div>
 
-  <div class="grid-label" id="igcse">IGCSE Additional Maths</div>
+  <div class="grid-label" id="igcse" data-level="igcse" data-sem="" data-term="igcse">IGCSE Additional Maths</div>
   <div class="grid">
 
     <a href="igcse-add-maths/circular-measure.html" class="card math">
@@ -1477,6 +1527,63 @@ footer a:hover { color: var(--text); }
     <p>Not affiliated with Cambridge Assessment International Education</p>
   </footer>
 </div>
+
+
+<script>
+(function () {
+  var state = { level: 'all', sem: 'all', term: 'all' };
+  var rows = document.querySelectorAll('.filter-row');
+  var labels = document.querySelectorAll('.grid-label[data-level]');
+  function apply() {
+    // hide chips that don't apply to the chosen level (IGCSE has no semester/term chips)
+    rows.forEach(function (row) {
+      var key = row.dataset.key;
+      row.querySelectorAll('.fbtn').forEach(function (b) {
+        var lv = b.dataset.levels;
+        var ok = state.level === 'all' || !lv || lv.split(' ').indexOf(state.level) > -1;
+        if (key === 'level') ok = true;
+        b.hidden = !ok || (state.level === 'igcse' && key !== 'level' && b.dataset.v !== 'all');
+        b.classList.toggle('active', b.dataset.v === state[key]);
+      });
+      if (key !== 'level') row.classList.toggle('is-hidden', state.level === 'igcse');
+    });
+    var shown = 0;
+    labels.forEach(function (l) {
+      var d = l.dataset, g = l.nextElementSibling;
+      var show = (state.level === 'all' || d.level === state.level) &&
+                 (state.sem === 'all' || state.level === 'igcse' || d.sem === state.sem) &&
+                 (state.term === 'all' || state.level === 'igcse' || d.term === state.term);
+      l.classList.toggle('is-hidden', !show);
+      if (g && g.classList.contains('grid')) g.classList.toggle('is-hidden', !show);
+      if (show) shown++;
+    });
+    document.getElementById('no-results').style.display = shown ? 'none' : 'block';
+    try { history.replaceState(null, '', '#f=' + [state.level, state.sem, state.term].join('.')); } catch (e) {}
+  }
+  document.getElementById('filters').addEventListener('click', function (e) {
+    var b = e.target.closest('.fbtn'); if (!b) return;
+    var key = b.parentElement.dataset.key;
+    state[key] = b.dataset.v;
+    if (key === 'level') { state.sem = 'all'; state.term = 'all'; }
+    if (key === 'sem') state.term = 'all';
+    apply();
+  });
+  // nav links / deep links: set level then scroll
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var t = document.querySelector(a.getAttribute('href'));
+      if (!t) return;
+      e.preventDefault();
+      state = { level: t.dataset.level || 'all', sem: 'all', term: 'all' };
+      apply();
+      t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  var m = /^#f=(\w+)\.(\w*)\.(\w+)$/.exec(location.hash);
+  if (m) state = { level: m[1], sem: m[2] || 'all', term: m[3] };
+  apply();
+})();
+</script>
 
 </body>
 </html>
