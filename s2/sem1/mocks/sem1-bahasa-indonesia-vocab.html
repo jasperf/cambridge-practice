@@ -853,7 +853,8 @@ function applyOrder(orderByKey, shuffled) {
   for (const [key, qs] of Object.entries(orderByKey)) {
     const container = document.getElementById(key);
     const anchor = container.querySelector('.section-score');
-    const offset = key === 'en' ? 0 : orderByKey.en.length;
+    let offset = 0;
+    for (const k of Object.keys(orderByKey)) { if (k === key) break; offset += orderByKey[k].length; }
     qs.forEach((qid, i) => {
       const card = document.getElementById('qcard-' + qid);
       container.insertBefore(card, anchor);
