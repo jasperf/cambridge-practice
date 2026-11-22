@@ -143,7 +143,8 @@ function normalise(s) {
 function stripArticle(s) { return s.replace(/^(a|an|the) /, ''); }
 function isMatch(typed, accepted) {
   const t = normalise(typed), ts = stripArticle(t);
-  return accepted.some(a => { const n = normalise(a); return n === t || n === ts || stripArticle(n) === ts; });
+  const sq = x => x.replace(/ /g, '');
+  return accepted.some(a => { const n = normalise(a); return n === t || n === ts || stripArticle(n) === ts || sq(n) === sq(t) || sq(stripArticle(n)) === sq(ts); });
 }
 
 const byId = {};
