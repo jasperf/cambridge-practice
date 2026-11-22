@@ -11,7 +11,7 @@ giving it away.
 """
 
 META = dict(
-    out='s2/sem1/sem1-bahasa-indonesia-vocab-2',
+    out='s2/sem1/mocks/sem1-bahasa-indonesia-vocab-2',
     title='Bahasa Indonesia Vocabulary Drill 2 &middot; Semester 1',
     badge='Bahasa Indonesia &middot; Vocabulary Drill 2',
     eyebrow='Secondary 2 &middot; Bahasa Indonesia Level 1 &middot; Semester 1 Vocabulary',
@@ -29,7 +29,7 @@ META = dict(
                   '(sem1-bahasa-indonesia-vocab-2.html) the marking is automatic and accepts every '
                   'spelling listed here.'),
     storage_key='sem1-bahasa-indonesia-vocab-2',
-    back='../../index.html',
+    back='../../../index.html',
 )
 
 HAIWAN_A = 'Tulis nama hewan bahasa Indonesia untuk'

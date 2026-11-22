@@ -43,7 +43,7 @@ Chinese punctuation) and extra_css (appended inside <style>, e.g. CJK fonts).
   note         optional extra words appended to the reveal text
 
 The page is the same as the hand-written first drill
-(s2/sem1/sem1-bahasa-indonesia-vocab.html): identical CSS and scoring JS,
+(s2/sem1/mocks/sem1-bahasa-indonesia-vocab.html): identical CSS and scoring JS,
 question ids v1..vN, 1 mark each. Re-running overwrites the files, so edit
 the spec rather than the generated sheets. `--only-md` writes just the .md
 and -answers.md (used for the first drill, whose .html predates the builder).

@@ -4,7 +4,7 @@ Build with:  python3 scripts/build_review_sheet.py scripts/review_specs/s2_sem1_
 """
 
 META = dict(
-    out='s2/sem1/sem1-science-revision',          # basename; .html, .md and -answers.md are written
+    out='s2/sem1/mocks/sem1-science-revision',          # basename; .html, .md and -answers.md are written
     title='Science Revision &middot; Terms 1&ndash;2',
     badge='Science &middot; Terms 1&ndash;2 Review',
     eyebrow='Secondary 2 &middot; Science &middot; Terms 1&ndash;2 review',
@@ -19,17 +19,17 @@ META = dict(
               'marked by the teacher. Diagrams are described in words.'),
     time_chip='About 45 minutes &middot; a calculator helps',
     storage_key='sem1-science-revision',
-    back='../../index.html',
+    back='../../../index.html',
     answers_note='Answers for Q1–Q42 (auto-marked on the interactive sheet) and a marking guide for the written questions Q43–Q48. Keep this separate from the question sheet.',
-    extra_links=[('../sem1/sem1-science-mock.html', 'Semester 1 mock paper'),
-                 ('../science-formula-sheets/index.html', 'Formula sheets')],
+    extra_links=[('./sem1-science-mock.html', 'Semester 1 mock paper'),
+                 ('../../reference/science-formula-sheets/index.html', 'Formula sheets')],
 )
 
 SECTIONS = [
   dict(key='at', icon='&#9883;', color='var(--accent-math)', rgba='79,142,247',
        title='Atoms &amp; the Periodic Table', label='Atoms & Periodic Table',
        src='Term 1 &middot; Week 2', link='../t1/w2/term1-week2-atomic-structure-periodic.html',
-       link2=('../science-formula-sheets/svg/science-diagram-periodic-table.svg', 'Periodic table'),
+       link2=('../../reference/science-formula-sheets/svg/science-diagram-periodic-table.svg', 'Periodic table'),
        facts=[
          ('Inside an atom', 'Protons (charge +1) and neutrons (no charge) sit in the nucleus. Electrons (charge &minus;1) move in shells around it.'),
          ('Two numbers', '<span class="f">atomic number = protons</span><br>In a neutral atom, electrons = protons.<br><span class="f">mass number = protons + neutrons</span>'),

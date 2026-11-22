@@ -5,7 +5,7 @@ Build with:  python3 scripts/build_review_sheet.py scripts/review_specs/s2_sem1_
 import math
 
 META = dict(
-    out='s2/sem1/sem1-science-bonding-ions',
+    out='s2/sem1/mocks/sem1-science-bonding-ions',
     title='Bonding &amp; Ions &middot; Practice',
     badge='Science &middot; Bonding &amp; Ions',
     eyebrow='Secondary 2 &middot; Science &middot; Term 1 topic drill',
@@ -21,15 +21,15 @@ META = dict(
               'described in words.'),
     time_chip='About 35 minutes &middot; periodic table helps',
     storage_key='sem1-science-bonding-ions',
-    back='../../index.html',
+    back='../../../index.html',
     answers_note='Answers for Q1–Q36 (auto-marked on the interactive sheet) and a marking guide for the written questions Q37–Q42. Keep this separate from the question sheet.',
-    extra_links=[('../sem1/sem1-science-revision.html', 'Terms 1–2 science review'),
-                 ('../science-formula-sheets/index.html', 'Formula sheets')],
+    extra_links=[('./sem1-science-revision.html', 'Terms 1–2 science review'),
+                 ('../../reference/science-formula-sheets/index.html', 'Formula sheets')],
 )
 
 W3 = '../t1/w3/term1-week3-science-ionic-bonding.html'
 W4 = '../t1/w4/term1-week4-science-covalent-metallic-bonding.html'
-PT = ('../science-formula-sheets/svg/science-diagram-periodic-table.svg', 'Periodic table')
+PT = ('../../reference/science-formula-sheets/svg/science-diagram-periodic-table.svg', 'Periodic table')
 
 SECTIONS = [
   dict(key='io', icon='&#9883;', color='var(--accent-math)', rgba='79,142,247',

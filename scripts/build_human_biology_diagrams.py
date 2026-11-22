@@ -3,7 +3,7 @@
 
 Writes science-diagram-{cell-to-gene,mitosis-meiosis,xx-xy,mother-fetus}.svg.
 
-    python3 scripts/build_human_biology_diagrams.py            # into s2/science-formula-sheets/svg/
+    python3 scripts/build_human_biology_diagrams.py            # into s2/reference/science-formula-sheets/svg/
     python3 scripts/build_human_biology_diagrams.py some/dir   # somewhere else, e.g. to preview
 
 Dependency-free. Preview a still with `rsvg-convert -w 900 file.svg -o file.png`
@@ -13,7 +13,7 @@ import math, sys, os
 from xml.sax.saxutils import escape
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), "..", "s2", "science-formula-sheets", "svg")
+    os.path.dirname(os.path.abspath(__file__)), "..", "s2", "reference", "science-formula-sheets", "svg")
 W = 1080
 NAVY = "#14213D"; MUTED = "#5B6478"; CREAM = "#FBF5E9"; EDGE = "#EADFCB"
 GREEN = "#2F9E44"; MUM = "#D6336C"; DAD = "#1C6DD0"; AMBER = "#F5A623"; AMBER_D = "#B5650A"

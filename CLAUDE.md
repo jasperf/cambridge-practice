@@ -19,18 +19,22 @@ s1/                          # Secondary 1
 ├── t4/w{N}/                 # Term 4, weekly sheets
 ├── sa2/                     # Summative assessment 2 (+ focus/ topic drills)
 └── science/                 # Topic-based science sheets
-s2/                          # Secondary 2
-├── t{N}/                    # Term index README + term-level revision handouts
-│   └── w{N}/                # Weekly sheets: .html interactive + .md printable
-├── science-formula-sheets/  # SVG formula sheets, index.html gallery, README
-└── english-revision-sheets/ # SVG English revision sheets, index.html gallery, README
+s2/                          # Secondary 2 (sem1 = terms 1+2; sem2 later)
+├── sem1/
+│   ├── t{N}/                # Term index README + term-level revision handouts
+│   │   └── w{N}/            # Weekly sheets: .html interactive + .md printable
+│   └── mocks/               # Semester 1 assessment mock papers
+└── reference/               # Cross-term one-page reference sheets
+    ├── science-formula-sheets/  # SVG formula sheets, index.html gallery, README
+    ├── maths-formula-sheets/    # SVG maths formula sheets, index.html gallery, README
+    └── english-revision-sheets/ # SVG English revision sheets, index.html gallery, README
 igcse-add-maths/             # IGCSE Additional Maths (0606)
 scripts/                     # MCQ audit / shuffle / sync tools
 docs/                        # Course planning / design docs
 material/                    # Source material, photos of books (gitignored, never commit)
 ```
 
-Weekly sheets are named `term{N}-week{N}-{subject}-{topic}.html` with a same-basename `.md` printable beside them (e.g. `s2/t2/w5/term2-week5-maths-unit-test2-angles-shapes-measurements.{html,md}`). The file-by-file list lives in each term README, not in the root README.
+Weekly sheets are named `term{N}-week{N}-{subject}-{topic}.html` with a same-basename `.md` printable beside them (e.g. `s2/sem1/t2/w5/term2-week5-maths-unit-test2-angles-shapes-measurements.{html,md}`). The file-by-file list lives in each term README, not in the root README.
 
 ## Development
 
@@ -46,7 +50,7 @@ No install step. No linting or test suite.
 
 ## Generating a PDF from a printable `.md` sheet
 
-Revision handouts (e.g. `s2/t1/term1-english-unit1-revision.md`) are plain GFM Markdown. To generate a PDF, use `pandoc` with `xelatex`:
+Revision handouts (e.g. `s2/sem1/t1/term1-english-unit1-revision.md`) are plain GFM Markdown. To generate a PDF, use `pandoc` with `xelatex`:
 
 ```bash
 pandoc -f gfm term1-english-unit1-revision.md -o term1-english-unit1-revision.pdf \
@@ -96,7 +100,7 @@ New sheets/handouts are referenced in more than one README — check all that ap
 
 - **Root `README.md`** — a short landing page for students and teachers, *not* a file index. Its `What's covered` table has one row per stage; touch it only when a new stage, subject or kind of material appears (e.g. the first IGCSE Physics sheet), never for an individual sheet. Keep it concise and free of exam dates.
 - **`CONTRIBUTING.md`** — its folder-level `Structure` tree; touch it only when adding a new top-level or term folder.
-- **The term README** (`s2/t1/README.md`, `s2/t2/README.md`, or the equivalent for the term/stage you're adding to) — its worksheet table (or revision-handouts table) and its own structure diagram, which is the file-by-file list.
+- **The term README** (`s2/sem1/t1/README.md`, `s2/sem1/t2/README.md`, or the equivalent for the term/stage you're adding to) — its worksheet table (or revision-handouts table) and its own structure diagram, which is the file-by-file list.
 - **`index.html`** — a card in the matching subject grid (already covered above, but easy to forget when a change is "just docs").
 
 A new revision handout that mixes an auto-marked `.html` with extra open-ended/printable-only content (e.g. extended writing tasks) should say so explicitly in these READMEs — don't let a "printable has the exact same questions as interactive" claim go stale.
@@ -110,7 +114,7 @@ Three checks before a sheet is done. The first two are easy to get wrong when qu
 Write each question's options, then go back and shuffle the positions so the correct answer is roughly evenly spread over A/B/C/D, with no long run of the same letter. Writing naturally puts the correct option first (or in the same slot every time), which lets a student guess the sheet instead of the subject. Verify with the audit script rather than by eye:
 
 ```bash
-python3 scripts/mcq_audit.py --check 1 s2/t1/w7/*.html
+python3 scripts/mcq_audit.py --check 1 s2/sem1/t1/w7/*.html
 ```
 
 Aim for every letter used a comparable number of times and no more than two of the same letter in a row. A distribution with a letter at zero (e.g. `{'a': 7, 'b': 13, 'c': 13, 'd': 0}`) means a student can eliminate an option for free on every question.
@@ -134,7 +138,7 @@ Keeping one or two straight definition-recall questions per sheet is fine as a w
 Find the candidates with the same script — it scores each correct option against the teaching material above it and prints the sentence being echoed:
 
 ```bash
-python3 scripts/mcq_audit.py --check 2 --verbose s2/t1/w3/*.html
+python3 scripts/mcq_audit.py --check 2 --verbose s2/sem1/t1/w3/*.html
 ```
 
 Treat its hits as a shortlist to read, not a verdict: a 100% match on a definition question is a real problem, while a 75% match that only shares vocabulary is often fine.
@@ -144,8 +148,8 @@ Treat its hits as a shortlist to read, not a verdict: a 100% match on a definiti
 Most `.html` sheets have an `.md` printable beside them holding the same questions in the same option order. Reordering options in one and not the other desyncs them silently — the printable ends up with a different answer letter than the interactive sheet. After any shuffle:
 
 ```bash
-python3 scripts/mcq_sync.py s2/t1/w3/*.html          # report drift
-python3 scripts/mcq_sync.py --fix s2/t1/w3/*.html    # reorder the .md to match
+python3 scripts/mcq_sync.py s2/sem1/t1/w3/*.html          # report drift
+python3 scripts/mcq_sync.py --fix s2/sem1/t1/w3/*.html    # reorder the .md to match
 ```
 
 To apply a fix for check 1 rather than just detect it, `scripts/mcq_shuffle.py`

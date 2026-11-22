@@ -1,0 +1,205 @@
+# Secondary 2 · Term 2 — Worksheet Index
+
+Each weekly folder holds a topic's **interactive sheet** (`.html`) and its **printable worksheet** (`.md`) side by side, under the same basename. The printable versions are for classroom use where students write answers directly in their notebooks; the interactive versions are for self-checking afterwards.
+
+## Week 1 (5–9 October)
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Linear Inequalities** — Unit 4.3 | 36 | 46 | [.md](./w1/term2-week1-maths-unit4-linear-inequalities.md) | [.html](./w1/term2-week1-maths-unit4-linear-inequalities.html) |
+
+### Maths Unit 4.3: Linear Inequalities
+
+The **Linear Inequalities** sheet follows the Term 2 Week 1 class notes (the worked example `3x + 4 ≤ 2x − 16` on a number line, the words-to-symbols list, and the phone-plan and blanket word problems). All questions use new numbers, so the class examples can still be done on their own. Section A links the four symbols to everyday words (*at least*, *at most*, *more than*, *fewer than*); Section B reads and draws number lines (open and closed circles, whole numbers in a range); Section C solves linear inequalities step by step, including the sign-flip rule for negative multipliers and dividers; Section D turns word problems into inequalities, including a round-up case (minibuses); Section E mixes everything. An interactive **Inequality Explorer** solves any *ax* + *b* ⋈ *cx* + *d*, flips the sign when it should, tests a number and draws the answer on a number line. 17 of the 36 auto-marked questions are multiple choice (the correct letter is spread across A–D); the rest are typed-number answers. Section F has four open written questions (Q37–Q40) — a solve-and-draw question, an explanation of the sign flip, a profit word problem and writing your own word problem. On the interactive sheet each has a writing box and a model answer to compare with, but they are self-marked and not in the score; in the printable `.md` they have blank lines to write on. The printable `.md` has the same 36 auto-marked questions (the Explorer and number lines are described in words).
+
+Source material: `material/math/s2/t2/w1/` (class notes PDF and word-problem sheet; the `material/` folder is not tracked in git).
+
+## Week 2 (12–16 October)
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Calculating Angles** — Unit 5.1–5.2 | 38 | 51 | [.md](./w2/term2-week2-maths-unit5-calculating-angles.md) | [.html](./w2/term2-week2-maths-unit5-calculating-angles.html) |
+
+### Maths Unit 5.1–5.2: Calculating Angles
+
+The **Calculating Angles** sheet follows the Term 2 Week 2 class notes: Unit 5.1 (angles on a straight line and around a point, triangles and exterior angles, parallel lines; Learner's Book Exercise 5.1 and Workbook pages 66–67) and Unit 5.2 (interior and exterior angles of polygons). All questions use new numbers, so the class examples can still be done on their own. Section A covers angles at a point; Section B triangles and exterior angles; Section C corresponding, alternate and co-interior angles; Section D polygon angle sums, exterior angles and regular polygons; Section E angles written with algebra; Section F asks why the rules work (why a triangle's angles make 180°, why an octagon's make 1080°, whether a regular polygon can have 100° angles, and the angle at a bend between parallel lines). Each topic section starts with an animated explorer: an **Angle Spinner**, a **Triangle Tear** (the three corners slide together onto a straight line), a **Parallel Lines** explorer that draws the F, Z and C shapes, and a **Polygon Explorer** that splits a shape into triangles and walks a turtle round the outside to show the exterior angles making 360°. Question diagrams draw themselves in as you scroll, and a correct answer appears in its diagram. 13 of the 38 questions are multiple choice (the correct letter is spread across A–D); the other 25 are typed-number answers, and every question on the interactive sheet is auto-marked. The printable `.md` has the same Q1–Q34 with each diagram described in words, but Q35–Q38 are written out in full there (draw, explain and give reasons; 14 marks, marked by the teacher), while the interactive sheet checks only their final answers.
+
+Source material: `material/math/s2/t2/w2/` (5.1 and 5.2 class notes and the 6 October angles notes).
+
+## Week 3 (19–23 October)
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 1 practice** — Unit 4.3 + Unit 5.1–5.2 | 30 | 46 | [.md](./w3/term2-week3-maths-unit-test1-inequalities-angles.md) | [.html](./w3/term2-week3-maths-unit-test1-inequalities-angles.html) |
+
+### English
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 1** — Persuasive & Emotive Language (+ Level 1 and English Support strands) | 57 | 71 | [.md](./w3/term2-week3-english-unit-test1-persuasive-emotive-language.md) | [.html](./w3/term2-week3-english-unit-test1-persuasive-emotive-language.html) |
+
+### Maths Unit Test 1 practice: Linear Inequalities & Angles
+
+A practice paper for the Maths Unit Test 1 on **Tuesday 20 October** (linear inequalities and angles; bring a calculator). It covers only the Week 1 and Week 2 topics, with new numbers. Section A (14 questions, 22 marks) reads symbols and number lines, solves inequalities including the sign flip for a negative, and has a taxi-fare and a round-up word problem. Section B (16 questions, 24 marks) covers angles at a point and on a line, vertically opposite angles, triangles and exterior angles, parallel lines (alternate and co-interior, one written with algebra), and polygon angles. 10 of the 30 questions are multiple choice (the correct letter is spread across A–D); the other 20 are typed-number answers, and every question on the interactive sheet is auto-marked. Diagrams are drawn on the sheet and described in words in the printable `.md`. The printable also has five written questions (Q31–Q35, 16 marks, marked by the teacher): solving and drawing an inequality, why the sign flips, the number of sides from an interior angle, a phone-plan inequality, and why an exterior angle equals the sum of the two opposite interior angles. The interactive sheet has no explorers, since the Week 1 and Week 2 sheets already have them (the sheet links to both).
+
+Source material: the Week 1 and Week 2 class notes in `material/math/s2/t2/` (the `material/` folder is not tracked in git).
+
+### English Unit Test 1: Persuasive & Emotive Language
+
+A practice paper for the English Unit Test 1 on **Wednesday 28 October**. It follows the Term 1 pattern of one sheet covering all three strands in the weekly update. **Level 2/3** (Sections A and B, 27 questions, 38 marks) covers persuasive and emotive language: the twelve techniques on Ms. Atiya’s *Persuasive Techniques* posters (rhetorical question, emotive language, direct address, repetition, facts and statistics, rule of three, expert opinion, anecdote, inclusive language, imperative verbs, concession and juxtaposition), applied to new sentences and to a short persuasive speech, with *Technique – Evidence – Purpose – Effect* answers and emotive-word questions on a dog-shelter leaflet. **Level 1** (Sections C, D and E, 22 questions, 25 marks) covers grammar and vocabulary (sentence types, conjunctive adverbs, words in context), reading comprehension on an original short-story opening, and short story writing (plot arc, show don’t tell, dialogue punctuation, openings, sensory detail, point of view). **English Support** (Section F, 8 questions, 8 marks) is spelling practice. 48 of the 57 questions are multiple choice (the correct letter is spread across A–D), two are select-three questions and seven are typed words; every question on the interactive sheet is auto-marked. The printable `.md` has the same Q1–Q57 plus six extended-answer questions (Q58–Q63, 27 marks, marked by the teacher) that are not on the interactive sheet.
+
+The extracts are original, written for this sheet, so they do not reproduce any class text. The posters and the volcano-safety Padlet from the class were the model for the Level 2/3 wording; the Level 1 grammar and story-writing content follows the scope in the weekly update, since no Week 3 notes had been posted in the classroom when the sheet was written.
+
+Source material: the Secondary 2 English Google Classroom (*Features of Persuasive Text* and *Grammar* posts) and the Week 3 weekly update; the `material/` folder is not tracked in git.
+
+## Week 4 (26–30 October)
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Density** — Solids, Liquids & Gases | 41 | 46 | [.md](./w4/term2-week4-science-unit3-density.md) | [.html](./w4/term2-week4-science-unit3-density.html) |
+| **Sound Waves & Thermal Energy** — Unit 3 | 46 | 46 | [.md](./w4/term2-week4-science-unit3-sound-thermal-energy.md) | [.html](./w4/term2-week4-science-unit3-sound-thermal-energy.html) |
+| **Electricity** — Circuits, V = IR, Series & Parallel | 48 | 50 | [.md](./w4/term2-week4-science-unit3-electricity.md) | [.html](./w4/term2-week4-science-unit3-electricity.html) |
+
+### Science Unit 3: Thermal Energy Quick Test
+
+A **10-question, 15-minute recall test** on the Sound Waves & Thermal Energy sheet's thermal half: heat vs temperature (Q1–Q3), how heat travels (Q4–Q6), conserving heat (Q7–Q9) and a closing misconception to correct (Q10). Q3, Q6 and Q9 are multiple choice; the rest are written answers in a notebook. It is printable only (no interactive `.html`). It comes with a separate [answers file](./w4/term2-week4-science-unit3-thermal-energy-quick-test-answers.md) for the teacher and a [WhatsApp-ready `.txt`](./w4/term2-week4-science-unit3-thermal-energy-quick-test-whatsapp.txt) of the same questions to paste into a chat. A second, shorter set of six [extra questions](./w4/term2-week4-science-unit3-thermal-energy-extra-questions.md) (with [answers](./w4/term2-week4-science-unit3-thermal-energy-extra-questions-answers.md) and a [WhatsApp version](./w4/term2-week4-science-unit3-thermal-energy-extra-questions-whatsapp.txt)) covers what the quick test skips from the slides: why conserving heat matters, the other units for heat and temperature (calories, kilocalories, °F, kelvin) and insulation examples. Q2 and Q5 are multiple choice.
+
+**Formula sheets:** one-page SVG/JPG summaries of the formulas and key facts for Density, Sound Waves & Thermal Energy and Electricity (plus Term 1 science) are in [`../../reference/science-formula-sheets/`](../../reference/science-formula-sheets/README.md).
+
+**English revision sheets:** one-page image summaries of persuasive techniques and emotive language (Level 2/3 Unit Test) and of semicolon usage are in [`../../reference/english-revision-sheets/`](../../reference/english-revision-sheets/README.md).
+
+### Science Unit 3: Density
+
+The **Density** sheet follows the Canva slides *Density Differences of Solids, Liquids and Gases*. Section A introduces ρ = m ÷ V and the particle picture (a **Density Lab** explorer packs dots into a box as you change mass and volume); Section B calculates density, mass and volume (cuboids, displacement, hydrogen gas, volume-unit conversions, a kg/m³ stretch); Section C covers heating, cooling and state changes (a **Heat It, Cool It** explorer, gold solid vs molten, wood less dense than water); Section D is float or sink (a **Float or Sink?** tank with eight objects and four liquids); Section E is water's anomaly (a **Water in Three States** explorer with hydrogen bonds, ice 0.9168, water 0.9971, vapour 0.000588 g/cm³, and why lakes freeze from the top). 12 of the 41 questions are multiple choice (the correct letter is spread across A–D); the other 29 are short typed numbers or single words, and every question on the interactive sheet is auto-marked. The printable `.md` has the same Q1–Q41 plus nine written questions (Q42–Q50, 27 marks, answered on paper and marked by the teacher): particle diagrams, measuring the density of a stone, a heated balloon, ice and hydrogen bonds, a frozen lake, a "gold" bar problem and more. The values for oil, mercury, cork, steel and similar objects in the Float or Sink explorer are standard textbook figures, not from the slides.
+
+### Science Unit 3: Sound Waves & Thermal Energy
+
+The **Sound Waves & Thermal Energy** sheet follows the Term 2 Week 4 class slides. Section A covers longitudinal and transverse waves (a **Two Kinds of Wave** explorer); Section B amplitude, wavelength, frequency and period with T = 1 ÷ f (a **Wave Maker** with sliders and an optional tone); Section C loudness, pitch and superposition (an **Interference Explorer** showing crest-meets-crest and crest-meets-trough); Section D heat vs temperature, using the 250 mL and 500 mL cups at 90 °C from the slides (a **Same Temperature, Different Heat** explorer); Section E conduction, convection, radiation, insulation and double glazing (a **Three Ways Heat Travels** animation); Section F evaporation vs boiling and why evaporation cools. 11 of the 46 questions are multiple choice (the correct letter is spread across A–D); the other 35 are short typed numbers or single words (including true/false), and every question on the interactive sheet is auto-marked. The printable `.md` has the same Q1–Q46 plus eleven written questions (Q47–Q57, 35 marks, answered on paper and marked by the teacher): labelled wave diagrams, interference drawings, heat vs temperature, the three transfer methods, insulation, evaporative cooling and a fair-test plan.
+
+Two notes on the source slides. The slide *How is the move of Longitudinal wave?* says "side to side or upward-downward", which describes a transverse wave; the sheet uses the correct description (particles move to and fro, parallel to the wave) as the later slides do. The 3.6 *Cooling by Evaporation* slides contain only a title and a starter-activity reference, so Section F uses the standard ideas for the topic. The same slide deck's Electricity section has its own sheet (below).
+
+### Science Unit 3: Electricity
+
+The **Electricity** sheet follows the Electricity section of the same slide deck. Section A covers circuit diagrams and symbols (a **Circuit Symbol Gallery** where you name each symbol, then click to check); Section B voltage, current and resistance (including a volts-versus-amps water-pipe analogy and five Q16a–Q16e questions that separate the two), their units and how ammeters (series) and voltmeters (parallel) are connected; Section C Ohm's law, V = I × R, with the slide examples (a 12 V bulb at 3 A, a 10 Ω resistor on 240 V, and adding a second 10 Ω resistor) plus new numbers (an **Ohm's Law Circuit** with a switch, a voltage slider and a variable resistor, with moving charges and a lamp that dims and brightens); Section D variable resistors and the slide's five-row resistance data table (R = V ÷ I); Section E series versus parallel (a **Series or Parallel?** circuit where you can remove a lamp and see what happens). 13 of the 48 questions are multiple choice (the correct letter is spread across A–D); the other 35 are short typed numbers or single words (including true/false), and every question on the interactive sheet is auto-marked. The printable `.md` has the same 48 questions (Q1–Q43 plus Q16a–Q16e) plus ten written and drawing questions (Q44–Q53, 38 marks, done on paper with a ruler and marked by the teacher): the class challenge of three circuit diagrams, a circuit with a voltmeter across the lamp, formula-triangle calculations, the resistance table and its comment, the variable resistor discussion, series and parallel diagrams, and fault-finding.
+
+Source material: `material/science/s2/t2/w4/` (the slide PDF and the density slide screenshots; the `material/` folder is not tracked in git).
+
+## Week 5 (2–6 November)
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 2 practice** — Unit 5.2–5.5 + Unit 7.1–7.2 (+ 5.1 revision) | 81 | 132 | [.md](./w5/term2-week5-maths-unit-test2-angles-shapes-measurements.md) | [.html](./w5/term2-week5-maths-unit-test2-angles-shapes-measurements.html) |
+| **Geometry Mock Test 5** — Unit 5.2 + Unit 7.1–7.2 | 22 | 36 | [.md](./w5/term2-week5-maths-unit-test2-mock-test5.md) | [.html](./w5/term2-week5-maths-unit-test2-mock-test5.html) |
+| **Combined Angles & Geometry Test 1** — Unit 5.1–5.2 + Unit 7.1–7.2 | 42 | 66 | [.md](./w5/term2-week5-maths-unit-test2-combined-test1.md) | [.html](./w5/term2-week5-maths-unit-test2-combined-test1.html) |
+| **Combined Angles & Geometry Test 2** — Unit 5.1–5.2 + Unit 7.1–7.2 | 10 | 20 | [.md](./w5/term2-week5-maths-unit-test2-combined-test2.md) | [.html](./w5/term2-week5-maths-unit-test2-combined-test2.html) |
+| **Combined Angles & Geometry Test 3** — Unit 5.1–5.2 + Unit 7.1–7.2 | 20 | 37 | [.md](./w5/term2-week5-maths-unit-test2-combined-test3.md) | [.html](./w5/term2-week5-maths-unit-test2-combined-test3.html) |
+| **Unit Test 2 Retake Practice** — Unit 5.2–5.5 + Unit 7.1–7.2 (+ 5.1 revision) | 20 | 35 | [.md](./w5/term2-week5-maths-unit-test2-retake-practice.md) | [.html](./w5/term2-week5-maths-unit-test2-retake-practice.html) |
+
+### Maths Unit Test 2 practice: Angles, Shapes & Measurements
+
+A practice paper for the Maths Unit Test 2 on **Tuesday 3 November** (the class announcement calls it “Angles/Shapes & Measurement”; bring a calculator, ruler and compasses). It covers the second half of Unit 5, Angles, and Unit 7.1–7.2, Shapes and measurements, with new numbers; the earlier angle rules (lines, triangles, parallel lines) were Unit Test 1. Section A (14 questions, 23 marks) covers polygon angles: interior angle sums, exterior angles, regular polygons, shapes fitting round a point, angles with algebra, why an angle sum is impossible, a reflex angle in an L-shaped hexagon and angles found from exterior angles. Section B (10 questions, 11 marks) tests the ideas behind ruler-and-compass constructions: bisecting to get 45°, 30° and 15°, an inscribed hexagon and square, a dodecagon, a rhombus and rotational symmetry. Section C (18 questions, 30 marks) covers Pythagoras’ theorem: hypotenuse and shorter side, rounding, a ladder, a monitor screen, diagonals, an isosceles height, an equilateral triangle’s height, a parallelogram’s height, a wire across a photo frame, a two-step problem and which sides make a right angle. Section D (15 questions, 27 marks) covers Unit 7.1, circumference and area of a circle: the π button, 1 d.p. and 3 s.f. rounding, diameter versus radius, working back from a circumference or area, semicircles, answers in terms of π, which approximate value of π is closest, a bottle cap’s radius from the string round its rim and the ratio of areas of two circles. Section E (17 questions, 32 marks) covers Unit 7.2, areas of compound shapes: rectangles with triangles or semicircles, trapezium area, an L-shape with a missing length, shapes with holes (including a card sheet with six circular holes), a running track, a square with a circle inside, a semicircle with a triangle in it, a ring, an estimate with π ≈ 3 and a path round a pond. Section F (7 questions, 9 marks) goes back to Unit 5.1 for revision with multi-step diagrams like Exercise 5.1 in the book: a chain of right angle, triangle sum and vertically opposite angles, a vertically opposite angle feeding an exterior angle, and two “show the lines are not parallel” diagrams (co-interior angles that do not add up to 180°, and a bow-tie of two triangles whose alternate angles are not equal). 20 of the 81 questions are multiple choice (the correct letter is spread evenly across A–D); the other 61 are typed-number answers, and every question on the interactive sheet is auto-marked. Diagrams are drawn on the sheet and described in words in the printable `.md`. The printable also has sixteen written questions (Q82–Q97, 53 marks, marked by the teacher): two real ruler-and-compass constructions, a regular polygon from its interior angle, why an angle sum could be 1440° but not 1500°, tessellation, a Pythagoras mistake and a ladder safety check, then a circle-area mistake to explain, the fraction of a square covered by a circle, a formula in terms of the diameter, semicircle against quarter circle, a playing field area and perimeter, and why doubling the radius quadruples the area, then three Unit 5.1 reasoning questions on the Section F diagrams (explain the method for an angle, show two lines are not parallel, and show two triangles have the same angles). The interactive sheet has no explorers; it links to the Week 2 Polygon Explorer.
+
+### Maths Unit Test 2: Geometry Mock Test 5
+
+A short, timed mock paper (about 30 minutes) for the same Unit Test 2. It was first written by a Secondary 2 student as a copy-the-answers page, then turned into a self-marking sheet in the house style with new diagrams drawn to match the numbers. Section A (10 questions, 16 marks) covers polygon angles: angle sums, angles written with algebra, exterior and interior angles of regular polygons, the number of sides from an angle or an angle sum, three polygons meeting at a point, and a triangle's angle from two exterior angles. Section B (7 questions, 10 marks) covers the area of a circle: from a radius or diameter, working back from an area, a semicircle and a quarter circle. Section C (5 questions, 10 marks) covers compound areas: an L-shape, a rectangle with a triangle or a semicircle on top, and shapes with holes. 8 of the 22 questions are multiple choice (the correct letter is spread evenly across A–D, with distractors built from common mistakes such as forgetting to halve the diameter); the other 14 are typed-number answers, and every question on the interactive sheet is auto-marked. Diagrams draw themselves in as you scroll and are described in words in the printable `.md`. The printable also has four written questions (Q23–Q26, 13 marks, marked by the teacher): sides from a 162° interior angle and why 130° is impossible, a diameter-for-radius mistake to explain, a window made of a rectangle and a semicircle, and why a triangle's exterior angles add up to 360°. The topics overlap with Sections A, D and E of the full practice sheet, but every question here is different.
+
+### Maths Unit Test 2: Combined Angles & Geometry Tests 1–3
+
+**Combined Test 1** is a longer paper (about 60 minutes) built from a student-made angles worksheet joined to Geometry Mock Test 5. Parts 1–3 (20 questions, 30 marks) practise the Unit 5.1 angle rules from basic to advanced: vertically opposite angles, straight lines, angles around a point, triangles, complementary angles, corresponding and co-interior angles with algebra, ratios of angles, exterior angles and regular polygons. Sections D–F (22 questions, 36 marks) are Mock Test 5's questions with the options in a different order. When it was added to the site, the MCQ answers were reshuffled, which spreads the correct letter evenly across A–D. Three questions were also fixed: Q18 now asks for both angles, to match its options; Q20 no longer gives away the interior angle; and Q22 went back to Mock Test 5's x, 3x, 5x, 7x version, because the 1 : 2 : 3 : 4 version repeated Q16. 18 of the 42 questions are multiple choice. The printable also has four written angle questions (Q43–Q46, 13 marks, marked by the teacher): why vertically opposite angles are equal, co-interior angles with algebra, a ratio mistake to explain, and an exterior-angle problem with reasons.
+
+**Combined Test 2** is a 20-minute follow-up with ten new questions in the same style: vertically opposite angles, angles around a point and alternate angles written with algebra, an isosceles base angle and an exterior angle (Section A); the sides of a regular polygon from its interior angle and a hexagon with algebra (Section B); and a semicircle's area, a diameter worked back from an area, and a rectangle with a semicircle cut out (Section C). 4 of the 10 questions are multiple choice, one per letter. Diagrams draw themselves in as you scroll. The printable adds three written questions (Q11–Q13, 10 marks): why 145° can't be a regular polygon's angle, the two possible isosceles triangles with a 70° angle, and a garden with a semicircular bed.
+
+**Combined Test 3** is a 35-minute paper of twenty new questions in the style of a 20-question geometry worksheet that was shared with the class. Section A (8 questions, 12 marks) covers the angle rules with algebra: vertically opposite, straight line, around a point, corresponding, alternate, co-interior and complementary angles. Section B (8 questions, 16 marks) covers triangle angles (with algebra, isosceles, exterior angle), a quadrilateral, and regular-polygon interior and exterior angles. Section C (4 questions, 9 marks) covers a semicircle's area, a diameter worked back from an area, a rectangle with a semicircle cut out, and the corners left between a square and the circle inside it. When it was added to the site, the garbled diagram labels were rebuilt, several diagrams were redrawn so they match the question (the angles-around-a-point rays, the obtuse corresponding angles, the decagon, the exterior angle's missing side), a hint that said "six" angles for a decagon was corrected, and the four MCQ answers, which were all A, were spread one per letter. Every answer was re-checked. The printable adds four written questions (Q21–Q24, 13 marks): why 25° can't be a regular polygon's exterior angle, a complementary/supplementary mix-up, co-interior angles with reasons, and a diameter-for-radius mistake with a rug.
+
+### Maths Unit Test 2: Retake Practice
+
+A shorter, 35-minute paper of twenty new questions for a Unit Test 2 retake. It keeps the six topics of the full practice sheet in proportion: Section A (4 questions, 7 marks) polygon angle sums, exterior and interior angles of regular polygons and a pentagon with algebra; Section B (2 questions, 2 marks) the ideas behind constructing 30° and an inscribed hexagon; Section C (4 questions, 7 marks) Pythagoras for a hypotenuse, a shorter side, a ladder to 1 d.p. and which sides make a right angle; Section D (4 questions, 6 marks) circumference, area, a radius worked back from a circumference and an area in terms of π; Section E (4 questions, 10 marks) an L-shape, a trapezium, a rectangle with a semicircle and a ring; Section F (2 questions, 3 marks) Unit 5.1 revision with a vertically opposite angle in a triangle and a "not parallel" co-interior check. 7 of the 20 questions are multiple choice (the correct letter is spread across A–D, with distractors built from common mistakes such as using the diameter as the radius); the other 13 are typed-number answers, and every question on the interactive sheet is auto-marked. Diagrams draw themselves in as you scroll and are described in words in the printable `.md`. The printable adds four written questions (Q21–Q24, 13 marks): why 130° can't be a regular polygon's interior angle, a Pythagoras mistake (adding the sides instead of the squares), the steps to construct 45°, and a diameter-for-radius mistake with a table top.
+
+**Formula sheets:** six one-page SVG/JPG summaries for this test (polygon angles, constructions, Pythagoras, circles, compound shapes, and Unit 5.1 angle facts for the Section F revision) plus circle formula triangles and a regular polygons diagram are in [`../../reference/maths-formula-sheets/`](../../reference/maths-formula-sheets/README.md).
+
+Source material: the Unit 5 and Unit 7 textbook pages in `material/math/s2/t2/w5/unit5/` and `unit7/` (sections 5.1–5.5, 7.1 and 7.2) and the practice-book pages in `unit5+7-practise/`, used only to see which topics and skills are covered (the `material/` folder is not tracked in git). Every question, number, scenario and diagram is original, written for this sheet; none is copied from the books.
+
+## Week 7 (16–20 November)
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test: Electricity + Human Biology** — test on Wed 18 November | 50 | 56 | [.md](./w7/term2-week7-science-unit-test-electricity-human-biology.md) | [.html](./w7/term2-week7-science-unit-test-electricity-human-biology.html) |
+| **Unit Test 2: Electricity + Human Biology** — shorter practice paper, new questions and numbers | 25 | 29 | [.md](./w7/term2-week7-science-unit-test2-electricity-human-biology.md) | [.html](./w7/term2-week7-science-unit-test2-electricity-human-biology.html) |
+
+### Science Unit Test: Electricity + Human Biology
+
+The **Unit Test** practice sheet covers the scope given for the test on Wednesday 18 November: Electricity + Human Biology. The biology half follows the Human Reproduction slides. Section A covers DNA, genes and chromosomes (what DNA stands for, Watson and Crick and the double helix, cell → nucleus → chromosome → gene, 46 chromosomes in 23 pairs, and why a child is like both parents without being identical to either); Section B gametes, fertilisation and cell division (sperm, egg and zygote, mitosis versus meiosis, haploid and diploid, and chromosome numbers using the slides' dog, goldfish and lettuce examples), ending with a **Cell Division Explorer** that splits a 4-chromosome cell by mitosis or meiosis; Section C how the sex of a baby is decided (XX and XY, why the sperm decides, and the 50% chance), ending with a **Fertilisation Explorer** where a sperm swims to the egg and a 100-baby tally creeps towards 50%; Section D the mother's health and the fetus (uterus and placenta, listeria and caffeine, the effects of smoking, diet, alcohol and fetal alcohol syndrome). The electricity half recaps the Week 4 Unit 3 sheet with new numbers: Section E reads a numbered circuit diagram and covers series and parallel; Section F uses V = I × R, including a milliamp conversion and two resistors in series, and ends with an **Ohm's Law Circuit** with voltage and resistance sliders. Explorers sit at the end of their sections so they don't give away the answers. 17 of the 50 questions are multiple choice (one is select-three; the correct letter is spread evenly across A–D); the other 33 are typed numbers or short words, and every question on the interactive sheet is auto-marked. The printable `.md` has the same 50 questions plus nine written and drawing questions (Q51–Q59, 32 marks, marked by the teacher): a cell-to-gene diagram, mitosis versus meiosis, why gametes need meiosis, a 2 × 2 sex-inheritance diagram, smoking and the fetus, alcohol and drugs, a circuit with an ammeter and voltmeter, a series calculation, and why houses are wired in parallel. The excretory system, which is on the SA2 revision list under Human Biology, is not in the Human Reproduction slides and is not on this sheet.
+
+### Science Unit Test 2: Electricity + Human Biology
+
+The **Unit Test 2** practice sheet is a shorter second paper on the same Wednesday 18 November scope, for a retake or extra practice: 25 questions, 29 marks, all with new wording, scenarios and numbers (a fruit fly, a cat and a testis cell for the chromosome counts; a 12 V cell over three series lamps; 12 ÷ 6, 0.4 × 30 and 8 ÷ 0.5 for V = I × R). It keeps the same six sections in proportion — A DNA, genes and chromosomes (4 questions, 5 marks), B gametes and cell division (5, 6), C XX and XY (3, 3), D the mother and the fetus (4, 5, including a select-two on smoking), E circuits and symbols (4, 4, using the same numbered circuit diagram), F Ohm's law (5, 6) — and the same three explorers at the end of their sections (Cell Division, Fertilisation, Ohm's Law Circuit). 8 of the 25 questions are multiple choice (one further question is select-two; the correct letters are spread across A–D); the other 17 are typed numbers or short words, and every question is auto-marked. The printable `.md` has the same 25 questions. Questions were written fresh for this paper, not copied from the 50-question sheet.
+
+Source material: `material/science/s2/t2/w7/` (the Human Reproduction slide PDF and the SA2 revision topic list; the `material/` folder is not tracked in git).
+
+## Writing project
+
+### English: UN Day Writing Project
+
+[**Journey into the Past**](./term2-english-un-day-writing-project.md) is a coaching guide for the handwritten Semester 1 UN Day assignment (Zimbabwe or Sweden, 300–350 words, 50 marks). It has the timeline to the two deadlines (Component A draft 23 Oct, Component B display piece 20 Nov), topic ideas, a draft outline, tips for visible self-editing, and condensed rubrics and a final checklist. It is a plan and a checklist, not a model answer.
+
+## Structure
+
+```
+s2/sem1/t2/
+├── README.md
+├── term2-english-un-day-writing-project.md ← UN Day writing project guide (Zimbabwe/Sweden)
+├── w1/
+│   ├── term2-week1-maths-unit4-linear-inequalities.html ← Interactive (Unit 4.3)
+│   └── term2-week1-maths-unit4-linear-inequalities.md   ← Printable (+4 written q)
+├── w2/
+│   ├── term2-week2-maths-unit5-calculating-angles.html  ← Interactive (Unit 5.1–5.2)
+│   └── term2-week2-maths-unit5-calculating-angles.md    ← Printable (Q35–Q38 written in full)
+├── w3/
+    ├── term2-week3-maths-unit-test1-inequalities-angles.html ← Interactive (Unit Test 1 practice)
+    ├── term2-week3-maths-unit-test1-inequalities-angles.md   ← Printable (+5 written q)
+    ├── term2-week3-english-unit-test1-persuasive-emotive-language.html ← Interactive (English Unit Test 1)
+    └── term2-week3-english-unit-test1-persuasive-emotive-language.md   ← Printable (+6 extended-answer q)
+├── w4/
+    ├── term2-week4-science-unit3-density.html ← Interactive (Density)
+    ├── term2-week4-science-unit3-density.md   ← Printable (+9 written q)
+    ├── term2-week4-science-unit3-sound-thermal-energy.html ← Interactive (Sound Waves & Thermal Energy)
+    ├── term2-week4-science-unit3-sound-thermal-energy.md   ← Printable (+11 written q)
+    ├── term2-week4-science-unit3-electricity.html ← Interactive (Electricity)
+    ├── term2-week4-science-unit3-electricity.md   ← Printable (+10 written and drawing q)
+    ├── term2-week4-science-unit3-thermal-energy-quick-test.md ← Printable quick test (10 q, no .html)
+    ├── term2-week4-science-unit3-thermal-energy-quick-test-answers.md ← Answers
+    ├── term2-week4-science-unit3-thermal-energy-quick-test-whatsapp.txt ← Paste-ready for WhatsApp
+    ├── term2-week4-science-unit3-thermal-energy-extra-questions.md ← Printable extra questions (6 q, no .html)
+    ├── term2-week4-science-unit3-thermal-energy-extra-questions-whatsapp.txt ← 6 extra q, paste-ready
+    ├── term2-week4-science-unit3-thermal-energy-extra-questions-answers.md ← Answers
+├── w5/
+    ├── term2-week5-maths-unit-test2-angles-shapes-measurements.html ← Interactive (Unit Test 2 practice)
+    ├── term2-week5-maths-unit-test2-angles-shapes-measurements.md   ← Printable (+16 written q)
+    ├── term2-week5-maths-unit-test2-mock-test5.html ← Interactive (Geometry Mock Test 5)
+    ├── term2-week5-maths-unit-test2-mock-test5.md   ← Printable (+4 written q)
+    ├── term2-week5-maths-unit-test2-combined-test1.html ← Interactive (Combined Angles & Geometry Test 1)
+    ├── term2-week5-maths-unit-test2-combined-test1.md   ← Printable (+4 written q)
+    ├── term2-week5-maths-unit-test2-combined-test2.html ← Interactive (Combined Angles & Geometry Test 2)
+    ├── term2-week5-maths-unit-test2-combined-test2.md   ← Printable (+3 written q)
+    ├── term2-week5-maths-unit-test2-combined-test3.html ← Interactive (Combined Angles & Geometry Test 3)
+    ├── term2-week5-maths-unit-test2-combined-test3.md   ← Printable (+4 written q)
+    ├── term2-week5-maths-unit-test2-retake-practice.html ← Interactive (Unit Test 2 Retake Practice)
+    └── term2-week5-maths-unit-test2-retake-practice.md   ← Printable (+4 written q)
+└── w7/
+    ├── term2-week7-science-unit-test-electricity-human-biology.html ← Interactive (Science Unit Test: Electricity + Human Biology)
+    ├── term2-week7-science-unit-test-electricity-human-biology.md   ← Printable (+9 written and drawing q)
+    ├── term2-week7-science-unit-test2-electricity-human-biology.html ← Interactive (Science Unit Test 2: Electricity + Human Biology, 25 q)
+    └── term2-week7-science-unit-test2-electricity-human-biology.md   ← Printable (same 25 q)
+```

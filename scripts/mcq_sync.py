@@ -4,7 +4,7 @@
 Reordering options in the HTML to fix the answer spread silently desyncs the
 printable unless the .md is reordered the same way. Run after every shuffle.
 
-Usage:  python3 scripts/mcq_sync.py s2/t1/**/*.html
+Usage:  python3 scripts/mcq_sync.py s2/sem1/t1/**/*.html
 """
 import pathlib, re, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))

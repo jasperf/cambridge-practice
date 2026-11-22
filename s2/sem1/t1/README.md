@@ -1,0 +1,269 @@
+# Secondary 2 · Term 1 — Worksheet Index
+
+Each weekly folder holds a topic's **interactive sheet** (`.html`) and its **printable worksheet** (`.md`) side by side, under the same basename. The printable versions are for classroom use where students write answers directly in their notebooks with pen and paper; the interactive versions are for self-checking afterwards.
+
+Revision handouts that span more than one week live at this level rather than in a week folder.
+
+## Week 2
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Rational & Irrational Numbers** — Chapter 1.1 | 16 | 20 | [.md](./w2/term1-week2-maths-rational-irrational.md) | [.html](./w2/term1-week2-maths-rational-irrational.html) |
+| **Indices & Standard Form** — Chapters 1.2–1.3 | 37 | 49 | [.md](./w2/term1-week2-maths-indices-standard-form.md) | [.html](./w2/term1-week2-maths-indices-standard-form.html) |
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Atomic Structure & Periodic Table** | 18 | 22 | — | [.html](./w2/term1-week2-atomic-structure-periodic.html) |
+
+## Week 3
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Why Elements React & Ionic Bonding** — Chapter 2.3 | 23 | 27 | [.md](./w3/term1-week3-science-ionic-bonding.md) | [.html](./w3/term1-week3-science-ionic-bonding.html) |
+
+## Week 4
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Why Atoms Bond, Covalent & Metallic Bonding** — Chapter 2.4 | 12 | 13 | [.md](./w4/term1-week4-science-covalent-metallic-bonding.md) | [.html](./w4/term1-week4-science-covalent-metallic-bonding.html) |
+
+## Week 5
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Expressions & Formulae** — Chapters 2.1–2.6 | 26 | 34 | [.md](./w5/term1-week5-maths-expressions-formulae.md) | [.html](./w5/term1-week5-maths-expressions-formulae.html) |
+
+### Unit Test 1 — 26 August 2026
+
+Unit Test 1 covers **Atomic Structure, the Periodic Table, and Chemical Bonding**. The whole scope is pulled together in the [Science Unit Test 1 Revision](./term1-science-unit1-revision.md) handout (printable only, see Revision Handouts below); the three weekly sheets below are where each topic is taught and self-checked interactively:
+
+| Sheet | Covers |
+|-------|--------|
+| [Week 2 — Atomic Structure & Periodic Table](./w2/term1-week2-atomic-structure-periodic.html) | Protons/neutrons/electrons, atomic & mass number, electronic structure, periods & groups, metals/non-metals, Group 1 reactivity |
+| [Week 3 — Why Elements React & Ionic Bonding](./w3/term1-week3-science-ionic-bonding.html) | Forming ions, ionic bonding, ionic compound formulae, Group 1/7 reactivity trends |
+| [Week 4 — Why Atoms Bond, Covalent & Metallic Bonding](./w4/term1-week4-science-covalent-metallic-bonding.html) | Why atoms bond generally, covalent bonding, metallic bonding |
+
+### Maths Unit Test 2 — 1 September 2026
+
+Maths Unit Test 2 covers **Unit 1: Numbers and Calculations** and **Unit 2: Expressions and Formulae**. The combined scope is pulled together in the [Maths Unit Test 2 Revision](./term1-maths-unit2-revision.md) handout (printable only, see Revision Handouts below); the three interactive maths sheets are where each topic is taught and self-checked:
+
+| Sheet | Covers |
+|-------|--------|
+| [Week 2 — Rational & Irrational Numbers](./w2/term1-week2-maths-rational-irrational.html) | Rational numbers, irrational numbers, surds, irrational numbers on a number line |
+| [Week 2 — Indices & Standard Form](./w2/term1-week2-maths-indices-standard-form.html) | Laws of indices, negative/zero exponents, multi-step problems, standard form |
+| [Week 5 — Expressions & Formulae](./w5/term1-week5-maths-expressions-formulae.html) | Substituting, constructing expressions, expressions and indices, expanding brackets, algebraic fractions, deriving and using formulae |
+
+For the retest, the [Maths Unit Test 2 Practice Test](./term1-maths-unit2-practice-test.md) follows the six question types on the marked test paper (see Revision Handouts below).
+
+Source material for Unit Test 2: `material/math/s2/t1/unit2/` (photos of the marked test paper, titled *Unit test 2: Expressions and formulae*).
+
+## Week 7
+
+### Science
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 2: Plant Biology** — Unit 2 | 38 | 49 | [.md](./w7/term1-week7-science-unit-test2-plant-biology.md) | [.html](./w7/term1-week7-science-unit-test2-plant-biology.html) |
+
+### Science Unit Test 2 — 10 September 2026
+
+Science Unit Test 2 covers **Unit 2: Plant Biology**. The whole scope sits on the single Week 7 sheet above, which is written as test practice rather than as a teaching sheet:
+
+| Sheet | Covers |
+|-------|--------|
+| [Week 7 — Unit Test 2: Plant Biology](./w7/term1-week7-science-unit-test2-plant-biology.html) | Photosynthesis (reactants, products, word equation, why it matters), chloroplasts & chlorophyll, what glucose is used for, energy stores in plants, magnesium & nitrate, fertilisers & yield, and the two investigations (light intensity; testing a leaf for starch) |
+
+Its printable `.md` has the same 38 questions **plus six extended-answer questions** (Q39–Q44, 22 marks) that are not on the interactive sheet and are not auto-marked.
+
+### English
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 2: Viewpoints & Arguments** | 45 | 59 | [.md](./w7/term1-week7-english-unit-test2-viewpoints-arguments.md) | [.html](./w7/term1-week7-english-unit-test2-viewpoints-arguments.html) |
+
+### English Unit Test 2 — 10 September 2026
+
+English Unit Test 2 covers three strands, all on the single Week 7 sheet above:
+
+| Level | Scope | Sheet sections |
+|-------|-------|----------------|
+| **Level 2/3** | *The World We Live In* — Viewpoint and Argument in Persuasive Writing: parts of an argument (claim, reason, evidence and explanation questions), word choices, and text features | A–D |
+| **Level 1** | Past Continuous Tense | E |
+| **English Support** | Subject–Verb Agreement | F |
+
+Its printable `.md` has the same 45 questions **plus six extended-answer questions** (Q46–Q51) — paragraph writing, argument labelling and a past-continuous writing task — that are not on the interactive sheet and are not auto-marked.
+
+## Week 8
+
+### Mathematics
+
+| Topic | Questions | Marks | Printable | Interactive |
+|-------|-----------|-------|-----------|-------------|
+| **Unit Test 3: Decimals, Percentages & Rounding** — Unit 3 | 29 | 40 | [.md](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.md) | [.html](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.html) |
+| **Unit 3 Follow-up: Bounds & Powers** — Unit 3 (3.1, 3.3, 3.4) | 31 | 40 | [.md](./w8/term1-week8-maths-unit3-bounds-powers-practice.md) | [.html](./w8/term1-week8-maths-unit3-bounds-powers-practice.html) |
+| **Unit 3 Retest: Bounds & Significant Figures** — Unit 3 (3.4) | 34 | 40 | [.md](./w8/term1-week8-maths-unit3-bounds-sigfigs-retest.md) | [.html](./w8/term1-week8-maths-unit3-bounds-sigfigs-retest.html) |
+| **Unit 3 Practice Test: 20 Open Questions** — Unit 3 (3.1–3.4) | 20 | 25 | [.md](./w8/term1-week8-maths-unit3-open-questions.md) | [.html](./w8/term1-week8-maths-unit3-open-questions.html) |
+| **Simultaneous Equations** — Unit 4.2 | 33 | 45 | [.md](./w8/term1-week8-maths-unit4-simultaneous-equations.md) | [.html](./w8/term1-week8-maths-unit4-simultaneous-equations.html) |
+| **Harder Simultaneous Equations** — Unit 4.2 (multiply first; engineering uses) | 29 | 43 | [.md](./w8/term1-week8-maths-unit4-simultaneous-equations-harder.md) | [.html](./w8/term1-week8-maths-unit4-simultaneous-equations-harder.html) |
+| **Simultaneous Equations — Extra Practice** — Unit 4.2 (printable only, answers separate) | 5 | 15 | [.md](./w8/term1-week8-maths-unit4-simultaneous-equations-extra.md) · [answers](./w8/term1-week8-maths-unit4-simultaneous-equations-extra-answers.md) | — |
+
+### Maths Unit Test 3
+
+Unit Test 3 covers **Unit 3: Decimals, Percentages and Rounding**. This topic wasn't taught in an earlier weekly sheet, so the whole unit sits on the single Week 8 sheet above, written as test practice rather than as a teaching sheet:
+
+| Sheet | Covers |
+|-------|--------|
+| [Week 8 — Unit Test 3: Decimals, Percentages & Rounding](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.html) | Multiplying/dividing by positive and negative powers of 10, multiplying/dividing decimals using equivalent calculations, compound percentage change (successive and repeated multipliers), and upper/lower bounds of rounded values |
+
+Its printable `.md` has the same 29 questions **plus five extended-answer questions** (Q30–Q34) — explaining reasoning, compound-interest working and a bounds/area problem — that are not on the interactive sheet and are not auto-marked.
+
+The **Unit 3 Follow-up: Bounds & Powers** sheet was written after the test, with all-new questions (so it is not a repeat of the test) on the areas the test covered thinly: 10⁰ and missing powers of 10, powers in compound percentages (what 1.08ⁿ represents, "after how many years"), and the three kinds of upper bound from textbook section 3.4 — whole-number counts (80 → 84), numbers with one decimal place (12 → 12.4) and measurements (8 → 8.5). It ends with a real-life section, *Will the Bus Fit?*: the story of Durham's "can opener" bridge and an interactive SVG bus simulator, where matching exact heights to rounded signs shows when a lower bound of the bridge and an upper bound of the bus guarantee a safe fit. Its printable `.md` has the same 31 questions (the simulator is described in words) **plus five written questions** (Q32–Q36) — listing possible values, comparing inequality notations and a years-to-target problem — that are not on the interactive sheet and are not auto-marked.
+
+The **Unit 3 Retest: Bounds & Significant Figures** sheet was written after the follow-up, when bounds and significant figures were still the weak spot. It drops powers and percentages and rebuilds bounds one step at a time: rounding to significant figures (which textbook section 3.4 assumes but does not teach), finding the unit of rounding (including from "correct to *n* s.f."), halving it for measurements with the `lower ≤ x < upper` inequality read out in words, bounds with significant figures, and a *Which Kind of Number?* table contrasting whole numbers, one-decimal-place numbers and measurements (20 → 24, 24.9, 25). It ends with a mini test that has no method box. An interactive **Bounds Explorer** draws any rounded value on a number line and shows what a dragged exact value rounds to. Its printable `.md` has the same 34 questions (the Explorer is described in words) **plus four written questions** (Q35–Q38) — a three-kinds table, spotting a significant-figures mistake, reading inequalities back to a rounding — that are not on the interactive sheet and are not auto-marked.
+
+The **Unit 3 Practice Test: 20 Open Questions** sheet is one more round on the whole unit, with no multiple choice: every answer is typed in. Part A is ten quick one-line questions, one skill each (powers of 10, decimals, a percentage multiplier, significant figures and bounds). Part B is five short stories — a microscope (powers of 10), a bakery (decimals), a double discount (successive percentages), a viral video (repeated percentage growth) and a goods lift (bounds, where 450 ÷ 30 = 15 crates is the trap and 14 is the safe answer). The last two stories end with animations — a growing bar chart of views against a 10 000 target, and crates loaded at their heaviest possible mass against the lift's lowest possible limit — which unlock only once their questions are answered, so they explain rather than give away the answers. Results are broken down by skill as well as by part. Its printable `.md` has the same 20 questions (the animations are described in words) and no extra written questions.
+
+Source material for Unit 3: `material/math/s2/t1/unit3/` (textbook photos).
+
+### Maths Unit 4.2: Simultaneous Equations
+
+The **Simultaneous Equations** sheet is practice for Exercise 4.2 of the Cambridge Lower Secondary Maths Workbook 9. All questions are new (none are copied from the workbook), so the workbook exercise can still be done on its own. It starts by explaining the idea — one equation with two unknowns has endless answers, a second equation narrows it to one pair, and that pair must make both equations true — with a table of the three methods and when to use each. It then teaches them one per section, each with a worked example in the workbook's four steps (work out *x*, work out *y*, check, write the answers): **substitution** for two *y* = equations, the **graphical method** (tables of values and reading the crossing point), and **elimination**, with the equations stacked one under the other as in the workbook (add when the signs differ, subtract when they match). Sections E and F mix the methods and turn word problems into pairs of equations. An interactive **Graph Explorer** draws any two lines *y* = *mx* + *c*, marks where they cross and shows the matching substitution steps, with presets for a crossing between gridlines and for parallel lines with no solution. Pair answers are typed as *x* and *y* separately; there are 9 multiple-choice questions among the 33. Its printable `.md` has the same 33 questions (the Explorer and the Q13 graph are described in words) **plus four written questions** (Q34–Q37) — solving one pair both graphically and algebraically, comparing the methods, a two-prices word problem and an equation-cards chain — that are not on the interactive sheet and are not auto-marked.
+
+Source material for Unit 4.2: `material/math/s2/t1/unit4/` (workbook photos, Exercise 4.2).
+
+Source material for the Level 2/3 strand: `material/english/s2/t1/viewpoints-arguments/`.
+
+## Revision Handouts
+
+Combined documents drawing on more than one weekly sheet, for test preparation.
+
+| Handout | Covers | Questions | Marks | Printable | Interactive |
+|---------|--------|-----------|-------|-----------|-------------|
+| **Maths Unit 1 Revision** | Chapters 1.1–1.3 (both Week 2 maths sheets) | 53 | 69 | [.md](./term1-maths-unit1-revision.md) | — (self-check against the Week 2 sheets above) |
+| **Maths Unit Test 2 Revision** | Chapters 1.1–1.3 & 2.1–2.6 — Unit 1 Revision content plus the Week 5 Expressions & Formulae sheet, merged and renumbered Q1–Q79. | 79 | 103 | [.md](./term1-maths-unit2-revision.md) | — (self-check against the Week 2 and Week 5 sheets above) |
+| **Maths Unit Test 2 Practice Test** | Expressions & Formulae (Ch 2.1–2.6). 20 new questions (12 open, 8 multiple choice) for the retest, following the six question types on the marked Unit Test 2 paper: substituting, writing expressions, simplifying with indices, expanding double brackets, adding/subtracting algebraic fractions, changing the subject. Answer key at the end. | 20 | 32 | [.md](./term1-maths-unit2-practice-test.md) | — (answer key in the handout) |
+| **English Unit Test 1 Revision** | Sentence Types (simple, FANBOYS, MOTH & semicolons, complex/compound-complex) + Reading Comprehension with P.E.E.E. Plus 4 open-ended extended writing tasks (printable only, not auto-marked). | 42 (+4 extended writing) | 50 | [.md](./term1-english-unit1-revision.md) | [.html](./term1-english-unit1-revision.html) |
+| **Science Unit Test 1 Revision** | Atomic Structure & Periodic Table + Why Elements React & Ionic Bonding + Covalent & Metallic Bonding (all three Week 2–4 science sheets, merged and renumbered Q1–Q54). Plus 8 open-ended extended-answer questions (printable only, not auto-marked). Answers live in a **separate** [answer sheet](./term1-science-unit1-revision-answers.md) so the questions can be handed out on their own. | 54 (+8 extended answer) | 66 (+22) | [.md](./term1-science-unit1-revision.md) | — (self-check against the weekly sheets above) |
+
+## Science Formula Sheets
+
+One-page formula and key-fact sheets (SVG with captions) for Atomic Structure & Periodic Table, Ions & Ionic Formulae and Photosynthesis live in [`../../reference/science-formula-sheets/`](../../reference/science-formula-sheets/README.md), together with the Term 2 Density, Waves and Electricity sheets.
+
+## Usage
+
+### For Teachers
+
+1. **Copy to Notebook:** Print these markdown files or copy the questions directly into a notebook/worksheet
+2. **Student Work:** Students read questions from the notebook and write answers in ink
+3. **Self-Marking:** Use the interactive HTML versions for self-checking after completion
+4. **Classroom Flexibility:** No devices required during the exercise
+
+### For Students
+
+1. Read each question carefully
+2. Write your answer in the space provided in your notebook
+3. Show all working clearly
+4. After completion, check your answers using the interactive version (linked at bottom of each document)
+
+## Document Format
+
+Each markdown document includes:
+
+- **Clear section headers** with topic titles
+- **Key definitions and examples** at the start of each section
+- **All questions** with mark allocations
+- **Multiple choice options** where applicable
+- **Reference materials** (tables, number lines, etc.) as needed
+- **Source link** to the interactive version for answer checking
+
+## Relationship to Interactive Sheets
+
+Each weekly printable contains the **exact same questions** as the interactive sheet it sits beside. The revision handouts are the exceptions:
+
+- **English Unit Test 1 Revision** — same questions as its `.html`, plus four open-ended Extended Writing tasks that aren't in the interactive version (see its self-review checklist instead).
+- **Science Unit Test 1 Revision** — printable only. Q1–Q54 are the questions from the three Week 2–4 science sheets, merged and renumbered (two near-duplicate questions across sheets were merged into one), so self-checking can also be done on the weekly sheets. Its eight Part 4 extended-answer questions are new. All answers, including the Part 4 marking points, are in a separate file (`term1-science-unit1-revision-answers.md`) rather than in the handout itself.
+- **Week 7 — Unit Test 2: Plant Biology** — the printable has the same Q1–Q38 as its `.html`, plus six extended-answer questions (Q39–Q44, 22 marks) for written practice that are not auto-marked.
+- **Week 7 — Unit Test 2: Viewpoints & Arguments** — the printable has the same Q1–Q45 as its `.html`, plus six open-ended extended-answer questions (Q46–Q51) for written practice that are not auto-marked. The interactive sheet is multiple-choice, multi-select and short typed answers only.
+- **Maths Unit Test 2 Revision** — printable only. Q1–Q79 are the Maths Unit 1 Revision questions (Q1–Q53) plus the Week 5 Expressions & Formulae sheet's questions (Q54–Q79), merged and renumbered into one run, so self-checking can be done on the Week 2 and Week 5 interactive sheets.
+- **Maths Unit Test 2 Practice Test** — printable only. Its 20 questions are new, not taken from any weekly sheet, and are modelled on the question types of the marked Unit Test 2 paper (photos in `material/math/s2/t1/unit2/`), so they cannot be self-checked on an interactive sheet. Instead, the answer key with working and marking notes is at the end of the handout.
+
+The interactive versions add:
+
+- Instant answer checking
+- Hints for each question
+- Worked answer reveals
+- Score tracking
+- Timer
+
+Use the printable versions for **written practice** and the interactive versions for **self-assessment and review**.
+
+## Structure
+
+```
+cambridge-practice/
+├── s2/
+│   └── sem1/
+│       └── t1/
+│           ├── README.md                         ← This file (worksheet index)
+│           ├── term1-maths-unit1-revision.md     ← Revision handout (spans Ch 1.1–1.3)
+│           ├── term1-maths-unit2-revision.md     ← Revision handout (Unit Test 2: Ch 1.1–1.3 & 2.1–2.6, printable only)
+│           ├── term1-maths-unit2-practice-test.md ← Practice test for the Unit Test 2 retest (Expressions & Formulae, 20 new q, printable only, answer key included)
+│           ├── term1-english-unit1-revision.md   ← Revision handout (Sentence Types + Reading Comprehension)
+│           ├── term1-english-unit1-revision.html ← Interactive version of the above
+│           ├── term1-science-unit1-revision.md   ← Revision handout (Unit Test 1: Weeks 2–4 science, printable only)
+│           ├── term1-science-unit1-revision-answers.md ← Answer sheet for the above (keep separate)
+│           ├── w2/
+│           │   ├── term1-week2-maths-rational-irrational.html    ← Interactive
+│           │   ├── term1-week2-maths-rational-irrational.md      ← Printable
+│           │   ├── term1-week2-maths-indices-standard-form.html  ← Interactive
+│           │   ├── term1-week2-maths-indices-standard-form.md    ← Printable
+│           │   └── term1-week2-atomic-structure-periodic.html    ← Interactive
+│           ├── w3/
+│           │   ├── term1-week3-science-ionic-bonding.html        ← Interactive
+│           │   └── term1-week3-science-ionic-bonding.md          ← Printable
+│           ├── w4/
+│           │   ├── term1-week4-science-covalent-metallic-bonding.html ← Interactive
+│           │   └── term1-week4-science-covalent-metallic-bonding.md   ← Printable
+│           ├── w5/
+│           │   ├── term1-week5-maths-expressions-formulae.html   ← Interactive
+│           │   └── term1-week5-maths-expressions-formulae.md     ← Printable
+│           ├── w7/
+│           │   ├── term1-week7-science-unit-test2-plant-biology.html ← Interactive
+│           │   ├── term1-week7-science-unit-test2-plant-biology.md   ← Printable (+6 extended-answer q)
+│           │   ├── term1-week7-english-unit-test2-viewpoints-arguments.html ← Interactive
+│           │   └── term1-week7-english-unit-test2-viewpoints-arguments.md   ← Printable (+6 extended-answer q)
+│           └── w8/
+│               ├── term1-week8-maths-unit-test3-decimals-percentages-rounding.html ← Interactive
+│               ├── term1-week8-maths-unit-test3-decimals-percentages-rounding.md   ← Printable (+5 extended-answer q)
+│               ├── term1-week8-maths-unit3-bounds-powers-practice.html ← Interactive (Unit 3 follow-up)
+│               ├── term1-week8-maths-unit3-bounds-powers-practice.md   ← Printable (+5 written q)
+│               ├── term1-week8-maths-unit3-bounds-sigfigs-retest.html  ← Interactive (bounds & sig figs retest)
+│               ├── term1-week8-maths-unit3-bounds-sigfigs-retest.md    ← Printable (+4 written q)
+│               ├── term1-week8-maths-unit3-open-questions.html         ← Interactive (20 open questions)
+│               ├── term1-week8-maths-unit3-open-questions.md           ← Printable
+│               ├── term1-week8-maths-unit4-simultaneous-equations.html ← Interactive (Unit 4.2)
+│               ├── term1-week8-maths-unit4-simultaneous-equations.md   ← Printable (+4 written q)
+│               ├── term1-week8-maths-unit4-simultaneous-equations-harder.html ← Interactive (harder pairs + engineering)
+│               ├── term1-week8-maths-unit4-simultaneous-equations-harder.md   ← Printable (+7 written q)
+│               ├── term1-week8-maths-unit4-simultaneous-equations-harder-answers.md ← Answers to the written q
+│               ├── term1-week8-maths-unit4-simultaneous-equations-extra.md ← Printable only (5 extra q)
+│               └── term1-week8-maths-unit4-simultaneous-equations-extra-answers.md ← Answers for the extra sheet
+```
+
+## See Also
+
+- [Main README](../../../README.md) — Project overview and all interactive sheets
+- [Resources](../../../resources.html) — Curated external learning resources
+- [Index](../../../index.html) — All interactive exercise sheets
+
+Term 2 sheets start in [s2/sem1/t2/README.md](../../../README.md).
