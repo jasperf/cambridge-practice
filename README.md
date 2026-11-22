@@ -17,7 +17,7 @@ No login. No install. Works offline.
 
 The academic sheets follow the **Cambridge pathway** — Lower Secondary (Secondary 1 & 2, ending in Checkpoint), then IGCSE and A-Level — which is how maths, science and English are taught at English-medium international schools such as **SIS South Jakarta** (SIS schools in Indonesia run the Singapore, Cambridge and IB curricula, and SIS South Jakarta has offered the IB Diploma Programme since 2014). On top of the Cambridge subjects, students at schools in Indonesia also study **Bahasa Indonesia** (a required national subject) and **Mandarin Chinese** — so this repo has language practice alongside the academic sheets:
 
-- **Bahasa Indonesia** — Semester 1 mock (Units 1–3), two 40-question vocabulary drills, a 96-word word list
+- **Bahasa Indonesia** — Semester 1 mock (Units 1–3), two 40-question vocabulary drills, a 103-word word list
 - **Chinese (Mandarin)** — Semester 1 mock (seasons, occupations, shopping), a 40-question vocabulary drill, a 64-word word list
 
 The Cambridge-subject sheets work for any student following that curriculum, anywhere in the world; the language sheets are aimed at students in Indonesia and Mandarin learners elsewhere.
