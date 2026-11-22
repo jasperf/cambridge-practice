@@ -10,7 +10,7 @@ it away. Chinese punctuation is ignored when matching.
 """
 
 META = dict(
-    out='s2/sem1/sem1-chinese-vocab',
+    out='s2/sem1/mocks/sem1-chinese-vocab',
     title='Chinese Vocabulary Drill &middot; Semester 1',
     badge='Chinese &middot; Vocabulary Drill',
     eyebrow='Secondary 2 &middot; Chinese L2 &middot; Semester 1 Vocabulary',
@@ -27,7 +27,7 @@ META = dict(
     answers_note=('Answers for the Chinese Vocabulary Drill, both directions. On the interactive sheet '
                   '(sem1-chinese-vocab.html) the marking is automatic and accepts every answer listed here.'),
     storage_key='sem1-chinese-vocab',
-    back='../../index.html',
+    back='../../../index.html',
     lang=dict(
         ask_target='Type the Chinese characters for',
         ask_source='What does <em>{w}</em> mean in English?',

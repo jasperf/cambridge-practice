@@ -8,8 +8,8 @@ This directory contains technical documentation for the Cambridge Practice inter
 
 | File | Description |
 |------|-------------|
-| [state-management.md](./state-management.md) | Explains how the interactive test sheets track user answers, correctness, and scores in real-time. Covers the state object structure, state flow, how state is updated and consumed, persistence via localStorage, and the single source of truth principle. |
-| [s2-sem1-science-coverage-gaps.md](./s2-sem1-science-coverage-gaps.md) | Checks the S2 Science SA2 revision list against the sheets on the site, topic by topic. Lists what is missing or thin before the 27 November paper (excretory system, carbon cycle, transpiration and transport, conservation of energy, simple vs giant structures) and the to-do list for a gaps drill. |
+| [state-management.md](state-management.md) | Explains how the interactive test sheets track user answers, correctness, and scores in real-time. Covers the state object structure, state flow, how state is updated and consumed, persistence via localStorage, and the single source of truth principle. |
+| [s2-sem1-science-coverage-gaps.md](s2-sem1-science-coverage-gaps.md) | Checks the S2 Science SA2 revision list against the sheets on the site, topic by topic. Lists what is missing or thin before the 27 November paper (excretory system, carbon cycle, transpiration and transport, conservation of energy, simple vs giant structures) and the to-do list for a gaps drill. |
 
 ---
 

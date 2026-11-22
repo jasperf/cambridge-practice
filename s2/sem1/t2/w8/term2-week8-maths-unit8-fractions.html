@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fractions &middot; Unit 8</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: rgba(79,142,247,0.15); font-family: var(--font-mono); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box ol { margin: 6px 0 0 20px; }
+.info-box ul { margin: 6px 0 0 20px; }
+.kind-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.kind-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 520px; }
+.kind-table th, .kind-table td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+.kind-table th { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); background: var(--surface2); letter-spacing: 0.5px; }
+.kind-table td strong { color: var(--accent-sci); }
+.sim { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin: 16px 0 24px; }
+.sim-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+.sim-svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.sim-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.sim-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.sim-btn:hover { border-color: var(--accent-math); color: var(--text); }
+.sim-btn.on { border-color: var(--accent-sci); color: var(--accent-sci); }
+.ex-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; max-width: 560px; margin: 0 auto 14px; }
+.ex-inputs label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-inputs input, .ex-inputs select { width: 100%; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 7px 10px; outline: none; }
+.ex-inputs input:focus, .ex-inputs select:focus { border-color: var(--accent-math); }
+.ex-slider { max-width: 560px; margin: 12px auto 0; }
+.ex-slider label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-slider input[type=range] { width: 100%; accent-color: var(--accent-warn); }
+.ex-steps { max-width: 560px; margin: 14px auto 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+.ex-steps b { color: var(--text); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.frac-row { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; vertical-align: middle; }
+.frac-input { width: 64px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 7px 6px; text-align: center; outline: none; }
+.frac-input:focus { border-color: var(--accent-math); }
+.frac-input.correct { border-color: var(--correct); }
+.frac-input.wrong { border-color: var(--wrong); }
+.frac-bar { width: 100%; min-width: 100%; height: 2px; background: var(--text-muted); border-radius: 1px; }
+.fraction { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 0.12em; line-height: 1; }
+.fraction sup, .fraction sub { font-size: 0.78em; line-height: 1; font-family: var(--font-mono); }
+.fraction sup { margin-bottom: 2px; }
+.fraction sub { margin-top: 2px; }
+.fraction-bar { width: 100%; height: 1.5px; background: currentColor; border-radius: 1px; }
+.frac-label { font-size: 0.75rem; color: var(--text-muted); margin-left: 8px; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.math-expr { font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; display: inline-block; margin: 2px 0; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .watch-links { justify-content: center; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+  .ex-inputs { grid-template-columns: 1fr; }
+}
+.q-fig { max-width: 400px; margin: 0 0 14px; }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Fractions</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 40</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Unit 8</div>
+  <h1>Same Number, Different Looks<br><em>Working with Fractions</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Decimals &middot; BODMAS &middot; Multiply &middot; Divide &middot; Smart Strategies</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>29 questions &middot; self-marked &middot; 40 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#128208; Terminating, recurring and calculating with fractions</h3>
+  <p>Practice for Unit 8 Fractions (Term 2, Week 8). Every section starts with a quick reminder, then auto-marked questions. Use the decimal-pattern explorer to see why some fractions terminate and others recur. The numbers are new, so the Learner&rsquo;s Book and Workbook exercises are still yours to do.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=corbettmaths+fractions+decimals" target="_blank" rel="noopener">&#128250; Corbettmaths &mdash; fractions and decimals (search)</a>
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=corbettmaths+multiplying+dividing+fractions" target="_blank" rel="noopener">&#128250; Multiplying and dividing fractions (search)</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#decimals" class="sub-tab">Decimals</a>
+  <a href="#bodmas" class="sub-tab">BODMAS</a>
+  <a href="#multiply" class="sub-tab">Multiply</a>
+  <a href="#divide" class="sub-tab">Divide</a>
+  <a href="#strategies" class="sub-tab">Strategies</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: FRACTIONS AND DECIMALS ═══════════════ -->
+<div id="decimals">
+  <div class="section-header"><div class="section-icon">0.</div><div><div class="sub-label">Section A &middot; Unit 8.1</div><h2>Fractions and Decimals</h2></div></div>
+  <div class="info-box"><strong>Why should I care?</strong> Fractions and decimals are two ways of writing the same number. Cooks use fractions (<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> cup), engineers use decimals (0.25&thinsp;mm), and computers need exact patterns to store them.<ul><li><strong>Terminating decimal:</strong> the division comes to an end, e.g. <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> = 0.75</span>.</li><li><strong>Recurring decimal:</strong> a digit or group of digits repeats forever, e.g. <span class="math-expr"><span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span> = 0.666&hellip;</span> or <span class="math-expr">0.​6̅</span>.</li><li><strong>The denominator decides:</strong> if the only prime factors of the denominator (in simplest form) are 2 and/or 5, the decimal terminates; otherwise it recurs.</li></ul></div>
+  <div class="info-box"><strong>Class example:</strong> <span class="math-expr"><span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>6</sub></span></span> has denominator 6 = 2 &times; 3. The 3 makes it recur, so <span class="math-expr"><span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>6</sub></span> = 0.1666&hellip; = 0.1​6̅</span>. <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>20</sub></span></span> has denominator 20 = 2&sup2; &times; 5, so it terminates: <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>20</sub></span> = 0.15</span>.</div>
+
+  <div class="sim">
+    <div class="sim-title">Decimal Pattern Explorer &mdash; move the sliders to see terminating vs recurring</div>
+    <svg class="sim-svg" viewBox="0 0 520 180" role="img" aria-label="Fraction bar showing the chosen fraction"><g id="de-svg"></g></svg>
+    <div class="ex-inputs">
+      <div><label>Numerator <b id="de-num-val">1</b></label><input type="range" id="de-num" min="1" max="16" value="1" oninput="deUpdate()"></div>
+      <div><label>Denominator <b id="de-den-val">6</b></label><input type="range" id="de-den" min="2" max="16" value="6" oninput="deUpdate()"></div>
+      <div><label>Decimal places <b id="de-dp-val">6</b></label><input type="range" id="de-dp" min="3" max="12" value="6" oninput="deUpdate()"></div>
+    </div>
+    <div class="ex-steps" id="de-out"></div>
+  </div>
+
+  <!-- A1 -->
+  <div class="q-card" id="qcard-a1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Write <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>8</sub></span></span> as a decimal.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="a1-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('a1',0.375,'Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('a1','Divide 3 by 8. 8 goes into 30 three times, remainder 6.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('a1','0.375. <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>8</sub></span> = 3 &divide; 8 = 0.375. The denominator 8 = 2<sup>3</sup>, so it terminates.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="a1-fb"></div>
+    </div>
+  </div>
+
+  <!-- A2 -->
+  <div class="q-card" id="qcard-a2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Write <span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span></span> as a decimal. Give your answer to 3 decimal places.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="a2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('a2',0.833,'Q2',0.0005)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('a2','5 &divide; 6 = 0.8333&hellip; Round the fourth decimal digit.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('a2','0.833. <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span> = 0.8333&hellip; to 3 d.p. The denominator has a factor 3, so it recurs.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="a2-fb"></div>
+    </div>
+  </div>
+
+  <!-- A3 -->
+  <div class="q-card" id="qcard-a3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Without doing the division, decide whether <span class="math-expr"><span class="fraction"><sup>7</sup><span class="fraction-bar"></span><sub>20</sub></span></span> is a terminating or recurring decimal.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="a3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('a3', this, 'a')"><div class="opt-indicator"></div><span>Terminating, because 20 = 2&sup2; &times; 5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('a3', this, 'b')"><div class="opt-indicator"></div><span>Recurring, because 7 is a prime number</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('a3', this, 'c')"><div class="opt-indicator"></div><span>Terminating, because 7 is smaller than 20</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('a3', this, 'd')"><div class="opt-indicator"></div><span>Recurring, because 20 is even</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('a3','a','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('a3','Look at the prime factors of 20.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('a3','A &mdash; Terminating. 20 = 2<sup>2</sup> &times; 5, so its only prime factors are 2 and 5. In fact <span class="fraction"><sup>7</sup><span class="fraction-bar"></span><sub>20</sub></span> = 0.35.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="a3-fb"></div>
+    </div>
+  </div>
+
+  <!-- A4 -->
+  <div class="q-card" id="qcard-a4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Which one of these fractions is <strong>recurring</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="a4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('a4', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>16</sub></span></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('a4', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>7</sup><span class="fraction-bar"></span><sub>20</sub></span></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('a4', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>12</sub></span></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('a4', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>9</sup><span class="fraction-bar"></span><sub>25</sub></span></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('a4','c','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('a4','Which denominator has a prime factor other than 2 or 5?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('a4','C &mdash; <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>12</sub></span>. 12 = 2<sup>2</sup> &times; 3, and the 3 makes it recur. <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>12</sub></span> = 0.41666&hellip; The other denominators are 16 = 2<sup>4</sup>, 20 = 2<sup>2</sup> &times; 5 and 25 = 5<sup>2</sup>, so they terminate.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="a4-fb"></div>
+    </div>
+  </div>
+
+  <!-- A5 -->
+  <div class="q-card" id="qcard-a5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Write <span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>11</sub></span></span> as a decimal. Give your answer to 4 decimal places.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="a5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('a5',0.4545,'Q5',0.00005)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('a5','5 &divide; 11 = 0.454545&hellip; The block &ldquo;45&rdquo; repeats.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('a5','0.4545. <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>11</sub></span> = 0.454545&hellip;, so to 4 d.p. it is 0.4545.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="a5-fb"></div>
+    </div>
+  </div>
+
+  <!-- A6 -->
+  <div class="q-card" id="qcard-a6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">A film lasts 36 minutes. What fraction of an hour is this? Is the equivalent decimal terminating or recurring?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Fraction:</span><span class="frac-row"><input type="number" class="frac-input" id="a6-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="a6-den"></span></div>
+      <div class="mcq-options" id="a6-opts" style="margin-top:12px;">
+        <div class="mcq-opt" onclick="selectMCQ('a6', this, 'a')"><div class="opt-indicator"></div><span>Terminating</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('a6', this, 'b')"><div class="opt-indicator"></div><span>Recurring</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFracAndMCQ('a6',3,5,'a','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('a6','Write the fraction with 60 as the denominator, then cancel.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('a6','<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span> of an hour; terminating. 36 &divide; 60 = <span class="fraction"><sup>36</sup><span class="fraction-bar"></span><sub>60</sub></span> = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span> = 0.6.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="a6-fb"></div>
+    </div>
+  </div>
+
+  <!-- A7 -->
+  <div class="q-card" id="qcard-a7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Aisha says: &ldquo;Every fraction with an even denominator has a recurring decimal.&rdquo; Give a counter-example to show she is wrong.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Any counter-example:</span><span class="frac-row"><input type="number" class="frac-input" id="a7-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="a7-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkCounterFrac('a7','Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('a7','Pick an even denominator whose only prime factors are 2 and 5, such as 2, 4, 8, 10 or 20.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('a7','Many answers work, for example <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = 0.5 or <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>10</sub></span> = 0.3. The denominator is even but the decimal terminates because the only prime factors are 2 and 5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="a7-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">FRACTIONS &amp; DECIMALS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-a-fill"></div></div>
+    <div class="section-score-val" id="sec-a-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: ORDER OF OPERATIONS ═══════════════ -->
+<div id="bodmas">
+  <div class="section-header"><div class="section-icon">()</div><div><div class="sub-label">Section B &middot; Unit 8.2</div><h2>Order of Operations with Fractions</h2></div></div>
+  <div class="info-box"><strong>BODMAS still works with fractions.</strong> The order is: <strong>B</strong>rackets, <strong>O</strong>rders (powers), <strong>D</strong>ivide / <strong>M</strong>ultiply (left to right), <strong>A</strong>dd / <strong>S</strong>ubtract (left to right). Mixed numbers are usually easiest changed to improper fractions first.</div>
+  <div class="info-box"><strong>Class example:</strong> <span class="math-expr">2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> + <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; 2</span>. Multiplication first: <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; 2 = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span></span>. Then add: <span class="math-expr">2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> + <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> + <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>2</sub></span> = 4</span>.</div>
+
+  <!-- B1 -->
+  <div class="q-card" id="qcard-b1">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Work out <span class="math-expr">1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> + <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span> &times; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span></span>. Give your answer as a fraction in its simplest form.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="b1-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="b1-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('b1',13,8,'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('b1','Do the multiplication first: <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span> &times; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span>. Then add 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('b1','2. <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span> &times; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>6</sup><span class="fraction-bar"></span><sub>12</sub></span> = <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span>. Then 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span>, and <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span> + <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>4</sup><span class="fraction-bar"></span><sub>2</sub></span> = 2.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="b1-fb"></div>
+    </div>
+  </div>
+
+  <!-- B2 -->
+  <div class="q-card" id="qcard-b2">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Work out <span class="math-expr">3<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> &minus; 2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &divide; 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span></span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="b2-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="b2-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('b2',5,4,'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('b2','Division first. 2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &divide; 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> &divide; <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>4</sup><span class="fraction-bar"></span><sub>5</sub></span>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('b2','<span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>4</sub></span> or 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span>. 2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &divide; 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>4</sup><span class="fraction-bar"></span><sub>5</sub></span> = 2. Then 3<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> &minus; 2 = 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>4</sub></span>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="b2-fb"></div>
+    </div>
+  </div>
+
+  <!-- B3 -->
+  <div class="q-card" id="qcard-b3">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">In the calculation <span class="math-expr">(<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> + <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span>) &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span></span>, which part should you work out first?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="b3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('b3', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span></span>, because multiplication comes before addition</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('b3', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> + <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span></span>, because it is inside brackets</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('b3', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span></span>, because you multiply first</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('b3', this, 'd')"><div class="opt-indicator"></div><span>Any part; the answer is the same</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('b3','b','Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('b3','Brackets come before everything else.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('b3','B &mdash; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> + <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span>, because it is inside brackets. That gives <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>4</sub></span>, then &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span> = <span class="fraction"><sup>10</sup><span class="fraction-bar"></span><sub>12</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="b3-fb"></div>
+    </div>
+  </div>
+
+  <!-- B4 -->
+  <div class="q-card" id="qcard-b4">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Work out <span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span> &times; (<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> + <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span>)</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="b4-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="b4-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('b4',25,24,'Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('b4','Brackets first: <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> + <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>4</sub></span>. Then multiply by <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('b4','<span class="fraction"><sup>25</sup><span class="fraction-bar"></span><sub>24</sub></span> or 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>24</sub></span>. <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> + <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>4</sub></span>; <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span> &times; <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>25</sup><span class="fraction-bar"></span><sub>24</sub></span>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="b4-fb"></div>
+    </div>
+  </div>
+
+  <!-- B5 -->
+  <div class="q-card" id="qcard-b5">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Estimate the value of <span class="math-expr">5<span class="fraction"><sup>7</sup><span class="fraction-bar"></span><sub>8</sub></span> &minus; 2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> &divide; 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span></span> by rounding every mixed number to the nearest whole number.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="b5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('b5',5,'Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('b5','5<span class="fraction"><sup>7</sup><span class="fraction-bar"></span><sub>8</sub></span> rounds to 6, 2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> rounds to 2, and 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> rounds to 2. Then use BODMAS.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('b5','5. 6 &minus; 2 &divide; 2 = 6 &minus; 1 = 5. (The exact answer is about 4.29, so the estimate is reasonable.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="b5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">ORDER OF OPERATIONS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-b-fill"></div></div>
+    <div class="section-score-val" id="sec-b-val">0/8</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: MULTIPLYING FRACTIONS ═══════════════ -->
+<div id="multiply">
+  <div class="section-header"><div class="section-icon">&times;</div><div><div class="sub-label">Section C &middot; Unit 8.3</div><h2>Multiplying Fractions</h2></div></div>
+  <div class="info-box"><strong>Multiply the numerators and multiply the denominators.</strong> It is usually easier to <strong>cancel common factors</strong> before you multiply. Mixed numbers must become improper fractions first. A whole number can be written as a fraction with denominator 1.</div>
+  <div class="info-box"><strong>Class example:</strong> <span class="math-expr">2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; 1<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span></span>. Change to <span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>5</sub></span></span>. Cancel the 5: <span class="math-expr"><span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>1</sub></span> = <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>2</sub></span> = 4</span>.</div>
+
+  <!-- C1 -->
+  <div class="q-card" id="qcard-c1">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Work out <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>7</sub></span></span>. Cancel if you can.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="c1-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="c1-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('c1',15,28,'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c1','There are no common factors to cancel. Multiply 3 &times; 5 and 4 &times; 7.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c1','<span class="fraction"><sup>15</sup><span class="fraction-bar"></span><sub>28</sub></span>. 3 &times; 5 = 15 and 4 &times; 7 = 28. No cancelling is possible.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c1-fb"></div>
+    </div>
+  </div>
+
+  <!-- C2 -->
+  <div class="q-card" id="qcard-c2">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Work out <span class="math-expr">2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; 1<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span></span>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="c2-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="c2-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('c2',4,1,'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c2','2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> and 1<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span> = <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>5</sub></span>. Cancel the 5 before multiplying.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c2','4. <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>5</sub></span> = <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>1</sub></span> = <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>2</sub></span> = 4.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c2-fb"></div>
+    </div>
+  </div>
+
+  <!-- C3 -->
+  <div class="q-card" id="qcard-c3">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Work out <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>8</sub></span> &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>9</sub></span></span>. Cancel common factors before multiplying.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="c3-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="c3-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('c3',1,12,'Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c3','2 and 8 share a factor of 2. Cancel first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c3','<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>12</sub></span>. <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>8</sub></span> &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>9</sub></span> = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>9</sub></span> = <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>3</sub></span> = <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>12</sub></span>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c3-fb"></div>
+    </div>
+  </div>
+
+  <!-- C4 -->
+  <div class="q-card" id="qcard-c4">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">A cake has <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span></span> left. Sam eats <span class="math-expr"><span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>5</sub></span></span> of what is left. What fraction of the whole cake does Sam eat?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="c4-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="c4-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('c4',3,10,'Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c4','&ldquo;Of&rdquo; means multiply: <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>5</sub></span>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c4','<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>10</sub></span>. <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>5</sub></span> = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>5</sub></span> = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>10</sub></span>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c4-fb"></div>
+    </div>
+  </div>
+
+  <!-- C5 -->
+  <div class="q-card" id="qcard-c5">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Find <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span></span> of 75&thinsp;kg.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="c5-ans" placeholder="Enter answer..."><span class="num-unit">kg</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('c5',45,'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c5','&ldquo;Of&rdquo; means multiply: <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span> &times; 75.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c5','45 kg. <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span> &times; 75 = 3 &times; 15 = 45.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c5-fb"></div>
+    </div>
+  </div>
+
+  <!-- C6 -->
+  <div class="q-card" id="qcard-c6">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Which statement is true?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c6', this, 'a')"><div class="opt-indicator"></div><span>When you multiply by a proper fraction, the answer is always larger.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c6', this, 'b')"><div class="opt-indicator"></div><span>When you multiply by a proper fraction, the answer is always a whole number.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c6', this, 'c')"><div class="opt-indicator"></div><span>When you multiply by a proper fraction, the answer is always the same.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c6', this, 'd')"><div class="opt-indicator"></div><span>When you multiply by a proper fraction, the answer is always smaller.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c6','d','Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c6','A proper fraction is less than 1. Try <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; 10.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c6','D &mdash; smaller. You are taking part of the amount. For example <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; 10 = 5, and 5 &lt; 10.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MULTIPLYING FRACTIONS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-c-fill"></div></div>
+    <div class="section-score-val" id="sec-c-val">0/7</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: DIVIDING FRACTIONS ═══════════════ -->
+<div id="divide">
+  <div class="section-header"><div class="section-icon">&divide;</div><div><div class="sub-label">Section D &middot; Unit 8.4</div><h2>Dividing Fractions</h2></div></div>
+  <div class="info-box"><strong>Turn the fraction you are dividing by upside down, then multiply.</strong> This upside-down fraction is called the <strong>reciprocal</strong>. Cancel common factors before you multiply. Mixed numbers become improper fractions first.</div>
+  <div class="info-box"><strong>Class example:</strong> <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &divide; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>5</sub></span></span>. The reciprocal of <span class="math-expr"><span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>5</sub></span></span> is <span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span></span>, so <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>15</sup><span class="fraction-bar"></span><sub>8</sub></span> = 1<span class="fraction"><sup>7</sup><span class="fraction-bar"></span><sub>8</sub></span></span>.</div>
+
+  <!-- D1 -->
+  <div class="q-card" id="qcard-d1">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Work out <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &divide; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>5</sub></span></span>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="d1-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="d1-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('d1',15,8,'Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('d1','Turn <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>5</sub></span> upside down to get <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span>, then multiply.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('d1','<span class="fraction"><sup>15</sup><span class="fraction-bar"></span><sub>8</sub></span> or 1<span class="fraction"><sup>7</sup><span class="fraction-bar"></span><sub>8</sub></span>. <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>15</sup><span class="fraction-bar"></span><sub>8</sub></span>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="d1-fb"></div>
+    </div>
+  </div>
+
+  <!-- D2 -->
+  <div class="q-card" id="qcard-d2">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Work out <span class="math-expr">2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> &divide; 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span></span>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="d2-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="d2-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('d2',3,2,'Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('d2','2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>9</sup><span class="fraction-bar"></span><sub>4</sub></span> and 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('d2','<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span> or 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span>. <span class="fraction"><sup>9</sup><span class="fraction-bar"></span><sub>4</sub></span> &divide; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>9</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span> = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>2</sub></span>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="d2-fb"></div>
+    </div>
+  </div>
+
+  <!-- D3 -->
+  <div class="q-card" id="qcard-d3">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Work out <span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span> &divide; 2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span></span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Answer:</span><span class="frac-row"><input type="number" class="frac-input" id="d3-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="d3-den"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('d3',1,3,'Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('d3','2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span>. Turn it upside down and multiply, then cancel.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('d3','<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>3</sub></span>. <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span> &divide; <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span> &times; <span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>5</sub></span> = <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>3</sub></span>.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="d3-fb"></div>
+    </div>
+  </div>
+
+  <!-- D4 -->
+  <div class="q-card" id="qcard-d4">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">How many people can be given <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span></span> of a pizza each from 6 whole pizzas?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="d4-ans" placeholder="Enter answer..."><span class="num-unit">people</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('d4',8,'Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('d4','This is 6 &divide; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('d4','8 people. 6 &divide; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>6</sup><span class="fraction-bar"></span><sub>1</sub></span> &times; <span class="fraction"><sup>4</sup><span class="fraction-bar"></span><sub>3</sub></span> = <span class="fraction"><sup>24</sup><span class="fraction-bar"></span><sub>3</sub></span> = 8.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="d4-fb"></div>
+    </div>
+  </div>
+
+  <!-- D5 -->
+  <div class="q-card" id="qcard-d5">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Which statement about dividing by a proper fraction is true?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="d5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('d5', this, 'a')"><div class="opt-indicator"></div><span>The answer is always smaller than the original number.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('d5', this, 'b')"><div class="opt-indicator"></div><span>The answer is always the same as the original number.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('d5', this, 'c')"><div class="opt-indicator"></div><span>The answer is always larger than the original number.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('d5', this, 'd')"><div class="opt-indicator"></div><span>The answer is always a whole number.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('d5','c','Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('d5','Try 10 &divide; <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('d5','C &mdash; larger. You are asking how many halves fit into the number. 10 &divide; <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> = 20, and 20 &gt; 10.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="d5-fb"></div>
+    </div>
+  </div>
+
+  <!-- D6 -->
+  <div class="q-card" id="qcard-d6">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">Use the inverse operation to check that <span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span> &divide; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>10</sup><span class="fraction-bar"></span><sub>9</sub></span></span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><span class="frac-label">Check by calculating</span><span class="frac-row"><input type="number" class="frac-input" id="d6-num"><span class="frac-bar"></span><input type="number" class="frac-input" id="d6-den"></span><span class="frac-label">&times; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFrac('d6',5,6,'Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('d6','Division and multiplication are inverses. If <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span> &divide; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>10</sup><span class="fraction-bar"></span><sub>9</sub></span>, then <span class="fraction"><sup>10</sup><span class="fraction-bar"></span><sub>9</sub></span> &times; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> should equal <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('d6','<span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span>. <span class="fraction"><sup>10</sup><span class="fraction-bar"></span><sub>9</sub></span> &times; <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> = <span class="fraction"><sup>30</sup><span class="fraction-bar"></span><sub>36</sub></span> = <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>6</sub></span>. The check works.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="d6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">DIVIDING FRACTIONS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-d-fill"></div></div>
+    <div class="section-score-val" id="sec-d-val">0/9</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: MAKING CALCULATIONS EASIER ═══════════════ -->
+<div id="strategies">
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Section E &middot; Unit 8.5</div><h2>Making Calculations Easier</h2></div></div>
+  <div class="info-box"><strong>Choose the easier form.</strong> A calculation may contain fractions and decimals mixed together. Decide whether to rewrite everything as fractions or everything as decimals. Often one route is much quicker than the other.</div>
+  <div class="info-box"><strong>Class examples:</strong> <span class="math-expr"><span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; 0.7</span> is easier as decimals: <span class="math-expr">0.5 &times; 0.7 = 0.35</span>. <span class="math-expr">2.5 &times; 1<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span></span> is easier as fractions: <span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>5</sub></span> = 4</span>.</div>
+
+  <!-- E1 -->
+  <div class="q-card" id="qcard-e1">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Work out <span class="math-expr"><span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; 0.7</span>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e1-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e1',0.35,'Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e1','Rewrite <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> as 0.5, then multiply decimals.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e1','0.35. 0.5 &times; 0.7 = 0.35.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e1-fb"></div>
+    </div>
+  </div>
+
+  <!-- E2 -->
+  <div class="q-card" id="qcard-e2">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Work out <span class="math-expr">2.5 &times; 1<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span></span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e2',4,'Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e2','Rewrite 2.5 as <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> and 1<span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span> as <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>5</sub></span>, then cancel and multiply.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e2','4. <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>5</sub></span> = <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; <span class="fraction"><sup>8</sup><span class="fraction-bar"></span><sub>1</sub></span> = 4.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e2-fb"></div>
+    </div>
+  </div>
+
+  <!-- E3 -->
+  <div class="q-card" id="qcard-e3">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Work out <span class="math-expr"><span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; 0.8</span>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e3-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e3',0.6,'Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e3','Rewrite 0.8 as <span class="fraction"><sup>4</sup><span class="fraction-bar"></span><sub>5</sub></span> and cancel before multiplying, or rewrite <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> as 0.75.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e3','0.6. <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>4</sub></span> &times; <span class="fraction"><sup>4</sup><span class="fraction-bar"></span><sub>5</sub></span> = <span class="fraction"><sup>3</sup><span class="fraction-bar"></span><sub>5</sub></span> = 0.6. Alternatively 0.75 &times; 0.8 = 0.6.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e3-fb"></div>
+    </div>
+  </div>
+
+  <!-- E4 -->
+  <div class="q-card" id="qcard-e4">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Which of these is easiest to work out using decimals rather than fractions?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="e4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'a')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; 0.3</span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'b')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>2</sup><span class="fraction-bar"></span><sub>3</sub></span> &times; <span class="fraction"><sup>4</sup><span class="fraction-bar"></span><sub>5</sub></span></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'c')"><div class="opt-indicator"></div><span><span class="math-expr">1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; 1<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>3</sub></span></span></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('e4', this, 'd')"><div class="opt-indicator"></div><span><span class="math-expr"><span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>8</sub></span> &times; <span class="fraction"><sup>16</sup><span class="fraction-bar"></span><sub>25</sub></span></span></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('e4','a','Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e4','Look for a calculation where one number is already a simple decimal.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e4','A &mdash; <span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> &times; 0.3 = 0.5 &times; 0.3 = 0.15. The other options are easier with fractions.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e4-fb"></div>
+    </div>
+  </div>
+
+  <!-- E5 -->
+  <div class="q-card" id="qcard-e5">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">A path is 3.2&thinsp;m long and 2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span>&thinsp;m wide. Work out its area.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e5-ans" placeholder="Enter answer..."><span class="num-unit">m&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e5',8,'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e5','Area = length &times; width. Rewrite 2<span class="fraction"><sup>1</sup><span class="fraction-bar"></span><sub>2</sub></span> as 2.5 or as <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e5','8 m<sup>2</sup>. 3.2 &times; 2.5 = 8, or <span class="fraction"><sup>16</sup><span class="fraction-bar"></span><sub>5</sub></span> &times; <span class="fraction"><sup>5</sup><span class="fraction-bar"></span><sub>2</sub></span> = 8.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SMART STRATEGIES &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-e-fill"></div></div>
+    <div class="section-score-val" id="sec-e-val">0/8</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  a1: 1, a2: 1, a3: 1, a4: 1, a5: 1, a6: 2, a7: 1,
+  b1: 2, b2: 2, b3: 1, b4: 2, b5: 1,
+  c1: 1, c2: 1, c3: 1, c4: 2, c5: 1, c6: 1,
+  d1: 1, d2: 1, d3: 2, d4: 2, d5: 1, d6: 2,
+  e1: 1, e2: 2, e3: 2, e4: 1, e5: 2
+};
+
+const sections = {
+  a: { label: 'Fractions & Decimals', qs: ['a1','a2','a3','a4','a5','a6','a7'] },
+  b: { label: 'Order of Operations', qs: ['b1','b2','b3','b4','b5'] },
+  c: { label: 'Multiplying Fractions', qs: ['c1','c2','c3','c4','c5','c6'] },
+  d: { label: 'Dividing Fractions', qs: ['d1','d2','d3','d4','d5','d6'] },
+  e: { label: 'Smart Strategies', qs: ['e1','e2','e3','e4','e5'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+// ── Decimal Pattern Explorer ────────────────────────────────
+function dePrime(n) {
+  const facs = [];
+  let d = 2;
+  while (d * d <= n) {
+    while (n % d === 0) { facs.push(d); n /= d; }
+    d++;
+  }
+  if (n > 1) facs.push(n);
+  return facs;
+}
+function deFormatPrimes(facs) {
+  const counts = {};
+  facs.forEach(f => counts[f] = (counts[f] || 0) + 1);
+  return Object.entries(counts).map(([p,c]) => c === 1 ? p : `${p}<sup>${c}</sup>`).join(' &times; ');
+}
+function deDecimal(num, den, dp) {
+  let s = '';
+  let rem = num % den;
+  const seen = new Map();
+  let pos = 0;
+  let repeatStart = -1;
+  while (pos < dp + 8 && rem !== 0) {
+    if (seen.has(rem)) { repeatStart = seen.get(rem); break; }
+    seen.set(rem, pos);
+    rem *= 10;
+    s += Math.floor(rem / den);
+    rem = rem % den;
+    pos++;
+  }
+  if (s.length > dp) s = s.slice(0, dp);
+  return { s, repeatStart: repeatStart < s.length ? repeatStart : -1 };
+}
+function deUpdate() {
+  const num = +document.getElementById('de-num').value;
+  let den = +document.getElementById('de-den').value;
+  if (num >= den) {
+    const maxDen = Math.max(den, Math.min(16, num + 2));
+    if (den <= num) den = num + 1;
+    document.getElementById('de-den').value = den;
+  }
+  const dp = +document.getElementById('de-dp').value;
+  document.getElementById('de-num-val').textContent = num;
+  document.getElementById('de-den-val').textContent = den;
+  document.getElementById('de-dp-val').textContent = dp;
+
+  // fraction bar
+  const W = 400, H = 80, pad = 30;
+  const fill = (num / den) * W;
+  let svg = `<rect x="${pad}" y="30" width="${W}" height="20" fill="none" stroke="#7a84a0" stroke-width="2" rx="4"/>`;
+  svg += `<rect x="${pad}" y="30" width="${fill.toFixed(1)}" height="20" fill="rgba(79,142,247,0.35)" rx="4"/>`;
+  svg += `<text x="${pad + W/2}" y="74" text-anchor="middle" font-size="14" fill="#e8eaf0" font-family="DM Mono, monospace"><sup>${num}</sup>&frasl;<sub>${den}</sub></text>`;
+  document.getElementById('de-svg').innerHTML = svg;
+
+  const { s, repeatStart } = deDecimal(num, den, dp);
+  const gcd = (a,b) => b ? gcd(b, a%b) : a;
+  const g = gcd(num, den);
+  const simpleNum = num / g, simpleDen = den / g;
+  const primes = dePrime(simpleDen);
+  const hasOther = primes.some(p => p !== 2 && p !== 5);
+  const type = hasOther ? 'recurring' : 'terminating';
+  let decHtml = '0.';
+  if (repeatStart >= 0) {
+    decHtml += s.slice(0, repeatStart) + '<span style="text-decoration:overline;color:var(--accent-math)">' + s.slice(repeatStart) + '</span>';
+  } else {
+    decHtml += s;
+  }
+  document.getElementById('de-out').innerHTML = `<b><sup>${num}</sup>&frasl;<sub>${den}</sub></b> simplifies to <b><sup>${simpleNum}</sup>&frasl;<sub>${simpleDen}</sub></b>. The denominator is ${deFormatPrimes(primes)}, so it is <b style="color:var(--accent-${type === 'terminating' ? 'sci' : 'warn'})">${type}</b>. <span class="math-expr">${decHtml}</span>`;
+}
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=1e-9) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function getFrac(qid) {
+  const numEl = document.getElementById(`${qid}-num`);
+  const denEl = document.getElementById(`${qid}-den`);
+  if (!numEl || !denEl) return null;
+  const n = parseFloat(numEl.value), d = parseFloat(denEl.value);
+  if (isNaN(n) || isNaN(d) || d === 0) return null;
+  return { n, d, numEl, denEl };
+}
+
+function checkFrac(qid, num, den, label) {
+  const f = getFrac(qid);
+  if (!f) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = Math.abs(f.n * den - num * f.d) < 1e-9 * Math.max(1, den * f.d);
+  f.numEl.classList.add(isCorrect ? 'correct' : 'wrong');
+  f.denEl.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function checkFracAndMCQ(qid, num, den, correctMCQ, label) {
+  const f = getFrac(qid);
+  const selected = state.answers[qid];
+  if (!f || !selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const fracCorrect = Math.abs(f.n * den - num * f.d) < 1e-9 * Math.max(1, den * f.d);
+  const mcqCorrect = selected === correctMCQ;
+  const isCorrect = fracCorrect && mcqCorrect;
+  f.numEl.classList.add(fracCorrect ? 'correct' : 'wrong');
+  f.denEl.classList.add(fracCorrect ? 'correct' : 'wrong');
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctMCQ) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !mcqCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkCounterFrac(qid, label) {
+  const f = getFrac(qid);
+  if (!f) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  // denominator must be even and decimal must terminate: only prime factors 2 and 5
+  const gcd = (a,b) => b ? gcd(b, a%b) : a;
+  const g = gcd(Math.abs(f.n), Math.abs(f.d));
+  const simpleDen = Math.abs(f.d) / g;
+  let temp = simpleDen;
+  [2,5].forEach(p => { while (temp % p === 0) temp /= p; });
+  const isCorrect = Math.abs(f.d) % 2 === 0 && temp === 1 && f.d !== 0;
+  f.numEl.classList.add(isCorrect ? 'correct' : 'wrong');
+  f.denEl.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `&#9989; <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `&#10060; <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `&#128161; <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `&#128214; <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'&#127942; Excellent!':pct>=70?'&#11088; Great Job!':pct>=55?'&#128077; Good Effort':'&#128218; Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`unit8-fractions_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+deUpdate();
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && (active.classList.contains('num-input') || active.classList.contains('frac-input'))) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>

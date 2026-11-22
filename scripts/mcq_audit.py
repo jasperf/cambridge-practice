@@ -6,8 +6,8 @@ Check 1 - answer spread: is the correct letter roughly even across A-D, with no
 Check 2 - giveaways: does the correct option repeat the teaching material that
           sits above it (info box / key ideas / definition table) near verbatim?
 
-Usage:  python3 scripts/mcq_audit.py s2/t1/w2/*.html
-        python3 scripts/mcq_audit.py --check 2 --verbose s2/t1/**/*.html
+Usage:  python3 scripts/mcq_audit.py s2/sem1/t1/w2/*.html
+        python3 scripts/mcq_audit.py --check 2 --verbose s2/sem1/t1/**/*.html
 """
 import argparse, collections, html, itertools, pathlib, re, sys
 

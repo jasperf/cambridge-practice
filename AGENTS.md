@@ -41,7 +41,15 @@ cambridge-practice/
 │       └── w6/             ← Week 6
 │           ├── term4-week6-english.html
 │           └── term4-week6-science.html
-├── s2/                     ← Secondary 2 sheets (sem1 mocks, drills & practice; term weekly sheets; formula sheets)
+├── s2/                     ← Secondary 2 sheets (Semester 1 = Terms 1+2; Semester 2 will follow the same pattern)
+│   ├── sem1/               ← Semester 1 (= Terms 1 + 2)
+│   │   ├── t1/             ← Term 1: w{N}/ weekly sheets + term-level revision handouts
+│   │   ├── t2/             ← Term 2: w{N}/ weekly sheets
+│   │   └── mocks/          ← Semester 1 assessment mock papers (English, Maths, Science, …)
+│   └── reference/          ← cross-term one-page reference sheets (index.html galleries)
+│       ├── science-formula-sheets/
+│       ├── maths-formula-sheets/
+│       └── english-revision-sheets/
 └── igcse/                  ← IGCSE (planned)
 ```
 
@@ -63,10 +71,10 @@ git commit -m "Add Week N: Subject exercises"
 git push                          # auto-deploys to GitHub Pages
 
 # Audit a sheet before committing (details in scripts/README.md)
-python3 scripts/sheet_audit.py s2/t2/w7/*.html        # shown totals vs the real `marks` object
-python3 scripts/mcq_audit.py s2/t2/w7/*.html          # MCQ letter spread, reveal-letter sync, giveaways
-python3 scripts/mcq_sync.py s2/t2/w7/*.html           # printable .md option order vs the .html (--fix repairs)
-python3 scripts/mcq_shuffle.py --dry-run s2/t2/w7/*.html   # rebalance MCQ answer letters if the spread fails
+python3 scripts/sheet_audit.py s2/sem1/t2/w7/*.html        # shown totals vs the real `marks` object
+python3 scripts/mcq_audit.py s2/sem1/t2/w7/*.html          # MCQ letter spread, reveal-letter sync, giveaways
+python3 scripts/mcq_sync.py s2/sem1/t2/w7/*.html           # printable .md option order vs the .html (--fix repairs)
+python3 scripts/mcq_shuffle.py --dry-run s2/sem1/t2/w7/*.html   # rebalance MCQ answer letters if the spread fails
 
 # Generate a review sheet or a vocabulary drill from a spec (writes .html + .md + -answers.md)
 python3 scripts/build_review_sheet.py scripts/review_specs/s2_sem1_science_revision.py
@@ -82,7 +90,7 @@ python3 scripts/build_vocab_drill.py scripts/review_specs/s2_sem1_bahasa_vocab_2
 - If an `index.html` card shows `N questions` / `N marks` chips, they must match the sheet — `sheet_audit.py` checks this
 - No external dependencies except Google Fonts (Fraunces, Literata, DM Mono)
 - Answers checked client-side; no server, no login, no tracking
-- File naming: flexible but follow patterns like `term{N}-week{N}-{subject}.html` or `{level}/{term}/{week}/{name}.html`
+- File naming: flexible but follow patterns like `term{N}-week{N}-{subject}.html` or `{level}/{term}/{week}/{name}.html` (Secondary 2 nests one level deeper: `s2/{semester}/{term}/{week}/{name}.html`, e.g. `s2/sem1/t2/w7/…`; mocks live in `s2/sem1/mocks/`, reference sheets in `s2/reference/`)
 - **Always update `index.html`** when adding a new sheet
 - Card classes: `.math` (blue), `.sci` (green), `.eng` (amber) for subject color-coding
 

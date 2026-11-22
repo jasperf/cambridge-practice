@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chinese Mock &middot; Semester 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #f5a623; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(245,166,35,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box em { font-style: italic; color: var(--accent); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(245,166,35,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(245,166,35,0.4)} 70%{box-shadow:0 0 0 10px rgba(245,166,35,0)} 100%{box-shadow:0 0 0 0 rgba(245,166,35,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .hero, .section-tabs, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: drawIn 1.1s ease forwards, fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+
+.exam-banner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.exam-inner { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.28); border-radius: 12px; padding: 14px 18px; font-size: 0.88rem; color: var(--text-muted); }
+.exam-inner strong { color: var(--accent-warn); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.5px; }
+.extract { background: rgba(15,17,23,0.5); border: 1px dashed var(--border); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0 24px; font-size: 0.92rem; line-height: 1.8; color: var(--text); }
+.extract p + p { margin-top: 10px; }
+.extract .extract-label { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+.extract .pn { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-right: 6px; }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent); }
+.text-input:disabled { opacity: 0.75; }
+.paper-note { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.5px; text-transform: uppercase; margin: 8px 0 0; }
+.ftable { border-collapse: collapse; margin: 10px 0 16px; font-size: 0.88rem; }
+.ftable th, .ftable td { border: 1px solid var(--border); padding: 6px 12px; text-align: center; }
+.ftable th { background: var(--surface2); font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); }
+.sub-head { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--accent); margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+.text-input { font-family: var(--font-body); }
+.q-fig text { font-family: var(--font-body); }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Chinese &middot; Semester 1 Mock</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 59</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Chinese L2 &middot; Semester 1 Assessment</div>
+  <h1>Semester 1 Chinese<br><em>Mock Paper</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>49 questions &middot; self-marked &middot; 59 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>Aim for about 45 minutes, then do the written tasks on paper</div>
+  </div>
+  <p class="credit">Built from the SA revision worksheet and the units <em>Seasons</em>, <em>Occupations</em> and <em>Shopping</em> (Easy Steps to Chinese 3). The same paper layout, with all-new texts and questions: reading, then writing. Type short answers in Chinese characters; accepted answers are checked for you.</p>
+</div>
+<div class="exam-banner"><div class="exam-inner"><strong>SEMESTER 1 ASSESSMENT &middot; MONDAY 23 NOVEMBER &middot; CHINESE</strong><br>The real exam has a Reading part and a Writing part. Do Sections A&ndash;B here, then the open tasks (Q50&ndash;Q54) in the printable version: the shopping form, guided writing of 80&ndash;100 characters and more.</div></div>
+<div class="section-tabs">
+  <a href="#rd" class="sub-tab">📖 A · Reading 阅读</a>
+  <a href="#wr" class="sub-tab">✍️ B · Writing 写作</a>
+</div>
+<div class="main">
+<div id="rd">
+  <div class="section-header"><div class="section-icon">📖</div><div><div class="sub-label">Section A · Reading Practice · Q1–Q34</div><h2>Reading 阅读</h2></div></div>
+<div class="info-box"><strong>Key vocabulary 重点词汇.</strong> Weather &amp; seasons: 春天、夏天、秋天、冬天、暖和、凉快、热、冷、下雨、雨伞. Jobs &amp; places: 医生、律师、经理、公司、医院、律师事务所、商店. Clothes &amp; shopping: 皮鞋、高跟鞋、运动鞋、书包、衣服、一双、一件、多少钱、太贵了、合适. Writing words: 购物、打算、准备、一起、因为……所以……、觉得、后来、虽然……但是……</div>
+<h3 class="group-title" style="font-family:var(--font-display);margin:28px 0 10px;font-size:1.05rem;color:var(--accent)">Part 1 · Choose the correct meaning 选择正确的意思</h3>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-c1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">春天来了，天气很暖和。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c1', this, 'a')"><div class="opt-indicator"></div><span>It is cold in winter.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c1', this, 'b')"><div class="opt-indicator"></div><span>It is hot in summer.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c1', this, 'c')"><div class="opt-indicator"></div><span>It is warm in spring.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c1', this, 'd')"><div class="opt-indicator"></div><span>It is cool in autumn.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c1','c','Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c1','Find the season word first, then the weather word.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c1','C &amp;mdash; It is warm in spring.: 春天 = spring, 暖和 = warm.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-c2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">外面下雨了，我没有带雨伞。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c2', this, 'a')"><div class="opt-indicator"></div><span>It is raining and I did not bring an umbrella.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c2', this, 'b')"><div class="opt-indicator"></div><span>It is raining and I brought an umbrella.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c2', this, 'c')"><div class="opt-indicator"></div><span>It is sunny and I wore a hat.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c2', this, 'd')"><div class="opt-indicator"></div><span>It is cold and I have no shoes.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c2','a','Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c2','Look for 下雨 and 没有带.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c2','A &amp;mdash; It is raining and I did not bring an umbrella.: 下雨 = rain, 没有带 = did not bring, 雨伞 = umbrella.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-c3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">他是一名律师，在律师事务所工作。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c3', this, 'a')"><div class="opt-indicator"></div><span>He is a doctor who works at a hospital.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c3', this, 'b')"><div class="opt-indicator"></div><span>He is a manager who works at a company.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c3', this, 'c')"><div class="opt-indicator"></div><span>He is a teacher who works at a school.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c3', this, 'd')"><div class="opt-indicator"></div><span>He is a lawyer who works at a law firm.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c3','d','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c3','Two job and place words appear in the sentence.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c3','D &amp;mdash; He is a lawyer who works at a law firm.: 律师 = lawyer, 律师事务所 = law firm.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-c4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">这件衣服多少钱？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c4', this, 'a')"><div class="opt-indicator"></div><span>What colour is this piece of clothing?</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c4', this, 'b')"><div class="opt-indicator"></div><span>How much is this piece of clothing?</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c4', this, 'c')"><div class="opt-indicator"></div><span>Whose is this piece of clothing?</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c4', this, 'd')"><div class="opt-indicator"></div><span>Do you like this piece of clothing?</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c4','b','Q4')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c4','多少钱 is a price question.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c4','B &amp;mdash; How much is this piece of clothing?: 件 is the measure word for clothes, 衣服 = clothes, 多少钱 = how much.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-c5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">这双运动鞋很合适，但是有一点贵。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c5', this, 'a')"><div class="opt-indicator"></div><span>These trainers are cheap and comfortable.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c5', this, 'b')"><div class="opt-indicator"></div><span>These shoes are too small and very cheap.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c5', this, 'c')"><div class="opt-indicator"></div><span>These trainers are expensive, so I bought two pairs.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c5', this, 'd')"><div class="opt-indicator"></div><span>These trainers fit well, but they are a little expensive.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c5','d','Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c5','The word 但是 introduces a contrast.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c5','D &amp;mdash; These trainers fit well, but they are a little expensive.: 运动鞋 = trainers, 合适 = suitable / a good fit, 但是 = but, 有一点贵 = a little expensive.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-c6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">秋天很凉快，我们打算一起去商店。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c6', this, 'a')"><div class="opt-indicator"></div><span>Autumn is cool, and we plan to go to the shops together.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c6', this, 'b')"><div class="opt-indicator"></div><span>Autumn is cold, and we plan to go to the hospital.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c6', this, 'c')"><div class="opt-indicator"></div><span>Autumn is hot, and we went to the shops last week.</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c6', this, 'd')"><div class="opt-indicator"></div><span>Autumn is warm, and I am going to the shops alone.</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c6','a','Q6')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c6','打算 shows a plan and 一起 shows who goes.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c6','A &amp;mdash; Autumn is cool, and we plan to go to the shops together.: 凉快 = cool, 打算 = plan to, 一起 = together, 商店 = shop.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c6-fb"></div>
+    </div>
+  </div>
+
+<h3 class="group-title" style="font-family:var(--font-display);margin:28px 0 10px;font-size:1.05rem;color:var(--accent)">Part 2 · Fill in the blanks 选词填空</h3>
+<div class="extract"><span class="extract-label">词语 Word bank</span><p>冬天 &nbsp; 夏天 &nbsp; 凉快 &nbsp; 暖和 &nbsp; 医院 &nbsp; 医生 &nbsp; 经理 &nbsp; 公司 &nbsp; 书包 &nbsp; 高跟鞋 &nbsp; 雨伞</p></div>
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-c7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">莫斯科的____非常冷。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c7-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c7',[&quot;冬天&quot;],'Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c7','The coldest season.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c7','&lt;em&gt;冬天&lt;/em&gt;: 冬天 = winter.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-c8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">七月和八月是一年里最热的季节，也就是____。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c8-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c8',[&quot;夏天&quot;],'Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c8','The hottest season.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c8','&lt;em&gt;夏天&lt;/em&gt;: 夏天 = summer.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-c9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">秋天风很大，天气不热，很____。 (cool)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c9-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c9',[&quot;凉快&quot;],'Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c9','It means pleasantly cool.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c9','&lt;em&gt;凉快&lt;/em&gt;: 凉快 = cool (pleasantly).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-c10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">春天到了，天气变得很____，花都开了。 (warm)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c10-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c10',[&quot;暖和&quot;],'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c10','It means comfortably warm.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c10','&lt;em&gt;暖和&lt;/em&gt;: 暖和 = warm.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c10-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-c11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">她生病了，妈妈带她去____。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c11-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c11',[&quot;医院&quot;],'Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c11','Where sick people are treated.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c11','&lt;em&gt;医院&lt;/em&gt;: 医院 = hospital.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-c12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">我的姐姐是____，她给病人看病。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c12-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c12',[&quot;医生&quot;],'Q12')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c12','The person who treats patients.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c12','&lt;em&gt;医生&lt;/em&gt;: 医生 = doctor.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-c13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">王先生在大公司工作，他是部门____。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c13-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c13',[&quot;经理&quot;],'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c13','The person who manages a team.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c13','&lt;em&gt;经理&lt;/em&gt;: 经理 = manager.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-c14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">外面下雨了，出门要带____。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c14-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c14',[&quot;雨伞&quot;],'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c14','You hold it over your head in the rain.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c14','&lt;em&gt;雨伞&lt;/em&gt;: 雨伞 = umbrella.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c14-fb"></div>
+    </div>
+  </div>
+
+<h3 class="group-title" style="font-family:var(--font-display);margin:28px 0 10px;font-size:1.05rem;color:var(--accent)">Part 3 · Put the words in order 排列句子</h3>
+<p class="mcq-note" style="color:var(--text-muted);font-size:0.85rem;margin-bottom:10px">Choose the option that puts the words in the correct order.</p>
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-c15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">我们 / 一起 / 商店 / 去 / 周末</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c15-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c15', this, 'a')"><div class="opt-indicator"></div><span>我们去一起周末商店。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c15', this, 'b')"><div class="opt-indicator"></div><span>周末我们一起去商店。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c15', this, 'c')"><div class="opt-indicator"></div><span>一起我们商店周末去。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c15', this, 'd')"><div class="opt-indicator"></div><span>商店周末我们去一起。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c15','b','Q15')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c15','Time word first, then who, then 一起 + verb.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c15','B &amp;mdash; 周末我们一起去商店。: 周末 (when) + 我们 (who) + 一起去 (together go) + 商店 (where).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c15-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-c16">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text">妈妈 / 在 / 医院 / 工作</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c16-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c16', this, 'a')"><div class="opt-indicator"></div><span>妈妈医院在工作。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c16', this, 'b')"><div class="opt-indicator"></div><span>在妈妈工作医院。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c16', this, 'c')"><div class="opt-indicator"></div><span>妈妈在医院工作。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c16', this, 'd')"><div class="opt-indicator"></div><span>工作妈妈医院在。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c16','c','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c16','Pattern: who + 在 + place + verb.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c16','C &amp;mdash; 妈妈在医院工作。: 妈妈 + 在医院 + 工作: the place goes between 在 and the verb.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c16-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-c17">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">这件 / 衣服 / 太贵了 / 我觉得</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c17-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c17', this, 'a')"><div class="opt-indicator"></div><span>我觉得这件衣服太贵了。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c17', this, 'b')"><div class="opt-indicator"></div><span>这件我觉得衣服太贵了。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c17', this, 'c')"><div class="opt-indicator"></div><span>太贵了我觉得这件衣服。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c17', this, 'd')"><div class="opt-indicator"></div><span>衣服我觉得这件太贵了。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c17','a','Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c17','觉得 starts the opinion.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c17','A &amp;mdash; 我觉得这件衣服太贵了。: 我觉得 + [这件衣服太贵了]: the opinion follows 觉得.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c17-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-c18">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">虽然 / 但是 / 很贵 / 很好看 / 这双鞋</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c18-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c18', this, 'a')"><div class="opt-indicator"></div><span>但是这双鞋虽然很贵，很好看。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c18', this, 'b')"><div class="opt-indicator"></div><span>虽然很贵这双鞋，但是很好看。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c18', this, 'c')"><div class="opt-indicator"></div><span>这双鞋很贵虽然，很好看但是。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c18', this, 'd')"><div class="opt-indicator"></div><span>虽然这双鞋很贵，但是很好看。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c18','d','Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c18','虽然 comes before the first idea, 但是 before the second.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c18','D &amp;mdash; 虽然这双鞋很贵，但是很好看。: 虽然 + idea 1, 但是 + idea 2.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c18-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-c19">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">因为 / 下雨了 / 所以 / 我们 / 没有出去</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c19-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c19', this, 'a')"><div class="opt-indicator"></div><span>因为我们下雨了，没有所以出去。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c19', this, 'b')"><div class="opt-indicator"></div><span>因为下雨了，所以我们没有出去。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c19', this, 'c')"><div class="opt-indicator"></div><span>所以下雨了，因为我们没有出去。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c19', this, 'd')"><div class="opt-indicator"></div><span>下雨了因为，我们所以没有出去。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c19','b','Q19')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c19','因为 gives the reason, 所以 gives the result.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c19','B &amp;mdash; 因为下雨了，所以我们没有出去。: 因为 + reason, 所以 + result.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c19-fb"></div>
+    </div>
+  </div>
+
+<h3 class="group-title" style="font-family:var(--font-display);margin:28px 0 10px;font-size:1.05rem;color:var(--accent)">Part 4 · Reading and judging 阅读判断</h3>
+<div class="extract"><span class="extract-label">Text: 小文的一家 (Xiaowen’s family)</span><p>我叫小文，住在北京。北京的冬天很冷，夏天很热，我最喜欢秋天，因为秋天很凉快。我爸爸是医生，在医院工作；妈妈是经理，在一家公司工作。上个周末，妈妈带我去商店买了一双运动鞋，价格是两百块。我觉得很合适，也不太贵，所以很开心。</p></div>
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-c20">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">哪一句话和短文一致？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c20-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c20', this, 'a')"><div class="opt-indicator"></div><span>小文住在上海。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c20', this, 'b')"><div class="opt-indicator"></div><span>小文最喜欢夏天。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c20', this, 'c')"><div class="opt-indicator"></div><span>小文觉得冬天很暖和。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c20', this, 'd')"><div class="opt-indicator"></div><span>小文喜欢秋天，因为很凉快。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c20','d','Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c20','Find the season Xiaowen likes best.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c20','D &amp;mdash; 小文喜欢秋天，因为很凉快。: Sentence 3: 我最喜欢秋天，因为秋天很凉快。')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c20-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-c21">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">小文的爸爸怎么样？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c21-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c21', this, 'a')"><div class="opt-indicator"></div><span>爸爸是医生，在医院工作。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c21', this, 'b')"><div class="opt-indicator"></div><span>爸爸是律师，在律师事务所工作。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c21', this, 'c')"><div class="opt-indicator"></div><span>爸爸是经理，在公司工作。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c21', this, 'd')"><div class="opt-indicator"></div><span>爸爸在商店工作。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c21','a','Q21')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c21','Look for 我爸爸是……')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c21','A &amp;mdash; 爸爸是医生，在医院工作。: Sentence 4: 我爸爸是医生，在医院工作。')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c21-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-c22">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">小文的妈妈怎么样？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c22-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c22', this, 'a')"><div class="opt-indicator"></div><span>妈妈是医生，在医院工作。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c22', this, 'b')"><div class="opt-indicator"></div><span>妈妈是律师，在律师事务所工作。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c22', this, 'c')"><div class="opt-indicator"></div><span>妈妈是经理，在一家公司工作。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c22', this, 'd')"><div class="opt-indicator"></div><span>妈妈在商店买东西。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c22','c','Q22')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c22','Look for 妈妈是……')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c22','C &amp;mdash; 妈妈是经理，在一家公司工作。: Sentence 4: 妈妈是经理，在一家公司工作。')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c22-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-c23">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">上个周末发生了什么？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c23-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c23', this, 'a')"><div class="opt-indicator"></div><span>小文去医院看了医生。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c23', this, 'b')"><div class="opt-indicator"></div><span>妈妈带小文去商店买了一双运动鞋。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c23', this, 'c')"><div class="opt-indicator"></div><span>妈妈买了一个书包。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c23', this, 'd')"><div class="opt-indicator"></div><span>小文和爸爸去公司了。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c23','b','Q23')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c23','Read the sentence that starts 上个周末.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c23','B &amp;mdash; 妈妈带小文去商店买了一双运动鞋。: 上个周末，妈妈带我去商店买了一双运动鞋。')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c23-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-c24">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text">关于运动鞋，哪一句话正确？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c24-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c24', this, 'a')"><div class="opt-indicator"></div><span>价格是两百块，小文觉得很合适。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c24', this, 'b')"><div class="opt-indicator"></div><span>价格是三百块，小文觉得太贵了。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c24', this, 'c')"><div class="opt-indicator"></div><span>价格是两百块，小文觉得太贵了。</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c24', this, 'd')"><div class="opt-indicator"></div><span>妈妈没有买，因为不合适。</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c24','a','Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c24','Check the price and how Xiaowen felt.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c24','A &amp;mdash; 价格是两百块，小文觉得很合适。: 价格是两百块，我觉得很合适，也不太贵。')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c24-fb"></div>
+    </div>
+  </div>
+
+<h3 class="group-title" style="font-family:var(--font-display);margin:28px 0 10px;font-size:1.05rem;color:var(--accent)">Part 5 · Reading comprehension 阅读理解</h3>
+<p class="mcq-note" style="color:var(--text-muted);font-size:0.85rem;margin-bottom:10px">Type a short answer in Chinese. A word, a number or a short phrase is enough.</p>
+<div class="extract"><span class="extract-label">Text: 姐姐的外套 (My sister’s coat)</span><p>星期六下午一点，我和姐姐去商场购物。姐姐想买一件黄色的外套，因为天气变冷了。她试了一件，价格是四百块，觉得有一点贵，没有买。后来我们看到另一件，只要二百五十块，颜色也漂亮，她就买了。我想买一个书包，可是商店里没有我喜欢的。下午四点，我们坐公共汽车回家。</p></div>
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-c25">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text">她们星期几去购物？</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c25-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c25',[&quot;星期六&quot;, &quot;周六&quot;, &quot;礼拜六&quot;, &quot;她们星期六去购物&quot;, &quot;我们星期六去购物&quot;, &quot;星期六去购物&quot;],'Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c25','The day is in the first sentence.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c25','&lt;em&gt;星期六&lt;/em&gt;: 星期六 (Saturday).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c25-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-c26">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text">姐姐想买什么？</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c26-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c26',[&quot;外套&quot;, &quot;黄色的外套&quot;, &quot;一件黄色的外套&quot;, &quot;黄外套&quot;, &quot;她想买一件黄色的外套&quot;, &quot;姐姐想买一件黄色的外套&quot;, &quot;想买一件黄色的外套&quot;, &quot;一件外套&quot;],'Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c26','Look for 想买 in sentence 2.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c26','&lt;em&gt;外套&lt;/em&gt;: 一件黄色的外套 (a yellow coat).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c26-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-c27">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">第一件外套多少钱？</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c27-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c27',[&quot;四百块&quot;, &quot;四百&quot;, &quot;400块&quot;, &quot;400&quot;, &quot;四百块钱&quot;, &quot;400块钱&quot;, &quot;四百元&quot;, &quot;400元&quot;, &quot;价格是四百块&quot;, &quot;第一件外套四百块&quot;],'Q27')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c27','The first coat is the one she tried on.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c27','&lt;em&gt;四百块&lt;/em&gt;: 四百块 (400 yuan).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c27-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-c28">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text">姐姐为什么没有买第一件外套？</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c28-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c28',[&quot;有一点贵&quot;, &quot;有点贵&quot;, &quot;太贵了&quot;, &quot;很贵&quot;, &quot;贵&quot;, &quot;因为有一点贵&quot;, &quot;因为有点贵&quot;, &quot;因为太贵了&quot;, &quot;因为很贵&quot;, &quot;因为贵&quot;, &quot;她觉得有一点贵&quot;, &quot;她觉得有点贵&quot;, &quot;她觉得太贵了&quot;, &quot;因为她觉得有一点贵&quot;, &quot;因为她觉得有点贵&quot;, &quot;因为她觉得太贵了&quot;, &quot;她觉得贵&quot;],'Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c28','The reason is how she felt about the price.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c28','&lt;em&gt;有一点贵&lt;/em&gt;: 她觉得有一点贵 (she thought it was a little expensive).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c28-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-c29">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">她们几点回家？</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c29-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c29',[&quot;四点&quot;, &quot;下午四点&quot;, &quot;4点&quot;, &quot;下午4点&quot;, &quot;四点回家&quot;, &quot;下午四点回家&quot;, &quot;下午4点回家&quot;, &quot;她们下午四点回家&quot;, &quot;我们下午四点回家&quot;, &quot;她们四点回家&quot;, &quot;我们四点回家&quot;],'Q29')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c29','Look at the last sentence.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c29','&lt;em&gt;四点&lt;/em&gt;: 下午四点 (4 pm).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c29-fb"></div>
+    </div>
+  </div>
+
+<h3 class="group-title" style="font-family:var(--font-display);margin:28px 0 10px;font-size:1.05rem;color:var(--accent)">Part 6 · Measure words and grammar 量词和语法</h3>
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-c30">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">我买了一____运动鞋。(Choose the measure word.)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c30-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c30', this, 'a')"><div class="opt-indicator"></div><span>件</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c30', this, 'b')"><div class="opt-indicator"></div><span>个</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c30', this, 'c')"><div class="opt-indicator"></div><span>双</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c30', this, 'd')"><div class="opt-indicator"></div><span>条</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c30','c','Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c30','Shoes come in pairs.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c30','C &amp;mdash; 双: 双 is the measure word for things in pairs (shoes, chopsticks).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c30-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-c31">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">他买了一____外套。(Choose the measure word.)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c31-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c31', this, 'a')"><div class="opt-indicator"></div><span>双</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c31', this, 'b')"><div class="opt-indicator"></div><span>个</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c31', this, 'c')"><div class="opt-indicator"></div><span>本</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c31', this, 'd')"><div class="opt-indicator"></div><span>件</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c31','d','Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c31','Think about clothes on the upper body.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c31','D &amp;mdash; 件: 件 is the measure word for clothes and items of luggage.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c31-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-c32">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">哪一个问题是问价格的？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c32-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c32', this, 'a')"><div class="opt-indicator"></div><span>这个书包是什么颜色？</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c32', this, 'b')"><div class="opt-indicator"></div><span>这个书包多少钱？</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c32', this, 'c')"><div class="opt-indicator"></div><span>这个书包是谁的？</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c32', this, 'd')"><div class="opt-indicator"></div><span>你喜欢这个书包吗？</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c32','b','Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c32','Which question word asks about money?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c32','B &amp;mdash; 这个书包多少钱？: 多少钱 = how much money.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c32-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-c33">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">虽然这双鞋很好看，____很贵。(Choose the word that completes the pair.)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c33-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c33', this, 'a')"><div class="opt-indicator"></div><span>但是</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c33', this, 'b')"><div class="opt-indicator"></div><span>因为</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c33', this, 'c')"><div class="opt-indicator"></div><span>所以</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c33', this, 'd')"><div class="opt-indicator"></div><span>或者</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c33','a','Q33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c33','虽然 always needs a partner word.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c33','A &amp;mdash; 但是: 虽然 …… 但是 …… = although …… but ……')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c33-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-c34">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">他的工作是在法庭上帮助别人，他是____。</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="c34-opts">
+        <div class="mcq-opt" onclick="selectMCQ('c34', this, 'a')"><div class="opt-indicator"></div><span>医生</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c34', this, 'b')"><div class="opt-indicator"></div><span>经理</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c34', this, 'c')"><div class="opt-indicator"></div><span>律师</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('c34', this, 'd')"><div class="opt-indicator"></div><span>老师</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('c34','c','Q34')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c34','Which job needs a law firm?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c34','C &amp;mdash; 律师: 律师 = lawyer.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c34-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A — READING 阅读</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-rd-fill"></div></div>
+    <div class="section-score-val" id="sec-rd-val">0/44</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="wr">
+  <div class="section-header"><div class="section-icon">✍️</div><div><div class="sub-label">Section B · Writing Practice · Q35–Q49</div><h2>Writing in use 写作</h2></div></div>
+<div class="info-box">Use the writing words in sentences: <strong>打算、准备、一起、因为……所以……、觉得、后来、虽然……但是……</strong>. Then write the shopping words in characters, and read a price board. The longer open writing tasks (the shopping form and guided writing) are in the printable version (Q50&ndash;Q54).</div>
+<h3 class="group-title" style="font-family:var(--font-display);margin:28px 0 10px;font-size:1.05rem;color:var(--accent)">Part 1 · Complete the sentence 用所给词语填空</h3>
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-c35">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text">明天我____去商店买书包。(plan to)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c35-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c35',[&quot;打算&quot;, &quot;准备&quot;],'Q35')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c35','A word for a plan.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c35','&lt;em&gt;打算&lt;/em&gt;: 打算 = plan to (准备 = get ready to / intend, also accepted).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c35-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-c36">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">____天气很冷，所以我们不去了。(because)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c36-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c36',[&quot;因为&quot;],'Q36')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c36','It gives a reason.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c36','&lt;em&gt;因为&lt;/em&gt;: 因为 = because. It pairs with 所以.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c36-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-c37">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text">我们先去商店，____去吃饭。(later)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c37-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c37',[&quot;后来&quot;, &quot;然后&quot;],'Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c37','It links two things in time.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c37','&lt;em&gt;后来&lt;/em&gt;: 后来 = later (然后 = then, also accepted).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c37-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-c38">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">周末我和朋友____去购物。(together)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c38-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c38',[&quot;一起&quot;],'Q38')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c38','It means doing it together.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c38','&lt;em&gt;一起&lt;/em&gt;: 一起 = together.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c38-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-c39">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">我____这件衣服很漂亮。(think / feel)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c39-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c39',[&quot;觉得&quot;],'Q39')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c39','It introduces an opinion.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c39','&lt;em&gt;觉得&lt;/em&gt;: 觉得 = think / feel.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c39-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-c40">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">____这双鞋很贵，但是我很喜欢。(although)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c40-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c40',[&quot;虽然&quot;],'Q40')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c40','It pairs with 但是.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c40','&lt;em&gt;虽然&lt;/em&gt;: 虽然 = although.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c40-fb"></div>
+    </div>
+  </div>
+
+<h3 class="group-title" style="font-family:var(--font-display);margin:28px 0 10px;font-size:1.05rem;color:var(--accent)">Part 2 · Write the word 写汉字</h3>
+  <!-- Q41 -->
+  <div class="q-card" id="qcard-c41">
+    <div class="q-header"><div class="q-num">Q41</div><div class="q-text">Write in Chinese: shopping</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c41-ans" placeholder="汉字 / characters" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c41',[&quot;购物&quot;],'Q41')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c41','Two characters, the activity of buying things.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c41','&lt;em&gt;购物&lt;/em&gt;: 购物 = shopping.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c41-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="q-card" id="qcard-c42">
+    <div class="q-header"><div class="q-num">Q42</div><div class="q-text">Write in Chinese: How much (money)? (asking the price)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c42-ans" placeholder="汉字 / characters" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c42',[&quot;多少钱&quot;],'Q42')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c42','Three characters.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c42','&lt;em&gt;多少钱&lt;/em&gt;: 多少钱 = how much money.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c42-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q43 -->
+  <div class="q-card" id="qcard-c43">
+    <div class="q-header"><div class="q-num">Q43</div><div class="q-text">Write in Chinese: sports shoes / trainers</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c43-ans" placeholder="汉字 / characters" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c43',[&quot;运动鞋&quot;],'Q43')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c43','Three characters: 运动 + 鞋.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c43','&lt;em&gt;运动鞋&lt;/em&gt;: 运动鞋 = trainers.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c43-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q44 -->
+  <div class="q-card" id="qcard-c44">
+    <div class="q-header"><div class="q-num">Q44</div><div class="q-text">Write in Chinese: high-heeled shoes</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c44-ans" placeholder="汉字 / characters" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c44',[&quot;高跟鞋&quot;],'Q44')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c44','Three characters: 高 + 跟 + 鞋.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c44','&lt;em&gt;高跟鞋&lt;/em&gt;: 高跟鞋 = high heels.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c44-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q45 -->
+  <div class="q-card" id="qcard-c45">
+    <div class="q-header"><div class="q-num">Q45</div><div class="q-text">Write in Chinese: law firm</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c45-ans" placeholder="汉字 / characters" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c45',[&quot;律师事务所&quot;],'Q45')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c45','Five characters starting with 律师.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c45','&lt;em&gt;律师事务所&lt;/em&gt;: 律师事务所 = law firm.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c45-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q46 -->
+  <div class="q-card" id="qcard-c46">
+    <div class="q-header"><div class="q-num">Q46</div><div class="q-text">Write in Chinese: school bag</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c46-ans" placeholder="汉字 / characters" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c46',[&quot;书包&quot;],'Q46')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c46','Two characters.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c46','&lt;em&gt;书包&lt;/em&gt;: 书包 = school bag.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c46-fb"></div>
+    </div>
+  </div>
+
+<h3 class="group-title" style="font-family:var(--font-display);margin:28px 0 10px;font-size:1.05rem;color:var(--accent)">Part 3 · Price board 价格牌</h3>
+<svg class="q-fig" viewBox="0 0 440 190" role="img" aria-label="A price board: school bag 120 yuan, coat 250 yuan, trainers 300 yuan, leather shoes 450 yuan" style="max-width:440px"><text x="220" y="16" font-size="14" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">价格牌 (元)</text><path class="draw fill" d="M8 34 L104 34 L104 176 L8 176 Z" stroke="#4f8ef7" stroke-width="2.5" fill="rgba(79,142,247,0.18)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="56" y="80" font-size="26" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central">书包</text><text x="56" y="130" font-size="22" fill="#4f8ef7" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">120</text><text x="56" y="156" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">元</text><path class="draw fill" d="M116 34 L212 34 L212 176 L116 176 Z" stroke="#3ecf8e" stroke-width="2.5" fill="rgba(62,207,142,0.18)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="164" y="80" font-size="26" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central">外套</text><text x="164" y="130" font-size="22" fill="#3ecf8e" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">250</text><text x="164" y="156" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">元</text><path class="draw fill" d="M224 34 L320 34 L320 176 L224 176 Z" stroke="#f5a623" stroke-width="2.5" fill="rgba(245,166,35,0.25)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="272" y="80" font-size="26" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central">运动鞋</text><text x="272" y="130" font-size="22" fill="#f5a623" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">300</text><text x="272" y="156" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">元</text><path class="draw fill" d="M332 34 L428 34 L428 176 L332 176 Z" stroke="#e05252" stroke-width="2.5" fill="rgba(224,82,82,0.2)" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><text x="380" y="80" font-size="26" fill="#e8eaf0" text-anchor="middle" dominant-baseline="central">皮鞋</text><text x="380" y="130" font-size="22" fill="#e05252" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">450</text><text x="380" y="156" font-size="12" fill="#7a84a0" text-anchor="middle" dominant-baseline="central" font-family="DM Mono, monospace">元</text></svg>
+  <!-- Q47 -->
+  <div class="q-card" id="qcard-c47">
+    <div class="q-header"><div class="q-num">Q47</div><div class="q-text">哪一样东西最贵？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c47-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c47',[&quot;皮鞋&quot;, &quot;皮鞋最贵&quot;],'Q47')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c47','Compare the four prices on the board.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c47','&lt;em&gt;皮鞋&lt;/em&gt;: 皮鞋 is 450 yuan, the highest.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c47-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q48 -->
+  <div class="q-card" id="qcard-c48">
+    <div class="q-header"><div class="q-num">Q48</div><div class="q-text">书包多少钱？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c48-ans" placeholder="价格 / price" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c48',[&quot;一百二十块&quot;, &quot;一百二十&quot;, &quot;120块&quot;, &quot;120&quot;, &quot;一百二十块钱&quot;, &quot;120块钱&quot;, &quot;一百二十元&quot;, &quot;120元&quot;, &quot;书包一百二十块&quot;, &quot;书包120块&quot;],'Q48')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c48','Find 书包 on the board.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c48','&lt;em&gt;一百二十块&lt;/em&gt;: 书包 is 120 yuan: 一百二十块.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c48-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q49 -->
+  <div class="q-card" id="qcard-c49">
+    <div class="q-header"><div class="q-num">Q49</div><div class="q-text">运动鞋和外套，哪一个更贵？</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="c49-ans" placeholder="中文 / Chinese" autocomplete="off" lang="zh-Hans">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('c49',[&quot;运动鞋&quot;, &quot;运动鞋更贵&quot;, &quot;运动鞋比较贵&quot;],'Q49')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('c49','Compare 300 yuan and 250 yuan.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('c49','&lt;em&gt;运动鞋&lt;/em&gt;: 运动鞋 (300) is dearer than 外套 (250).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="c49-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION B — WRITING 写作</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-wr-fill"></div></div>
+    <div class="section-score-val" id="sec-wr-val">0/15</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { c1:1, c2:1, c3:1, c4:1, c5:1, c6:1, c7:1, c8:1, c9:1, c10:1, c11:1, c12:1, c13:1, c14:1, c15:2, c16:2, c17:2, c18:2, c19:2, c20:1, c21:1, c22:1, c23:1, c24:1, c25:2, c26:2, c27:2, c28:2, c29:2, c30:1, c31:1, c32:1, c33:1, c34:1, c35:1, c36:1, c37:1, c38:1, c39:1, c40:1, c41:1, c42:1, c43:1, c44:1, c45:1, c46:1, c47:1, c48:1, c49:1 };
+
+const sections = {
+  rd: { label: 'Reading 阅读', qs: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12', 'c13', 'c14', 'c15', 'c16', 'c17', 'c18', 'c19', 'c20', 'c21', 'c22', 'c23', 'c24', 'c25', 'c26', 'c27', 'c28', 'c29', 'c30', 'c31', 'c32', 'c33', 'c34'] },
+  wr: { label: 'Writing 写作', qs: ['c35', 'c36', 'c37', 'c38', 'c39', 'c40', 'c41', 'c42', 'c43', 'c44', 'c45', 'c46', 'c47', 'c48', 'c49'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sem1-chinese-mock_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+
+// Diagrams draw themselves in as they scroll into view
+(function() {
+  const figs = document.querySelectorAll('.q-fig');
+  if (!('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('drawn')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  figs.forEach(f => io.observe(f));
+})();
+
+function normalise(s) {
+  return s.toLowerCase().replace(/[。，、！？；：“”‘’,.!?;:'"\s]+/g, '');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('text-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+</body>
+</html>

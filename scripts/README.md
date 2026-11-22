@@ -8,11 +8,11 @@ they only read the sheets, they never modify them.
 
 ```bash
 # audit one term
-python3 scripts/mcq_audit.py s2/t1/**/*.html
+python3 scripts/mcq_audit.py s2/sem1/t1/**/*.html
 
 # just the answer spread, or just the giveaways
-python3 scripts/mcq_audit.py --check 1 s2/t1/w2/*.html
-python3 scripts/mcq_audit.py --check 2 --verbose s2/t1/w3/*.html
+python3 scripts/mcq_audit.py --check 1 s2/sem1/t1/w2/*.html
+python3 scripts/mcq_audit.py --check 2 --verbose s2/sem1/t1/w3/*.html
 
 # audit everything
 python3 scripts/mcq_audit.py $(find s1 s2 igcse-add-maths -name '*.html')
@@ -46,8 +46,8 @@ decide.
 ## `mcq_shuffle.py` — apply the fix
 
 ```bash
-python3 scripts/mcq_shuffle.py --dry-run s2/t1/w3/term1-week3-science-ionic-bonding.html
-python3 scripts/mcq_shuffle.py s2/t1/w3/term1-week3-science-ionic-bonding.html
+python3 scripts/mcq_shuffle.py --dry-run s2/sem1/t1/w3/term1-week3-science-ionic-bonding.html
+python3 scripts/mcq_shuffle.py s2/sem1/t1/w3/term1-week3-science-ionic-bonding.html
 ```
 
 Moves option *text* between fixed letter slots to hit a target sequence that
@@ -65,7 +65,7 @@ that is always a human edit.
 ## `mcq_sync.py` — keep the printable in step
 
 ```bash
-python3 scripts/mcq_sync.py s2/t1/**/*.html
+python3 scripts/mcq_sync.py s2/sem1/t1/**/*.html
 ```
 
 Reordering options in an `.html` to fix the spread silently desyncs the
@@ -83,8 +83,8 @@ way round. It is derived from the html each time, so it is idempotent and
 will repair a half-applied shuffle:
 
 ```bash
-python3 scripts/mcq_sync.py --fix s2/t1/w3/*.html
-python3 scripts/mcq_sync.py s2/t1/w3/*.html   # re-run to confirm
+python3 scripts/mcq_sync.py --fix s2/sem1/t1/w3/*.html
+python3 scripts/mcq_sync.py s2/sem1/t1/w3/*.html   # re-run to confirm
 ```
 
 **Run it after every shuffle**, before committing.
@@ -92,7 +92,7 @@ python3 scripts/mcq_sync.py s2/t1/w3/*.html   # re-run to confirm
 ## `sheet_audit.py` — do the shown totals match the real ones?
 
 ```bash
-python3 scripts/sheet_audit.py s2/t2/w4/*.html
+python3 scripts/sheet_audit.py s2/sem1/t2/w4/*.html
 python3 scripts/sheet_audit.py $(find s1 s2 igcse-add-maths -name '*.html')
 ```
 
@@ -153,7 +153,7 @@ sections — 20 English → target language, 20 target language → English —
 grouped by theme, 1 mark each, no multiple choice, so there is no letter
 spread to check and no `.md` option order to keep in sync; `sheet_audit.py`
 is the only audit that applies. The page is the same as the hand-written
-`s2/sem1/sem1-bahasa-indonesia-vocab.html` (identical CSS and scoring JS),
+`s2/sem1/mocks/sem1-bahasa-indonesia-vocab.html` (identical CSS and scoring JS),
 so a generated drill is indistinguishable from a hand-made one.
 
 A spec is a plain Python file in `review_specs/` defining `META` (filenames,
@@ -178,11 +178,11 @@ Afterwards run `sheet_audit.py` and (if the totals changed) update the
 ## `build_human_biology_diagrams.py` — draw the Human Biology SVGs
 
 ```bash
-python3 scripts/build_human_biology_diagrams.py            # writes into s2/science-formula-sheets/svg/
+python3 scripts/build_human_biology_diagrams.py            # writes into s2/reference/science-formula-sheets/svg/
 python3 scripts/build_human_biology_diagrams.py /tmp/prev  # or anywhere else, to preview
 ```
 
-Writes the four animated diagrams on `s2/science-formula-sheets/human-biology.html`:
+Writes the four animated diagrams on `s2/reference/science-formula-sheets/human-biology.html`:
 cell to gene, mitosis and meiosis, XX and XY, and mother and fetus. Each diagram
 is one function, laid out in plain SVG coordinates (1080 px wide, the same cream
 background and Montserrat type as the other formula-sheet diagrams). **Edit the
@@ -198,13 +198,13 @@ browser.
 ## `whatsapp_media.mjs` — JPG, MP4 and GIF copies for WhatsApp
 
 ```bash
-S=s2/science-formula-sheets/svg
+S=s2/reference/science-formula-sheets/svg
 node scripts/whatsapp_media.mjs $S/science-diagram-cell-to-gene.svg:4 $S/science-diagram-mitosis-meiosis.svg:9 \
   $S/science-diagram-xx-xy.svg:6 $S/science-diagram-mother-fetus.svg:6
 node scripts/whatsapp_media.mjs $S/science-sheet-4-density.svg     # static: JPG only
 ```
 
-For each SVG it writes, into `s2/science-formula-sheets/whatsapp/`: a full-size
+For each SVG it writes, into `s2/reference/science-formula-sheets/whatsapp/`: a full-size
 JPG still (t = 0), a 1080 px-wide MP4 of at least 10 s, and a 720 px-wide GIF
 of one loop at 15 fps. The number after the colon is one loop in seconds. Every
 animation in the SVG has to repeat evenly inside it, or the GIF jumps when it

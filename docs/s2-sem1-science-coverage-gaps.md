@@ -4,7 +4,7 @@
 **Checked against:** the S2 Science SA2 revision topic list (`material/science/s2/S2 SA Revision Pack.docx.pdf`, not tracked in git).
 **Checked on:** 14 November 2026; updated 15 November 2026 after checking the class slides again.
 
-This compares every topic on the revision list with what the S2 science sheets on the site already cover. The sheets checked were the Term 1 and Term 2 science sheets, the Semester 1 mock, the review page and the bonding drill (`s2/sem1/`), the science formula sheets, and the new Unit Test sheet (`s2/t2/w7/`). It lists what still needs work before the paper.
+This compares every topic on the revision list with what the S2 science sheets on the site already cover. The sheets checked were the Term 1 and Term 2 science sheets, the Semester 1 mock, the review page and the bonding drill (`s2/sem1/mocks/`), the science formula sheets, and the new Unit Test sheet (`s2/sem1/t2/w7/`). It lists what still needs work before the paper.
 
 ## Coverage by topic
 
@@ -38,13 +38,13 @@ This compares every topic on the revision list with what the S2 science sheets o
 
 ## To do
 
-1. ~~**Gaps drill** for the 27 November paper.~~ Done: `s2/sem1/sem1-science-gaps` (37 questions, 49 marks, plus 6 written), built from `scripts/review_specs/s2_sem1_science_gaps.py`. It covers:
+1. ~~**Gaps drill** for the 27 November paper.~~ Done: `s2/sem1/mocks/sem1-science-gaps` (37 questions, 49 marks, plus 6 written), built from `scripts/review_specs/s2_sem1_science_gaps.py`. It covers:
    - the human excretory system (kidneys, ureters, bladder, urethra; filtering blood, urea and urine)
    - absorption, transport and transpiration in plants (root hair cells, xylem and phloem, water loss through stomata)
    - the carbon cycle (photosynthesis, respiration, combustion, decomposition)
    - conservation of energy (energy is not created or destroyed, only transferred; useful and wasted energy)
    - simple molecules vs giant structures (melting points, conductivity, examples)
-2. ~~**Human Biology in the semester materials.**~~ Done: `s2/sem1/README.md` now points to the `t2/w7` Unit Test for Human Biology and has a table of revision videos, including one for each gap topic. The mock and the review page still have no Human Biology questions of their own.
+2. ~~**Human Biology in the semester materials.**~~ Done: `s2/sem1/mocks/README.md` now points to the `t2/w7` Unit Test for Human Biology and has a table of revision videos, including one for each gap topic. The mock and the review page still have no Human Biology questions of their own.
 
 ## Source material note
 

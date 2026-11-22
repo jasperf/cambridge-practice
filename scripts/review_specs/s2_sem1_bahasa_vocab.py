@@ -8,7 +8,7 @@ with the command above (without --only-md).
 """
 
 META = dict(
-    out='s2/sem1/sem1-bahasa-indonesia-vocab',
+    out='s2/sem1/mocks/sem1-bahasa-indonesia-vocab',
     title='Bahasa Indonesia Vocabulary Drill &middot; Semester 1',
     badge='Bahasa Indonesia &middot; Vocabulary Drill',
     eyebrow='Secondary 2 &middot; Bahasa Indonesia Level 1 &middot; Semester 1 Vocabulary',
@@ -26,7 +26,7 @@ META = dict(
                   '(sem1-bahasa-indonesia-vocab.html) the marking is automatic and accepts every '
                   'spelling listed here.'),
     storage_key='sem1-bahasa-indonesia-vocab',
-    back='../../index.html',
+    back='../../../index.html',
 )
 
 HAIWAN_A = 'Tulis nama hewan bahasa Indonesia untuk'

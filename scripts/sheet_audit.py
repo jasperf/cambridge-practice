@@ -18,7 +18,7 @@ It also lists question cards with no entry in `marks` (as info: unscored
 written cards like `wr1` are legitimate) and `marks` entries with no card.
 
 Usage:
-  python3 scripts/sheet_audit.py s2/t2/w4/*.html
+  python3 scripts/sheet_audit.py s2/sem1/t2/w4/*.html
   python3 scripts/sheet_audit.py $(find s1 s2 igcse-add-maths -name '*.html')
 
 Sheets without a `marks` object (galleries, index pages) are skipped.

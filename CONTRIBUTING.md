@@ -9,23 +9,25 @@ cambridge-practice/
 ├── index.html                  ← Home page: a card for every sheet
 ├── resources.html              ← Curated external resources (YouTube, BBC Bitesize)
 ├── s1/                         ← Secondary 1: t4/ weekly sheets, sa2/ revision (+ focus/ drills), science/ topic drills
-├── s2/                         ← Secondary 2
-│   ├── t1/                     ← Term 1: w{N}/ weekly sheets + term-level revision handouts
-│   ├── t2/                     ← Term 2: w{N}/ weekly sheets
-│   ├── sem1/                   ← Semester 1 assessment mock papers (English, Maths ×2, Science)
-│   ├── science-formula-sheets/ ← One-page SVG formula & key-fact sheets (index.html gallery)
-│   ├── maths-formula-sheets/   ← One-page SVG maths formula sheets (index.html gallery)
-│   └── english-revision-sheets/← One-page SVG English revision sheets (index.html gallery)
+├── s2/                         ← Secondary 2 (Semester 1 = Terms 1 + 2)
+│   ├── sem1/                   ← Semester 1
+│   │   ├── t1/                 ← Term 1: w{N}/ weekly sheets + term-level revision handouts
+│   │   ├── t2/                 ← Term 2: w{N}/ weekly sheets
+│   │   └── mocks/              ← Semester 1 assessment mock papers (English, Maths ×2, Science)
+│   └── reference/              ← Cross-term one-page reference sheets (index.html galleries)
+│       ├── science-formula-sheets/  ← SVG formula & key-fact sheets
+│       ├── maths-formula-sheets/    ← SVG maths formula sheets
+│       └── english-revision-sheets/ ← SVG English revision sheets
 ├── igcse-add-maths/            ← IGCSE Additional Maths (0606)
 ├── scripts/                    ← MCQ audit, shuffle and sync tools
 └── docs/                       ← Documentation (state management, etc.)
 ```
 
-Weekly sheets are named `term{N}-week{N}-{subject}-{topic}.html`, with a matching `.md` printable beside them. The file-by-file list for each term is in its README: [s2/t1](./s2/t1/README.md) · [s2/t2](./s2/t2/README.md) · [s2/sem1](./s2/sem1/README.md) · [science formula sheets](./s2/science-formula-sheets/README.md) · [maths formula sheets](./s2/maths-formula-sheets/README.md) · [English revision sheets](./s2/english-revision-sheets/README.md).
+Weekly sheets are named `term{N}-week{N}-{subject}-{topic}.html`, with a matching `.md` printable beside them. The file-by-file list for each term is in its README: [s2/sem1/t1](s2/sem1/t1/README.md) · [s2/sem1/t2](s2/sem1/t2/README.md) · [s2/sem1/mocks](s2/sem1/mocks/README.md) · [science formula sheets](s2/reference/science-formula-sheets/README.md) · [maths formula sheets](s2/reference/maths-formula-sheets/README.md) · [English revision sheets](s2/reference/english-revision-sheets/README.md).
 
 ## Printable worksheets
 
-Each interactive sheet has a printable markdown version in the same folder, under the same basename (`term1-week2-maths-rational-irrational.md` beside `term1-week2-maths-rational-irrational.html`). It holds the same questions, for written practice in a notebook. Revision handouts that combine several weekly sheets live one level up, in the term folder (e.g. `s2/t1/term1-maths-unit1-revision.md`).
+Each interactive sheet has a printable markdown version in the same folder, under the same basename (`term1-week2-maths-rational-irrational.md` beside `term1-week2-maths-rational-irrational.html`). It holds the same questions, for written practice in a notebook. Revision handouts that combine several weekly sheets live one level up, in the term folder (e.g. `s2/sem1/t1/term1-maths-unit1-revision.md`).
 
 ## Local development
 
@@ -43,9 +45,9 @@ npx serve .
 
 ## Adding a new sheet
 
-1. Copy an existing sheet as your template and place it in the right folder (e.g. `s2/t2/w6/term2-week6-maths-topic.html`).
+1. Copy an existing sheet as your template and place it in the right folder (e.g. `s2/sem1/t2/w6/term2-week6-maths-topic.html`).
 2. Update the questions, answers and marks.
-3. Check the multiple-choice answers with the audit tools in [`scripts/`](./scripts/README.md).
+3. Check the multiple-choice answers with the audit tools in [`scripts/`](scripts/README.md).
 4. Add a card to `index.html` and a row to the matching term README.
 5. Push to `main`. GitHub Pages publishes automatically.
 

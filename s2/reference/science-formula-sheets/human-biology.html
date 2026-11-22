@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Biology Diagrams &middot; Secondary 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Mono:wght@400;500&family=Literata:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent2: #3ecf8e;
+  --text: #e8eaf0; --text-muted: #7a84a0;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); min-height: 100vh; padding-bottom: 80px; }
+header { max-width: 1100px; margin: 0 auto; padding: 48px 24px 24px; }
+.back { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-decoration: none; }
+.back:hover { color: var(--text); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent2); margin-top: 24px; }
+h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.6rem); margin: 8px 0 12px; }
+.sub { color: var(--text-muted); max-width: 640px; line-height: 1.6; }
+.grid { max-width: 1100px; margin: 0 auto; padding: 16px 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+.img-link { background: #fff; display: block; }
+.img-link img { width: 100%; height: auto; display: block; }
+.card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.kind { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent2); }
+h2 { font-family: var(--font-display); font-size: 1.15rem; }
+.card p { font-size: 0.88rem; line-height: 1.6; color: var(--text-muted); }
+.more { margin-top: auto; padding-top: 8px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent); text-decoration: none; }
+.more:hover { text-decoration: underline; }
+.wide { grid-column: 1 / -1; }
+.wide .img-link { max-width: 760px; margin: 0 auto; width: 100%; }
+.sub a { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">&larr; All science formula sheets</a>
+  <div class="eyebrow">Secondary 2 &middot; Science &middot; Human Biology</div>
+  <h1>Human Biology: Genes, Cell Division and Pregnancy</h1>
+  <p class="sub">Four animated diagrams for the Human Biology half of the unit test. Zoom from a cell down to a gene, compare mitosis with meiosis, see why the sperm decides boy or girl, then look inside the uterus at what crosses the placenta. Tap an image to open it full size.</p>
+  <p class="sub" style="margin-top:8px">Ready to test yourself? <a href="../../sem1/t2/w7/term2-week7-science-unit-test-electricity-human-biology.html">Science Unit Test: Electricity + Human Biology &rarr;</a></p>
+</header>
+<main class="grid">
+  <article class="card wide">
+    <a href="svg/science-diagram-cell-to-gene.svg" class="img-link"><img src="svg/science-diagram-cell-to-gene.svg" alt="Cell, nucleus, chromosome, DNA and gene, zoomed in step by step" loading="lazy"></a>
+    <div class="card-body">
+      <div class="kind">Diagram</div>
+      <h2>From Cell to Gene</h2>
+      <p>Zoom in from a cell to a gene. The nucleus is the control centre of the cell and holds 46 chromosomes. Each chromosome is one long, coiled molecule of DNA (deoxyribonucleic acid). DNA is a double helix: two strands twisted like a spiral ladder, a shape worked out by Watson and Crick in 1953. A gene is a short section of DNA that codes for one characteristic, such as eye colour. Every body cell has 46 chromosomes in 23 pairs: one of each pair comes from Mum and the other from Dad, so you look like both parents but are not identical to either.</p>
+      <a class="more" href="science-diagram-cell-to-gene.md">Caption &amp; source &rarr;</a>
+    </div>
+  </article>
+  <article class="card wide">
+    <a href="svg/science-diagram-mitosis-meiosis.svg" class="img-link"><img src="svg/science-diagram-mitosis-meiosis.svg" alt="Mitosis makes two identical cells; meiosis makes four different gametes with half the chromosomes" loading="lazy"></a>
+    <div class="card-body">
+      <div class="kind">Diagram</div>
+      <h2>Mitosis and Meiosis</h2>
+      <p>Two ways a cell divides, shown with a model cell of 4 chromosomes (a human body cell has 46). Mitosis: 1 division gives 2 cells, identical to the parent, each with the full number (diploid, 2n, 46 in humans). It is used for growth and repair. Meiosis: 2 divisions give 4 cells, all different, each with half the number (haploid, n, 23 in humans). It makes the gametes: sperm in the testes and eggs in the ovaries. At fertilisation a sperm (23) and an egg (23) join to make a zygote (46). Without meiosis the number would double every generation (46 + 46 = 92). Other animals: cat 38 → 19, horse 64 → 32, chimpanzee 48 → 24.</p>
+      <a class="more" href="science-diagram-mitosis-meiosis.md">Caption &amp; source &rarr;</a>
+    </div>
+  </article>
+  <article class="card wide">
+    <a href="svg/science-diagram-xx-xy.svg" class="img-link"><img src="svg/science-diagram-xx-xy.svg" alt="Sex chromosomes, a 2 × 2 grid of Mum&#x27;s eggs and Dad&#x27;s sperm, and why the sperm decides" loading="lazy"></a>
+    <div class="card-body">
+      <div class="kind">Diagram</div>
+      <h2>XX and XY: Boy or Girl?</h2>
+      <p>Boy or girl? Humans have 23 pairs of chromosomes: 22 pairs of autosomes and 1 pair of sex chromosomes. Females are XX and males are XY; the Y is much smaller than the X. Every egg carries an X. Half of the sperm carry an X and half carry a Y, so the father's sperm decides. X sperm + X egg gives XX, a girl; Y sperm + X egg gives XY, a boy. The 2 × 2 grid gives 2 girls and 2 boys, a 50% chance of each. Every fertilisation is a new 50 : 50 chance, whatever earlier children were.</p>
+      <a class="more" href="science-diagram-xx-xy.md">Caption &amp; source &rarr;</a>
+    </div>
+  </article>
+  <article class="card wide">
+    <a href="svg/science-diagram-mother-fetus.svg" class="img-link"><img src="svg/science-diagram-mother-fetus.svg" alt="The fetus in the uterus, joined to the placenta by the umbilical cord, with what crosses to the baby" loading="lazy"></a>
+    <div class="card-body">
+      <div class="kind">Diagram</div>
+      <h2>Mother and Fetus</h2>
+      <p>The fetus grows in the uterus (womb) for about 9 months, inside the amniotic fluid. The umbilical cord joins it to the placenta, where substances pass between Mum's blood and the baby's blood without the two mixing. Oxygen and food go to the fetus; carbon dioxide and waste go back to Mum. Harmful things get through too: nicotine, carbon monoxide, alcohol, drugs and listeria bacteria. Diet: eat a balanced diet; a poor diet means the fetus grows slowly and the baby is born small and less able to fight disease; avoid soft cheese (listeria) and cut down on caffeine. Smoking: carbon monoxide means less oxygen, the fetus's heart beats faster, and the baby may be premature, have a low birth weight or be stillborn. Alcohol and drugs: heavy drinking can cause fetal alcohol syndrome (small head, smooth upper lip, small eye openings); a baby can be born addicted to drugs.</p>
+      <a class="more" href="science-diagram-mother-fetus.md">Caption &amp; source &rarr;</a>
+    </div>
+  </article>
+</main>
+</body>
+</html>

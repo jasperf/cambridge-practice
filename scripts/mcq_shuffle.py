@@ -10,7 +10,7 @@ It refuses to run on a sheet whose reveal text cross-references other options
 by letter ("Option A describes respiration") - those have to be reworded by
 hand, and a blind permutation would silently invalidate them.
 
-Usage:  python3 scripts/mcq_shuffle.py s2/t1/w3/term1-week3-science-ionic-bonding.html
+Usage:  python3 scripts/mcq_shuffle.py s2/sem1/t1/w3/term1-week3-science-ionic-bonding.html
         python3 scripts/mcq_shuffle.py --dry-run <file.html>
 """
 import argparse, collections, pathlib, random, re, sys, zlib

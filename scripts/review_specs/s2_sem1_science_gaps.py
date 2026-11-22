@@ -9,7 +9,7 @@ energy recaps the class's "3.3 Conserve Energy" slides and adds energy transfers
 """
 
 META = dict(
-    out='s2/sem1/sem1-science-gaps',
+    out='s2/sem1/mocks/sem1-science-gaps',
     title='Science Gaps Drill &middot; Practice',
     badge='Science &middot; Gaps Drill',
     eyebrow='Secondary 2 &middot; Science &middot; Semester 1 topic drill',
@@ -27,11 +27,11 @@ META = dict(
               'class slides do not cover most of these topics, so check the facts against your class notes.'),
     time_chip='About 35 minutes',
     storage_key='sem1-science-gaps',
-    back='../../index.html',
+    back='../../../index.html',
     answers_note='Answers for Q1–Q37 (auto-marked on the interactive sheet) and a marking guide for the written questions Q38–Q43. Keep this separate from the question sheet.',
-    extra_links=[('../sem1/sem1-science-revision.html', 'Terms 1–2 science review'),
-                 ('../sem1/sem1-science-bonding-ions.html', 'Bonding & Ions practice'),
-                 ('../science-formula-sheets/index.html', 'Formula sheets')],
+    extra_links=[('./sem1-science-revision.html', 'Terms 1–2 science review'),
+                 ('./sem1-science-bonding-ions.html', 'Bonding & Ions practice'),
+                 ('../../reference/science-formula-sheets/index.html', 'Formula sheets')],
 )
 
 EXPLORERS_LAST = True
@@ -92,7 +92,7 @@ SECTIONS = [
   dict(key='gs', icon='&#128142;', color='var(--accent-warn)', rgba='245,166,35',
        title='Simple &amp; Giant Structures', label='Simple & Giant Structures',
        src='Chemical Structures',
-       link='../sem1/sem1-science-bonding-ions.html', link_label='Bonding &amp; Ions drill',
+       link='./sem1-science-bonding-ions.html', link_label='Bonding &amp; Ions drill',
        link2=('https://www.youtube.com/results?search_query=fuseschool+what+are+giant+chemical+structures', 'Video'),
        facts=[
          ('Simple molecules', 'Small groups of atoms such as H&#8322;O, CO&#8322;, O&#8322; and CH&#8324;. The covalent bonds <em>inside</em> each molecule are strong, but the forces <em>between</em> molecules are weak, so they melt and boil at low temperatures.'),

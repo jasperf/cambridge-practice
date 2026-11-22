@@ -11,7 +11,7 @@ repeats mock 1, the review page, the bonding drill or the gaps drill.
 """
 
 META = dict(
-    out='s2/sem1/sem1-science-mock2-combined',
+    out='s2/sem1/mocks/sem1-science-mock2-combined',
     title='Science Mock Paper 2 &middot; Combined',
     badge='Science &middot; Semester 1 Mock 2',
     eyebrow='Secondary 2 &middot; Science &middot; Semester 1 assessment &middot; second paper',
@@ -31,13 +31,13 @@ META = dict(
               'and 30 minutes for the written questions. Diagrams are described in words.'),
     time_chip='About 80 minutes &middot; a calculator helps',
     storage_key='sem1-science-mock2-combined',
-    back='../../index.html',
+    back='../../../index.html',
     answers_note=('Answers for Q1–Q52 (auto-marked on the interactive sheet) and a marking guide for the '
                   'written questions Q53–Q58. Keep this separate from the question sheet.'),
-    extra_links=[('../sem1/sem1-science-mock.html', 'Mock paper 1'),
-                 ('../sem1/sem1-science-revision.html', 'Terms 1–2 review'),
-                 ('../sem1/sem1-science-gaps.html', 'Gaps drill'),
-                 ('../science-formula-sheets/index.html', 'Formula sheets')],
+    extra_links=[('./sem1-science-mock.html', 'Mock paper 1'),
+                 ('./sem1-science-revision.html', 'Terms 1–2 review'),
+                 ('./sem1-science-gaps.html', 'Gaps drill'),
+                 ('../../reference/science-formula-sheets/index.html', 'Formula sheets')],
 )
 
 T1W2 = '../t1/w2/term1-week2-atomic-structure-periodic.html'
@@ -60,7 +60,7 @@ SECTIONS = [
        ]),
   dict(key='bo', icon='&#128279;', color='var(--accent-math)', rgba='79,142,247',
        title='Bonding &amp; Chemical Structures', label='Bonding & Structures',
-       src='Chemical bonding &middot; giant structures', link='../sem1/sem1-science-bonding-ions.html',
+       src='Chemical bonding &middot; giant structures', link='./sem1-science-bonding-ions.html',
        facts=[
          ('Ionic bonding', 'Metal + non-metal. Electrons move from metal to non-metal; the opposite charges attract. Groups 1/2/3 form 1+/2+/3+ ions; Groups 5/6/7 form 3&minus;/2&minus;/1&minus;.'),
          ('Naming ionic compounds', 'Metal first, then the non-metal with its name changed: <em>lithium bromide</em>, <em>calcium chloride</em>.'),
@@ -81,7 +81,7 @@ SECTIONS = [
        ]),
   dict(key='tr', icon='&#128167;', color='var(--accent-sci)', rgba='62,207,142',
        title='Transport, Transpiration &amp; the Carbon Cycle', label='Transport & Carbon Cycle',
-       src='Plant biology &middot; gap topic', link='../sem1/sem1-science-gaps.html',
+       src='Plant biology &middot; gap topic', link='./sem1-science-gaps.html',
        facts=[
          ('Xylem', 'Hollow tubes of dead cells carrying <span class="f">water and minerals up</span> from the roots.'),
          ('Phloem', 'Tubes of living cells carrying <span class="f">dissolved sugar</span> from the leaves to wherever it is needed, up or down.'),
