@@ -100,6 +100,11 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 @keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(245,166,35,0.4)} 70%{box-shadow:0 0 0 10px rgba(245,166,35,0)} 100%{box-shadow:0 0 0 0 rgba(245,166,35,0)} }
 .shake { animation: shake 0.4s ease; }
 .pulse-correct { animation: pulse-math 0.6s ease; }
+.order-btn { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--accent); background: var(--surface); color: var(--accent); cursor: pointer; transition: all 0.2s; }
+.order-btn:hover { background: var(--accent); color: #0f1117; }
+.order-btn.secondary { border-color: var(--border); color: var(--text-muted); }
+.order-btn.secondary:hover { border-color: var(--accent); background: var(--surface); color: var(--text); }
+body.shuffled .sub-head { display: none; }
 .sub-head { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--accent); margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
 @media (max-width: 600px) {
   .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
@@ -139,6 +144,8 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 <div class="section-tabs">
   <a href="#en" class="sub-tab">&#128203; A &middot; English &rarr; Indonesian</a>
   <a href="#id" class="sub-tab">&#128302; B &middot; Indonesian &rarr; English</a>
+  <button type="button" class="order-btn" id="shuffle-btn" onclick="shuffleQuestions()" title="Randomise the order of the questions in each section">&#128256; Shuffle questions</button>
+  <button type="button" class="order-btn secondary" id="reset-order-btn" onclick="resetOrder()" style="display:none">&#8634; Original order</button>
 </div>
 <div class="main">
 <div id="en">
@@ -834,6 +841,44 @@ function launchConfetti() {
   }
   draw();
 }
+
+// ---- Question order: shuffle / reset ----
+// Cards are moved within their own section (A stays English->Indonesian, B stays
+// Indonesian->English). Answers, scores and ids are untouched; only the visible
+// Q-number is renumbered to match the new position.
+const originalOrder = {};
+Object.entries(sections).forEach(([key, sec]) => { originalOrder[key] = sec.qs.slice(); });
+
+function applyOrder(orderByKey, shuffled) {
+  for (const [key, qs] of Object.entries(orderByKey)) {
+    const container = document.getElementById(key);
+    const anchor = container.querySelector('.section-score');
+    const offset = key === 'en' ? 0 : orderByKey.en.length;
+    qs.forEach((qid, i) => {
+      const card = document.getElementById('qcard-' + qid);
+      container.insertBefore(card, anchor);
+      const num = card.querySelector('.q-num');
+      if (num) num.textContent = 'Q' + (offset + i + 1);
+    });
+  }
+  document.body.classList.toggle('shuffled', shuffled);
+  document.getElementById('reset-order-btn').style.display = shuffled ? '' : 'none';
+}
+
+function shuffleQuestions() {
+  const order = {};
+  for (const [key, qs] of Object.entries(originalOrder)) {
+    const a = qs.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    order[key] = a;
+  }
+  applyOrder(order, true);
+}
+
+function resetOrder() { applyOrder(originalOrder, false); }
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
