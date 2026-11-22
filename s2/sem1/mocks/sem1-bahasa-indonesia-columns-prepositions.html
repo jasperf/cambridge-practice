@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahasa Indonesia &middot; Prepositions of place Column Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #f5a623; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; min-height: 100vh; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 56px; gap: 12px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); }
+.score-val { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--accent); }
+.hero, .main { max-width: 900px; margin: 0 auto; padding-left: 28px; padding-right: 28px; }
+.hero { padding-top: 48px; padding-bottom: 12px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+h1 em { font-style: italic; color: var(--accent); }
+.credit { font-size: 0.92rem; color: var(--text-muted); max-width: 660px; margin-bottom: 14px; }
+.hero-chips { display: flex; gap: 8px 22px; flex-wrap: wrap; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.main { padding-bottom: 80px; }
+.section-head { display: flex; align-items: center; gap: 14px; margin: 40px 0 14px; flex-wrap: wrap; }
+.section-head h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; flex: 1; min-width: 220px; }
+.section-head .sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+.dir-en { color: var(--accent-math); } .dir-id { color: var(--accent-warn); }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; }
+.info-box em { color: var(--accent); }
+.btns { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 8px; }
+.btn { font-family: var(--font-mono); font-size: 0.74rem; padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted); cursor: pointer; }
+.btn:hover { border-color: var(--accent); color: var(--text); }
+.btn.primary { background: var(--accent); color: #0f1117; border-color: var(--accent); }
+.btn.primary:hover { opacity: .85; color: #0f1117; }
+.sub-head { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--accent); margin: 26px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.row { display: contents; }
+.cell { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; min-height: 48px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; }
+.cell.given { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
+.given.en-side { color: var(--accent-math); } .given.id-side { color: var(--accent-warn); }
+.cell.answer { padding: 4px 6px 4px 8px; gap: 6px; flex-wrap: nowrap; }
+.cell.answer input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: var(--text); font-family: var(--font-body); font-size: 1rem; padding: 6px 6px; }
+.cell.answer input::placeholder { color: var(--text-dim); font-family: var(--font-mono); font-size: 0.74rem; }
+.cell.answer:focus-within { border-color: var(--accent); }
+.cell.answer.right { border-color: rgba(46,204,113,0.55); background: rgba(46,204,113,0.07); }
+.cell.answer.wrong { border-color: rgba(231,76,60,0.55); background: rgba(231,76,60,0.07); }
+.cell.answer.shake { animation: shake .3s; }
+@keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.mini { font-family: var(--font-mono); font-size: 0.68rem; padding: 4px 8px; border-radius: 5px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted); cursor: pointer; flex-shrink: 0; }
+.mini:hover { border-color: var(--accent); color: var(--text); }
+.fb { font-family: var(--font-mono); font-size: 0.78rem; flex-shrink: 0; max-width: 55%; text-align: right; }
+.fb.ok { color: var(--correct); } .fb.no { color: var(--wrong); } .fb.hint { color: var(--text-muted); }
+.divider { height: 1px; background: var(--border); margin: 52px 0 0; }
+.result { display: none; margin-top: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 26px 28px; text-align: center; }
+.result.show { display: block; }
+.result .big { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; color: var(--accent); }
+.result p { color: var(--text-muted); margin-top: 4px; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .hero, .main { padding-left: 16px; padding-right: 16px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  h1 { font-size: 1.8rem; }
+  .cell { padding-left: 12px; padding-right: 12px; }
+  .cell.answer { flex-wrap: wrap; }
+  .fb { max-width: 100%; text-align: left; }
+}
+@media print { .btns, .topbar { display: none; } body { background: #fff; color: #000; } }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Bahasa Indonesia &middot; Prepositions of place</div>
+  </div>
+  <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 22</div></div>
+  <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+</div>
+<div class="hero">
+  <div class="eyebrow">Secondary 2 &middot; Bahasa Indonesia Level 1 &middot; Semester 1 Vocabulary</div>
+  <h1>Prepositions of place<br><em>Preposisi</em></h1>
+  <p class="credit">11 words &mdash; on, under, in front of, between, behind, beside and more &mdash; in the same two columns as the word list, but now you type the answer. Part A is English &rarr; Indonesian, Part B is Indonesian &rarr; English. Press Enter to check a row.</p>
+  <div class="hero-chips">
+    <div class="hero-chip"><div class="dot"></div>22 questions &middot; self-marked &middot; 22 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-math)"></div>Typed answers only &mdash; no multiple choice</div>
+  </div>
+</div>
+<div class="main">
+  <section id="a">
+    <div class="section-head"><h2>Part A &middot; English &rarr; Indonesian</h2><div class="sub dir-en">Score <span id="sec-a-val">0/11</span></div></div>
+    <div class="info-box">Read the <em>English</em> word on the left and type the Indonesian on the right. Capitals and hyphens do not matter. <em>hint</em> shows the first letter and the length.</div>
+    <div class="btns">
+      <button class="btn primary" data-act="check" data-part="a">Check Part A</button>
+      <button class="btn" data-act="show" data-part="a">Show answers</button>
+      <button class="btn" data-act="reset" data-part="a">Start again</button>
+    </div>
+    <div id="list-a"><h3 class="sub-head">Preposisi · Prepositions of place</h3><div class="list"><div class="row" id="qcard-v1"><div class="cell given en-side">on / above</div><div class="cell answer" id="cell-v1"><input type="text" id="v1-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v1"><span class="fb" id="v1-fb"></span><button class="mini" type="button" data-hint="v1">hint</button></div></div><div class="row" id="qcard-v2"><div class="cell given en-side">under / below</div><div class="cell answer" id="cell-v2"><input type="text" id="v2-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v2"><span class="fb" id="v2-fb"></span><button class="mini" type="button" data-hint="v2">hint</button></div></div><div class="row" id="qcard-v3"><div class="cell given en-side">inside</div><div class="cell answer" id="cell-v3"><input type="text" id="v3-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v3"><span class="fb" id="v3-fb"></span><button class="mini" type="button" data-hint="v3">hint</button></div></div><div class="row" id="qcard-v4"><div class="cell given en-side">in front of</div><div class="cell answer" id="cell-v4"><input type="text" id="v4-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v4"><span class="fb" id="v4-fb"></span><button class="mini" type="button" data-hint="v4">hint</button></div></div><div class="row" id="qcard-v5"><div class="cell given en-side">between</div><div class="cell answer" id="cell-v5"><input type="text" id="v5-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v5"><span class="fb" id="v5-fb"></span><button class="mini" type="button" data-hint="v5">hint</button></div></div><div class="row" id="qcard-v6"><div class="cell given en-side">behind</div><div class="cell answer" id="cell-v6"><input type="text" id="v6-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v6"><span class="fb" id="v6-fb"></span><button class="mini" type="button" data-hint="v6">hint</button></div></div><div class="row" id="qcard-v7"><div class="cell given en-side">beside</div><div class="cell answer" id="cell-v7"><input type="text" id="v7-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v7"><span class="fb" id="v7-fb"></span><button class="mini" type="button" data-hint="v7">hint</button></div></div><div class="row" id="qcard-v8"><div class="cell given en-side">in the middle</div><div class="cell answer" id="cell-v8"><input type="text" id="v8-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v8"><span class="fb" id="v8-fb"></span><button class="mini" type="button" data-hint="v8">hint</button></div></div><div class="row" id="qcard-v9"><div class="cell given en-side">near</div><div class="cell answer" id="cell-v9"><input type="text" id="v9-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v9"><span class="fb" id="v9-fb"></span><button class="mini" type="button" data-hint="v9">hint</button></div></div></div><h3 class="sub-head">More words · Kata tambahan</h3><div class="list"><div class="row" id="qcard-v10"><div class="cell given en-side">right side</div><div class="cell answer" id="cell-v10"><input type="text" id="v10-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v10"><span class="fb" id="v10-fb"></span><button class="mini" type="button" data-hint="v10">hint</button></div></div><div class="row" id="qcard-v11"><div class="cell given en-side">left side</div><div class="cell answer" id="cell-v11"><input type="text" id="v11-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the Indonesian" data-q="v11"><span class="fb" id="v11-fb"></span><button class="mini" type="button" data-hint="v11">hint</button></div></div></div></div>
+  </section>
+  <div class="divider"></div>
+  <section id="b">
+    <div class="section-head"><h2>Part B &middot; Indonesian &rarr; English</h2><div class="sub dir-id">Score <span id="sec-b-val">0/11</span></div></div>
+    <div class="info-box">Read the <em>Indonesian</em> word on the left and type the English on the right. Words are in a different order from Part A. Where a word has more than one meaning, any one correct meaning is accepted.</div>
+    <div class="btns">
+      <button class="btn primary" data-act="check" data-part="b">Check Part B</button>
+      <button class="btn" data-act="show" data-part="b">Show answers</button>
+      <button class="btn" data-act="reset" data-part="b">Start again</button>
+    </div>
+    <div id="list-b"><div class="list"><div class="row" id="qcard-v12"><div class="cell given id-side">di tengah</div><div class="cell answer" id="cell-v12"><input type="text" id="v12-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v12"><span class="fb" id="v12-fb"></span><button class="mini" type="button" data-hint="v12">hint</button></div></div><div class="row" id="qcard-v13"><div class="cell given id-side">di sisi kanan</div><div class="cell answer" id="cell-v13"><input type="text" id="v13-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v13"><span class="fb" id="v13-fb"></span><button class="mini" type="button" data-hint="v13">hint</button></div></div><div class="row" id="qcard-v14"><div class="cell given id-side">di dalam</div><div class="cell answer" id="cell-v14"><input type="text" id="v14-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v14"><span class="fb" id="v14-fb"></span><button class="mini" type="button" data-hint="v14">hint</button></div></div><div class="row" id="qcard-v15"><div class="cell given id-side">di dekat</div><div class="cell answer" id="cell-v15"><input type="text" id="v15-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v15"><span class="fb" id="v15-fb"></span><button class="mini" type="button" data-hint="v15">hint</button></div></div><div class="row" id="qcard-v16"><div class="cell given id-side">di sisi kiri</div><div class="cell answer" id="cell-v16"><input type="text" id="v16-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v16"><span class="fb" id="v16-fb"></span><button class="mini" type="button" data-hint="v16">hint</button></div></div><div class="row" id="qcard-v17"><div class="cell given id-side">di belakang</div><div class="cell answer" id="cell-v17"><input type="text" id="v17-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v17"><span class="fb" id="v17-fb"></span><button class="mini" type="button" data-hint="v17">hint</button></div></div><div class="row" id="qcard-v18"><div class="cell given id-side">di antara</div><div class="cell answer" id="cell-v18"><input type="text" id="v18-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v18"><span class="fb" id="v18-fb"></span><button class="mini" type="button" data-hint="v18">hint</button></div></div><div class="row" id="qcard-v19"><div class="cell given id-side">di bawah</div><div class="cell answer" id="cell-v19"><input type="text" id="v19-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v19"><span class="fb" id="v19-fb"></span><button class="mini" type="button" data-hint="v19">hint</button></div></div><div class="row" id="qcard-v20"><div class="cell given id-side">di atas</div><div class="cell answer" id="cell-v20"><input type="text" id="v20-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v20"><span class="fb" id="v20-fb"></span><button class="mini" type="button" data-hint="v20">hint</button></div></div><div class="row" id="qcard-v21"><div class="cell given id-side">di samping</div><div class="cell answer" id="cell-v21"><input type="text" id="v21-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v21"><span class="fb" id="v21-fb"></span><button class="mini" type="button" data-hint="v21">hint</button></div></div><div class="row" id="qcard-v22"><div class="cell given id-side">di depan</div><div class="cell answer" id="cell-v22"><input type="text" id="v22-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the English" data-q="v22"><span class="fb" id="v22-fb"></span><button class="mini" type="button" data-hint="v22">hint</button></div></div></div></div>
+  </section>
+  <div class="result" id="result"><div class="big"></div><p></p></div>
+</div>
+<script>
+const DATA = {"partA": [{"title": "Preposisi · Prepositions of place", "qs": [{"qid": "v1", "id": "di atas", "en": "on / above", "ans": ["di atas"], "show": "di atas"}, {"qid": "v2", "id": "di bawah", "en": "under / below", "ans": ["di bawah"], "show": "di bawah"}, {"qid": "v3", "id": "di dalam", "en": "inside", "ans": ["di dalam"], "show": "di dalam"}, {"qid": "v4", "id": "di depan", "en": "in front of", "ans": ["di depan"], "show": "di depan"}, {"qid": "v5", "id": "di antara", "en": "between", "ans": ["di antara"], "show": "di antara"}, {"qid": "v6", "id": "di belakang", "en": "behind", "ans": ["di belakang"], "show": "di belakang"}, {"qid": "v7", "id": "di samping", "en": "beside", "ans": ["di samping"], "show": "di samping"}, {"qid": "v8", "id": "di tengah", "en": "in the middle", "ans": ["di tengah"], "show": "di tengah"}, {"qid": "v9", "id": "di dekat", "en": "near", "ans": ["di dekat"], "show": "di dekat"}]}, {"title": "More words · Kata tambahan", "qs": [{"qid": "v10", "id": "di sisi kanan", "en": "right side", "ans": ["di sisi kanan"], "show": "di sisi kanan"}, {"qid": "v11", "id": "di sisi kiri", "en": "left side", "ans": ["di sisi kiri"], "show": "di sisi kiri"}]}], "partB": [{"qid": "v12", "id": "di tengah", "en": "in the middle", "ans": ["in the middle", "in the centre", "in the center"], "show": "in the middle / in the centre / in the center"}, {"qid": "v13", "id": "di sisi kanan", "en": "right side", "ans": ["right side"], "show": "right side"}, {"qid": "v14", "id": "di dalam", "en": "inside", "ans": ["inside"], "show": "inside"}, {"qid": "v15", "id": "di dekat", "en": "near", "ans": ["near", "close to"], "show": "near / close to"}, {"qid": "v16", "id": "di sisi kiri", "en": "left side", "ans": ["left side"], "show": "left side"}, {"qid": "v17", "id": "di belakang", "en": "behind", "ans": ["behind", "at the back"], "show": "behind / at the back"}, {"qid": "v18", "id": "di antara", "en": "between", "ans": ["between"], "show": "between"}, {"qid": "v19", "id": "di bawah", "en": "under / below", "ans": ["under / below", "under", "below"], "show": "under / below"}, {"qid": "v20", "id": "di atas", "en": "on / above", "ans": ["on / above", "on", "above"], "show": "on / above"}, {"qid": "v21", "id": "di samping", "en": "beside", "ans": ["beside", "next to"], "show": "beside / next to"}, {"qid": "v22", "id": "di depan", "en": "in front of", "ans": ["in front of"], "show": "in front of"}]};
+const marks = { v1:1, v2:1, v3:1, v4:1, v5:1, v6:1, v7:1, v8:1, v9:1, v10:1, v11:1, v12:1, v13:1, v14:1, v15:1, v16:1, v17:1, v18:1, v19:1, v20:1, v21:1, v22:1 };
+const sections = {
+  a: { qs: ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"] },
+  b: { qs: ["v12", "v13", "v14", "v15", "v16", "v17", "v18", "v19", "v20", "v21", "v22"] }
+};
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s, q) => s + marks[q], 0);
+const state = { correct: {}, startTime: Date.now() };
+
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[’‘]/g, "'").replace(/[.,!?'"]/g, '').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+}
+function stripArticle(s) { return s.replace(/^(a|an|the) /, ''); }
+function isMatch(typed, accepted) {
+  const t = normalise(typed), ts = stripArticle(t);
+  return accepted.some(a => { const n = normalise(a); return n === t || n === ts || stripArticle(n) === ts; });
+}
+
+const byId = {};
+function index() { DATA.partA.forEach(g => g.qs.forEach(q => { q.part = 'a'; byId[q.qid] = q; })); DATA.partB.forEach(q => { q.part = 'b'; byId[q.qid] = q; }); }
+
+function pattern(q) {
+  return q.ans[0].split('').map((c, i) => (i === 0 || c === ' ' || c === '-' || c === '/') ? c : '_').join('');
+}
+
+function lock(qid, ok, text) {
+  const input = document.getElementById(qid + '-ans');
+  input.disabled = true;
+  document.getElementById('cell-' + qid).classList.add(ok ? 'right' : 'wrong');
+  const fb = document.getElementById(qid + '-fb');
+  fb.className = 'fb ' + (ok ? 'ok' : 'no');
+  fb.textContent = text;
+  const hb = document.querySelector('[data-hint="' + qid + '"]'); if (hb) hb.remove();
+}
+
+function check(qid) {
+  const input = document.getElementById(qid + '-ans');
+  const q = byId[qid];
+  if (state.correct[qid] !== undefined) return;
+  if (!input.value.trim()) { const c = document.getElementById('cell-' + qid); c.classList.remove('shake'); void c.offsetWidth; c.classList.add('shake'); return; }
+  const ok = isMatch(input.value, q.ans);
+  state.correct[qid] = ok;
+  lock(qid, ok, ok ? '✓' : '✗ ' + q.show);
+  updateScores();
+}
+
+function showAnswer(qid) {
+  if (state.correct[qid] !== undefined) return;
+  state.correct[qid] = false;
+  lock(qid, false, '✗ ' + byId[qid].show);
+}
+
+function updateScores() {
+  const got = allQs.reduce((s, q) => s + (state.correct[q] ? marks[q] : 0), 0);
+  document.getElementById('global-score').textContent = got + ' / ' + maxMarks;
+  ['a', 'b'].forEach(p => {
+    const qs = allQs.filter(q => byId[q].part === p);
+    document.getElementById('sec-' + p + '-val').textContent = qs.reduce((s, q) => s + (state.correct[q] ? marks[q] : 0), 0) + '/' + qs.length;
+  });
+  if (allQs.every(q => state.correct[q] !== undefined)) showResults(got);
+}
+
+function showResults(got) {
+  const r = document.getElementById('result');
+  const pct = Math.round(got / maxMarks * 100);
+  const secs = Math.round((Date.now() - state.startTime) / 1000);
+  r.querySelector('.big').textContent = got + ' / ' + maxMarks;
+  r.querySelector('p').textContent = pct + '% · ' + Math.floor(secs / 60) + ' min ' + (secs % 60) + ' s · ' +
+    (pct >= 90 ? 'Excellent — you know this topic.' : pct >= 70 ? 'Good. Retry the words you missed.' : 'Keep practising: use the word list, then try again.');
+  r.classList.add('show');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || !e.target.dataset || !e.target.dataset.q) return;
+  e.preventDefault();
+  const cur = e.target;
+  check(cur.dataset.q);
+  const inputs = Array.from(document.querySelectorAll('.cell.answer input:not(:disabled)'));
+  const nxt = inputs.find(i => cur.compareDocumentPosition(i) & Node.DOCUMENT_POSITION_FOLLOWING);
+  if (nxt) nxt.focus();
+});
+document.addEventListener('click', e => {
+  const h = e.target.closest('[data-hint]');
+  if (h) { const q = byId[h.dataset.hint]; const fb = document.getElementById(q.qid + '-fb'); fb.className = 'fb hint'; fb.textContent = pattern(q); return; }
+  const b = e.target.closest('[data-act]');
+  if (!b) return;
+  const qs = allQs.filter(q => byId[q].part === b.dataset.part);
+  if (b.dataset.act === 'check') qs.forEach(check);
+  else if (b.dataset.act === 'show') { qs.forEach(q => { if (document.getElementById(q + '-ans').value.trim()) check(q); else showAnswer(q); }); updateScores(); }
+  else if (b.dataset.act === 'reset') location.reload();
+});
+index(); updateScores();
+</script>
+</body>
+</html>
