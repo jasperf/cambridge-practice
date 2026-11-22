@@ -15,7 +15,7 @@ No login. No install. Works offline.
 
 ## ✨ How it works
 
-1. **Pick a sheet:** maths, science or English, by unit or as a full mock exam.
+1. **Pick a sheet:** maths, science, English or a language (Bahasa Indonesia, Chinese), by unit or as a full mock exam.
 2. **Answer:** multiple choice or numbers, with instant ✅ / ❌ feedback.
 3. **Stuck?** Open a hint, or reveal the worked answer. Your score and time update as you go.
 
@@ -31,7 +31,7 @@ No login. No install. Works offline.
 | Stage | Subjects | |
 |---|---|---|
 | **Secondary 1** | Maths · Science · English · SA2 revision and topic drills | [Browse →](https://jasperf.github.io/cambridge-practice/#secondary1) |
-| **Secondary 2** | Maths · Science · English · Bahasa Indonesia · Semester 1 mocks · Formula sheets | [Browse →](https://jasperf.github.io/cambridge-practice/#secondary2) |
+| **Secondary 2** | Maths · Science · English · Bahasa Indonesia · Chinese · Semester 1 mocks · Formula sheets | [Browse →](https://jasperf.github.io/cambridge-practice/#secondary2) |
 | **IGCSE Additional Maths (0606)** | Circular measure | [Browse →](https://jasperf.github.io/cambridge-practice/#igcse) |
 
 Want a sheet-by-sheet list? See the term indexes: [S2 Term 1](s2/sem1/t1/README.md) · [S2 Term 2](s2/sem1/t2/README.md) · [S2 Semester 1 mocks](s2/sem1/mocks/README.md).
