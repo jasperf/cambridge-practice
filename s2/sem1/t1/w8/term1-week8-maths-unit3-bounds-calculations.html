@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bounds in Calculations &middot; Unit 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #4f8ef7; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-math); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-math); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-math); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-math { background: var(--accent-math); }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(62,207,142,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-math); color: var(--accent-math); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-math); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: rgba(79,142,247,0.15); font-family: var(--font-mono); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-math); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.info-box ol { margin: 6px 0 0 20px; }
+.kind-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.kind-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 520px; }
+.kind-table th, .kind-table td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+.kind-table th { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); background: var(--surface2); letter-spacing: 0.5px; }
+.kind-table td strong { color: var(--accent-sci); }
+.sim { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin: 16px 0 24px; }
+.sim-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+.sim-svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.sim-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.sim-btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+.sim-btn:hover { border-color: var(--accent-math); color: var(--text); }
+.ex-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; max-width: 560px; margin: 0 auto 14px; }
+.ex-inputs label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-inputs input, .ex-inputs select { width: 100%; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 0.9rem; padding: 7px 10px; outline: none; }
+.ex-inputs input:focus, .ex-inputs select:focus { border-color: var(--accent-math); }
+.ex-slider { max-width: 560px; margin: 12px auto 0; }
+.ex-slider label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.ex-slider input[type=range] { width: 100%; accent-color: var(--accent-warn); }
+.ex-steps { max-width: 560px; margin: 14px auto 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+.ex-steps b { color: var(--text); }
+.ex-ineq { display: inline-block; font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-sci); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; margin: 6px 0; }
+@media (max-width: 600px) { .ex-inputs { grid-template-columns: 1fr; } .sim { padding: 12px; } }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-math); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-math); background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-math); }
+.mcq-opt.selected { border-color: var(--accent-math); background: rgba(79,142,247,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-math); background: var(--accent-math); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent-math); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-math); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.math-expr { font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-math); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; display: inline-block; margin: 2px 0; }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-math); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-math); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-math { 0%{box-shadow:0 0 0 0 rgba(79,142,247,0.4)} 70%{box-shadow:0 0 0 10px rgba(79,142,247,0)} 100%{box-shadow:0 0 0 0 rgba(79,142,247,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-math 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .watch-links { justify-content: center; }
+  .main { padding-bottom: 60px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+
+.cb-inputs { grid-template-columns: 1.2fr 1.5fr 0.9fr 1.2fr 1.5fr; max-width: 640px; }
+.cb-sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 560px; margin: 12px auto 0; }
+.cb-sliders label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px; }
+.cb-sliders input[type=range] { width: 100%; accent-color: var(--accent-warn); }
+.rule-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.rule-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 480px; }
+.rule-table th, .rule-table td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+.rule-table th { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); background: var(--surface2); letter-spacing: 0.5px; }
+.rule-table td strong { color: var(--accent-sci); }
+@media (max-width: 600px) { .cb-inputs { grid-template-columns: 1fr 1fr; } .cb-sliders { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Stage 9 &middot; Bounds in Calculations</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 48</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Unit 3 (3.4)</div>
+  <h1>Bounds in<br><em>Calculations</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-math"></div>Quick Recap &middot; Identical Items &middot; Adding &amp; Subtracting &middot; Multiplying &amp; Dividing &middot; Real Life &middot; Mini Test</div>
+    <div class="hero-chip"><div class="dot dot-math" style="background:var(--text-dim)"></div>40 questions &middot; self-marked &middot; 48 marks</div>
+  </div>
+</div>
+
+<div class="watch-box"><div class="watch-inner">
+  <h3>&#129518; What is the biggest (or smallest) the answer could be?</h3>
+  <p>The earlier bounds sheets find the bounds of <em>one</em> rounded number. This one starts with <em>several identical items</em> (such as 5 bottles) and then uses the bounds of <em>two</em> numbers in a calculation: the largest and smallest total, difference, area or speed they could give. The key idea is choosing the right bound for each number. Use the Bounds Calculator in Section D to test any example of your own.</p>
+  <div class="watch-links">
+    <a class="watch-link" href="https://www.youtube.com/watch?v=ebMrP74boHw" target="_blank" rel="noopener">&#128250; Corbettmaths &mdash; Lower &amp; Upper Bounds</a>
+    <a class="watch-link" href="https://www.youtube.com/results?search_query=corbettmaths+bounds+calculations" target="_blank" rel="noopener">&#128250; Bounds in calculations videos (search)</a>
+    <a class="watch-link" href="term1-week8-maths-unit3-bounds-sigfigs-retest.html">Bounds &amp; Sig Figs Retest &rarr;</a>
+  </div>
+</div></div>
+
+<div class="section-tabs">
+  <a href="#recap" class="sub-tab">Quick Recap</a>
+  <a href="#identical" class="sub-tab">Identical Items</a>
+  <a href="#addsub" class="sub-tab">Adding & Subtracting</a>
+  <a href="#muldiv" class="sub-tab">Multiplying & Dividing</a>
+  <a href="#reallife" class="sub-tab">Real Life</a>
+  <a href="#minitest" class="sub-tab">Mini Test</a>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ SECTION A: QUICK RECAP ═══════════════ -->
+<div id="recap">
+  <div class="section-header"><div class="section-icon">&#8635;</div><div><div class="sub-label">Section A &middot; Warm-up</div><h2>Quick Recap: Bounds of One Number</h2></div></div>
+  <div class="info-box"><strong>Method</strong> for a measurement: find the <strong>unit of rounding</strong>, <strong>halve</strong> it, then go that far <strong>below</strong> (lower bound) and <strong>above</strong> (upper bound) the rounded value. Every number on this sheet is a measurement, so the upper bound is the halfway point itself.</div>
+  <div class="info-box"><strong>Example:</strong> 6 cm to the nearest cm &rarr; half a unit is 0.5 &rarr; <strong>5.5 &le; x &lt; 6.5</strong>.</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-rc1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">A mass is <span class="math-expr">3.4 kg</span>, correct to 1 decimal place. What is its <strong>lower</strong> bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rc1-ans" placeholder="Enter answer..."> <span class="num-unit">kg</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rc1',3.35,'Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rc1','Unit 0.1 kg &rarr; half is 0.05 kg &rarr; subtract it')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rc1','3.35 kg &mdash; 3.4 &minus; 0.05')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rc1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-rc2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">A length is <span class="math-expr">120 cm</span>, correct to the nearest 10 cm. What is its <strong>upper</strong> bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rc2-ans" placeholder="Enter answer..."> <span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rc2',125,'Q2')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rc2','Unit 10 cm &rarr; half is 5 cm &rarr; add it')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rc2','125 cm &mdash; 120 + 5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rc2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-rc3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">A time is <span class="math-expr">8.2 s</span>, correct to 1 decimal place. Which inequality shows the range of values <em>t</em> could have?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="rc3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('rc3', this, 'a')"><div class="opt-indicator"></div><span>8.1 &le; <em>t</em> &lt; 8.3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rc3', this, 'b')"><div class="opt-indicator"></div><span>8.0 &le; <em>t</em> &lt; 8.4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rc3', this, 'c')"><div class="opt-indicator"></div><span>8.15 &le; <em>t</em> &lt; 8.25</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rc3', this, 'd')"><div class="opt-indicator"></div><span>8.2 &le; <em>t</em> &lt; 8.3</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('rc3','c','Q3')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rc3','The unit is 0.1, so half a unit is 0.05, not 0.1')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rc3','C &mdash; 8.2 &minus; 0.05 = 8.15 and 8.2 + 0.05 = 8.25. The others use the wrong amount either side.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rc3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-rc4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">A length is <span class="math-expr">0.07 m</span>, correct to 1 significant figure. What is its <strong>upper</strong> bound?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rc4-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rc4',0.075,'Q4',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rc4','The 7 is in the hundredths place, so the unit is 0.01')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rc4','0.075 m &mdash; unit 0.01, half 0.005, and 0.07 + 0.005')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rc4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">QUICK RECAP &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-rc-fill"></div></div>
+    <div class="section-score-val" id="sec-rc-val">0/4</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION B: IDENTICAL ITEMS ═══════════════ -->
+<div id="identical">
+  <div class="section-header"><div class="section-icon">&times;n</div><div><div class="sub-label">Section B</div><h2>Several Identical Items</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> to find the bounds of <em>n</em> identical items, find the bounds of <strong>one</strong> item first, then <strong>multiply both bounds by <em>n</em></strong>. Do not multiply the rounded value and then add the same &plusmn; as for one item: the error gets <em>n</em> times bigger too.</div>
+  <div class="info-box"><strong>Example:</strong> 3 pencils, each 14 cm to the nearest cm. One pencil: 13.5 &le; <em>x</em> &lt; 14.5. Three pencils: 3 &times; 13.5 = 40.5 and 3 &times; 14.5 = 43.5, so <strong>40.5 &le; <em>x</em> &lt; 43.5</strong>. The total is 42 &plusmn; 1.5, not 42 &plusmn; 0.5.</div>
+  <div class="info-box"><strong>Writing the inequality:</strong> the lower bound goes on the left with <strong>&le;</strong>, and the upper bound on the right with <strong>&lt;</strong>. Write the &lt; sign clearly: it should not look like a 7 or a 1. A bound line such as 5.75 &le; <em>x</em> &lt; 6.25 should read out loud as &ldquo;<em>x</em> is 5.75 or more, and less than 6.25&rdquo;.</div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-mu1">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">A bottle holds <span class="math-expr">1.2 litres</span>, correct to the nearest 0.1 litre. What is the <strong>lower</strong> bound for the capacity of <strong>5 bottles</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mu1-ans" placeholder="Enter answer..."> <span class="num-unit">litres</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mu1',5.75,'Q5',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mu1','First find the lower bound of ONE bottle (1.15), then multiply that by 5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mu1','5.75 litres &mdash; 1.15 &times; 5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mu1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-mu2">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Same bottles: <span class="math-expr">1.2 litres</span> each, to the nearest 0.1 litre. What is the <strong>upper</strong> bound for the capacity of <strong>5 bottles</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mu2-ans" placeholder="Enter answer..."> <span class="num-unit">litres</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mu2',6.25,'Q6',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mu2','Upper bound of ONE bottle is 1.25, then multiply by 5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mu2','6.25 litres &mdash; 1.25 &times; 5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mu2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-mu3">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which inequality shows the range of values for the total capacity <em>x</em> of the <strong>5 bottles</strong> (each <span class="math-expr">1.2 litres</span> to the nearest 0.1 litre)?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mu3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mu3', this, 'a')"><div class="opt-indicator"></div><span>5.5 &le; <em>x</em> &lt; 6.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mu3', this, 'b')"><div class="opt-indicator"></div><span>5.75 &le; <em>x</em> &lt; 6.25</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mu3', this, 'c')"><div class="opt-indicator"></div><span>5.75 &lt; <em>x</em> &le; 6.25</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mu3', this, 'd')"><div class="opt-indicator"></div><span>5.75 &le; <em>x</em> &le; 6.25</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mu3','b','Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mu3','Lower bound 5.75, upper bound 6.25. Then think about which end is included')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mu3','B &mdash; 5.75 &le; <em>x</em> &lt; 6.25. The lower bound is included (&le;), the upper bound is not (&lt;), because 6.25 litres would round up. A has the wrong bounds; C and D use the wrong signs.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mu3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-mu4">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A book is <span class="math-expr">2.4 cm</span> thick, correct to 1 decimal place. 10 identical books stand side by side on a shelf. What is the <strong>upper</strong> bound of their total thickness?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mu4-ans" placeholder="Enter answer..."> <span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mu4',24.5,'Q8',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mu4','Upper bound of one book is 2.45 cm')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mu4','24.5 cm &mdash; 2.45 &times; 10')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mu4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-mu5">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">A student works out the bounds of 5 bottles of <span class="math-expr">1.2 litres</span> (to the nearest 0.1 litre). She writes 1.2 &times; 5 = 6, then &ldquo;&plusmn; 0.5&rdquo;, giving 5.5 &le; <em>x</em> &lt; 6.5. What went wrong?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mu5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mu5', this, 'a')"><div class="opt-indicator"></div><span>Nothing: 5.5 &le; <em>x</em> &lt; 6.5 is correct</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mu5', this, 'b')"><div class="opt-indicator"></div><span>She should have used &plusmn; 0.05 for the total, giving 5.95 &le; <em>x</em> &lt; 6.05</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mu5', this, 'c')"><div class="opt-indicator"></div><span>She should have added 5 instead of multiplying by 5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mu5', this, 'd')"><div class="opt-indicator"></div><span>Half a unit for 1 decimal place is 0.05, not 0.5, and each bound of one bottle must be multiplied by 5 (so &plusmn; 0.25 in total)</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mu5','d','Q9')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mu5','Half of 0.1 is what? And does the error stay the same size when you have 5 bottles?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mu5','D &mdash; one bottle is 1.2 &plusmn; 0.05. Five bottles: 5 &times; 1.15 = 5.75 and 5 &times; 1.25 = 6.25, so 5.75 &le; <em>x</em> &lt; 6.25. B forgets that the error also gets multiplied by 5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mu5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-mu6">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">A pack holds 8 identical cans, each of <span class="math-expr">330 ml</span>, correct to the nearest 10 ml. What is the <strong>lower</strong> bound for the total volume of the 8 cans?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mu6-ans" placeholder="Enter answer..."> <span class="num-unit">ml</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mu6',2600,'Q10')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mu6','Lower bound of one can is 325 ml')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mu6','2600 ml &mdash; 8 &times; 325')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mu6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-mu7">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Same pack of 8 cans, each <span class="math-expr">330 ml</span> to the nearest 10 ml. What is the <strong>upper</strong> bound for the total volume?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mu7-ans" placeholder="Enter answer..."> <span class="num-unit">ml</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mu7',2680,'Q11')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mu7','Upper bound of one can is 335 ml')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mu7','2680 ml &mdash; 8 &times; 335')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mu7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-mu8">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">A stack of 10 identical sheets is <span class="math-expr">2.4 cm</span> tall, correct to 1 decimal place. What is the <strong>lower</strong> bound for the thickness of <strong>one</strong> sheet?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mu8-ans" placeholder="Enter answer..."> <span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mu8',0.235,'Q12',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mu8','Lower bound of the whole stack is 2.35 cm. Now share it between 10 sheets')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mu8','0.235 cm &mdash; 2.35 &divide; 10')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mu8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">IDENTICAL ITEMS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mu-fill"></div></div>
+    <div class="section-score-val" id="sec-mu-val">0/9</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION C: ADDING & SUBTRACTING ═══════════════ -->
+<div id="addsub">
+  <div class="section-header"><div class="section-icon">+&minus;</div><div><div class="sub-label">Section C</div><h2>Adding and Subtracting Bounds</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> write down the lower and upper bound of <em>each</em> number first, then decide which pairing gives the answer you want.</div>
+  <div class="rule-table-wrap"><table class="rule-table">
+    <thead><tr><th>Calculation</th><th>Largest possible answer</th><th>Smallest possible answer</th></tr></thead>
+    <tbody>
+      <tr><td><em>a</em> + <em>b</em></td><td><strong>UB</strong>(a) + <strong>UB</strong>(b)</td><td><strong>LB</strong>(a) + <strong>LB</strong>(b)</td></tr>
+      <tr><td><em>a</em> &minus; <em>b</em></td><td><strong>UB</strong>(a) &minus; <strong>LB</strong>(b)</td><td><strong>LB</strong>(a) &minus; <strong>UB</strong>(b)</td></tr>
+    </tbody></table></div>
+  <div class="info-box"><strong>Why the swap?</strong> To make a <em>difference</em> as big as possible, start as high as you can and take away as little as you can. Subtracting flips the job of the second number.</div>
+  <div class="info-box"><strong>Example:</strong> 7 and 3, both to the nearest whole number. Bounds: 6.5&ndash;7.5 and 2.5&ndash;3.5. Largest sum 7.5 + 3.5 = <strong>11</strong>. Largest difference 7.5 &minus; 2.5 = <strong>5</strong>.</div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-as1">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Two lengths are <span class="math-expr">12 cm</span> and <span class="math-expr">8 cm</span>, both correct to the nearest cm. What is the <strong>largest</strong> their total could be?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="as1-ans" placeholder="Enter answer..."> <span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('as1',21,'Q13')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('as1','Take the upper bound of each length, then add')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('as1','21 cm &mdash; 12.5 + 8.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="as1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-as2">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Same lengths: <span class="math-expr">12 cm</span> and <span class="math-expr">8 cm</span>, both to the nearest cm. What is the <strong>smallest</strong> their total could be?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="as2-ans" placeholder="Enter answer..."> <span class="num-unit">cm</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('as2',19,'Q14')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('as2','Take the lower bound of each length, then add')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('as2','19 cm &mdash; 11.5 + 7.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="as2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-as3">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Two planks measure <span class="math-expr">2.4 m</span> and <span class="math-expr">1.8 m</span>, each correct to 1 decimal place. What is the <strong>upper</strong> bound of their total length?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="as3-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('as3',4.3,'Q15',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('as3','Half a unit is 0.05. Upper bound of each: 2.45 and 1.85')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('as3','4.3 m &mdash; 2.45 + 1.85')">Show Answer</button>
+      </div>
+      <div class="feedback" id="as3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-as4">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text"><span class="math-expr">x = 20</span> and <span class="math-expr">y = 6</span>, both correct to the nearest whole number. Which calculation gives the <strong>largest</strong> possible value of <em>x</em> &minus; <em>y</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="as4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('as4', this, 'a')"><div class="opt-indicator"></div><span>20.5 &minus; 5.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('as4', this, 'b')"><div class="opt-indicator"></div><span>20.5 &minus; 6.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('as4', this, 'c')"><div class="opt-indicator"></div><span>19.5 &minus; 5.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('as4', this, 'd')"><div class="opt-indicator"></div><span>19.5 &minus; 6.5</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('as4','a','Q16')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('as4','You want a big number, take away as little as possible')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('as4','A &mdash; biggest <em>x</em> (20.5) take away the smallest <em>y</em> (5.5) = 15. The other options take away too much or start too small.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="as4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-as5">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text">A parcel is <span class="math-expr">50 g</span> and its box is <span class="math-expr">20 g</span>, both correct to the nearest 10 g. The parcel is taken out of the box. What is the <strong>largest</strong> possible difference <em>(parcel &minus; box)</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="as5-ans" placeholder="Enter answer..."> <span class="num-unit">g</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('as5',40,'Q17')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('as5','Half a unit is 5 g. Largest parcel, smallest box')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('as5','40 g &mdash; 55 &minus; 15')">Show Answer</button>
+      </div>
+      <div class="feedback" id="as5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-as6">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Same parcel and box: <span class="math-expr">50 g</span> and <span class="math-expr">20 g</span>, both to the nearest 10 g. What is the <strong>smallest</strong> possible difference <em>(parcel &minus; box)</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="as6-ans" placeholder="Enter answer..."> <span class="num-unit">g</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('as6',20,'Q18')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('as6','Smallest parcel, largest box')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('as6','20 g &mdash; 45 &minus; 25')">Show Answer</button>
+      </div>
+      <div class="feedback" id="as6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-as7">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A rope is <span class="math-expr">15.6 m</span> long and a piece of <span class="math-expr">4.2 m</span> is cut off. Both measurements are correct to 1 decimal place. What is the <strong>upper</strong> bound of the length that is left?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="as7-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('as7',11.5,'Q19',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('as7','Biggest rope take away the smallest piece. Half a unit is 0.05')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('as7','11.5 m &mdash; 15.65 &minus; 4.15')">Show Answer</button>
+      </div>
+      <div class="feedback" id="as7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-as8">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text">A student finds the <strong>smallest</strong> possible value of <em>a</em> &minus; <em>b</em>, where <span class="math-expr">a = 9</span> and <span class="math-expr">b = 4</span> (both to the nearest whole number), as 8.5 &minus; 3.5 = 5. What was her mistake?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="as8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('as8', this, 'a')"><div class="opt-indicator"></div><span>She used the lower bound of <em>a</em>; it should be the upper bound</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('as8', this, 'b')"><div class="opt-indicator"></div><span>She should have added the bounds instead of subtracting them</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('as8', this, 'c')"><div class="opt-indicator"></div><span>There is no mistake: 5 is correct</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('as8', this, 'd')"><div class="opt-indicator"></div><span>She used the lower bound of <em>b</em>; for the smallest answer she must take away the <em>upper</em> bound of <em>b</em>, 4.5</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('as8','d','Q20')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('as8','To make a difference small you take away as much as possible')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('as8','D &mdash; smallest <em>a</em> &minus; <em>b</em> = 8.5 &minus; 4.5 = 4. She took away too little, so her answer of 5 is too big.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="as8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">ADDING &amp; SUBTRACTING &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-as-fill"></div></div>
+    <div class="section-score-val" id="sec-as-val">0/9</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION D: MULTIPLYING & DIVIDING ═══════════════ -->
+<div id="muldiv">
+  <div class="section-header"><div class="section-icon">&times;&divide;</div><div><div class="sub-label">Section D</div><h2>Multiplying and Dividing Bounds</h2></div></div>
+  <div class="rule-table-wrap"><table class="rule-table">
+    <thead><tr><th>Calculation</th><th>Largest possible answer</th><th>Smallest possible answer</th></tr></thead>
+    <tbody>
+      <tr><td><em>a</em> &times; <em>b</em></td><td><strong>UB</strong>(a) &times; <strong>UB</strong>(b)</td><td><strong>LB</strong>(a) &times; <strong>LB</strong>(b)</td></tr>
+      <tr><td><em>a</em> &divide; <em>b</em></td><td><strong>UB</strong>(a) &divide; <strong>LB</strong>(b)</td><td><strong>LB</strong>(a) &divide; <strong>UB</strong>(b)</td></tr>
+    </tbody></table></div>
+  <div class="info-box"><strong>Why the swap for dividing?</strong> Dividing by a <em>small</em> number gives a <em>big</em> answer (10 &divide; 2 = 5 but 10 &divide; 5 = 2). So the bottom number works the opposite way to the top one.</div>
+  <div class="info-box"><strong>Example:</strong> a rectangle 7 cm by 3 cm, to the nearest cm. Largest area 7.5 &times; 3.5 = <strong>26.25 cm&sup2;</strong>. Smallest area 6.5 &times; 2.5 = <strong>16.25 cm&sup2;</strong>. The area is <em>not</em> 21 &plusmn; 0.5.</div>
+  <div class="info-box">Use the <strong>Bounds Calculator</strong> below to check any example of your own. Drag the two sliders and watch the answer stay between the smallest and largest values.</div>
+
+  <!-- Bounds Calculator -->
+  <div class="sim">
+    <div class="sim-title">Bounds Calculator &mdash; pick two rounded numbers and an operation</div>
+    <div class="ex-inputs cb-inputs">
+      <div><label for="cb-a">Number a</label><input type="number" step="any" id="cb-a" value="6" oninput="cbUpdate()"></div>
+      <div><label for="cb-ua">a is correct to</label>
+        <select id="cb-ua" onchange="cbUpdate()">
+          <option value="100">nearest 100</option><option value="10">nearest 10</option><option value="1" selected>nearest whole number</option>
+          <option value="0.1">1 decimal place</option><option value="0.01">2 decimal places</option>
+        </select></div>
+      <div><label for="cb-op">Operation</label>
+        <select id="cb-op" onchange="cbUpdate()">
+          <option value="+">a + b</option><option value="-">a &minus; b</option><option value="*" selected>a &times; b</option><option value="/">a &divide; b</option>
+        </select></div>
+      <div><label for="cb-b">Number b</label><input type="number" step="any" id="cb-b" value="4" oninput="cbUpdate()"></div>
+      <div><label for="cb-ub">b is correct to</label>
+        <select id="cb-ub" onchange="cbUpdate()">
+          <option value="100">nearest 100</option><option value="10">nearest 10</option><option value="1" selected>nearest whole number</option>
+          <option value="0.1">1 decimal place</option><option value="0.01">2 decimal places</option>
+        </select></div>
+    </div>
+    <svg class="sim-svg" viewBox="0 0 560 130" role="img" aria-label="Number line showing the smallest and largest possible answers"><g id="cb-svg-g"></g></svg>
+    <div class="cb-sliders">
+      <div><label for="cb-sa" id="cb-sa-l">a</label><input type="range" id="cb-sa" oninput="cbDraw()"></div>
+      <div><label for="cb-sb" id="cb-sb-l">b</label><input type="range" id="cb-sb" oninput="cbDraw()"></div>
+    </div>
+    <div class="ex-steps" id="cb-steps"></div>
+    <div class="sim-controls">
+      <button class="sim-btn" onclick="cbPreset(6,1,'*',4,1)">6 &times; 4</button>
+      <button class="sim-btn" onclick="cbPreset(50,10,'-',20,10)">50 &minus; 20</button>
+      <button class="sim-btn" onclick="cbPreset(30,10,'/',4,1)">30 &divide; 4</button>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-md1">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text">A rectangle measures <span class="math-expr">6 cm</span> by <span class="math-expr">4 cm</span>, both to the nearest cm. What is the <strong>largest</strong> its area could be?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="md1-ans" placeholder="Enter answer..."> <span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('md1',29.25,'Q21',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('md1','Use the upper bound of each side: 6.5 and 4.5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md1','29.25 cm&sup2; &mdash; 6.5 &times; 4.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="md1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-md2">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Same rectangle: <span class="math-expr">6 cm</span> by <span class="math-expr">4 cm</span>, to the nearest cm. What is the <strong>smallest</strong> its area could be?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="md2-ans" placeholder="Enter answer..."> <span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('md2',19.25,'Q22',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('md2','Use the lower bound of each side: 5.5 and 3.5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md2','19.25 cm&sup2; &mdash; 5.5 &times; 3.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="md2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-md3">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text">A tabletop is <span class="math-expr">2.5 m</span> by <span class="math-expr">1.2 m</span>, each correct to 1 decimal place. What is the <strong>upper</strong> bound of its area?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="md3-ans" placeholder="Enter answer..."> <span class="num-unit">m&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('md3',3.1875,'Q23',1e-06)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('md3','Upper bounds are 2.55 and 1.25')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md3','3.1875 m&sup2; &mdash; 2.55 &times; 1.25')">Show Answer</button>
+      </div>
+      <div class="feedback" id="md3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-md4">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text"><span class="math-expr">p = 9</span> and <span class="math-expr">q = 3</span>, both correct to the nearest whole number. Which calculation gives the <strong>largest</strong> possible value of <em>p</em> &divide; <em>q</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="md4-opts">
+        <div class="mcq-opt" onclick="selectMCQ('md4', this, 'a')"><div class="opt-indicator"></div><span>8.5 &divide; 2.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('md4', this, 'b')"><div class="opt-indicator"></div><span>9.5 &divide; 2.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('md4', this, 'c')"><div class="opt-indicator"></div><span>9.5 &divide; 3.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('md4', this, 'd')"><div class="opt-indicator"></div><span>8.5 &divide; 3.5</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('md4','b','Q24')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('md4','To make a fraction big, make the top as big as possible and the bottom as small as possible')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md4','B &mdash; 9.5 &divide; 2.5 = 3.8. A big number divided by a small number gives the biggest answer.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="md4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-md5">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text"><span class="math-expr">a = 30</span> is correct to the nearest 10 and <span class="math-expr">b = 4</span> is correct to the nearest whole number. What is the <strong>largest</strong> possible value of <em>a</em> &divide; <em>b</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="md5-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('md5',10,'Q25')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('md5','Upper bound of a: 35. Lower bound of b: 3.5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md5','10 &mdash; 35 &divide; 3.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="md5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-md6">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text"><span class="math-expr">a = 20</span> is correct to the nearest 10 and <span class="math-expr">b = 2</span> is correct to the nearest whole number. What is the <strong>smallest</strong> possible value of <em>a</em> &divide; <em>b</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="md6-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('md6',6,'Q26')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('md6','Lower bound of a: 15. Upper bound of b: 2.5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md6','6 &mdash; 15 &divide; 2.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="md6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-md7">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text">A runner covers <span class="math-expr">90 m</span>, correct to the nearest 10 m, in <span class="math-expr">12 s</span>, correct to the nearest second. What is the <strong>greatest</strong> possible speed, in m/s, to 2 decimal places? <em>(speed = distance &divide; time)</em></div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="md7-ans" placeholder="Enter answer..."> <span class="num-unit">m/s</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('md7',8.26,'Q27',0.005)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('md7','Biggest distance divided by smallest time: 95 &divide; 11.5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md7','8.26 m/s &mdash; 95 &divide; 11.5 = 8.2608&hellip;')">Show Answer</button>
+      </div>
+      <div class="feedback" id="md7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-md8">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text"><span class="math-expr">m = 8</span> and <span class="math-expr">n = 5</span>, both correct to the nearest whole number. Which calculation gives the <strong>smallest</strong> possible value of <em>m</em> &times; <em>n</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="md8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('md8', this, 'a')"><div class="opt-indicator"></div><span>8.5 &times; 5.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('md8', this, 'b')"><div class="opt-indicator"></div><span>8.5 &times; 4.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('md8', this, 'c')"><div class="opt-indicator"></div><span>7.5 &times; 5.5</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('md8', this, 'd')"><div class="opt-indicator"></div><span>7.5 &times; 4.5</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('md8','d','Q28')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('md8','Both numbers positive: the smallest product comes from the two smallest values')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('md8','D &mdash; 7.5 &times; 4.5 = 33.75, the product of the two lower bounds.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="md8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MULTIPLYING &amp; DIVIDING &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-md-fill"></div></div>
+    <div class="section-score-val" id="sec-md-val">0/9</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION E: REAL LIFE ═══════════════ -->
+<div id="reallife">
+  <div class="section-header"><div class="section-icon">&#127970;</div><div><div class="sub-label">Section E</div><h2>Real Life: Will It Fit? Is It Safe?</h2></div></div>
+  <div class="info-box"><strong>Method:</strong> to decide whether something <em>definitely</em> fits or is safe, compare the <strong>worst case</strong>. Work out the largest the object could be and the smallest the space could be, then compare those two. If the worst case still works, it always works.</div>
+  <div class="info-box"><strong>Tip for several identical items:</strong> use the bound of <em>one</em> item and multiply by how many there are. Eight people of 70 kg to the nearest 10 kg are at most 8 &times; 75 kg.</div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-rl1">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Two identical shelves are each <span class="math-expr">1.5 m</span> long, correct to 1 decimal place. They are placed end to end. What is the <strong>upper</strong> bound of their total length?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rl1-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rl1',3.1,'Q29',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rl1','Upper bound of one shelf is 1.55 m')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rl1','3.1 m &mdash; 1.55 + 1.55')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rl1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-rl2">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text">The gap in a wall is <span class="math-expr">3.2 m</span> wide, correct to 1 decimal place. Will the two shelves from Q29 <strong>definitely</strong> fit?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="rl2-opts">
+        <div class="mcq-opt" onclick="selectMCQ('rl2', this, 'a')"><div class="opt-indicator"></div><span>Yes: the longest the shelves could be (3.1 m) is less than the narrowest the gap could be (3.15 m)</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rl2', this, 'b')"><div class="opt-indicator"></div><span>No: the gap could be as narrow as 3.15 m and the shelves as long as 3.2 m</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rl2', this, 'c')"><div class="opt-indicator"></div><span>Cannot tell: 3.1 and 3.2 are too close together</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('rl2', this, 'd')"><div class="opt-indicator"></div><span>Yes, because 1.5 + 1.5 = 3.0, which is less than 3.2</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('rl2','a','Q30')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rl2','Compare the <em>biggest</em> the shelves could be with the <em>smallest</em> the gap could be')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rl2','A &mdash; shelves at most 3.1 m, gap at least 3.15 m, so 3.1 &lt; 3.15 and they always fit. D reaches the right answer but ignores the rounding.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rl2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-rl3">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text">A lift carries 8 people, each of mass <span class="math-expr">70 kg</span>, correct to the nearest 10 kg. What is the <strong>greatest</strong> total mass of the 8 people?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rl3-ans" placeholder="Enter answer..."> <span class="num-unit">kg</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rl3',600,'Q31')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rl3','Upper bound of one person is 75 kg')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rl3','600 kg &mdash; 8 &times; 75')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rl3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-rl4">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text">Same lift, same 8 people. What is the <strong>smallest</strong> their total mass could be?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rl4-ans" placeholder="Enter answer..."> <span class="num-unit">kg</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rl4',520,'Q32')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rl4','Lower bound of one person is 65 kg')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rl4','520 kg &mdash; 8 &times; 65')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rl4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-rl5">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text">A stone has mass <span class="math-expr">240 g</span>, correct to the nearest 10 g, and volume <span class="math-expr">40 cm&sup3;</span>, correct to the nearest 10 cm&sup3;. What is the <strong>greatest</strong> possible density? <em>(density = mass &divide; volume)</em></div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rl5-ans" placeholder="Enter answer..."> <span class="num-unit">g/cm&sup3;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rl5',7,'Q33')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rl5','Biggest mass divided by smallest volume: 245 &divide; 35')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rl5','7 g/cm&sup3; &mdash; 245 &divide; 35')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rl5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-rl6">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text">A field is <span class="math-expr">8.2 m</span> by <span class="math-expr">5.4 m</span>, each correct to 1 decimal place. What is the <strong>upper</strong> bound of its perimeter?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="rl6-ans" placeholder="Enter answer..."> <span class="num-unit">m</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('rl6',27.4,'Q34',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('rl6','Perimeter = 2 &times; (length + width). Use the upper bounds 8.25 and 5.45')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('rl6','27.4 m &mdash; 2 &times; (8.25 + 5.45)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="rl6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">REAL LIFE &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-rl-fill"></div></div>
+    <div class="section-score-val" id="sec-rl-val">0/9</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ═══════════════ SECTION F: MINI TEST ═══════════════ -->
+<div id="minitest">
+  <div class="section-header"><div class="section-icon">&#9998;</div><div><div class="sub-label">Section F</div><h2>Mini Test</h2></div></div>
+  <div class="info-box"><strong>No method box here.</strong> Try these like a real test: for each one, write down the bounds of both numbers before you choose which to combine.</div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-mt1">
+    <div class="q-header"><div class="q-num">Q35</div><div class="q-text"><span class="math-expr">a = 7.3</span> and <span class="math-expr">b = 2.6</span>, both correct to 1 decimal place. What is the <strong>upper</strong> bound of <em>a</em> + <em>b</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mt1-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mt1',10,'Q35',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt1','Upper bounds: 7.35 and 2.65')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt1','10 &mdash; 7.35 + 2.65')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="q-card" id="qcard-mt2">
+    <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Same <em>a</em> and <em>b</em> (<span class="math-expr">a = 7.3</span>, <span class="math-expr">b = 2.6</span>, 1 decimal place). What is the <strong>lower</strong> bound of <em>a</em> &minus; <em>b</em>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mt2-ans" placeholder="Enter answer..."></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mt2',4.6,'Q36',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt2','Smallest a take away the largest b: 7.25 and 2.65')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt2','4.6 &mdash; 7.25 &minus; 2.65')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="qcard-mt3">
+    <div class="q-header"><div class="q-num">Q37</div><div class="q-text"><span class="math-expr">x = 5</span> and <span class="math-expr">y = 2</span>, both correct to the nearest whole number. What is the <strong>upper</strong> bound of <em>x</em> &divide; <em>y</em>, to 2 decimal places where needed?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mt3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mt3', this, 'a')"><div class="opt-indicator"></div><span>3</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt3', this, 'b')"><div class="opt-indicator"></div><span>2.2</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt3', this, 'c')"><div class="opt-indicator"></div><span>3.67</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt3', this, 'd')"><div class="opt-indicator"></div><span>2.5</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mt3','c','Q37')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt3','Biggest top, smallest bottom: 5.5 and 1.5')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt3','C &mdash; 5.5 &divide; 1.5 = 3.666&hellip; = 3.67. B (5.5 &divide; 2.5) and D (5 &divide; 2) do not use the smallest bottom number.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="qcard-mt4">
+    <div class="q-header"><div class="q-num">Q38</div><div class="q-text">A square tile has side <span class="math-expr">12 cm</span>, correct to the nearest cm. What is the <strong>upper</strong> bound of its area?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mt4-ans" placeholder="Enter answer..."> <span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mt4',156.25,'Q38',1e-09)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt4','Upper bound of the side is 12.5 cm. Area = side &times; side')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt4','156.25 cm&sup2; &mdash; 12.5 &times; 12.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="qcard-mt5">
+    <div class="q-header"><div class="q-num">Q39</div><div class="q-text">A triangle has base <span class="math-expr">10 cm</span> and height <span class="math-expr">6 cm</span>, both to the nearest cm. What is the <strong>lower</strong> bound of its area? <em>(area = &frac12; &times; base &times; height)</em></div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="mt5-ans" placeholder="Enter answer..."> <span class="num-unit">cm&sup2;</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('mt5',26.125,'Q39',1e-06)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt5','Use the lower bounds 9.5 and 5.5, then halve')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt5','26.125 cm&sup2; &mdash; &frac12; &times; 9.5 &times; 5.5')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="qcard-mt6">
+    <div class="q-header"><div class="q-num">Q40</div><div class="q-text">A rectangle is <span class="math-expr">5 cm</span> by <span class="math-expr">3 cm</span>, both to the nearest cm. Which of these could <strong>not</strong> be its area?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="mt6-opts">
+        <div class="mcq-opt" onclick="selectMCQ('mt6', this, 'a')"><div class="opt-indicator"></div><span>12 cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt6', this, 'b')"><div class="opt-indicator"></div><span>11 cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt6', this, 'c')"><div class="opt-indicator"></div><span>15 cm&sup2;</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('mt6', this, 'd')"><div class="opt-indicator"></div><span>19 cm&sup2;</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('mt6','b','Q40')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('mt6','Find the smallest and largest possible areas first')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('mt6','B &mdash; smallest area 4.5 &times; 2.5 = 11.25 and largest 5.5 &times; 3.5 = 19.25. 11 is below the smallest possible area.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="mt6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">MINI TEST &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mt-fill"></div></div>
+    <div class="section-score-val" id="sec-mt-val">0/8</div>
+  </div>
+</div>
+
+<!-- Results Panel -->
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = {
+  rc1:1, rc2:1, rc3:1, rc4:1,
+  mu1:1, mu2:1, mu3:1, mu4:1, mu5:1, mu6:2, mu7:1, mu8:1,
+  as1:1, as2:1, as3:1, as4:1, as5:1, as6:1, as7:2, as8:1,
+  md1:1, md2:1, md3:1, md4:1, md5:1, md6:1, md7:2, md8:1,
+  rl1:1, rl2:1, rl3:2, rl4:1, rl5:2, rl6:2,
+  mt1:1, mt2:1, mt3:1, mt4:2, mt5:2, mt6:1
+};
+
+const sections = {
+  rc: { label: 'Quick Recap', qs: ['rc1', 'rc2', 'rc3', 'rc4'] },
+  mu: { label: 'Identical Items', qs: ['mu1', 'mu2', 'mu3', 'mu4', 'mu5', 'mu6', 'mu7', 'mu8'] },
+  as: { label: 'Adding and Subtracting', qs: ['as1', 'as2', 'as3', 'as4', 'as5', 'as6', 'as7', 'as8'] },
+  md: { label: 'Multiplying and Dividing', qs: ['md1', 'md2', 'md3', 'md4', 'md5', 'md6', 'md7', 'md8'] },
+  rl: { label: 'Real Life', qs: ['rl1', 'rl2', 'rl3', 'rl4', 'rl5', 'rl6'] },
+  mt: { label: 'Mini Test', qs: ['mt1', 'mt2', 'mt3', 'mt4', 'mt5', 'mt6'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+// ── Bounds Calculator (every number is a measurement: half a unit either side) ──
+const nf = x => String(+x.toFixed(6));
+let cb = null;
+
+function cbPreset(a, ua, op, b, ub) {
+  document.getElementById('cb-a').value = a; document.getElementById('cb-ua').value = ua;
+  document.getElementById('cb-op').value = op;
+  document.getElementById('cb-b').value = b; document.getElementById('cb-ub').value = ub;
+  cbUpdate();
+}
+
+function cbCalc(op, a, b) {
+  return op === '+' ? a + b : op === '-' ? a - b : op === '*' ? a * b : a / b;
+}
+
+function cbFail(msg) {
+  cb = null;
+  document.getElementById('cb-steps').innerHTML = '&#9888;&#65039; ' + msg;
+  document.getElementById('cb-svg-g').innerHTML = '';
+  document.getElementById('cb-sa').disabled = true; document.getElementById('cb-sb').disabled = true;
+}
+
+function cbUpdate() {
+  const a = parseFloat(document.getElementById('cb-a').value), b = parseFloat(document.getElementById('cb-b').value);
+  const ua = parseFloat(document.getElementById('cb-ua').value), ub = parseFloat(document.getElementById('cb-ub').value);
+  const op = document.getElementById('cb-op').value;
+  if (!(a > 0) || !(b > 0)) return cbFail('Type a positive number for both a and b.');
+  const la = a - ua / 2, ha = a + ua / 2, lb = b - ub / 2, hb = b + ub / 2;
+  if (!(lb > 0)) return cbFail('b is too small for that accuracy: its lower bound would not be positive. Try a bigger b or a finer accuracy.');
+  let hiA, hiB, loA, loB, sym;
+  if (op === '+') { hiA = ha; hiB = hb; loA = la; loB = lb; sym = '+'; }
+  else if (op === '-') { hiA = ha; hiB = lb; loA = la; loB = hb; sym = '&minus;'; }
+  else if (op === '*') { hiA = ha; hiB = hb; loA = la; loB = lb; sym = '&times;'; }
+  else { hiA = ha; hiB = lb; loA = la; loB = hb; sym = '&divide;'; }
+  const mx = cbCalc(op, hiA, hiB), mn = cbCalc(op, loA, loB);
+  cb = { op, la, ha, lb, hb, ua, ub, mn, mx, a, b };
+  const swap = (op === '-' || op === '/');
+  document.getElementById('cb-steps').innerHTML =
+    `<b>Bounds of a:</b> ${nf(la)} &le; a &lt; ${nf(ha)} &nbsp; <b>Bounds of b:</b> ${nf(lb)} &le; b &lt; ${nf(hb)}<br>`
+    + `<b>Largest answer:</b> ${nf(hiA)} ${sym} ${nf(hiB)} = <b>${nf(mx)}</b> &nbsp;(${swap ? 'UB of a, LB of b' : 'UB of a, UB of b'})<br>`
+    + `<b>Smallest answer:</b> ${nf(loA)} ${sym} ${nf(loB)} = <b>${nf(mn)}</b> &nbsp;(${swap ? 'LB of a, UB of b' : 'LB of a, LB of b'})<br>`
+    + `<span class="ex-ineq">${nf(mn)} &le; answer &lt; ${nf(mx)}</span>`;
+  const sa = document.getElementById('cb-sa'), sb = document.getElementById('cb-sb');
+  sa.disabled = false; sb.disabled = false;
+  sa.min = la; sa.max = ha; sa.step = ua / 100; sa.value = a;
+  sb.min = lb; sb.max = hb; sb.step = ub / 100; sb.value = b;
+  cbDraw();
+}
+
+function cbDraw() {
+  if (!cb) return;
+  const { op, mn, mx } = cb;
+  const av = +document.getElementById('cb-sa').value, bv = +document.getElementById('cb-sb').value;
+  const r = cbCalc(op, av, bv);
+  document.getElementById('cb-sa-l').textContent = 'a = ' + nf(av);
+  document.getElementById('cb-sb-l').textContent = 'b = ' + nf(bv);
+  const pad = (mx - mn) * 0.3 || 1;
+  const lo = mn - pad, hi = mx + pad;
+  const X = v => 30 + (v - lo) / (hi - lo) * 500;
+  const Y = 72, F = 'font-family="DM Mono, monospace"';
+  const anchor = X(r) < 120 ? 'start' : X(r) > 440 ? 'end' : 'middle';
+  let g = `<line x1="30" y1="${Y}" x2="530" y2="${Y}" stroke="#4a5270" stroke-width="2"/>`
+        + `<rect x="${X(mn)}" y="${Y - 9}" width="${X(mx) - X(mn)}" height="18" fill="#3ecf8e" opacity="0.18"/>`
+        + `<circle cx="${X(mn)}" cy="${Y}" r="5" fill="#3ecf8e"/>`
+        + `<circle cx="${X(mx)}" cy="${Y}" r="5" fill="#0f1117" stroke="#3ecf8e" stroke-width="2"/>`
+        + `<text x="${X(mn)}" y="${Y + 26}" text-anchor="middle" ${F} font-size="11" fill="#3ecf8e">smallest ${nf(mn)}</text>`
+        + `<text x="${X(mx)}" y="${Y + 26}" text-anchor="middle" ${F} font-size="11" fill="#3ecf8e">largest ${nf(mx)}</text>`
+        + `<text x="30" y="16" ${F} font-size="11" fill="#7a84a0">a = ${nf(av)}, b = ${nf(bv)}</text>`
+        + `<line x1="${X(r)}" y1="${Y - 32}" x2="${X(r)}" y2="${Y + 8}" stroke="#f5a623" stroke-width="2"/>`
+        + `<path d="M ${X(r) - 5} ${Y - 32} L ${X(r) + 5} ${Y - 32} L ${X(r)} ${Y - 26} Z" fill="#f5a623"/>`
+        + `<text x="${X(r)}" y="${Y - 38}" text-anchor="${anchor}" ${F} font-size="11" fill="#f5a623">answer = ${nf(r)}</text>`;
+  document.getElementById('cb-svg-g').innerHTML = g;
+}
+
+cbUpdate();
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=1e-9) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Check the hint or reveal the answer, then try to understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`unit3-bounds-calculations_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('num-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+
+</body>
+</html>

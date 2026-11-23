@@ -112,6 +112,7 @@ Its printable `.md` has the same 45 questions **plus six extended-answer questio
 | **Unit Test 3: Decimals, Percentages & Rounding** — Unit 3 | 29 | 40 | [.md](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.md) | [.html](./w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.html) |
 | **Unit 3 Follow-up: Bounds & Powers** — Unit 3 (3.1, 3.3, 3.4) | 31 | 40 | [.md](./w8/term1-week8-maths-unit3-bounds-powers-practice.md) | [.html](./w8/term1-week8-maths-unit3-bounds-powers-practice.html) |
 | **Unit 3 Retest: Bounds & Significant Figures** — Unit 3 (3.4) | 34 | 40 | [.md](./w8/term1-week8-maths-unit3-bounds-sigfigs-retest.md) | [.html](./w8/term1-week8-maths-unit3-bounds-sigfigs-retest.html) |
+| **Unit 3 Extension: Bounds in Calculations** — Unit 3 (3.4) | 40 | 48 | [.md](./w8/term1-week8-maths-unit3-bounds-calculations.md) | [.html](./w8/term1-week8-maths-unit3-bounds-calculations.html) |
 | **Unit 3 Practice Test: 20 Open Questions** — Unit 3 (3.1–3.4) | 20 | 25 | [.md](./w8/term1-week8-maths-unit3-open-questions.md) | [.html](./w8/term1-week8-maths-unit3-open-questions.html) |
 | **Simultaneous Equations** — Unit 4.2 | 33 | 45 | [.md](./w8/term1-week8-maths-unit4-simultaneous-equations.md) | [.html](./w8/term1-week8-maths-unit4-simultaneous-equations.html) |
 | **Harder Simultaneous Equations** — Unit 4.2 (multiply first; engineering uses) | 29 | 43 | [.md](./w8/term1-week8-maths-unit4-simultaneous-equations-harder.md) | [.html](./w8/term1-week8-maths-unit4-simultaneous-equations-harder.html) |
@@ -249,6 +250,8 @@ cambridge-practice/
 │               ├── term1-week8-maths-unit3-bounds-powers-practice.md   ← Printable (+5 written q)
 │               ├── term1-week8-maths-unit3-bounds-sigfigs-retest.html  ← Interactive (bounds & sig figs retest)
 │               ├── term1-week8-maths-unit3-bounds-sigfigs-retest.md    ← Printable (+4 written q)
+│               ├── term1-week8-maths-unit3-bounds-calculations.html    ← Interactive (bounds in calculations)
+│               ├── term1-week8-maths-unit3-bounds-calculations.md      ← Printable (+5 written q)
 │               ├── term1-week8-maths-unit3-open-questions.html         ← Interactive (20 open questions)
 │               ├── term1-week8-maths-unit3-open-questions.md           ← Printable
 │               ├── term1-week8-maths-unit4-simultaneous-equations.html ← Interactive (Unit 4.2)
