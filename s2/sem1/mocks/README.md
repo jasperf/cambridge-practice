@@ -32,6 +32,7 @@ Every paper comes in three files with the same basename:
 | **Maths Paper 2: Calculator** | All units, calculator: standard form, percentages, compound interest & bounds · forming and solving equations · polygons & Pythagoras · circles & compound shapes | 29 Qs · 50 marks (5 MCQ, 1 tick-all-true) | Q30–Q34 · 23 marks | [.md](sem1-maths-paper2-calculator.md) | [.html](sem1-maths-paper2-calculator.html) | [answers](sem1-maths-paper2-calculator-answers.md) |
 | **Science** | Atoms & bonding · Plant biology · Density · Sound waves & thermal energy · Electricity | 39 Qs · 48 marks (17 MCQ) | Q40–Q45 · 24 marks | [.md](sem1-science-mock.md) | [.html](sem1-science-mock.html) | [answers](sem1-science-mock-answers.md) |
 | **Science Mock 2: Combined** | A second, wider science paper: atoms & the periodic table · bonding & structures · photosynthesis & minerals · transport, transpiration & the carbon cycle · human biology (excretion, chromosomes & inheritance, fetal development & the mother’s health) · density · sound waves & interference · thermal energy & conservation · electricity & circuit symbols — the gaps-drill topics included | 52 Qs · 70 marks (24 MCQ) | Q53–Q58 · 25 marks | [.md](sem1-science-mock2-combined.md) | [.html](sem1-science-mock2-combined.html) | [answers](sem1-science-mock2-combined-answers.md) |
+| **Science Mock 3: Combined** | A third full science paper with all-new questions (same topics and layout as Mock 2): atoms & the periodic table · bonding & structures · photosynthesis & minerals · transport, transpiration & the carbon cycle · human biology (excretion, chromosomes & inheritance, fetal development & the mother’s health) · density · sound waves & interference · thermal energy & conservation · electricity & circuit symbols — the gaps-drill topics included | 52 Qs · 70 marks (23 MCQ) | Q53–Q58 · 24 marks | [.md](sem1-science-mock3-combined.md) | [.html](sem1-science-mock3-combined.html) | [answers](sem1-science-mock3-combined-answers.md) |
 
 ### Chinese
 
@@ -83,7 +84,7 @@ The class slides do not cover most of these topics, so the facts follow the Camb
 
 ### Human Biology
 
-[Science Mock 2](sem1-science-mock2-combined.html) covers excretion, chromosomes and inheritance, and fetal development and the mother's health. The first science mock and the review page do not cover Human Biology. For more on chromosomes, genes and DNA, gametes and inheritance, and fetal development and the mother's health, use the [Term 2 Unit Test: Electricity + Human Biology](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.html) ([printable](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.md)). The excretory system is in the [gaps drill](sem1-science-gaps.html), Section A.
+[Science Mock 2](sem1-science-mock2-combined.html) and [Science Mock 3](sem1-science-mock3-combined.html) cover excretion, chromosomes and inheritance, and fetal development and the mother's health. The first science mock and the review page do not cover Human Biology. For more on chromosomes, genes and DNA, gametes and inheritance, and fetal development and the mother's health, use the [Term 2 Unit Test: Electricity + Human Biology](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.html) ([printable](../t2/w7/term2-week7-science-unit-test-electricity-human-biology.md)). The excretory system is in the [gaps drill](sem1-science-gaps.html), Section A.
 
 ### Videos to watch
 
@@ -172,6 +173,9 @@ s2/sem1/mocks/
 ├── sem1-science-mock2-combined.html             ← Interactive (Science Mock 2: combined paper)
 ├── sem1-science-mock2-combined.md                ← Printable + Q53–Q58 written
 ├── sem1-science-mock2-combined-answers.md        ← Answers + marking guide
+├── sem1-science-mock3-combined.html             ← Interactive (Science Mock 3: combined paper)
+├── sem1-science-mock3-combined.md                ← Printable + Q53–Q58 written
+├── sem1-science-mock3-combined-answers.md        ← Answers + marking guide
 ├── sem1-science-revision.html                    ← Interactive (Terms 1–2 science review)
 ├── sem1-science-revision.md                      ← Printable + Q43–Q48 written
 ├── sem1-science-revision-answers.md              ← Answers + marking guide
