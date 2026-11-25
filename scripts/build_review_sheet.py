@@ -56,7 +56,11 @@ SUB = str.maketrans('0123456789', '₀₁₂₃₄₅₆₇₈₉')
 
 def to_md(s):
     """Html fragment -> GFM text."""
-    s = re.sub(r'<sup>(.*?)</sup>', lambda m: m.group(1).translate(SUP), s)
+    def sup(m):
+        t = H.unescape(re.sub(r'<[^>]+>', '', m.group(1)))
+        # Letters have no reliable superscript glyphs, so write them as ^(...)
+        return t.translate(SUP) if all(c in '0123456789+-−' for c in t) else f'^({t})'
+    s = re.sub(r'<sup>(.*?)</sup>', sup, s)
     s = re.sub(r'<sub>(.*?)</sub>', lambda m: m.group(1).translate(SUB), s)
     s = re.sub(r'</?(strong|b)>', '**', s)
     s = re.sub(r'</?(em|i)>', '*', s)
@@ -227,7 +231,7 @@ def build_md(spec, answers_name):
         o.append('---\n\n')
     o.append(f"## Written questions\n\nAnswer these in your notebook. They are not on the interactive sheet.\n\n")
     for n, mk, text, _ in W:
-        o.append(f"**Q{n}** ({mark_label(mk)})\\\n{text}\n\n")
+        o.append(f"**Q{n}** ({mark_label(mk)})\\\n{to_md(text)}\n\n")
     o.append(f"---\n\n*Note: Q1–Q{len(Q)} match the interactive sheet's questions exactly, so they can be "
              f"self-checked there. Q{W[0][0]}–Q{W[-1][0]} are written questions for the notebook and are not "
              f"auto-marked. Answers and a marking guide are in [`{answers_name}`](./{answers_name}).*\n")
@@ -251,7 +255,7 @@ def build_answers(spec):
                 o.append(f"**Q{num[q['id']]}** ({mark_label(q['marks'])}): {rev}\n\n")
     o.append('## Written questions: marking guide\n\n')
     for n, mk, _, guide in W:
-        o.append(f"**Q{n}** ({mark_label(mk)}): {guide}\n\n")
+        o.append(f"**Q{n}** ({mark_label(mk)}): {to_md(guide)}\n\n")
     return ''.join(o)
 
 
