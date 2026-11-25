@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maths Gaps Drill &middot; Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci), var(--accent-warn)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.88rem; color: var(--text-muted); margin-top: 12px; max-width: 720px; }
+.btn-cover { margin-top: 16px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+.btn-cover:hover { border-color: var(--accent); }
+body.cover .btn-cover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.section-tabs { position: sticky; top: 58px; z-index: 50; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); max-width: 100%; padding: 10px max(28px, calc((100% - 844px) / 2)); display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border); }
+.sub-tab { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.main > div[id] { scroll-margin-top: 120px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 18px; flex-wrap: wrap; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(var(--sec-rgb),0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.src-links { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.src-link { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; }
+.src-link:hover { color: var(--sec); border-color: var(--sec); }
+.facts-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sec); margin: 6px 0 10px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 26px; }
+.fact { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--sec); border-radius: 8px; padding: 12px 14px; font-size: 0.86rem; line-height: 1.6; cursor: default; }
+.fact h4 { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.fact em { color: var(--sec); }
+.fact .f { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-warn); }
+.fact-body { transition: filter 0.25s, opacity 0.25s; }
+body.cover .fact { cursor: pointer; }
+body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-select: none; }
+.explorer { background: linear-gradient(135deg, rgba(var(--sec-rgb),0.07), rgba(var(--sec-rgb),0.02)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin: 0 0 28px; }
+.explorer h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 2px; }
+.ex-note { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 14px; }
+.ex-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.ex-svg { width: 100%; max-width: 420px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; display: block; }
+.ex-svg.wide { max-width: 100%; }
+.ex-controls { flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ex-controls label { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted); }
+.ex-controls input[type=range] { width: 100%; accent-color: var(--sec); }
+.ex-readout { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; margin-top: 6px; color: var(--text); }
+.ex-readout strong { color: var(--sec); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--sec, var(--accent)); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: var(--sec, var(--accent)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-ok { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-ok 0.6s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .section-tabs { top: 0; position: relative; padding: 10px 16px; }
+  .hero, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .src-links { margin-left: 0; }
+  .q-header, .q-body { padding-left: 14px; padding-right: 14px; }
+  .explorer { padding: 14px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+
+.ftable { border-collapse: collapse; margin: 6px 0 14px; font-size: 0.9rem; }
+.ftable th, .ftable td { border: 1px solid var(--border); padding: 6px 14px; text-align: center; }
+.ftable th { background: var(--surface2); font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); }
+
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Maths &middot; Gaps Drill</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 53</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Semester 1 topic drill</div>
+  <h1>Seven algebra slips<br><em>to fix tonight</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>34 questions &middot; self-marked &middot; 53 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>About 35 minutes &middot; no calculator</div>
+  </div>
+  <p class="credit">Seven spots where marks are easy to lose: writing expressions in <em>n</em>, simplifying surds, surds in brackets, zero and negative powers, indices in fractions, brackets and signs, and mixed numbers with powers. <strong>Write every answer on paper first</strong>, then type only the final number. Where a question asks for an expression, write the expression down, then type its value for the number given. Use <strong>Cover the notes</strong> to test yourself before you read the key facts.</p>
+  <button class="btn btn-cover" id="cover-btn" onclick="toggleCover()">&#128584; Cover the notes</button>
+</div>
+<div class="section-tabs">
+  <a href="#ex" class="sub-tab">&#128221; Words to Expressions in <em>n</em></a>
+  <a href="#su" class="sub-tab">&#8730; Simplifying Surds</a>
+  <a href="#sb" class="sub-tab">&#128208; Surds in Brackets</a>
+  <a href="#pw" class="sub-tab">&#10024; Zero, Negative &amp; Powers of 10</a>
+  <a href="#ix" class="sub-tab">&#128208; Indices &amp; Fractions</a>
+  <a href="#br" class="sub-tab">&#9999;&#65039; Brackets, Signs &amp; Equations</a>
+  <a href="#mn" class="sub-tab">&#189; Mixed Numbers &amp; Powers</a>
+</div>
+<div class="main">
+
+<div id="ex" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#128221;</div><div><div class="sub-label">Section A &middot; Q1&ndash;Q5 &middot; Expressions &amp; Formulae</div><h2>Words to Expressions in <em>n</em></h2></div><div class="src-links"><a class="src-link" href="../t1/w5/term1-week5-maths-expressions-formulae.html" target="_blank" rel="noopener">Expressions &amp; formulae sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Do the steps in order</h4><div class="fact-body">Each <em>then</em> works on the <strong>whole</strong> result so far. &ldquo;Subtract 1, then double&rdquo; is <span class="f">2(n &minus; 1)</span>, not 2n &minus; 1.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Brackets</h4><div class="fact-body">If a step applies to a <em>sum or difference</em>, that part goes in brackets. Without them, only the last term gets the step.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>&ldquo;Squares&rdquo; is a power</h4><div class="fact-body"><strong>Squares</strong> means &ldquo;to the power 2&rdquo; and <strong>cubes</strong> means &ldquo;to the power 3&rdquo;. A <strong>square root</strong> or <strong>cube root</strong> uses the root sign. They are different words and different operations.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Rule from a table</h4><div class="fact-body">The value at <em>0</em> is the fixed charge. The jump from one column to the next is the amount for each extra unit. So <span class="f">cost = fixed + jump &times; units</span>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Check with a number</h4><div class="fact-body">To test an expression, put in a small number for <em>n</em>, follow the words step by step, and see if both routes give the same answer.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-e1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text"><em>Write it on paper first.</em> Mia thinks of a number, <em>n</em>. She <strong>adds 6</strong>, then <strong>multiplies the result by 5</strong>. Write her expression. What is its value when <em>n</em> = 4?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e1',50,'Q1',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e1','Do the steps in order with n = 4. What happens to the 6?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e1','Expression: 5(<em>n</em> + 6). When n = 4: 5 &times; 10 = 50.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-e2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text"><em>Write it on paper first.</em> Leo thinks of <em>n</em>. He <strong>multiplies it by 2</strong>, then <strong>cubes</strong> the result, then <strong>adds 7</strong>. Write his expression. What is its value when <em>n</em> = 2?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e2-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e2',71,'Q2',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e2','Cubes means power 3, not a cube root. Which part gets cubed?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e2','Expression: (2<em>n</em>)<sup>3</sup> + 7. When n = 2: 4<sup>3</sup> + 7 = 64 + 7 = 71.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-e3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text"><em>Write it on paper first.</em> Ana thinks of <em>n</em>. She <strong>divides it by 2</strong>, <strong>cubes</strong> the result, then <strong>subtracts 1</strong>. Write her expression. What is its value when <em>n</em> = 6?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e3-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e3',26,'Q3',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e3','Divide first, then cube the whole result.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e3','Expression: (<em>n</em>/2)<sup>3</sup> &minus; 1. When n = 6: 3<sup>3</sup> &minus; 1 = 27 &minus; 1 = 26.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-e4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text"><em>Write it on paper first.</em> A shop hires bikes for a fixed fee plus a daily amount. The table shows the cost. How much does it cost to hire a bike for <strong>10 days</strong>?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <table class="ftable"><tr><th>Days</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>Cost ($)</th><td>9</td><td>14</td><td>19</td><td>24</td><td>29</td></tr></table>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e4-ans" placeholder="Enter answer..."><span class="num-unit">$</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e4',59,'Q4',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e4','Day 0 is the fixed fee. How much does each extra day add?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e4','Fixed fee $9, plus $5 a day. 9 + 5 &times; 10 = 59.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-e5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text"><em>Write it on paper first.</em> Using the same table, write an expression for the cost of hiring a bike for <em>d</em> days. What is its value when <em>d</em> = 20?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <table class="ftable"><tr><th>Days</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>Cost ($)</th><td>9</td><td>14</td><td>19</td><td>24</td><td>29</td></tr></table>
+      <div class="num-row"><input type="number" step="any" class="num-input" id="e5-ans" placeholder="Enter answer..."><span class="num-unit">$</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('e5',109,'Q5',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('e5','Fixed fee + daily amount &times; d.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('e5','Expression: 9 + 5<em>d</em>. When d = 20: 9 + 100 = 109.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="e5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A &mdash; EXPRESSIONS IN N</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ex-fill"></div></div>
+    <div class="section-score-val" id="sec-ex-val">0/9</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="su" style="--sec:var(--accent-sci);--sec-rgb:62,207,142">
+  <div class="section-header"><div class="section-icon">&#8730;</div><div><div class="sub-label">Section B &middot; Q6&ndash;Q11 &middot; Rational &amp; Irrational Numbers</div><h2>Simplifying Surds</h2></div><div class="src-links"><a class="src-link" href="../t1/w2/term1-week2-maths-rational-irrational.html" target="_blank" rel="noopener">Rational &amp; irrational sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>The splitting rule</h4><div class="fact-body"><span class="f">&radic;(a &times; b) = &radic;a &times; &radic;b</span>. It works because squaring both sides gives a &times; b.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Use the largest square factor</h4><div class="fact-body">Look for the biggest of <em>4, 9, 16, 25, 36, 49, 64, 81, 100</em> that divides the number. The root of that square comes out as a whole number in front.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Check by squaring</h4><div class="fact-body">Square the number in front, then multiply by the number under the root. You should get the number you started with. Example: 2&radic;5 &rarr; 2&sup2; &times; 5 = 20.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Adding surds</h4><div class="fact-body">Surds add like terms only when the part under the root matches: 3&radic;2 + 4&radic;2 = 7&radic;2. Simplify each one first to see if they match.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>When it stays</h4><div class="fact-body">If no square number (except 1) divides it, the root is already in its simplest form.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-u1">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text"><em>Write it on paper first.</em> Simplify &radic;90 and write it as <em>a</em>&radic;10. Find <em>a</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="u1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('u1',3,'Q6',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('u1','Which square number divides 90?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('u1','&radic;90 = &radic;(9 &times; 10) = 3&radic;10, so a = 3. Check: 3<sup>2</sup> &times; 10 = 90.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="u1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-u2">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text"><em>Write it on paper first.</em> Simplify &radic;72 and write it as <em>a</em>&radic;2. Find <em>a</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="u2-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('u2',6,'Q7',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('u2','Use the <em>largest</em> square factor of 72. It is bigger than 9.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('u2','&radic;72 = &radic;(36 &times; 2) = 6&radic;2, so a = 6. Check: 6<sup>2</sup> &times; 2 = 72.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="u2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-u3">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text"><em>Write it on paper first.</em> A student writes &radic;18 = 9&radic;2. Write the correct simplified form as <em>a</em>&radic;2. What should <em>a</em> be?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="u3-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('u3',3,'Q8',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('u3','The 9 is a square number, so its root should come out, not 9 itself.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('u3','&radic;18 = &radic;(9 &times; 2) = &radic;9 &times; &radic;2 = 3&radic;2, so a = 3. Check: 3<sup>2</sup> &times; 2 = 18, but 9<sup>2</sup> &times; 2 = 162.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="u3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-u4">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text"><em>Write it on paper first.</em> Work out (4&radic;3)<sup>2</sup>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="u4-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('u4',48,'Q9',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('u4','Square the 4 and square the &radic;3 separately, then multiply.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('u4','(4&radic;3)<sup>2</sup> = 4<sup>2</sup> &times; (&radic;3)<sup>2</sup> = 16 &times; 3 = 48.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="u4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-u5">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text"><em>Write it on paper first.</em> Simplify &radic;12 + &radic;27 and write it as <em>a</em>&radic;3. Find <em>a</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="u5-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('u5',5,'Q10',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('u5','Simplify each root first. Then add the numbers in front.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('u5','&radic;12 = 2&radic;3 and &radic;27 = 3&radic;3. Sum: 5&radic;3, so a = 5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="u5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-u6">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text"><em>Write it on paper first.</em> Simplify &radic;175 and write it as <em>a</em>&radic;7. Find <em>a</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="u6-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('u6',5,'Q11',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('u6','Is 25 a factor of 175?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('u6','&radic;175 = &radic;(25 &times; 7) = 5&radic;7, so a = 5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="u6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION B &mdash; SIMPLIFYING SURDS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-su-fill"></div></div>
+    <div class="section-score-val" id="sec-su-val">0/8</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="sb" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#128208;</div><div><div class="sub-label">Section C &middot; Q12&ndash;Q15 &middot; Rational &amp; Irrational Numbers</div><h2>Surds in Brackets</h2></div><div class="src-links"><a class="src-link" href="../t1/w2/term1-week2-maths-rational-irrational.html" target="_blank" rel="noopener">Rational &amp; irrational sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Expand as usual</h4><div class="fact-body">Multiply every term in the first bracket by every term in the second. Remember <span class="f">&radic;n &times; &radic;n = n</span>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Difference of two squares</h4><div class="fact-body"><span class="f">(a + b)(a &minus; b) = a&sup2; &minus; b&sup2;</span>. The two middle terms are opposites, so they cancel.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Why it matters</h4><div class="fact-body">When the middle terms cancel, the surds disappear. The answer can be a whole number even though the brackets contain a surd.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>No calculator</h4><div class="fact-body">Leave answers as surds or whole numbers. Never turn &radic;n into a rounded decimal.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-b1">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text"><em>Write it on paper first.</em> If <em>n</em> = 8, then &radic;<em>n</em> + 5 in simplest form is <em>a</em>&radic;2 + 5. Find <em>a</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="b1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('b1',2,'Q12',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('b1','Simplify &radic;8 first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('b1','&radic;8 = &radic;(4 &times; 2) = 2&radic;2, so &radic;8 + 5 = 2&radic;2 + 5 and a = 2. You cannot add 2&radic;2 and 5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="b1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-b2">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text"><em>Write it on paper first.</em> Expand and simplify (&radic;7 + 2)(&radic;7 &minus; 2).</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="b2-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('b2',3,'Q13',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('b2','Four terms. What happens to the two middle ones?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('b2','7 &minus; 2&radic;7 + 2&radic;7 &minus; 4 = 7 &minus; 4 = 3.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="b2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-b3">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text"><em>Write it on paper first.</em> Expand (&radic;<em>n</em> + 4)(&radic;<em>n</em> &minus; 4). What is its value when <em>n</em> = 40?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="b3-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('b3',24,'Q14',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('b3','Difference of two squares: (a + b)(a &minus; b) = a<sup>2</sup> &minus; b<sup>2</sup>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('b3','(&radic;n + 4)(&radic;n &minus; 4) = n &minus; 16. When n = 40: 40 &minus; 16 = 24.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="b3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-b4">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text"><em>Write it on paper first.</em> Expand (&radic;<em>n</em> + 9)(&radic;<em>n</em> &minus; 9). It simplifies to <em>n</em> &minus; <em>k</em>. Find <em>k</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="b4-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('b4',81,'Q15',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('b4','The middle terms cancel. What is 9 &times; 9?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('b4','&radic;n &times; &radic;n = n, the middle terms cancel, and 9 &times; 9 = 81. So the answer is n &minus; 81, and k = 81.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="b4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION C &mdash; SURDS IN BRACKETS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sb-fill"></div></div>
+    <div class="section-score-val" id="sec-sb-val">0/6</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="pw" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#10024;</div><div><div class="sub-label">Section D &middot; Q16&ndash;Q21 &middot; Indices &amp; Standard Form</div><h2>Zero, Negative &amp; Powers of 10</h2></div><div class="src-links"><a class="src-link" href="../t1/w2/term1-week2-maths-indices-standard-form.html" target="_blank" rel="noopener">Indices &amp; standard form sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Zero power</h4><div class="fact-body">Any number (except 0) to the power 0 is <strong>1</strong>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Negative power</h4><div class="fact-body"><span class="f">x<sup>&minus;n</sup> = 1 &divide; x<sup>n</sup></span>. It is a <em>fraction</em>, not a negative number, and <strong>x<sup>&minus;1</sup> is not x</strong>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Multiplying by 10<sup>n</sup></h4><div class="fact-body">Multiplying by 10<sup>3</sup> makes the number bigger (digits move three places up). Multiplying by 10<sup>&minus;3</sup> is the same as <em>dividing</em> by 10<sup>3</sup>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Dividing by 10<sup>&minus;n</sup></h4><div class="fact-body">Dividing by 10<sup>&minus;n</sup> is the same as <em>multiplying</em> by 10<sup>n</sup>. Two minuses make it bigger, not smaller.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Comparing</h4><div class="fact-body">The more negative the power, the <em>smaller</em> the number: 10<sup>&minus;1</sup> = 0.1, 10<sup>&minus;2</sup> = 0.01, and so on.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-p1">
+    <div class="q-header"><div class="q-num">Q16</div><div class="q-text"><em>Write it on paper first.</em> Write 4<sup>&minus;2</sup> as a decimal.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="p1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p1',0.0625,'Q16',1e-06)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p1','A negative power means a fraction: 1 divided by what?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p1','4<sup>&minus;2</sup> = 1/4<sup>2</sup> = 1/16 = 0.0625.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-p2">
+    <div class="q-header"><div class="q-num">Q17</div><div class="q-text"><em>Write it on paper first.</em> y = <em>x</em><sup>0</sup> &minus; <em>x</em><sup>&minus;1</sup> + <em>x</em><sup>&minus;2</sup>. Find <em>y</em> when <em>x</em> = 10. Give a decimal.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="p2-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p2',0.91,'Q17',1e-06)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p2','x<sup>0</sup> = 1. x<sup>&minus;1</sup> = 1/x, which is not x. And x<sup>&minus;2</sup> = 1/x<sup>2</sup>.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p2','y = 1 &minus; 0.1 + 0.01 = 0.91.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-p3">
+    <div class="q-header"><div class="q-num">Q18</div><div class="q-text"><em>Write it on paper first.</em> Work out 350 &divide; 10<sup>&minus;2</sup>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="p3-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p3',35000,'Q18',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p3','Dividing by 10<sup>&minus;2</sup> is the same as multiplying by what?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p3','350 &divide; 10<sup>&minus;2</sup> = 350 &times; 10<sup>2</sup> = 35 000.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-p4">
+    <div class="q-header"><div class="q-num">Q19</div><div class="q-text"><em>Write it on paper first.</em> How many times bigger is 10<sup>&minus;3</sup> than 10<sup>&minus;5</sup>? Write both as decimals first.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="p4-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p4',100,'Q19',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p4','10<sup>&minus;3</sup> = 0.001 and 10<sup>&minus;5</sup> = 0.00001.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p4','0.001 &divide; 0.00001 = 100. So 10<sup>&minus;3</sup> is the bigger one, by a factor of 100.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-p5">
+    <div class="q-header"><div class="q-num">Q20</div><div class="q-text"><em>Write it on paper first.</em> 0.07 &divide; 10<sup><em>k</em></sup> = 700. Find <em>k</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="p5-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p5',-4,'Q20',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p5','The answer is much bigger than 0.07, so dividing must make it bigger. What kind of power does that?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p5','0.07 &times; 10<sup>4</sup> = 700, so dividing by 10<sup>&minus;4</sup> gives 700 and k = &minus;4.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-p6">
+    <div class="q-header"><div class="q-num">Q21</div><div class="q-text"><em>Write it on paper first.</em> 6000 &divide; 10<sup><em>k</em></sup> = 0.6. Find <em>k</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="p6-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('p6',4,'Q21',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('p6','How many places does the decimal point move?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('p6','6000 &divide; 10 000 = 0.6, so 10<sup>4</sup> and k = 4.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="p6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION D &mdash; ZERO &amp; NEGATIVE POWERS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-pw-fill"></div></div>
+    <div class="section-score-val" id="sec-pw-val">0/9</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="ix" style="--sec:var(--accent-sci);--sec-rgb:62,207,142">
+  <div class="section-header"><div class="section-icon">&#128208;</div><div><div class="sub-label">Section E &middot; Q22&ndash;Q25 &middot; Indices &amp; Standard Form</div><h2>Indices &amp; Fractions</h2></div><div class="src-links"><a class="src-link" href="../t1/w2/term1-week2-maths-indices-standard-form.html" target="_blank" rel="noopener">Indices &amp; standard form sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Three laws</h4><div class="fact-body">Multiply: <em>add</em> the powers. Divide: <em>subtract</em> the powers. Power of a power: <em>multiply</em> the powers.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Numbers and letters separately</h4><div class="fact-body">Work out the numbers first, then deal with each letter by itself.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Cube or square the whole bracket</h4><div class="fact-body">In (3m<sup>2</sup>)<sup>4</sup> the power outside applies to the <em>3</em> as well as to the m<sup>2</sup>.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>A negative power in a fraction</h4><div class="fact-body">An answer such as y<sup>&minus;5</sup> is written as <span class="f">1/y<sup>5</sup></span> when the question wants a fraction.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>&ldquo;Show that&rdquo; layout</h4><div class="fact-body">Top first, bottom second, then combine. Write each step on its own line.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-i1">
+    <div class="q-header"><div class="q-num">Q22</div><div class="q-text"><em>Write it on paper first.</em> 15<em>a</em><sup>6</sup> &divide; 3<em>a</em><sup>2</sup> = 5<em>a</em><sup><em>k</em></sup>. Find <em>k</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="i1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('i1',4,'Q22',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i1','Subtract the powers: 6 &minus; 2.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i1','15 &divide; 3 = 5 and a<sup>6</sup> &divide; a<sup>2</sup> = a<sup>4</sup>, so k = 4.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-i2">
+    <div class="q-header"><div class="q-num">Q23</div><div class="q-text"><em>Write it on paper first.</em> 10<em>a</em><sup>2</sup> &divide; 15<em>a</em><sup>9</sup> simplifies to 2/(3<em>a</em><sup><em>k</em></sup>). Find <em>k</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="i2-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('i2',7,'Q23',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i2','The top power is smaller than the bottom power, so some a is left on the bottom.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i2','10/15 = 2/3 and a<sup>2&minus;9</sup> = a<sup>&minus;7</sup> = 1/a<sup>7</sup>. So the answer is 2/(3a<sup>7</sup>), and k = 7.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-i3">
+    <div class="q-header"><div class="q-num">Q24</div><div class="q-text"><em>Write it on paper first.</em> (4<em>n</em><sup>3</sup> &times; 6<em>n</em><sup>5</sup>) &divide; (2<em>n</em><sup>2</sup>)<sup>3</sup> simplifies to <em>an</em><sup><em>b</em></sup>. Find <em>a</em> + <em>b</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="i3-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('i3',5,'Q24',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i3','Top first, then bottom, then combine. Cube the 2 as well.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i3','Top: 24n<sup>8</sup>. Bottom: (2n<sup>2</sup>)<sup>3</sup> = 8n<sup>6</sup>. Combine: 3n<sup>2</sup>. So a = 3, b = 2 and a + b = 5.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-i4">
+    <div class="q-header"><div class="q-num">Q25</div><div class="q-text"><em>Write it on paper first.</em> (2<em>n</em><sup>2</sup>)<sup>3</sup> = <em>an</em><sup><em>b</em></sup>. Find <em>a</em> + <em>b</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="i4-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('i4',14,'Q25',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('i4','The power 3 applies to the 2 as well.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('i4','(2n<sup>2</sup>)<sup>3</sup> = 2<sup>3</sup> &times; n<sup>6</sup> = 8n<sup>6</sup>, so a + b = 8 + 6 = 14.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="i4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION E &mdash; INDICES &amp; FRACTIONS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ix-fill"></div></div>
+    <div class="section-score-val" id="sec-ix-val">0/6</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="br" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#9999;&#65039;</div><div><div class="sub-label">Section F &middot; Q26&ndash;Q31 &middot; Expressions &amp; Simultaneous Equations</div><h2>Brackets, Signs &amp; Equations</h2></div><div class="src-links"><a class="src-link" href="../t1/w8/term1-week8-maths-unit4-simultaneous-equations.html" target="_blank" rel="noopener">Simultaneous equations sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Two brackets</h4><div class="fact-body">Multiply every term by every term, then collect the like terms in the middle. A grid or arrows help you not miss one.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Signs</h4><div class="fact-body">A negative times a negative is positive. A minus in front of a bracket changes <em>every</em> sign inside it.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Equivalent expressions</h4><div class="fact-body">Expand each one fully. Two expressions are equivalent only if they come out exactly the same.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Subtracting equations</h4><div class="fact-body">Put the second equation in brackets first. The minus then applies to <strong>every</strong> term, including the right-hand side.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Then substitute back</h4><div class="fact-body">After finding one letter, put it into either original equation to find the other, then check it in the <em>other</em> equation.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-r1">
+    <div class="q-header"><div class="q-num">Q26</div><div class="q-text"><em>Write it on paper first.</em> (<em>x</em> + 6)(<em>x</em> + 2) = <em>x</em><sup>2</sup> + <em>bx</em> + 12. Find <em>b</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="r1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('r1',8,'Q26',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r1','Add the two middle terms.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r1','x<sup>2</sup> + 2x + 6x + 12 = x<sup>2</sup> + 8x + 12, so b = 8.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-r2">
+    <div class="q-header"><div class="q-num">Q27</div><div class="q-text"><em>Write it on paper first.</em> (<em>y</em> + 8)(<em>y</em> &minus; 5) = <em>y</em><sup>2</sup> + <em>by</em> &minus; 40. Find <em>b</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="r2-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('r2',3,'Q27',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r2','The middle terms are &minus;5y and +8y.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r2','y<sup>2</sup> &minus; 5y + 8y &minus; 40 = y<sup>2</sup> + 3y &minus; 40, so b = 3.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-r3">
+    <div class="q-header"><div class="q-num">Q28</div><div class="q-text"><em>Write it on paper first.</em> (2<em>y</em> + 3)(3<em>y</em> &minus; 4) = 6<em>y</em><sup>2</sup> + <em>by</em> &minus; 12. Find <em>b</em>. (It can be negative.)</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="r3-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('r3',1,'Q28',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r3','Middle terms: 2y &times; &minus;4 and 3 &times; 3y.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r3','6y<sup>2</sup> &minus; 8y + 9y &minus; 12 = 6y<sup>2</sup> + y &minus; 12, so b = 1.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r3-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-r4">
+    <div class="q-header"><div class="q-num">Q29</div><div class="q-text"><em>Write it on paper first.</em> 3(4<em>y</em> + 2) = 6(2<em>y</em> + <em>k</em>). Find <em>k</em>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="r4-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('r4',1,'Q29',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r4','Expand both sides.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r4','3(4y + 2) = 12y + 6 and 6(2y + k) = 12y + 6k, so 6k = 6 and k = 1.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-r5">
+    <div class="q-header"><div class="q-num">Q30</div><div class="q-text"><em>Write it on paper first.</em> 4<em>x</em> + 5<em>y</em> = 26 and 4<em>x</em> &minus; 2<em>y</em> = 12. <strong>Subtract the second equation from the first.</strong> You get <em>ay</em> = <em>c</em>. Find <em>a</em> + <em>c</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="r5-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('r5',21,'Q30',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r5','Put the second equation in brackets. 5y &minus; (&minus;2y) = ?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r5','(4x + 5y) &minus; (4x &minus; 2y) = 7y and 26 &minus; 12 = 14. So 7y = 14, a = 7, c = 14 and a + c = 21.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-r6">
+    <div class="q-header"><div class="q-num">Q31</div><div class="q-text"><em>Write it on paper first.</em> Now solve the same pair: 4<em>x</em> + 5<em>y</em> = 26 and 4<em>x</em> &minus; 2<em>y</em> = 12. Find <em>x</em> + <em>y</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="r6-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('r6',6,'Q31',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('r6','Find y, then put it back into one equation to find x.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('r6','7y = 14 gives y = 2. Then 4x + 10 = 26, so x = 4. Check in the second: 16 &minus; 4 = 12. x + y = 6.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="r6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION F &mdash; BRACKETS &amp; SIGNS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-br-fill"></div></div>
+    <div class="section-score-val" id="sec-br-val">0/10</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="mn" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#189;</div><div><div class="sub-label">Section G &middot; Q32&ndash;Q34 &middot; Fractions</div><h2>Mixed Numbers &amp; Powers</h2></div><div class="src-links"><a class="src-link" href="../t2/w8/term2-week8-maths-unit8-fractions.html" target="_blank" rel="noopener">Fractions sheet &rarr;</a></div></div>
+  <div class="facts-label">Key facts</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Convert first</h4><div class="fact-body">Change mixed numbers to <em>improper fractions</em> before you square, multiply or divide. Never square the whole part and the fraction part separately.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Dividing</h4><div class="fact-body">To divide by a fraction, flip the second fraction and multiply.</div></div>
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Order of working</h4><div class="fact-body">Powers first, then multiplication and division, then adding and subtracting.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-m1">
+    <div class="q-header"><div class="q-num">Q32</div><div class="q-text"><em>Write it on paper first.</em> Work out (1&frac12;)<sup>2</sup> + 2&frac23; &divide; 1&frac13;. Give a decimal.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="m1-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m1',4.25,'Q32',1e-06)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m1','Convert to improper fractions. Power first, then the division, then add.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m1','(3/2)<sup>2</sup> = 9/4 = 2.25. 8/3 &divide; 4/3 = 2. Total: 4.25.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-m2">
+    <div class="q-header"><div class="q-num">Q33</div><div class="q-text"><em>Write it on paper first.</em> Work out (2&frac12;)<sup>2</sup> as a decimal.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="m2-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m2',6.25,'Q33',1e-06)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m2','Write 2&frac12; as an improper fraction first.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m2','2&frac12; = 5/2 and (5/2)<sup>2</sup> = 25/4 = 6.25.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-m3">
+    <div class="q-header"><div class="q-num">Q34</div><div class="q-text"><em>Write it on paper first.</em> Work out (2&frac12;)<sup>2</sup> &minus; 1&frac34; &times; 2/7. Give a decimal.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="m3-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('m3',5.75,'Q34',1e-06)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('m3','Multiplication before subtraction. 1&frac34; = 7/4.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('m3','(5/2)<sup>2</sup> = 6.25. 7/4 &times; 2/7 = 0.5. So 6.25 &minus; 0.5 = 5.75.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="m3-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION G &mdash; MIXED NUMBERS</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-mn-fill"></div></div>
+    <div class="section-score-val" id="sec-mn-val">0/5</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { e1:2, e2:2, e3:2, e4:2, e5:1, u1:1, u2:1, u3:1, u4:2, u5:2, u6:1, b1:1, b2:2, b3:1, b4:2, p1:1, p2:2, p3:2, p4:1, p5:2, p6:1, i1:1, i2:2, i3:2, i4:1, r1:1, r2:2, r3:2, r4:1, r5:2, r6:2, m1:2, m2:1, m3:2 };
+
+const sections = {
+  ex: { label: 'Expressions in n', qs: ['e1','e2','e3','e4','e5'] },
+  su: { label: 'Simplifying Surds', qs: ['u1','u2','u3','u4','u5','u6'] },
+  sb: { label: 'Surds in Brackets', qs: ['b1','b2','b3','b4'] },
+  pw: { label: 'Zero & Negative Powers', qs: ['p1','p2','p3','p4','p5','p6'] },
+  ix: { label: 'Indices & Fractions', qs: ['i1','i2','i3','i4'] },
+  br: { label: 'Brackets & Signs', qs: ['r1','r2','r3','r4','r5','r6'] },
+  mn: { label: 'Mixed Numbers', qs: ['m1','m2','m3'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function toggleCover() {
+  const on = document.body.classList.toggle('cover');
+  document.querySelectorAll('.fact.peek').forEach(f => f.classList.remove('peek'));
+  document.getElementById('cover-btn').innerHTML = on ? '&#128064; Show the notes' : '&#128584; Cover the notes';
+}
+
+function selectMCQ(qid, el) {
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'\)/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'\)/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance + 1e-9;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  input.disabled = true;
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/[’‘]/g, "'").replace(/[“”"]/g, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Reveal the answer, then look back at the key facts above.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    document.getElementById(`sec-${key}-fill`).style.width = (secScore/secMax)*100 + '%';
+    document.getElementById(`sec-${key}-val`).textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sem1-maths-gaps_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height), w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length], rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw); else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const a = document.activeElement;
+  if (a && (a.classList.contains('num-input') || a.classList.contains('text-input'))) a.closest('.q-body')?.querySelector('.btn-check')?.click();
+});
+
+// Diagrams draw themselves in as they scroll into view
+(function() {
+  const figs = document.querySelectorAll('.q-fig');
+  if (!('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('drawn')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  figs.forEach(f => io.observe(f));
+})();
+</script>
+</body>
+</html>
