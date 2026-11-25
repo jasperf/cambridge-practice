@@ -36,6 +36,7 @@ Every paper comes in three files with the same basename:
 | **Science** | Atoms & bonding · Plant biology · Density · Sound waves & thermal energy · Electricity | 39 Qs · 48 marks (17 MCQ) | Q40–Q45 · 24 marks | [.md](sem1-science-mock.md) | [.html](sem1-science-mock.html) | [answers](sem1-science-mock-answers.md) |
 | **Science Mock 2: Combined** | A second, wider science paper: atoms & the periodic table · bonding & structures · photosynthesis & minerals · transport, transpiration & the carbon cycle · human biology (excretion, chromosomes & inheritance, fetal development & the mother’s health) · density · sound waves & interference · thermal energy & conservation · electricity & circuit symbols — the gaps-drill topics included | 52 Qs · 70 marks (24 MCQ) | Q53–Q58 · 25 marks | [.md](sem1-science-mock2-combined.md) | [.html](sem1-science-mock2-combined.html) | [answers](sem1-science-mock2-combined-answers.md) |
 | **Science Mock 3: Combined** | A third full science paper with all-new questions (same topics and layout as Mock 2): atoms & the periodic table · bonding & structures · photosynthesis & minerals · transport, transpiration & the carbon cycle · human biology (excretion, chromosomes & inheritance, fetal development & the mother’s health) · density · sound waves & interference · thermal energy & conservation · electricity & circuit symbols — the gaps-drill topics included | 52 Qs · 70 marks (23 MCQ) | Q53–Q58 · 24 marks | [.md](sem1-science-mock3-combined.md) | [.html](sem1-science-mock3-combined.html) | [answers](sem1-science-mock3-combined-answers.md) |
+| **Science Mock 4: Short Combined** | A shorter combined paper with three or four new questions per topic across Terms 1–2: atoms & the periodic table · bonding & structures · photosynthesis & minerals · transport & the carbon cycle · human biology · density · sound & interference · thermal energy & conservation · electricity | 30 Qs · 38 marks (15 MCQ) | Q31–Q33 · 12 marks | [.md](sem1-science-mock4-express.md) | [.html](sem1-science-mock4-express.html) | [answers](sem1-science-mock4-express-answers.md) |
 
 ### Chinese
 
@@ -188,6 +189,9 @@ s2/sem1/mocks/
 ├── sem1-science-mock3-combined.html             ← Interactive (Science Mock 3: combined paper)
 ├── sem1-science-mock3-combined.md                ← Printable + Q53–Q58 written
 ├── sem1-science-mock3-combined-answers.md        ← Answers + marking guide
+├── sem1-science-mock4-express.html               ← Interactive (Science Mock 4, short combined)
+├── sem1-science-mock4-express.md                 ← Printable + Q31–Q33 written
+├── sem1-science-mock4-express-answers.md         ← Answers + marking guide
 ├── sem1-science-revision.html                    ← Interactive (Terms 1–2 science review)
 ├── sem1-science-revision.md                      ← Printable + Q43–Q48 written
 ├── sem1-science-revision-answers.md              ← Answers + marking guide
