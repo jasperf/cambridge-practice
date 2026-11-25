@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maths One Question per Unit &middot; Semester 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci), var(--accent-warn)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.88rem; color: var(--text-muted); margin-top: 12px; max-width: 720px; }
+.btn-cover { margin-top: 16px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+.btn-cover:hover { border-color: var(--accent); }
+body.cover .btn-cover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.section-tabs { position: sticky; top: 58px; z-index: 50; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); max-width: 100%; padding: 10px max(28px, calc((100% - 844px) / 2)); display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border); }
+.sub-tab { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.main > div[id] { scroll-margin-top: 120px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 18px; flex-wrap: wrap; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(var(--sec-rgb),0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.src-links { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.src-link { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; }
+.src-link:hover { color: var(--sec); border-color: var(--sec); }
+.facts-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sec); margin: 6px 0 10px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 26px; }
+.fact { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--sec); border-radius: 8px; padding: 12px 14px; font-size: 0.86rem; line-height: 1.6; cursor: default; }
+.fact h4 { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.fact em { color: var(--sec); }
+.fact .f { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-warn); }
+.fact-body { transition: filter 0.25s, opacity 0.25s; }
+body.cover .fact { cursor: pointer; }
+body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-select: none; }
+.explorer { background: linear-gradient(135deg, rgba(var(--sec-rgb),0.07), rgba(var(--sec-rgb),0.02)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin: 0 0 28px; }
+.explorer h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 2px; }
+.ex-note { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 14px; }
+.ex-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.ex-svg { width: 100%; max-width: 420px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; display: block; }
+.ex-svg.wide { max-width: 100%; }
+.ex-controls { flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ex-controls label { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted); }
+.ex-controls input[type=range] { width: 100%; accent-color: var(--sec); }
+.ex-readout { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; margin-top: 6px; color: var(--text); }
+.ex-readout strong { color: var(--sec); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--sec, var(--accent)); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: var(--sec, var(--accent)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-ok { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-ok 0.6s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .section-tabs { top: 0; position: relative; padding: 10px 16px; }
+  .hero, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .src-links { margin-left: 0; }
+  .q-header, .q-body { padding-left: 14px; padding-right: 14px; }
+  .explorer { padding: 14px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+
+.ftable { border-collapse: collapse; margin: 6px 0 14px; font-size: 0.9rem; }
+.ftable th, .ftable td { border: 1px solid var(--border); padding: 6px 14px; text-align: center; }
+.ftable th { background: var(--surface2); font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); }
+.ex-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.ex-btn { font-family: var(--font-mono); font-size: 0.8rem; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; }
+.ex-btn:hover { border-color: var(--sec); }
+.ex-btn.on { background: rgba(var(--sec-rgb),0.18); border-color: var(--sec); }
+#vn-dot { transition: cx 0.8s ease, cy 0.8s ease; }
+@media (prefers-reduced-motion: reduce) { #vn-dot { transition: none; } }
+#dsq-range { width: 100%; max-width: 420px; accent-color: var(--sec); }
+
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Maths &middot; One per Unit</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 16</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Mathematics &middot; Semester 1 assessment</div>
+  <h1>One Question per Unit<br><em>a quick check across Terms 1&ndash;2</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>8 questions &middot; self-marked &middot; 16 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>About 15 minutes &middot; calculator allowed</div>
+  </div>
+  <p class="credit">One new question from each unit in the Semester 1 assessment: standard form (Unit 1), expressions and formulae (Unit 2), decimals and percentages (Unit 3), simultaneous equations (Unit 4), inequalities (Unit 4.3), angles in polygons (Unit 5), circles (Unit 7.1) and compound shapes (Unit 7.2). <strong>Write your working on paper first</strong>, then type the final answer or pick a letter. Each section has one key fact; use <strong>Cover the notes</strong> to test yourself before you read it. Use this as a quick check on which unit needs more practice, then go to the linked sheet.</p>
+  <button class="btn btn-cover" id="cover-btn" onclick="toggleCover()">&#128584; Cover the notes</button>
+  <style>
+.formula-list { margin-top: 18px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 0 16px; }
+.formula-list summary { cursor: pointer; font-family: var(--font-mono); font-size: 0.85rem; padding: 14px 0; color: var(--text); }
+.fl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; padding-bottom: 16px; }
+.fl-group { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; }
+.fl-group h4 { margin: 0 0 6px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-math); text-transform: uppercase; letter-spacing: 0.04em; }
+.fl-group ul { margin: 0; padding-left: 18px; font-size: 0.86rem; line-height: 1.5; }
+body.cover .fl-grid { filter: blur(7px); user-select: none; }
+</style>
+<details class="formula-list" open>
+  <summary>&#128208; Formulas to know (all units)</summary>
+  <div class="fl-grid"><div class="fl-group"><h4>Angles</h4><ul><li>Straight line = 180&deg;; round a point = 360&deg;</li><li>Vertically opposite angles are equal</li><li>Triangle = 180&deg;; exterior angle = the 2 opposite inside angles</li><li>Parallel lines: F (corresponding) and Z (alternate) equal; C (co-interior) adds to 180&deg;</li></ul></div><div class="fl-group"><h4>Polygons</h4><ul><li>Sum of <strong>interior</strong> angles = (n &minus; 2) &times; 180&deg;</li><li>Sum of <strong>exterior</strong> angles = 360&deg; (any polygon)</li><li>Regular: exterior = 360&deg; &divide; n; interior = 180&deg; &minus; exterior</li><li>Only triangles, squares and hexagons tessellate alone</li></ul></div><div class="fl-group"><h4>Pythagoras</h4><ul><li>a&sup2; + b&sup2; = c&sup2; (c = hypotenuse)</li><li>Hypotenuse: ADD the squares. Short side: SUBTRACT</li><li>Triples: 3-4-5, 6-8-10, 5-12-13, 8-15-17, 7-24-25</li></ul></div><div class="fl-group"><h4>Isosceles triangle</h4><ul><li>&alpha; + 2&beta; = 180&deg;, so &beta; = (180&deg; &minus; &alpha;) &divide; 2</li><li>h = &radic;(a&sup2; &minus; (b/2)&sup2;): halve the base first</li><li>Area = &frac12; &times; b &times; h (vertical height, not the slanted side)</li></ul></div><div class="fl-group"><h4>Square vs trapezium</h4><ul><li>Square: 4 equal sides, 2 pairs of parallel sides, A = s&sup2;</li><li>Trapezium: exactly 1 pair of parallel sides, A = &frac12;(a + b) &times; h</li><li>h is the perpendicular height, never the slanted leg</li></ul></div><div class="fl-group"><h4>Circles</h4><ul><li>d = 2r, r = d &divide; 2</li><li>C = &pi; &times; d; d = C &divide; &pi;</li><li>A = &pi; &times; r&sup2;; r = &radic;(A &divide; &pi;)</li><li>C uses the diameter, A uses the radius; take the square root last</li></ul></div><div class="fl-group"><h4>Area</h4><ul><li>Rectangle l &times; w; triangle &frac12; &times; b &times; h; parallelogram b &times; h</li><li>Trapezium &frac12;(a + b) &times; h; circle &pi;r&sup2;</li><li>Semicircle &frac12;&pi;r&sup2;; quarter circle &frac14;&pi;r&sup2;; ring &pi;R&sup2; &minus; &pi;r&sup2;</li><li>Compound shape: split, then add; a hole is subtracted</li></ul></div><div class="fl-group"><h4>Perimeter</h4><ul><li>The total distance round the OUTSIDE</li><li>Rectangle 2(l + w); square 4s; circle &pi; &times; d</li><li>Semicircle = &frac12;&pi;d + d (curve plus straight edge)</li><li>Quarter circle = &frac14; &times; 2&pi;r + 2r (curve plus two radii)</li></ul></div><div class="fl-group"><h4>Expanding brackets</h4><ul><li>(x + a)&sup2; = x&sup2; + 2ax + a&sup2; (not x&sup2; + a&sup2;)</li><li>(x + a)(x &minus; a) = x&sup2; &minus; a&sup2;</li><li>Minus &times; minus = plus</li></ul></div><div class="fl-group"><h4>Simultaneous equations</h4><ul><li>Same signs: SUBTRACT. Different signs: ADD</li><li>Find both letters, then check in the other equation</li></ul></div><div class="fl-group"><h4>Indices &amp; standard form</h4><ul><li>Multiply: add powers. Divide: subtract powers. (a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup></li><li>a<sup>0</sup> = 1; a<sup>&minus;n</sup> = 1/a<sup>n</sup></li><li>Standard form: A &times; 10<sup>n</sup> with 1 &le; A &lt; 10</li><li>Rational = can be a fraction; irrational = never ends or repeats</li></ul></div><div class="fl-group"><h4>Inequalities</h4><ul><li>&lt; and &gt; open circle; &le; and &ge; filled circle</li><li>Multiply or divide by a NEGATIVE: flip the sign</li></ul></div><div class="fl-group"><h4>Rounding, bounds &amp; %</h4><ul><li>Bounds = half a unit either side (6.3 to 1 d.p.: 6.25 &le; x &lt; 6.35)</li><li>Max of a + b or a &times; b: both upper bounds. Max of a &minus; b or a &divide; b: upper a, lower b</li><li>+15% &rarr; &times; 1.15; &minus;20% &rarr; &times; 0.80; reverse a %: divide by the multiplier</li></ul></div><div class="fl-group"><h4>Formulae</h4><ul><li>Rearrange: undo the operations in reverse order</li><li>Algebraic fractions: common denominator first</li><li>Minus a bracket changes BOTH signs</li></ul></div></div>
+</details>
+</div>
+<div class="section-tabs">
+  <a href="#un" class="sub-tab">&#10024; Unit 1</a>
+  <a href="#ex" class="sub-tab">&#128221; Unit 2</a>
+  <a href="#dp" class="sub-tab">&#128176; Unit 3</a>
+  <a href="#sq" class="sub-tab">&#9999;&#65039; Unit 4</a>
+  <a href="#in" class="sub-tab">&#8801; Unit 4.3</a>
+  <a href="#an" class="sub-tab">&#128208; Unit 5</a>
+  <a href="#ci" class="sub-tab">&#9711; Unit 7.1</a>
+  <a href="#co" class="sub-tab">&#9635; Unit 7.2</a>
+</div>
+<div class="main">
+
+<div id="un" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#10024;</div><div><div class="sub-label">Section A &middot; Q1 &middot; Unit 1</div><h2>Numbers: Standard Form</h2></div><div class="src-links"><a class="src-link" href="../t1/w2/term1-week2-maths-indices-standard-form.html" target="_blank" rel="noopener">Indices &amp; standard form sheet &rarr;</a></div></div>
+  <div class="facts-label">Key fact</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Standard form needs 1 &le; A &lt; 10</h4><div class="fact-body">Multiply the front numbers, add the powers of 10, then check the front number is still between 1 and 10. If not, move one factor of 10 across.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <div class="q-card" id="qcard-q1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Work out (6 &times; 10<sup>4</sup>) &times; (3 &times; 10<sup>&minus;2</sup>). Which answer is in standard form?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q1-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'a')"><div class="opt-indicator"></div><span>18 &times; 10<sup>2</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'b')"><div class="opt-indicator"></div><span>1.8 &times; 10<sup>3</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'c')"><div class="opt-indicator"></div><span>1.8 &times; 10<sup>2</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q1', this, 'd')"><div class="opt-indicator"></div><span>9 &times; 10<sup>2</sup></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q1','b','Q1')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q1','Multiply the front numbers, add the powers, then check the front number is between 1 and 10.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q1','B &mdash; 6 &times; 3 = 18 and 10<sup>4</sup> &times; 10<sup>&minus;2</sup> = 10<sup>2</sup>, so 18 &times; 10<sup>2</sup>. The front number must be below 10, so move one 10 across: 1.8 &times; 10<sup>3</sup>. Option A is correct in value but is not standard form.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q1-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION A &mdash; UNIT 1</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-un-fill"></div></div>
+    <div class="section-score-val" id="sec-un-val">0/2</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="ex" style="--sec:var(--accent-sci);--sec-rgb:62,207,142">
+  <div class="section-header"><div class="section-icon">&#128221;</div><div><div class="sub-label">Section B &middot; Q2 &middot; Unit 2</div><h2>Expressions &amp; Formulae</h2></div><div class="src-links"><a class="src-link" href="../t1/w5/term1-week5-maths-expressions-formulae.html" target="_blank" rel="noopener">Expressions &amp; formulae sheet &rarr;</a></div></div>
+  <div class="facts-label">Key fact</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Rearrange, then substitute</h4><div class="fact-body">Get the letter you want on its own by undoing operations in reverse order. Put the numbers in at the end, with brackets round anything negative.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <div class="q-card" id="qcard-q2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">The formula <em>v</em><sup>2</sup> = <em>u</em><sup>2</sup> + 2<em>as</em> gives the speed of a car. Find <em>a</em> when <em>v</em> = 13, <em>u</em> = 5 and <em>s</em> = 8.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="q2-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('q2',9,'Q2',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q2','Rearrange first: a = (v&sup2; &minus; u&sup2;) &divide; 2s. Square 13 and 5 before you subtract.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q2','a = (13<sup>2</sup> &minus; 5<sup>2</sup>) &divide; (2 &times; 8) = (169 &minus; 25) &divide; 16 = 144 &divide; 16 = 9.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q2-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION B &mdash; UNIT 2</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ex-fill"></div></div>
+    <div class="section-score-val" id="sec-ex-val">0/2</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="dp" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#128176;</div><div><div class="sub-label">Section C &middot; Q3 &middot; Unit 3</div><h2>Decimals, Percentages &amp; Rounding</h2></div><div class="src-links"><a class="src-link" href="../t1/w8/term1-week8-maths-unit-test3-decimals-percentages-rounding.html" target="_blank" rel="noopener">Decimals &amp; percentages sheet &rarr;</a></div></div>
+  <div class="facts-label">Key fact</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Reverse percentages divide</h4><div class="fact-body">After a rise of 20%, the new amount is 120% of the original. To go back, divide by the multiplier (1.20). Do not take 20% off the new amount.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <div class="q-card" id="qcard-q3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">After a 20% price rise, a bike costs $90. What was the price <strong>before</strong> the rise?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="q3-ans" placeholder="Enter answer..."><span class="num-unit">$</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('q3',75,'Q3',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q3','The new price is 120% of the old one, so the multiplier is 1.2.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q3','Original = 90 &divide; 1.2 = $75. (Taking 20% off $90 gives $72, which is the common wrong answer.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q3-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION C &mdash; UNIT 3</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-dp-fill"></div></div>
+    <div class="section-score-val" id="sec-dp-val">0/2</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="sq" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#9999;&#65039;</div><div><div class="sub-label">Section D &middot; Q4 &middot; Unit 4</div><h2>Simultaneous Equations</h2></div><div class="src-links"><a class="src-link" href="../t1/w8/term1-week8-maths-unit4-simultaneous-equations.html" target="_blank" rel="noopener">Simultaneous equations sheet &rarr;</a></div></div>
+  <div class="facts-label">Key fact</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Same signs subtract, different signs add</h4><div class="fact-body">Make one letter match or cancel, solve for the other, substitute back, then check in the other equation. Find both letters before you answer.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <div class="q-card" id="qcard-q4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Solve the simultaneous equations 3<em>x</em> + <em>y</em> = 19 and <em>x</em> &minus; <em>y</em> = 1. Find the value of <em>x</em> &times; <em>y</em>.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="q4-ans" placeholder="Enter answer..."><span class="num-unit"></span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('q4',20,'Q4',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q4','The y terms have different signs (+y and &minus;y), so add the equations.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q4','Adding: 4<em>x</em> = 20, so <em>x</em> = 5. Then 5 &minus; <em>y</em> = 1 gives <em>y</em> = 4. <em>x</em> &times; <em>y</em> = 5 &times; 4 = 20. Check: 3(5) + 4 = 19.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q4-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION D &mdash; UNIT 4</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-sq-fill"></div></div>
+    <div class="section-score-val" id="sec-sq-val">0/2</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="in" style="--sec:var(--accent-sci);--sec-rgb:62,207,142">
+  <div class="section-header"><div class="section-icon">&#8801;</div><div><div class="sub-label">Section E &middot; Q5 &middot; Unit 4.3</div><h2>Linear Inequalities</h2></div><div class="src-links"><a class="src-link" href="../t2/w1/term2-week1-maths-unit4-linear-inequalities.html" target="_blank" rel="noopener">Linear inequalities sheet &rarr;</a></div></div>
+  <div class="facts-label">Key fact</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Negative flips the sign</h4><div class="fact-body">Solve like an equation, but when you multiply or divide both sides by a negative number the inequality sign turns round.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <div class="q-card" id="qcard-q5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Solve &minus;3<em>x</em> + 4 &ge; 16.</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'a')"><div class="opt-indicator"></div><span><em>x</em> &ge; &minus;4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'b')"><div class="opt-indicator"></div><span><em>x</em> &ge; 4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'c')"><div class="opt-indicator"></div><span><em>x</em> &le; 4</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q5', this, 'd')"><div class="opt-indicator"></div><span><em>x</em> &le; &minus;4</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q5','d','Q5')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q5','Subtract 4 first, then divide by &minus;3. What happens to the sign?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q5','D &mdash; &minus;3<em>x</em> &ge; 12. Dividing by &minus;3 flips the sign: <em>x</em> &le; &minus;4. Test: <em>x</em> = &minus;5 gives 15 + 4 = 19 &ge; 16.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q5-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION E &mdash; UNIT 4.3</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-in-fill"></div></div>
+    <div class="section-score-val" id="sec-in-val">0/2</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="an" style="--sec:var(--accent-warn);--sec-rgb:245,166,35">
+  <div class="section-header"><div class="section-icon">&#128208;</div><div><div class="sub-label">Section F &middot; Q6 &middot; Unit 5</div><h2>Angles &amp; Polygons</h2></div><div class="src-links"><a class="src-link" href="../t2/w2/term2-week2-maths-unit5-calculating-angles.html" target="_blank" rel="noopener">Calculating angles sheet &rarr;</a></div></div>
+  <div class="facts-label">Key fact</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Exterior angles total 360&deg;</h4><div class="fact-body">For a regular polygon each exterior angle is 360&deg; &divide; n, and interior + exterior = 180&deg;. Work back from the angle to find n.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <div class="q-card" id="qcard-q6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Each interior angle of a regular polygon is 156&deg;. How many sides does it have?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="num-row"><input type="number" step="any" class="num-input" id="q6-ans" placeholder="Enter answer..."><span class="num-unit">sides</span></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkNum('q6',15,'Q6',0)">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q6','Find the exterior angle first, then divide it into 360&deg;.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q6','Exterior angle = 180&deg; &minus; 156&deg; = 24&deg;. Sides = 360 &divide; 24 = 15.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q6-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION F &mdash; UNIT 5</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-an-fill"></div></div>
+    <div class="section-score-val" id="sec-an-val">0/2</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="ci" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#9711;</div><div><div class="sub-label">Section G &middot; Q7 &middot; Unit 7.1</div><h2>Circles</h2></div><div class="src-links"><a class="src-link" href="../t2/w5/term2-week5-maths-unit-test2-angles-shapes-measurements.html" target="_blank" rel="noopener">Unit Test 2 practice (Section D) &rarr;</a></div></div>
+  <div class="facts-label">Key fact</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Area uses the radius</h4><div class="fact-body">A = &pi; &times; r&sup2;. If you are given the diameter, halve it first. Only the radius is squared.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <div class="q-card" id="qcard-q7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">A circular table has a diameter of 18 cm in a scale model. What is its area, to 1 decimal place?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q7-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q7', this, 'a')"><div class="opt-indicator"></div><span>254.5 cm<sup>2</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q7', this, 'b')"><div class="opt-indicator"></div><span>56.5 cm<sup>2</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q7', this, 'c')"><div class="opt-indicator"></div><span>1017.9 cm<sup>2</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q7', this, 'd')"><div class="opt-indicator"></div><span>127.2 cm<sup>2</sup></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q7','a','Q7')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q7','Halve the diameter to get the radius before you square anything.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q7','A &mdash; r = 18 &divide; 2 = 9, so area = &pi; &times; 9<sup>2</sup> = 254.5 cm<sup>2</sup>. B is the circumference, C squares the diameter, D halves the correct area.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q7-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION G &mdash; UNIT 7.1</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-ci-fill"></div></div>
+    <div class="section-score-val" id="sec-ci-val">0/2</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div id="co" style="--sec:var(--accent-sci);--sec-rgb:62,207,142">
+  <div class="section-header"><div class="section-icon">&#9635;</div><div><div class="sub-label">Section H &middot; Q8 &middot; Unit 7.2</div><h2>Compound Shapes</h2></div><div class="src-links"><a class="src-link" href="../t2/w5/term2-week5-maths-unit-test2-angles-shapes-measurements.html" target="_blank" rel="noopener">Unit Test 2 practice (Section E) &rarr;</a></div></div>
+  <div class="facts-label">Key fact</div>
+  <div class="facts">
+    <div class="fact" onclick="this.classList.toggle('peek')"><h4>Subtract a hole</h4><div class="fact-body">Find the area of the whole shape, then subtract the area of the part that is cut out. Keep the full &pi; value until the end.</div></div>
+  </div>
+  <div class="facts-label">Check yourself</div>
+  <div class="q-card" id="qcard-q8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A rectangle measures 10 cm by 6 cm. A circular hole of radius 2 cm is cut out of it. What is the area that is left, to 1 decimal place?</div><div class="q-marks">2 marks</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="q8-opts">
+        <div class="mcq-opt" onclick="selectMCQ('q8', this, 'a')"><div class="opt-indicator"></div><span>72.6 cm<sup>2</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q8', this, 'b')"><div class="opt-indicator"></div><span>53.7 cm<sup>2</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q8', this, 'c')"><div class="opt-indicator"></div><span>47.4 cm<sup>2</sup></span></div>
+        <div class="mcq-opt" onclick="selectMCQ('q8', this, 'd')"><div class="opt-indicator"></div><span>56.0 cm<sup>2</sup></span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('q8','c','Q8')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('q8','Rectangle minus circle. Square the radius before multiplying by &pi;.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q8','C &mdash; rectangle = 10 &times; 6 = 60. Hole = &pi; &times; 2<sup>2</sup> = 12.57. Left = 60 &minus; 12.57 = 47.4 cm<sup>2</sup>. A adds the hole, B forgets to square the radius, D forgets &pi;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="q8-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">SECTION H &mdash; UNIT 7.2</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-co-fill"></div></div>
+    <div class="section-score-val" id="sec-co-val">0/2</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+
+const marks = { q1:2, q2:2, q3:2, q4:2, q5:2, q6:2, q7:2, q8:2 };
+
+const sections = {
+  un: { label: 'Unit 1 · Numbers: Standard Form', qs: ['q1'] },
+  ex: { label: 'Unit 2 · Expressions & Formulae', qs: ['q2'] },
+  dp: { label: 'Unit 3 · Decimals, Percentages & Rounding', qs: ['q3'] },
+  sq: { label: 'Unit 4 · Simultaneous Equations', qs: ['q4'] },
+  in: { label: 'Unit 4.3 · Linear Inequalities', qs: ['q5'] },
+  an: { label: 'Unit 5 · Angles & Polygons', qs: ['q6'] },
+  ci: { label: 'Unit 7.1 · Circles', qs: ['q7'] },
+  co: { label: 'Unit 7.2 · Compound Shapes', qs: ['q8'] }
+};
+
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+function toggleCover() {
+  const on = document.body.classList.toggle('cover');
+  document.querySelectorAll('.fact.peek').forEach(f => f.classList.remove('peek'));
+  document.getElementById('cover-btn').innerHTML = on ? '&#128064; Show the notes' : '&#128584; Cover the notes';
+}
+
+function selectMCQ(qid, el) {
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-d])'\)/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-d])'\)/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function checkNum(qid, correctVal, label, tolerance=0) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input || input.value === '') { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const val = parseFloat(input.value);
+  const isCorrect = Math.abs(val - correctVal) <= tolerance + 1e-9;
+  input.classList.add(isCorrect ? 'correct' : 'wrong');
+  input.disabled = true;
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/[’‘]/g, "'").replace(/[“”"]/g, '').replace(/\s+/g, ' ');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Reveal the answer, then look back at the key facts above.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    document.getElementById(`sec-${key}-fill`).style.width = (secScore/secMax)*100 + '%';
+    document.getElementById(`sec-${key}-val`).textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sem1-maths-one-per-unit_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height), w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length], rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw); else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const a = document.activeElement;
+  if (a && (a.classList.contains('num-input') || a.classList.contains('text-input'))) a.closest('.q-body')?.querySelector('.btn-check')?.click();
+});
+
+</script>
+</body>
+</html>
