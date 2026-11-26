@@ -27,6 +27,6 @@
 | Q23 | blue-black | 1 |
 | Q24 | ethanol | 1 |
 | Q25 | A | 1 |
-| Q26 | A | 1 |
+| Q26 | B | 1 |
 
 **Total: 26 marks.** Typed answers: spelling must be right; plurals and common alternatives (e.g. CO2) are accepted on the interactive sheet.

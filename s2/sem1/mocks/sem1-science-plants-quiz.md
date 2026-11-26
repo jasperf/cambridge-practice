@@ -156,9 +156,9 @@ A variegated leaf has green parts and white parts. After the starch test, which 
 - D) Neither part, because the leaf was kept in the dark
 
 **Q26** (1 mark)
-A graph of bubbles per minute against light intensity rises, then levels off. What is the best reason it levels off?
-- A) Light is no longer the limiting factor — something else, such as carbon dioxide, is now limiting the rate
-- B) The plant has run out of chlorophyll
-- C) The pondweed has stopped being alive
-- D) Bubbles cannot be counted above a certain rate
+Testing a leaf for starch is a way to check whether it has been photosynthesising. Why does this work?
+- A) Leaves make starch only at night, when photosynthesis has stopped
+- B) Glucose made in photosynthesis is stored as starch, so finding starch shows the leaf has been photosynthesising
+- C) Leaves absorb starch from the soil through the roots
+- D) Starch is the green pigment that absorbs light
 
