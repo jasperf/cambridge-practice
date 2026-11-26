@@ -40,7 +40,7 @@ Photosynthesis transfers light energy into which energy store in glucose? (one w
 Answer: _______________________
 
 **Q7** (1 mark)
-Which type of leaf cell, in the layer just below the upper surface, contains the most chloroplasts?
+Plants store spare carbohydrate as starch. Inside which organelle of a leaf cell is this starch stored?
 
 Answer: _______________________
 
@@ -76,7 +76,7 @@ Answer: _______________________
 
 **Q13** (1 mark)
 A plant is grown in soil that has no nitrate. What will it most likely look like after a few weeks?
-- A) Stunted (poor) growth and yellowing leaves
+- A) Slow growth and pale leaves
 - B) Very large flowers
 - C) Leaves that have turned blue-black
 - D) Faster growth than normal
@@ -90,7 +90,7 @@ Answer: _______________________
 ## Section C: Minerals, Fertilisers & Yield
 
 **Q15** (1 mark)
-Many fertilisers are labelled NPK. Which element does the K stand for?
+Before adding fertiliser, what can a farmer test to find out which minerals are lacking in each part of a field?
 
 Answer: _______________________
 
@@ -102,7 +102,7 @@ A farmer grows the same crop in a field every year without fertiliser, and the y
 - D) The rain washes glucose out of the soil
 
 **Q17** (1 mark)
-Without fertiliser a field gave 80 kg of beans. With fertiliser, the same-sized field gave 100 kg. How many kg more is that? (number only)
+Without fertiliser a field gave 80 kg of wheat. With fertiliser, the same-sized field gave 100 kg. How many kg more is that? (number only)
 
 Answer: _______________________
 
@@ -112,10 +112,10 @@ Using the same data (80 kg → 100 kg), what is the percentage increase in yield
 Answer: _______________________
 
 **Q19** (1 mark)
-A student compares two fertilisers on bean plants. Which of these must be kept the same for a fair test?
+A student compares two fertilisers on wheat plants. Which of these must be kept the same for a fair test?
 - A) The type of fertiliser
 - B) The height of the plants at the end
-- C) The number of beans harvested
+- C) The mass of grain harvested
 - D) The amount of water each plant gets
 
 **Q20** (1 mark)
@@ -139,26 +139,26 @@ A student counts bubbles with the lamp at 10, 20, 30 and 40 cm from the pondweed
 - D) The temperature of the water
 
 **Q23** (1 mark)
-The bubbles from pondweed are collected in a test tube. The gas relights a glowing splint. Name the gas.
+A leaf is tested for starch and turns blue-black. Which process must the leaf have been carrying out to make that starch?
 
 Answer: _______________________
 
 **Q24** (1 mark)
-Before a starch test, a plant is kept in the dark for 48 hours so that it uses up its starch. What word describes the plant after this?
+Which solution is dropped onto a leaf to test it for starch?
 
 Answer: _______________________
 
 **Q25** (1 mark)
-A destarched plant has part of one leaf covered on both sides with black paper. It is left in bright light for a day, then the leaf is tested with iodine. What is seen?
+A plant is kept in the dark for 48 hours to use up its starch. Part of one leaf is then covered on both sides with black paper, and the plant is left in bright light for a day. The leaf is tested for starch. What is seen?
 - A) The whole leaf turns blue-black
 - B) Only the covered part turns blue-black
 - C) Only the uncovered part turns blue-black; the covered part stays orange-brown
 - D) The whole leaf stays orange-brown
 
 **Q26** (1 mark)
-Why might a student put a clear tank of water between the lamp and the pondweed?
-- A) To absorb heat from the lamp, so the temperature of the pondweed stays the same
-- B) To give the pondweed extra carbon dioxide
-- C) To make the light brighter
-- D) To supply water for photosynthesis
+A leaf picked at the end of a warm, sunny day contains plenty of starch. Why?
+- A) It made more glucose than it needed straight away, and stored the extra as starch for later
+- B) It absorbed starch from the soil through its roots
+- C) Sunlight contains starch, which the leaf soaks up
+- D) Starch is made when the leaf takes in oxygen from the air
 
