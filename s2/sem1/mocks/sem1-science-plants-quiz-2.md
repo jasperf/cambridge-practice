@@ -139,7 +139,7 @@ A student counts bubbles with the lamp at 10, 20, 30 and 40 cm from the pondweed
 - D) The temperature of the water
 
 **Q23** (1 mark)
-A leaf is tested for starch and turns blue-black. Which process must the leaf have been carrying out to make that starch?
+The bubbles from pondweed are collected in a test tube. The gas relights a glowing splint. Name the gas.
 
 Answer: _______________________
 

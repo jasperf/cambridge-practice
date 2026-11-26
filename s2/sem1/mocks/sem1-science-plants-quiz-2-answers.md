@@ -24,7 +24,7 @@
 | Q20 | root hair cells | 1 |
 | Q21 | 9 | 1 |
 | Q22 | B | 1 |
-| Q23 | photosynthesis | 1 |
+| Q23 | oxygen | 1 |
 | Q24 | iodine | 1 |
 | Q25 | C | 1 |
 | Q26 | A | 1 |

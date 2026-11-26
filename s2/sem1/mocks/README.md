@@ -92,7 +92,7 @@ A last-minute plant biology check: [interactive](sem1-science-plants-quiz.html) 
 
 ### Plants quick quiz 2
 
-A second plants check in the same format, all new questions: [interactive](sem1-science-plants-quiz-2.html) · [printable](sem1-science-plants-quiz-2.md) · [answers](sem1-science-plants-quiz-2-answers.md). Raw materials, chlorophyll, stomata and where starch is stored; starch storage, xylem, proteins, magnesium and nitrate deficiency; soil testing, wheat yield data and fair tests; independent variables, the iodine starch test, the covered-leaf experiment and why sunlit leaves store starch. **26 questions, 26 marks** (18 typed, 8 multiple choice). The pondweed explorer adds an extra-carbon-dioxide switch to show which limiting factor is in charge.
+A second plants check in the same format, all new questions: [interactive](sem1-science-plants-quiz-2.html) · [printable](sem1-science-plants-quiz-2.md) · [answers](sem1-science-plants-quiz-2-answers.md). Raw materials, chlorophyll, stomata and where starch is stored; starch storage, xylem, proteins, magnesium and nitrate deficiency; soil testing, wheat yield data and fair tests; independent variables, the glowing-splint test, the iodine starch test, the covered-leaf experiment and why sunlit leaves store starch. **26 questions, 26 marks** (18 typed, 8 multiple choice). The pondweed explorer adds an extra-carbon-dioxide switch to show which limiting factor is in charge.
 
 ### Gaps drill
 
