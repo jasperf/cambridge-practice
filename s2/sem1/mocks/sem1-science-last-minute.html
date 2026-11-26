@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Last-Minute Check &middot; Science Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent-sci); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-sci); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-sci); min-width: 62px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent-sci); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-sci { background: var(--accent-sci); }
+.exam-banner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 8px; padding: 0 28px; }
+.exam-inner { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.28); border-radius: 12px; padding: 14px 18px; font-size: 0.88rem; color: var(--text-muted); }
+.exam-inner strong { color: var(--accent-warn); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.5px; }
+.watch-box { position: relative; z-index: 1; max-width: 900px; margin: 12px auto 8px; padding: 0 28px; }
+.watch-inner { background: linear-gradient(135deg, rgba(62,207,142,0.08), rgba(79,142,247,0.05)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.watch-inner h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+.watch-inner p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; }
+.watch-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.watch-link { font-family: var(--font-mono); font-size: 0.74rem; text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; transition: all 0.18s; }
+.watch-link:hover { border-color: var(--accent-sci); color: var(--accent-sci); transform: translateY(-1px); }
+.section-tabs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 16px 28px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-tab { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.5px; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+.sub-tab:hover { border-color: var(--accent-sci); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(62,207,142,0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.info-box { background: var(--surface2); border-left: 3px solid var(--accent-sci); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.atom-diagram { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0 24px; text-align: center; }
+.atom-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto; background: rgba(15,17,23,0.5); border-radius: 8px; }
+.atom-info { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 12px; min-height: 1.4em; line-height: 1.5; }
+.word-eq { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text); background: rgba(15,17,23,0.5); border: 1px dashed var(--border); border-radius: 8px; padding: 14px 16px; margin: 16px 0 24px; text-align: center; line-height: 2; }
+.word-eq .reactant { color: var(--accent-math); }
+.word-eq .product { color: var(--accent-sci); }
+.word-eq .over { color: var(--accent-warn); font-size: 0.76rem; }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-text em { font-style: italic; color: var(--accent-sci); }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-sci); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent-sci); }
+.mcq-opt.selected { border-color: var(--accent-sci); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent-sci); background: var(--accent-sci); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.multi-opt .opt-indicator { border-radius: 5px; }
+.multi-note { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-warn); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent-sci); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent-sci); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--accent-sci); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: linear-gradient(90deg, var(--accent-sci), var(--accent-math)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent-sci); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+.mineral-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 16px 0 24px; }
+.mineral-card { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--accent-sci); border-radius: 0 8px 8px 0; padding: 14px 16px; }
+.mineral-card h4 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 6px; color: var(--text); }
+.mineral-card .sym { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-warn); letter-spacing: 1px; }
+.mineral-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-top: 4px; }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-green 0.6s ease; }
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .topbar > div:last-child { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .hero, .section-tabs, .main, .watch-box, .exam-banner { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+
+.formula-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; margin: 0 0 8px; }
+.formula-box summary { cursor: pointer; padding: 14px 18px; font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
+.formula-box summary span { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); font-weight: 400; margin-left: 8px; }
+.formula-list { list-style: none; padding: 0 18px 16px; display: grid; gap: 8px; }
+.formula-list li { font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; border-left: 3px solid var(--accent-sci); padding: 4px 0 4px 12px; }
+.formula-list li b { color: var(--text); font-family: var(--font-mono); font-size: 0.8rem; display: block; letter-spacing: 0.3px; }
+.formula-list li.phy { border-left-color: var(--accent-math); }
+.formula-list li.chem { border-left-color: var(--accent-warn); }
+
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Science &middot; Last-minute check</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="index.html" class="back-link">&larr; Mocks</a>
+    <div class="timer-wrap"><span style="font-size:0.85rem;">&#9201;</span><div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 15</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Semester 1 Assessment</div>
+  <h1>Last-Minute<br><em>Check</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot dot-sci"></div>Atoms &middot; Bonding &middot; Plants &middot; Human biology &middot; Density &middot; Sound &middot; Heat &middot; Electricity</div>
+    <div class="hero-chip"><div class="dot dot-sci" style="background:var(--text-dim)"></div>15 questions &middot; 11 typed, 4 multiple choice &middot; 15 marks</div>
+  </div>
+</div>
+<div class="exam-banner"><div class="formula-box"><details>
+  <summary>Key formulas &amp; facts<span>try the questions first &middot; tap to open</span></summary>
+  <ul class="formula-list">
+      <li class="chem"><b>Atoms</b>neutrons = mass number &minus; atomic number &middot; shells hold 2, 8, 8</li>
+      <li class="chem"><b>Ions</b>metals lose electrons (+), non-metals gain electrons (&minus;) &middot; charges must cancel to zero</li>
+      <li class=""><b>Photosynthesis</b>carbon dioxide + water &rarr; glucose + oxygen (needs light and chlorophyll)</li>
+      <li class=""><b>Chromosomes</b>body cell 46 (diploid), gamete 23 (haploid) &middot; mitosis makes copies, meiosis makes gametes</li>
+      <li class=""><b>Sex of a baby</b>XX girl, XY boy &middot; the sperm decides &middot; 50% chance each</li>
+      <li class="phy"><b>Density</b>&rho; = m &divide; V (g/cm&sup3;) &middot; water = 1 g/cm&sup3;: more than 1 sinks, less than 1 floats</li>
+      <li class="phy"><b>Displacement</b>volume of object = water level after &minus; water level before</li>
+      <li class="phy"><b>Frequency</b>f = number of waves &divide; time (Hz) &middot; bigger amplitude = louder, higher frequency = higher pitch</li>
+      <li class="phy"><b>Heat</b>conduction in solids &middot; convection in liquids and gases &middot; radiation needs no medium</li>
+      <li class="phy"><b>Ohm's law</b>V = I &times; R &middot; I = V &divide; R &middot; R = V &divide; I (volts, amps, ohms)</li>
+      <li class="phy"><b>Series / parallel</b>series: same current, voltages add, R<sub>total</sub> = R<sub>1</sub> + R<sub>2</sub> &middot; parallel: same voltage, currents add</li>
+      <li class="phy"><b>Meters</b>ammeter in series &middot; voltmeter in parallel</li>
+  </ul>
+</details></div></div>
+<div class="section-tabs"><a href="#sec-chem" class="sub-tab">&#9883; Chemistry</a><a href="#sec-bio" class="sub-tab">&#129516; Biology</a><a href="#sec-phy" class="sub-tab">&#9889; Physics</a></div>
+<div class="main">
+
+<div id="sec-chem">
+  <div class="section-header"><div class="section-icon">&#9883;</div><div><div class="sub-label">Chemistry</div><h2>Atoms &amp; Bonding</h2></div></div>
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Sodium has atomic number <strong>11</strong> and mass number <strong>23</strong>. How many neutrons does it have? (number only)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s1-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s1','Neutrons = mass number &minus; atomic number.')">Hint</button>
+        <button class="btn btn-check" onclick="checkText('s1',['12','12 neutrons'],'Q1')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','23 &minus; 11 = 12 neutrons. Sodium has 11 electrons, arranged 2, 8, 1.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Magnesium forms Mg<sup>2+</sup> ions and chlorine forms Cl<sup>&minus;</sup> ions. Write the formula of magnesium chloride (e.g. type MgCl2).</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s2-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s2','How many 1&minus; charges cancel one 2+ charge?')">Hint</button>
+        <button class="btn btn-check" onclick="checkText('s2',['mgcl2'],'Q2')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','MgCl&#8322; &mdash; one 2+ charge needs two 1&minus; charges to cancel.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Which substance conducts electricity when it is <strong>molten</strong>?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s3-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'a')"><div class="opt-indicator"></div><span>Sugar, because it is covalent and its molecules can move</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'b')"><div class="opt-indicator"></div><span>Sodium chloride, because its ions are free to move</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'c')"><div class="opt-indicator"></div><span>Sugar, because it melts at a low temperature</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s3', this, 'd')"><div class="opt-indicator"></div><span>Sodium chloride, because its electrons are shared</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s3','b','Q3')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','B &mdash; Molten sodium chloride has ions that are free to move and carry charge. Sugar is covalent and has no ions.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">CHEMISTRY &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-chem-fill"></div></div>
+    <div class="section-score-val" id="sec-chem-val">0/3</div>
+  </div>
+</div>
+
+<div id="sec-bio">
+  <div class="section-header"><div class="section-icon">&#129516;</div><div><div class="sub-label">Biology</div><h2>Plants &amp; Human Biology</h2></div></div>
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Complete the word equation for photosynthesis: carbon dioxide + water &rarr; glucose + ______</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s4-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s4',['oxygen','o2'],'Q4')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','Oxygen. Carbon dioxide + water &rarr; glucose + oxygen (light and chlorophyll needed).')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">A plant has <strong>yellow leaves</strong>. Which mineral is it most likely short of?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s5-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'a')"><div class="opt-indicator"></div><span>Calcium, which is needed for strong roots</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'b')"><div class="opt-indicator"></div><span>Iron, which is needed to make glucose</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'c')"><div class="opt-indicator"></div><span>Sodium, which is needed for the stomata</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s5', this, 'd')"><div class="opt-indicator"></div><span>Magnesium, which is needed to make chlorophyll</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s5','d','Q5')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','D &mdash; Magnesium is needed to make chlorophyll, so without it the leaves turn yellow. (Nitrate shortage gives slow growth and pale leaves.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Xylem carries water and minerals. Which tissue carries <strong>sugars</strong> around the plant?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s6-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s6',['phloem','the phloem'],'Q6')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','Phloem.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which organ removes <strong>urea</strong> from the blood?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s7-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s7',['kidney','kidneys','the kidney','the kidneys'],'Q7')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','The kidneys. The urine they make is stored in the bladder.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">A human skin cell has 46 chromosomes. How many chromosomes does a <strong>sperm cell</strong> have? (number only)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s8-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s8','Gametes are haploid.')">Hint</button>
+        <button class="btn btn-check" onclick="checkText('s8',['23'],'Q8')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','23 &mdash; gametes are made by meiosis, which halves the chromosome number.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">What is the percentage chance that a baby is a boy? (number only)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s9-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkText('s9',['50','50%'],'Q9')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','50% &mdash; the egg always carries X; half the sperm carry X and half carry Y. The father&rsquo;s sperm decides.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">What is one effect of a mother <strong>smoking</strong> during pregnancy?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s10-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'a')"><div class="opt-indicator"></div><span>The baby is likely to have a low birth weight</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'b')"><div class="opt-indicator"></div><span>The baby will have more chromosomes</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'c')"><div class="opt-indicator"></div><span>The placenta carries more oxygen to the baby</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s10', this, 'd')"><div class="opt-indicator"></div><span>The baby is certain to be a boy</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s10','a','Q10')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','A &mdash; Smoking means less oxygen reaches the fetus, so the baby is often small (low birth weight) or born early.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">BIOLOGY &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-bio-fill"></div></div>
+    <div class="section-score-val" id="sec-bio-val">0/7</div>
+  </div>
+</div>
+
+<div id="sec-phy">
+  <div class="section-header"><div class="section-icon">&#9889;</div><div><div class="sub-label">Physics</div><h2>Density, Sound, Heat &amp; Electricity</h2></div></div>
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-s11">
+    <div class="q-header"><div class="q-num">Q11</div><div class="q-text">A block has a mass of <strong>60 g</strong> and a volume of <strong>20 cm&sup3;</strong>. What is its density in g/cm&sup3;? (number only)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s11-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s11','&rho; = m &divide; V')">Hint</button>
+        <button class="btn btn-check" onclick="checkText('s11',['3','3 g/cm3','3g/cm3','3 g/cm³','3g/cm³'],'Q11')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s11','60 &divide; 20 = 3 g/cm&sup3;. That is more than 1, so it sinks in water.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s11-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-s12">
+    <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Water in a measuring cylinder rises from <strong>40 cm&sup3;</strong> to <strong>60 cm&sup3;</strong> when a <strong>50 g</strong> stone is dropped in. What is the stone&rsquo;s density in g/cm&sup3;? (number only)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s12-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s12','First find the stone&rsquo;s volume from the rise in water level.')">Hint</button>
+        <button class="btn btn-check" onclick="checkText('s12',['2.5','2.5 g/cm3','2.5g/cm3','2.5 g/cm³','2.5g/cm³'],'Q12')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s12','Volume = 60 &minus; 40 = 20 cm&sup3;, so density = 50 &divide; 20 = 2.5 g/cm&sup3;.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s12-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-s13">
+    <div class="q-header"><div class="q-num">Q13</div><div class="q-text">A loudspeaker makes <strong>30 waves in 0.5 s</strong>. What is the frequency in Hz? (number only)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s13-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s13','f = number of waves &divide; time')">Hint</button>
+        <button class="btn btn-check" onclick="checkText('s13',['60','60 hz','60hz'],'Q13')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s13','30 &divide; 0.5 = 60 Hz. (Sound cannot travel through a vacuum: there are no particles to vibrate.)')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s13-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-s14">
+    <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Which way of transferring heat can travel through a <strong>vacuum</strong>, such as space?</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <div class="mcq-options" id="s14-opts">
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'a')"><div class="opt-indicator"></div><span>Conduction</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'b')"><div class="opt-indicator"></div><span>Convection</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'c')"><div class="opt-indicator"></div><span>Radiation</span></div>
+        <div class="mcq-opt" onclick="selectMCQ('s14', this, 'd')"><div class="opt-indicator"></div><span>Evaporation</span></div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkMCQ('s14','c','Q14')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s14','C &mdash; Radiation (infrared) needs no particles. Conduction needs particles touching; convection needs a liquid or gas that can flow.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s14-fb"></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-s15">
+    <div class="q-header"><div class="q-num">Q15</div><div class="q-text">A <strong>12 V</strong> battery is connected to a <strong>2 &Omega;</strong> and a <strong>4 &Omega;</strong> resistor in <strong>series</strong>. What is the current in amps? (number only)</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input" id="s15-ans" placeholder="type your answer&hellip;" autocomplete="off" spellcheck="false" autocapitalize="off">
+      <div class="q-actions">
+        <button class="btn btn-hint" onclick="showHint('s15','In series, add the resistances first.')">Hint</button>
+        <button class="btn btn-check" onclick="checkText('s15',['2','2 a','2a'],'Q15')">Check</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s15','R<sub>total</sub> = 2 + 4 = 6 &Omega;, so I = V &divide; R = 12 &divide; 6 = 2 A.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s15-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">PHYSICS &mdash; SECTION SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-phy-fill"></div></div>
+    <div class="section-score-val" id="sec-phy-val">0/5</div>
+  </div>
+</div>
+
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+const marks = { s1:1, s2:1, s3:1, s4:1, s5:1, s6:1, s7:1, s8:1, s9:1, s10:1, s11:1, s12:1, s13:1, s14:1, s15:1 };
+const sections = {
+  chem: { label: 'Chemistry', qs: ['s1', 's2', 's3'] },
+  bio: { label: 'Biology', qs: ['s4', 's5', 's6', 's7', 's8', 's9', 's10'] },
+  phy: { label: 'Physics', qs: ['s11', 's12', 's13', 's14', 's15'] },
+};
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+// ── Common functions ────────────────────────────────────────
+
+function selectMCQ(qid, el) {
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  opts.forEach(o => { o.classList.remove('selected'); o.querySelector('.opt-indicator').textContent = ''; });
+  el.classList.add('selected');
+  el.querySelector('.opt-indicator').textContent = '✓';
+  const match = el.getAttribute('onclick').match(/'([a-f])'\)/);
+  if (match) state.answers[qid] = match[1];
+}
+
+function checkMCQ(qid, correctVal, label) {
+  const selected = state.answers[qid];
+  if (!selected) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const opts = document.querySelectorAll(`#${qid}-opts .mcq-opt`);
+  const isCorrect = selected === correctVal;
+  opts.forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-f])'\)/);
+    const v = m ? m[1] : null;
+    if (v === correctVal) opt.classList.add('correct');
+    else if (opt.classList.contains('selected') && !isCorrect) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function toggleMulti(qid, el, val) {
+  if (state.correct[qid] !== undefined) return;
+  const chosen = state.answers[qid] instanceof Set ? state.answers[qid] : new Set();
+  if (chosen.has(val)) {
+    chosen.delete(val);
+    el.classList.remove('selected');
+    el.querySelector('.opt-indicator').textContent = '';
+  } else {
+    chosen.add(val);
+    el.classList.add('selected');
+    el.querySelector('.opt-indicator').textContent = '✓';
+  }
+  state.answers[qid] = chosen;
+}
+
+function checkMulti(qid, correctVals, label) {
+  const chosen = state.answers[qid];
+  if (!(chosen instanceof Set) || chosen.size === 0) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = chosen.size === correctVals.length && correctVals.every(v => chosen.has(v));
+  document.querySelectorAll(`#${qid}-opts .mcq-opt`).forEach(opt => {
+    opt.classList.add('disabled');
+    const m = opt.getAttribute('onclick').match(/'([a-f])'\)/);
+    const v = m ? m[1] : null;
+    if (correctVals.includes(v)) opt.classList.add('correct');
+    else if (opt.classList.contains('selected')) opt.classList.add('wrong');
+  });
+  markResult(qid, isCorrect);
+}
+
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]+$/, '').replace(/\s+/g, ' ').replace(/₂/g, '2');
+}
+
+function checkText(qid, accepted, label) {
+  const input = document.getElementById(`${qid}-ans`);
+  const typed = input.value;
+  if (!typed.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const isCorrect = accepted.map(normalise).includes(normalise(typed));
+  input.disabled = true;
+  input.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+  state.answers[qid] = typed;
+  markResult(qid, isCorrect);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark${marks[qid]>1?'s':''}`
+    : `❌ <strong>Not quite.</strong> Reveal the answer, then make sure you understand why.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  const input = document.getElementById(`${qid}-ans`);
+  if (input) input.disabled = true;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    const fill = document.getElementById(`sec-${key}-fill`);
+    const val = document.getElementById(`sec-${key}-val`);
+    if (fill) fill.style.width = (secScore/secMax)*100 + '%';
+    if (val) val.textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = '';
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    const secScore = sec.qs.reduce((s,q) => s + (state.correct[q] ? marks[q] : 0), 0);
+    bd.innerHTML += `<div class="rb-chip">${sec.label}<span class="rb-val">${secScore}/${secMax}</span></div>`;
+  }
+  bd.innerHTML += `<div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try {
+    localStorage.setItem(`science-last-minute_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` }));
+  } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height),
+    w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length],
+    rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('text-input')) {
+      active.closest('.q-body')?.querySelector('.btn-check')?.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
