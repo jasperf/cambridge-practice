@@ -320,7 +320,7 @@ def build_html(topic, part_a, part_b, N):
     <div class="week-badge">Bahasa Indonesia &middot; {esc(topic['title'])}</div>
   </div>
   <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / {total}</div></div>
-  <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+  <a href="index.html" class="back-link">&larr; Mocks</a>
 </div>
 <div class="hero">
   <div class="eyebrow">Secondary 2 &middot; Bahasa Indonesia Level 1 &middot; Semester 1 Vocabulary</div>

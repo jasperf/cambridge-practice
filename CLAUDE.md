@@ -48,7 +48,7 @@ The root `index.html` is a small landing page (level tiles plus a hand-picked "N
 | `s2/sem1/mocks/index.html` | Semester 1 mocks, grouped by subject (Maths, Science, English, Bahasa, Mandarin) |
 | `igcse-add-maths/index.html` | IGCSE cards |
 
-Card `href`s are relative to the hub page that holds them. Each hub repeats the shared CSS (no shared files), and subject filter chips work off a `data-subject` attribute on each card. Copy an existing card in the same hub and add the right `data-subject` (`maths`, `science`, `english`, `bahasa`, `chinese`). Sheets' "All sheets" back-links still point at the root landing page. Update the "Newest sheets" strip in the root `index.html` by hand when something new deserves it.
+Card `href`s are relative to the hub page that holds them. Each hub repeats the shared CSS (no shared files), and subject filter chips work off a `data-subject` attribute on each card. Copy an existing card in the same hub and add the right `data-subject` (`maths`, `science`, `english`, `bahasa`, `chinese`). Each sheet's back-link (`class="back-link"`) points at its own hub, relative to the sheet's folder (e.g. `../../../../s2/sem1/t1/index.html`-style depth differs per folder), so use the hub's relative path when copying a sheet to a new folder. Update the "Newest sheets" strip in the root `index.html` by hand when something new deserves it.
 
 ## Development
 
