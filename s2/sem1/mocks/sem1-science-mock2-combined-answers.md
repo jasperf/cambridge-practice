@@ -58,7 +58,7 @@ Answers for Q1–Q52 (auto-marked on the interactive sheet) and a marking guide 
 
 **Q22** (1 mark): The renal vein. The renal artery brings the blood in to be filtered.
 
-**Q23** (2 marks): **D**: Protein and red blood cells Urine is water, urea and the salts the body does not need. Glucose is all taken back, and protein and blood cells are too big to be filtered out in the first place.
+**Q23** (2 marks): **C**: Water, urea and salts Urine is water, urea and the salts the body does not need. Glucose is all taken back, and protein and blood cells are too big to be filtered out in the first place.
 
 **Q24** (1 mark): Half of 38: sperm cells carry 19 chromosomes.
 
