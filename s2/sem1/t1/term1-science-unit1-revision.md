@@ -164,7 +164,7 @@ In the periodic table, elements in the *same period* have what in common?
 
 **Q14** (1 mark)
 Which group contains the *noble gases*?
-- A) Group 0
+- A) Group 2
 - B) Group 1
 - C) Group 7
 - D) Group 8
