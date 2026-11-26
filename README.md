@@ -39,9 +39,9 @@ The Cambridge-subject sheets work for any student following that curriculum, any
 
 | Stage | Subjects | |
 |---|---|---|
-| **Secondary 1** | Maths · Science · English · SA2 revision and topic drills | [Browse →](https://jasperf.github.io/cambridge-practice/#secondary1) |
-| **Secondary 2** | Maths · Science · English · Bahasa Indonesia · Chinese · Semester 1 mocks · Formula sheets | [Browse →](https://jasperf.github.io/cambridge-practice/#secondary2) |
-| **IGCSE Additional Maths (0606)** | Circular measure | [Browse →](https://jasperf.github.io/cambridge-practice/#igcse) |
+| **Secondary 1** | Maths · Science · English · SA2 revision and topic drills | [Browse →](https://jasperf.github.io/cambridge-practice/s1/) |
+| **Secondary 2** | Maths · Science · English · Bahasa Indonesia · Chinese · Semester 1 mocks · Formula sheets | [Browse →](https://jasperf.github.io/cambridge-practice/s2/) |
+| **IGCSE Additional Maths (0606)** | Circular measure | [Browse →](https://jasperf.github.io/cambridge-practice/igcse-add-maths/) |
 
 Want a sheet-by-sheet list? See the term indexes: [S2 Term 1](s2/sem1/t1/README.md) · [S2 Term 2](s2/sem1/t2/README.md) · [S2 Semester 1 mocks](s2/sem1/mocks/README.md).
 

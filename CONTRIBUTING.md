@@ -40,7 +40,7 @@ cd cambridge-practice
 # Open any sheet directly in your browser
 open s1/t4/w1/term4-week1-maths-science.html
 
-# Or run a local server (needed for the index page links)
+# Or run a local server (needed for the hub page links)
 npx serve .
 # then visit http://localhost:3000
 ```
