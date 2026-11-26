@@ -86,6 +86,10 @@ Built from `scripts/review_specs/s2_sem1_science_bonding_ions.py` in the same wa
 
 A ten-question quick test on writing ionic formulae for the atomic bonding assessment: [interactive](sem1-science-ionic-formulae.html) · [printable](sem1-science-ionic-formulae.md) · [answers](sem1-science-ionic-formulae-answers.md). Combine two ions into the neutral compound (NaCl, MgF₂, Al₂O₃, Ca₃N₂ …). **10 questions, 10 marks**, typed answers with subscript buttons (typed digits turn into subscripts); capitals and lowercase matter.
 
+### Plants quick quiz
+
+A last-minute plant biology check: [interactive](sem1-science-plants-quiz.html) · [printable](sem1-science-plants-quiz.md) · [answers](sem1-science-plants-quiz-answers.md). New questions on photosynthesis, glucose and its uses, minerals, fertilisers and yield (with percentage-increase data), and the pondweed and starch-test investigations. **26 questions, 26 marks** (18 typed, 8 multiple choice), with an animated pondweed explorer.
+
 ### Gaps drill
 
 Five topics on the science revision list that the other sheets hardly cover: [interactive](sem1-science-gaps.html) · [printable](sem1-science-gaps.md) · [answers](sem1-science-gaps-answers.md). Section A is the human excretory system (urea and the liver, kidneys, ureters, bladder and urethra, how nephrons filter and take back, water balance), with a numbered diagram to label. Section B is absorption, transport and transpiration (root hair cells, xylem and phloem, stomata, a potometer and a mass-loss reading, and the petroleum-jelly leaf experiment). Section C is the carbon cycle (photosynthesis, respiration, feeding, decomposers, fossil fuels and combustion, a burned rainforest, CO₂ since 1750 and hydrogencarbonate indicator). Section D is conservation of energy (useful and wasted energy, a Sankey diagram, and the class's heat-conservation slides). Section E is simple and giant structures (diamond, graphite and silicon dioxide). **37 questions, 49 marks, 14 MCQ**, all auto-marked. Three explorers come **after** their section's questions, so they cannot give answers away: a **Kidney Filter** (blood particles sorted into blood or urine, with a normal, hot or well-watered day), a **Transpiration Lab** (temperature, wind, humidity and day or night) and **Run the Carbon Cycle** (move carbon between five stores and watch the CO₂ in the air). The printable adds six written questions (Q38–Q43, 21 marks): drawing the urinary system, water's journey from soil to air, drawing a carbon cycle, planning a wind-and-transpiration investigation, a Sankey diagram for a filament bulb, and diamond versus graphite.
@@ -213,6 +217,9 @@ s2/sem1/mocks/
 ├── sem1-science-ionic-formulae.html              ← Interactive (10 ionic formula questions)
 ├── sem1-science-ionic-formulae.md                ← Printable
 ├── sem1-science-ionic-formulae-answers.md        ← Answers
+├── sem1-science-plants-quiz.html                 ← Interactive (plants quick quiz, pondweed explorer)
+├── sem1-science-plants-quiz.md                   ← Printable
+├── sem1-science-plants-quiz-answers.md           ← Answers
 ├── sem1-science-gaps.html                        ← Interactive (Gaps drill: five missing topics)
 ├── sem1-science-gaps.md                          ← Printable + Q38–Q43 written
 ├── sem1-science-gaps-answers.md                  ← Answers + marking guide
