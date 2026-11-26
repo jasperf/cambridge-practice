@@ -23,7 +23,7 @@ META = dict(
               'A calculator is allowed. Diagrams are described in words and are not drawn accurately.'),
     time_chip='About 1 hour &middot; calculator allowed',
     storage_key='sem1-maths-paper2b-calculator',
-    back='../../../index.html',
+    back='index.html',
     answers_note='Answers for Q1–Q26 (auto-marked on the interactive sheet) and a marking guide for the written questions Q27–Q31. Keep this separate from the question sheet.',
     extra_links=[('./sem1-maths-paper2-calculator.html', 'Paper 2'),
                  ('./sem1-maths-test2-shapes-angles-algebra.html', 'Test 2 practice'),

@@ -31,7 +31,7 @@ META = dict(
               'and 30 minutes for the written questions. Diagrams are described in words.'),
     time_chip='About 80 minutes &middot; a calculator helps',
     storage_key='sem1-science-mock2-combined',
-    back='../../../index.html',
+    back='index.html',
     answers_note=('Answers for Q1–Q52 (auto-marked on the interactive sheet) and a marking guide for the '
                   'written questions Q53–Q58. Keep this separate from the question sheet.'),
     extra_links=[('./sem1-science-mock.html', 'Mock paper 1'),

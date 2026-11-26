@@ -19,7 +19,7 @@ META = dict(
               'marked by the teacher. Diagrams are described in words.'),
     time_chip='About 45 minutes &middot; a calculator helps',
     storage_key='sem1-science-revision',
-    back='../../../index.html',
+    back='index.html',
     answers_note='Answers for Q1–Q42 (auto-marked on the interactive sheet) and a marking guide for the written questions Q43–Q48. Keep this separate from the question sheet.',
     extra_links=[('./sem1-science-mock.html', 'Semester 1 mock paper'),
                  ('../../reference/science-formula-sheets/index.html', 'Formula sheets')],

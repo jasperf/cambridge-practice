@@ -27,7 +27,7 @@ META = dict(
     answers_note=('Answers for the Chinese Vocabulary Drill, both directions. On the interactive sheet '
                   '(sem1-chinese-vocab.html) the marking is automatic and accepts every answer listed here.'),
     storage_key='sem1-chinese-vocab',
-    back='../../../index.html',
+    back='index.html',
     lang=dict(
         ask_target='Type the Chinese characters for',
         ask_source='What does <em>{w}</em> mean in English?',

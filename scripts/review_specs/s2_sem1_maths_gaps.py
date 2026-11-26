@@ -25,7 +25,7 @@ META = dict(
               'written questions for you to show full working. No calculator is needed.'),
     time_chip='About 35 minutes &middot; no calculator',
     storage_key='sem1-maths-gaps',
-    back='../../../index.html',
+    back='index.html',
     answers_note='Answers for Q1–Q34 (auto-marked on the interactive sheet) and a marking guide for the written questions Q35–Q41. Keep this separate from the question sheet.',
     extra_links=[('./sem1-maths-paper1-non-calculator.html', 'Paper 1'),
                  ('../../reference/maths-formula-sheets/index.html', 'Formula sheets')],

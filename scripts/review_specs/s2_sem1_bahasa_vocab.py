@@ -26,7 +26,7 @@ META = dict(
                   '(sem1-bahasa-indonesia-vocab.html) the marking is automatic and accepts every '
                   'spelling listed here.'),
     storage_key='sem1-bahasa-indonesia-vocab',
-    back='../../../index.html',
+    back='index.html',
 )
 
 HAIWAN_A = 'Tulis nama hewan bahasa Indonesia untuk'

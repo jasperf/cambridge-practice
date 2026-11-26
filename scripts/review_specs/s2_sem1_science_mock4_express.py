@@ -30,7 +30,7 @@ META = dict(
               'questions. A calculator helps. Diagrams are described in words.'),
     time_chip='About 45 minutes &middot; a calculator helps',
     storage_key='sem1-science-mock4-express',
-    back='../../../index.html',
+    back='index.html',
     answers_note=('Answers for Q1–Q30 (auto-marked on the interactive sheet) and a marking guide for the '
                   'written questions Q31–Q33. Keep this separate from the question sheet.'),
     extra_links=[('./sem1-science-mock3-combined.html', 'Mock paper 3'),

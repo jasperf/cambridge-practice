@@ -27,7 +27,7 @@ META = dict(
               'class slides do not cover most of these topics, so check the facts against your class notes.'),
     time_chip='About 35 minutes',
     storage_key='sem1-science-gaps',
-    back='../../../index.html',
+    back='index.html',
     answers_note='Answers for Q1–Q37 (auto-marked on the interactive sheet) and a marking guide for the written questions Q38–Q43. Keep this separate from the question sheet.',
     extra_links=[('./sem1-science-revision.html', 'Terms 1–2 science review'),
                  ('./sem1-science-bonding-ions.html', 'Bonding & Ions practice'),

@@ -21,7 +21,7 @@ META = dict(
               'described in words.'),
     time_chip='About 35 minutes &middot; periodic table helps',
     storage_key='sem1-science-bonding-ions',
-    back='../../../index.html',
+    back='index.html',
     answers_note='Answers for Q1–Q36 (auto-marked on the interactive sheet) and a marking guide for the written questions Q37–Q42. Keep this separate from the question sheet.',
     extra_links=[('./sem1-science-revision.html', 'Terms 1–2 science review'),
                  ('../../reference/science-formula-sheets/index.html', 'Formula sheets')],

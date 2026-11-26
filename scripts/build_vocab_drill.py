@@ -466,7 +466,7 @@ def build_html(meta, sections):
     <div class="week-badge">{meta['badge']}</div>
   </div>
   <div style="display:flex;align-items:center;gap:14px;">
-    <a href="{meta['back']}" class="back-link">&larr; All sheets</a>
+    <a href="{meta['back']}" class="back-link">&larr; Mocks</a>
     <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
     <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / {total}</div></div>
   </div>
