@@ -524,7 +524,7 @@ function checkText(qid, correctVal, label) {
   const list = Array.isArray(correctVal) ? correctVal : [correctVal];
   const isCorrect = list.some(c => {
     const correct = c.toLowerCase().replace(/\s+/g,'');
-    return val === correct || val.includes(correct) || correct.includes(val);
+    return val.includes(correct) || correct === val + 's';
   });
   input.classList.add(isCorrect ? 'correct' : 'wrong');
   markResult(qid, isCorrect);
