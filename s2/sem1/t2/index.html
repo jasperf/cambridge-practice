@@ -251,9 +251,9 @@ footer a:hover { color: var(--text); }
 .no-results { display: none; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; padding: 24px 0 48px; }
 @media (max-width: 600px) { .filter-name { width: 100%; } }
 @media (max-width: 700px) {
-  nav { height: auto; flex-wrap: wrap; padding: 10px 16px; row-gap: 6px; }
+  nav { position: static; height: auto; flex-wrap: wrap; padding: 10px 16px; row-gap: 6px; }
   .nav-links { flex-wrap: wrap; gap: 6px 16px; }
-  .filters { position: static; }
+  .filters { top: 0; }
 }
 
 /* HUB PAGES */
