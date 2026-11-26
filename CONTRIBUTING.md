@@ -6,7 +6,9 @@ Plain HTML, CSS and JavaScript. No build step, no npm, no server. Every sheet is
 
 ```
 cambridge-practice/
-├── index.html                  ← Home page: a card for every sheet
+├── index.html                  ← Landing page: level tiles + newest sheets
+├── s1/index.html, s2/index.html, igcse-add-maths/index.html  ← Level hubs
+├── s2/sem1/{t1,t2,mocks}/index.html  ← Term hubs holding the sheet cards
 ├── resources.html              ← Curated external resources (YouTube, BBC Bitesize)
 ├── s1/                         ← Secondary 1: t4/ weekly sheets, sa2/ revision (+ focus/ drills), science/ topic drills
 ├── s2/                         ← Secondary 2 (Semester 1 = Terms 1 + 2)
@@ -48,7 +50,7 @@ npx serve .
 1. Copy an existing sheet as your template and place it in the right folder (e.g. `s2/sem1/t2/w6/term2-week6-maths-topic.html`).
 2. Update the questions, answers and marks.
 3. Check the multiple-choice answers with the audit tools in [`scripts/`](scripts/README.md).
-4. Add a card to `index.html` and a row to the matching term README.
+4. Add a card to the matching hub page (see `CLAUDE.md`, "Site navigation") and a row to the matching term README.
 5. Push to `main`. GitHub Pages publishes automatically.
 
 ## Generating PDFs

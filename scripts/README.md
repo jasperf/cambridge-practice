@@ -106,7 +106,7 @@ checks it against:
 - the initial score pill (`0 / 50`) and each section pill (`0/13`, against
   the questions listed for that section in `const sections`);
 - a hard-coded `maxMarks: { math: 23, sci: 22 }` on older sheets;
-- the sheet's card chips in the root `index.html` (`42 questions`, `60 marks`).
+- the sheet's card chips on its hub page (`s1/`, `s2/…/index.html`, `igcse-add-maths/`, or the root) (`42 questions`, `60 marks`).
 
 Question cards with no `marks` entry are listed as info, not errors:
 unscored written cards such as `wr1` are legitimate. It does not read the

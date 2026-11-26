@@ -36,6 +36,20 @@ material/                    # Source material, photos of books (gitignored, nev
 
 Weekly sheets are named `term{N}-week{N}-{subject}-{topic}.html` with a same-basename `.md` printable beside them (e.g. `s2/sem1/t2/w5/term2-week5-maths-unit-test2-angles-shapes-measurements.{html,md}`). The file-by-file list lives in each term README, not in the root README.
 
+## Site navigation (hub pages)
+
+The root `index.html` is a small landing page (level tiles plus a hand-picked "Newest sheets" strip). Sheet cards live on hub pages, one per level/term:
+
+| Hub page | Holds |
+|---|---|
+| `s1/index.html` | Secondary 1: Term 4, SA2 revision, science focus drills |
+| `s2/index.html` | Secondary 2 tiles (Term 1, Term 2, Mocks) and the reference-sheet galleries |
+| `s2/sem1/t1/index.html`, `s2/sem1/t2/index.html` | Term cards, grouped by subject |
+| `s2/sem1/mocks/index.html` | Semester 1 mocks, grouped by subject (Maths, Science, English, Bahasa, Mandarin) |
+| `igcse-add-maths/index.html` | IGCSE cards |
+
+Card `href`s are relative to the hub page that holds them. Each hub repeats the shared CSS (no shared files), and subject filter chips work off a `data-subject` attribute on each card. Copy an existing card in the same hub and add the right `data-subject` (`maths`, `science`, `english`, `bahasa`, `chinese`). Sheets' "All sheets" back-links still point at the root landing page. Update the "Newest sheets" strip in the root `index.html` by hand when something new deserves it.
+
 ## Development
 
 ```bash
@@ -90,7 +104,7 @@ Other Chinese gotchas: a typed-answer `normalise()` must strip Chinese punctuati
 ### Cambridge sheets
 1. Copy an existing sheet as the template.
 2. Place it at `s1/{section}/{filename}.html` (e.g. `s1/t4/w2/term4-week2-english.html`).
-3. Update `index.html` to add a card linking to the new sheet.
+3. Add a card for the new sheet to the matching **hub page** (see "Site navigation" below), not the root `index.html`.
 4. Update the READMEs that index the content (see below).
 5. Push to `main` — Pages deploys within ~30 seconds.
 
@@ -101,7 +115,7 @@ New sheets/handouts are referenced in more than one README — check all that ap
 - **Root `README.md`** — a short landing page for students and teachers, *not* a file index. Its `What's covered` table has one row per stage; touch it only when a new stage, subject or kind of material appears (e.g. the first IGCSE Physics sheet), never for an individual sheet. Keep it concise and free of exam dates.
 - **`CONTRIBUTING.md`** — its folder-level `Structure` tree; touch it only when adding a new top-level or term folder.
 - **The term README** (`s2/sem1/t1/README.md`, `s2/sem1/t2/README.md`, or the equivalent for the term/stage you're adding to) — its worksheet table (or revision-handouts table) and its own structure diagram, which is the file-by-file list.
-- **`index.html`** — a card in the matching subject grid (already covered above, but easy to forget when a change is "just docs").
+- **The hub page** — a card in the matching hub's grid (already covered above, but easy to forget when a change is "just docs").
 
 A new revision handout that mixes an auto-marked `.html` with extra open-ended/printable-only content (e.g. extended writing tasks) should say so explicitly in these READMEs — don't let a "printable has the exact same questions as interactive" claim go stale.
 
@@ -172,7 +186,7 @@ Question counts and mark totals are typed by hand in several places (the header 
 python3 scripts/sheet_audit.py path/to/sheet.html
 ```
 
-It checks every place in the `.html` and `index.html` against `marks`. The printable heading and the term README row are not checked; update them by hand.
+It checks every place in the `.html` and its hub-page card against `marks`. The printable heading and the term README row are not checked; update them by hand.
 
 ## Exercise Sheet Architecture
 
@@ -227,7 +241,7 @@ Defined in `:root` on every sheet and `index.html`:
 - Do not introduce build tools, bundlers, or npm packages.
 - Keep each exercise sheet fully self-contained — no shared JS files.
 - Do not add frameworks (React, Vue, etc.).
-- Always update `index.html` when adding a new sheet.
+- Always add a card to the matching hub page when adding a new sheet.
 
 ## Git
 

@@ -136,8 +136,11 @@ def index_cards():
     global _INDEX
     if _INDEX is None:
         _INDEX = {}
-        index = Path(__file__).resolve().parent.parent / 'index.html'
-        if index.exists():
+        root = Path(__file__).resolve().parent.parent
+        # the landing page plus every hub page (s1/, s2/..., igcse-add-maths/)
+        for index in [root / 'index.html'] + sorted(root.glob('s[12]/**/index.html')) + [root / 'igcse-add-maths' / 'index.html']:
+            if not index.exists():
+                continue
             text = index.read_text(encoding='utf-8')
             for href, body in re.findall(r'<a href="([^"]+\.html)"[^>]*class="card[^"]*"[^>]*>(.*?)</a>', text, re.S):
                 chips = re.findall(r'class="chip">\s*(\d+)\s+(questions|marks)\s*<', body)
