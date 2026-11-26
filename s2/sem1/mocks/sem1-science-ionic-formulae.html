@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ionic Formula Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2336; --border: #2a3050;
+  --accent: #3ecf8e; --accent-math: #4f8ef7; --accent-sci: #3ecf8e; --accent-warn: #f5a623;
+  --text: #e8eaf0; --text-muted: #7a84a0; --text-dim: #4a5270;
+  --correct: #2ecc71; --wrong: #e74c3c;
+  --font-display: 'Fraunces', Georgia, serif; --font-body: 'Literata', Georgia, serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+.topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 58px; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.logo { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+.week-badge { font-family: var(--font-mono); font-size: 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+.back-link { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; }
+.back-link:hover { color: var(--accent-math); }
+.score-pill { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 5px 16px 5px 10px; }
+.score-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.score-val { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+.progress-wrap { height: 3px; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-math), var(--accent-sci), var(--accent-warn)); width: 0%; transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+.hero { position: relative; z-index: 1; padding: 52px 28px 24px; max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; }
+.hero-chip { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-muted); }
+.hero-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.credit { font-size: 0.88rem; color: var(--text-muted); margin-top: 12px; max-width: 720px; }
+.btn-cover { margin-top: 16px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+.btn-cover:hover { border-color: var(--accent); }
+body.cover .btn-cover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.section-tabs { position: sticky; top: 58px; z-index: 50; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); max-width: 100%; padding: 10px max(28px, calc((100% - 844px) / 2)); display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border); }
+.sub-tab { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+.sub-tab:hover { border-color: var(--accent); color: var(--text); }
+.main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+.main > div[id] { scroll-margin-top: 120px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 18px; flex-wrap: wrap; }
+.section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(var(--sec-rgb),0.15); }
+.section-header h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.3px; }
+.section-header .sub-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.src-links { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.src-link { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; }
+.src-link:hover { color: var(--sec); border-color: var(--sec); }
+.facts-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sec); margin: 6px 0 10px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 26px; }
+.fact { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--sec); border-radius: 8px; padding: 12px 14px; font-size: 0.86rem; line-height: 1.6; cursor: default; }
+.fact h4 { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.fact em { color: var(--sec); }
+.fact .f { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-warn); }
+.fact-body { transition: filter 0.25s, opacity 0.25s; }
+body.cover .fact { cursor: pointer; }
+body.cover .fact:not(.peek) .fact-body { filter: blur(6px); opacity: 0.5; user-select: none; }
+.explorer { background: linear-gradient(135deg, rgba(var(--sec-rgb),0.07), rgba(var(--sec-rgb),0.02)); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin: 0 0 28px; }
+.explorer h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 2px; }
+.ex-note { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 14px; }
+.ex-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.ex-svg { width: 100%; max-width: 420px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; display: block; }
+.ex-svg.wide { max-width: 100%; }
+.ex-controls { flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ex-controls label { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted); }
+.ex-controls input[type=range] { width: 100%; accent-color: var(--sec); }
+.ex-readout { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; margin-top: 6px; color: var(--text); }
+.ex-readout strong { color: var(--sec); }
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s; animation: slideIn 0.35s ease both; }
+.q-card.answered-correct { border-color: var(--correct); }
+.q-card.answered-wrong { border-color: var(--wrong); }
+.q-header { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.q-num { font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+.q-text { font-size: 0.96rem; color: var(--text); flex: 1; line-height: 1.6; }
+.q-marks { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(62,207,142,0.1); border: 1px solid rgba(62,207,142,0.2); padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+.q-body { padding: 14px 20px; }
+.mcq-options { display: flex; flex-direction: column; gap: 8px; }
+.mcq-opt { display: flex; align-items: center; gap: 12px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; user-select: none; }
+.mcq-opt:hover:not(.disabled) { border-color: var(--accent); }
+.mcq-opt.selected { border-color: var(--accent); background: rgba(62,207,142,0.1); }
+.mcq-opt.correct { border-color: var(--correct); background: rgba(46,204,113,0.1); }
+.mcq-opt.wrong { border-color: var(--wrong); background: rgba(231,76,60,0.08); }
+.mcq-opt.disabled { cursor: default; }
+.opt-indicator { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: all 0.2s; }
+.mcq-opt.selected .opt-indicator { border-color: var(--accent); background: var(--accent); color: #0f1117; }
+.mcq-opt.correct .opt-indicator { border-color: var(--correct); background: var(--correct); color: #fff; }
+.mcq-opt.wrong .opt-indicator { border-color: var(--wrong); background: var(--wrong); color: #fff; }
+.num-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.num-input { width: 130px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--font-mono); font-size: 1.05rem; padding: 9px 12px; text-align: center; transition: border-color 0.2s; outline: none; }
+.num-input:focus { border-color: var(--accent); }
+.num-input.correct { border-color: var(--correct); }
+.num-input.wrong { border-color: var(--wrong); }
+.num-unit { font-size: 0.85rem; color: var(--text-muted); }
+.text-input { font-family: var(--font-mono); font-size: 0.95rem; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); border-radius: 7px; padding: 10px 14px; width: 100%; max-width: 320px; outline: none; transition: border-color 0.18s; }
+.text-input:focus { border-color: var(--accent); }
+.text-input:disabled { opacity: 0.75; }
+.q-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.3px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; }
+.btn-check { background: var(--accent); color: #0f1117; }
+.btn-check:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-hint { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.btn-hint:hover { border-color: var(--accent-warn); color: var(--accent-warn); }
+.btn-reveal { background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-size: 0.72rem; }
+.btn-reveal:hover { color: var(--text-muted); }
+.feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); color: #7ef5b0; }
+.feedback.wrong-fb { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #f5a0a0; }
+.feedback.hint-fb { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); color: var(--accent-warn); }
+.feedback.reveal-fb { background: rgba(122,132,160,0.1); border: 1px solid var(--border); color: var(--text-muted); }
+.section-score { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+.section-score-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex: 1; }
+.section-score-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--sec, var(--accent)); }
+.section-score-bar { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.section-score-fill { height: 100%; background: var(--sec, var(--accent)); width: 0%; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); border-radius: 3px; }
+.results-panel { display: none; background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; margin-top: 40px; text-align: center; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.results-panel.show { display: block; }
+.results-grade { font-family: var(--font-display); font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.results-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.results-breakdown { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.rb-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-family: var(--font-mono); font-size: 0.78rem; }
+.rb-chip .rb-val { font-size: 1.6rem; font-family: var(--font-display); font-weight: 600; display: block; margin-top: 4px; }
+.timer-wrap { display: flex; align-items: center; gap: 8px; }
+.timer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+#confetti-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+.divider { height: 1px; background: var(--border); margin: 48px 0; position: relative; }
+.divider::after { content: '\00a7'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text-dim); font-family: var(--font-display); }
+.q-fig { display: block; width: 100%; max-width: 380px; margin: 0 0 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+.q-fig .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.q-fig .fill { fill-opacity: 0; }
+.q-fig.drawn .draw { animation: drawIn 1.1s ease forwards; }
+.q-fig.drawn .fill { animation: fillIn 0.6s ease 0.9s forwards; }
+.q-fig text { opacity: 0; }
+.q-fig.drawn text { animation: fadeIn 0.5s ease 0.8s forwards; }
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulse-ok { 0%{box-shadow:0 0 0 0 rgba(62,207,142,0.4)} 70%{box-shadow:0 0 0 10px rgba(62,207,142,0)} 100%{box-shadow:0 0 0 0 rgba(62,207,142,0)} }
+.shake { animation: shake 0.4s ease; }
+.pulse-correct { animation: pulse-ok 0.6s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .q-fig .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .q-fig .fill { fill-opacity: 1; }
+  .q-fig text { opacity: 1; }
+  .q-fig.drawn .draw, .q-fig.drawn .fill, .q-fig.drawn text { animation: none; }
+}
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+  .topbar-left { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .section-tabs { top: 0; position: relative; padding: 10px 16px; }
+  .hero, .main { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .src-links { margin-left: 0; }
+  .q-header, .q-body { padding-left: 14px; padding-right: 14px; }
+  .explorer { padding: 14px; }
+  .results-panel { padding: 20px; }
+  .results-grade { font-size: 2.8rem; }
+}
+
+.sub-row { display: flex; align-items: center; gap: 6px; margin: 8px 0 12px; flex-wrap: wrap; }
+.sub-lbl { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); margin-right: 4px; }
+.sub-btn { font-family: var(--font-mono); font-size: 0.95rem; min-width: 38px; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; }
+.sub-btn:hover { border-color: var(--sec); }
+.sub-btn:disabled { opacity: 0.4; cursor: default; }
+.worked { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--sec); border-radius: 8px; padding: 14px 16px; margin-bottom: 22px; font-size: 0.9rem; }
+.worked .f { font-family: var(--font-mono); color: var(--accent-warn); }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Student<span>'s</span> Study Hub</div>
+    <div class="week-badge">Science &middot; Ionic Formulae</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="../../../index.html" class="back-link">&larr; All sheets</a>
+    <div class="timer-wrap">&#9201;<div class="timer" id="timer">00:00</div></div>
+    <div class="score-pill"><div class="score-label">Score</div><div class="score-val" id="global-score">0 / 10</div></div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="hero">
+  <div class="hero-eyebrow">Secondary 2 &middot; Science &middot; Atomic bonding</div>
+  <h1>Ionic Formula<br><em>Practice</em></h1>
+  <div class="hero-meta">
+    <div class="hero-chip"><div class="dot"></div>10 questions &middot; self-marked &middot; 10 marks</div>
+    <div class="hero-chip"><div class="dot" style="background:var(--accent-warn)"></div>About 10 minutes</div>
+  </div>
+  <p class="credit">Ten questions. Combine the ions into the neutral compound. Capital and lowercase letters matter: <strong>Co</strong> is cobalt, <strong>CO</strong> is carbon monoxide.</p>
+</div>
+<div class="main">
+<div id="fo" style="--sec:var(--accent-math);--sec-rgb:79,142,247">
+  <div class="section-header"><div class="section-icon">&#9878;</div><div><div class="sub-label">Q1&ndash;Q10 &middot; Atomic bonding</div><h2>Combine the ions</h2></div></div>
+  <div class="facts-label">Method</div>
+  <div class="worked"><strong>Total positive charge must equal total negative charge.</strong><br>
+  Worked example: Ca²⁺ and Cl⁻ &mdash; two Cl⁻ are needed to balance one Ca²⁺, so the formula is <span class="f">CaCl₂</span>.<br><br>
+  <strong>Quick check:</strong> swap the charge numbers and use them as subscripts, then reduce if both are divisible (Mg²⁺ + O²⁻ swaps to Mg₂O₂, which reduces to MgO).<br><br>
+  For the small numbers, tap the subscript buttons or just type the digit: a typed 2 turns into ₂ automatically.</div>
+  <div class="facts-label">Questions</div>
+
+  <div class="q-card" id="qcard-s1">
+    <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Write the formula of the compound made from <strong>Na⁺</strong> and <strong>Cl⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s1-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s1-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s1-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s1-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s1-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s1','NaCl')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s1','One 1+ cancels one 1&minus;.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s1','<strong>NaCl</strong>. Na⁺ and Cl⁻ have equal and opposite charges, so one of each: NaCl.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s1-fb"></div>
+    </div>
+  </div>
+  <div class="q-card" id="qcard-s2">
+    <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Write the formula of the compound made from <strong>Mg²⁺</strong> and <strong>O²⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s2-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s2-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s2-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s2-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s2-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s2','MgO')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s2','2+ and 2&minus; already balance.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s2','<strong>MgO</strong>. 2+ and 2− cancel with one of each. Do not write Mg₂O₂: always give the simplest ratio, MgO.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s2-fb"></div>
+    </div>
+  </div>
+  <div class="q-card" id="qcard-s3">
+    <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Write the formula of the compound made from <strong>Mg²⁺</strong> and <strong>F⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s3-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s3-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s3-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s3-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s3-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s3','MgF₂')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s3','How many 1&minus; ions cancel one 2+?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s3','<strong>MgF₂</strong>. One Mg²⁺ needs two F⁻ to balance: MgF₂.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s3-fb"></div>
+    </div>
+  </div>
+  <div class="q-card" id="qcard-s4">
+    <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Write the formula of the compound made from <strong>Na⁺</strong> and <strong>O²⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s4-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s4-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s4-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s4-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s4-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s4','Na₂O')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s4','How many 1+ ions cancel one 2&minus;?')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s4','<strong>Na₂O</strong>. Two Na⁺ (total 2+) balance one O²⁻: Na₂O.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s4-fb"></div>
+    </div>
+  </div>
+  <div class="q-card" id="qcard-s5">
+    <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Write the formula of the compound made from <strong>Al³⁺</strong> and <strong>Cl⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s5-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s5-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s5-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s5-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s5-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s5','AlCl₃')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s5','Swap the charge numbers.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s5','<strong>AlCl₃</strong>. One Al³⁺ needs three Cl⁻: AlCl₃.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s5-fb"></div>
+    </div>
+  </div>
+  <div class="q-card" id="qcard-s6">
+    <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Write the formula of the compound made from <strong>K⁺</strong> and <strong>S²⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s6-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s6-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s6-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s6-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s6-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s6','K₂S')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s6','Two of one ion, one of the other.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s6','<strong>K₂S</strong>. Two K⁺ (2+) balance one S²⁻: K₂S.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s6-fb"></div>
+    </div>
+  </div>
+  <div class="q-card" id="qcard-s7">
+    <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Write the formula of the compound made from <strong>Li⁺</strong> and <strong>N³⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s7-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s7-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s7-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s7-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s7-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s7','Li₃N')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s7','Swap the charge numbers.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s7','<strong>Li₃N</strong>. Three Li⁺ (3+) balance one N³⁻: Li₃N.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s7-fb"></div>
+    </div>
+  </div>
+  <div class="q-card" id="qcard-s8">
+    <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Write the formula of the compound made from <strong>Al³⁺</strong> and <strong>O²⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s8-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s8-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s8-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s8-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s8-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s8','Al₂O₃')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s8','Find the smallest number both 3 and 2 divide into: 6.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s8','<strong>Al₂O₃</strong>. Al³⁺ × 2 = 6+ and O²⁻ × 3 = 6−, so Al₂O₃.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s8-fb"></div>
+    </div>
+  </div>
+  <div class="q-card" id="qcard-s9">
+    <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Write the formula of the compound made from <strong>Ca²⁺</strong> and <strong>N³⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s9-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s9-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s9-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s9-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s9-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s9','Ca₃N₂')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s9','Both charges are 2 and 3: the lowest common total is 6.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s9','<strong>Ca₃N₂</strong>. Ca²⁺ × 3 = 6+ and N³⁻ × 2 = 6−, so Ca₃N₂.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s9-fb"></div>
+    </div>
+  </div>
+  <div class="q-card" id="qcard-s10">
+    <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Write the formula of the compound made from <strong>Fe³⁺</strong> and <strong>O²⁻</strong>.</div><div class="q-marks">1 mark</div></div>
+    <div class="q-body">
+      <input type="text" class="text-input formula-input" id="s10-ans" placeholder="e.g. NaCl" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="sub-row" aria-label="Subscript buttons"><span class="sub-lbl">Subscript:</span><button type="button" class="sub-btn" onclick="insSub('s10-ans','₂')">₂</button><button type="button" class="sub-btn" onclick="insSub('s10-ans','₃')">₃</button><button type="button" class="sub-btn" onclick="insSub('s10-ans','₄')">₄</button><button type="button" class="sub-btn" onclick="insSub('s10-ans','₅')">₅</button></div>
+      <div class="q-actions">
+        <button class="btn btn-check" onclick="checkFormula('s10','Fe₂O₃')">Check</button>
+        <button class="btn btn-hint" onclick="showHint('s10','Same pattern as Al³⁺ and O²⁻.')">Hint</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('s10','<strong>Fe₂O₃</strong>. Fe³⁺ × 2 = 6+ and O²⁻ × 3 = 6−, so Fe₂O₃.')">Show Answer</button>
+      </div>
+      <div class="feedback" id="s10-fb"></div>
+    </div>
+  </div>
+
+  <div class="section-score">
+    <div class="section-score-label">FINAL SCORE</div>
+    <div class="section-score-bar"><div class="section-score-fill" id="sec-fo-fill"></div></div>
+    <div class="section-score-val" id="sec-fo-val">0/10</div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<div class="results-panel" id="results-panel">
+  <div class="results-grade" id="results-grade">0%</div>
+  <div class="results-label" id="results-label">Keep Practising</div>
+  <div class="results-breakdown" id="results-breakdown"></div>
+</div>
+
+</div>
+
+<script>
+const state = { answers: {}, correct: {}, startTime: Date.now() };
+const marks = { s1:1, s2:1, s3:1, s4:1, s5:1, s6:1, s7:1, s8:1, s9:1, s10:1 };
+const sections = { fo: { label: 'Ionic Formulae', qs: ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'] } };
+const allQs = Object.values(sections).flatMap(s => s.qs);
+const maxMarks = allQs.reduce((s,q) => s + marks[q], 0);
+const SUBS = '₀₁₂₃₄₅₆₇₈₉';
+
+function updateTimer() {
+  const e = Math.floor((Date.now()-state.startTime)/1000);
+  document.getElementById('timer').textContent = `${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+}
+setInterval(updateTimer, 1000);
+
+/* typed digits become subscripts */
+document.querySelectorAll('.formula-input').forEach(inp => inp.addEventListener('input', () => {
+  const pos = inp.selectionStart;
+  inp.value = inp.value.replace(/[0-9]/g, d => SUBS[+d]);
+  try { inp.setSelectionRange(pos, pos); } catch(e) {}
+}));
+
+function insSub(id, ch) {
+  const inp = document.getElementById(id);
+  if (inp.disabled) return;
+  const a = inp.selectionStart ?? inp.value.length, b = inp.selectionEnd ?? a;
+  inp.value = inp.value.slice(0, a) + ch + inp.value.slice(b);
+  inp.focus(); inp.setSelectionRange(a+1, a+1);
+}
+
+function toAscii(s) { return s.replace(/\s+/g, '').replace(/[₀-₉]/g, c => SUBS.indexOf(c)); }
+
+function checkFormula(qid, correct) {
+  const input = document.getElementById(`${qid}-ans`);
+  if (!input.value.trim()) { shakeCard(qid); return; }
+  if (state.correct[qid] !== undefined) return;
+  const ok = toAscii(input.value) === toAscii(correct);
+  input.disabled = true;
+  input.style.borderColor = ok ? 'var(--correct)' : 'var(--wrong)';
+  document.querySelectorAll(`#qcard-${qid} .sub-btn`).forEach(b => b.disabled = true);
+  state.answers[qid] = input.value;
+  markResult(qid, ok);
+}
+
+function markResult(qid, isCorrect) {
+  state.correct[qid] = isCorrect;
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  if (isCorrect) card.classList.add('pulse-correct');
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = isCorrect
+    ? `✅ <strong>Correct!</strong> +${marks[qid]} mark`
+    : `❌ <strong>Not quite.</strong> Check capitals and subscripts, then reveal the answer and balance the charges again.`;
+  updateScores();
+}
+
+function showHint(qid, hintText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  if (state.correct[qid] !== undefined) return;
+  fb.className = 'feedback show hint-fb';
+  fb.innerHTML = `💡 <strong>Hint:</strong> ${hintText}`;
+}
+
+function revealAnswer(qid, answerText) {
+  const fb = document.getElementById(`${qid}-fb`);
+  fb.className = 'feedback show reveal-fb';
+  fb.innerHTML = `📖 <strong>Answer:</strong> ${answerText}`;
+  if (state.correct[qid] === undefined) { state.correct[qid] = false; updateScores(); }
+}
+
+function shakeCard(qid) {
+  const card = document.getElementById(`qcard-${qid}`);
+  card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+}
+
+function updateScores() {
+  let totalScore = 0, totalAnswered = 0;
+  for (const [key, sec] of Object.entries(sections)) {
+    const secMax = sec.qs.reduce((s,q) => s+marks[q], 0);
+    let secScore = 0;
+    sec.qs.forEach(qid => {
+      if (state.correct[qid] === true) { secScore += marks[qid]; totalScore += marks[qid]; }
+      if (state.correct[qid] !== undefined) totalAnswered++;
+    });
+    document.getElementById(`sec-${key}-fill`).style.width = (secScore/secMax)*100 + '%';
+    document.getElementById(`sec-${key}-val`).textContent = `${secScore}/${secMax}`;
+  }
+  document.getElementById('global-score').textContent = `${totalScore} / ${maxMarks}`;
+  document.getElementById('progress-bar').style.width = `${(totalAnswered/allQs.length)*100}%`;
+  if (totalAnswered === allQs.length) showResults(totalScore);
+}
+
+function showResults(total) {
+  const pct = Math.round((total/maxMarks)*100);
+  const grade = pct>=85?'🏆 Excellent!':pct>=70?'⭐ Great Job!':pct>=55?'👍 Good Effort':'📚 Keep Practising';
+  const elapsed = Math.floor((Date.now()-state.startTime)/1000);
+  const mins=Math.floor(elapsed/60), secs=elapsed%60;
+  document.getElementById('results-grade').textContent = `${pct}%`;
+  document.getElementById('results-label').textContent = grade;
+  const bd = document.getElementById('results-breakdown');
+  bd.innerHTML = `<div class="rb-chip">Score<span class="rb-val">${total}/${maxMarks}</span></div><div class="rb-chip">Time<span class="rb-val">${mins}m ${secs}s</span></div>`;
+  const panel = document.getElementById('results-panel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'center' });
+  if (pct >= 70) launchConfetti();
+  try { localStorage.setItem(`sem1-science-ionic-formulae_${Date.now()}`, JSON.stringify({ date: new Date().toISOString(), pct, total, time: `${mins}m${secs}s` })); } catch(e) {}
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#3ecf8e','#4f8ef7','#f5a623','#e05252','#fff'];
+  const pieces = Array.from({length:120}, (_, i) => ({
+    x:(i*53)%canvas.width, y:-((i*37)%canvas.height), w:(i%7)+4, h:(i%5)+3,
+    color:colors[i%colors.length], rot:(i%6), vy:(i%4)+2, vx:((i%5)-2)*0.4, vr:((i%5)-2)*0.04
+  }));
+  let frame=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.globalAlpha=0.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<200) requestAnimationFrame(draw); else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const a = document.activeElement;
+  if (a && a.classList.contains('text-input')) a.closest('.q-body')?.querySelector('.btn-check')?.click();
+});
+</script>
+</body>
+</html>
