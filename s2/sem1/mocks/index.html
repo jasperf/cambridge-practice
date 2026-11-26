@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semester 1 Mocks · Secondary 2 · Cambridge Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent: #4f8ef7;
+  --accent2: #3ecf8e;
+  --accent3: #f5a623;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.5;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 700;
+  color: var(--text);
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 64px 32px 48px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.hero-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* GRID */
+.grid-wrap {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 0 32px;
+}
+.grid-label {
+  scroll-margin-top: 170px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+/* CARD */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  text-decoration: none;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.card.math::before  { background: var(--accent); }
+.card.sci::before   { background: var(--accent2); }
+.card.eng::before   { background: var(--accent3); }
+.card:hover { border-color: #3a4070; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+.card:hover::before { opacity: 1; }
+
+.card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 10px;
+}
+.card-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.icon-math { background: rgba(79,142,247,0.12); }
+.icon-sci  { background: rgba(62,207,142,0.12); }
+.icon-eng  { background: rgba(245,166,35,0.12); }
+.icon-lock { background: var(--surface2); }
+
+.card-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.card-status.live { border-color: rgba(62,207,142,0.4); color: var(--accent2); background: rgba(62,207,142,0.06); }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+.card-footer {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: auto; padding-top: 4px;
+}
+.chip {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text-muted);
+}
+
+/* Coming soon card */
+.card.coming { opacity: 0.45; pointer-events: none; }
+
+/* FOOTER */
+footer {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 24px 32px 0;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 10px;
+}
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* FILTER BAR */
+.filters {
+  position: sticky; top: 56px; z-index: 90;
+  background: rgba(15,17,23,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0 12px; margin-bottom: 28px;
+}
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.filter-row:first-child { margin-top: 0; }
+.filter-name {
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-dim); width: 70px; flex-shrink: 0;
+}
+.fbtn {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.5px;
+  padding: 5px 12px; border-radius: 20px; cursor: pointer;
+  border: 1px solid var(--border); background: transparent; color: var(--text-muted);
+  transition: all 0.15s;
+}
+.fbtn:hover { color: var(--text); border-color: var(--accent); }
+.fbtn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.fbtn[hidden] { display: none; }
+.is-hidden { display: none !important; }
+.no-results { display: none; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; padding: 24px 0 48px; }
+@media (max-width: 600px) { .filter-name { width: 100%; } }
+
+/* HUB PAGES */
+.crumbs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 22px 32px 0; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.5px; }
+.crumbs a { color: var(--text-muted); text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+.crumbs .sep { margin: 0 8px; }
+.hub-hero { padding-top: 28px; padding-bottom: 28px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin: 8px 0 44px; }
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; transition: all 0.2s; position: relative; overflow: hidden; }
+.tile::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); }
+.tile.t-sci::before { background: var(--accent2); }
+.tile.t-eng::before { background: var(--accent3); }
+.tile:hover { border-color: #3a4070; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+.tile-kicker { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); }
+.tile-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; }
+.tile-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+.tile-count { font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent2); margin-top: 4px; }
+.tile.coming { opacity: 0.45; pointer-events: none; }
+.sec-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin: 8px 0 14px; }
+.nav-links a.here { color: var(--text); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../../../index.html" class="nav-logo" style="text-decoration:none">Cambridge <span>Practice</span></a>
+  <div class="nav-links">
+    <a href="../../../s1/index.html">Secondary 1</a><a href="../../index.html">Secondary 2</a><a href="../../../igcse-add-maths/index.html">IGCSE</a><a href="../../../resources.html">Resources</a>
+    <a href="https://github.com/jasperf/cambridge-practice" target="_blank">GitHub ↗</a>
+  </div>
+</nav>
+<div class="crumbs"><a href="../../../index.html">Home</a> <span class="sep">/</span> <a href="../../index.html">Secondary 2</a> <span class="sep">/</span> Semester 1 Mocks</div>
+<div class="hero hub-hero">
+  <div class="eyebrow">Secondary 2 &middot; Semester 1</div>
+  <h1>Semester 1 Mocks</h1>
+  <p class="hero-sub">Assessment mocks and practice (23&ndash;27 November 2026), grouped by subject.</p>
+</div>
+
+<div class="grid-wrap">
+  <div class="filters" id="filters" aria-label="Filter by subject"><div class="filter-row"><span class="filter-name">Subject</span><button class="fbtn" data-v="all">All</button><button class="fbtn" data-v="maths">Maths</button><button class="fbtn" data-v="science">Science</button><button class="fbtn" data-v="english">English</button><button class="fbtn" data-v="bahasa">Bahasa Indonesia</button><button class="fbtn" data-v="chinese">Mandarin</button></div></div>
+  <div class="grid-label" id="maths">Maths &middot; 9 sheets</div>
+  <div class="grid">
+    <a href="sem1-maths-paper1-non-calculator.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">&#128290;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Mathematics &middot; Semester 1 Mock<br>Paper 1: Non-Calculator</div>
+      <div class="card-meta">Thursday 26 November &middot; 1 hour &middot; all units</div>
+      <div class="card-footer">
+        <span class="chip">36 questions</span>
+        <span class="chip">50 marks</span>
+        <span class="chip">+5 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-maths-paper1b-non-calculator.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">&#128290;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Mathematics &middot; Semester 1 Mock<br>Paper 1B: Non-Calculator</div>
+      <div class="card-meta">Second set &middot; 1 hour &middot; all units</div>
+      <div class="card-footer">
+        <span class="chip">36 questions</span>
+        <span class="chip">50 marks</span>
+        <span class="chip">+5 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-maths-paper1c-non-calculator.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">&#128290;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Mathematics &middot; Semester 1 Mock<br>Paper 1C: Non-Calculator</div>
+      <div class="card-meta">Third set &middot; 1 hour &middot; all units</div>
+      <div class="card-footer">
+        <span class="chip">36 questions</span>
+        <span class="chip">50 marks</span>
+        <span class="chip">+5 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-maths-paper2-calculator.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">&#128208;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Mathematics &middot; Semester 1 Mock<br>Paper 2: Calculator</div>
+      <div class="card-meta">Thursday 26 November &middot; 1 hour &middot; all units</div>
+      <div class="card-footer">
+        <span class="chip">29 questions</span>
+        <span class="chip">50 marks</span>
+        <span class="chip">+5 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-maths-paper2b-calculator.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">&#128208;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Mathematics &middot; Semester 1 Mock<br>Paper 2B: Calculator</div>
+      <div class="card-meta">A second calculator paper &middot; all units &middot; all-new questions</div>
+      <div class="card-footer">
+        <span class="chip">26 questions</span>
+        <span class="chip">50 marks</span>
+        <span class="chip">+5 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-maths-one-per-unit.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">&#128221;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Mathematics &middot; One Question per Unit<br>Quick Check + Formula List</div>
+      <div class="card-meta">Standard form, formulae, percentages, equations, inequalities, angles, circles &amp; compound shapes &middot; calculator allowed</div>
+      <div class="card-footer">
+        <span class="chip">8 questions</span>
+        <span class="chip">16 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-maths-gaps2.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">&#128221;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Mathematics &middot; Gaps Drill 2<br>All Eight Topics, New Numbers</div>
+      <div class="card-meta">Expressions, surds, powers, indices, brackets &amp; equations, mixed numbers, rational &amp; irrational &middot; no calculator</div>
+      <div class="card-footer">
+        <span class="chip">45 questions</span>
+        <span class="chip">73 marks</span>
+        <span class="chip">+7 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-maths-gaps.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">&#128221;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Mathematics &middot; Gaps Drill<br>Seven Algebra Slips</div>
+      <div class="card-meta">Expressions in n, surds, negative powers, brackets &amp; signs &middot; write on paper first</div>
+      <div class="card-footer">
+        <span class="chip">34 questions</span>
+        <span class="chip">53 marks</span>
+        <span class="chip">+7 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-maths-test2-shapes-angles-algebra.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">&#9711;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Mathematics &middot; Test 2<br>Shapes, Angles &amp; Algebra</div>
+      <div class="card-meta">Compound shapes (&pi; = 22/7), angles, surds, indices &amp; algebra &middot; no calculator</div>
+      <div class="card-footer">
+        <span class="chip">34 questions</span>
+        <span class="chip">55 marks</span>
+        <span class="chip">+6 written</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="grid-label" id="science">Science &middot; 9 sheets</div>
+  <div class="grid">
+    <a href="sem1-science-mock.html" data-subject="science" class="card sci">
+      <div class="card-top">
+        <div class="card-icon icon-sci">&#9883;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Science &middot; Semester 1 Mock<br>All Topics</div>
+      <div class="card-meta">Friday 27 November &middot; one standardised paper</div>
+      <div class="card-footer">
+        <span class="chip">39 questions</span>
+        <span class="chip">48 marks</span>
+        <span class="chip">+6 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-science-mock2-combined.html" data-subject="science" class="card sci">
+      <div class="card-top">
+        <div class="card-icon icon-sci">&#128300;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Science &middot; Semester 1 Mock 2<br>The Combined Paper</div>
+      <div class="card-meta">Every revision-list topic &middot; gap topics included</div>
+      <div class="card-footer">
+        <span class="chip">52 questions</span>
+        <span class="chip">70 marks</span>
+        <span class="chip">+6 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-science-mock3-combined.html" data-subject="science" class="card sci">
+      <div class="card-top">
+        <div class="card-icon icon-sci">&#128300;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Science &middot; Semester 1 Mock 3<br>The Combined Paper, Again</div>
+      <div class="card-meta">All new questions &middot; gap topics included</div>
+      <div class="card-footer">
+        <span class="chip">52 questions</span>
+        <span class="chip">70 marks</span>
+        <span class="chip">+6 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-science-mock4-express.html" data-subject="science" class="card sci">
+      <div class="card-top">
+        <div class="card-icon icon-sci">&#128300;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Science &middot; Semester 1 Mock 4<br>Short &amp; Combined</div>
+      <div class="card-meta">Every Term 1&ndash;2 topic &middot; a quicker paper &middot; all new questions</div>
+      <div class="card-footer">
+        <span class="chip">30 questions</span>
+        <span class="chip">38 marks</span>
+        <span class="chip">+3 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-science-revision.html" data-subject="science" class="card sci">
+      <div class="card-top">
+        <div class="card-icon icon-sci">&#127807;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Science &middot; Terms 1&ndash;2 Review<br>Key Facts &amp; Checks</div>
+      <div class="card-meta">All 7 topics &middot; 5 interactive explorers</div>
+      <div class="card-footer">
+        <span class="chip">42 questions</span>
+        <span class="chip">50 marks</span>
+        <span class="chip">+6 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-science-bonding-ions.html" data-subject="science" class="card sci">
+      <div class="card-top">
+        <div class="card-icon icon-sci">&#128279;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Science &middot; Bonding &amp; Ions<br>Topic Practice</div>
+      <div class="card-meta">Ions, formulae, ionic, covalent &amp; metallic &middot; 3 explorers</div>
+      <div class="card-footer">
+        <span class="chip">36 questions</span>
+        <span class="chip">44 marks</span>
+        <span class="chip">+6 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-science-ionic-formulae.html" data-subject="science" class="card sci">
+      <div class="card-top">
+        <div class="card-icon icon-sci">&#9878;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Science &middot; Ionic Formulae<br>Atomic Bonding Quick Test</div>
+      <div class="card-meta">Combine ions into neutral compounds &middot; typed answers with subscript buttons</div>
+      <div class="card-footer">
+        <span class="chip">10 questions</span>
+        <span class="chip">10 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-science-plants-quiz.html" data-subject="science" class="card sci">
+      <div class="card-top">
+        <div class="card-icon icon-sci">&#127811;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Science &middot; Plants<br>Plants Quick Quiz</div>
+      <div class="card-meta">Photosynthesis, glucose, minerals, fertilisers &amp; investigations &middot; pondweed explorer</div>
+      <div class="card-footer">
+        <span class="chip">26 questions</span>
+        <span class="chip">26 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-science-gaps.html" data-subject="science" class="card sci">
+      <div class="card-top">
+        <div class="card-icon icon-sci">&#129658;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Science &middot; Gaps Drill<br>Five Missing Topics</div>
+      <div class="card-meta">Excretion, plant transport, carbon cycle, energy &amp; giant structures &middot; 3 explorers</div>
+      <div class="card-footer">
+        <span class="chip">37 questions</span>
+        <span class="chip">49 marks</span>
+        <span class="chip">+6 written</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="grid-label" id="english">English &middot; 2 sheets</div>
+  <div class="grid">
+    <a href="sem1-english-level23-mock.html" data-subject="english" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#128221;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">English &middot; Semester 1 Mock<br>Level 2/3 Paper</div>
+      <div class="card-meta">Wednesday 25 November &middot; one standardised paper</div>
+      <div class="card-footer">
+        <span class="chip">41 questions</span>
+        <span class="chip">48 marks</span>
+        <span class="chip">+4 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-english-revision-pack-mock.html" data-subject="english" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#128214;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">English &middot; Semester 1 Mock<br>Revision Pack (all 10 topics)</div>
+      <div class="card-meta">Wednesday 25 November &middot; one section per revision worksheet</div>
+      <div class="card-footer">
+        <span class="chip">69 questions</span>
+        <span class="chip">69 marks</span>
+        <span class="chip">+22 written</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="grid-label" id="bahasa">Bahasa Indonesia &middot; 13 sheets</div>
+  <div class="grid">
+    <a href="sem1-bahasa-indonesia-mock.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Semester 1 Mock<br>Units 1&ndash;3</div>
+      <div class="card-meta">Tuesday 24 November &middot; classroom, advertisements, animals &middot; 3 diagrams</div>
+      <div class="card-footer">
+        <span class="chip">76 questions</span>
+        <span class="chip">76 marks</span>
+        <span class="chip">+7 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-vocab.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Vocabulary Drill<br>English &harr; Indonesian</div>
+      <div class="card-meta">Classroom, advertisements, animals &middot; typed answers only, no multiple choice</div>
+      <div class="card-footer">
+        <span class="chip">40 questions</span>
+        <span class="chip">40 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-vocab-2.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Vocabulary Drill 2<br>English &harr; Indonesian</div>
+      <div class="card-meta">Classroom, shopping, animals, verbs &middot; 40 all-new words, typed answers only</div>
+      <div class="card-footer">
+        <span class="chip">40 questions</span>
+        <span class="chip">40 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-animal-body-parts-flashcards-en-id.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Flashcards<br>English &rarr; Indonesian</div>
+      <div class="card-meta">50 cards &middot; all Drill 2 words plus animal body parts &middot; flip, mark known to hide, shuffle, filter by topic &middot; self-check only</div>
+      <div class="card-footer">
+        <span class="chip">50 cards</span>
+        <span class="chip">Revision</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-animal-body-parts-flashcards-id-en.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Flashcards<br>Indonesian &rarr; English</div>
+      <div class="card-meta">50 cards &middot; all Drill 2 words plus animal body parts &middot; flip, mark known to hide, shuffle, filter by topic &middot; self-check only</div>
+      <div class="card-footer">
+        <span class="chip">50 cards</span>
+        <span class="chip">Revision</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-animal-body-parts.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Animal Body Parts Test<br>Unit 3 &middot; English &harr; Indonesian</div>
+      <div class="card-meta">All 11 body-part words plus 10 extras &middot; typed answers, sentences and some multiple-choice</div>
+      <div class="card-footer">
+        <span class="chip">40 questions</span>
+        <span class="chip">40 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-columns-school.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; School &amp; Classroom<br>Column test &middot; English &harr; Indonesian</div>
+      <div class="card-meta">22 words in the word-list columns &middot; Chairs, boards, desks, the teacher, describing the class &middot; typed answers, both directions</div>
+      <div class="card-footer">
+        <span class="chip">44 questions</span>
+        <span class="chip">44 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-columns-prepositions.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Prepositions of Place<br>Column test &middot; English &harr; Indonesian</div>
+      <div class="card-meta">11 words in the word-list columns &middot; On, under, in front of, between, behind, beside, left and right &middot; typed answers, both directions</div>
+      <div class="card-footer">
+        <span class="chip">22 questions</span>
+        <span class="chip">22 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-prepositions-flashcards-en-id.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Prepositions Flashcards<br>English &rarr; Indonesian</div>
+      <div class="card-meta">11 cards &middot; prepositions of place &middot; flip, mark known to hide, shuffle &middot; self-check only</div>
+      <div class="card-footer">
+        <span class="chip">11 cards</span>
+        <span class="chip">Revision</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-prepositions-flashcards-id-en.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Prepositions Flashcards<br>Indonesian &rarr; English</div>
+      <div class="card-meta">11 cards &middot; prepositions of place &middot; flip, mark known to hide, shuffle &middot; self-check only</div>
+      <div class="card-footer">
+        <span class="chip">11 cards</span>
+        <span class="chip">Revision</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-columns-ads.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Advertisements<br>Column test &middot; English &harr; Indonesian</div>
+      <div class="card-meta">25 words in the word-list columns &middot; Product, title, price, discount, contact and the question words &middot; typed answers, both directions</div>
+      <div class="card-footer">
+        <span class="chip">50 questions</span>
+        <span class="chip">50 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-columns-animals.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Animals &amp; Body Parts<br>Column test &middot; English &harr; Indonesian</div>
+      <div class="card-meta">37 words in the word-list columns &middot; Animal names plus wings, claws, fins, ears, eyes and more &middot; typed answers, both directions</div>
+      <div class="card-footer">
+        <span class="chip">74 questions</span>
+        <span class="chip">74 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-bahasa-indonesia-wordlist.html" data-subject="bahasa" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127470;&#127465;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Bahasa Indonesia &middot; Word List<br>English &harr; Indonesian</div>
+      <div class="card-meta">All 103 Semester 1 words &middot; hide / reveal flashcard lists, both directions &middot; includes a how-to-memorize guide</div>
+      <div class="card-footer">
+        <span class="chip">103 words</span>
+        <span class="chip">Revision list</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="grid-label" id="chinese">Mandarin &middot; 3 sheets</div>
+  <div class="grid">
+    <a href="sem1-chinese-mock.html" data-subject="chinese" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127464;&#127475;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Chinese &middot; Semester 1 Mock<br>Seasons, Occupations, Shopping</div>
+      <div class="card-meta">Monday 23 November &middot; reading, sentence order, writing &middot; price board diagram</div>
+      <div class="card-footer">
+        <span class="chip">49 questions</span>
+        <span class="chip">59 marks</span>
+        <span class="chip">+5 written</span>
+      </div>
+    </a>
+
+    <a href="sem1-chinese-vocab.html" data-subject="chinese" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127464;&#127475;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Chinese &middot; Vocabulary Drill<br>English &harr; Chinese</div>
+      <div class="card-meta">Weather, jobs, shopping, writing words &middot; typed answers only, no multiple choice</div>
+      <div class="card-footer">
+        <span class="chip">40 questions</span>
+        <span class="chip">40 marks</span>
+      </div>
+    </a>
+
+    <a href="sem1-chinese-wordlist.html" data-subject="chinese" class="card eng">
+      <div class="card-top">
+        <div class="card-icon icon-eng">&#127464;&#127475;</div>
+        <div class="card-status live">&#9679; Live</div>
+      </div>
+      <div class="card-title">Chinese &middot; Word List<br>English &harr; Chinese</div>
+      <div class="card-meta">64 Semester 1 words &middot; hide / reveal flashcard lists, both directions &middot; includes a how-to-memorize guide</div>
+      <div class="card-footer">
+        <span class="chip">64 words</span>
+        <span class="chip">Revision list</span>
+      </div>
+    </a>
+  </div>
+
+
+  <footer>
+    <p>Cambridge Secondary &amp; IGCSE Practice · <a href="https://github.com/jasperf/cambridge-practice" target="_blank">github.com/jasperf/cambridge-practice</a></p>
+    <p>Not affiliated with Cambridge Assessment International Education</p>
+  </footer>
+</div>
+<script>
+(function () {
+  var bar = document.getElementById('filters'); if (!bar) return;
+  var cards = document.querySelectorAll('.card[data-subject]');
+  var labels = document.querySelectorAll('.grid-label');
+  var cur = 'all';
+  function apply() {
+    bar.querySelectorAll('.fbtn').forEach(function (b) { b.classList.toggle('active', b.dataset.v === cur); });
+    cards.forEach(function (c) { c.classList.toggle('is-hidden', cur !== 'all' && c.dataset.subject !== cur); });
+    labels.forEach(function (l) {
+      var g = l.nextElementSibling; if (!g || !g.classList.contains('grid')) return;
+      var any = g.querySelector('.card:not(.is-hidden)');
+      l.classList.toggle('is-hidden', !any); g.classList.toggle('is-hidden', !any);
+    });
+    try { history.replaceState(null, '', cur === 'all' ? location.pathname : '#s=' + cur); } catch (e) {}
+  }
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest('.fbtn'); if (!b) return; cur = b.dataset.v; apply();
+  });
+  var m = /^#s=(\w+)$/.exec(location.hash); if (m) cur = m[1];
+  apply();
+})();
+</script>
+</body>
+</html>

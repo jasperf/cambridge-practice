@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IGCSE Additional Maths · Cambridge Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --surface2: #1e2336;
+  --border: #2a3050;
+  --accent: #4f8ef7;
+  --accent2: #3ecf8e;
+  --accent3: #f5a623;
+  --text: #e8eaf0;
+  --text-muted: #7a84a0;
+  --text-dim: #4a5270;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.5;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 700;
+  color: var(--text);
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 64px 32px 48px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.hero-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* GRID */
+.grid-wrap {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 0 32px;
+}
+.grid-label {
+  scroll-margin-top: 170px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+/* CARD */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  text-decoration: none;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.card.math::before  { background: var(--accent); }
+.card.sci::before   { background: var(--accent2); }
+.card.eng::before   { background: var(--accent3); }
+.card:hover { border-color: #3a4070; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+.card:hover::before { opacity: 1; }
+
+.card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 10px;
+}
+.card-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.icon-math { background: rgba(79,142,247,0.12); }
+.icon-sci  { background: rgba(62,207,142,0.12); }
+.icon-eng  { background: rgba(245,166,35,0.12); }
+.icon-lock { background: var(--surface2); }
+
+.card-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.card-status.live { border-color: rgba(62,207,142,0.4); color: var(--accent2); background: rgba(62,207,142,0.06); }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+.card-footer {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: auto; padding-top: 4px;
+}
+.chip {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text-muted);
+}
+
+/* Coming soon card */
+.card.coming { opacity: 0.45; pointer-events: none; }
+
+/* FOOTER */
+footer {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 24px 32px 0;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 10px;
+}
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* FILTER BAR */
+.filters {
+  position: sticky; top: 56px; z-index: 90;
+  background: rgba(15,17,23,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0 12px; margin-bottom: 28px;
+}
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.filter-row:first-child { margin-top: 0; }
+.filter-name {
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-dim); width: 70px; flex-shrink: 0;
+}
+.fbtn {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.5px;
+  padding: 5px 12px; border-radius: 20px; cursor: pointer;
+  border: 1px solid var(--border); background: transparent; color: var(--text-muted);
+  transition: all 0.15s;
+}
+.fbtn:hover { color: var(--text); border-color: var(--accent); }
+.fbtn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.fbtn[hidden] { display: none; }
+.is-hidden { display: none !important; }
+.no-results { display: none; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; padding: 24px 0 48px; }
+@media (max-width: 600px) { .filter-name { width: 100%; } }
+
+/* HUB PAGES */
+.crumbs { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 22px 32px 0; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.5px; }
+.crumbs a { color: var(--text-muted); text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+.crumbs .sep { margin: 0 8px; }
+.hub-hero { padding-top: 28px; padding-bottom: 28px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin: 8px 0 44px; }
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; transition: all 0.2s; position: relative; overflow: hidden; }
+.tile::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); }
+.tile.t-sci::before { background: var(--accent2); }
+.tile.t-eng::before { background: var(--accent3); }
+.tile:hover { border-color: #3a4070; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+.tile-kicker { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); }
+.tile-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; }
+.tile-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+.tile-count { font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent2); margin-top: 4px; }
+.tile.coming { opacity: 0.45; pointer-events: none; }
+.sec-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin: 8px 0 14px; }
+.nav-links a.here { color: var(--text); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo" style="text-decoration:none">Cambridge <span>Practice</span></a>
+  <div class="nav-links">
+    <a href="../s1/index.html">Secondary 1</a><a href="../s2/index.html">Secondary 2</a><a href="index.html">IGCSE</a><a href="../resources.html">Resources</a>
+    <a href="https://github.com/jasperf/cambridge-practice" target="_blank">GitHub ↗</a>
+  </div>
+</nav>
+<div class="crumbs"><a href="../index.html">Home</a> <span class="sep">/</span> IGCSE</div>
+<div class="hero hub-hero">
+  <div class="eyebrow">IGCSE</div>
+  <h1>Additional <em>Maths</em></h1>
+  <p class="hero-sub">Topic drills for IGCSE Additional Mathematics (0606).</p>
+</div>
+
+<div class="grid-wrap">
+  <div class="grid-label" id="igcse">IGCSE Additional Maths</div>
+  <div class="grid">
+    <a href="circular-measure.html" data-subject="maths" class="card math">
+      <div class="card-top">
+        <div class="card-icon icon-math">📐</div>
+        <div class="card-status live">● Live</div>
+      </div>
+      <div class="card-title">Mathematics · Circular Measure<br>Radians &amp; Degrees</div>
+      <div class="card-meta">IGCSE Additional Maths (0606) · Interactive circle</div>
+      <div class="card-footer">
+        <span class="chip">Radian definition</span>
+        <span class="chip">Conversion</span>
+        <span class="chip">Arc &amp; sector</span>
+        <span class="chip">23 marks</span>
+      </div>
+    </a>
+
+    <div class="card coming">
+      <div class="card-top">
+        <div class="card-icon icon-lock">🔒</div>
+        <div class="card-status">Planned</div>
+      </div>
+      <div class="card-title">Physics · Electricity & Magnetism</div>
+      <div class="card-meta">IGCSE Core + Extended</div>
+      <div class="card-footer"><span class="chip">IGCSE</span></div>
+    </div>
+
+    <div class="card coming">
+      <div class="card-top">
+        <div class="card-icon icon-lock">🔒</div>
+        <div class="card-status">Planned</div>
+      </div>
+      <div class="card-title">Mathematics · Statistics & Probability</div>
+      <div class="card-meta">IGCSE Core + Extended</div>
+      <div class="card-footer"><span class="chip">IGCSE</span></div>
+    </div>
+  </div>
+
+
+  <footer>
+    <p>Cambridge Secondary &amp; IGCSE Practice · <a href="https://github.com/jasperf/cambridge-practice" target="_blank">github.com/jasperf/cambridge-practice</a></p>
+    <p>Not affiliated with Cambridge Assessment International Education</p>
+  </footer>
+</div>
+
+</body>
+</html>
