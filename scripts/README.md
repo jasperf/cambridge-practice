@@ -62,6 +62,20 @@ would silently invalidate that prose. Reshuffle those by hand.
 It does not touch question wording, so it cannot fix a check-2 giveaway —
 that is always a human edit.
 
+## `mcq_key_check.py` — is the answer key actually right?
+
+```bash
+python3 scripts/mcq_key_check.py s2/sem1/mocks/*.html
+```
+
+Run it after any shuffle or edit to options. For each MCQ it checks that the
+`checkMCQ` letter, the reveal's leading letter and the sibling `-answers.md`
+all agree (these are **DEFINITE** failures, exit status 1), and flags a
+question as **likely** when the reveal explanation overlaps a different option
+more than the keyed one. Likely hits are a shortlist to read: reveals that
+explain why the wrong options are wrong trigger it too. It cannot check the
+subject matter itself, and it skips typed-answer questions.
+
 ## `mcq_sync.py` — keep the printable in step
 
 ```bash
