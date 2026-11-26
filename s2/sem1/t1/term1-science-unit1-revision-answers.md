@@ -24,7 +24,7 @@ Q1–Q54 are the auto-marked questions, also checkable on the three interactive 
 | Q11 | 1 | **D** — 2, 8, 8 |
 | Q12 | 1 | **B** — Same number of outer electrons |
 | Q13 | 1 | **C** — Same number of electron shells |
-| Q14 | 1 | **D** — Group 8 (also labelled Group 18) |
+| Q14 | 1 | **A** — Group 0 (also labelled Group 18 in IUPAC numbering) |
 | Q15 | 1 | **B** — Magnesium |
 | Q16 | 1 | **C** — Chlorine |
 | Q17 | 1 | **A** — Increases |
@@ -60,7 +60,7 @@ Q1–Q54 are the auto-marked questions, also checkable on the three interactive 
 
 | Q | Marks | Answer |
 |---|-------|--------|
-| Q40 | 1 | **B** — To achieve a full outer shell, greater stability and lower energy |
+| Q40 | 1 | **B** — Neon is almost completely unreactive, because its outer shell is already full and bonding would gain it nothing |
 | Q41 | 1 | **D** — Magnetic (not a type of chemical bond) |
 | Q42 | 1 | **A** — They are transferred from one atom to another |
 | Q43 | 1 | **C** — They are shared between atoms |
