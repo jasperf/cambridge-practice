@@ -24,7 +24,7 @@ Q1–Q54 are the auto-marked questions, also checkable on the three interactive 
 | Q11 | 1 | **D** — 2, 8, 8 |
 | Q12 | 1 | **B** — Same number of outer electrons |
 | Q13 | 1 | **C** — Same number of electron shells |
-| Q14 | 1 | **A** — Group 0 (also labelled Group 18 in IUPAC numbering) |
+| Q14 | 1 | **D** — Group 8 (also called Group 0, or Group 18 on modern periodic tables) |
 | Q15 | 1 | **B** — Magnesium |
 | Q16 | 1 | **C** — Chlorine |
 | Q17 | 1 | **A** — Increases |
