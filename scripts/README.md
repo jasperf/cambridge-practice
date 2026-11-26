@@ -216,3 +216,11 @@ It runs headless Chrome through the DevTools protocol, pauses the SVG's SMIL
 animations and steps `setCurrentTime()` frame by frame, so the capture is
 exact rather than a screen recording. Needs Node 22 (no npm packages), Google
 Chrome, `ffmpeg` and `gifski`.
+
+## `build_ionic_formula_sheet.py` — generate the Ionic Formula Practice sheet
+
+```bash
+python3 scripts/build_ionic_formula_sheet.py
+```
+
+Writes `sem1-science-ionic-formulae.html`, its printable `.md` and an answers `.md` into `s2/sem1/mocks/`. To make a new ionic-formula drill, edit the `Q` list at the top of the script (ions, charges, answer, hint, reveal). Typed answers with subscript buttons (typed digits auto-convert to subscripts); capitals matter. The CSS is copied from `sem1-science-bonding-ions.html`, so keep that file in place. Run `scripts/sheet_audit.py` on the output afterwards.

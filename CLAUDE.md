@@ -160,6 +160,10 @@ a check-2 giveaway is always fixed by hand.
 
 See `scripts/README.md` for what the three tools check and how they decide.
 
+## Typed-formula tests (ionic formulae)
+
+For short "combine the ions" tests with typed answers, don't hand-write the sheet: edit the `Q` list in `scripts/build_ionic_formula_sheet.py` and run it. It writes the interactive `.html`, the printable `.md` and an answers `.md` into `s2/sem1/mocks/` (CSS is borrowed from `sem1-science-bonding-ions.html`, which must stay in place). Answers are typed with subscript buttons (typed digits auto-convert to subscripts) and are case-sensitive. Afterwards run `sheet_audit.py` and still add the `index.html` card and README entries by hand.
+
 ## Check the totals
 
 Question counts and mark totals are typed by hand in several places (the header chip, score pills, the `index.html` card, the `.md` printable's heading, the term README table), while the score itself is computed from the `marks` object. After adding, removing or re-weighting a question, run:
