@@ -310,7 +310,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
       </div>
       <div class="q-actions">
         <button class="btn btn-check" onclick="checkMCQ('q8','a','Q8')">Check</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q8','A — the core. Earth&apos;s iron-rich, partly liquid core generates the magnetic field that a compass detects.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q8','a — the core (layer C in the diagram). Earth&apos;s iron-rich, partly liquid core generates the magnetic field that a compass detects.')">Show Answer</button>
       </div>
       <div class="feedback" id="q8-fb"></div>
     </div>
@@ -364,9 +364,9 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <input type="text" class="text-input" id="q11-ans" placeholder="e.g. one word…">
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkText('q11','planets','Q11')">Check</button>
+        <button class="btn btn-check" onclick="checkText('q11',['planets','moons','gas','dust','asteroids','comets'],'Q11')">Check</button>
         <button class="btn btn-hint" onclick="showHint('q11','Earth is one of these, orbiting the Sun. (&quot;planet&quot; is accepted; gas, dust and moons are also correct.)')">Hint</button>
-        <button class="btn btn-reveal" onclick="revealAnswer('q11','Planets (also accept: moons, gas, dust, asteroids). The Milky Way contains stars and the planets that orbit them.')">Show Answer</button>
+        <button class="btn btn-reveal" onclick="revealAnswer('q11','Planets (also accept: moons, gas, dust, asteroids, comets). The Milky Way contains stars and the planets that orbit them.')">Show Answer</button>
       </div>
       <div class="feedback" id="q11-fb"></div>
     </div>
@@ -515,8 +515,11 @@ function checkText(qid, correctVal, label) {
   if (!input || input.value === '') { shakeCard(qid); return; }
   if (state.correct[qid] !== undefined) return;
   const val = input.value.toLowerCase().replace(/\s+/g,'');
-  const correct = correctVal.toLowerCase().replace(/\s+/g,'');
-  const isCorrect = val === correct || val.includes(correct) || correct.includes(val);
+  const list = Array.isArray(correctVal) ? correctVal : [correctVal];
+  const isCorrect = list.some(c => {
+    const correct = c.toLowerCase().replace(/\s+/g,'');
+    return val === correct || val.includes(correct) || correct.includes(val);
+  });
   input.classList.add(isCorrect ? 'correct' : 'wrong');
   markResult(qid, isCorrect);
 }
