@@ -287,7 +287,7 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
     <div class="q-body">
       <input type="text" class="text-input" id="q7-ans" placeholder="Type your answer…">
       <div class="q-actions">
-        <button class="btn btn-check" onclick="checkText('q7','haemoglobin','Q7')">Check</button>
+        <button class="btn btn-check" onclick="checkText('q7',['haemoglobin','hemoglobin'],'Q7')">Check</button>
         <button class="btn btn-hint" onclick="showHint('q7','It begins with H and gives blood its red colour. (American spelling: hemoglobin.)')">Hint</button>
         <button class="btn btn-reveal" onclick="revealAnswer('q7','Haemoglobin (also spelled hemoglobin). It binds oxygen in the lungs and releases it in the body.')">Show Answer</button>
       </div>
@@ -521,8 +521,11 @@ function checkText(qid, correctVal, label) {
   if (!input || input.value === '') { shakeCard(qid); return; }
   if (state.correct[qid] !== undefined) return;
   const val = input.value.toLowerCase().replace(/\s+/g,'');
-  const correct = correctVal.toLowerCase().replace(/\s+/g,'');
-  const isCorrect = val === correct || val.includes(correct) || correct.includes(val);
+  const list = Array.isArray(correctVal) ? correctVal : [correctVal];
+  const isCorrect = list.some(c => {
+    const correct = c.toLowerCase().replace(/\s+/g,'');
+    return val === correct || val.includes(correct) || correct.includes(val);
+  });
   input.classList.add(isCorrect ? 'correct' : 'wrong');
   markResult(qid, isCorrect);
 }
